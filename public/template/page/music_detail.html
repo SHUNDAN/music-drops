@@ -1,0 +1,107 @@
+
+<!-- Page: Music Detail Page  -->
+<script id="page_music_detail" type="text/template">
+    <h1 class="text-center">Music Detail</h1>
+    <div id="musicInfoArea"></div>
+    <h4 class="mt20">Relative Links</h4>
+    <div id="musicLinkListArea"></div>
+    <h4 class="mt20">PopList</h4>
+    <div id="popListArea"></div>
+    <div class="btn" data-event="addPop">Popを追加する</div><br>
+</script>
+
+
+<!-- Parts: Music Info  -->
+<script id="page_music_detail_info" type="text/template">
+    <h2><%- title %></h2>
+    <p>Artist: <a href="#artist/<%=artist_id%>"><%- artist_name %></a></p>
+    <p><img src="<%= artwork_url %>" alt="" /></p>
+    <p><audio src="<%= song_url %>" controls></audio></p>
+    <% if (itunes_url) { %>
+        <p><a href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&subid=&offerid=94348.1&type=10&tmpid=3910&RD_PARM1=<%- itunes_url %>" target="_blank">iTunesで曲を見る</a></p>
+    <% } %>
+    <div class="pocketBtnArea">
+        <% _.each(feelings, function (feeling) { %>
+            <!-- <div class="btn mb5" data-event="addPocket" data-feeling-id="<%-feeling.id%>"><%-feeling.name%></div> -->
+        <% }); %>
+        <div class="btn" data-event="addPocket" data-feeling-id="0">この曲をPocketする</div>
+    </div>
+</script>
+
+<!-- Parts: Music Page's Pop List -->
+<script id="page_music_detail_poplist" type="text/template">
+    <table class="table">
+        <tr>
+            <th>User</th>
+            <th>Feeling</th>
+            <th>Comment</th>
+        </tr>
+        <% _.each(popList, function (pop) {  %>
+            <tr>
+                <td class="wb"><a href="#user/<%=pop.attributes.user_id%>"><%- pop.attributes.user_name %></a></td>
+                <td class="wb" data-feeling-id="<%=pop.attributes.feeling_id%>"><%=_.getFeelingName(pop.attributes.feeling_id)%></td>
+                <td class="wb"><%- pop.attributes.comment  %></td>
+            </tr>
+        <% }); %>
+    </table>
+</script>
+
+
+<!-- 関連リンク集 -->
+<script id="page_music_detail_music_links" type="text/template">
+    <table class="table">
+        <tr>
+            <th>User</th>
+            <th>comment</th>
+            <th>link</th>
+            <th>Action</th>
+            <th>Action2</th>
+        </tr>
+        <% _.each(musicLinkList, function (musicLink) { %>
+            <tr>
+                <td class="wb"><a href="#user/<%-musicLink.attributes.user_id%>"><%=musicLink.attributes.user_name%></a></td>
+                <td class="wb"><%- musicLink.attributes.comment %></td>
+                <% if (musicLink.attributes.youtube_id) { %>
+                    <td class="wb"><a href="<%- musicLink.attributes.link %>" target="_blank" data-event="playYoutube" data-youtube-id="<%- musicLink.attributes.youtube_id %>"><%- musicLink.attributes.link %></a></td>
+                <% } else { %>
+                    <td class="wb"><a href="<%- musicLink.attributes.link %>" target="_blank"><%- musicLink.attributes.link %></a></td>
+                <% } %>
+                <td><div class="btn">Edit</div></td>
+                <td><div class="btn" data-event="addPocket" data-feeling-id="0" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">このリンクで<br>曲をPocketする</div></td>
+            </tr>
+        <% }); %>
+        <tr>
+            <td class="text-center">-</td>
+            <td contenteditable="true" data-type="comment"></td>
+            <td contenteditable="true" data-type="link"></td>
+            <td><div id="addLink" class="btn">ADD</div></td>
+            <td class="text-center">-</td>
+        </tr>
+    </table>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

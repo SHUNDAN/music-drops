@@ -1,0 +1,78 @@
+extends layout
+
+block content
+    h1=title
+    a(href="/") Topへ
+    br
+    
+
+    <div id="main" class="wb"></div>
+
+
+
+
+    // Feelingテーブル
+    h3 Feelingテーブル
+    table.table
+        tr
+            th.span1  id
+            th        name
+            th.span2  control
+        tbody#feelingTableBody(contenteditable="true")
+    br
+    br
+
+    // Musicテーブル
+    h3 Musicテーブル
+    table.table
+        tr
+            th.span1  id
+            th  title
+            th  artist_name
+            th  artwork_url
+            th  song_url
+            th itunes_url
+            th.span2  control
+        tr
+            tbody#musicTableBody(contenteditable="true")
+    p       ※idの入力は無視されます
+    br
+    br
+
+
+    // Popテーブル
+    h3 Popテーブル
+    table.table
+        tr
+            th.span1  id
+            th  feeling_id
+            th  music_id
+            th  user_id
+            th  comment
+            th.span2  control
+        tr
+            tbody#popTableBody(contenteditable="true")
+    p       ※idの入力は無視されます
+    br
+    br
+
+    
+    // Userテーブル
+    h3 Userテーブル
+    table.table
+        tr
+            th.span1  id
+            th  name
+            th  thumb_url
+            th.span2  control
+        tr
+            tbody#userTableBody(contenteditable="true")
+    p       ※idの入力は無視されます
+    br
+    br
+
+
+    script(src="http://codeorigin.jquery.com/jquery-2.0.3.js")
+    script(src="javascripts/libs/underscore-min.js")
+    script(src="javascripts/master.js")
+

@@ -1,0 +1,187 @@
+
+<!-- Top -->
+<script id="page_top" type="text/template">
+    <h1 class="text-center">Topページ</h1>
+
+    <section class="pl10 mb20">
+
+        <ul class="nav nav-tabs mt50">
+            <li class="active">
+                <a href="#newPopListArea" data-toggle="tab">新着Pop</a>
+            </li>
+            <li>
+                <a href="#popularPopListArea" data-toggle="tab">人気Pop</a>
+            </li>
+            <li>
+                <a href="#hotPopListArea" data-toggle="tab">急上昇Pop</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+
+            <div class="tab-pane active" id="newPopListArea">
+                <h3>新着Drop</h3>
+                <p>投稿順が新しい順にDropを表示します。</p>
+                <select id="newPopListFilter">
+                    <option value="0">ALL</option>
+                    <%_.each(feelingList, function (feeling) {%>
+                        <option value="<%=feeling.id%>"><%=feeling.name%></option>
+                    <%});%>
+                </select><br>
+                <a href="#" data-event="playAll" data-target="newPopList">新着Dropを全曲再生する</a>
+                <table class="table">
+                    <tr>
+                        <th>Thumb</th>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Feeling</th>
+                        <th>Comment</th>
+                        <th>User</th>
+                        <th>Play</th>
+                        <th>Like</th>
+                    </tr>
+                    <tbody id="newPopList"></tbody>
+                </table>
+            
+            </div>
+
+            <div class="tab-pane" id="popularPopListArea">
+                <h3>人気Drop</h3>
+                <p>Like数が多い順にDropを表示します。</p>
+                <select id="popularPopListFilter">
+                    <option value="0">ALL</option>
+                    <%_.each(feelingList, function (feeling) {%>
+                        <option value="<%=feeling.id%>"><%=feeling.name%></option>
+                    <%});%>
+                </select><br>
+                <a href="#" data-event="playAll" data-target="popularPopList">人気Dropを全曲再生する</a>
+                <table class="table">
+                    <tr>
+                        <th>Thumb</th>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Feeling</th>
+                        <th>Comment</th>
+                        <th>User</th>
+                        <th>Play</th>
+                        <th>Like</th>
+                    </tr>
+                    <tbody id="popularPopList"></tbody>
+                </table>
+            
+            </div>
+
+            <div class="tab-pane" id="hotPopListArea">
+                <h3>人気急上昇Drop</h3>
+                <p>最近Like数の増分が多いDropを表示します。</p>
+                <select id="hotPopListFilter">
+                    <option value="0">ALL</option>
+                    <%_.each(feelingList, function (feeling) {%>
+                        <option value="<%=feeling.id%>"><%=feeling.name%></option>
+                    <%});%>
+                </select><br>
+                <a href="#" data-event="playAll" data-target="hotPopList">人気急上昇Dropを全曲再生する</a>
+                <table class="table">
+                    <tr>
+                        <th>Thumb</th>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Feeling</th>
+                        <th>Comment</th>
+                        <th>User</th>
+                        <th>Play</th>
+                        <th>Like</th>
+                    </tr>
+                    <tbody id="hotPopList"></tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+    
+    
+    
+    </section>
+
+
+
+
+</script>
+
+<!-- Top: ボタン一覧 -->
+<script id="page_top_btn_list" type="text/template">
+    <% for (var i = 0; i < feelings.length; i++) {  
+        var feeling = feelings[i];
+        var btnColor = btnClasses[i];
+        %>
+        <a href="#" 
+            class="btn btn-block btn-large mlra <%-btnColor%>" 
+            data-id="<%-feeling.attributes.id%>" 
+            data-label="<%-feeling.attributes.name%>" 
+            data-event="showPopList"><%-feeling.attributes.name%></a>
+        <br>
+        <br>
+    <% } %>
+</script>
+
+
+
+<!--PopList-->
+<script id="page_top_poplist" type="text/template">
+    <%_.each(popList, function (pop) {%>
+        <tr data-pop-id="<%=pop.attributes.id%>">
+            <td>
+                <img class="thumbM" src="<%=pop.attributes.artwork_url%>" />
+            </td>
+            <td>
+                <a href="#music/<%=pop.attributes.music_id%>"><%=pop.attributes.title%></a>
+            </td>
+            <td>
+                <a href="#artist/<%=pop.attributes.artist_id%>"><%=pop.attributes.artist_name%></a>
+            </td>
+            <td class="wb">
+                <%=pop.attributes.comment%>
+            </td>
+            <td>
+                <%=_.getFeelingName(pop.attributes.feeling_id)%>
+            </td>
+            <td>
+                <a href="#user/<%=pop.attributes.user_id%>"><%=pop.attributes.user_name%></a>
+            </td>
+            <td>
+                <%if (pop.attributes.youtube_id) {%>
+                    <div class="btn btn-danger" data-youtube-id="<%=pop.attributes.youtube_id%>" data-event="playSong" data-pop-id="<%=pop.attributes.id%>">▶</div>
+                <%} else {%>
+                <div class="btn btn-primary" data-song-url="<%=pop.attributes.song_url%>" data-event="playSong" data-pop-id="<%=pop.attributes.id%>">▶</div>
+                <%}%>
+            </td>
+            <td class="text-center">
+                <%if (!_.isLogedIn()) {%>
+                    <span>-</span>
+                <%} else if (_.contains(likeArray, pop.attributes.id) === false) {%>
+                    <div class="btn" data-pop-id="<%=pop.attributes.id%>" data-event="likePop">Like</div>
+                <%} else {%>
+                    <div class="btn btn-primary" data-pop-id="<%=pop.attributes.id%>" data-event="dislikePop">Like</div>
+                <%}%>
+            </td>
+        </tr>
+    <%});%>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

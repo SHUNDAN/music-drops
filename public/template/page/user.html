@@ -1,0 +1,67 @@
+
+<!-- ユーザーページ -->
+<script id="page_user" type="text/template">
+    <h1 class="text-center">User Page</h1>
+    <div id="userInfoArea"></div>
+    <div id="followedUserList"></div>
+    <div id="followUserList"></div>
+    <div>
+        <h3 class="text-center">Pocket List</h3>
+        <table class="table">
+            <tr>
+                <th>feeling</th>
+                <th>title</th>
+                <th>Song</th>
+                <th>Youtube</th>
+                <th>-</th>
+            </tr>
+            <tr>
+                <tbody id="pocketlist"></tbody>
+            </tr>
+        </table>
+    </div>
+</script>
+
+
+<!-- ユーザー情報 -->
+<script id="page_user_info" type="text/template">
+    Nick Name: <%- name %><br>
+    Thumbnail: <img class="thumbM" src="<%- thumb_url %>" alt="ユーザーサムネイル" /><br>
+    <% if (targetUserId !== id && followed === false) { %>
+        <div class="btn mt5 mb5" data-event="followUser">フォローする</div>
+    <% } else { %>
+        <div class="btn mt5 mb5" data-event="unfollowUser">フォロー解除する</div>
+    <% } %>
+</script>
+
+
+
+<!-- Pocketリスト -->
+<script id="page_user_pocketlist" type="text/template">
+    <% var youtubeIdx = 0; %>
+    <% _.each(pocketList, function (pocket) { 
+
+        var feelingName = '-';
+        _.each(feelings, function (feeling) {
+            if (feeling.id === pocket.attributes.feeling_id) {
+                feelingName = feeling.name;
+            }
+        });
+        
+        %>
+        <tr>
+            <td><%- feelingName %></td>
+            <td><a href="#music/<%-pocket.attributes.music_id%>"><%=pocket.attributes.title%></a></td>
+            <td><audio src="<%-pocket.attributes.song%>" controls></audio></td>
+            <td>
+                <% if (pocket.attributes.youtube_id) { %>
+                    <div class="btn btn-primary" data-youtube-id="<%-pocket.attributes.youtube_id%>" data-event="showYoutube" data-youtube-idx="<%-youtubeIdx++%>">▶</div>
+                <% } else { %>
+                    <div class="text-center">-</div>
+                <% } %>
+            </td>
+            <td><div class="btn" data-music-id="<%-pocket.attributes.music_id%>" data-youtube-id="<%-pocket.attributes.youtube_id%>" data-event="addPocket">Pocketする</div></td>
+        </tr>
+
+    <% }); %>
+</script>

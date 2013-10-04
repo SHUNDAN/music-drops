@@ -1,0 +1,44 @@
+
+
+<!-- Page: Pop -->
+<script id="page_pop" type="text/template">
+    <div id="pagePop" style="padding:10px;">
+        <% if (type === 'add') { %>
+            <h1 class="text-center">Add Pop</h1>
+        <% } else { %>
+            <h1 class="text-center">Edit Pop</h1>
+        <% } %>
+        <div id="popInfoArea" class="mt20"></div>
+    </div>
+</script>
+
+
+<!-- PopInfo  -->
+<script id="pop_info" type="text/template">
+    <div class="mt10 tb10 mlra">
+        <p class="bold">Feeling</p>
+        <select id="feeling_select" name="feeling_select"></select><br>
+        <p class="bold">Comment</p>
+        <textarea name="comment" rows="5" cols="50" class="block" style="width:80%;"></textarea><br>
+        <div class="text-center">
+            <% if (feeling_id) { %>
+                <div id="updatePopBtn" class="btn btn-primary text-center" style="width:200px;">Update</div>
+            <% } else { %>
+                <div id="updatePopBtn" class="btn btn-primary text-center" style="width:200px;">Add</div>
+            <% } %>
+        </div>
+    </div>
+</script>
+
+
+<!-- Feeling Select -->
+<script id="pop_page_feeling_list_options" type="text/template">
+    <% _.each(feelings, function (feeling) { %>
+        <% if (feeling.id === pop.feeling_id) { %>
+            <option value="<%- feeling.id %>" selected><%- feeling.name %></option>
+        <% } else { %>
+            <option value="<%- feeling.id %>"><%- feeling.name %></option>
+        <% } %>
+    <% }); %>
+</script>
+

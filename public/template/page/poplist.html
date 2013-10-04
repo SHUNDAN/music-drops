@@ -1,0 +1,35 @@
+
+<!-- Page: PopList -->
+<script id="page_popList" type="text/template">
+    <h1 class="text-center">PopList - <span id="feelingLabel">#</span></h1>
+    <table class="table">
+        <tr>
+            <th>artwork</th>
+            <th>user</th>
+            <th>comment</th>
+            <th>link</th>
+        </tr>
+        <tr>
+            <tbody id="popListBody"></tbody>
+        </tr>
+    </table>
+</script>
+
+
+<!-- Parts: PopList Data -->
+<script id="page_popList_data" type="text/template">
+    <% _.each(popList, function (pop) {  %>
+        <tr>
+            <td><img src="<%- pop.attributes.artwork_url %>" alt="" class="thumb" /></td>
+            <td><a href="#user/<%-pop.attributes.user_id%>"><%- pop.attributes.user_name %></a></td>
+            <td><%- pop.attributes.comment  %></td>
+            <td><div class="btn" data-music-id="<%- pop.attributes.music_id %>" data-event="showMusicPage">詳細</div></td>
+        </tr>
+    <% }); %>
+</script>
+
+
+
+
+
+

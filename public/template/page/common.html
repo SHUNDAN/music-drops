@@ -1,0 +1,53 @@
+
+<!-- お知らせ一覧 -->
+<script id="page_common_notification_list" type="text/template">
+    <% if (notificationList.length === 0 ) { %>
+        <tr>
+            <td>なし</td>
+        </tr>
+    <% } else { %>
+        <% _.each(notificationList, function (notif) { console.log('notif', notif);%>
+            <tr>
+                <td>
+                    <%if (notif.attributes.type === 1) { %>
+                        <a href="#user/<%-notif.attributes.json.user.id%>"><%=notif.attributes.json.user.name%></a>さんが、
+                        <a href="#music/<%-notif.attributes.json.music.id%>"><%=notif.attributes.json.music.title%></a>をPocketしました。
+                    <% } %>
+                </td>
+                <td>
+                    <div class="btn btn-danger" data-notification-id="<%-notif.attributes.id%>" data-event="deleteNotification">D</div>
+                </td>
+            </tr>
+        <% }); %>
+    <% } %>
+</script>
+
+
+
+<!-- フォローされている一覧 -->
+<script id="page_common_followed_list" type="text/template">
+    フォローされている：
+    <% if (users.length === 0) { %>
+        なし
+    <% } else { %>
+        <% _.each(users, function (user) { %>
+            <a href="#user/<%-user.attributes.user_id%>"><%=user.attributes.user_name%></a>&nbsp;&nbsp;
+        <% }); %>
+    <% } %>
+</script>
+
+
+<!-- フォローしている一覧 -->
+<script id="page_common_follow_list" type="text/template">
+    フォローしている：
+    <% if (users.length === 0) { %>
+        なし
+    <% } else { %>
+        <% _.each(users, function (user) { %>
+            <a href="#user/<%-user.attributes.dest_user_id%>"><%=user.attributes.dest_user_name%></a>&nbsp;&nbsp;
+        <% }); %>
+    <% } %>
+</script>
+
+
+

@@ -1,0 +1,21 @@
+#for Mac
+.DS_Store
+
+#for vim
+*.swp
+
+#node module
+node_modules/
+
+#DB
+db/mockbu.db
+
+#logs
+logs/
+
+#settings
+settings/setting.json
+
+#scss cache
+*.scssc
+

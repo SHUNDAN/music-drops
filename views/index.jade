@@ -1,0 +1,49 @@
+extends layout
+
+block content
+
+    // Main Area
+    div#stage
+        div#header
+        div#main
+        div#playArea
+
+
+
+
+    br
+    br
+    // 戻る
+    a(href="javascript:history.back();") 戻る
+    br
+    // 音楽検索画面へ 
+    a(href="#music/search") 音楽検索画面へ
+    br
+    // Topへ
+    a(href="#") Topへ
+    br
+    // Loginへ
+    a(href="#login") Loginへ
+    br
+    // Mypageへ
+    a(href="#mypage") Mypageへ
+    br
+    // マスタ管理画面へ
+    a(href="/master") マスタ画面へ
+    br
+    script(src="javascripts/libs/all-libs.js")
+    // script(src="javascripts/libs/jquery-2.0.3.min.js")
+    // script(src="javascripts/libs/jquery.transit.0.1.3.min.js")
+    // script(src="javascripts/libs/underscore-min.js")
+    // script(src="javascripts/libs/backbone-min.js")
+    // script(src="javascripts/libs/bootstrap.js")
+    script(src="javascripts/libs/jquery.cookie.js")
+    script(src="javascripts/libs/extension.js")
+    // script(src="javascripts/libs/require-2.1.8.min.js", data-main="javascripts/#{global.mbSetting.mainJs}")
+    script(src="javascripts/#{global.mbSetting.mainJs}")
+    
+
+    // htmltemplate
+    div(style="display:none;")!=htmltemplate
+
+

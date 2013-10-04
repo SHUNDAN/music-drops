@@ -1,0 +1,20 @@
+{
+    "appenders": [
+
+        {
+            "type": "dateFile",
+            "category": "request",
+            "filename": "logs/request.log",
+            "pattern": "-yyyy-MM-dd"
+        },
+
+        {
+            "type": "dateFile",
+            "category": "action",
+            "filename": "logs/action.log",
+            "pattern": "-yyyy-MM-dd"
+        }
+
+    ]
+
+}

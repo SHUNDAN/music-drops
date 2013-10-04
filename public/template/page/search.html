@@ -1,0 +1,129 @@
+
+
+<!-- Base  -->
+<script id="page_search" type="text/template">
+    <h1 class="text-center">Search Music</h1>
+
+    タブ：
+    <a href="#" data-event="showITunesRanking">iTunes Rankingを表示</a>&nbsp;&nbsp;
+    <a href="#" data-event="showITunesSearch">iTunes Searchを表示</a><br><br>
+
+
+
+    <div id="searchArea"></div>
+</script>
+
+
+<!-- iTunes Ranking Tab Content -->
+<script id="page_search_itunes_ranking" type="text/template">
+    <select id="genreSelect" name="dummy">
+        <% _.each(genres, function (genre) { %>
+            <option value="<%- genre.key2 %>"><%- genre.value %></option> 
+        <% }); %>
+    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+    <div id="searchResult"></div>
+</script>
+
+
+<!-- Music Search Result -->
+<script id="music_search_result" type="text/template">
+    <div id="pagenation">Page:
+        <% for (var i = 0; i < totalPage; i++) { %>
+            <% if (i !== currentPage) { %>
+                <a href="#" data-event="paging" data-page-num="<%=i%>"><%=(i+1)%></a>&nbsp;
+            <%} else { %>
+                <%=(i+1)%>&nbsp;
+            <% } %>
+        <% } %>
+    </div> 
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Artwork</th>
+            <th>Title / Artist</th>
+            <th>Action</th>
+        </tr>
+        <% for (var i = startPos; i < endPos; i++) {
+            var result = results[i];
+            %>
+            <tr>
+                <td><%- result.attributes.ranking %></td>
+                <td><img src="<%- result.attributes.artwork_url %>" alt="" class="thumb" /></td>
+                <td class="wb"><%- result.attributes.title %>/<%- result.attributes.artist_name %></td>
+                <!-- <td><audio src="<%- result.attributes.song_url %>" controls></audio></td> -->
+                <td><a href="#music/<%-result.attributes.music_id%>">詳細へ</a></td>
+            </tr>
+        <% } %>
+    </table>
+</script>
+
+
+
+
+
+
+
+<!-- iTunes Search Page -->
+<script id="page_itunes_search" type="text/template">
+    <h2 class="text-center">iTunes Search</h2>
+    <input id="searchTerm" type="text" placeholder="検索条件を入力" style="display;block; width:80%;"/><br>
+    <!--
+    <select id="searchCountry">
+        <option value="JP">邦楽</option>
+        <option value="US">洋楽</option>
+    </select><br>
+    -->
+    <div id="searchBtn" class="btn">検索する</div>
+
+    <table class="table mt20">
+        <tr>
+            <th>#</th>
+            <th>Artwork</th>
+            <th>Title / Artist</th>
+            <th>Action</th>
+        </tr>
+        <tbody id="search_result"></tbody>
+    </table>
+</script>
+
+
+<!-- iTunes Search Page - Result -->
+<script id="page_itunes_search_result" type="text/template">
+    <% if (!results || results.length === 0) { %>
+        <tr>
+            <td colspan=4>No Search Result</td>
+        </tr>
+    <% } else { %>
+        <% 
+            for (var i = 0; i < results.length; i++) { 
+                var result = results[i]; 
+        %>
+            <tr>
+                <td><%=(i+1)%></td>
+                <td><img src="<%=result.artworkUrl100%>" class="thumbM" /></td>
+                <td><%=result.trackName%> / <%=result.artistName%></td>
+                <td><a href="#" data-pos="<%=i%>" data-event="goDetail">詳細へ</a></td>
+            </tr>
+        <% } %>
+    <% } %>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+<!-- Page: Artist -->
+<script id="page_artist" type="text/template">
+    <h1 class="text-center">Artist Page</h1>
+    <div id="artist_info" class="mt20"></div>
+    <h3 class="text-center">Music List</h3>
+    <table class="table">
+        <tr>
+            <th>title</th>
+            <th>Sample</th>
+            <th>Youtube</th>
+            <th>Action</th>
+        </tr>
+        <tbody id="music_list"></tbody>
+    </table>
+</script>
+
+
+<!-- Artist Info -->
+<script id="page_artist_info" type="text/text">
+    id: <%=id%><br>
+    name: <%=name%><br>
+</script>
+
+
+<!-- Music List -->
+<script id="page_artist_music_list" type="text/template">
+    <% if (musics.length === 0) { %>
+        <tr>
+            <td>なし</td>
+        </tr>
+    <% } else { %>
+    <% 
+        var idx = 0;
+        _.each(musics, function (music) { 
+    %>
+            <tr>
+                <td><a href="#music/<%=music.attributes.id%>"><%=music.attributes.title%></a></td>
+                <td><audio src="<%=music.attributes.song_url%>" controls></audio></td>
+                <% if (music.attributes.youtube_id) { %>
+                    <td><div class="btn btn-primary" data-youtube-id="<%=music.attributes.youtube_id%>" data-event="playYoutube" data-pos=<%=idx++%>>▶</div></td>
+                <% } else { %>
+                    <td class="text-center">-</td>
+                <% } %>
+                <td><div class="btn" data-music-id="<%=music.attributes.id%>" data-event="pocket">Pocket</div></td>
+            </tr>
+    <% }); %>
+    <% } %>
+</script>
+
+
+
