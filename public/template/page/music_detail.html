@@ -24,7 +24,11 @@
         <% _.each(feelings, function (feeling) { %>
             <!-- <div class="btn mb5" data-event="addPocket" data-feeling-id="<%-feeling.id%>"><%-feeling.name%></div> -->
         <% }); %>
-        <div class="btn" data-event="addPocket" data-feeling-id="0">この曲をPocketする</div>
+        <%if (_.alreadyPocket(id) === false) {%>
+            <div class="btn" data-event="addPocket" data-feeling-id="0">この曲をPocketする</div>
+        <%} else {%>
+            <div class="btn btn-primary" data-event="deletePocket" data-feeling-id="0">Pocket解除</div>
+        <%}%>
     </div>
 </script>
 
@@ -67,7 +71,12 @@
                     <td class="wb"><a href="<%- musicLink.attributes.link %>" target="_blank"><%- musicLink.attributes.link %></a></td>
                 <% } %>
                 <td><div class="btn">Edit</div></td>
-                <td><div class="btn" data-event="addPocket" data-feeling-id="0" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">このリンクで<br>曲をPocketする</div></td>
+                <td>
+                    <%if (_.alreadyPocket(musicLink.attributes.music_id) === false) {%>
+                        <div class="btn" data-event="addPocket" data-feeling-id="0" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">このリンクで<br>曲をPocketする</div></td>
+                    <%} else {%>
+                        <div class="btn btn-primary" data-event="deletePocket" data-feeling-id="0" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">Pocket解除</div></td>
+                    <%}%>
             </tr>
         <% }); %>
         <tr>

@@ -42,7 +42,7 @@ define([
             this.userFollowedList = new UserFollowList();
             this.userFollowList = new UserFollowList();
 
-            _.bindAll(this, 'render', 'renderUserInfo', 'renderPocketList', 'renderUserFollowedList', 'renderUserFollowList', 'showYoutube', 'addPocket', 'followUser', 'unfollowUser', 'show', 'dealloc');
+            _.bindAll(this, 'render', 'renderUserInfo', 'renderPocketList', 'renderUserFollowedList', 'renderUserFollowList', 'showYoutube', 'addPocket', 'deletePocket', 'followUser', 'unfollowUser', 'show', 'dealloc');
 
             this.user.bind('change', this.renderUserInfo);
             this.userPocketList.bind('reset', this.renderPocketList);
@@ -53,6 +53,7 @@ define([
         events: {
             'click [data-event="showYoutube"]': 'showYoutube',
             'click [data-event="addPocket"]': 'addPocket',
+            'click [data-event="deletePocket"]': 'deletePocket',
             'click [data-event="followUser"]': 'followUser',
             'click [data-event="unfollowUser"]': 'unfollowUser'
         },
@@ -125,11 +126,79 @@ define([
             this.userPocket = new UserPocket();
             this.userPocket.set('music_id', musicId);
             this.userPocket.bind('sync', function () {
-                alert('success');
+
+                // UIとイベントを変更する
+                $('[data-event="addPocket"][data-music-id="'+musicId+'"]')
+                    .text('Pocket解除')
+                    .addClass('btn-primary')
+                    .attr('data-event', 'deletePocket');
+
+                // Localデータ更新
+                _.loadUserPockets({force: true});
+
             });
             this.userPocket.create();
 
         },
+
+
+
+        deletePocket: function (e) {
+
+            var musicId = $(e.currentTarget).data('music-id');
+
+            // 対象を探して、削除
+            $.ajax({
+                url: '/api/v1/user_pockets',
+                data: {
+                    user_id: this.userStorage.getUser().id,
+                    music_id: musicId 
+                },  
+                dataType: 'json',
+                success: function (pockets) {
+                    console.debug('delete target pockets: ', pockets);
+
+                    var count = pockets.length;
+                    var doneCount = 0;
+
+                    // 1個ずつ削除
+                    for (var i = 0; i < pockets.length; i++) {
+                        var id = pockets[i].id;
+                        var pocket = new UserPocket();
+                        pocket.set('id', id);
+                        pocket.bind('sync', function () {
+                            if (++doneCount === count) {
+            
+                                // UIとイベントを変更する
+                                $('[data-event="deletePocket"][data-music-id="'+musicId+'"]')
+                                    .text('Pocketする')
+                                    .removeClass('btn-primary')
+                                    .attr('data-event', 'addPocket');
+
+                                // Localデータも更新
+                                _.loadUserPockets({force:true});
+                            }   
+                        }); 
+                        pocket.destroy({wait:true});
+                    }
+ 
+                    // UIとイベントを変更する
+                    if (count === doneCount) {
+                        $('[data-event="deletePocket"][data-music-id="'+musicId+'"]')
+                            .text('Pocketする')
+                            .removeClass('btn-primary')
+                            .attr('data-event', 'addPocket');
+
+                        // Localデータも更新
+                        _.loadUserPockets({force:true});
+                    }
+
+                }
+            });
+        },
+
+
+
 
         followUser: function () {
             console.log('followUser', this.userId);

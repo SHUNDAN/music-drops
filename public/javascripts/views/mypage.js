@@ -188,6 +188,10 @@ define([
             var aPocket = this.userPocketList.get(pocketId);
             aPocket.bind('sync', _.bind(function () {
                 this.showUserPocketList();
+
+                // Localデータも更新
+                _.loadUserPockets({force: true});
+
             }, this));
             aPocket.destroy({wait: true});
         },

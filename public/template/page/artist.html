@@ -41,7 +41,13 @@
                 <% } else { %>
                     <td class="text-center">-</td>
                 <% } %>
-                <td><div class="btn" data-music-id="<%=music.attributes.id%>" data-event="pocket">Pocket</div></td>
+                <td>
+                    <%if (_.alreadyPocket(music.attributes.id) === false) {%>
+                        <div class="btn" data-music-id="<%=music.attributes.id%>" data-event="pocket">Pocketする</div>
+                    <%} else {%>
+                        <div class="btn btn-primary" data-music-id="<%=music.attributes.id%>" data-event="deletePocket">Pocket解除</div>
+                    <%}%>
+                </td>
             </tr>
     <% }); %>
     <% } %>

@@ -18,7 +18,7 @@ var appUtil = require('../util/utility');
  */
 exports.select = function(req, res){
 
-    userPocketModel.selectObjects(req.params, function (err, rows) {
+    userPocketModel.selectObjects(req.query, function (err, rows) {
         if (err) {
             appUtil.basicResponse(res, err, rows);
         } else {

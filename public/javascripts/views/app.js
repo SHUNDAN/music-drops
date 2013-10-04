@@ -159,6 +159,9 @@ define([
                         dataType: 'json',
                         success: function (user) {
                             self.userStorage.setUser(user); 
+
+                            // Pocket情報も取得しておく
+                            _.loadUserPockets({force:true});
                         },
                         error: function () {
                             // console.debug('/api/v1/userinfo error: ', arguments);
@@ -166,7 +169,13 @@ define([
                     });
 
                 }
+            } else {
+
+                // UserPockets情報をロードしておく
+                _.loadUserPockets();
+
             }
+
 
 
 

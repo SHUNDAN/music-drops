@@ -214,6 +214,89 @@ _.dislikePop = function (popId, callback) {
 
 
 
+// SessionStorageのUserPocketを更新するメソッド
+_.loadUserPockets = function (options) {
+
+    options = options || {};
+
+    // ユーザー情報を取得
+    var userString = sessionStorage.getItem('user');
+    if (!userString) {
+        return;
+    }
+
+    // ユーザーPocketsを取得
+    var userPocketsString = sessionStorage.getItem('userPockets');
+    if (userPocketsString && !options.force) {
+        return;
+    }
+
+    // 取得して、Storageに保存
+    var userId = JSON.parse(userString).id;
+    $.ajax({
+        url: '/api/v1/user_pockets',
+        data: {user_id: userId},
+        dataType: 'json',
+        success: function (pocketArray) {
+            console.debug('user pockets loaded. count = ', pocketArray.length);
+            sessionStorage.setItem('userPockets', JSON.stringify(pocketArray));
+        },
+    });
+
+};
+
+
+
+// 既にPocket済みの曲かを判断する
+_.alreadyPocket = function (musicId) {
+
+    // UserPocketを把握していない場合は、false
+    var userPocketString = sessionStorage.getItem('userPockets');
+    if (!userPocketString) {
+        return false;
+    }
+
+    var userPockets = JSON.parse(userPocketString);
+    for (var i = 0; i < userPockets.length; i++) {
+        if (userPockets[i].music_id === musicId) {
+            return true;
+        }
+    }
+
+
+    return false;
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
