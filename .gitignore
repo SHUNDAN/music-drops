@@ -11,7 +11,7 @@ node_modules/
 db/mockbu.db
 
 #logs
-logs/
+logs/*
 
 #settings
 settings/setting.json
