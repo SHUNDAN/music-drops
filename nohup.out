@@ -14715,3 +14715,69 @@ stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist
 [90mGET /ganglia_config_script [33m404 [90m1ms[0m
 [90mGET /ganglia_config_script [33m404 [90m1ms[0m
 [90mGET /master [32m200 [90m103ms - 1.91kb[0m
+[90mGET / [32m200 [90m40ms - 30.05kb[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m2ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m2ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m2ms[0m
+[90mGET /javascripts/main-min.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [32m200 [90m2622ms - 217.67kb[0m
+[90mPOST /api/v1/action [32m200 [90m3ms - 2b[0m
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /images/fonts/icons-f5721417d1069ba54318ee5e2538f55d.woff [32m200 [90m2ms - 2.29kb[0m
+[90mGET /api/v1/common [32m200 [90m4ms - 11.08kb[0m
+[90mGET /javascripts/libs/underscore-min.map [33m404 [90m1ms[0m
+[90mGET / [32m200 [90m25ms - 30.05kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [32m200 [90m6ms - 3.27kb[0m
+[90mGET /javascripts/libs/extension.js [32m200 [90m4ms - 7.69kb[0m
+[90mGET /javascripts/main-min.js [32m200 [90m4ms - 106.59kb[0m
+[90mGET /javascripts/libs/all-libs.js [32m200 [90m1085ms - 200.31kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m3948ms - 217.67kb[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+[90mGET /javascripts/libs/underscore-min.map [33m404 [90m3ms[0m
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /api/v1/common [32m200 [90m4ms - 11.08kb[0m
+[90mGET /images/fonts/icons-f5721417d1069ba54318ee5e2538f55d.woff [32m200 [90m2ms - 2.29kb[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET / [32m200 [90m21ms - 30.05kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m1ms - 217.67kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [32m200 [90m2ms - 3.27kb[0m
+[90mGET /javascripts/libs/extension.js [32m200 [90m2ms - 7.69kb[0m
+[90mGET /javascripts/main-min.js [32m200 [90m1ms - 106.59kb[0m
+[90mGET /javascripts/libs/all-libs.js [32m200 [90m1841ms - 200.31kb[0m
+[90mGET /javascripts/libs/underscore-min.map [33m404 [90m1ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /api/v1/common [32m200 [90m3ms - 11.08kb[0m
+[90mGET /images/fonts/icons-f5721417d1069ba54318ee5e2538f55d.woff [32m200 [90m7ms - 2.29kb[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET / [32m200 [90m24ms - 30.05kb[0m
+[90mGET /javascripts/libs/all-libs.js [32m200 [90m4ms - 200.31kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [32m200 [90m2ms - 3.27kb[0m
+[90mGET /javascripts/libs/extension.js [32m200 [90m2ms - 7.69kb[0m
+[90mGET /javascripts/main-min.js [32m200 [90m1ms - 106.59kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m624ms - 217.67kb[0m
+[90mGET /javascripts/libs/underscore-min.map [33m404 [90m1ms[0m
+[90mPOST /api/v1/action [32m200 [90m2ms - 2b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+stmt:  { sql: 'select * from feeling limit 300' } []
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /api/v1/poplist?type=new [32m200 [90m7ms - 14.37kb[0m
+[90mGET /api/v1/feelings [32m200 [90m5ms - 620b[0m
+[90mGET /api/v1/poplist?type=popular [32m200 [90m4ms - 14.37kb[0m
+[90mGET /api/v1/common [32m200 [90m8ms - 11.08kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [32m200 [90m3ms - 14.37kb[0m
+[90mGET /images/fonts/icons-f5721417d1069ba54318ee5e2538f55d.woff [32m200 [90m1ms - 2.29kb[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m3ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
