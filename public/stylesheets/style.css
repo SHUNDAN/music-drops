@@ -2673,7 +2673,7 @@ table th[class*="span"],
 
 /* line 2312, ../dev/scss/libs/_bootstrap.scss */
 .icon-glass {
-  background-position: 0 0;
+  background-position: 0      0;
 }
 
 /* line 2316, ../dev/scss/libs/_bootstrap.scss */
@@ -9115,32 +9115,119 @@ Utility
   font-size: 40px;
 }
 
+@font-face {
+  font-family: "icons";
+  src: url("../images/fonts/icons-f5721417d1069ba54318ee5e2538f55d.eot");
+  src: url("../images/fonts/icons-f5721417d1069ba54318ee5e2538f55d.eot?#iefix") format("embedded-opentype"), url("../images/fonts/icons-f5721417d1069ba54318ee5e2538f55d.woff") format("woff"), url("../images/fonts/icons-f5721417d1069ba54318ee5e2538f55d.ttf") format("truetype"), url("../images/fonts/icons-f5721417d1069ba54318ee5e2538f55d.svg?#icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 14, ../dev/scss/fonts/_icons.scss */
+.ico-font {
+  font-family: "icons";
+  display: inline-block;
+  font-style: normal;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 24, ../dev/scss/fonts/_icons.scss */
+.ico-below:before {
+  content: "\f100";
+}
+
+/* line 27, ../dev/scss/fonts/_icons.scss */
+.ico-delete:before {
+  content: "\f101";
+}
+
+/* line 30, ../dev/scss/fonts/_icons.scss */
+.ico-drop:before {
+  content: "\f102";
+}
+
+/* line 33, ../dev/scss/fonts/_icons.scss */
+.ico-heart:before {
+  content: "\f103";
+}
+
+/* line 36, ../dev/scss/fonts/_icons.scss */
+.ico-image:before {
+  content: "\f104";
+}
+
+/* line 39, ../dev/scss/fonts/_icons.scss */
+.ico-play-02:before {
+  content: "\f105";
+}
+
+/* line 42, ../dev/scss/fonts/_icons.scss */
+.ico-play-next:before {
+  content: "\f106";
+}
+
+/* line 45, ../dev/scss/fonts/_icons.scss */
+.ico-play-prev:before {
+  content: "\f107";
+}
+
+/* line 48, ../dev/scss/fonts/_icons.scss */
+.ico-play:before {
+  content: "\f108";
+}
+
+/* line 51, ../dev/scss/fonts/_icons.scss */
+.ico-plus:before {
+  content: "\f109";
+}
+
+/* line 54, ../dev/scss/fonts/_icons.scss */
+.ico-refresh:before {
+  content: "\f10a";
+}
+
+/* line 57, ../dev/scss/fonts/_icons.scss */
+.ico-repeat:before {
+  content: "\f10b";
+}
+
+/* line 60, ../dev/scss/fonts/_icons.scss */
+.ico-shuffle:before {
+  content: "\f10c";
+}
+
+/* line 63, ../dev/scss/fonts/_icons.scss */
+.ico-topics:before {
+  content: "\f10d";
+}
+
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 17, ../dev/scss/style.scss */
+  /* line 20, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 24, ../dev/scss/style.scss */
+/* line 27, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 25, ../dev/scss/style.scss */
+/* line 28, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 26, ../dev/scss/style.scss */
+/* line 29, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 30, ../dev/scss/style.scss */
+/* line 33, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -9154,7 +9241,7 @@ Utility
 /*==============================
   Stage
 ===============================*/
-/* line 45, ../dev/scss/style.scss */
+/* line 48, ../dev/scss/style.scss */
 #stage {
   position: relative;
 }
@@ -9162,7 +9249,7 @@ Utility
 /*==============================
   Preview Area
 ===============================*/
-/* line 59, ../dev/scss/style.scss */
+/* line 62, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: relative !important;
   top: 0px !important;
@@ -9172,7 +9259,7 @@ Utility
   margin: 0 !important;
 }
 
-/* line 67, ../dev/scss/style.scss */
+/* line 70, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -9187,7 +9274,7 @@ Utility
   color: white;
 }
 
-/* line 81, ../dev/scss/style.scss */
+/* line 84, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -9203,7 +9290,7 @@ Utility
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 98, ../dev/scss/style.scss */
+/* line 101, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -9211,13 +9298,13 @@ Utility
 /*==============================
   Base Frame
 ===============================*/
-/* line 112, ../dev/scss/style.scss */
+/* line 115, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
 }
 
-/* line 116, ../dev/scss/style.scss */
+/* line 119, ../dev/scss/style.scss */
 #header {
   position: fixed;
   top: 0;
@@ -9228,7 +9315,7 @@ Utility
   background-color: #6bcfbb;
 }
 
-/* line 125, ../dev/scss/style.scss */
+/* line 128, ../dev/scss/style.scss */
 #main {
   width: 980px;
 }
@@ -9236,25 +9323,25 @@ Utility
 /*==============================
   Header
 ===============================*/
-/* line 131, ../dev/scss/style.scss */
+/* line 134, ../dev/scss/style.scss */
 .playGage {
   width: 100%;
   min-width: 980px;
   border-top: 1px solid #7a7a7a;
   background-color: #3d3c3c;
 }
-/* line 136, ../dev/scss/style.scss */
+/* line 139, ../dev/scss/style.scss */
 .playGage .value {
   height: 5px;
   background-color: #f46116;
 }
 
-/* line 141, ../dev/scss/style.scss */
+/* line 144, ../dev/scss/style.scss */
 .headerContent {
   width: 980px;
 }
 
-/* line 144, ../dev/scss/style.scss */
+/* line 147, ../dev/scss/style.scss */
 .logo {
   font-size: 36px;
   line-height: 60px;

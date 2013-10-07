@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
+	 height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<g id="レイヤー_1" display="none">
+	<g id="Ellipse_1" display="inline">
+		<g>
+			<path d="M255.659,0C111.845,0-0.091,111.936-0.091,255.75c0,143.814,111.936,255.75,255.75,255.75s255.75-111.936,255.75-255.75
+				C511.408,111.936,399.473,0,255.659,0z"/>
+		</g>
+	</g>
+	<g id="Ellipse_1_2_" display="inline">
+		<g>
+			<path fill="#D30D0D" d="M255.659,36.5c-123.289,0-219.25,95.961-219.25,219.25S132.37,475,255.659,475
+				c123.29,0,219.25-95.961,219.25-219.25S378.948,36.5,255.659,36.5z"/>
+		</g>
+	</g>
+	<path display="inline" fill="#7E7E7E" d="M256,128"/>
+	<path fill="#7E7E7E" d="M256,0"/>
+</g>
+<g id="レイヤー_2">
+	<path d="M256-0.375c-141.385,0-256,114.615-256,256s114.615,256,256,256s256-114.615,256-256S397.385-0.375,256-0.375z
+		 M256,487.125c-127.854,0-231.5-103.646-231.5-231.5s103.646-231.5,231.5-231.5c127.854,0,231.5,103.646,231.5,231.5
+		S383.854,487.125,256,487.125z"/>
+	<g id="glyph">
+		<g>
+			<polygon points="209.159,155 209.159,364.25 356.408,263.5 			"/>
+		</g>
+	</g>
+</g>
+</svg>
