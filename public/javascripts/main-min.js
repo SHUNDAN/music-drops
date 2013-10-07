@@ -72,9 +72,17 @@ define('models/common/user_storage',[], function () {
         // API: common
         setCommon: function (common) {this.setObject('common', common);},
         getCommon: function () {return this.getObject('common');},
-        loadCommonInfo: function () {
-            var common = this.getCommon();
-            // if (!common || (new Date().getTime() - common.lastRequestTime > 5 * 60 * 1000)) {
+
+        loadCommonInfo: function (options) {
+            console.debug('loadCommonInfo!!');
+
+            // null safe.
+            options = options || {};
+
+            if (!this.getCommon() || options.force === true) {
+                console.debug('loadCommonInfo from server');
+
+                var common = this.getCommon();
                 var self = this;
                 $.ajax({
                     url: '/api/v1/common',
@@ -82,12 +90,21 @@ define('models/common/user_storage',[], function () {
                     success: function (json) {
                         json.lastRequestTime = new Date().getTime();
                         self.setCommon(json);
+                        if (options.callback) {
+                            options.callback();
+                        }
                     },
                     error: function () {
                         console.error('/api/v1/common error: ', arguments);
                     },
                 });
-            // }
+
+            } else {
+                if (options.callback) {
+                    options.callback();
+                }
+            }
+
         },
 
         // API: user
@@ -3627,60 +3644,71 @@ define('views/app',[
 
 
         toTop: function () {
-            this._prepareStage(TopView);
-            this.currentPageView.show();
+            this._prepareStage(TopView, function () {
+                this.currentPageView.show();
+            });
         },
 
         toPopList: function (feelingId) {
-            this._prepareStage(PopListView);
-            this.currentPageView.show(feelingId);
+            this._prepareStage(PopListView, function () {
+                this.currentPageView.show(feelingId);
+            });
         },
 
         toMusicDetail: function (musicId) {
-            this._prepareStage(MusicView);
-            this.currentPageView.show(musicId);
+            this._prepareStage(MusicView, function () {
+                this.currentPageView.show(musicId);
+            });
         },
 
         toMusicSearch: function () {
-            this._prepareStage(MusicSearchView);
-            this.currentPageView.show();
+            this._prepareStage(MusicSearchView, function () {
+                this.currentPageView.show();
+            });
         },
 
         toAddPop: function (musicId) {
-            console.log('toAddPop');
-            this._prepareStage(PopView);
-            this.currentPageView.show(musicId);
+            this._prepareStage(PopView, function () {
+                this.currentPageView.show(musicId);
+            });
         },
 
         toLogin: function () {
-            console.log('toLogin');
-            this._prepareStage(LoginView);
-            this.currentPageView.show();
+            this._prepareStage(LoginView, function () {
+                this.currentPageView.show();
+            });
         },
 
         toMypage: function () {
-            console.log('toMypage');
-            this._prepareStage(MypageView);
-            this.currentPageView.show();
+            this._prepareStage(MypageView, function () {
+                this.currentPageView.show();
+            });
         },
 
         toUserPage: function (userId) {
-            this._prepareStage(UserView);
-            this.currentPageView.show(userId);
+            this._prepareStage(UserView, function () {
+                this.currentPageView.show(userId);
+            });
         },
 
         toRegistUserPage: function () {
-            this._prepareStage(UserRegistView);
-            this.currentPageView.show();
+            this._prepareStage(UserRegistView, function () {
+                this.currentPageView.show();
+            });
         },
 
         toArtist: function (artistId) {
-            this._prepareStage(ArtistView);
-            this.currentPageView.show(artistId);
+            this._prepareStage(ArtistView, function () {
+                this.currentPageView.show(artistId);
+            });
         },
 
-        _prepareStage: function (ViewClass) {
+        _prepareStage: function (ViewClass, callback) {
 
+            // setting
+            callback = _.bind(callback, this);
+
+            // 表示中のお掃除
             var old$el = (this.currentPageView ? this.currentPageView.$el : $('#dummy'));
             if (this.currentPageView) {
                 this.currentPageView.dealloc();
@@ -3697,15 +3725,25 @@ define('views/app',[
                 window.scrollTo(0,0);
             });
 
-            // 次のページを表示する
-            self.currentPageView = new ViewClass();
-            self.currentPageView.$el.css('opacity', 0);
-            self.$mainArea.append(self.currentPageView.$el);
-            $('body').transition({opacity: 1, delay: delay});
-            self.currentPageView.$el.transition({opacity: 1, delay: delay});
 
-            // アプリ共通情報を取得する
-            this.userStorage.loadCommonInfo();
+
+            // もしローカルキャッシュが無い場合には、キャッシュを取得してから表示を行う
+            var showPage = function () {
+                self.currentPageView = new ViewClass();
+                self.currentPageView.$el.css('opacity', 0);
+                self.$mainArea.append(self.currentPageView.$el);
+                $('body').transition({opacity: 1, delay: delay});
+                self.currentPageView.$el.transition({opacity: 1, delay: delay});
+            };
+            if (!this.userStorage.getCommon()) {
+                this.userStorage.loadCommonInfo({callback: function () {
+                    showPage();
+                    callback();
+                }});
+            } else {
+                showPage();
+                callback();
+            }
 
 
             // ユーザー情報が無い場合に、認証情報があれば、ユーザー情報を取得しておく。
@@ -3733,9 +3771,6 @@ define('views/app',[
                 _.loadUserPockets();
 
             }
-
-
-
 
         },
     

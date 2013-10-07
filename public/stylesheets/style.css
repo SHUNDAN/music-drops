@@ -2673,7 +2673,7 @@ table th[class*="span"],
 
 /* line 2312, ../dev/scss/libs/_bootstrap.scss */
 .icon-glass {
-  background-position: 0      0;
+  background-position: 0 0;
 }
 
 /* line 2316, ../dev/scss/libs/_bootstrap.scss */
@@ -9292,7 +9292,7 @@ Utility
 
 /* line 101, ../dev/scss/style.scss */
 .mbfont {
-  /*font-family: 'Quattrocento', serif;*/
+  font-family: 'Quattrocento', serif;
 }
 
 /*==============================
