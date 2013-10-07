@@ -27,6 +27,8 @@ module.exports = _.extend({}, require('./common'), {
         'link',
         'youtube_id',
         'nico_id',
+        'play_count',
+        'play_count_speed',
         'create_at',
         'update_at',
     ],
@@ -83,12 +85,36 @@ module.exports = _.extend({}, require('./common'), {
             callback(err, (rows || []));
         }); 
 
-
-
-
-
     },
     
+
+
+    /**
+     * Add Play Count
+     */
+    addPlayCount: function (id, callback) {
+
+        var sql = 'update music_link set play_count = (case when play_count is null then 1 else play_count + 1 end), play_count_speed = (case when play_count_speed is null then 1 else play_count_speed + 1 end) where id=' + id;
+
+        console.log(sql);
+        db.run(sql, function () {
+            if (callback) {
+                callback();
+            } 
+        }); 
+
+    },
+
+
+
+
+
+
+
+
+
+
+
 
 
 

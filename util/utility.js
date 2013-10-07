@@ -83,6 +83,14 @@ module.exports = {
     },
 
 
+    /**
+     * Login Check.
+     */
+    isLogedIn: function (req) {
+        return this.getUserIdFromRequest(req);
+    },
+
+
 
 
     /**

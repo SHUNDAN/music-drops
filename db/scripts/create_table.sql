@@ -38,6 +38,8 @@ create table if not exists music(
     genre_id    integer,
     itunes_url  text,
     youtube_id  text,
+    play_count  numeric,
+    play_count_speed numeric,
     create_at   numeric,
     update_at   numeric
 );
@@ -52,7 +54,9 @@ create table if not exists music_link(
     link        text,
     youtube_id  text,
     nico_id     text,
-    use_count   integer default 0,
+    use_count   integer default 0,  -- no need??
+    play_count  numeric,
+    play_count_speed numeric,
     create_at   numeric,
     update_at   numeric
 );

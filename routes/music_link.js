@@ -144,6 +144,62 @@ exports.delete = function(req, res) {
 
 
 
+/**
+ * Add Music Link Play Count
+ */
+exports.addMusicLinkPlayCount = function (req, res) {
+
+
+    // login check.
+    if (!appUtil.isLogedIn(req)) {
+        appUtil.response403(res);
+        return;
+    }
+
+    // param check.
+    var musicId = parseInt(req.params.music_id, 10);
+    var linkId = parseFloat(req.params.link_id, 10);
+    if (isNaN(musicId) || isNaN(linkId)) {
+        res.json(400, 'bad request.');
+        return;
+    }
+
+    // update.
+    musicModel.addPlayCount(musicId);
+    musicLinkModel.addPlayCount(linkId);
+
+    // response.
+    res.json({});
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

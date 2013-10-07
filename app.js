@@ -322,7 +322,6 @@ app.get('/auth/twitter/callback', function (req, res, next) {
 
 
 
-// TODO セキュリティ対策のため、v1とv1.1をそれぞれ実装する
 // Root
 app.get('/', routes.index);
 // Login
@@ -345,6 +344,7 @@ app.get('/api/v1/musics/:id', music.select);
 app.post('/api/v1/musics', music.add);
 app.post('/api/v1/musics/:id/update', music.update);
 app.delete('/api/v1/musics/:id', music.delete);
+app.post('/api/v1/add_music_play_count/:id', music.addMusicPlayCount);
 
 
 // Musici Link
@@ -354,6 +354,7 @@ app.get('/api/v1/music_links/:id', musicLink.select);
 app.post('/api/v1/music_links', musicLink.add);
 app.post('/api/v1/music_links/:id/update', musicLink.update);
 app.delete('/api/v1/music_links/:id', musicLink.delete);
+app.post('/api/v1/add_music_link_play_count/:music_id/:link_id', musicLink.addMusicLinkPlayCount);
 
 // Artist
 app.get('/api/v1/artists', artist.select);
