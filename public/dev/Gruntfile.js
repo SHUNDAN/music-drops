@@ -12,10 +12,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-webfont');
     process.chdir(cwd);
     
     grunt.initConfig({
-
 
         watch: {
             css: {
@@ -33,6 +33,20 @@ module.exports = function(grunt) {
                 options: {
                     sassDir: 'scss',
                     cssDir: '../stylesheets/'
+                }
+            }
+        },
+
+        webfont: {
+            icon: {
+                src: '../images/fonts/svg/*.svg',
+                dest: '../images/fonts/',
+                destCss: 'scss/fonts/',
+                htmlDemo: false,
+                options: {
+                    stylesheet: 'scss',
+                    template: '../stylesheets/webfont-template.css',
+                    relativeFontPath: '../images/fonts/'
                 }
             }
         },
