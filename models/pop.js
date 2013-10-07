@@ -52,6 +52,10 @@ module.exports = _.extend({}, require('./common'), {
             conditions.push('pop.feeling_id = ?');
             values.push(params.feeling_id);
         }
+        if (params.music_id) {
+            conditions.push('pop.music_id = ?');
+            values.push(params.music_id);
+        }
         var conditionSql = conditions.join(' and ');
         if (conditions.length > 0) {
             conditionSql = ' where ' + conditionSql;

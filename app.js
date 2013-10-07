@@ -289,11 +289,6 @@ var oauthCallback = function (err, user, res) {
 
     console.log('sessionMap: ', global.sessionMap);
 
-
-
-
-
-
     // Cookieの設定 
     res.cookie('uid', uid, {maxAge:30*24*60*60, httpOnly:false});
     return res.redirect('/');
