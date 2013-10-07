@@ -34,9 +34,17 @@ define([], function () {
         // API: common
         setCommon: function (common) {this.setObject('common', common);},
         getCommon: function () {return this.getObject('common');},
-        loadCommonInfo: function () {
-            var common = this.getCommon();
-            // if (!common || (new Date().getTime() - common.lastRequestTime > 5 * 60 * 1000)) {
+
+        loadCommonInfo: function (options) {
+            console.debug('loadCommonInfo!!');
+
+            // null safe.
+            options = options || {};
+
+            if (!this.getCommon() || options.force === true) {
+                console.debug('loadCommonInfo from server');
+
+                var common = this.getCommon();
                 var self = this;
                 $.ajax({
                     url: '/api/v1/common',
@@ -44,12 +52,21 @@ define([], function () {
                     success: function (json) {
                         json.lastRequestTime = new Date().getTime();
                         self.setCommon(json);
+                        if (options.callback) {
+                            options.callback();
+                        }
                     },
                     error: function () {
                         console.error('/api/v1/common error: ', arguments);
                     },
                 });
-            // }
+
+            } else {
+                if (options.callback) {
+                    options.callback();
+                }
+            }
+
         },
 
         // API: user
