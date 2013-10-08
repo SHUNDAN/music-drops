@@ -8,17 +8,26 @@ echo "START"
 cd ../
 pwd
 
+
+# create tmp directory
+if [ -e work/tmp ]; then
+    echo "work/tmp already extists"
+else
+    mkdir work/tmp
+fi
+
+
 # npm
 npm install
 
 
 # db
-rm db/mockbu.db
+mv db/mockbu.db work/tmp/`date "+%Y%m%d_%H%M%S"`mockbu.db
 cp db/mockbu-dev.db db/mockbu.db
 
 
 # setting
-rm settings/setting.json
+mv settings/setting.json work/tmp/`date "+%Y%m%d_%H%M%S"`setting.json
 cp settings/setting_bk.json setting.json
 
 

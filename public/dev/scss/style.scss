@@ -1,6 +1,9 @@
 //
 // style scssのエントリーポイント 
 //
+@import "compass";
+
+@import "./libs/_bootstrap";
 
 
 // Library
@@ -8,10 +11,34 @@
 @import "./libs/_bootstrap-responsive";
 
 // Components
-@import "./utility";
+// @import "./utility";
 
-// Web-Fonts
+//-------------------------------------//
+//  いろいろ **あとで整理する**
+//-------------------------------------//
+
+//  core
+//-------------------------------------
+@import "./core/reset";
+@import "./core/settings";
+@import "./core/helper";
+@import "./core/base";
+
+
+//  skin
+//-------------------------------------
+@import "./skins/skin_sunset";
+
+
+//  Web-Fonts
+//-------------------------------------
 @import "./fonts/icons";
+
+
+//  modules
+//-------------------------------------
+// heder
+@import "./modules/header";
 
 
 
@@ -115,38 +142,11 @@
 #stage {
     width: 100%;
     min-width: 980px;
+    padding-top: 65px;
 }
-#header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-width: 980px;
-    height: 66px;
-    background-color: #6bcfbb;
-}
-#main {width: 980px;}
-
-
-/*==============================
-  Header
-===============================*/
-.playGage {
-    width: 100%;
-    min-width: 980px;
-    border-top: 1px solid #7a7a7a;
-    background-color: #3d3c3c;
-    .value {
-        height: 5px;
-        background-color: #f46116;
-    }
-}
-.headerContent {
-    width: 980px;
-}
-.logo {
-    font-size: 36px;
-    line-height: 60px;
+#main {
+  width: 980px;
+  margin: 0 auto; 
 }
 
 

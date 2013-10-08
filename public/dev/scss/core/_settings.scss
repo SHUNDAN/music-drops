@@ -1,0 +1,153 @@
+//-------------------------------------//
+//  Settings
+//-------------------------------------//
+
+//  Variables
+//-------------------------------------
+
+// Colors
+$color-base: #68473c; // brown
+$color-sec: #99796d; // brown secondaly
+$color-fff: #fff; // white
+$color-000: #000; // Black
+
+/*
+#68473c // base color
+#99796d // secondaly color
+
+*/
+
+// Alpha Colors
+$alpha-2: 0.2;
+$alpha-3: 0.3;
+$alpha-34: 0.34;
+$alpha-54: 0.54;
+$alpha-7: 0.7;
+$alpha-8: 0.8;
+
+
+// Spaces
+$space-base: 5px;
+$space-2: $space-base * 2;
+$space-3: $space-base * 3;
+$space-4: $space-base * 4;
+$space-5: $space-base * 5;
+$space-6: $space-base * 6;
+$space-7: $space-base * 7;
+$space-8: $space-base * 8;
+$space-9: $space-base * 9;
+$space-910: $space-base * 10;
+
+// Font Size
+$font-size-base: 13px;
+$font-size-1: $font-size-base - 5px;
+$font-size-2: $font-size-base - 4px;
+$font-size-3: $font-size-base - 3px;
+$font-size-4: $font-size-base - 2px;
+$font-size-5: $font-size-base - 1px;
+$font-size-6: $font-size-base + 1px;
+$font-size-7: $font-size-base + 2px;
+$font-size-8: $font-size-base + 3px;
+$font-size-9: $font-size-base + 4px;
+$font-size-10: $font-size-base + 5px;
+
+// Heights
+$height-tap-1: 26px;
+$height-tap-2: 32px;
+$height-tap-3: 42px;
+
+// Border Radius
+$radius-base: 4px;
+$radius-2: $radius-base * 2;
+$radius-3: $radius-base * 4;
+
+// Font Settings
+$font-family-body: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+
+
+//  Webfont
+//-------------------------------------
+// @import "../libs/myfont";
+
+
+//  Mixins
+//-------------------------------------
+
+// - @mixin  CSS Sprite for Retina Display
+// - @param  $isParent {String} the first parameter is a string(parent or child)
+// - @param  $map {Glob} the second parameter is a glob
+// - @param  $map-item {Glob} the second parameter is a glob
+// - @param  $isSameChild {Boolean} default is false
+// - @usage  @include sprite(child, $map-tabs, home)
+@mixin sprite($isParent, $map, $map-item: foo, $isSameChild: false) {
+	@if not $isSameChild {
+		@if $isParent == "parent" {
+			background-image: sprite-url($map);
+			background-repeat: no-repeat;
+			background-size: round(image-width(sprite-path($map)) / 2) round(image-height(sprite-path($map)) / 2);
+		} @else {
+			$position-x: round(nth(sprite-position($map, $map-item), 1) / 2);
+			width: round(image-width(sprite-file($map, $map-item)) / 2);
+			height: round(image-height(sprite-file($map, $map-item)) / 2);
+			background-position: $position-x 0;
+		}
+	} @else {
+		@if $isParent == "parent" {
+			width: round(image-width(sprite-file($map, $map-item)) / 2);
+			height: round(image-height(sprite-file($map, $map-item)) / 2);
+			background-image: sprite-url($map);
+			background-repeat: no-repeat;
+			background-size: round(image-width(sprite-path($map)) / 2) round(image-height(sprite-path($map)) / 2);
+		} @else {
+			$position-x: round(nth(sprite-position($map, $map-item), 1) / 2);
+			background-position: $position-x 0;
+		}
+	}
+}
+
+// $map-tabs: sprite-map("/files/img/sprite/tabs/*.png", $layout: horizontal);
+
+// .sprt-a { @include sprite(parent, $map-tabs); }
+// .sprt-a-bird1 { @include sprite(child, $map-tabs, bird1); }
+// .sprt-a-bird2 { @include sprite(child, $map-tabs, bird2); }
+// .sprt-a-bird3 { @include sprite(child, $map-tabs, bird3); }
+// .sprt-a-bird4 { @include sprite(child, $map-tabs, bird4); }
+
+//.sprt-a { @include sprite(parent, $map-tabs, bird1, true); }
+//.sprt-a-bird1 { @include sprite(child, $map-tabs, bird1, true); }
+
+
+
+//  background-image
+@mixin image($width,$height,$bgurl:"",$bgWidth:100%,$bgHeight:100%) {
+  // width: half($width);
+  // height: half($height);
+  width: $width;
+  height: $height;
+  @if ($bgurl != "") {
+    background-image: url($bgurl);
+  }
+  @if ($bgWidth != 100% or $bgHeight != 100%) {
+    @include background-size(half($bgWidth) half($bgHeight));
+    } @else {
+    @include background-size($bgWidth $bgHeight);
+  }
+}
+
+
+//  Extends
+//-------------------------------------
+
+%debug {
+	background-color: pink !important; 
+}
+%cancel-border {
+	border: 0 !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+
+//  Animations
+//-------------------------------------
+

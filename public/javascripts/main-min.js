@@ -8,7 +8,7 @@ define('views/common/header',[], function () {
     var HeaderView = Backbone.View.extend({
 
         initialize: function () {
-            this.$el = $('#header');
+            this.$el = $('header');
             _.bindAll(this, 'show');
         },
 
