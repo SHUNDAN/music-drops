@@ -19,3 +19,6 @@ settings/setting.json
 #scss cache
 *.scssc
 
+#Other
+work/tmp/*
+
