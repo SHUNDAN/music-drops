@@ -28,7 +28,7 @@ cp db/mockbu-dev.db db/mockbu.db
 
 # setting
 mv settings/setting.json work/tmp/`date "+%Y%m%d_%H%M%S"`setting.json
-cp settings/setting_bk.json setting.json
+cp settings/setting_bk.json settings/setting.json
 
 
 # log dir

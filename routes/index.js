@@ -4,6 +4,7 @@
  */
 var fs = require('fs');
 var uuid = require('node-uuid');
+var glob = require('glob');
 var userModel = require('../models/user');
 var feelingModel = require('../models/feeling');
 var codeModel = require('../models/code');
@@ -13,16 +14,26 @@ exports.index = function(req, res){
 
     // load templates.
     var template = '';
-    var files = fs.readdirSync('./public/template/page/');
-    files.forEach(function (fileName) {
-        if (fileName.indexOf('.html') !== -1) {
-            template += fs.readFileSync('./public/template/page/' + fileName, 'utf-8'); 
-        }
-    });
-    // console.log(template);
+    // var files = fs.readdirSync('./public/template/page/');
+    // files.forEach(function (fileName) {
+    //     if (fileName.indexOf('.html') !== -1) {
+    //         template += fs.readFileSync('./public/template/page/' + fileName, 'utf-8'); 
+    //     }
+    // });
 
-    // response.
-    res.render('index', {title: 'Express', htmltemplate: template, mainJs: global.mbSetting.mainJs});
+    glob('./public/template/**/*.html', function (err, files) {
+
+        files.forEach(function (file) {
+            template += fs.readFileSync(file, 'utf-8');
+        });
+
+        // response.
+        res.render('index', {title: 'Express', htmltemplate: template, mainJs: global.mbSetting.mainJs});
+
+    });
+
+
+
 };
 
 
