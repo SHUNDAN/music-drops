@@ -1,0 +1,197 @@
+// header
+// 
+// A description.
+// 
+// Markup: <some markup with a specific {$modifier} like class or a pseudo class >
+// 
+// .class      - description of the class state
+// :pseudo     - description of the pseudo state
+// 
+// Styleguide 5 (digit number to increment eg chapter)
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 980px;
+  height: 65px;
+  background-color: rgba(#f7f7f7, $alpha-2);
+}
+
+//  ヘッダーの曲再生メーター
+//-------------------------------------
+.header-playGage {
+  width: 100%;
+  min-width: 980px;
+  border-top: 1px solid #7a7a7a;
+  background-color: #3d3c3c;
+  .value {
+    height: 4px;
+    background-color: #f46116;
+  }
+}
+
+//  ヘッダー領域
+//-------------------------------------
+.header-content {
+  position: relative;
+  width: 940px;
+  height: 60px;
+  margin: 0 auto;
+  & > div {
+    position: absolute;
+  }
+}
+// ロゴ
+.header-logo {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  @include image(87px,40px,"../images/common/logo_main.png");
+  a {
+    height: 40px;
+  }
+}
+
+//  さがす
+//-------------------------------------
+.header-searchMenu {
+  top: 10px;
+  left: 97px;
+  width: 80px;
+  height: 40px;
+  text-align: center;
+  background-color: rgba(#fff, $alpha-54);
+  p {
+    width: 54px;
+    line-height: 40px;
+  }
+}
+.header-searchMenu-btn {
+  width: 26px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 8px;
+  background-color: rgba(#fff, $alpha-54);
+}
+
+//  プレイリスト
+//-------------------------------------
+.header-playList {
+  top: 10px;
+  left: 188px;
+  width: 96px;
+  font-size: 12px;
+  text-align: center;
+  p:first-child {
+    margin: 4px 0;
+    color: #fff;
+  }
+}
+.header-playList-title {
+  padding: 4px; 
+  background-color: rgba(#fff, $alpha-54);
+}
+
+//  再生メニュー
+//-------------------------------------
+.header-playMenu {
+  top: 10px;
+  left: 293px;
+  width: 384px;
+  height: 40px;
+  background-color: rgba($color-base, $alpha-54);
+  & > div {
+    height: 40px;
+  }
+}
+// 再生・前へ・次へ
+.header-playMenu-btn {
+  position: absolute;
+  top: 50%;
+  width: 26px;
+  height: 26px;
+  margin-top: -13px;
+  color: #fff;
+  @include border-radius(26px);
+  background-color: rgba(#fff, $alpha-34);
+}
+.header-playMenu-btn-prev {
+  left: 8px;
+}
+.header-playMenu-btn-play {
+  left: 40px;
+  width: 32px;
+  height: 32px;
+  margin-top: -16px;
+}
+.header-playMenu-btn-next {
+  left: 76px;
+}
+// 曲名・アーティスト名
+.header-playMenu-song {
+  position: absolute;
+  left: 110px;
+  width: 180px;
+  color: #fff;
+}
+.header-playMenu-song-title {
+  margin: 6px 0 2px;
+  font-size: 12px;
+}
+// 動画表示・リピート・シャッフル
+.header-playSubMenu-btn {
+  position: absolute;
+  bottom: 4px;
+  width: 30px;
+  height: 20px;
+  color: $color-base;
+  &.is-active {
+    color: #f46116;
+  }
+}
+.header-playSubMenu-btn-window {
+  right: 64px;
+}
+.header-playSubMenu-btn-repeat {
+  right: 34px;
+}
+.header-playSubMenu-btn-shuffle {
+  right: 4px;
+}
+
+//  ユーザーメニュー
+//-------------------------------------
+.header-menu {
+  top: 10px;
+  left: 687px;
+}
+.header-menu-btn {
+  position: absolute;
+  top: 0;
+  height: 40px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 40px;
+  color: rgba($color-base, $alpha-54);
+  background-color: rgba(#fff, $alpha-54);
+}
+.header-menu-btn-favo {
+  left: 0;
+  width: 40px;
+  font-size: 24px;
+}
+.header-menu-btn-drop {
+  left: 50px;
+  width: 40px;
+  font-size: 24px;
+}
+.header-menu-btn-myList {
+  left: 100px;
+  width: 70px;
+}
+.header-menu-btn-noti {
+  left: 180px;
+  width: 70px;
+}
