@@ -271,6 +271,53 @@ _.alreadyPocket = function (musicId) {
 
 
 
+/**
+ * Add Play Count for Music.
+ */
+_.addMusicPlayCount = function (musicId) {
+
+    if (_.isLogedIn()) {
+
+        $.ajax({
+            url: '/api/v1/add_music_play_count/' + musicId,
+            method: 'post',
+            dataType: 'json',
+            success: function () {
+                console.debug('add music play count successed. id=', musicId);
+            },
+            error: function () {
+                console.debug('add music play count failed. reason=', arguments);
+            },
+        });
+
+    }
+
+};
+
+
+/**
+ * Add Play Count for Music Link.
+ */
+_.addMusicLinkPlayCount = function (musicId, linkId) {
+
+    if (_.isLogedIn()) {
+
+        $.ajax({
+            url: '/api/v1/add_music_link_play_count/' + musicId + '/' + linkId,
+            method: 'post',
+            dataType: 'json',
+            success: function () {
+                console.debug('add music play count successed. id=', musicId);
+            },
+            error: function () {
+                console.debug('add music play count failed. reason=', arguments);
+            },
+        });
+
+    }
+
+};
+
 
 
 

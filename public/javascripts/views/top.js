@@ -220,6 +220,7 @@ define([
             var $this = $(e.currentTarget);
             var youtubeId = $this.data('youtube-id');
             var songUrl = $this.data('song-url');
+            var musicId = $this.data('music-id');
             console.log('playSong: ', youtubeId, songUrl);
 
 
@@ -231,6 +232,9 @@ define([
             } else {
                 this.youtubeView.playSampleMusic(songUrl, this);
             }
+
+            // add play count.
+            _.addMusicPlayCount(musicId);
 
         },
 
@@ -245,6 +249,7 @@ define([
                 var $this = $(this);
 
                 array.push({
+                    musicId: $this.data('music-id'),
                     popId: $this.data('pop-id'),
                     songUrl: $this.data('song-url'),
                     youtubeId: $this.data('youtube-id')
@@ -260,12 +265,12 @@ define([
                     var $area = $('#' + target);
                     $area.find('tr').removeClass('success');
                     $area.find('tr[data-pop-id="'+music.popId+'"]').addClass('success');
+
+                    // add play count.
+                    _.addMusicPlayCount(music.musicId);
                 }
             };
 
-            // change row color.
-            // var music = array.length !== 0 ? array[0] : {};
-            // $('#' + target).find('tr[data-pop-id="'+music.popId+'"]').addClass('success');
 
             // play
             this.youtubeView = new YoutubeView();

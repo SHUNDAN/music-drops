@@ -151,9 +151,9 @@
             </td>
             <td>
                 <%if (pop.attributes.youtube_id) {%>
-                    <div class="btn btn-danger" data-youtube-id="<%=pop.attributes.youtube_id%>" data-event="playSong" data-pop-id="<%=pop.attributes.id%>">▶</div>
+                    <div class="btn btn-danger" data-music-id="<%=pop.attributes.music_id%>" data-youtube-id="<%=pop.attributes.youtube_id%>" data-event="playSong" data-pop-id="<%=pop.attributes.id%>">▶</div>
                 <%} else {%>
-                <div class="btn btn-primary" data-song-url="<%=pop.attributes.song_url%>" data-event="playSong" data-pop-id="<%=pop.attributes.id%>">▶</div>
+                <div class="btn btn-primary" data-music-id="<%=pop.attributes.music_id%>" data-song-url="<%=pop.attributes.song_url%>" data-event="playSong" data-pop-id="<%=pop.attributes.id%>">▶</div>
                 <%}%>
             </td>
             <td class="text-center">
