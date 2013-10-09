@@ -10,7 +10,8 @@ body {
 }
 a {
 	display: block;
-	color: $color-base;
+	// color: $color-base;
+	color: inherit;
 	text-decoration: none;
 }
 b {

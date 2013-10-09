@@ -2671,7 +2671,7 @@ table th[class*="span"],
 
 /* line 2312, ../dev/scss/libs/_bootstrap.scss */
 .icon-glass {
-  background-position: 0 0;
+  background-position: 0      0;
 }
 
 /* line 2316, ../dev/scss/libs/_bootstrap.scss */
@@ -9805,7 +9805,7 @@ table th[class*="span"],
 
 /* line 2312, ../dev/scss/libs/_bootstrap.scss */
 .icon-glass {
-  background-position: 0 0;
+  background-position: 0      0;
 }
 
 /* line 2316, ../dev/scss/libs/_bootstrap.scss */
@@ -16437,33 +16437,33 @@ body {
 /* line 11, ../dev/scss/core/_base.scss */
 a {
   display: block;
-  color: #68473c;
+  color: inherit;
   text-decoration: none;
 }
 
-/* line 16, ../dev/scss/core/_base.scss */
+/* line 17, ../dev/scss/core/_base.scss */
 b {
   font-weight: bold;
 }
 
-/* line 20, ../dev/scss/core/_base.scss */
+/* line 21, ../dev/scss/core/_base.scss */
 i {
   display: inline-block;
 }
 
-/* line 23, ../dev/scss/core/_base.scss */
+/* line 24, ../dev/scss/core/_base.scss */
 em {
   font-style: normal;
 }
 
-/* line 26, ../dev/scss/core/_base.scss */
+/* line 27, ../dev/scss/core/_base.scss */
 select, button, input, textarea {
   display: block;
   width: 100%;
   -webkit-appearance: none;
 }
 
-/* line 31, ../dev/scss/core/_base.scss */
+/* line 32, ../dev/scss/core/_base.scss */
 button {
   background: none;
 }
@@ -16795,32 +16795,180 @@ header {
   width: 70px;
 }
 
+/* line 8, ../dev/scss/modules/_drop_list.scss */
+.dropList-item {
+  position: relative;
+  float: left;
+  width: 480px;
+  height: 260px;
+  margin: 0 20px 20px 0;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+/* line 15, ../dev/scss/modules/_drop_list.scss */
+.dropList-item:nth-child(even) {
+  margin-right: 0;
+}
+
+/* line 21, ../dev/scss/modules/_drop_list.scss */
+.dropList-item-thumb {
+  position: relative;
+  overflow: hidden;
+  width: 160px;
+  height: 160px;
+}
+/* line 27, ../dev/scss/modules/_drop_list.scss */
+.dropList-item-thumb .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -15px 0 0 -17px;
+}
+
+/* line 36, ../dev/scss/modules/_drop_list.scss */
+.dropList-music-info {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 160px;
+  padding: 10px;
+}
+
+/* line 44, ../dev/scss/modules/_drop_list.scss */
+.dropList-music-info-feeling {
+  margin: 0 0 25px;
+}
+
+/* line 47, ../dev/scss/modules/_drop_list.scss */
+.dropList-music-info-title {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+/* line 51, ../dev/scss/modules/_drop_list.scss */
+.dropList-music-info-artist {
+  margin: 0 0 25px;
+}
+
+/* line 56, ../dev/scss/modules/_drop_list.scss */
+.dropList-pop {
+  padding: 10px;
+}
+
+/* line 59, ../dev/scss/modules/_drop_list.scss */
+.dropList-pop-text {
+  margin: 0 0 35px;
+  line-height: 16px;
+}
+
+/* line 63, ../dev/scss/modules/_drop_list.scss */
+.dropList-pop-user {
+  font-size: 10px;
+  color: #68473c;
+}
+
+/* line 72, ../dev/scss/modules/_drop_list.scss */
+.feeling-Happy {
+  color: #c85d94;
+}
+
+/* line 75, ../dev/scss/modules/_drop_list.scss */
+.feeling-Relax {
+  color: #77b66a;
+}
+
+/* line 78, ../dev/scss/modules/_drop_list.scss */
+.feeling-Sad {
+  color: red;
+}
+
+/* line 81, ../dev/scss/modules/_drop_list.scss */
+.feeling-Cry {
+  color: #6880cc;
+}
+
+/* line 84, ../dev/scss/modules/_drop_list.scss */
+.feeling-ight {
+  color: #e97f45;
+}
+
+/* line 87, ../dev/scss/modules/_drop_list.scss */
+.feeling-Angry {
+  color: #bc7ad4;
+}
+
+/* line 90, ../dev/scss/modules/_drop_list.scss */
+.feeling-Smile {
+  color: #f4b74e;
+}
+
+/* line 94, ../dev/scss/modules/_drop_list.scss */
+.label-feeling {
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  line-height: 22px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 100, ../dev/scss/modules/_drop_list.scss */
+.label-feeling.label-feeling-bg-Happy {
+  background-color: #c85d94;
+}
+/* line 103, ../dev/scss/modules/_drop_list.scss */
+.label-feeling.label-feeling-bg-Relax {
+  background-color: #77b66a;
+}
+/* line 106, ../dev/scss/modules/_drop_list.scss */
+.label-feeling.label-feeling-bg-Sad {
+  background-color: red;
+}
+/* line 109, ../dev/scss/modules/_drop_list.scss */
+.label-feeling.label-feeling-bg-Cry {
+  background-color: #6880cc;
+}
+/* line 112, ../dev/scss/modules/_drop_list.scss */
+.label-feeling.label-feeling-bg-ight {
+  background-color: #e97f45;
+}
+/* line 115, ../dev/scss/modules/_drop_list.scss */
+.label-feeling.label-feeling-bg-Angry {
+  background-color: #bc7ad4;
+}
+/* line 118, ../dev/scss/modules/_drop_list.scss */
+.label-feeling.label-feeling-bg-Smile {
+  background-color: #f4b74e;
+}
+
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 47, ../dev/scss/style.scss */
+  /* line 50, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 54, ../dev/scss/style.scss */
+/* line 57, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 55, ../dev/scss/style.scss */
+/* line 58, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 56, ../dev/scss/style.scss */
+/* line 59, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 60, ../dev/scss/style.scss */
+/* line 63, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -16834,7 +16982,7 @@ header {
 /*==============================
   Stage
 ===============================*/
-/* line 75, ../dev/scss/style.scss */
+/* line 78, ../dev/scss/style.scss */
 #stage {
   position: relative;
 }
@@ -16842,7 +16990,7 @@ header {
 /*==============================
   Preview Area
 ===============================*/
-/* line 89, ../dev/scss/style.scss */
+/* line 92, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: relative !important;
   top: 0px !important;
@@ -16852,7 +17000,7 @@ header {
   margin: 0 !important;
 }
 
-/* line 97, ../dev/scss/style.scss */
+/* line 100, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -16867,7 +17015,7 @@ header {
   color: white;
 }
 
-/* line 111, ../dev/scss/style.scss */
+/* line 114, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -16883,7 +17031,7 @@ header {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 128, ../dev/scss/style.scss */
+/* line 131, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -16891,14 +17039,14 @@ header {
 /*==============================
   Base Frame
 ===============================*/
-/* line 142, ../dev/scss/style.scss */
+/* line 145, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 65px;
 }
 
-/* line 147, ../dev/scss/style.scss */
+/* line 150, ../dev/scss/style.scss */
 #main {
   width: 980px;
   margin: 0 auto;

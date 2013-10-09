@@ -29,19 +29,7 @@
                     <%});%>
                 </select><br>
                 <a href="#" data-event="playAll" data-target="newPopList">新着Dropを全曲再生する</a>
-                <table class="table">
-                    <tr>
-                        <th>Thumb</th>
-                        <th>Title</th>
-                        <th>Artist</th>
-                        <th>Feeling</th>
-                        <th>Comment</th>
-                        <th>User</th>
-                        <th>Play</th>
-                        <th>Like</th>
-                    </tr>
-                    <tbody id="newPopList"></tbody>
-                </table>
+                <ul id="newPopList" class="dropList gp"></ul>
             
             </div>
 
@@ -55,7 +43,7 @@
                     <%});%>
                 </select><br>
                 <a href="#" data-event="playAll" data-target="popularPopList">人気Dropを全曲再生する</a>
-                <table class="table">
+                <table class="table aaaaaaaaaa">
                     <tr>
                         <th>Thumb</th>
                         <th>Title</th>
@@ -81,7 +69,7 @@
                     <%});%>
                 </select><br>
                 <a href="#" data-event="playAll" data-target="hotPopList">人気急上昇Dropを全曲再生する</a>
-                <table class="table">
+                <table class="table aaaaaaaaaaaaaaaa">
                     <tr>
                         <th>Thumb</th>
                         <th>Title</th>
@@ -130,33 +118,21 @@
 <!--PopList-->
 <script id="page_top_poplist" type="text/template">
     <%_.each(popList, function (pop) {%>
-        <tr data-pop-id="<%=pop.attributes.id%>">
-            <td>
-                <img class="thumbM" src="<%=pop.attributes.artwork_url%>" />
-            </td>
-            <td>
-                <a href="#music/<%=pop.attributes.music_id%>"><%=pop.attributes.title%></a>
-            </td>
-            <td>
-                <a href="#artist/<%=pop.attributes.artist_id%>"><%=pop.attributes.artist_name%></a>
-            </td>
-            <td class="wb">
-                <%=pop.attributes.comment%>
-            </td>
-            <td>
-                <%=_.getFeelingName(pop.attributes.feeling_id)%>
-            </td>
-            <td>
-                <a href="#user/<%=pop.attributes.user_id%>"><%=pop.attributes.user_name%></a>
-            </td>
-            <td>
+        <li class="dropList-item feeling-<%=_.getFeelingName(pop.attributes.feeling_id)%>" data-pop-id="<%=pop.attributes.id%>">
+            <div class="dropList-item-thumb">
+                <img src="<%=pop.attributes.artwork_url%>" width="160" height="160" alt="<%=pop.attributes.title%> / <%=pop.attributes.artist_name%>" />
                 <%if (pop.attributes.youtube_id) {%>
                     <div class="btn btn-danger" data-music-id="<%=pop.attributes.music_id%>" data-youtube-id="<%=pop.attributes.youtube_id%>" data-event="playSong" data-pop-id="<%=pop.attributes.id%>">▶</div>
                 <%} else {%>
                 <div class="btn btn-primary" data-music-id="<%=pop.attributes.music_id%>" data-song-url="<%=pop.attributes.song_url%>" data-event="playSong" data-pop-id="<%=pop.attributes.id%>">▶</div>
                 <%}%>
-            </td>
-            <td class="text-center">
+            </div>
+            <div class="dropList-music-info">
+                <div class="dropList-music-info-feeling label-feeling label-feeling-bg-<%=_.getFeelingName(pop.attributes.feeling_id)%>">
+                    <p><%=_.getFeelingName(pop.attributes.feeling_id)%></p>
+                </div>
+                <a class="dropList-music-info-title" href="#music/<%=pop.attributes.music_id%>"><%=pop.attributes.title%></a>
+                <a class="dropList-music-info-artist" href="#artist/<%=pop.attributes.artist_id%>"><%=pop.attributes.artist_name%></a>
                 <%if (!_.isLogedIn()) {%>
                     <span>-</span>
                 <%} else if (_.contains(likeArray, pop.attributes.id) === false) {%>
@@ -164,8 +140,14 @@
                 <%} else {%>
                     <div class="btn btn-primary" data-pop-id="<%=pop.attributes.id%>" data-event="dislikePop">Like</div>
                 <%}%>
-            </td>
-        </tr>
+            </div>
+            <div class="dropList-pop">
+                <p class="dropList-pop-text"><%=pop.attributes.comment%></p>
+                <p class="dropList-pop-user b">
+                    Posted by : <a class="ds" href="#user/<%=pop.attributes.user_id%>"><%=pop.attributes.user_name%></a>
+                </p>
+            </div>
+        </li>
     <%});%>
 </script>
 
