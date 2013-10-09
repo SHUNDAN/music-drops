@@ -16643,3 +16643,895 @@ stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist
 [90mGET /ganglia_config_script [33m404 [90m2ms[0m
 [90mGET /ganglia_config_script [33m404 [90m1ms[0m
 [90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET / [36m304 [90m37ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m1ms[0m
+[90mGET /javascripts/main-min.js [32m200 [90m176ms - 107.73kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m672ms - 217.66kb[0m
+[90mPOST /api/v1/action [32m200 [90m3ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/feelings [32m200 [90m12ms - 620b[0m
+[90mGET /api/v1/poplist?type=new [36m304 [90m10ms[0m
+[90mGET /api/v1/poplist?type=popular [36m304 [90m9ms[0m
+[90mGET /api/v1/poplist?type=hot [36m304 [90m10ms[0m
+[90mGET /images/fonts/icons-f5721417d1069ba54318ee5e2538f55d.woff [36m304 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET / [36m304 [90m55ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m2ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/main-min.js [36m304 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mPOST /api/v1/action [32m200 [90m2ms - 2b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/poplist?type=new [36m304 [90m4ms[0m
+[90mGET /api/v1/feelings [32m200 [90m3ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [36m304 [90m5ms[0m
+[90mGET /api/v1/poplist?type=hot [36m304 [90m4ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET / [32m200 [90m25ms - 32.46kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m0ms[0m
+[90mGET /javascripts/main-min.js [32m200 [90m178ms - 107.72kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m1225ms - 395.17kb[0m
+[90mGET /images/common/logo_main.png [32m200 [90m1ms - 1.63kb[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/feelings [32m200 [90m5ms - 620b[0m
+[90mGET /api/v1/poplist?type=new [36m304 [90m3ms[0m
+[90mGET /api/v1/poplist?type=popular [36m304 [90m4ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [36m304 [90m4ms[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [32m200 [90m1ms - 2.29kb[0m
+[90mGET /images/body/bg_01.png [32m200 [90m1211ms - 460.84kb[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+music#search conditions:  { id: '4' }
+stmt:  { sql: 'select * from music where id=? limit 300' } [ '4' ]
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  where pop.music_id = ? order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/musics/4 [32m200 [90m4ms - 520b[0m
+[90mGET /api/v1/poplist?music_id=4 [32m200 [90m2ms - 765b[0m
+sql!!!!! select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id,  a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id  where a.music_id=?
+stmt:  { sql: 'select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id,  a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id  where a.music_id=?' } [ '4' ]
+[90mGET /api/v1/music_links2?music_id=4 [32m200 [90m2ms - 295b[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/feelings [32m200 [90m3ms - 620b[0m
+[90mGET /api/v1/poplist?type=new [32m200 [90m3ms - 14.37kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [32m200 [90m3ms - 14.37kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [32m200 [90m2ms - 14.37kb[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m0ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET / [32m200 [90m32ms - 32.46kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [32m200 [90m3ms - 3.27kb[0m
+[90mGET /javascripts/libs/extension.js [32m200 [90m2ms - 8.75kb[0m
+[90mGET /javascripts/main-min.js [32m200 [90m2ms - 107.72kb[0m
+[90mGET /javascripts/libs/all-libs.js [32m200 [90m525ms - 200.31kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m873ms - 395.17kb[0m
+[90mGET /images/common/logo_main.png [32m200 [90m1ms - 1.63kb[0m
+[90mPOST /api/v1/action [32m200 [90m0ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/feelings [32m200 [90m4ms - 620b[0m
+[90mGET /api/v1/poplist?type=new [32m200 [90m3ms - 14.37kb[0m
+[90mGET /api/v1/poplist?type=popular [32m200 [90m3ms - 14.37kb[0m
+[90mGET /images/body/bg_01.png [32m200 [90m175ms - 460.84kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [32m200 [90m3ms - 14.37kb[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [32m200 [90m1ms - 2.29kb[0m
+[90mGET / [32m200 [90m21ms - 32.46kb[0m
+[90mGET /javascripts/libs/extension.js [32m200 [90m4ms - 8.75kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [32m200 [90m3ms - 3.27kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m9ms - 395.17kb[0m
+[90mGET /javascripts/main-min.js [32m200 [90m3ms - 107.72kb[0m
+[90mGET /javascripts/libs/all-libs.js [32m200 [90m526ms - 200.31kb[0m
+[90mGET /images/body/bg_01.png [32m200 [90m5ms - 460.84kb[0m
+[90mGET /images/common/logo_main.png [32m200 [90m3ms - 1.63kb[0m
+[90mPOST /api/v1/action [32m200 [90m0ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m1ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [32m200 [90m2ms - 14.37kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [32m200 [90m2ms - 14.37kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [32m200 [90m4ms - 14.37kb[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [32m200 [90m1ms - 2.29kb[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[[32mINFO[0m] [30;1m10:56:25[0m Restarting
+mbSetting:  { port: 80,
+  db_path: './db/mockbu.db',
+  mainJs: 'main-min.js',
+  OAuth: 
+   { google: 
+      { returnURL: 'http://music-drops.com/auth/google/return',
+        realm: 'http://music-drops.com/' },
+     facebook: 
+      { clientID: '510171422408925',
+        clientSecret: '6ddc7a4e8f8ffb1642b919db17bbbb02',
+        callbackURL: 'http://music-drops.com/auth/facebook/callback' },
+     twitter: 
+      { consumerKey: 'JkyuVRj2NqbJbthObbJmuQ',
+        consumerSecret: 'Lhwac5bc3wRgE5PFIxBMscM40HBtGjxf8I9Q9AeQ9A',
+        callbackURL: 'http://music-drops.com/auth/twitter/callback' } } }
+[[31;1mERROR[0m] [30;1m10:56:25[0m Error
+Error: Cannot find module 'glob'
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:364:17)
+    at require (module.js:380:17)
+    at Object.<anonymous> (/var/www/html2/mockbu3/routes/index.js:7:12)
+    at Module._compile (module.js:456:26)
+    at Object.Module._extensions..js (module.js:474:10)
+    at Object..js (/usr/local/lib/node_modules/node-dev/lib/hook.js:52:17)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+mbSetting:  { port: 80,
+  db_path: './db/mockbu.db',
+  mainJs: 'main-min.js',
+  OAuth: 
+   { google: 
+      { returnURL: 'http://music-drops.com/auth/google/return',
+        realm: 'http://music-drops.com/' },
+     facebook: 
+      { clientID: '510171422408925',
+        clientSecret: '6ddc7a4e8f8ffb1642b919db17bbbb02',
+        callbackURL: 'http://music-drops.com/auth/facebook/callback' },
+     twitter: 
+      { consumerKey: 'JkyuVRj2NqbJbthObbJmuQ',
+        consumerSecret: 'Lhwac5bc3wRgE5PFIxBMscM40HBtGjxf8I9Q9AeQ9A',
+        callbackURL: 'http://music-drops.com/auth/twitter/callback' } } }
+appUtil db_path:  ./db/mockbu.db
+Express server listening on port 80
+sessionMap:  { 'c4bd370d-bd8c-4b66-99b8-e7e1873a20d6': 5,
+  '9d4094c6-5f9b-47b4-b6d6-39e3d1eb1040': 8 }
+[90mGET / [32m200 [90m598ms - 32.46kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [32m200 [90m12ms - 3.27kb[0m
+[90mGET /javascripts/libs/extension.js [32m200 [90m12ms - 8.75kb[0m
+[90mGET /javascripts/main-min.js [32m200 [90m189ms - 107.72kb[0m
+[90mGET /javascripts/libs/all-libs.js [32m200 [90m704ms - 200.31kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m1192ms - 395.17kb[0m
+[90mGET /images/common/logo_main.png [32m200 [90m4ms - 1.63kb[0m
+[90mPOST /api/v1/action [32m200 [90m4ms - 2b[0m
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /api/v1/common [32m200 [90m6ms - 11.08kb[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [32m200 [90m4ms - 2.29kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [32m200 [90m10ms - 14.37kb[0m
+[90mGET /api/v1/feelings [32m200 [90m8ms - 620b[0m
+[90mGET /api/v1/poplist?type=new [32m200 [90m7ms - 14.37kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [32m200 [90m3ms - 14.37kb[0m
+[90mGET /images/body/bg_01.png [32m200 [90m1009ms - 460.84kb[0m
+[90mGET /ganglia_config_script [33m404 [90m11ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m3ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m4ms[0m
+[90mGET /ganglia_config_script [33m404 [90m3ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m3ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m3ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET / [32m200 [90m56ms - 32.46kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [32m200 [90m2ms - 3.27kb[0m
+[90mGET /javascripts/libs/extension.js [32m200 [90m1ms - 8.75kb[0m
+[90mGET /javascripts/main-min.js [32m200 [90m2ms - 107.72kb[0m
+[90mGET /javascripts/libs/all-libs.js [32m200 [90m669ms - 200.31kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m1291ms - 395.17kb[0m
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /images/common/logo_main.png [32m200 [90m4ms - 1.63kb[0m
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /api/v1/common [32m200 [90m5ms - 11.08kb[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [32m200 [90m3ms - 2.29kb[0m
+[90mGET /images/body/bg_01.png [32m200 [90m263ms - 460.84kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [32m200 [90m5ms - 14.37kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [32m200 [90m5ms - 14.37kb[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m1ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [32m200 [90m4ms - 14.37kb[0m
+[90mGET / [32m200 [90m55ms - 32.46kb[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m2ms[0m
+[90mGET /javascripts/libs/extension.js [32m200 [90m3ms - 8.75kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m2ms[0m
+[90mGET /javascripts/main-min.js [32m200 [90m360ms - 107.72kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m970ms - 395.17kb[0m
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /api/v1/common [32m200 [90m3ms - 11.08kb[0m
+[90mGET /images/common/logo_main.png [32m200 [90m1ms - 1.63kb[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [32m200 [90m2ms - 2.29kb[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m2ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m2ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [36m304 [90m3ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [36m304 [90m3ms[0m
+[90mGET /images/body/bg_01.png [32m200 [90m653ms - 460.84kb[0m
+[90mGET / [36m304 [90m28ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m1ms[0m
+[90mGET /javascripts/main-min.js [36m304 [90m0ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m1ms[0m
+[90mGET /images/body/bg_01.png [36m304 [90m2ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+[90mGET /images/common/logo_main.png [36m304 [90m1ms[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m1ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [36m304 [90m3ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m3ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [36m304 [90m4ms[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [36m304 [90m1ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/feelings [32m200 [90m8ms - 620b[0m
+[90mGET /api/v1/poplist?type=new [36m304 [90m9ms[0m
+[90mGET /api/v1/poplist?type=hot [36m304 [90m7ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [36m304 [90m4ms[0m
+stmt:  { sql: 'select * from artist where id=? limit 300' } [ '36' ]
+music#search conditions:  { artist_id: '36' }
+stmt:  { sql: 'select * from music where artist_id=? limit 300' } [ '36' ]
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+[90mGET /api/v1/artists/36 [32m200 [90m16ms - 79b[0m
+[90mGET /api/v1/musics?artist_id=36 [32m200 [90m710ms - 1.86kb[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/feelings [32m200 [90m6ms - 620b[0m
+[90mGET /api/v1/poplist?type=popular [36m304 [90m4ms[0m
+[90mGET /api/v1/poplist?type=hot [36m304 [90m5ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m3ms[0m
+music#search conditions:  { artist_id: '36' }
+stmt:  { sql: 'select * from music where artist_id=? limit 300' } [ '36' ]
+stmt:  { sql: 'select * from artist where id=? limit 300' } [ '36' ]
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+[90mGET /api/v1/artists/36 [32m200 [90m8ms - 79b[0m
+[90mGET /api/v1/musics?artist_id=36 [36m304 [90m11ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m4ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [36m304 [90m5ms[0m
+[90mGET /api/v1/poplist?type=hot [36m304 [90m5ms[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m1ms - 620b[0m
+music#search conditions:  { id: '1174' }
+stmt:  { sql: 'select * from music where id=? limit 300' } [ '1174' ]
+sql!!!!! select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id,  a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id  where a.music_id=?
+stmt:  { sql: 'select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id,  a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id  where a.music_id=?' } [ '1174' ]
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  where pop.music_id = ? order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/musics/1174 [32m200 [90m6ms - 624b[0m
+[90mGET /api/v1/music_links2?music_id=1174 [32m200 [90m5ms - 297b[0m
+[90mGET /api/v1/poplist?music_id=1174 [32m200 [90m2ms - 796b[0m
+[90mPOST /api/v1/action [32m200 [90m2ms - 2b[0m
+[90mGET / [36m304 [90m41ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m1ms[0m
+[90mGET /javascripts/main-min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m1ms[0m
+[90mGET /images/body/bg_01.png [36m304 [90m2ms[0m
+[90mGET /images/common/logo_main.png [36m304 [90m2ms[0m
+[90mPOST /api/v1/action [32m200 [90m3ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m1ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m2ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [36m304 [90m4ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [36m304 [90m1ms[0m
+[90mGET /api/v1/poplist?type=hot [36m304 [90m4ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+music#search conditions:  { id: '4' }
+stmt:  { sql: 'select * from music where id=? limit 300' } [ '4' ]
+[90mGET /api/v1/musics/4 [32m200 [90m3ms - 520b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  where pop.music_id = ? order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?music_id=4 [32m200 [90m5ms - 765b[0m
+sql!!!!! select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id,  a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id  where a.music_id=?
+stmt:  { sql: 'select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id,  a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id  where a.music_id=?' } [ '4' ]
+[90mGET /api/v1/music_links2?music_id=4 [32m200 [90m1ms - 295b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m3ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [36m304 [90m3ms[0m
+[90mPOST /api/v1/action [32m200 [90m0ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m2ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [36m304 [90m3ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m3ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET / [32m200 [90m30ms - 32.46kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m2004ms - 395.17kb[0m
+[90mGET /javascripts/libs/extension.js [32m200 [90m6ms - 8.75kb[0m
+[90mGET /javascripts/main-min.js [32m200 [90m6ms - 107.72kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [32m200 [90m1ms - 3.27kb[0m
+[90mGET /javascripts/libs/all-libs.js [32m200 [90m527ms - 200.31kb[0m
+[90mPOST /api/v1/action [32m200 [90m2ms - 2b[0m
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /api/v1/common [32m200 [90m3ms - 11.08kb[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [32m200 [90m2ms - 2.29kb[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m3ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [32m200 [90m3ms - 14.37kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [32m200 [90m4ms - 14.37kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [32m200 [90m3ms - 14.37kb[0m
+[90mGET /images/body/bg_01.png [32m200 [90m1289ms - 460.84kb[0m
+[90mGET /images/common/logo_main.png [32m200 [90m3ms - 1.63kb[0m
+[90mGET /w00tw00t.at.blackhats.romanian.anti-sec:) [33m404 [90m2ms[0m
+[90mGET /phpMyAdmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /phpmyadmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /w00tw00t.at.blackhats.romanian.anti-sec:) [33m404 [90m1ms[0m
+[90mGET /pma/scripts/setup.php [33m404 [90m2ms[0m
+[90mGET /phpMyAdmin/scripts/setup.php [33m404 [90m2ms[0m
+[90mGET /myadmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /phpmyadmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /MyAdmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /pma/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /myadmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /phpMyAdmin/translators.html [33m404 [90m1ms[0m
+[90mGET /phpmyadmin/translators.html [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m4ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET / [32m200 [90m42ms - 32.46kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m4743ms - 395.17kb[0m
+[90mGET /javascripts/main-min.js [32m200 [90m2ms - 107.72kb[0m
+[90mGET /javascripts/libs/extension.js [32m200 [90m1ms - 8.75kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [32m200 [90m3ms - 3.27kb[0m
+[90mGET /javascripts/libs/all-libs.js [32m200 [90m810ms - 200.31kb[0m
+[90mGET /images/body/bg_01.png [32m200 [90m1347ms - 460.84kb[0m
+[90mGET / [32m200 [90m27ms - 32.46kb[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m4ms[0m
+[90mGET / [32m200 [90m23ms - 32.46kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m1ms[0m
+[90mGET /javascripts/main-min.js [32m200 [90m1ms - 107.72kb[0m
+[90mGET /javascripts/libs/extension.js [32m200 [90m2ms - 8.75kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m3737ms - 395.17kb[0m
+[90mGET /images/common/logo_main.png [32m200 [90m3ms - 1.63kb[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /api/v1/common [32m200 [90m5ms - 11.08kb[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [32m200 [90m1ms - 2.29kb[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/feelings [32m200 [90m4ms - 620b[0m
+[90mGET /api/v1/poplist?type=new [36m304 [90m3ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [36m304 [90m3ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [36m304 [90m3ms[0m
+[90mGET /images/body/bg_01.png [32m200 [90m6834ms - 460.84kb[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+[90mPOST /api/v1/action [32m200 [90m0ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/feelings [32m200 [90m6ms - 620b[0m
+[90mGET /api/v1/poplist?type=new [36m304 [90m5ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [36m304 [90m3ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [36m304 [90m3ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+[90mGET / [36m304 [90m50ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m6ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m2ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m1ms[0m
+[90mGET /javascripts/main-min.js [36m304 [90m1ms[0m
+[90mGET /images/body/bg_01.png [36m304 [90m2ms[0m
+[90mGET /images/common/logo_main.png [36m304 [90m2ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/feelings [32m200 [90m5ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m5ms[0m
+[90mGET /api/v1/poplist?type=popular [36m304 [90m6ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [36m304 [90m1ms[0m
+[90mGET /api/v1/poplist?type=hot [36m304 [90m6ms[0m
+[90mPOST /api/v1/action [32m200 [90m2ms - 2b[0m
+params:  { title: '東京' }
+stmt:  { sql: 'select * from music where title=? limit 300' } [ '東京' ]
+find music
+params2:  { name: 'くるり' }
+stmt:  { sql: 'select * from artist where name=? limit 300' } [ 'くるり' ]
+artist found
+[90mPOST /api/v1/musics/search_with_itunes [32m200 [90m87ms - 22b[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+music#search conditions:  { id: '2191' }
+stmt:  { sql: 'select * from music where id=? limit 300' } [ '2191' ]
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  where pop.music_id = ? order by pop.create_at desc limit 300 offset 0' }
+sql!!!!! select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id,  a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id  where a.music_id=?
+stmt:  { sql: 'select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id,  a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id  where a.music_id=?' } [ '2191' ]
+[90mGET /api/v1/musics/2191 [32m200 [90m6ms - 582b[0m
+[90mGET /api/v1/poplist?music_id=2191 [32m200 [90m4ms - 2b[0m
+[90mGET /api/v1/music_links2?music_id=2191 [32m200 [90m2ms - 2b[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+params:  { title: '東京' }
+stmt:  { sql: 'select * from music where title=? limit 300' } [ '東京' ]
+find music
+params2:  { name: 'くるり' }
+stmt:  { sql: 'select * from artist where name=? limit 300' } [ 'くるり' ]
+artist found
+[90mPOST /api/v1/musics/search_with_itunes [32m200 [90m24ms - 22b[0m
+[90mPOST /api/v1/action [32m200 [90m3ms - 2b[0m
+music#search conditions:  { id: '2191' }
+stmt:  { sql: 'select * from music where id=? limit 300' } [ '2191' ]
+[90mGET /api/v1/musics/2191 [32m200 [90m2ms - 582b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  where pop.music_id = ? order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?music_id=2191 [32m200 [90m2ms - 2b[0m
+sql!!!!! select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id,  a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id  where a.music_id=?
+stmt:  { sql: 'select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id,  a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id  where a.music_id=?' } [ '2191' ]
+[90mGET /api/v1/music_links2?music_id=2191 [32m200 [90m2ms - 2b[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+[90mGET / [36m304 [90m40ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m4ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m3ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m2ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m2ms[0m
+[90mGET /javascripts/main-min.js [36m304 [90m1ms[0m
+[90mGET /images/body/bg_01.png [36m304 [90m3ms[0m
+[90mPOST /api/v1/action [32m200 [90m2ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m2ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m30ms[0m
+[90mGET /api/v1/poplist?type=hot [36m304 [90m29ms[0m
+[90mGET /api/v1/poplist?type=popular [36m304 [90m27ms[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [36m304 [90m1ms[0m
+[90mGET /images/common/logo_main.png [36m304 [90m1ms[0m
+[90mPOST /api/v1/action [32m200 [90m2ms - 2b[0m
+stmt:  { sql: 'select * from artist where id=? limit 300' } [ '346' ]
+music#search conditions:  { artist_id: '346' }
+stmt:  { sql: 'select * from music where artist_id=? limit 300' } [ '346' ]
+[90mGET /api/v1/artists/346 [32m200 [90m12ms - 71b[0m
+[90mGET /api/v1/musics?artist_id=346 [32m200 [90m8ms - 5.54kb[0m
+[90mGET / [36m304 [90m34ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m0ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m1ms[0m
+[90mGET /javascripts/main-min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m1ms[0m
+[90mGET /images/body/bg_01.png [36m304 [90m2ms[0m
+[90mGET /images/common/logo_main.png [36m304 [90m2ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m2ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m2ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [36m304 [90m1ms[0m
+[90mGET /api/v1/poplist?type=popular [36m304 [90m6ms[0m
+[90mGET /api/v1/poplist?type=hot [36m304 [90m5ms[0m
+[90mGET / [36m304 [90m27ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m2ms[0m
+[90mGET /javascripts/main-min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m2ms[0m
+[90mGET /images/body/bg_01.png [36m304 [90m3ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m1ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m4ms[0m
+[90mGET /api/v1/poplist?type=popular [36m304 [90m4ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /images/common/logo_main.png [36m304 [90m3ms[0m
+[90mGET /api/v1/poplist?type=hot [36m304 [90m6ms[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [36m304 [90m2ms[0m
+[90mGET /robots.txt [33m404 [90m2ms[0m
+[90mGET / [32m200 [90m23ms - 32.46kb[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m3ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m13ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m3ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET / [32m200 [90m25ms - 32.46kb[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m3ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mHEAD / [32m200 [90m29ms - 32.46kb[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m403ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m8ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m0ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m0ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m3ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /javascripts/libs/all-libs.js [32m200 [90m57ms - 200.31kb[0m
+[90mPOST /api/v1/action [32m200 [90m3ms - 2b[0m
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /api/v1/common [32m200 [90m4ms - 11.08kb[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m8ms - 620b[0m
+[90mGET / [36m304 [90m24ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m0ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m0ms[0m
+[90mGET /javascripts/main-min.js [36m304 [90m1ms[0m
+[90mGET /images/body/bg_01.png [36m304 [90m2ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /api/v1/common [32m200 [90m3ms - 11.08kb[0m
+[90mGET /images/common/logo_main.png [36m304 [90m0ms[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [36m304 [90m1ms[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m2ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [36m304 [90m3ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m2ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [36m304 [90m2ms[0m
+[90mGET /w00tw00t.at.blackhats.romanian.anti-sec:) [33m404 [90m1ms[0m
+[90mGET /phpMyAdmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /phpmyadmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /pma/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /myadmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /MyAdmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /w00tw00t.at.blackhats.romanian.anti-sec:) [33m404 [90m1ms[0m
+[90mGET /phpMyAdmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /phpmyadmin/scripts/setup.php [33m404 [90m5ms[0m
+[90mGET /pma/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /myadmin/scripts/setup.php [33m404 [90m5ms[0m
+[90mGET /MyAdmin/scripts/setup.php [33m404 [90m2ms[0m
+[90mGET /w00tw00t.at.blackhats.romanian.anti-sec:) [33m404 [90m1ms[0m
+[90mGET /phpMyAdmin/scripts/setup.php [33m404 [90m3ms[0m
+[90mGET /phpmyadmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /pma/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /myadmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /MyAdmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m3ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m2ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
+[90mGET /ganglia_config_script [33m404 [90m1ms[0m
