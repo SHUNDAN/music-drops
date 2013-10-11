@@ -247,6 +247,43 @@ _.loadUserPockets = function (options) {
 
 
 
+
+// SessionStorageのArtistFollowを更新するメソッド
+_.loadUserArtistFollow = function (options) {
+
+    options = options || {};
+
+    // ユーザー情報を取得
+    var userString = sessionStorage.getItem('user');
+    if (!userString) {
+        return;
+    }
+
+    // ユーザーPocketsを取得
+    var userPocketsString = sessionStorage.getItem('userArtistFollow');
+    if (userPocketsString && !options.force) {
+        return;
+    }
+
+    // 取得して、Storageに保存
+    var userId = JSON.parse(userString).id;
+    $.ajax({
+        url: '/api/v1/user_artist_follows',
+        data: {user_id: userId},
+        dataType: 'json',
+        success: function (pocketArray) {
+            console.debug('user artist follow loaded. count = ', pocketArray.length);
+            sessionStorage.setItem('userArtistFollow', JSON.stringify(pocketArray));
+        },
+    });
+
+};
+
+
+
+
+
+
 // 既にPocket済みの曲かを判断する
 _.alreadyPocket = function (musicId) {
 

@@ -181,8 +181,9 @@ define([
                         success: function (user) {
                             self.userStorage.setUser(user); 
 
-                            // Pocket情報も取得しておく
+                            // ユーザーにひもづく各種情報も取得しておく
                             _.loadUserPockets({force:true});
+                            _.loadUserArtistFollow({force:true});
                         },
                         error: function () {
                             // console.debug('/api/v1/userinfo error: ', arguments);
@@ -192,8 +193,9 @@ define([
                 }
             } else {
 
-                // UserPockets情報をロードしておく
+                // ユーザーにひもづく各種情報も取得しておく
                 _.loadUserPockets();
+                _.loadUserArtistFollow();
 
             }
 

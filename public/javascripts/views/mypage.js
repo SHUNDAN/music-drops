@@ -10,6 +10,8 @@ define([
     'models/user/user_notification_list',
     'models/user/user_follow',
     'models/user/user_follow_list',
+    'models/user/user_artist_follow',
+    'models/user/user_artist_follow_list',
     'models/common/user_storage',
 ], function (
     YoutubeView,
@@ -19,6 +21,8 @@ define([
     UserNotificationList,
     UserFollow,
     UserFollowList,
+    UserArtistFollow,
+    UserArtistFollowList,
     UserStorage
 ) {
 
@@ -28,7 +32,26 @@ define([
         displayPocketListModel: new UserPocketList(),
 
         initialize: function () {
-            _.bindAll(this, 'render', 'renderSavedFilter', 'renderUserFollowedList', 'renderUserFollowList',  'showUserPocketList', 'showUserNotificationList', 'showYoutube', 'deletePocket', 'deleteNofitication', 'changeTags', 'filterPockets', 'saveFilter', 'useFilter', 'clearFilter', 'deleteFilter', 'show', 'dealloc');
+            _.bindAll(this, 
+                'render', 
+                'renderSavedFilter', 
+                'renderUserFollowedList', 
+                'renderUserFollowList',
+                'renderUserArtistFollow',
+                'showUserPocketList', 
+                'showUserNotificationList', 
+                'showYoutube', 
+                'deletePocket', 
+                'deleteNofitication', 
+                'changeTags', 
+                'filterPockets', 
+                'saveFilter', 
+                'useFilter', 
+                'clearFilter', 
+                'deleteFilter', 
+                'show', 
+                'dealloc');
+
             this.userPocketList = new UserPocketList();
             this.userPocketList.bind('reset', this.showUserPocketList);
             this.userNotifitactionList = new UserNotificationList();
@@ -37,6 +60,8 @@ define([
             this.userFollowList = new UserFollowList();
             this.userFollowedList.bind('reset', this.renderUserFollowedList);
             this.userFollowList.bind('reset', this.renderUserFollowList);
+            this.userArtistFollowList = new UserArtistFollow();
+            this.userArtistFollowList.bind('reset', this.renderUserArtistFollow);
 
             if (_.isIphone || _.isAndroid) {
                 $(document).off().on('blur', '[data-event="filterPockets"]', this.filterPockets);
@@ -103,6 +128,10 @@ define([
             var snipet = _.template(template, {users: this.userFollowList.models});
             this.$el.find('#followUserList').html(snipet);
 
+        },
+
+        renderUserArtistFollow: function () {
+            console.log('renderUserArtistFollow', this.userArtistFollowList);
         },
 
 
@@ -523,6 +552,9 @@ define([
 
             // フォローしているユーザー一覧
             this.userFollowList.fetch({reset:true, data: {user_id:this.user.id}});
+
+            // フォローしているアーティスト
+            this.userArtistFollowList.fetch({reset:true, data:{user_id:this.user.id}});
 
         },
 
