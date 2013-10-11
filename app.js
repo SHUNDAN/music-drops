@@ -164,6 +164,7 @@ var artist = require('./routes/artist');
 var pop = require('./routes/pop');
 var user = require('./routes/user');
 var userPocket = require('./routes/user_pocket');
+var userPlaylist = require('./routes/user_playlist');
 var userFollow = require('./routes/user_follow');
 var userFollow = require('./routes/user_artist_follow');
 var userNotification = require('./routes/user_notification');
@@ -399,6 +400,14 @@ app.put('/api/v1/user_pockets/:id', userPocket.update);
 app.post('/api/v1/user_pockets/:id/update', userPocket.update);
 app.delete('/api/v1/user_pockets/:id', userPocket.delete);
 app.delete('/api/v1/user_pockets', userPocket.delete);
+
+// User Playlist
+app.get('/api/v1/user_playlists', userPlaylist.select);
+app.post('/api/v1/user_playlists', userPlaylist.add);
+app.put('/api/v1/user_playlists/:id', userPlaylist.update);
+app.post('/api/v1/user_playlists/:id/update', userPlaylist.update);
+app.delete('/api/v1/user_playlists/:id', userPlaylist.delete);
+app.delete('/api/v1/user_playlists', userPlaylist.delete);
 
 // User Follow
 app.get('/api/v1/user_follows', userFollow.select);
