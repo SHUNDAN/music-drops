@@ -118,6 +118,16 @@ create table if not exists user_follow(
 );
 
 
+-- User Artist Follow
+create table if not exists user_artist_follow(
+    id          integer     primary key     autoincrement,
+    user_id     integer,
+    artist_id   integer,
+    create_at   numeric,
+    update_at   numeric
+);
+
+
 -- User Notification
 create table if not exists user_notification (
     id          integer     primary key     autoincrement,
