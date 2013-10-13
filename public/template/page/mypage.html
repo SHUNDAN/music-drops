@@ -2,12 +2,16 @@
 
 <!-- Mypage -->
 <script id="page_mypage" type="text/template">
+
+
+<!--
     <h1>Mypage</h1>
 <br>
 <br>
 <br>
 <br>
 <br>
+-->
 
 
 <h2 class="kari_h2">すべてのPocket</h2>
@@ -103,7 +107,7 @@
             <%} else {%>
                 <div class="playBtn blueBtn">▶</div>
             <%}%>
-            <div class="delBtn">DEL</div>
+            <div class="delBtn" data-pocket-id="<%=pocket.attributes.id%>" data-event-click="deletePocket">DEL</div>
         </div>
     <%});%>
 </script>

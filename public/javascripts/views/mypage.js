@@ -4,6 +4,7 @@
  */
 define([
     'views/common/youtube',
+    'views/common/confirmDialog',
     'models/user/user',
     'models/user/user_pocket',
     'models/user/user_pocket_list',
@@ -15,6 +16,7 @@ define([
     'models/common/user_storage',
 ], function (
     YoutubeView,
+    ConfirmDialogView,
     User,
     UserPocket,
     UserPocketList,
@@ -32,6 +34,11 @@ define([
         displayPocketListModel: new UserPocketList(),
 
         initialize: function () {
+
+            // auto event bind.
+            _.bindEvents(this);
+
+
             _.bindAll(this, 
                 'render', 
                 'renderSavedFilter', 
@@ -285,18 +292,45 @@ define([
          * Pocket削除
          */
         deletePocket: function (e) {
-            var pocketId = $(e.currentTarget).data('pocket-id');
-            console.log('deletePocket', pocketId);
 
-            var aPocket = this.userPocketList.get(pocketId);
-            aPocket.bind('sync', _.bind(function () {
-                this.showUserPocketList();
+            var $this = $(e.currentTarget);
 
-                // Localデータも更新
-                _.loadUserPockets({force: true});
+            // Pocket削除処理
+            var delFn = _.bind(function () {
 
-            }, this));
-            aPocket.destroy({wait: true});
+                var pocketId = $(e.currentTarget).data('pocket-id');
+                console.log('deletePocket', pocketId);
+
+                var aPocket = this.userPocketList.get(pocketId);
+                aPocket.bind('sync', _.bind(function () {
+
+                    // 再表示（古いやつ）
+                    this.showUserPocketList();
+                    // this.renderUserPocketList();
+
+                    // 削除アニメーション
+                    $this.parent().transit({opacity: 0, height: 0}, 200, 'ease', function () {
+                        $this.parent().remove();
+                    });
+
+
+                    // Localデータも更新
+                    _.loadUserPockets({force: true});
+
+                }, this));
+                aPocket.destroy({wait: true});
+
+            }, this);
+
+
+
+            // 確認ダイアログを表示
+            var confirmDialog = new ConfirmDialogView();
+            confirmDialog.show({
+                message: 'Pocketを削除しますか？',
+                yesButtonCallback: delFn
+            });
+
         },
 
 
