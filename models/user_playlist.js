@@ -22,6 +22,7 @@ module.exports = _.extend({}, require('./common'), {
     columns : [
         'id',
         'user_id',
+        'type',
         'title',
         'seq',
         'user_pocket_ids',

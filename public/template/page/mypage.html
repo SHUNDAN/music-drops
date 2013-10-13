@@ -3,6 +3,28 @@
 <!-- Mypage -->
 <script id="page_mypage" type="text/template">
     <h1>Mypage</h1>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<h2 class="kari_h2">すべてのPocket</h2>
+<div class="kari_pocketConditionArea">
+    <input type="text" class="conditionInput" value="" placeholder="曲名やアーティスト名を入力してください"></input>
+    <input type="button" class="refineButton" value="絞り込む"/>
+</div>
+<section id="pocketListArea"></section>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
     <h2>UserInfo</h2>
     <table class="table">
@@ -32,7 +54,6 @@
             <th>Music</th>
             <th>Sample</th>
             <th>Youtube</th>
-            <th>Tags</th>
             <th>Create</th>
             <th></th>
         </tr>
@@ -60,6 +81,39 @@
 
 
 </script>
+
+
+
+
+
+
+
+<!--並び替えとかやるためのPocketList一覧-->
+<script id="page_mypage_user_pocket_list" type="text/template">
+    <div class="totalNum">全 <%=pocketList.length%>曲</div>
+    <%_.each(pocketList, function (pocket) {%>
+        <div class="kari_pocketListItem" data-pocket-id="<%=pocket.attributes.id%>" data-event="dragPocket">
+            <img src="<%=pocket.attributes.artwork_url%>" alt="" class="artwork"/>
+            <div class="info">
+                <a href="#music/<%=pocket.attributes.music_id%>" class="songName"><%=pocket.attributes.title%></a><br>
+                <a href="#artist/<%=pocket.attributes.artist_id%>" class="artistName"><%=pocket.attributes.artist_name%></a>
+            </div>
+            <%if (pocket.attributes.youtube_id) {%>
+                <div class="playBtn redBtn">▶</div>
+            <%} else {%>
+                <div class="playBtn blueBtn">▶</div>
+            <%}%>
+            <div class="delBtn">DEL</div>
+        </div>
+    <%});%>
+</script>
+
+
+
+
+
+
+
 
 
 
@@ -112,7 +166,6 @@
             <% } else { %>
                 <td  class="text-center"> - </td>
             <% } %>
-        <td class="wb" data-event="changeTags" data-pocket-id="<%-pocket.attributes.id%>" contenteditable="true"><%=pocket.attributes.tags%></td>
             <td class="wb"><%- _.formatTimestamp(pocket.attributes.create_at) %></td>
             <td><div class="btn btn-danger" data-pocket-id="<%-pocket.attributes.id%>" data-event="deletePocket">D</div></td>
         </tr>
@@ -142,6 +195,37 @@
         <% }); %>
     <% } %>
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -16476,7 +16476,6 @@ button {
   -o-background-size: 100% 100%;
   background-size: 100% 100%;
 }
-
 @font-face {
   font-family: "icons";
   src: url("../images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.eot");
@@ -16984,7 +16983,7 @@ header {
 ===============================*/
 /* line 78, ../dev/scss/style.scss */
 #stage {
-  position: relative;
+  /*position: relative;*/
 }
 
 /*==============================

@@ -39,6 +39,7 @@ define([
                 'renderUserFollowList',
                 'renderUserArtistFollow',
                 'showUserPocketList', 
+                'renderUserPocketList',
                 'showUserNotificationList', 
                 'showYoutube', 
                 'deletePocket', 
@@ -54,6 +55,7 @@ define([
 
             this.userPocketList = new UserPocketList();
             this.userPocketList.bind('reset', this.showUserPocketList);
+            this.userPocketList.bind('reset', this.renderUserPocketList);
             this.userNotifitactionList = new UserNotificationList();
             this.userNotifitactionList.bind('reset', this.showUserNotificationList);
             this.userFollowedList = new UserFollowList();
@@ -148,6 +150,78 @@ define([
             this.displayPocketListModel = _.sortBy(this.userPocketList.models, function (model) {return model.attributes.create_at * -1;});
             var snipet = _.template(template, {pocketList: this.displayPocketListModel, feelings: this.userStorage.getCommon().feelings});
             $('#poplist').html(snipet);
+        },
+
+
+        /**
+         * ユーザーPocketを表示する（並び替えとかする新しいやつ）
+         */
+        renderUserPocketList: function () {
+            var template = $('#page_mypage_user_pocket_list').html();
+            var snipet = _.template(template, {pocketList:this.userPocketList.models});
+            this.$el.find('#pocketListArea').html(snipet);
+
+
+            // Drag & Dropを実装する
+            // var pocketId;
+            // $('[data-event="dragPocket"]').each(function () {
+            //     pocketId = $(this).data('pocket-id');
+            //     $(this).on('dragstart', function (e) {
+            //         $(this).css('opacity', 0);
+            //         console.log('aaa');
+            //     });
+            // });
+
+            // $('#pocketListArea').on('dragover', function (e) {
+            //     console.log('bbb', e);
+            // });
+
+
+            // Drag & Dropを実装する
+            // var delta = $('#pocketListArea').position();
+            // var dragging = false;
+            // var pocketId;
+            // $('[data-event="dragPocket"]').on('mousedown', function (e) {
+            //     dragging = true;
+            //     var $this = $(this);
+            //     pocketId = $this.data('pocket-id');
+            //     $this.css({position:'absolute', top: (e.clientY - delta.top - 30) + 'px', left: (e.clientX - delta.left - 440) + 'px',});
+            //     console.log(e);
+
+            // }).on('mousemove', function (e) {
+
+            //     if (dragging) {
+            //         var $this = $(this);
+            //         $this.css({top: (e.clientY - delta.top - 30) + 'px', left: (e.clientX - delta.left - 440) + 'px',});
+            //     }
+
+            // }).on('mouseup', function (e) {
+            //     dragging = false;
+            //     var $this = $(this);
+            //     $this.css('position', 'static');
+            // });
+            // $('body').on('mouseup', function (e) {
+            //     $('#pocketListArea [data-pocket-id="'+pocketId+'"]').css('position', 'static');
+            // });
+
+
+
+            // Drag & Dropを実装する
+            var self = this;
+            var fn = function () {
+                $('#pocketListArea').sortable({
+                    update: function (event, ui) {
+                        console.log('update');
+                        // $('#pocketListArea').sortable('destroy');
+                        // fn();
+                    }
+                }).disableSelection();                
+            };
+            fn();
+
+
+
+
         },
 
 

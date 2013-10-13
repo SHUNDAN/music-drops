@@ -1,0 +1,125 @@
+
+
+/* H2見出し */
+.kari_h2 {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: #ccc;
+}
+
+
+/*Pocket絞り込み条件*/
+.kari_pocketConditionArea {
+	display: -webkit-box;
+	-webkit-box-pack:justify;
+	padding: 10px 0;
+}
+input.conditionInput {
+	display: block;
+	height: 50px;
+	-webkit-box-flex: 1;
+	margin-right: 10px;
+	padding: 0 10px;
+	-webkit-box-sizing: border-box;
+	color: #ccc;	
+	border: none;
+	background-color: rgba(0,0,0,.3);
+}
+input.refineButton {
+	width: 13%;
+	height: 50px;
+	border-radius: 10px;
+	background-color: rgba(192, 192, 192, .5);
+	color: #ccc;
+}
+
+
+
+
+
+
+/* Pocketリスト */
+#pocketListArea .totalNum {
+	color: #ccc;	
+	font-size: 16px;
+}
+.kari_pocketListItem {
+	display: -webkit-box;
+	-webkit-box-align: center;
+	width: 980px;
+	height: 70px;
+	margin: 5px 0px;
+	padding: 5px;
+	background-color: rgba(0,0,0,.3);
+	border-radius: 5px;
+	color: #ccc;
+}
+.kari_pocketListItem .artwork {
+	display: block;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+.kari_pocketListItem .info {
+	-webkit-box-flex: 1;
+	margin-left: 20px;
+}
+.kari_pocketListItem .songName {
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	height: 30px;
+	line-height: 30px;
+}
+.kari_pocketListItem .artistName {
+	display: inline-block;
+	height: 20px;
+	line-height: 20px;
+}
+.kari_pocketListItem .playBtn {
+	width: 50px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 4px;
+	margin: 0 10px;
+}
+.kari_pocketListItem .playBtn.redBtn {
+	background-color: #bb2828;
+}
+.kari_pocketListItem .playBtn.blueBtn {
+	background-color: #2828bb;
+}
+.kari_pocketListItem .delBtn {
+	width: 50px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 4px;
+	margin: 0 10px 0 0;
+	background-color: rgba(0,0,0,.3);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
