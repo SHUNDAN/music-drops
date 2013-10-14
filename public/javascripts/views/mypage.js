@@ -298,7 +298,7 @@ define([
             // Pocket削除処理
             var delFn = _.bind(function () {
 
-                var pocketId = $(e.currentTarget).data('pocket-id');
+                var pocketId = $this.parents('[data-pocket-id]').data('pocket-id');
                 console.log('deletePocket', pocketId);
 
                 var aPocket = this.userPocketList.get(pocketId);
@@ -312,7 +312,6 @@ define([
                     $this.parent().transit({opacity: 0, height: 0}, 200, 'ease', function () {
                         $this.parent().remove();
                     });
-
 
                     // Localデータも更新
                     _.loadUserPockets({force: true});
@@ -332,6 +331,61 @@ define([
             });
 
         },
+
+
+
+        /**
+         * 曲を再生する
+         */
+         playMusic: function (e) {
+            var pocketId = $(e.currentTarget).parents('[data-pocket-id]').data('pocket-id');
+            pocketId = parseInt(pocketId, 10);
+            console.debug('play music. from pocketId=', pocketId);
+
+            var options = {};
+
+            // playlist name.
+            options.playlistName = 'すべてのPocket';
+
+            // create play list.
+            options.musicArray = [];
+            var use = false;
+            _.each(this.userPocketList.models, function (model) {
+                if (model.attributes.id === pocketId) {
+                    use = true;
+                }
+                if (use) {
+                    options.musicArray.push(model.attributes);
+                }
+            });
+
+            // create callback.
+            options.callbackWhenWillStart = _.bind(function (music) {
+                console.debug('will start: ', music);
+                this.$el.find('.nowPlaying').removeClass('nowPlaying');
+                this.$el.find('.kari_pocketListItem[data-pocket-id="' + music.id + '"]').addClass('nowPlaying');
+            }, this);
+            options.callbackWhenEnd = _.bind(function () {
+                console.debug('did end');
+                this.$el.find('.nowPlaying').removeClass('nowPlaying');
+            }, this);
+
+            // play
+            console.log('options: ', options);
+            // var youtubeView = new YoutubeView();
+            // youtubeView.playMusics(options);
+            mb.musicPlayer.playMusics(options);
+
+         },
+
+
+
+
+
+
+
+
+
 
 
         /**

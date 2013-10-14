@@ -19,7 +19,20 @@
     <input type="text" class="conditionInput" value="" placeholder="曲名やアーティスト名を入力してください"></input>
     <input type="button" class="refineButton" value="絞り込む"/>
 </div>
-<section id="pocketListArea"></section>
+<section class="kari_mypageArea1">
+    <div id="playlistArea" class="kari_playlistArea">
+        <div class="titleArea">
+            <div class="playlostHead">プレイリスト</div>
+            <input type="button" class="editButton" value="Edit"/>
+        </div>
+        <ul class="playlist">
+            <li><a href="#" onclick="return false;">思い出の曲</a></li>
+            <li><a href="#" onclick="return false;">癒しを受ける曲</a></li>
+            <li><a href="#" onclick="return false;">全ての曲</a></li>
+        </ul>
+    </div>
+    <div id="pocketListArea" class="kari_pocketListArea"></div>
+</section>
 
 
 
@@ -96,18 +109,18 @@
 <script id="page_mypage_user_pocket_list" type="text/template">
     <div class="totalNum">全 <%=pocketList.length%>曲</div>
     <%_.each(pocketList, function (pocket) {%>
-        <div class="kari_pocketListItem" data-pocket-id="<%=pocket.attributes.id%>" data-event="dragPocket">
+        <div class="kari_pocketListItem" data-pocket-id="<%=pocket.attributes.id%>">
             <img src="<%=pocket.attributes.artwork_url%>" alt="" class="artwork"/>
             <div class="info">
                 <a href="#music/<%=pocket.attributes.music_id%>" class="songName"><%=pocket.attributes.title%></a><br>
                 <a href="#artist/<%=pocket.attributes.artist_id%>" class="artistName"><%=pocket.attributes.artist_name%></a>
             </div>
             <%if (pocket.attributes.youtube_id) {%>
-                <div class="playBtn redBtn">▶</div>
+                <div class="playBtn redBtn" data-event-click="playMusic">▶</div>
             <%} else {%>
-                <div class="playBtn blueBtn">▶</div>
+                <div class="playBtn blueBtn" data-event-click="playMusic">▶</div>
             <%}%>
-            <div class="delBtn" data-pocket-id="<%=pocket.attributes.id%>" data-event-click="deletePocket">DEL</div>
+            <div class="delBtn" data-event-click="deletePocket">DEL</div>
         </div>
     <%});%>
 </script>

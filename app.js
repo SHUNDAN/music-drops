@@ -18,6 +18,7 @@ global.db_path = global.mbSetting.db_path;
 console.log('mbSetting: ', global.mbSetting);
 
 var userModel = require('./models/user');
+var userPlaylistModel = require('./models/user_playlist');
 
 
 
@@ -64,8 +65,22 @@ passport.use(new GoogleStrategy({
                 var user = rows[0];
                 delete user.password;
                 done(err, user);
-                return;
+
+                
+                // Playlistのデフォルトも作っておく。
+                var data = { 
+                    user_id: user.id,
+                    type: 1,
+                    title: '全てのPocket',
+                    seq: 999,
+                    user_pocket_ids: '[]'
+                };  
+                userPlaylistModel.insertObject(data, function () {});
+
+
+
             });
+
         });
 
     });
@@ -102,6 +117,17 @@ passport.use(new FacebookStrategy({
 
                     var user = rows[0];
                     done(null, user);
+                
+                    // Playlistのデフォルトも作っておく。
+                    var data = { 
+                        user_id: user.id,
+                        type: 1,
+                        title: '全てのPocket',
+                        seq: 999,
+                        user_pocket_ids: '[]'
+                    };  
+                    userPlaylistModel.insertObject(data, function () {});
+
                 });
             });
         });
@@ -138,6 +164,17 @@ passport.use(new TwitterStrategy({
 
                 var user = rows[0];
                 done(null, user);
+                
+                // Playlistのデフォルトも作っておく。
+                var data = { 
+                    user_id: user.id,
+                    type: 1,
+                    title: '全てのPocket',
+                    seq: 999,
+                    user_pocket_ids: '[]'
+                };  
+                userPlaylistModel.insertObject(data, function () {});
+
             });
         });
 

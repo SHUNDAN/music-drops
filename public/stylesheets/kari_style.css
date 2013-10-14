@@ -36,6 +36,51 @@ input.refineButton {
 
 
 
+/*プレイリストとPocketの表示*/
+.kari_mypageArea1:after {
+	display: block;
+	width: 0;
+	height: 0;
+	content: " ";
+	clear: both;
+}
+.kari_playlistArea {
+	width: 22%;
+	float: left;
+	color: #ccc;
+}
+.kari_pocketListArea {
+	width: 76%;
+	float: right;
+}
+.kari_playlistArea .titleArea {
+	position: relative;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #888;
+	padding-bottom: 5px;	
+}
+.kari_playlistArea .playlostHead {
+	font-size: 16px;
+}
+.kari_playlistArea .editButton {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: block;
+	width: 30px;
+	height: 20px;
+	background-color: rgba(0,0,0,0);
+	border: #888;
+	border-radius: 5px;
+	color: #ccc;
+}
+.kari_playlistArea .playlist {
+	line-height: 200%;
+}
+
+
+
+
 
 
 
@@ -47,13 +92,16 @@ input.refineButton {
 .kari_pocketListItem {
 	display: -webkit-box;
 	-webkit-box-align: center;
-	width: 980px;
+	/*width: 980px;*/
 	height: 50px;
 	margin: 5px 0;
 	padding: 5px;
 	background-color: rgba(0,0,0,.3);
 	border-radius: 5px;
 	color: #ccc;
+}
+.kari_pocketListItem.nowPlaying {
+	background-color: rgba(255,200,200, .5);
 }
 .kari_pocketListItem .artwork {
 	display: block;
