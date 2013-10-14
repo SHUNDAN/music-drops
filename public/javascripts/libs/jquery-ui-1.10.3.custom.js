@@ -828,12 +828,10 @@ $.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
 
 var mouseHandled = false;
 $( document ).mouseup( function() {
-	console.debug('document mouseup');
 	mouseHandled = false;
 });
 // bug for guugle chrome 23+
 $( 'body' ).on( 'mouseup', function() {
-	console.debug('document mouseup');
 	mouseHandled = false;
 });
 
@@ -874,7 +872,6 @@ $.widget("ui.mouse", {
 	},
 
 	_mouseDown: function(event) {
-		console.debug('_mouseDown', mouseHandled);
 		// don't let more than one widget handle mouseStart
 		if( mouseHandled ) { return; }
 

@@ -17,6 +17,35 @@ _.isIphone = navigator.userAgent.toLowerCase().indexOf('iphone') + 1;
 _.isAndroid = navigator.userAgent.toLowerCase().indexOf('android') + 1;
 
 
+
+// 自動イベントバインドするメソッド
+_.bindEvents = function (view) {
+
+    _.each([
+        'click',
+        'blur',
+        'change'
+        ], function (type) {
+            view.$el.on(type, '[data-event-' + type + ']', function (e) {
+                var $this = $(this);
+                var fnName = $this.data('event-' + type);
+                if (view[fnName]) {
+                    view[fnName].call(view, e);
+                } else {
+                    console.warn('cannot event bind. type=' + type + ', fnName=' + fnName);
+                }
+            });
+        });
+};
+
+
+// 指定されたIDのテンプレートからHTMLを生成する
+_.mbTemplate = function (id, data) {
+    return _.template($('#' + id).html(), data);
+}
+
+
+
 // Timestamp Formatter.
 _.formatTimestamp = function (timestamp) {
 
