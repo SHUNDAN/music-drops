@@ -2375,6 +2375,82 @@ define('views/login',[
     return LoginView;
 });
 
+/**
+ *	View: Confirm Dialog
+ */
+ define('views/common/confirmDialog',[], function () {
+
+ 	var ConfirmDialog = Backbone.View.extend({
+
+ 		// fields.
+ 		message: '',
+ 		yesButtonLabel: 'OK',
+ 		noButtonLabel: 'Cancel',
+ 		yesButtonCallback: function () {},
+ 		noButtonCallback: function () {},
+
+
+ 		initialize: function () {
+
+ 			// auto event bind.
+ 			_.bindEvents(this);
+
+ 			// bind.
+ 			_.bindAll(this, 'show', 'render', 'close', 'dealloc');
+ 		},
+
+
+ 		render: function () {
+ 			var snipet = _.mbTemplate('confirmDialog', this);
+ 			this.$el.html(snipet);
+ 			$('body').append(this.$el);
+ 		},
+
+
+ 		yesAction: function () {
+ 			this.yesButtonCallback();
+ 			this.close();
+ 		},
+
+
+ 		noAction: function () {
+ 			this.noButtonCallback();
+ 			this.close();
+ 		},
+
+
+ 		show: function (options) {
+
+ 			// set data.
+ 			this.message = options.message || this.message;
+ 			this.yesButtonLabel = options.yesButtonLabel || this.yesButtonLabel;
+ 			this.noButtonLabel = options.noButtonLabel || this.noButtonLabel;
+ 			this.yesButtonCallback = options.yesButtonCallback || this.yesButtonCallback;
+ 			this.noButtonCallback = options.noButtonCallback || this.noButtonCallback;
+
+ 			// reder.
+ 			this.render();
+
+ 		},
+
+
+ 		close: function () {
+
+ 			var self = this;
+ 			this.$el.transit({opacity: 0}, 200, function () {
+ 				self.dealloc();
+ 			});
+ 		},
+
+
+ 		dealloc: function () {
+ 			this.$el.remove();
+ 		},
+
+ 	});
+
+ 	return ConfirmDialog;
+ });
 
 /**
  * Collection: User Pocket Collection
@@ -2523,6 +2599,7 @@ define('models/user/user_artist_follow_list',['models/user/user_artist_follow'],
  */
 define('views/mypage',[
     'views/common/youtube',
+    'views/common/confirmDialog',
     'models/user/user',
     'models/user/user_pocket',
     'models/user/user_pocket_list',
@@ -2534,6 +2611,7 @@ define('views/mypage',[
     'models/common/user_storage',
 ], function (
     YoutubeView,
+    ConfirmDialogView,
     User,
     UserPocket,
     UserPocketList,
@@ -2551,6 +2629,11 @@ define('views/mypage',[
         displayPocketListModel: new UserPocketList(),
 
         initialize: function () {
+
+            // auto event bind.
+            _.bindEvents(this);
+
+
             _.bindAll(this, 
                 'render', 
                 'renderSavedFilter', 
@@ -2804,18 +2887,45 @@ define('views/mypage',[
          * Pocket削除
          */
         deletePocket: function (e) {
-            var pocketId = $(e.currentTarget).data('pocket-id');
-            console.log('deletePocket', pocketId);
 
-            var aPocket = this.userPocketList.get(pocketId);
-            aPocket.bind('sync', _.bind(function () {
-                this.showUserPocketList();
+            var $this = $(e.currentTarget);
 
-                // Localデータも更新
-                _.loadUserPockets({force: true});
+            // Pocket削除処理
+            var delFn = _.bind(function () {
 
-            }, this));
-            aPocket.destroy({wait: true});
+                var pocketId = $(e.currentTarget).data('pocket-id');
+                console.log('deletePocket', pocketId);
+
+                var aPocket = this.userPocketList.get(pocketId);
+                aPocket.bind('sync', _.bind(function () {
+
+                    // 再表示（古いやつ）
+                    this.showUserPocketList();
+                    // this.renderUserPocketList();
+
+                    // 削除アニメーション
+                    $this.parent().transit({opacity: 0, height: 0}, 200, 'ease', function () {
+                        $this.parent().remove();
+                    });
+
+
+                    // Localデータも更新
+                    _.loadUserPockets({force: true});
+
+                }, this));
+                aPocket.destroy({wait: true});
+
+            }, this);
+
+
+
+            // 確認ダイアログを表示
+            var confirmDialog = new ConfirmDialogView();
+            confirmDialog.show({
+                message: 'Pocketを削除しますか？',
+                yesButtonCallback: delFn
+            });
+
         },
 
 

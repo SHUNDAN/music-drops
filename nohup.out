@@ -29724,3 +29724,51 @@ stmt:  { sql: 'select * from user_notification where user_id=? limit 300' } [ '8
 [90mGET /admm/scripts/setup.php [33m404 [90m0ms[0m
 [90mGET /admn/scripts/setup.php [33m404 [90m2ms[0m
 [90mGET /www/delivery/lg.php?bannerid=55&amp;campaignid=7&amp;zoneid=1&amp;loc=http://o1.inviziads.com/rpcdelivery/?z=1&tim=1505&amp;referer=http://static.inviziads.com/openx/openx2.swf?zid=1&amp;cb=12d8a6cae4 [33m404 [90m3ms[0m
+/var/www/html2/mockbu3/views/index.jade, line 38:
+Implicit textOnly for `script` and `style` is deprecated.  Use `script.` or `style.` instead.
+[90mGET / [32m200 [90m59ms - 33.83kb[0m
+[90mGET /stylesheets/kari_style.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [32m200 [90m1896ms - 398.2kb[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m0ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/jquery-ui-1.10.3.custom.js [36m304 [90m1ms[0m
+[90mGET /javascripts/main-min.js [32m200 [90m1ms - 112.77kb[0m
+[90mGET /images/body/bg_01.png [36m304 [90m1ms[0m
+[90mPOST /api/v1/action [32m200 [90m2ms - 2b[0m
+[90mGET /images/common/logo_main.png [36m304 [90m1ms[0m
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /api/v1/common [32m200 [90m5ms - 11.08kb[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [36m304 [90m1ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m1ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [36m304 [90m3ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m2ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [36m304 [90m2ms[0m
+/var/www/html2/mockbu3/views/index.jade, line 38:
+Implicit textOnly for `script` and `style` is deprecated.  Use `script.` or `style.` instead.
+[90mGET / [36m304 [90m35ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m2ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m1ms[0m
+[90mGET /javascripts/main-min.js [36m304 [90m0ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m0ms[0m
+[90mPOST /api/v1/action [32m200 [90m3ms - 2b[0m
+stmt:  { sql: 'select * from feeling limit 300' } []
+stmt:  { sql: 'select * from code limit 300' } []
+[90mGET /api/v1/common [32m200 [90m3ms - 11.08kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m4ms[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m2ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [36m304 [90m2ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [36m304 [90m2ms[0m
