@@ -2375,6 +2375,82 @@ define('views/login',[
     return LoginView;
 });
 
+/**
+ *	View: Confirm Dialog
+ */
+ define('views/common/confirmDialog',[], function () {
+
+ 	var ConfirmDialog = Backbone.View.extend({
+
+ 		// fields.
+ 		message: '',
+ 		yesButtonLabel: 'OK',
+ 		noButtonLabel: 'Cancel',
+ 		yesButtonCallback: function () {},
+ 		noButtonCallback: function () {},
+
+
+ 		initialize: function () {
+
+ 			// auto event bind.
+ 			_.bindEvents(this);
+
+ 			// bind.
+ 			_.bindAll(this, 'show', 'render', 'close', 'dealloc');
+ 		},
+
+
+ 		render: function () {
+ 			var snipet = _.mbTemplate('confirmDialog', this);
+ 			this.$el.html(snipet);
+ 			$('body').append(this.$el);
+ 		},
+
+
+ 		yesAction: function () {
+ 			this.yesButtonCallback();
+ 			this.close();
+ 		},
+
+
+ 		noAction: function () {
+ 			this.noButtonCallback();
+ 			this.close();
+ 		},
+
+
+ 		show: function (options) {
+
+ 			// set data.
+ 			this.message = options.message || this.message;
+ 			this.yesButtonLabel = options.yesButtonLabel || this.yesButtonLabel;
+ 			this.noButtonLabel = options.noButtonLabel || this.noButtonLabel;
+ 			this.yesButtonCallback = options.yesButtonCallback || this.yesButtonCallback;
+ 			this.noButtonCallback = options.noButtonCallback || this.noButtonCallback;
+
+ 			// reder.
+ 			this.render();
+
+ 		},
+
+
+ 		close: function () {
+
+ 			var self = this;
+ 			this.$el.transit({opacity: 0}, 200, function () {
+ 				self.dealloc();
+ 			});
+ 		},
+
+
+ 		dealloc: function () {
+ 			this.$el.remove();
+ 		},
+
+ 	});
+
+ 	return ConfirmDialog;
+ });
 
 /**
  * Collection: User Pocket Collection
@@ -2482,25 +2558,68 @@ define('models/user/user_follow_list',['models/user/user_follow'], function (Use
 
 
 /**
+ * Model: User Artist Follow
+ */
+define('models/user/user_artist_follow',[], function () {
+    
+    var UserArtistFollowModel = Backbone.Model.extend({
+   
+        defaults: {
+            id: null,
+            user_id: null,
+            artist_id: null,
+            create_at: null,
+            update_at: null
+        },
+
+        urlRoot: '/api/v1/user_artist_follows/',
+    });
+
+    return UserArtistFollowModel;
+});
+
+/**
+ * Collection: User Follow
+ */
+define('models/user/user_artist_follow_list',['models/user/user_artist_follow'], function (UserArtistFollow) {
+
+    var UserArtistFollowCollection = Backbone.Collection.extend({
+
+        model: UserArtistFollow,
+
+        url: '/api/v1/user_artist_follows/',
+    });
+
+    return UserArtistFollowCollection;
+});
+
+
+/**
  * View: Mypage
  */
 define('views/mypage',[
     'views/common/youtube',
+    'views/common/confirmDialog',
     'models/user/user',
     'models/user/user_pocket',
     'models/user/user_pocket_list',
     'models/user/user_notification_list',
     'models/user/user_follow',
     'models/user/user_follow_list',
+    'models/user/user_artist_follow',
+    'models/user/user_artist_follow_list',
     'models/common/user_storage',
 ], function (
     YoutubeView,
+    ConfirmDialogView,
     User,
     UserPocket,
     UserPocketList,
     UserNotificationList,
     UserFollow,
     UserFollowList,
+    UserArtistFollow,
+    UserArtistFollowList,
     UserStorage
 ) {
 
@@ -2510,15 +2629,43 @@ define('views/mypage',[
         displayPocketListModel: new UserPocketList(),
 
         initialize: function () {
-            _.bindAll(this, 'render', 'renderSavedFilter', 'renderUserFollowedList', 'renderUserFollowList',  'showUserPocketList', 'showUserNotificationList', 'showYoutube', 'deletePocket', 'deleteNofitication', 'changeTags', 'filterPockets', 'saveFilter', 'useFilter', 'clearFilter', 'deleteFilter', 'show', 'dealloc');
+
+            // auto event bind.
+            _.bindEvents(this);
+
+
+            _.bindAll(this, 
+                'render', 
+                'renderSavedFilter', 
+                'renderUserFollowedList', 
+                'renderUserFollowList',
+                'renderUserArtistFollow',
+                'showUserPocketList', 
+                'renderUserPocketList',
+                'showUserNotificationList', 
+                'showYoutube', 
+                'deletePocket', 
+                'deleteNofitication', 
+                'changeTags', 
+                'filterPockets', 
+                'saveFilter', 
+                'useFilter', 
+                'clearFilter', 
+                'deleteFilter', 
+                'show', 
+                'dealloc');
+
             this.userPocketList = new UserPocketList();
             this.userPocketList.bind('reset', this.showUserPocketList);
+            this.userPocketList.bind('reset', this.renderUserPocketList);
             this.userNotifitactionList = new UserNotificationList();
             this.userNotifitactionList.bind('reset', this.showUserNotificationList);
             this.userFollowedList = new UserFollowList();
             this.userFollowList = new UserFollowList();
             this.userFollowedList.bind('reset', this.renderUserFollowedList);
             this.userFollowList.bind('reset', this.renderUserFollowList);
+            this.userArtistFollowList = new UserArtistFollow();
+            this.userArtistFollowList.bind('reset', this.renderUserArtistFollow);
 
             if (_.isIphone || _.isAndroid) {
                 $(document).off().on('blur', '[data-event="filterPockets"]', this.filterPockets);
@@ -2587,6 +2734,10 @@ define('views/mypage',[
 
         },
 
+        renderUserArtistFollow: function () {
+            console.log('renderUserArtistFollow', this.userArtistFollowList);
+        },
+
 
 
 
@@ -2601,6 +2752,78 @@ define('views/mypage',[
             this.displayPocketListModel = _.sortBy(this.userPocketList.models, function (model) {return model.attributes.create_at * -1;});
             var snipet = _.template(template, {pocketList: this.displayPocketListModel, feelings: this.userStorage.getCommon().feelings});
             $('#poplist').html(snipet);
+        },
+
+
+        /**
+         * ユーザーPocketを表示する（並び替えとかする新しいやつ）
+         */
+        renderUserPocketList: function () {
+            var template = $('#page_mypage_user_pocket_list').html();
+            var snipet = _.template(template, {pocketList:this.userPocketList.models});
+            this.$el.find('#pocketListArea').html(snipet);
+
+
+            // Drag & Dropを実装する
+            // var pocketId;
+            // $('[data-event="dragPocket"]').each(function () {
+            //     pocketId = $(this).data('pocket-id');
+            //     $(this).on('dragstart', function (e) {
+            //         $(this).css('opacity', 0);
+            //         console.log('aaa');
+            //     });
+            // });
+
+            // $('#pocketListArea').on('dragover', function (e) {
+            //     console.log('bbb', e);
+            // });
+
+
+            // Drag & Dropを実装する
+            // var delta = $('#pocketListArea').position();
+            // var dragging = false;
+            // var pocketId;
+            // $('[data-event="dragPocket"]').on('mousedown', function (e) {
+            //     dragging = true;
+            //     var $this = $(this);
+            //     pocketId = $this.data('pocket-id');
+            //     $this.css({position:'absolute', top: (e.clientY - delta.top - 30) + 'px', left: (e.clientX - delta.left - 440) + 'px',});
+            //     console.log(e);
+
+            // }).on('mousemove', function (e) {
+
+            //     if (dragging) {
+            //         var $this = $(this);
+            //         $this.css({top: (e.clientY - delta.top - 30) + 'px', left: (e.clientX - delta.left - 440) + 'px',});
+            //     }
+
+            // }).on('mouseup', function (e) {
+            //     dragging = false;
+            //     var $this = $(this);
+            //     $this.css('position', 'static');
+            // });
+            // $('body').on('mouseup', function (e) {
+            //     $('#pocketListArea [data-pocket-id="'+pocketId+'"]').css('position', 'static');
+            // });
+
+
+
+            // Drag & Dropを実装する
+            var self = this;
+            var fn = function () {
+                $('#pocketListArea').sortable({
+                    update: function (event, ui) {
+                        console.log('update');
+                        // $('#pocketListArea').sortable('destroy');
+                        // fn();
+                    }
+                }).disableSelection();                
+            };
+            fn();
+
+
+
+
         },
 
 
@@ -2664,18 +2887,45 @@ define('views/mypage',[
          * Pocket削除
          */
         deletePocket: function (e) {
-            var pocketId = $(e.currentTarget).data('pocket-id');
-            console.log('deletePocket', pocketId);
 
-            var aPocket = this.userPocketList.get(pocketId);
-            aPocket.bind('sync', _.bind(function () {
-                this.showUserPocketList();
+            var $this = $(e.currentTarget);
 
-                // Localデータも更新
-                _.loadUserPockets({force: true});
+            // Pocket削除処理
+            var delFn = _.bind(function () {
 
-            }, this));
-            aPocket.destroy({wait: true});
+                var pocketId = $(e.currentTarget).data('pocket-id');
+                console.log('deletePocket', pocketId);
+
+                var aPocket = this.userPocketList.get(pocketId);
+                aPocket.bind('sync', _.bind(function () {
+
+                    // 再表示（古いやつ）
+                    this.showUserPocketList();
+                    // this.renderUserPocketList();
+
+                    // 削除アニメーション
+                    $this.parent().transit({opacity: 0, height: 0}, 200, 'ease', function () {
+                        $this.parent().remove();
+                    });
+
+
+                    // Localデータも更新
+                    _.loadUserPockets({force: true});
+
+                }, this));
+                aPocket.destroy({wait: true});
+
+            }, this);
+
+
+
+            // 確認ダイアログを表示
+            var confirmDialog = new ConfirmDialogView();
+            confirmDialog.show({
+                message: 'Pocketを削除しますか？',
+                yesButtonCallback: delFn
+            });
+
         },
 
 
@@ -3005,6 +3255,9 @@ define('views/mypage',[
 
             // フォローしているユーザー一覧
             this.userFollowList.fetch({reset:true, data: {user_id:this.user.id}});
+
+            // フォローしているアーティスト
+            this.userArtistFollowList.fetch({reset:true, data:{user_id:this.user.id}});
 
         },
 
@@ -3761,8 +4014,9 @@ define('views/app',[
                         success: function (user) {
                             self.userStorage.setUser(user); 
 
-                            // Pocket情報も取得しておく
+                            // ユーザーにひもづく各種情報も取得しておく
                             _.loadUserPockets({force:true});
+                            _.loadUserArtistFollow({force:true});
                         },
                         error: function () {
                             // console.debug('/api/v1/userinfo error: ', arguments);
@@ -3772,8 +4026,9 @@ define('views/app',[
                 }
             } else {
 
-                // UserPockets情報をロードしておく
+                // ユーザーにひもづく各種情報も取得しておく
                 _.loadUserPockets();
+                _.loadUserArtistFollow();
 
             }
 
