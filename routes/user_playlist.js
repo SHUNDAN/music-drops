@@ -18,8 +18,36 @@ exports.select = function(req, res){
             res.json(rows);
         }
     });
+};
+
+
+/**
+ * フォローしている他人のプレイリスト取得
+ */
+exports.selectFollowPlaylists = function (req, res) {
+
+    // check params.
+    if (!req.query.user_id) {
+        res.json(400, 'user_id must be set');
+        return;
+    }
+
+    // select db.
+    userPlaylistModel.selectFollowPlaylists(req.query, function (err, rows) {
+        res.json(rows);
+    });
 
 };
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -440,6 +440,7 @@ app.delete('/api/v1/user_pockets', userPocket.delete);
 
 // User Playlist
 app.get('/api/v1/user_playlists', userPlaylist.select);
+app.get('/api/v1/follow_playlists', userPlaylist.selectFollowPlaylists);
 app.post('/api/v1/user_playlists', userPlaylist.add);
 app.put('/api/v1/user_playlists/:id', userPlaylist.update);
 app.post('/api/v1/user_playlists/:id/update', userPlaylist.update);
