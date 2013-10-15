@@ -1,0 +1,65 @@
+//======================================
+//	Mypageのモジュール
+//======================================
+
+
+// 共通にしたい
+.fs18 {font-size: 18px;}
+.fs20 {font-size: 20px;}
+.fs32 {font-size: 32px;}
+
+
+
+// 全体を囲む
+.pageMypage {
+
+	// 左部分
+	.leftCol {
+		float: left;
+		width: 320px;
+	}
+
+	// 右部分
+	.rightCol {
+		float: right;
+		width: 612px;
+	}
+
+	// プレイリストタイトル業
+	.playlistHeader {
+		position: relative;
+		border-bottom: 1px solid #adaa95;
+	}
+
+	// サイドバーの表示
+	.sidebarList {
+		margin-top: 10px;
+		li {
+			position: relative;
+			width: 310px;
+			height: 24px;
+			line-height: 24px;
+			margin: 10px 0;
+			padding-left: 10px;
+			color: #656457;
+			
+			&.select {
+				background-color: #ffe77c;				
+				&:after {
+				  position: absolute;
+				  top: 0;
+				  right: -12px;
+				  width: 0px;
+				  height: 0px;
+				  content: " ";
+				  border-top: 12px solid transparent;
+				  border-bottom: 12px solid transparent;
+				  border-left: 12px solid #ffe77c;
+				  border-right: 0px solid transparent;
+				}
+			}
+
+		}
+	}
+}
+
