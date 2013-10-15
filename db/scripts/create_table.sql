@@ -115,7 +115,8 @@ create table if not exists user_playlist(
     type        integer,
     title       text,
     seq         integer,
-    user_pocket_ids text,   -- javascript array.
+    user_pocket_ids text,       -- javascript array.
+    dest_playlist_id integer,   -- playlist follow.
     create_at   numeric,
     update_at   numeric
 );

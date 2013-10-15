@@ -89,16 +89,28 @@ input.refineButton {
 	color: #ccc;	
 	font-size: 16px;
 }
+#pocketListArea .twoCols:after {
+	display: block;
+	width: 0;
+	height: 0;
+	content: " ";
+	clear: both;	
+}
 .kari_pocketListItem {
+	float: left;
 	display: -webkit-box;
 	-webkit-box-align: center;
 	/*width: 980px;*/
 	height: 50px;
+	width: 370px;
 	margin: 5px 0;
 	padding: 5px;
 	background-color: rgba(0,0,0,.3);
 	border-radius: 5px;
 	color: #ccc;
+}
+.kari_pocketListItem:nth-child(2n) {
+	margin-left: 4px;
 }
 .kari_pocketListItem.nowPlaying {
 	background-color: rgba(255,200,200, .5);

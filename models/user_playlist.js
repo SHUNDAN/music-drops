@@ -26,6 +26,7 @@ module.exports = _.extend({}, require('./common'), {
         'title',
         'seq',
         'user_pocket_ids',
+        'dest_playlist_id',
         'create_at',
         'update_at',
     ],
