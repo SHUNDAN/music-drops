@@ -1,34 +1,56 @@
 
 <!-- Page: Music Detail Page  -->
 <script id="page_music_detail" type="text/template">
-    <h1 class="text-center">Music Detail</h1>
     <div id="musicInfoArea"></div>
-    <h4 class="mt20">Relative Links</h4>
-    <div id="musicLinkListArea"></div>
-    <h4 class="mt20">PopList</h4>
-    <div id="popListArea"></div>
-    <div class="btn" data-event="addPop">Popを追加する</div><br>
+
+    <ul class="nav nav-tabs mt50">
+        <li class="active">
+            <a href="#musicLinkListArea" data-toggle="tab">全曲再生ソース</a>
+        </li>
+        <li>
+            <a href="#popListArea" data-toggle="tab">他のドロップ(999件)</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="musicLinkListArea"></div>
+        <div class="tab-pane" id="popListArea"></div>
+    </div>
+        <div class="btn" data-event="addPop">Popを追加する</div><br>
 </script>
 
 
 <!-- Parts: Music Info  -->
 <script id="page_music_detail_info" type="text/template">
-    <h2><%- title %></h2>
-    <p>Artist: <a href="#artist/<%=artist_id%>"><%- artist_name %></a></p>
-    <p><img src="<%= artwork_url %>" alt="" /></p>
-    <p><audio src="<%= song_url %>" controls></audio></p>
-    <% if (itunes_url) { %>
-        <p><a href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&subid=&offerid=94348.1&type=10&tmpid=3910&RD_PARM1=<%- itunes_url %>" target="_blank">iTunesで曲を見る</a></p>
-    <% } %>
-    <div class="pocketBtnArea">
-        <% _.each(feelings, function (feeling) { %>
-            <!-- <div class="btn mb5" data-event="addPocket" data-feeling-id="<%-feeling.id%>"><%-feeling.name%></div> -->
-        <% }); %>
-        <%if (_.alreadyPocket(id) === false) {%>
-            <div class="btn" data-event="addPocket" data-feeling-id="0">この曲をPocketする</div>
-        <%} else {%>
-            <div class="btn btn-primary" data-event="deletePocket" data-feeling-id="0">Pocket解除</div>
-        <%}%>
+    <div class="musicDetail">
+        <div class="gp">
+            <div class="musicDetail-thumb mrm fl">
+                <img src="<%= artwork_url %>" width="140" height="140" alt="<%- title %> / <%- artist_name %>" />
+                <p><audio src="<%= song_url %>" controls></audio></p>
+                <% if (itunes_url) { %>
+                    <p><a href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&subid=&offerid=94348.1&type=10&tmpid=3910&RD_PARM1=<%- itunes_url %>" target="_blank">iTunesで曲を見る</a></p>
+                <% } %>
+            </div>
+            <div class="musicDetail-info fl">
+                <h2 class="musicDetail-info-title"><%- title %></h2>
+                <p class="musicDetail-info-artist">
+                    <a href="#artist/<%=artist_id%>"><%- artist_name %></a>
+                </p>
+                <div class="pocketBtnArea">
+                    <% _.each(feelings, function (feeling) { %>
+                        <!-- <div class="btn mb5" data-event="addPocket" data-feeling-id="<%-feeling.id%>"><%-feeling.name%></div> -->
+                    <% }); %>
+                    <%if (_.alreadyPocket(id) === false) {%>
+                        <div class="btn" data-event="addPocket" data-feeling-id="0">この曲をPocketする</div>
+                    <%} else {%>
+                        <div class="btn btn-primary" data-event="deletePocket" data-feeling-id="0">Pocket解除</div>
+                    <%}%>
+                </div>
+            </div>
+
+
+        </div>
+
     </div>
 </script>
 
