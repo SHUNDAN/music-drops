@@ -15,6 +15,7 @@ define([
     'models/user/user_follow_list',
     'models/user/user_artist_follow',
     'models/user/user_artist_follow_list',
+    'models/pop/pop_list',
     'models/common/user_storage',
 ], function (
     YoutubeView,
@@ -29,6 +30,7 @@ define([
     UserFollowList,
     UserArtistFollow,
     UserArtistFollowList,
+    PopList,
     UserStorage
 ) {
 
@@ -45,6 +47,8 @@ define([
 
             _.bindAll(this, 
                 'render', 
+                'renderMyDrops',
+                'renderCheckArtists',
                 'renderSavedFilter', 
                 'renderUserFollowedList', 
                 'renderUserFollowList',
@@ -91,22 +95,39 @@ define([
             'click [data-event="deletePocket"]' : 'deletePocket',
             'click [data-event="deleteNotification"]': 'deleteNofitication',
             'blur [data-event="changeTags"]': 'changeTags',
-            // 'keyup [data-event="filterPockets"]': 'filterPockets',
             'click [data-event="saveFilter"]': 'saveFilter',
             'click [data-event="useFilter"]': 'useFilter',
             'click [data-event="clearFilter"]': 'clearFilter',
             'click [data-event="deleteFilter"]': 'deleteFilter',
         },
 
+        // マイページ表示
         render: function () {
-            console.log('render', this.user);
-            var template = $('#page_mypage').html();
-            var snipet = _.template(template, this.user);
+            var snipet = _.mbTemplate('page_mypage', {user:this.user, pockets: this.userPocketList});
             this.$el.append(snipet);
-
-            this.renderSavedFilter();
-
         },
+
+
+        // マイDrop表示
+        renderMyDrops: function () {
+            var snipet = _.mbTemplate('page_mypage_mypop_list', {popList:this.myPopList.models});
+            this.$el.find('[data-type="dataArea"]').html(snipet);
+        },
+
+
+        // チェックアーティスト表示
+        renderCheckArtists: function () {
+            var snipet = _.mbTemplate('page_mypage_check_artists', {checkArtists:this.checkArtists});
+            this.$el.find('[data-type="dataArea"]').html(snipet);
+        },
+
+
+
+
+
+
+
+
 
         renderSavedFilter: function () {
             var template = $('#page_mypage_saved_filter').html();
@@ -138,6 +159,111 @@ define([
         renderUserArtistFollow: function () {
             console.log('renderUserArtistFollow', this.userArtistFollowList);
         },
+
+
+
+
+
+        /**
+            マイドロップ一覧を表示
+        */
+        showMyDrops: function (e) {
+            console.debug('showMyDrops');
+            e.preventDefault();
+
+            // 表示物は削除
+            $('[data-type="dataArea"]').html('');
+
+
+            // 既にあれば、それを表示
+            if (this.myPopList && this.myPopList.length > 0) {
+                this.renderMyDrops();
+                return;
+            }
+
+            // 無ければロードして、表示
+            this.myPopList = new PopList();
+            this.myPopList.bind('reset', this.renderMyDrops);
+            this.myPopList.fetch({reset:true, data:{user_id:this.user.id}});
+
+            return false;
+        },
+
+
+        /**
+            チェックアーティストを表示
+        */
+        showCheckArtists: function (e) {
+            e.preventDefault();
+
+            // 表示物は削除
+            $('[data-type="dataArea"]').html('');
+
+
+            // 既にあればそれを表示
+            if (this.checkArtists && this.checkArtists.length > 0) {
+                this.renderCheckArtists();
+            
+            } else {
+                // 無ければロードして表示
+                this.checkArtists = new UserArtistFollowList();
+                this.checkArtists.bind('reset',this.renderCheckArtists);
+                this.checkArtists.fetch({reset:true, data:{user_id:this.user.id}});
+            }
+
+
+            return false;
+        },
+
+
+        /**
+            フォローしているユーザー表示
+        */
+        showFollowUsers: function (e) {
+            e.preventDefault();
+            alert('フォローしているユーザーを表示。開発中');
+
+            return false;
+        },
+
+
+        /**
+            フォローされているユーザー表示
+        */
+        showFollowedUsers: function (e) {
+            e.preventDefault();
+            alert('フォローされているユーザーを表示。開発中');
+
+            return false;
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -668,6 +794,12 @@ define([
             } else {
                 this.user = JSON.parse(sessionStorage.getItem('user'));
             }
+
+            // Pocketリストを取得する
+            var userPockets = _.mbStorage.getUserPockets();
+            this.userPocketList = UserPocketList.createList(userPockets);
+
+
 
             // 画面表示
             this.render();

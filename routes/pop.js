@@ -44,6 +44,9 @@ exports.selectPopList = function(req, res) {
         condition.sortKey = 'like_count_speed';
         condition.sortOrder = 'desc';
     }
+    if (req.query.user_id) {
+        condition.user_id = req.query.user_id;
+    }
 
 
     // select DB.

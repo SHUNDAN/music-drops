@@ -98,6 +98,39 @@ _.isLogedIn = function () {
 
 
 
+// Local Storage.
+var storage = window.sessionStorage;
+_.mbStorage = {
+
+    getUser: function () {
+        return JSON.parse(storage.getItem('user'));
+    },
+    setUser: function (user) {
+        storage.setItem('user', JSON.stringify(user));
+    },
+    getCommon: function () {
+        return JSON.parse(storage.getItem('common'));
+    },
+    setCommon: function (common) {
+        storage.setItem('common', JSON.stringify(common));
+    },
+    getUserPockets: function () {
+        return JSON.parse(storage.getItem('userPockets'));
+    },
+    setuserPockets: function (pockets) {
+        storage.setItem('userPockets', JSON.stringify(pockets));
+    }
+};
+
+
+
+
+
+
+
+
+
+
 
 
 

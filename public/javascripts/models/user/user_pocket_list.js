@@ -22,6 +22,20 @@ define(['models/user/user_pocket'], function (UserPocket) {
         },
     });
 
+    // static method.
+    UserPocketCollection.createList = function (pockets) {
+        var collection = new UserPocketCollection();
+        _.each(pockets, function (pocket) {
+
+            var model = new UserPocket();
+            model.attributes = pocket;
+
+            collection.add(model);
+        });
+        return collection;
+    }
+
+
     return UserPocketCollection;
 });
 

@@ -2671,7 +2671,7 @@ table th[class*="span"],
 
 /* line 2312, ../dev/scss/libs/_bootstrap.scss */
 .icon-glass {
-  background-position: 0      0;
+  background-position: 0 0;
 }
 
 /* line 2316, ../dev/scss/libs/_bootstrap.scss */
@@ -9805,7 +9805,7 @@ table th[class*="span"],
 
 /* line 2312, ../dev/scss/libs/_bootstrap.scss */
 .icon-glass {
-  background-position: 0      0;
+  background-position: 0 0;
 }
 
 /* line 2316, ../dev/scss/libs/_bootstrap.scss */
@@ -17274,13 +17274,15 @@ header {
 .pageMypage .pocketListArea .title {
   padding: 10px 0;
   font-size: 14px;
+  width: 100%;
 }
-/* line 258, ../dev/scss/pages/_mypage.scss */
+/* line 259, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .artistName {
   padding: 0 0 10px;
   font-size: 12px;
+  width: 100%;
 }
-/* line 262, ../dev/scss/pages/_mypage.scss */
+/* line 264, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .playBtn {
   width: 42px;
   height: 42px;
