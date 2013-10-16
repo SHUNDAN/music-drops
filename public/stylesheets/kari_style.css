@@ -1,0 +1,294 @@
+
+
+/* H2見出し */
+.kari_h2 {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: #ccc;
+}
+
+
+/*Pocket絞り込み条件*/
+.kari_pocketConditionArea {
+	display: -webkit-box;
+	-webkit-box-pack:justify;
+	padding: 0 0 10px;
+}
+input.conditionInput {
+	display: block;
+	height: 30px;
+	-webkit-box-flex: 1;
+	margin-right: 10px;
+	padding: 0 10px;
+	-webkit-box-sizing: border-box;
+	color: #ccc;	
+	border: none;
+	background-color: rgba(0,0,0,.3);
+}
+input.refineButton {
+	width: 10%;
+	height: 30px;
+	border-radius: 10px;
+	background-color: rgba(192, 192, 192, .5);
+	color: #ccc;
+}
+
+
+
+/*プレイリストとPocketの表示*/
+.kari_mypageArea1:after {
+	display: block;
+	width: 0;
+	height: 0;
+	content: " ";
+	clear: both;
+}
+.kari_playlistArea {
+	width: 22%;
+	float: left;
+	color: #ccc;
+}
+.kari_pocketListArea {
+	width: 76%;
+	float: right;
+}
+.kari_playlistArea .titleArea {
+	position: relative;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #888;
+	padding-bottom: 5px;	
+}
+.kari_playlistArea .playlostHead {
+	font-size: 16px;
+}
+.kari_playlistArea .editButton {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: block;
+	width: 30px;
+	height: 20px;
+	background-color: rgba(0,0,0,0);
+	border: #888;
+	border-radius: 5px;
+	color: #ccc;
+}
+.kari_playlistArea .playlist {
+	line-height: 200%;
+}
+
+
+
+
+
+
+
+/* Pocketリスト */
+#pocketListArea .totalNum {
+	color: #ccc;	
+	font-size: 16px;
+}
+#pocketListArea .twoCols:after {
+	display: block;
+	width: 0;
+	height: 0;
+	content: " ";
+	clear: both;	
+}
+.kari_pocketListItem {
+	float: left;
+	display: -webkit-box;
+	-webkit-box-align: center;
+	/*width: 980px;*/
+	height: 50px;
+	width: 370px;
+	margin: 5px 0;
+	padding: 5px;
+	background-color: rgba(0,0,0,.3);
+	border-radius: 5px;
+	color: #ccc;
+}
+.kari_pocketListItem:nth-child(2n) {
+	margin-left: 4px;
+}
+.kari_pocketListItem.nowPlaying {
+	background-color: rgba(255,200,200, .5);
+}
+.kari_pocketListItem .artwork {
+	display: block;
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+}
+.kari_pocketListItem .info {
+	-webkit-box-flex: 1;
+	margin-left: 20px;
+}
+.kari_pocketListItem .songName {
+	display: inline-block;
+	font-weight: bold;
+	height: 25px;
+	line-height: 25px;
+}
+.kari_pocketListItem .artistName {
+	display: inline-block;
+	height: 15px;
+	line-height: 15px;
+	font-size: 12px;
+}
+.kari_pocketListItem .playBtn {
+	width: 50px;
+	height: 36px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 4px;
+	margin: 0 10px;
+}
+.kari_pocketListItem .playBtn.redBtn {
+	background-color: #bb2828;
+}
+.kari_pocketListItem .playBtn.blueBtn {
+	background-color: #2828bb;
+}
+.kari_pocketListItem .delBtn {
+	width: 50px;
+	height: 36px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 4px;
+	margin: 0 10px 0 0;
+	background-color: rgba(0,0,0,.3);
+}
+
+
+
+
+/*確認ダイアログ*/
+.kari_confirmDialogBg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+.kari_confirmDialog {
+	position: fixed;
+	top: 200px;
+	left: 50%;
+	width: 320px;
+	margin-left: -160px;
+	background-color: rgba(200,200,200, .65);
+	pointer-events: auto;
+	border-radius: 2px;
+}
+.kari_confirmDialog .message {
+	padding: 20px;
+	color: #333;
+	text-align: center;
+	font-size: 16px;
+}
+.btnArea {
+	height: 50px;
+	margin: 0 20px;
+}
+.btnArea:after {
+	display: block;
+	width: 0;
+	height: 0;
+	content: " ";
+	clear: both;
+}
+.btnArea .yesButton {
+	display: block;
+	width: 130px;
+	height: 40px;
+	float: left;
+	border-radius: 5px;
+}
+.btnArea .noButton {
+	display: block;
+	width: 130px;
+	height: 40px;
+	float: right;
+	border-radius: 5px;
+}
+.kari_confirmDialog .clearButton {
+	position: absolute;
+	top: -4px;
+	right: -4px;
+	display: block;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 50%;
+	font-weight: bold;
+	text-align: center;
+	background-color: rgb(200,200,200);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

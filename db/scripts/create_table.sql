@@ -108,11 +108,36 @@ create table if not exists user_pocket(
 );
 
 
+-- User Playlist
+create table if not exists user_playlist(
+    id          integer     primary key     autoincrement,
+    user_id     integer,
+    type        integer,
+    title       text,
+    seq         integer,
+    user_pocket_ids text,       -- javascript array.
+    dest_playlist_id integer,   -- playlist follow.
+    create_at   numeric,
+    update_at   numeric
+);
+
+
+
 -- User Follow
 create table if not exists user_follow(
     id          integer     primary key     autoincrement,
     user_id     integer,
     dest_user_id integer,
+    create_at   numeric,
+    update_at   numeric
+);
+
+
+-- User Artist Follow
+create table if not exists user_artist_follow(
+    id          integer     primary key     autoincrement,
+    user_id     integer,
+    artist_id   integer,
     create_at   numeric,
     update_at   numeric
 );

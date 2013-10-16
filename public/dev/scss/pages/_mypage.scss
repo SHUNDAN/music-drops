@@ -1,0 +1,312 @@
+//======================================
+//	Mypageのモジュール
+//======================================
+
+
+// 共通にしたい
+.fs18 {font-size: 18px;}
+.fs20 {font-size: 20px;}
+.fs32 {font-size: 32px;}
+.mt30 {margin-top: 30px;}
+.hidden {display: none;}
+
+
+// 気持ちの色
+.feeling-Happy, .feeling-1 {
+  color: $color-feel-Happy;
+}
+.feeling-Relax, .feeling-2 {
+  color: $color-feel-Relax;
+}
+.feeling-Sad, .feeling-3 {
+  color: $color-feel-Sad;
+}
+.feeling-Cry, .feeling-4 {
+  color: $color-feel-Cry;
+}
+.feeling-ight, .feeling-5 {
+  color: $color-feel-ight;
+}
+.feeling-Angry, .feeling-6 {
+  color: $color-feel-Angry;
+}
+.feeling-Smile, .feeling-7 {
+  color: $color-feel-Smile;
+}
+
+
+
+
+// 全体を囲む
+.pageMypage {
+
+	// 左部分
+	.leftCol {
+		float: left;
+		width: 320px;
+	}
+
+	// 右部分
+	.rightCol {
+		float: right;
+		width: 612px;
+	}
+
+	// プレイリストタイトル業
+	.playlistHeader {
+		position: relative;
+		border-bottom: 1px solid #adaa95;
+
+		.editButton {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+	}
+
+	// サイドバーの表示
+	.sidebarList {
+		margin-top: 10px;
+		li {
+			position: relative;
+			width: 310px;
+			height: 24px;
+			line-height: 24px;
+			margin: 10px 0;
+			padding-left: 10px;
+			color: #656457;
+			
+			&.select {
+				background-color: #ffe77c;				
+				&:after {
+				  position: absolute;
+				  top: 0;
+				  right: -12px;
+				  width: 0px;
+				  height: 0px;
+				  content: " ";
+				  border-top: 12px solid transparent;
+				  border-bottom: 12px solid transparent;
+				  border-left: 12px solid #ffe77c;
+				  border-right: 0px solid transparent;
+				}
+			}
+
+			// 削除ボタン
+			.clearBtn {
+				position: absolute;
+				top: 0;
+				right: 0;
+				display: none;
+			}
+		}
+		&.edit {
+			.clearBtn {
+				display: block;
+			}
+		}
+	}
+
+	// プレイリストを作るUI
+	.addPlaylistArea {
+		position: relative;
+		
+		// 入力欄
+		input[type="text"] {
+			display: block;
+			width: 320px;
+			height: 40px;
+			background-color: #efede0;
+			box-shadow: -1px 1px 1px rgba(0,0,0,.3) inset;
+		}
+
+		// 追加ボタン
+		input[type="button"] {
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			display: block;
+			width: 64px;
+			height: 32px;
+			color: #50504b;
+			text-align: center;
+			background-color: #ccc9b2;
+		}
+	}
+
+
+
+	// Pocketの絞り込みUI
+	.filterArea {
+		position: relative;
+		height: 60px;
+
+		.filterByNameInput {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			width: 382px;
+			height: 40px;
+			background-color: #efede0;
+			box-shadow: -1px 1px 1px rgba(0,0,0,.3) inset;			
+		}
+
+		.filterByNameBtn {
+			position: absolute;
+			top: 5px;
+			left: 312px;
+			display: block;
+			width: 64px;
+			height: 32px;
+			color: #7d6a35;
+			text-align: center;
+			background-color: #ffcf3c;
+		}
+
+		.selectArea {
+			position: absolute;
+			top: 0;
+			left: 388px;
+			display: block;
+			width: 218px;
+			height: 40px;
+			select {
+				width: 100%;
+				height: 100%;
+				padding-left: 10px;
+				background-color: #efede0;
+				box-shadow: -1px 1px 1px rgba(0,0,0,.3) inset;
+			}
+			&:after {
+				position: absolute;
+				top: 1px;
+				right: 3px;
+				width: 35px;
+				height: 35px;
+				content: "▼";
+				font-size: 18px;
+				text-align: center;
+				line-height: 40px;
+				border-radius: 5px;
+			}
+		}
+	}
+
+
+
+
+	// Pocketリスト
+	.pocketListArea {
+		li {
+			position: relative;
+			display: -webkit-box;
+			-webkit-box-align:center;
+			width: 300px;
+			height: 72px;
+			float: left;
+			background-color: #efede0;
+			color: #656457 !important;  // とりあえず上書き。
+			margin-bottom: 20px;
+			&:nth-child(2n) {
+				margin-left: 10px;
+			}
+			&:after {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 10px;
+				height: 72px;
+				content: " ";				
+			}
+			&.feeling-1:after {
+				background-color: $color-feel-Happy;
+			}
+			&.feeling-2:after {
+				background-color: $color-feel-Relax;
+			}
+			&.feeling-3:after {
+				background-color: $color-feel-Sad;
+			}
+			&.feeling-4:after {
+				background-color: $color-feel-Cry;
+			}
+			&.feeling-5:after {
+				background-color: $color-feel-fight;
+			}
+			&.feeling-6:after {
+				background-color: $color-feel-Angry;
+			}
+			&.feeling-7:after {
+				background-color: $color-feel-Smile;
+			}
+		}
+		.thumb {
+			display: block;
+			width: 72px;
+			height: 72px;
+		}
+		.info {
+			width: 150px;
+			height: 72px;
+			margin-left: 10px;
+		}
+		.title {
+			padding: 10px 0;
+			font-size: 14px;
+		}
+		.artistName {
+			padding: 0 0 10px;
+			font-size: 12px;
+		}
+		.playBtn {
+			width: 42px;
+			height: 42px;
+			margin-left: 10px;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 42px;
+			font-size: 22px;
+			background-color: #dedbc7;
+		}
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

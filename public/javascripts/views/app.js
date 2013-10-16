@@ -4,6 +4,7 @@
  */
 define([
     'views/common/header',
+    'views/common/music_player',
     'views/top',
     'views/pop/index',
     'views/pop/list',
@@ -17,6 +18,7 @@ define([
     'models/common/user_storage',
 ], function (
     HeaderView,
+    MusicPlayerView,
     TopView,
     PopView,
     PopListView,
@@ -49,6 +51,12 @@ define([
             // Add Header
             this.headerView = new HeaderView();
             this.headerView.show(); 
+
+
+            // Music Player.
+            // 各ページから使いたいので、グローバル変数へ代入する。
+            this.musicPlayer = new MusicPlayerView();
+            mb.musicPlayer = this.musicPlayer;
 
 
         },
@@ -181,8 +189,9 @@ define([
                         success: function (user) {
                             self.userStorage.setUser(user); 
 
-                            // Pocket情報も取得しておく
+                            // ユーザーにひもづく各種情報も取得しておく
                             _.loadUserPockets({force:true});
+                            _.loadUserArtistFollow({force:true});
                         },
                         error: function () {
                             // console.debug('/api/v1/userinfo error: ', arguments);
@@ -192,8 +201,9 @@ define([
                 }
             } else {
 
-                // UserPockets情報をロードしておく
+                // ユーザーにひもづく各種情報も取得しておく
                 _.loadUserPockets();
+                _.loadUserArtistFollow();
 
             }
 

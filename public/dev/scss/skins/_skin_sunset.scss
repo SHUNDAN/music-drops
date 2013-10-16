@@ -1,7 +1,13 @@
 //-------------------------------------//
 //  User's Base Style
 //-------------------------------------//
-.skin-sunset {
-	background-image: url("../images/body/bg_01.png");
-	@include background-size (100% 1280px);
+// いったん廃止
+// .skin-sunset {
+// 	background-image: url("../images/body/bg_01.png");
+// 	@include background-size (100% 100%);
+// }
+
+// 背景色
+.bgMadYellow {
+	background-color: #dedbc7;
 }

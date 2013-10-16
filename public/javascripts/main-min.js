@@ -36,6 +36,364 @@ define('views/common/header',[], function () {
     return HeaderView;
 });
 
+/**
+ * View: MusicPlayerView
+ */
+define('views/common/music_player',[], function () {
+
+    var MusicPlayerView = Backbone.View.extend({
+
+
+        // fields.
+        $playlistTitle: undefined,
+        $musicTitle: undefined,
+        $artistName: undefined,
+
+
+
+        $blackout: null,
+
+        // Screen Size.
+        previewSize: null,
+        movieSize: null,
+        scaleSize: null,
+
+        initialize: function () {
+
+            // set elements.
+            this.$playlistTitle = $('#mpPlaylistTitle');
+            this.$musicTitle = $('#mpMusicTitle');
+            this.$artistName = $('#mpArtistName');
+
+
+            this.previewSize = {width: 640, height: 500};
+            this.movieSize = {width: 640, height: 390};
+            this.scaleSize = 200 / this.previewSize.width;
+
+        },
+
+        render: function () {
+
+        },
+
+
+
+        /**
+         * YoutubeとiTunes視聴を交えて再生する
+         */
+        playMusics: function (options) {
+
+            var musicArray = options.musicArray;
+            var callbackWhenWillStart = options.callbackWhenWillStart || function () {};
+            var callbackWhenEnd = options.callbackWhenEnd || function () {};
+            this.options = options;
+
+            // set playlist name.
+            this.$playlistTitle.html(options.playlistName);
+
+
+            // 再生対象なければ何もしない
+            if (!musicArray || musicArray.length === 0) {
+                console.warn('musicArray is not defined or empty');
+                return;
+            }
+
+            // aliasを柔軟にする
+            _.each(musicArray, function (music) {
+                music.youtubeId = music.youtubeId || music.youtube_id;
+                music.songUrl = music.songUrl || music.song_url;
+                music.musicId = music.musicId || music.music_id;
+                music.artistName = music.artistName || music.artist_name;
+                music.artistId = music.artistId || music.artist_id;
+            });
+
+
+            // ベースAreaを作る
+            mb.$playArea.html(this.$el);
+            var $previewArea = $('<div id="previewArea" class="previewArea"/>');
+            $previewArea.css(_.extend({}, this.previewSize, {
+                position: 'fixed',
+                top: '50%',
+                left: '50%',
+                margin: '-250px 0 0 -320px',
+                'background-color': 'black',
+            }));
+            this.$el.html($previewArea);
+
+
+            // 連続再生の関数
+            var self = this;
+            var next = function (aMusic) {
+
+                var func = _.bind(aMusic.youtubeId ? self._playYoutube : self._playItunesMusic, self);
+                var param = aMusic.youtubeId || aMusic.songUrl;
+
+                // callback.
+                if (callbackWhenWillStart) {
+                    callbackWhenWillStart(aMusic);
+                }
+
+                // set infos.
+                self.$musicTitle.html(aMusic.title);
+                self.$artistName.html(aMusic.artistName);
+
+                func(param, $previewArea, function () {
+
+
+                    // end
+                    if (musicArray.length === 0) {
+                        if (callbackWhenEnd) {
+                            callbackWhenEnd();
+                        }
+                        return;
+                    }
+
+                    // next
+                    var music = musicArray.shift();
+                    next(music);
+
+                });
+            };
+            _.bind(next, this);
+
+            // 再生開始
+            var aMusic = musicArray.shift();
+            next(aMusic);
+
+        },
+
+
+
+
+        /**
+         * 閉じる
+         */
+        close: function () {
+
+            if (this.options.callbackWhenEnd) {
+                this.options.callbackWhenEnd();
+            }
+
+            this.$el.remove();
+
+            return false;
+        },
+
+
+        /**
+         * 小さくする
+         */
+        minimize: function () {
+            console.log('minimize', this.scaleSize, this.$previewArea);
+
+            $('#previewArea').toggleClass('posNotShow');
+
+
+            return false;
+        },
+
+
+
+        /**
+         * iTunes視聴曲を再生する
+         */
+         _playItunesMusic: function (songUrl, $appendView, endCallback) {
+
+            // 初期化
+            $appendView.html('');
+
+
+            // 閉じるボタンを追加
+            var $closeBtn = $('<a href="#" class="closeBtn">×</a>');
+            $closeBtn.on('click', _.bind(this.close, this));
+            $appendView.append($closeBtn);
+
+
+            // 小さくするボタン
+            var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
+            $minimizeBtn.on('click', _.bind(this.minimize, this));
+            $appendView.append($minimizeBtn);
+
+
+            // var $blackout = $('<div class="blackout"/>');
+            // $blackout.on('click', function () {
+            //     $(this).transit({opacity:0}, function () {
+            //         $(this).remove();
+            //     });
+            // });
+            // $blackout.transit({opacity:1});
+            // $appendView.append($blackout);
+
+
+
+            // audio tag.
+            var audio = document.createElement('audio');
+            audio.src = songUrl;
+            audio.autoplay = true;
+            audio.controls = true;
+            audio = $(audio);
+            audio.css({
+                display: 'block',
+                width: '400px',
+                height: '50px',
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                'margin-top': '-25px',
+                'margin-left': '-200px'
+            });
+            // $blackout.append(audio);
+            $appendView.append(audio);
+
+
+            // callback.
+            audio.on('ended', function () {
+                if (endCallback) {
+                    endCallback();
+                }
+            });
+
+
+         },
+
+
+
+
+        /**
+         *  Youtubeを再生する
+         */
+        _playYoutube: function (youtubeId, $appendView, endCallback) {
+
+            // 内容の初期化
+            $appendView.html('');
+
+            // 閉じるボタンを追加
+            var $closeBtn = $('<a href="#" class="closeBtn">×</a>');
+            $closeBtn.on('click', _.bind(this.close, this));
+            $appendView.append($closeBtn);
+
+
+            // 小さくするボタン
+            var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
+            $minimizeBtn.on('click', _.bind(this.minimize, this));
+            $appendView.append($minimizeBtn);
+
+
+            // Youtubeエリア
+            var $player = $('<div id="player"/>');
+            $player.css(this.movieSize);
+            $appendView.append($player);
+
+
+
+            var self = this;
+            // window.mb.windowResize2 = function () {
+            //     self.$blackout.css({
+            //         width: $(document).width(),
+            //         height: $(document).height()
+            //     });
+            //     var moviePos = {x: (self.$blackout.width() - self.movieSize.width) / 2, y: ($(window).height() - self.movieSize.height) / 2};
+            //     baseView.$previewArea.css({
+            //         position: 'fixed',
+            //         top: moviePos.y,
+            //         left: moviePos.x,
+            //     });
+            // };
+            // window.addEventListener('resize', _.bind(mb.windowResize2, this));
+            // mb.windowResize2();
+
+            // if (baseView.pocket) {
+            //     var $pocketBtn = $('<div class="btn btn-large btn-inverse btn-primary mlra mt20">');
+            //     $pocketBtn.text('Pocket').css({
+            //         display: 'block',
+            //         'max-width': '200px',
+            //     });
+            //     $pocketBtn.on('click', _.bind(baseView.pocket, baseView));
+            //     baseView.$previewArea.append($pocketBtn);
+            // }
+
+            // youtubeをダウンロード
+            var player;
+            function startYoutube () {
+                var anId = youtubeId;
+                player = new window.YT.Player('player', {
+                    height: self.movieSize.width,
+                    width: self.movieSize.height,
+                    videoId: anId,
+                    events: {
+                        'onReady': window.onPlayerReady,
+                        'onStateChange': window.onPlayerStateChange
+                    }
+                });
+
+            }
+            if (window.YT) {
+                startYoutube();
+            } else {
+                var tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
+                var firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                window.onYouTubeIframeAPIReady = function () {
+                    console.log('onYouTubeIframeAPIReady');
+                    startYoutube();
+                };
+            }
+
+            window.onPlayerReady = function (event) {
+                console.log('onPlayerReady');
+                if (!_.isIphone && !_.isAndroid) {
+                    event.target.playVideo();
+                } else {
+                    console.log('iphone or android');
+                }
+
+            };
+            window.onPlayerStateChange = function (event) {
+                console.log('onPlayerStateChange');
+                if (event.data === YT.PlayerState.ENDED) {
+                    console.log('youtube end');
+
+                    if (endCallback) {
+                        endCallback();
+                    }
+                }
+            };
+
+
+
+
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /**
+         * 終了処理
+         */
+        dealloc: function () {
+            this.$el.remove();
+        },
+
+
+
+    });
+
+    return MusicPlayerView;
+});
+
 
 /**
  * Model: LocalStorage and SessionStorage
@@ -551,6 +909,7 @@ define('views/common/youtube',[], function () {
             var musicArray = options.musicArray;
             var callbackWhenWillStart = options.callbackWhenWillStart || function () {};
             var callbackWhenEnd = options.callbackWhenEnd || function () {};
+            this.options = options;
 
 
             // 再生対象なければ何もしない
@@ -558,6 +917,15 @@ define('views/common/youtube',[], function () {
                 console.warn('musicArray is not defined or empty');
                 return;
             }
+
+            // aliasを柔軟にする
+            _.each(musicArray, function (music) {
+                music.youtubeId = music.youtubeId || music.youtube_id;
+                music.songUrl = music.songUrl || music.song_url;
+                music.musicId = music.musicId || music.music_id;
+                music.artistName = music.artistName || music.artist_name;
+                music.artistId = music.artistId || music.artist_id;
+            });
 
 
             // ベースAreaを作る
@@ -577,8 +945,8 @@ define('views/common/youtube',[], function () {
             var self = this;
             var next = function (aMusic) {
 
-                var func = _.bind(aMusic.songUrl ? self._playItunesMusic : self._playYoutube, self);
-                var param = aMusic.songUrl ? aMusic.songUrl : aMusic.youtubeId;
+                var func = _.bind(aMusic.youtubeId ? self._playYoutube : self._playItunesMusic, self);
+                var param = aMusic.youtubeId || aMusic.songUrl;
 
                 // callback.
                 if (callbackWhenWillStart) {
@@ -617,6 +985,11 @@ define('views/common/youtube',[], function () {
          * 閉じる
          */
         close: function () {
+
+            if (this.options.callbackWhenEnd) {
+                this.options.callbackWhenEnd();
+            }
+
             this.$el.remove();
 
             return false;
@@ -2375,6 +2748,82 @@ define('views/login',[
     return LoginView;
 });
 
+/**
+ *	View: Confirm Dialog
+ */
+ define('views/common/confirmDialog',[], function () {
+
+ 	var ConfirmDialog = Backbone.View.extend({
+
+ 		// fields.
+ 		message: '',
+ 		yesButtonLabel: 'OK',
+ 		noButtonLabel: 'Cancel',
+ 		yesButtonCallback: function () {},
+ 		noButtonCallback: function () {},
+
+
+ 		initialize: function () {
+
+ 			// auto event bind.
+ 			_.bindEvents(this);
+
+ 			// bind.
+ 			_.bindAll(this, 'show', 'render', 'close', 'dealloc');
+ 		},
+
+
+ 		render: function () {
+ 			var snipet = _.mbTemplate('confirmDialog', this);
+ 			this.$el.html(snipet);
+ 			$('body').append(this.$el);
+ 		},
+
+
+ 		yesAction: function () {
+ 			this.yesButtonCallback();
+ 			this.close();
+ 		},
+
+
+ 		noAction: function () {
+ 			this.noButtonCallback();
+ 			this.close();
+ 		},
+
+
+ 		show: function (options) {
+
+ 			// set data.
+ 			this.message = options.message || this.message;
+ 			this.yesButtonLabel = options.yesButtonLabel || this.yesButtonLabel;
+ 			this.noButtonLabel = options.noButtonLabel || this.noButtonLabel;
+ 			this.yesButtonCallback = options.yesButtonCallback || this.yesButtonCallback;
+ 			this.noButtonCallback = options.noButtonCallback || this.noButtonCallback;
+
+ 			// reder.
+ 			this.render();
+
+ 		},
+
+
+ 		close: function () {
+
+ 			var self = this;
+ 			this.$el.transit({opacity: 0}, 200, function () {
+ 				self.dealloc();
+ 			});
+ 		},
+
+
+ 		dealloc: function () {
+ 			this.$el.remove();
+ 		},
+
+ 	});
+
+ 	return ConfirmDialog;
+ });
 
 /**
  * Collection: User Pocket Collection
@@ -2400,6 +2849,53 @@ define('models/user/user_pocket_list',['models/user/user_pocket'], function (Use
     });
 
     return UserPocketCollection;
+});
+
+
+
+/*
+ * Model: User Playlist
+ */
+define('models/user/user_playlist',[], function () {
+
+    var UserPlaylistModel = Backbone.Model.extend({
+    
+        defaults: {
+            id: null,
+            user_id: null,
+            type: null,
+            title: null,
+            seq: null,
+            user_pocket_ids: null,
+            create_at: null,
+            update_at: null
+        },
+
+        urlRoot: '/api/v1/user_playlists/',
+
+
+    });
+
+    return UserPlaylistModel;
+});
+
+
+/**
+ * Collection: User Pocket Collection
+ */
+define('models/user/user_playlist_list',['models/user/user_playlist'], function (UserPlaylist) {
+
+    var UserPlaylistCollection = Backbone.Collection.extend({
+
+        model: UserPlaylist,
+
+        url: function () {
+            return '/api/v1/user_playlists';
+        },
+
+    });
+
+    return UserPlaylistCollection;
 });
 
 
@@ -2482,25 +2978,72 @@ define('models/user/user_follow_list',['models/user/user_follow'], function (Use
 
 
 /**
+ * Model: User Artist Follow
+ */
+define('models/user/user_artist_follow',[], function () {
+    
+    var UserArtistFollowModel = Backbone.Model.extend({
+   
+        defaults: {
+            id: null,
+            user_id: null,
+            artist_id: null,
+            create_at: null,
+            update_at: null
+        },
+
+        urlRoot: '/api/v1/user_artist_follows/',
+    });
+
+    return UserArtistFollowModel;
+});
+
+/**
+ * Collection: User Follow
+ */
+define('models/user/user_artist_follow_list',['models/user/user_artist_follow'], function (UserArtistFollow) {
+
+    var UserArtistFollowCollection = Backbone.Collection.extend({
+
+        model: UserArtistFollow,
+
+        url: '/api/v1/user_artist_follows/',
+    });
+
+    return UserArtistFollowCollection;
+});
+
+
+/**
  * View: Mypage
  */
 define('views/mypage',[
     'views/common/youtube',
+    'views/common/confirmDialog',
     'models/user/user',
     'models/user/user_pocket',
     'models/user/user_pocket_list',
+    'models/user/user_playlist',
+    'models/user/user_playlist_list',
     'models/user/user_notification_list',
     'models/user/user_follow',
     'models/user/user_follow_list',
+    'models/user/user_artist_follow',
+    'models/user/user_artist_follow_list',
     'models/common/user_storage',
 ], function (
     YoutubeView,
+    ConfirmDialogView,
     User,
     UserPocket,
     UserPocketList,
+    UserPlaylist,
+    UserPlaylistList,
     UserNotificationList,
     UserFollow,
     UserFollowList,
+    UserArtistFollow,
+    UserArtistFollowList,
     UserStorage
 ) {
 
@@ -2510,15 +3053,46 @@ define('views/mypage',[
         displayPocketListModel: new UserPocketList(),
 
         initialize: function () {
-            _.bindAll(this, 'render', 'renderSavedFilter', 'renderUserFollowedList', 'renderUserFollowList',  'showUserPocketList', 'showUserNotificationList', 'showYoutube', 'deletePocket', 'deleteNofitication', 'changeTags', 'filterPockets', 'saveFilter', 'useFilter', 'clearFilter', 'deleteFilter', 'show', 'dealloc');
+
+            // auto event bind.
+            _.bindEvents(this);
+
+
+            _.bindAll(this, 
+                'render', 
+                'renderSavedFilter', 
+                'renderUserFollowedList', 
+                'renderUserFollowList',
+                'renderUserArtistFollow',
+                'showUserPocketList', 
+                'renderUserPocketList',
+                'renderPlaylist',
+                'showUserNotificationList', 
+                'showYoutube', 
+                'deletePocket', 
+                'deleteNofitication', 
+                'changeTags', 
+                'filterPockets', 
+                'saveFilter', 
+                'useFilter', 
+                'clearFilter', 
+                'deleteFilter', 
+                'show', 
+                'dealloc');
+
             this.userPocketList = new UserPocketList();
             this.userPocketList.bind('reset', this.showUserPocketList);
+            this.userPocketList.bind('reset', this.renderUserPocketList);
+            this.userPlaylistList = new UserPlaylistList();
+            this.userPlaylistList.bind('reset', this.renderPlaylist);
             this.userNotifitactionList = new UserNotificationList();
             this.userNotifitactionList.bind('reset', this.showUserNotificationList);
             this.userFollowedList = new UserFollowList();
             this.userFollowList = new UserFollowList();
             this.userFollowedList.bind('reset', this.renderUserFollowedList);
             this.userFollowList.bind('reset', this.renderUserFollowList);
+            this.userArtistFollowList = new UserArtistFollow();
+            this.userArtistFollowList.bind('reset', this.renderUserArtistFollow);
 
             if (_.isIphone || _.isAndroid) {
                 $(document).off().on('blur', '[data-event="filterPockets"]', this.filterPockets);
@@ -2546,17 +3120,6 @@ define('views/mypage',[
             this.$el.append(snipet);
 
             this.renderSavedFilter();
-
-
-            // bind event.
-            // if (_.isIPhone || _.isAndroid) {
-            //     $(document).off().on('blur', '[data-event="filterPockets"]', this.filterPockets);
-            // } else {
-            //     $(document).off().on('keyup', '[data-event="filterPockets"]', this.filterPockets);
-            // }
-
-
-
 
         },
 
@@ -2587,6 +3150,10 @@ define('views/mypage',[
 
         },
 
+        renderUserArtistFollow: function () {
+            console.log('renderUserArtistFollow', this.userArtistFollowList);
+        },
+
 
 
 
@@ -2602,6 +3169,41 @@ define('views/mypage',[
             var snipet = _.template(template, {pocketList: this.displayPocketListModel, feelings: this.userStorage.getCommon().feelings});
             $('#poplist').html(snipet);
         },
+
+
+        /**
+         * ユーザーPocketを表示する（並び替えとかする新しいやつ）
+         */
+        renderUserPocketList: function () {
+            var template = $('#page_mypage_user_pocket_list').html();
+            var snipet = _.template(template, {pocketList:this.userPocketList.models});
+            this.$el.find('#pocketListArea').html(snipet);
+
+
+            // Drag & Dropを実装する
+            var self = this;
+            var fn = function () {
+                $('#pocketListArea .twoCols').sortable({
+                    update: function (event, ui) {
+                        console.log('update');
+                        // $('#pocketListArea').sortable('destroy');
+                        // fn();
+                    }
+                }).disableSelection();                
+            };
+            fn();
+
+        },
+
+
+        /**
+         * Playlistを表示
+         */
+         renderPlaylist: function () {
+            var snipet = _.mbTemplate('page_mypage_playlist', {playlists: this.userPlaylistList.models});
+            console.debug('renderPlaylist: ', this.userPlaylistList, snipet);
+            this.$el.find('#mypage_playlist').html(snipet);
+         },
 
 
         /**
@@ -2664,19 +3266,110 @@ define('views/mypage',[
          * Pocket削除
          */
         deletePocket: function (e) {
-            var pocketId = $(e.currentTarget).data('pocket-id');
-            console.log('deletePocket', pocketId);
 
-            var aPocket = this.userPocketList.get(pocketId);
-            aPocket.bind('sync', _.bind(function () {
-                this.showUserPocketList();
+            var $this = $(e.currentTarget);
 
-                // Localデータも更新
-                _.loadUserPockets({force: true});
+            // Pocket削除処理
+            var delFn = _.bind(function () {
 
-            }, this));
-            aPocket.destroy({wait: true});
+                var pocketId = $this.parents('[data-pocket-id]').data('pocket-id');
+                console.log('deletePocket', pocketId);
+
+                var aPocket = this.userPocketList.get(pocketId);
+                aPocket.bind('sync', _.bind(function () {
+
+                    // 再表示（古いやつ）
+                    this.showUserPocketList();
+                    // this.renderUserPocketList();
+
+                    // 削除アニメーション
+                    $this.parent().transit({opacity: 0, height: 0}, 200, 'ease', function () {
+                        $this.parent().remove();
+                    });
+
+                    // Localデータも更新
+                    _.loadUserPockets({force: true});
+
+                }, this));
+                aPocket.destroy({wait: true});
+
+            }, this);
+
+
+
+            // 確認ダイアログを表示
+            var confirmDialog = new ConfirmDialogView();
+            confirmDialog.show({
+                message: 'Pocketを削除しますか？',
+                yesButtonCallback: delFn
+            });
+
         },
+
+
+
+        /**
+         * 曲を再生する
+         */
+         playMusic: function (e) {
+            var pocketId = $(e.currentTarget).parents('[data-pocket-id]').data('pocket-id');
+            pocketId = parseInt(pocketId, 10);
+            console.debug('play music. from pocketId=', pocketId);
+
+            var options = {};
+
+            // playlist name.
+            options.playlistName = 'すべてのPocket';
+
+            // create play list.
+            options.musicArray = [];
+            var use = false;
+            _.each(this.userPocketList.models, function (model) {
+                if (model.attributes.id === pocketId) {
+                    use = true;
+                }
+                if (use) {
+                    options.musicArray.push(model.attributes);
+                }
+            });
+
+            // create callback.
+            options.callbackWhenWillStart = _.bind(function (music) {
+                console.debug('will start: ', music);
+                this.$el.find('.nowPlaying').removeClass('nowPlaying');
+                this.$el.find('.kari_pocketListItem[data-pocket-id="' + music.id + '"]').addClass('nowPlaying');
+            }, this);
+            options.callbackWhenEnd = _.bind(function () {
+                console.debug('did end');
+                this.$el.find('.nowPlaying').removeClass('nowPlaying');
+            }, this);
+
+            // play
+            mb.musicPlayer.playMusics(options);
+
+         },
+
+
+
+
+
+         /**
+          * プレイリスト編集
+          */
+        editPlayList: function () {
+            console.debug('editPlayList');
+        },
+
+
+
+
+
+
+
+
+
+
+
 
 
         /**
@@ -2994,8 +3687,11 @@ define('views/mypage',[
             // 画面表示
             this.render();
 
-            // ユーザーPopリストを取得
+            // ユーザーPocketリストを取得
             this.userPocketList.refreshDataWithUserId(this.user.id);
+
+            // ユーザーのプレイリストを取得
+            this.userPlaylistList.fetch({reset:true, data:{user_id:this.user.id}});
 
             // お知らせ一覧の取得
             this.userNotifitactionList.fetch({reset: true, data: {user_id: this.user.id}});
@@ -3005,6 +3701,9 @@ define('views/mypage',[
 
             // フォローしているユーザー一覧
             this.userFollowList.fetch({reset:true, data: {user_id:this.user.id}});
+
+            // フォローしているアーティスト
+            this.userArtistFollowList.fetch({reset:true, data:{user_id:this.user.id}});
 
         },
 
@@ -3584,6 +4283,7 @@ define('views/artist/index',[
  */
 define('views/app',[
     'views/common/header',
+    'views/common/music_player',
     'views/top',
     'views/pop/index',
     'views/pop/list',
@@ -3597,6 +4297,7 @@ define('views/app',[
     'models/common/user_storage',
 ], function (
     HeaderView,
+    MusicPlayerView,
     TopView,
     PopView,
     PopListView,
@@ -3629,6 +4330,12 @@ define('views/app',[
             // Add Header
             this.headerView = new HeaderView();
             this.headerView.show(); 
+
+
+            // Music Player.
+            // 各ページから使いたいので、グローバル変数へ代入する。
+            this.musicPlayer = new MusicPlayerView();
+            mb.musicPlayer = this.musicPlayer;
 
 
         },
@@ -3761,8 +4468,9 @@ define('views/app',[
                         success: function (user) {
                             self.userStorage.setUser(user); 
 
-                            // Pocket情報も取得しておく
+                            // ユーザーにひもづく各種情報も取得しておく
                             _.loadUserPockets({force:true});
+                            _.loadUserArtistFollow({force:true});
                         },
                         error: function () {
                             // console.debug('/api/v1/userinfo error: ', arguments);
@@ -3772,8 +4480,9 @@ define('views/app',[
                 }
             } else {
 
-                // UserPockets情報をロードしておく
+                // ユーザーにひもづく各種情報も取得しておく
                 _.loadUserPockets();
+                _.loadUserArtistFollow();
 
             }
 

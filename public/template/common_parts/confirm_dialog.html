@@ -1,0 +1,15 @@
+<!--
+	Template: Confirm Dialog
+-->
+<script id="confirmDialog" type="script/template">
+	<div class="kari_confirmDialogBg">
+		<div class="kari_confirmDialog">
+			<p class="message"><%=message%></p>
+			<div class="btnArea">
+				<input type="button" class="yesButton" value="<%=yesButtonLabel%>" data-event-click="yesAction"/>
+				<input type="button" class="noButton" value="<%=noButtonLabel%>" data-event-click="noAction"/>
+			</div>
+			<input type="button" class="clearButton" value="×" data-event-click="noAction"/>
+		</div>
+	</div>	
+</script>

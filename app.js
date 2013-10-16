@@ -9,6 +9,7 @@ var uuid = require('node-uuid');
 global.log4js = require('log4js');
 
 
+
 // load settings.
 global.log4js.configure('settings/log4js_setting.json');
 var json = fs.readFileSync('./settings/setting.json', 'utf-8');
@@ -17,6 +18,7 @@ global.db_path = global.mbSetting.db_path;
 console.log('mbSetting: ', global.mbSetting);
 
 var userModel = require('./models/user');
+var userPlaylistModel = require('./models/user_playlist');
 
 
 
@@ -63,8 +65,22 @@ passport.use(new GoogleStrategy({
                 var user = rows[0];
                 delete user.password;
                 done(err, user);
-                return;
+
+                
+                // Playlistのデフォルトも作っておく。
+                var data = { 
+                    user_id: user.id,
+                    type: 1,
+                    title: '全てのPocket',
+                    seq: 999,
+                    user_pocket_ids: '[]'
+                };  
+                userPlaylistModel.insertObject(data, function () {});
+
+
+
             });
+
         });
 
     });
@@ -101,6 +117,17 @@ passport.use(new FacebookStrategy({
 
                     var user = rows[0];
                     done(null, user);
+                
+                    // Playlistのデフォルトも作っておく。
+                    var data = { 
+                        user_id: user.id,
+                        type: 1,
+                        title: '全てのPocket',
+                        seq: 999,
+                        user_pocket_ids: '[]'
+                    };  
+                    userPlaylistModel.insertObject(data, function () {});
+
                 });
             });
         });
@@ -137,6 +164,17 @@ passport.use(new TwitterStrategy({
 
                 var user = rows[0];
                 done(null, user);
+                
+                // Playlistのデフォルトも作っておく。
+                var data = { 
+                    user_id: user.id,
+                    type: 1,
+                    title: '全てのPocket',
+                    seq: 999,
+                    user_pocket_ids: '[]'
+                };  
+                userPlaylistModel.insertObject(data, function () {});
+
             });
         });
 
@@ -163,7 +201,9 @@ var artist = require('./routes/artist');
 var pop = require('./routes/pop');
 var user = require('./routes/user');
 var userPocket = require('./routes/user_pocket');
+var userPlaylist = require('./routes/user_playlist');
 var userFollow = require('./routes/user_follow');
+var userFollow = require('./routes/user_artist_follow');
 var userNotification = require('./routes/user_notification');
 var iTunesRanking = require('./routes/itunes_ranking');
 var master = require('./routes/master');
@@ -398,11 +438,26 @@ app.post('/api/v1/user_pockets/:id/update', userPocket.update);
 app.delete('/api/v1/user_pockets/:id', userPocket.delete);
 app.delete('/api/v1/user_pockets', userPocket.delete);
 
+// User Playlist
+app.get('/api/v1/user_playlists', userPlaylist.select);
+app.get('/api/v1/follow_playlists', userPlaylist.selectFollowPlaylists);
+app.post('/api/v1/user_playlists', userPlaylist.add);
+app.put('/api/v1/user_playlists/:id', userPlaylist.update);
+app.post('/api/v1/user_playlists/:id/update', userPlaylist.update);
+app.delete('/api/v1/user_playlists/:id', userPlaylist.delete);
+app.delete('/api/v1/user_playlists', userPlaylist.delete);
+
 // User Follow
 app.get('/api/v1/user_follows', userFollow.select);
 app.post('/api/v1/user_follows', userFollow.add);
-app.post('/api/v1/user_follows/:id/update', userFollow.update);
+// app.post('/api/v1/user_follows/:id/update', userFollow.update);
 app.delete('/api/v1/user_follows/:id', userFollow.delete);
+
+// User Artist Follow
+app.get('/api/v1/user_artist_follows', userFollow.select);
+app.post('/api/v1/user_artist_follows', userFollow.add);
+app.post('/api/v1/user_artist_follows/:id/update', userFollow.update);
+app.delete('/api/v1/user_artist_follows/:id', userFollow.delete);
 
 // User Notification
 app.get('/api/v1/user_notifications', userNotification.select);
