@@ -32166,3 +32166,119 @@ stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist
 [90mGET /api/v1/poplist?type=hot [36m304 [90m3ms[0m
 [90mGET /dev/work/mune.html [32m200 [90m2ms - 3.63kb[0m
 [90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /www/delivery/lg.php?bannerid=55&amp;campaignid=7&amp;zoneid=1&amp;loc=http://o1.inviziads.com/rpcdelivery/?z=1&tim=1505&amp;referer=http://static.inviziads.com/openx/openx2.swf?zid=1&amp;cb=12d8a6cae4 [33m404 [90m2ms[0m
+/var/www/html2/mockbu3/views/index.jade, line 38:
+Implicit textOnly for `script` and `style` is deprecated.  Use `script.` or `style.` instead.
+[90mGET / [32m200 [90m35ms - 35.41kb[0m
+[90mGET /www/delivery/lg.php?bannerid=55&amp;campaignid=7&amp;zoneid=1&amp;loc=http://o1.inviziads.com/rpcdelivery/?z=1&tim=1505&amp;referer=http://static.inviziads.com/openx/openx2.swf?zid=1&amp;cb=12d8a6cae4 [33m404 [90m3ms[0m
+[90mGET /robots.txt [33m404 [90m1ms[0m
+/var/www/html2/mockbu3/views/index.jade, line 38:
+Implicit textOnly for `script` and `style` is deprecated.  Use `script.` or `style.` instead.
+[90mGET / [32m200 [90m42ms - 35.41kb[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m2ms[0m
+[90mGET /javascripts/libs/jquery-ui-1.10.3.custom.js [36m304 [90m1ms[0m
+[90mGET /stylesheets/kari_style.css [32m200 [90m4ms - 3.73kb[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m1ms[0m
+[90mGET /javascripts/main-min.js [32m200 [90m366ms - 126.76kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m1776ms - 399.36kb[0m
+[90mGET /images/common/logo_main.png [36m304 [90m2ms[0m
+[90mPOST /api/v1/action [32m200 [90m1ms - 2b[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m1ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [36m304 [90m4ms[0m
+[90mGET /api/v1/poplist?type=popular [36m304 [90m5ms[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [36m304 [90m6ms[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [36m304 [90m1ms[0m
+[90mGET /www/delivery/lg.php?bannerid=55&amp;campaignid=7&amp;zoneid=1&amp;loc=http://o1.inviziads.com/rpcdelivery/?z=1&tim=1505&amp;referer=http://static.inviziads.com/openx/openx2.swf?zid=1&amp;cb=12d8a6cae4 [33m404 [90m2ms[0m
+[90mGET /www/delivery/ck.php [33m404 [90m1ms[0m
+[90mGET /www/delivery/lg.php?bannerid=55&amp;campaignid=7&amp;zoneid=1&amp;loc=http://o1.inviziads.com/rpcdelivery/?z=1&tim=1505&amp;referer=http://static.inviziads.com/openx/openx2.swf?zid=1&amp;cb=12d8a6cae4 [33m404 [90m1ms[0m
+[90mGET /dev/work/mune.html [32m200 [90m1ms - 3.63kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m690ms - 399.36kb[0m
+[90mGET /images/common/logo_main.png [36m304 [90m1ms[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [36m304 [90m2ms[0m
+/var/www/html2/mockbu3/views/index.jade, line 38:
+Implicit textOnly for `script` and `style` is deprecated.  Use `script.` or `style.` instead.
+[90mGET / [32m200 [90m44ms - 35.41kb[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/kari_style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/jquery.cookie.js [36m304 [90m3ms[0m
+[90mGET /javascripts/libs/all-libs.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/extension.js [36m304 [90m1ms[0m
+[90mGET /javascripts/libs/jquery-ui-1.10.3.custom.js [36m304 [90m1ms[0m
+[90mGET /javascripts/main-min.js [32m200 [90m174ms - 126.76kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  where pop.music_id = ? order by pop.create_at desc limit 300 offset 0' }
+sql!!!!! select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id,  a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id  where a.music_id=?
+stmt:  { sql: 'select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id,  a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id  where a.music_id=?' } [ '13' ]
+[90mGET /api/v1/poplist?music_id=13 [32m200 [90m7ms - 849b[0m
+[90mGET /api/v1/music_links2?music_id=13 [32m200 [90m3ms - 295b[0m
+music#search conditions:  { id: '13' }
+stmt:  { sql: 'select * from music where id=? limit 300' } [ '13' ]
+[90mGET /api/v1/musics/13 [32m200 [90m3ms - 639b[0m
+[90mPOST /api/v1/action [32m200 [90m168ms - 2b[0m
+[90mGET http://server7.cyberpods.net/azenv.php [33m404 [90m1ms[0m
+[90mGET /www/delivery/lg.php?bannerid=55&amp;campaignid=7&amp;zoneid=1&amp;loc=http://o1.inviziads.com/rpcdelivery/?z=1&tim=1505&amp;referer=http://static.inviziads.com/openx/openx2.swf?zid=1&amp;cb=12d8a6cae4 [33m404 [90m1ms[0m
+[90mGET /w00tw00t.at.blackhats.romanian.anti-sec:) [33m404 [90m3ms[0m
+[90mGET /phpMyAdmin/scripts/setup.php [33m404 [90m1ms[0m
+[90mGET /phpmyadmin/scripts/setup.php [33m404 [90m2ms[0m
+[90mGET /pma/scripts/setup.php [33m404 [90m2ms[0m
+[90mGET /myadmin/scripts/setup.php [33m404 [90m2ms[0m
+[90mGET /MyAdmin/scripts/setup.php [33m404 [90m2ms[0m
+[90mGET /www/delivery/lg.php?bannerid=62&campaignid=7&zoneid=1&loc=http%3A%2F%2Fo1.inviziads.com%2Frpcdelivery%2F%3Fz%3D1%26tim%3D19391&referer=http%3A%2F%2Fstatic.inviziads.com%2Fopenx%2Fopenx4.swf%3Fz%3D1&cb=5447e1b77b [33m404 [90m1ms[0m
+[90mGET /www/delivery/lg.php?bannerid=103&campaignid=4&zoneid=1&loc=http%3A%2F%2Fo1.inviziads.com%2Frpcdelivery%2F%3Fz%3D1%26tim%3D5641&referer=http%3A%2F%2Fstatic.inviziads.com%2Fopenx%2Fopenx4.swf%3Fz%3D1&cb=7ee62b6f34 [33m404 [90m1ms[0m
+[[32mINFO[0m] [30;1m15:41:40[0m Restarting
+mbSetting:  { port: 80,
+  db_path: './db/mockbu.db',
+  mainJs: 'main-min.js',
+  OAuth: 
+   { google: 
+      { returnURL: 'http://music-drops.com/auth/google/return',
+        realm: 'http://music-drops.com/' },
+     facebook: 
+      { clientID: '510171422408925',
+        clientSecret: '6ddc7a4e8f8ffb1642b919db17bbbb02',
+        callbackURL: 'http://music-drops.com/auth/facebook/callback' },
+     twitter: 
+      { consumerKey: 'JkyuVRj2NqbJbthObbJmuQ',
+        consumerSecret: 'Lhwac5bc3wRgE5PFIxBMscM40HBtGjxf8I9Q9AeQ9A',
+        callbackURL: 'http://music-drops.com/auth/twitter/callback' } } }
+appUtil db_path:  ./db/mockbu.db
+Express server listening on port 80
+sessionMap:  { 'c4bd370d-bd8c-4b66-99b8-e7e1873a20d6': 5,
+  '9d4094c6-5f9b-47b4-b6d6-39e3d1eb1040': 8 }
+[90mGET /manager/html [33m404 [90m11ms[0m
+/var/www/html2/mockbu3/views/index.jade, line 38:
+Implicit textOnly for `script` and `style` is deprecated.  Use `script.` or `style.` instead.
+[90mGET / [32m200 [90m541ms - 45.09kb[0m
+[90mGET /dpx.js?cid=3065&m=0 [33m404 [90m4ms[0m
+[90mGET /www/delivery/ck.php [33m404 [90m1ms[0m
+[90mGET /www/delivery/ck.php [33m404 [90m1ms[0m
+[90mGET /www/delivery/ck.php [33m404 [90m1ms[0m
+[90mGET /www/delivery/ck.php [33m404 [90m1ms[0m
+/var/www/html2/mockbu3/views/index.jade, line 38:
+Implicit textOnly for `script` and `style` is deprecated.  Use `script.` or `style.` instead.
+[90mGET / [32m200 [90m76ms - 45.09kb[0m
+[90mGET /stylesheets/kari_style.css [32m200 [90m10ms - 3.73kb[0m
+[90mGET /javascripts/libs/jquery.cookie.js [32m200 [90m5ms - 3.27kb[0m
+[90mGET /javascripts/libs/extension.js [32m200 [90m2ms - 11.01kb[0m
+[90mGET /javascripts/main-min.js [32m200 [90m3ms - 126.76kb[0m
+[90mGET /javascripts/libs/all-libs.js [32m200 [90m573ms - 200.31kb[0m
+[90mGET /javascripts/libs/jquery-ui-1.10.3.custom.js [32m200 [90m620ms - 141.8kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m921ms - 405.83kb[0m
+[90mGET /javascripts/libs/underscore-min.map [33m404 [90m3ms[0m
+[90mGET /images/common/logo_main.png [32m200 [90m2ms - 1.63kb[0m
+[90mPOST /api/v1/action [32m200 [90m3ms - 2b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.create_at desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=new [32m200 [90m7ms - 14.37kb[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=popular [32m200 [90m5ms - 14.37kb[0m
+select feelings:  {}
+stmt:  { sql: 'select * from feeling limit 300' } []
+[90mGET /api/v1/feelings [32m200 [90m2ms - 620b[0m
+stmt:  { sql: 'select pop.music_id, music.title, music.artist_name, music.artist_id, pop.create_at,  music.artwork_url, music.song_url, music.itunes_url, music.youtube_id, pop.id, pop.feeling_id, pop.comment, pop.user_id, pop.like_count, pop.like_count_speed, user.name user_name from pop left outer join music on pop.music_id = music.id left outer join user on pop.user_id = user.id  order by pop.like_count_speed desc limit 300 offset 0' }
+[90mGET /api/v1/poplist?type=hot [32m200 [90m23ms - 14.37kb[0m
+[90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [32m200 [90m2ms - 2.29kb[0m
