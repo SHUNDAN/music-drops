@@ -1,0 +1,28 @@
+// musicDetail
+
+.musicDetail {
+
+}
+//  サムネイル
+//-------------------------------------
+.musicDetail-thumb {
+  position: relative;
+  overflow: hidden;
+  width: 140px;
+  height: 140px;
+}
+//  曲情報
+//-------------------------------------
+.musicDetail-info {
+  color: #fff;
+}
+.musicDetail-info-feeling {
+  margin: 0 0 25px;
+}
+.musicDetail-info-title {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+.musicDetail-info-artist {
+  margin: 0 0 25px;
+}
