@@ -49,6 +49,9 @@ define([
                 'render', 
                 'renderMyDrops',
                 'renderCheckArtists',
+                'renderFollowUsers',
+                'renderFollowedUsers',
+
                 'renderSavedFilter', 
                 'renderUserFollowedList', 
                 'renderUserFollowList',
@@ -117,10 +120,23 @@ define([
 
         // チェックアーティスト表示
         renderCheckArtists: function () {
-            var snipet = _.mbTemplate('page_mypage_check_artists', {checkArtists:this.checkArtists});
+            var snipet = _.mbTemplate('page_mypage_check_artists', {checkArtists:this.checkArtists.models});
             this.$el.find('[data-type="dataArea"]').html(snipet);
         },
 
+
+        // フォローしているユーザー表示
+        renderFollowUsers: function () {
+            var snipet = _.mbTemplate('page_mypage_follow_users', {followUsers: this.followUsers.models});
+            this.$el.find('[data-type="dataArea"]').html(snipet);
+        },
+
+
+        // フォローされているユーザー表示
+        renderFollowedUsers: function () {
+            var snipet = _.mbTemplate('page_mypage_followed_users', {followedUsers: this.followedUsers.models});
+            this.$el.find('[data-type="dataArea"]').html(snipet);
+        },
 
 
 
@@ -221,7 +237,21 @@ define([
         */
         showFollowUsers: function (e) {
             e.preventDefault();
-            alert('フォローしているユーザーを表示。開発中');
+
+            // 表示物は削除
+            $('[data-type="dataArea"]').html('');
+
+            // 既にあればそれを表示
+            if (this.followUsers && this.followUsers.length > 0) {
+                this.renderFollowUsers();
+            
+            } else {
+                // なければロードして表示
+                this.followUsers = new UserFollowList();
+                this.followUsers.bind('reset', this.renderFollowUsers);
+                this.followUsers.fetch({reset:true, data:{user_id:this.user.id}});
+            }
+
 
             return false;
         },
@@ -232,7 +262,21 @@ define([
         */
         showFollowedUsers: function (e) {
             e.preventDefault();
-            alert('フォローされているユーザーを表示。開発中');
+
+            // 表示物は削除
+            $('[data-type="dataArea"]').html('');
+
+            // 既にあればそれを表示
+            if (this.followedUsers && this.followedUsers.length > 0) {
+                this.renderFollowedUsers();
+            
+            } else {
+                // なければロードして表示
+                this.followedUsers = new UserFollowList();
+                this.followedUsers.bind('reset', this.renderFollowedUsers);
+                this.followedUsers.fetch({reset:true, data:{dest_user_id:this.user.id}});
+            }
+
 
             return false;
         },

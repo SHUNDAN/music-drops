@@ -304,7 +304,32 @@
 </script>
 
 
+<!--フォローしているユーザー一覧-->
+<script id="page_mypage_follow_users" type="text/template">
+    <%if (followUsers.length > 0) {%>
+        dest_user_id,dest_user_name<br>
+        <%_.each(followUsers, function (user) {%>
+            <%=user.dest_user_id%>,
+            <%=user.dest_user_name%><br>
+        <%});%>
+    <%} else {%>
+        ないよー
+    <%}%>
+</script>
 
+
+<!--フォローされてるユーザー一覧-->
+<script id="page_mypage_followed_users" type="text/template">
+    <%if (followedUsers.length > 0) {%>
+        user_id,user_name<br>
+        <%_.each(followedUsers, function (user) {%>
+            <%=user.user_id%>,
+            <%=user.user_name%><br>
+        <%});%>
+    <%} else {%>
+        ないよー
+    <%}%>
+</script>
 
 
 
