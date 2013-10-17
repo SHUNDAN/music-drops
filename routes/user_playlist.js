@@ -57,10 +57,13 @@ exports.selectFollowPlaylists = function (req, res) {
 exports.add = function(req, res) {
 
     // check params.
-    if (!req.body.title || !req.body.user_pocket_ids) {
-        res.json(400, 'title and user_pocket_ids must be set.');
+    if (!req.body.title) {
+        res.json(400, 'title must be set.');
         return;
     }
+
+    // defaults設定
+    req.body.user_pocket_ids = req.body.user_pocket_ids || '[]';
 
 
     // uidからユーザー情報を取得する

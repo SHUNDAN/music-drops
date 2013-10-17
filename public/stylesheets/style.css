@@ -17025,67 +17025,100 @@ header {
   display: none;
 }
 
-/* line 15, ../dev/scss/pages/_mypage.scss */
+/* line 12, ../dev/scss/pages/_mypage.scss */
+a:hover {
+  text-decoration: none;
+}
+
+/* line 13, ../dev/scss/pages/_mypage.scss */
+.noAction {
+  pointer-events: none;
+}
+
+/* line 17, ../dev/scss/pages/_mypage.scss */
 .feeling-Happy, .feeling-1 {
   color: #c85d94;
 }
 
-/* line 18, ../dev/scss/pages/_mypage.scss */
+/* line 20, ../dev/scss/pages/_mypage.scss */
 .feeling-Relax, .feeling-2 {
   color: #77b66a;
 }
 
-/* line 21, ../dev/scss/pages/_mypage.scss */
+/* line 23, ../dev/scss/pages/_mypage.scss */
 .feeling-Sad, .feeling-3 {
   color: red;
 }
 
-/* line 24, ../dev/scss/pages/_mypage.scss */
+/* line 26, ../dev/scss/pages/_mypage.scss */
 .feeling-Cry, .feeling-4 {
   color: #6880cc;
 }
 
-/* line 27, ../dev/scss/pages/_mypage.scss */
+/* line 29, ../dev/scss/pages/_mypage.scss */
 .feeling-ight, .feeling-5 {
   color: #e97f45;
 }
 
-/* line 30, ../dev/scss/pages/_mypage.scss */
+/* line 32, ../dev/scss/pages/_mypage.scss */
 .feeling-Angry, .feeling-6 {
   color: #bc7ad4;
 }
 
-/* line 33, ../dev/scss/pages/_mypage.scss */
+/* line 35, ../dev/scss/pages/_mypage.scss */
 .feeling-Smile, .feeling-7 {
   color: #f4b74e;
 }
 
-/* line 44, ../dev/scss/pages/_mypage.scss */
+/* line 46, ../dev/scss/pages/_mypage.scss */
 .pageMypage .leftCol {
   float: left;
   width: 320px;
 }
-/* line 50, ../dev/scss/pages/_mypage.scss */
+/* line 52, ../dev/scss/pages/_mypage.scss */
 .pageMypage .rightCol {
   float: right;
   width: 612px;
 }
-/* line 56, ../dev/scss/pages/_mypage.scss */
+/* line 61, ../dev/scss/pages/_mypage.scss */
+.pageMypage .listEditArea.edit .editButton {
+  display: none;
+}
+/* line 64, ../dev/scss/pages/_mypage.scss */
+.pageMypage .listEditArea.edit .doneButton {
+  display: block;
+}
+/* line 67, ../dev/scss/pages/_mypage.scss */
+.pageMypage .listEditArea.edit .clearBtn {
+  display: block;
+}
+/* line 70, ../dev/scss/pages/_mypage.scss */
+.pageMypage .listEditArea.edit .addPlaylistArea {
+  display: block;
+}
+/* line 80, ../dev/scss/pages/_mypage.scss */
 .pageMypage .playlistHeader {
   position: relative;
   border-bottom: 1px solid #adaa95;
 }
-/* line 60, ../dev/scss/pages/_mypage.scss */
+/* line 84, ../dev/scss/pages/_mypage.scss */
 .pageMypage .playlistHeader .editButton {
   position: absolute;
   top: 0;
   right: 0;
 }
-/* line 68, ../dev/scss/pages/_mypage.scss */
+/* line 89, ../dev/scss/pages/_mypage.scss */
+.pageMypage .playlistHeader .doneButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}
+/* line 98, ../dev/scss/pages/_mypage.scss */
 .pageMypage .sidebarList {
   margin-top: 10px;
 }
-/* line 70, ../dev/scss/pages/_mypage.scss */
+/* line 100, ../dev/scss/pages/_mypage.scss */
 .pageMypage .sidebarList li {
   position: relative;
   width: 310px;
@@ -17095,12 +17128,12 @@ header {
   padding-left: 10px;
   color: #656457;
 }
-/* line 79, ../dev/scss/pages/_mypage.scss */
+/* line 109, ../dev/scss/pages/_mypage.scss */
 .pageMypage .sidebarList li:hover {
   background-color: #ffe77c;
   cursor: pointer;
 }
-/* line 82, ../dev/scss/pages/_mypage.scss */
+/* line 112, ../dev/scss/pages/_mypage.scss */
 .pageMypage .sidebarList li:hover:after {
   position: absolute;
   top: 0;
@@ -17113,11 +17146,11 @@ header {
   border-left: 12px solid #ffe77c;
   border-right: 0px solid transparent;
 }
-/* line 97, ../dev/scss/pages/_mypage.scss */
+/* line 127, ../dev/scss/pages/_mypage.scss */
 .pageMypage .sidebarList li.select {
   background-color: #ffe77c;
 }
-/* line 99, ../dev/scss/pages/_mypage.scss */
+/* line 129, ../dev/scss/pages/_mypage.scss */
 .pageMypage .sidebarList li.select:after {
   position: absolute;
   top: 0;
@@ -17130,22 +17163,24 @@ header {
   border-left: 12px solid #ffe77c;
   border-right: 0px solid transparent;
 }
-/* line 114, ../dev/scss/pages/_mypage.scss */
+/* line 144, ../dev/scss/pages/_mypage.scss */
 .pageMypage .sidebarList li .clearBtn {
   position: absolute;
   top: 0;
   right: 0;
   display: none;
+  pointer-events: auto;
 }
-/* line 122, ../dev/scss/pages/_mypage.scss */
+/* line 153, ../dev/scss/pages/_mypage.scss */
 .pageMypage .sidebarList.edit .clearBtn {
   display: block;
 }
-/* line 129, ../dev/scss/pages/_mypage.scss */
+/* line 160, ../dev/scss/pages/_mypage.scss */
 .pageMypage .addPlaylistArea {
   position: relative;
+  display: none;
 }
-/* line 133, ../dev/scss/pages/_mypage.scss */
+/* line 165, ../dev/scss/pages/_mypage.scss */
 .pageMypage .addPlaylistArea input[type="text"] {
   display: block;
   width: 320px;
@@ -17153,7 +17188,7 @@ header {
   background-color: #efede0;
   box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
 }
-/* line 142, ../dev/scss/pages/_mypage.scss */
+/* line 174, ../dev/scss/pages/_mypage.scss */
 .pageMypage .addPlaylistArea input[type="button"] {
   position: absolute;
   top: 5px;
@@ -17165,12 +17200,12 @@ header {
   text-align: center;
   background-color: #ccc9b2;
 }
-/* line 158, ../dev/scss/pages/_mypage.scss */
+/* line 190, ../dev/scss/pages/_mypage.scss */
 .pageMypage .filterArea {
   position: relative;
   height: 60px;
 }
-/* line 162, ../dev/scss/pages/_mypage.scss */
+/* line 194, ../dev/scss/pages/_mypage.scss */
 .pageMypage .filterArea .filterByNameInput {
   position: absolute;
   top: 0;
@@ -17181,7 +17216,7 @@ header {
   background-color: #efede0;
   box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
 }
-/* line 173, ../dev/scss/pages/_mypage.scss */
+/* line 205, ../dev/scss/pages/_mypage.scss */
 .pageMypage .filterArea .filterByNameBtn {
   position: absolute;
   top: 5px;
@@ -17193,7 +17228,7 @@ header {
   text-align: center;
   background-color: #ffcf3c;
 }
-/* line 185, ../dev/scss/pages/_mypage.scss */
+/* line 217, ../dev/scss/pages/_mypage.scss */
 .pageMypage .filterArea .selectArea {
   position: absolute;
   top: 0;
@@ -17202,7 +17237,7 @@ header {
   width: 218px;
   height: 40px;
 }
-/* line 192, ../dev/scss/pages/_mypage.scss */
+/* line 224, ../dev/scss/pages/_mypage.scss */
 .pageMypage .filterArea .selectArea select {
   width: 100%;
   height: 100%;
@@ -17210,7 +17245,7 @@ header {
   background-color: #efede0;
   box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
 }
-/* line 199, ../dev/scss/pages/_mypage.scss */
+/* line 231, ../dev/scss/pages/_mypage.scss */
 .pageMypage .filterArea .selectArea:after {
   position: absolute;
   top: 1px;
@@ -17223,7 +17258,7 @@ header {
   line-height: 40px;
   border-radius: 5px;
 }
-/* line 219, ../dev/scss/pages/_mypage.scss */
+/* line 251, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li {
   position: relative;
   display: -webkit-box;
@@ -17235,11 +17270,11 @@ header {
   color: #656457 !important;
   margin-bottom: 20px;
 }
-/* line 229, ../dev/scss/pages/_mypage.scss */
+/* line 261, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li:nth-child(2n) {
   margin-left: 10px;
 }
-/* line 232, ../dev/scss/pages/_mypage.scss */
+/* line 264, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li:after {
   position: absolute;
   top: 0;
@@ -17248,59 +17283,59 @@ header {
   height: 72px;
   content: " ";
 }
-/* line 240, ../dev/scss/pages/_mypage.scss */
+/* line 272, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-1:after {
   background-color: #c85d94;
 }
-/* line 243, ../dev/scss/pages/_mypage.scss */
+/* line 275, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-2:after {
   background-color: #77b66a;
 }
-/* line 246, ../dev/scss/pages/_mypage.scss */
+/* line 278, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-3:after {
   background-color: red;
 }
-/* line 249, ../dev/scss/pages/_mypage.scss */
+/* line 281, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-4:after {
   background-color: #6880cc;
 }
-/* line 252, ../dev/scss/pages/_mypage.scss */
+/* line 284, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-5:after {
   background-color: #e97f45;
 }
-/* line 255, ../dev/scss/pages/_mypage.scss */
+/* line 287, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-6:after {
   background-color: #bc7ad4;
 }
-/* line 258, ../dev/scss/pages/_mypage.scss */
+/* line 290, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-7:after {
   background-color: #f4b74e;
 }
-/* line 262, ../dev/scss/pages/_mypage.scss */
+/* line 294, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .thumb {
   display: block;
   width: 72px;
   height: 72px;
 }
-/* line 267, ../dev/scss/pages/_mypage.scss */
+/* line 299, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .info {
   width: 150px;
   height: 72px;
   margin-left: 10px;
 }
-/* line 272, ../dev/scss/pages/_mypage.scss */
+/* line 304, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .title {
   padding: 10px 0;
   font-size: 14px;
   width: 100%;
 }
-/* line 277, ../dev/scss/pages/_mypage.scss */
+/* line 309, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .artistName {
   padding: 0 0 10px;
   font-size: 12px;
   width: 100%;
 }
-/* line 282, ../dev/scss/pages/_mypage.scss */
+/* line 314, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .playBtn {
   width: 42px;
   height: 42px;
@@ -17311,7 +17346,7 @@ header {
   font-size: 22px;
   background-color: #dedbc7;
 }
-/* line 291, ../dev/scss/pages/_mypage.scss */
+/* line 323, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .playBtn:hover {
   background-color: #ffcf3c;
   color: #8d7016;

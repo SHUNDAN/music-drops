@@ -12,7 +12,7 @@ define([], function () {
             type: null,
             title: null,
             seq: null,
-            user_pocket_ids: null,
+            user_pocket_ids: '[]',
             create_at: null,
             update_at: null
         },

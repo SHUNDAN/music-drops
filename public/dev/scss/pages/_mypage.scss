@@ -9,6 +9,8 @@
 .fs32 {font-size: 32px;}
 .mt30 {margin-top: 30px;}
 .hidden {display: none;}
+a:hover {text-decoration: none;}
+.noAction {pointer-events: none;}
 
 
 // 気持ちの色
@@ -52,6 +54,28 @@
 		width: 612px;
 	}
 
+
+	// リスト編集機能
+	.listEditArea {
+		&.edit {
+			.editButton {
+				display: none;
+			}
+			.doneButton {
+				display: block;
+			}
+			.clearBtn {
+				display: block;
+			}
+			.addPlaylistArea {
+				display: block;
+			}
+		}
+	}
+
+
+
+
 	// プレイリストタイトル業
 	.playlistHeader {
 		position: relative;
@@ -61,6 +85,12 @@
 			position: absolute;
 			top: 0;
 			right: 0;
+		}
+		.doneButton {
+			position: absolute;
+			top: 0;
+			right: 0;
+			display: none;
 		}
 	}
 
@@ -116,6 +146,7 @@
 				top: 0;
 				right: 0;
 				display: none;
+				pointer-events: auto;
 			}
 		}
 		&.edit {
@@ -128,6 +159,7 @@
 	// プレイリストを作るUI
 	.addPlaylistArea {
 		position: relative;
+		display: none;
 
 		// 入力欄
 		input[type="text"] {
