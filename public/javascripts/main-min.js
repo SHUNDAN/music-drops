@@ -3848,6 +3848,10 @@ define('views/mypage',[
             this.userPocketList.bind('reset', _.bind(function () {
                 this.displayUserPocketList = this.userPocketList;
                 this.renderUserPocketList();
+                
+                // ついでにStorageにも保存しておく
+                _.mbStorage.setUserPocketsWithBackboneCollection(this.userPocketList);
+
             }, this));
             this.userPocketList.fetch({reset:true, data:{user_id:this.user.id}});
 
