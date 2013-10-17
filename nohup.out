@@ -45032,3 +45032,7 @@ stmt:  { sql: 'select * from user_notification where user_id=? limit 300' } [ '8
 [90mGET /api/v1/user_artist_follows/?user_id=8 [32m200 [90m2ms - 2b[0m
 [90mGET /images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff [32m200 [90m1ms - 2.29kb[0m
 [90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /www/delivery/ck.php [33m404 [90m2ms[0m
+[90mGET /www/delivery/lg.php?bannerid=55&amp;campaignid=7&amp;zoneid=1&amp;loc=http://o1.inviziads.com/rpcdelivery/?z=1&tim=1505&amp;referer=http://static.inviziads.com/openx/openx2.swf?zid=1&amp;cb=12d8a6cae4 [33m404 [90m1ms[0m
+[90mGET /www/delivery/ck.php [33m404 [90m1ms[0m
+[90mGET /www/delivery/lg.php?bannerid=62&campaignid=7&zoneid=1&loc=http%3A%2F%2Fo1.inviziads.com%2Frpcdelivery%2F%3Fz%3D1%26tim%3D19391&referer=http%3A%2F%2Fstatic.inviziads.com%2Fopenx%2Fopenx4.swf%3Fz%3D1&cb=5447e1b77b [33m404 [90m1ms[0m
