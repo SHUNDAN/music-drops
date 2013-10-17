@@ -87,9 +87,11 @@ define([], function () {
             // 連続再生の関数
             var self = this;
             var next = function () {
+                console.debug('next is called. startPos=', startPos, 'musicArray.count=', musicArray.length);
 
                 // 終了判定
                 if (startPos >= musicArray.length) {
+                    console.debug('finish play musics. startPos=', startPos, 'musicArray.count=', musicArray.length);
                     callbackWhenEnd();
                     return;
                 }
@@ -175,17 +177,6 @@ define([], function () {
             $appendView.append($minimizeBtn);
 
 
-            // var $blackout = $('<div class="blackout"/>');
-            // $blackout.on('click', function () {
-            //     $(this).transit({opacity:0}, function () {
-            //         $(this).remove();
-            //     });
-            // });
-            // $blackout.transit({opacity:1});
-            // $appendView.append($blackout);
-
-
-
             // audio tag.
             var audio = document.createElement('audio');
             audio.src = songUrl;
@@ -247,34 +238,11 @@ define([], function () {
 
 
             var self = this;
-            // window.mb.windowResize2 = function () {
-            //     self.$blackout.css({
-            //         width: $(document).width(),
-            //         height: $(document).height()
-            //     });
-            //     var moviePos = {x: (self.$blackout.width() - self.movieSize.width) / 2, y: ($(window).height() - self.movieSize.height) / 2};
-            //     baseView.$previewArea.css({
-            //         position: 'fixed',
-            //         top: moviePos.y,
-            //         left: moviePos.x,
-            //     });
-            // };
-            // window.addEventListener('resize', _.bind(mb.windowResize2, this));
-            // mb.windowResize2();
-
-            // if (baseView.pocket) {
-            //     var $pocketBtn = $('<div class="btn btn-large btn-inverse btn-primary mlra mt20">');
-            //     $pocketBtn.text('Pocket').css({
-            //         display: 'block',
-            //         'max-width': '200px',
-            //     });
-            //     $pocketBtn.on('click', _.bind(baseView.pocket, baseView));
-            //     baseView.$previewArea.append($pocketBtn);
-            // }
 
             // youtubeをダウンロード
             var player;
             function startYoutube () {
+                console.debug('startYoutube is called. id=', youtubeId);
                 var anId = youtubeId;
                 player = new window.YT.Player('player', {
                     height: self.movieSize.width,
@@ -288,6 +256,12 @@ define([], function () {
 
             }
             if (window.YT) {
+                
+                $('#player').remove();
+                var $player = $('<div id="player"/>');
+                $player.css(this.movieSize);
+                $appendView.append($player);
+
                 startYoutube();
             } else {
                 var tag = document.createElement('script');

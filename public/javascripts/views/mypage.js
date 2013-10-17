@@ -286,6 +286,7 @@ define([
 
 
             // play
+            console.log('play music. arraycount=', options.musicArray.length, ',startPos=', options.startPos);
             mb.musicPlayer.playMusics(options);
          },
 
