@@ -75,9 +75,27 @@
 			margin: 10px 0;
 			padding-left: 10px;
 			color: #656457;
-			
+
+			&:hover {
+				background-color: #ffe77c;
+				cursor: pointer;
+				&:after {
+				  position: absolute;
+				  top: 0;
+				  right: -12px;
+				  width: 0px;
+				  height: 0px;
+				  content: " ";
+				  border-top: 12px solid transparent;
+				  border-bottom: 12px solid transparent;
+				  border-left: 12px solid #ffe77c;
+				  border-right: 0px solid transparent;
+				}
+			}
+
+
 			&.select {
-				background-color: #ffe77c;				
+				background-color: #ffe77c;
 				&:after {
 				  position: absolute;
 				  top: 0;
@@ -110,7 +128,7 @@
 	// プレイリストを作るUI
 	.addPlaylistArea {
 		position: relative;
-		
+
 		// 入力欄
 		input[type="text"] {
 			display: block;
@@ -149,7 +167,7 @@
 			width: 382px;
 			height: 40px;
 			background-color: #efede0;
-			box-shadow: -1px 1px 1px rgba(0,0,0,.3) inset;			
+			box-shadow: -1px 1px 1px rgba(0,0,0,.3) inset;
 		}
 
 		.filterByNameBtn {
@@ -217,7 +235,7 @@
 				right: 0;
 				width: 10px;
 				height: 72px;
-				content: " ";				
+				content: " ";
 			}
 			&.feeling-1:after {
 				background-color: $color-feel-Happy;
@@ -270,6 +288,11 @@
 			line-height: 42px;
 			font-size: 22px;
 			background-color: #dedbc7;
+			&:hover {
+				background-color: #ffcf3c;
+				color: #8d7016;
+				cursor: pointer;
+			}
 		}
 	}
 
