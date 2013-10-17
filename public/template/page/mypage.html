@@ -78,94 +78,8 @@
 
 
 
-
+        <!--右Colのデータ表示部分-->
         <div class="rightCol" data-type="dataArea">
-
-            <!--絞り込み機能-->
-            <div class="filterArea">
-                <input type="text" class="filterByNameInput"/>
-                <input type="button" class="filterByNameBtn" value="絞り込み"/>
-                <div class="selectArea">
-                    <select class="filterByFeelingSelect">
-                        <option value="0"></option>
-                        <option value="1">気分1</option>
-                        <option value="2">気分2</option>
-                        <option value="3">気分3</option>
-                        <option value="4">気分4</option>
-                        <option value="5">気分5</option>
-                        <option value="6">気分6</option>
-                        <option value="7">気分7</option>
-                    </select>
-                </div>
-            </div>
-
-
-            <!--Pocketリスト-->
-            <ul class="pocketListArea clearfix">
-                <li class="feeling-1">
-                    <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt="aaa"/>
-                    <div class="info">
-                        <div class="title">友 〜旅立ちの時〜ああああああああ</div>
-                        <div class="artistName">ゆずいいいいいいいいい</div>
-                    </div>
-                    <div class="playBtn">▶</div>
-                </li>
-
-                <li class="feeling-2">
-                    <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt="aaa"/>
-                    <div class="info">
-                        <div class="title">友 〜旅立ちの時〜</div>
-                        <div class="artistName">ゆず</div>
-                    </div>
-                    <div class="playBtn">▶</div>
-                </li>
-
-                <li class="feeling-3">
-                    <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt="aaa"/>
-                    <div class="info">
-                        <div class="title">友 〜旅立ちの時〜</div>
-                        <div class="artistName">ゆず</div>
-                    </div>
-                    <div class="playBtn">▶</div>
-                </li>
-
-                <li class="feeling-4">
-                    <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt="aaa"/>
-                    <div class="info">
-                        <div class="title">友 〜旅立ちの時〜</div>
-                        <div class="artistName">ゆず</div>
-                    </div>
-                    <div class="playBtn">▶</div>
-                </li>
-
-                <li class="feeling-5">
-                    <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt="aaa"/>
-                    <div class="info">
-                        <div class="title">友 〜旅立ちの時〜</div>
-                        <div class="artistName">ゆず</div>
-                    </div>
-                    <div class="playBtn">▶</div>
-                </li>
-
-                <li class="feeling-6">
-                    <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt="aaa"/>
-                    <div class="info">
-                        <div class="title">友 〜旅立ちの時〜</div>
-                        <div class="artistName">ゆず</div>
-                    </div>
-                    <div class="playBtn">▶</div>
-                </li>
-
-                <li class="feeling-7">
-                    <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt="aaa"/>
-                    <div class="info">
-                        <div class="title">友 〜旅立ちの時〜</div>
-                        <div class="artistName">ゆず</div>
-                    </div>
-                    <div class="playBtn">▶</div>
-                </li>
-
-            </ul>
 
         </div>
     </div>
@@ -309,8 +223,8 @@
     <%if (followUsers.length > 0) {%>
         dest_user_id,dest_user_name<br>
         <%_.each(followUsers, function (user) {%>
-            <%=user.dest_user_id%>,
-            <%=user.dest_user_name%><br>
+            <%=user.attributes.dest_user_id%>,
+            <%=user.attributes.dest_user_name%><br>
         <%});%>
     <%} else {%>
         ないよー
@@ -323,8 +237,8 @@
     <%if (followedUsers.length > 0) {%>
         user_id,user_name<br>
         <%_.each(followedUsers, function (user) {%>
-            <%=user.user_id%>,
-            <%=user.user_name%><br>
+            <%=user.attributes.user_id%>,
+            <%=user.attributes.user_name%><br>
         <%});%>
     <%} else {%>
         ないよー

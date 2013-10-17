@@ -203,7 +203,7 @@ var user = require('./routes/user');
 var userPocket = require('./routes/user_pocket');
 var userPlaylist = require('./routes/user_playlist');
 var userFollow = require('./routes/user_follow');
-var userFollow = require('./routes/user_artist_follow');
+var userArtistFollow = require('./routes/user_artist_follow');
 var userNotification = require('./routes/user_notification');
 var iTunesRanking = require('./routes/itunes_ranking');
 var master = require('./routes/master');
@@ -284,14 +284,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
-
-
-// error handling.
-// app.use(function(err, req, res, next){
-//     console.error(err.stack);
-//     res.send(400, 'Something was wrong!');
-// });
-
 
 
 
@@ -450,14 +442,13 @@ app.delete('/api/v1/user_playlists', userPlaylist.delete);
 // User Follow
 app.get('/api/v1/user_follows', userFollow.select);
 app.post('/api/v1/user_follows', userFollow.add);
-// app.post('/api/v1/user_follows/:id/update', userFollow.update);
 app.delete('/api/v1/user_follows/:id', userFollow.delete);
 
 // User Artist Follow
-app.get('/api/v1/user_artist_follows', userFollow.select);
-app.post('/api/v1/user_artist_follows', userFollow.add);
-app.post('/api/v1/user_artist_follows/:id/update', userFollow.update);
-app.delete('/api/v1/user_artist_follows/:id', userFollow.delete);
+app.get('/api/v1/user_artist_follows', userArtistFollow.select);
+app.post('/api/v1/user_artist_follows', userArtistFollow.add);
+app.post('/api/v1/user_artist_follows/:id/update', userArtistFollow.update);
+app.delete('/api/v1/user_artist_follows/:id', userArtistFollow.delete);
 
 // User Notification
 app.get('/api/v1/user_notifications', userNotification.select);
