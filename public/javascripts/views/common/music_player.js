@@ -45,6 +45,7 @@ define([], function () {
          */
         playMusics: function (options) {
 
+            var startPos = options.startPos || 0;
             var musicArray = options.musicArray;
             var callbackWhenWillStart = options.callbackWhenWillStart || function () {};
             var callbackWhenEnd = options.callbackWhenEnd || function () {};
@@ -85,7 +86,15 @@ define([], function () {
 
             // 連続再生の関数
             var self = this;
-            var next = function (aMusic) {
+            var next = function () {
+
+                // 終了判定
+                if (startPos >= musicArray.length) {
+                    callbackWhenEnd();
+                    return;
+                }
+
+                var aMusic = musicArray[startPos++];
 
                 var func = _.bind(aMusic.youtubeId ? self._playYoutube : self._playItunesMusic, self);
                 var param = aMusic.youtubeId || aMusic.songUrl;
@@ -101,26 +110,15 @@ define([], function () {
 
                 func(param, $previewArea, function () {
 
-
-                    // end
-                    if (musicArray.length === 0) {
-                        if (callbackWhenEnd) {
-                            callbackWhenEnd();
-                        }
-                        return;
-                    }
-
                     // next
-                    var music = musicArray.shift();
-                    next(music);
+                    next();
 
                 });
             };
             _.bind(next, this);
 
             // 再生開始
-            var aMusic = musicArray.shift();
-            next(aMusic);
+            next();
 
         },
 

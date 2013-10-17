@@ -29,6 +29,7 @@ module.exports = _.extend({}, require('./common'), {
         'genre_id',
         'itunes_url',
         'youtube_id',
+        'feeling_id',
         'play_count',
         'play_count_speed',
         'create_at',
