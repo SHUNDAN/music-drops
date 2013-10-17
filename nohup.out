@@ -45036,3 +45036,24 @@ stmt:  { sql: 'select * from user_notification where user_id=? limit 300' } [ '8
 [90mGET /www/delivery/lg.php?bannerid=55&amp;campaignid=7&amp;zoneid=1&amp;loc=http://o1.inviziads.com/rpcdelivery/?z=1&tim=1505&amp;referer=http://static.inviziads.com/openx/openx2.swf?zid=1&amp;cb=12d8a6cae4 [33m404 [90m1ms[0m
 [90mGET /www/delivery/ck.php [33m404 [90m1ms[0m
 [90mGET /www/delivery/lg.php?bannerid=62&campaignid=7&zoneid=1&loc=http%3A%2F%2Fo1.inviziads.com%2Frpcdelivery%2F%3Fz%3D1%26tim%3D19391&referer=http%3A%2F%2Fstatic.inviziads.com%2Fopenx%2Fopenx4.swf%3Fz%3D1&cb=5447e1b77b [33m404 [90m1ms[0m
+[90mGET /www/delivery/lg.php?bannerid=103&campaignid=4&zoneid=1&loc=http%3A%2F%2Fo1.inviziads.com%2Frpcdelivery%2F%3Fz%3D1%26tim%3D5641&referer=http%3A%2F%2Fstatic.inviziads.com%2Fopenx%2Fopenx4.swf%3Fz%3D1&cb=7ee62b6f34 [33m404 [90m1ms[0m
+[[32mINFO[0m] [30;1m11:16:22[0m Restarting
+mbSetting:  { port: 80,
+  db_path: './db/mockbu.db',
+  mainJs: 'main-min.js',
+  OAuth: 
+   { google: 
+      { returnURL: 'http://music-drops.com/auth/google/return',
+        realm: 'http://music-drops.com/' },
+     facebook: 
+      { clientID: '510171422408925',
+        clientSecret: '6ddc7a4e8f8ffb1642b919db17bbbb02',
+        callbackURL: 'http://music-drops.com/auth/facebook/callback' },
+     twitter: 
+      { consumerKey: 'JkyuVRj2NqbJbthObbJmuQ',
+        consumerSecret: 'Lhwac5bc3wRgE5PFIxBMscM40HBtGjxf8I9Q9AeQ9A',
+        callbackURL: 'http://music-drops.com/auth/twitter/callback' } } }
+appUtil db_path:  ./db/mockbu.db
+Express server listening on port 80
+sessionMap:  { 'c4bd370d-bd8c-4b66-99b8-e7e1873a20d6': 5,
+  '9d4094c6-5f9b-47b4-b6d6-39e3d1eb1040': 8 }
