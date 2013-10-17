@@ -117,9 +117,16 @@ _.mbStorage = {
     getUserPockets: function () {
         return JSON.parse(storage.getItem('userPockets'));
     },
-    setuserPockets: function (pockets) {
+    setUserPockets: function (pockets) {
         storage.setItem('userPockets', JSON.stringify(pockets));
-    }
+    },
+    setUserPocketsWithBackboneCollection: function (pocketCollection) {
+        var pockets = [];
+        _.each(pocketCollection.models, function (model) {
+            pockets.push(model.attributes);
+        });
+        this.setUserPockets(pockets);
+    },
 };
 
 
