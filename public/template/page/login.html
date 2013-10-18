@@ -1,11 +1,7 @@
 
 
 <script id="page_login" type="text/template">
-    <% if (color !== undefined) { %>
-        <h1 class="text-center muted">Login</h1>
-    <% } else { %>
-        <h1 class="text-center">Login</h1>
-    <% } %>
+    <h1 class="text-center">Login</h1>
     <div class="mt20">
         <form>
             <input id="userId" type="text" name="user_id" class="block mlra" value=""/>
@@ -13,7 +9,6 @@
         </form>
         <div class="displayWboxAcPc">
             <div id="loginBtn" class="btn">Login</div>
-            <!--<a href="#user/add">Regist User</a><br>-->
         </div>
         <a href="#" class="block mt10 text-center" onclick="sessionStorage.removeItem('user'); location.href='/auth/google'; return false;">Login With Google</a>
         <a href="#" class="block mt10 text-center" onclick="sessionStorage.removeItem('user'); location.href='/auth/facebook'; return false;">Login With Facebook</a>

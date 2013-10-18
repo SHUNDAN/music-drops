@@ -6,7 +6,7 @@ define([], function () {
     console.debug('load: model:user_pocket');
 
     var UserPocketModel = Backbone.Model.extend({
-    
+
         defaults: {
             id: null,
             user_id: null,
@@ -31,7 +31,7 @@ define([], function () {
         create: function () {
             console.log('create');
             this.save(this.attributes, {
-                // headers: {uid: sessionStorage.getItem('uid')},
+                // headers: {uid: localStorage.getItem('uid')},
                 error: _.bind(function (jqXHR, statusObject, err) {
                     console.log('Pop save failed. reson: ', arguments);
                     if (statusObject.status === 403) {

@@ -17,7 +17,7 @@ define([
         successCallback: null,
         userStorage: new UserStorage(),
 
-        
+
 
         initialize: function () {
             this.model = new UserModel();
@@ -43,7 +43,7 @@ define([
         renderForMordal: function () {
 
             var self = this;
-        
+
             var $clickArea = $('<div id="clickArea"/>');
             $clickArea.css({
                 width: '100%',
@@ -110,7 +110,7 @@ define([
                       alert('login successed');
 
                       // TODO とりあえずの実装なので直す
-                      sessionStorage.setItem('user', JSON.stringify(json.info));
+                      localStorage.setItem('user', JSON.stringify(json.info));
 
                       if (self.successCallback) {
                         self.successCallback();

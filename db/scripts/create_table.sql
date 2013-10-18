@@ -38,6 +38,7 @@ create table if not exists music(
     genre_id    integer,
     itunes_url  text,
     youtube_id  text,
+    feeling_id  integer,
     play_count  numeric,
     play_count_speed numeric,
     create_at   numeric,

@@ -45,6 +45,7 @@ define([], function () {
          */
         playMusics: function (options) {
 
+            var startPos = options.startPos || 0;
             var musicArray = options.musicArray;
             var callbackWhenWillStart = options.callbackWhenWillStart || function () {};
             var callbackWhenEnd = options.callbackWhenEnd || function () {};
@@ -85,7 +86,17 @@ define([], function () {
 
             // 連続再生の関数
             var self = this;
-            var next = function (aMusic) {
+            var next = function () {
+                console.debug('next is called. startPos=', startPos, 'musicArray.count=', musicArray.length);
+
+                // 終了判定
+                if (startPos >= musicArray.length) {
+                    console.debug('finish play musics. startPos=', startPos, 'musicArray.count=', musicArray.length);
+                    callbackWhenEnd();
+                    return;
+                }
+
+                var aMusic = musicArray[startPos++];
 
                 var func = _.bind(aMusic.youtubeId ? self._playYoutube : self._playItunesMusic, self);
                 var param = aMusic.youtubeId || aMusic.songUrl;
@@ -101,26 +112,15 @@ define([], function () {
 
                 func(param, $previewArea, function () {
 
-
-                    // end
-                    if (musicArray.length === 0) {
-                        if (callbackWhenEnd) {
-                            callbackWhenEnd();
-                        }
-                        return;
-                    }
-
                     // next
-                    var music = musicArray.shift();
-                    next(music);
+                    next();
 
                 });
             };
             _.bind(next, this);
 
             // 再生開始
-            var aMusic = musicArray.shift();
-            next(aMusic);
+            next();
 
         },
 
@@ -175,17 +175,6 @@ define([], function () {
             var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
             $minimizeBtn.on('click', _.bind(this.minimize, this));
             $appendView.append($minimizeBtn);
-
-
-            // var $blackout = $('<div class="blackout"/>');
-            // $blackout.on('click', function () {
-            //     $(this).transit({opacity:0}, function () {
-            //         $(this).remove();
-            //     });
-            // });
-            // $blackout.transit({opacity:1});
-            // $appendView.append($blackout);
-
 
 
             // audio tag.
@@ -249,34 +238,11 @@ define([], function () {
 
 
             var self = this;
-            // window.mb.windowResize2 = function () {
-            //     self.$blackout.css({
-            //         width: $(document).width(),
-            //         height: $(document).height()
-            //     });
-            //     var moviePos = {x: (self.$blackout.width() - self.movieSize.width) / 2, y: ($(window).height() - self.movieSize.height) / 2};
-            //     baseView.$previewArea.css({
-            //         position: 'fixed',
-            //         top: moviePos.y,
-            //         left: moviePos.x,
-            //     });
-            // };
-            // window.addEventListener('resize', _.bind(mb.windowResize2, this));
-            // mb.windowResize2();
-
-            // if (baseView.pocket) {
-            //     var $pocketBtn = $('<div class="btn btn-large btn-inverse btn-primary mlra mt20">');
-            //     $pocketBtn.text('Pocket').css({
-            //         display: 'block',
-            //         'max-width': '200px',
-            //     });
-            //     $pocketBtn.on('click', _.bind(baseView.pocket, baseView));
-            //     baseView.$previewArea.append($pocketBtn);
-            // }
 
             // youtubeをダウンロード
             var player;
             function startYoutube () {
+                console.debug('startYoutube is called. id=', youtubeId);
                 var anId = youtubeId;
                 player = new window.YT.Player('player', {
                     height: self.movieSize.width,
@@ -290,6 +256,12 @@ define([], function () {
 
             }
             if (window.YT) {
+                
+                $('#player').remove();
+                var $player = $('<div id="player"/>');
+                $player.css(this.movieSize);
+                $appendView.append($player);
+
                 startYoutube();
             } else {
                 var tag = document.createElement('script');

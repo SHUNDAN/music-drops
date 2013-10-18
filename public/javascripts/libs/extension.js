@@ -24,7 +24,8 @@ _.bindEvents = function (view) {
     _.each([
         'click',
         'blur',
-        'change'
+        'change',
+        'keyup'
         ], function (type) {
             view.$el.on(type, '[data-event-' + type + ']', function (e) {
                 var $this = $(this);
@@ -52,7 +53,7 @@ _.formatTimestamp = function (timestamp) {
     var now  = new Date().getTime();
     var diff = now - timestamp;
 
-    // 秒表示 
+    // 秒表示
     if (diff < (60 * 1000)) {
         return Math.floor(diff / 1000) + '秒前';
     }
@@ -76,7 +77,7 @@ _.formatTimestamp = function (timestamp) {
 // Feeling Name.
 _.getFeelingName = function (feelingId) {
 
-    var feelings = JSON.parse(sessionStorage.getItem('common')).feelings || [];
+    var feelings = JSON.parse(localStorage.getItem('common')).feelings || [];
 
    for (var i = 0; i < feelings.length; i++) {
         var feeling = feelings[i];
@@ -91,8 +92,48 @@ _.getFeelingName = function (feelingId) {
 
 // Login Check.
 _.isLogedIn = function () {
-    return sessionStorage.getItem('user') !== null;
+    return localStorage.getItem('user') !== null;
 };
+
+
+
+
+
+// Local Storage.
+var storage = window.localStorage;
+_.mbStorage = {
+
+    getUser: function () {
+        return JSON.parse(storage.getItem('user'));
+    },
+    setUser: function (user) {
+        storage.setItem('user', JSON.stringify(user));
+    },
+    getCommon: function () {
+        return JSON.parse(storage.getItem('common'));
+    },
+    setCommon: function (common) {
+        storage.setItem('common', JSON.stringify(common));
+    },
+    getUserPockets: function () {
+        return JSON.parse(storage.getItem('userPockets'));
+    },
+    setUserPockets: function (pockets) {
+        storage.setItem('userPockets', JSON.stringify(pockets));
+    },
+    setUserPocketsWithBackboneCollection: function (pocketCollection) {
+        var pockets = [];
+        _.each(pocketCollection.models, function (model) {
+            pockets.push(model.attributes);
+        });
+        this.setUserPockets(pockets);
+    },
+};
+
+
+
+
+
 
 
 
@@ -139,10 +180,10 @@ _.extend(Backbone.Model.prototype, {
 
         // var uid = mb.userStorage.getUid();
         // if (uid) {
-        //     var headers = options.headers || {}; 
+        //     var headers = options.headers || {};
         //     headers.uid = uid;
         //     options.headers = headers;
-        // }   
+        // }
 
         console.log('options: ', options);
         var errorFnc = options.error;
@@ -162,12 +203,12 @@ _.extend(Backbone.Model.prototype, {
 
         Backbone.sync(method, model, options);
 
-    },  
+    },
 
 
     dummy: function () {},
 
-    
+
 });
 
 
@@ -181,8 +222,8 @@ _.sendActionLog = function (anUrl, params) {
           data: {
               url: anUrl,
               actionParam: params,
-          }   
-      }); 
+          }
+      });
 
 
 
@@ -249,13 +290,13 @@ _.loadUserPockets = function (options) {
     options = options || {};
 
     // ユーザー情報を取得
-    var userString = sessionStorage.getItem('user');
+    var userString = localStorage.getItem('user');
     if (!userString) {
         return;
     }
 
     // ユーザーPocketsを取得
-    var userPocketsString = sessionStorage.getItem('userPockets');
+    var userPocketsString = localStorage.getItem('userPockets');
     if (userPocketsString && !options.force) {
         return;
     }
@@ -268,7 +309,7 @@ _.loadUserPockets = function (options) {
         dataType: 'json',
         success: function (pocketArray) {
             console.debug('user pockets loaded. count = ', pocketArray.length);
-            sessionStorage.setItem('userPockets', JSON.stringify(pocketArray));
+            localStorage.setItem('userPockets', JSON.stringify(pocketArray));
         },
     });
 
@@ -283,13 +324,13 @@ _.loadUserArtistFollow = function (options) {
     options = options || {};
 
     // ユーザー情報を取得
-    var userString = sessionStorage.getItem('user');
+    var userString = localStorage.getItem('user');
     if (!userString) {
         return;
     }
 
     // ユーザーPocketsを取得
-    var userPocketsString = sessionStorage.getItem('userArtistFollow');
+    var userPocketsString = localStorage.getItem('userArtistFollow');
     if (userPocketsString && !options.force) {
         return;
     }
@@ -302,7 +343,7 @@ _.loadUserArtistFollow = function (options) {
         dataType: 'json',
         success: function (pocketArray) {
             console.debug('user artist follow loaded. count = ', pocketArray.length);
-            sessionStorage.setItem('userArtistFollow', JSON.stringify(pocketArray));
+            localStorage.setItem('userArtistFollow', JSON.stringify(pocketArray));
         },
     });
 
@@ -317,7 +358,7 @@ _.loadUserArtistFollow = function (options) {
 _.alreadyPocket = function (musicId) {
 
     // UserPocketを把握していない場合は、false
-    var userPocketString = sessionStorage.getItem('userPockets');
+    var userPocketString = localStorage.getItem('userPockets');
     if (!userPocketString) {
         return false;
     }

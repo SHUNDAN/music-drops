@@ -7,7 +7,7 @@ define(['models/user/user_follow'], function (UserFollow) {
 
         model: UserFollow,
 
-        url: '/api/v1/user_follows/',
+        url: '/api/v1/user_follows',
     });
 
     return UserFollowCollection;

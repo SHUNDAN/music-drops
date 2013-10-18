@@ -26,7 +26,7 @@ define([], function () {
         create: function () {
             console.log('create');
             this.save(this.attributes, {
-                headers: {uid: sessionStorage.getItem('uid')},
+                headers: {uid: localStorage.getItem('uid')},
                 success: _.bind(function () {
                 }, this),
                 error: _.bind(function (jqXHR, status) {
@@ -35,7 +35,7 @@ define([], function () {
                         mb.router.appView.authErrorHandler();
                     }
                 }, this),
-            }); 
+            });
         },
     });
 

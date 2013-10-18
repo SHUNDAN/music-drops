@@ -9,6 +9,8 @@
 .fs32 {font-size: 32px;}
 .mt30 {margin-top: 30px;}
 .hidden {display: none;}
+a:hover {text-decoration: none;}
+.noAction {pointer-events: none;}
 
 
 // 気持ちの色
@@ -52,6 +54,28 @@
 		width: 612px;
 	}
 
+
+	// リスト編集機能
+	.listEditArea {
+		&.edit {
+			.editButton {
+				display: none;
+			}
+			.doneButton {
+				display: block;
+			}
+			.clearBtn {
+				display: block;
+			}
+			.addPlaylistArea {
+				display: block;
+			}
+		}
+	}
+
+
+
+
 	// プレイリストタイトル業
 	.playlistHeader {
 		position: relative;
@@ -61,6 +85,12 @@
 			position: absolute;
 			top: 0;
 			right: 0;
+		}
+		.doneButton {
+			position: absolute;
+			top: 0;
+			right: 0;
+			display: none;
 		}
 	}
 
@@ -75,9 +105,42 @@
 			margin: 10px 0;
 			padding-left: 10px;
 			color: #656457;
-			
+
+			&:hover {
+				background-color: #ffe77c;
+				cursor: pointer;
+				&:after {
+				  position: absolute;
+				  top: 0;
+				  right: -12px;
+				  width: 0px;
+				  height: 0px;
+				  content: " ";
+				  border-top: 12px solid transparent;
+				  border-bottom: 12px solid transparent;
+				  border-left: 12px solid #ffe77c;
+				  border-right: 0px solid transparent;
+				}
+			}
+
+
 			&.select {
-				background-color: #ffe77c;				
+				background-color: #ffe77c;
+				&:after {
+				  position: absolute;
+				  top: 0;
+				  right: -12px;
+				  width: 0px;
+				  height: 0px;
+				  content: " ";
+				  border-top: 12px solid transparent;
+				  border-bottom: 12px solid transparent;
+				  border-left: 12px solid #ffe77c;
+				  border-right: 0px solid transparent;
+				}
+			}
+			&.dropTarget {
+				background-color: #ffe77c;
 				&:after {
 				  position: absolute;
 				  top: 0;
@@ -98,6 +161,7 @@
 				top: 0;
 				right: 0;
 				display: none;
+				pointer-events: auto;
 			}
 		}
 		&.edit {
@@ -105,12 +169,14 @@
 				display: block;
 			}
 		}
+
 	}
 
 	// プレイリストを作るUI
 	.addPlaylistArea {
 		position: relative;
-		
+		display: none;
+
 		// 入力欄
 		input[type="text"] {
 			display: block;
@@ -149,7 +215,7 @@
 			width: 382px;
 			height: 40px;
 			background-color: #efede0;
-			box-shadow: -1px 1px 1px rgba(0,0,0,.3) inset;			
+			box-shadow: -1px 1px 1px rgba(0,0,0,.3) inset;
 		}
 
 		.filterByNameBtn {
@@ -194,6 +260,25 @@
 	}
 
 
+	// ランダム再生とPocket編集機能
+	.pocketListFncArea {
+		padding: 10px 10px 10px 0;
+
+		.randomPlayButton {
+			width: 200px;
+			float: left;
+		}
+
+		.editButton {
+			width: 200px;
+			text-align: right;
+			float: right;
+		}
+
+
+	}
+
+
 
 
 	// Pocketリスト
@@ -217,7 +302,7 @@
 				right: 0;
 				width: 10px;
 				height: 72px;
-				content: " ";				
+				content: " ";
 			}
 			&.feeling-1:after {
 				background-color: $color-feel-Happy;
@@ -254,10 +339,18 @@
 		.title {
 			padding: 10px 0;
 			font-size: 14px;
+			width: 100%;
+			a {
+				display: inline;
+			}
 		}
 		.artistName {
 			padding: 0 0 10px;
 			font-size: 12px;
+			width: 100%;
+			a {
+				display: inline;
+			}
 		}
 		.playBtn {
 			width: 42px;
@@ -268,6 +361,58 @@
 			line-height: 42px;
 			font-size: 22px;
 			background-color: #dedbc7;
+			&:hover {
+				background-color: #ffcf3c;
+				color: #8d7016;
+				cursor: pointer;
+			}
+		}
+		.deleteBtn {
+			display: none;
+			width: 42px;
+			height: 42px;
+			margin-left: 10px;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 42px;
+			font-size: 22px;
+			font-weight: bold;
+			background-color: #dedbc7;
+			&:hover {
+				background-color: #ffcf3c;
+				color: #8d7016;
+				cursor: pointer;
+			}
+		}
+
+		// 編集状態のスタイル
+		&.editStyle {
+			.playBtn {
+				display: none;
+			}
+			.deleteBtn {
+				display: block;
+			}
+		}
+	}
+
+
+
+
+	// Pocketの掃き溜め
+	.pocketDeleteArea {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		width: 300px;
+		height: 150px;
+		line-height: 300px;
+		text-align: center;
+		color: #8d7016;
+		background-color: rgba(0,0,0,.5);
+		z-index: 10;
+		&.active {
+			border: 4px solid yellow;
 		}
 	}
 

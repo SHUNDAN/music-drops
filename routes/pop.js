@@ -9,6 +9,7 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database("./db/mockbu.db");
 var popModel = require('../models/pop');
 var userModel = require('../models/user');
+var onlineBatch = require('../util/online_batch');
 
 
 /**
@@ -43,6 +44,9 @@ exports.selectPopList = function(req, res) {
     } else if (req.query.type === 'hot') {
         condition.sortKey = 'like_count_speed';
         condition.sortOrder = 'desc';
+    }
+    if (req.query.user_id) {
+        condition.user_id = req.query.user_id;
     }
 
 
@@ -86,6 +90,10 @@ exports.add = function(req, res) {
     // execute.
     popModel.insertObject(req.body, function (err) {
         appUtil.basicResponse(res, err);
+
+        // 曲のFeelingを再計算する
+        onlineBatch.setMusicFeeling(req.body.music_id);
+
     });
 
 };
@@ -116,6 +124,14 @@ exports.update = function(req, res) {
     // execute.
     popModel.updateObject(req.body, req.params, function (err) {
         appUtil.basicResponse(res, err);
+
+        // 曲のFeelingを再計算する
+        popModel.selectObjects(req.params, function (err, rows) {
+            if (rows.length > 0) {
+                onlineBatch.setMusicFeeling(rows[0].music_id);
+            }
+        });
+
     });
 
 };

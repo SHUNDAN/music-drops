@@ -14,6 +14,8 @@ var appUtil = require('../util/utility');
  */
 exports.select = function(req, res){
 
+    console.log('select user_follow: ', req);
+
     userFollowModel.selectObjects2(req.query, function (err, rows) {
         if (err) {
             appUtil.basicResponse(res, err, rows);
