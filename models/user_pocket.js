@@ -52,10 +52,29 @@ module.exports = _.extend({}, require('./common'), {
         var conditions = []; 
         for (var prop in conditionParam) {
             if (conditionParam.hasOwnProperty(prop)) {
-                columnNames.push(prop);
-                conditions.push(util.format('%s=?', prop));
+                if (this.hasColumn(prop)) {
+                    columnNames.push(prop);
+                    conditions.push(util.format('%s=?', prop));                    
+                }
             }   
         }
+        // in句
+        console.log('000', conditionParam);
+        if (conditionParam.targets) {
+            console.log('aaa');
+            if (typeof conditionParam.targets === 'string') {
+                console.log('bbb');
+                conditionParam.targets = JSON.parse(conditionParam.targets);
+            }
+            if (_.isArray(conditionParam.targets)) {
+                console.log('ccc');
+                var inFragment = 'user_pocket.id in (' + conditionParam.targets.join(',') + ')';
+                conditions.push(inFragment);
+            }
+        }
+
+
+
         var fragment = 'select user_pocket.id, user_pocket.music_id, user_pocket.feeling_id, user_pocket.tags, user_pocket.youtube_id user_youtube_id, music.title, music.artwork_url, music.youtube_id music_youtube_id, music.song_url, music.artist_id, music.artist_name, user_pocket.create_at from user_pocket left outer join music on user_pocket.music_id = music.id ';
         var sql;
         if (conditions.length > 0) {
@@ -76,7 +95,7 @@ module.exports = _.extend({}, require('./common'), {
         var stmt = db.prepare(sql, params);
         console.log('stmt: ', stmt, params);
         stmt.all(function(err, rows) {
-            console.log(rows);
+            console.log('rows.length=', rows.length);
             if (err) {
                 console.log(err);
             }   

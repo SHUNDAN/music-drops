@@ -41,29 +41,29 @@ module.exports = _.extend({}, require('./common'), {
 
 
     /**
-     *
+     * フォローしているプレイリスト情報を取得する
      */
     selectFollowPlaylists: function (conditions, callback) {
 
         var sql = [
-            'select a.id, b.title, b.user_pocket_ids, b.user_id, c.name user_name',
+            'select a.id, a.type, b.title, b.user_pocket_ids, b.user_id, c.name user_name',
             'from user_playlist a',
             'left outer join user_playlist b on a.dest_playlist_id = b.id',
             'left outer join user c on b.user_id = c.id',
-            'where a.user_id=?'
+            'where a.user_id=? and a.dest_playlist_id is not null'
         ].join(' ');
 
 
         // select.
         var stmt = db.prepare(sql, [conditions.user_id]);
-        stmt.all(sql, function (err, rows) {
+        console.log('stmt: ', stmt, [conditions.user_id]);
+        stmt.all(function (err, rows) {
+            rows = rows || [];
+            console.log('rows.length=', rows.length);
             callback(err, rows || []);
         });
 
     },
-
-
-
 
 
 

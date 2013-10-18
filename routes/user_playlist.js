@@ -21,6 +21,9 @@ exports.select = function(req, res){
 };
 
 
+
+
+
 /**
  * フォローしている他人のプレイリスト取得
  */
@@ -38,9 +41,6 @@ exports.selectFollowPlaylists = function (req, res) {
     });
 
 };
-
-
-
 
 
 

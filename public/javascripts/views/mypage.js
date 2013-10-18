@@ -208,7 +208,10 @@ define([
 
         // Playlistを表示
         renderPlaylist: function () {
-            var snipet = _.mbTemplate('page_mypage_playlist', {playlists: this.userPlaylistList.models});
+            var playlists = _.filter(this.userPlaylistList.models, function (playlist) {
+                return playlist.attributes.type !== 3; // フォロープレイリストではない。
+            });
+            var snipet = _.mbTemplate('page_mypage_playlist', {playlists: playlists});
             this.$el.find('#playlistList').html(snipet);
 
             // ドラッグ＆ドロップ機能を追加
@@ -220,8 +223,9 @@ define([
             フォローしているプレイリストを表示
         */
         renderUserFollowPlaylist: function () {
-            console.debug('aaa');
-        }
+            var snipet = _.mbTemplate('page_mypage_follow_playlist', {playlists: this.userFollowPlaylistList.models});
+            this.$el.find('#followPlaylist').html(snipet);
+        },
 
 
 
@@ -447,13 +451,23 @@ define([
             var playlistId = $(e.currentTarget).parents('[data-playlist-id]').data('playlist-id');
             console.debug('deletePlaylist: ', playlistId);
 
+            // 削除処理
+            var fn = _.bind(function () {
+                var userPlaylist = this.userPlaylistList.get(playlistId);
+                userPlaylist.bind('sync', _.bind(function () {
+                    this.userPlaylistList.remove(userPlaylist);
+                    this.renderPlaylist();
+                }, this));
+                userPlaylist.destroy();
+            }, this);
 
-            var userPlaylist = this.userPlaylistList.get(playlistId);
-            userPlaylist.bind('sync', _.bind(function () {
-                this.userPlaylistList.remove(userPlaylist);
-                this.renderPlaylist();
-            }, this));
-            userPlaylist.destroy();
+
+            // 確認ダイアログ
+            var confirmDialog = new ConfirmDialogView();
+            confirmDialog.show({
+                message: 'Playlistを削除しますか？',
+                yesButtonCallback: fn
+            });
 
             return false;
          },
@@ -727,9 +741,99 @@ define([
 
 
 
+        /**
+            フォローしているプレイリストの中身を表示する
+        */
+        showFollowPlaylist: function (e) {
+            var playlistId = $(e.currentTarget).data('playlist-id');
+            console.debug('showFollowPlaylist: ', playlistId);
+
+            // 現在のプレイリストを設定する
+            this.currentPlaylist = this.userFollowPlaylistList.get(playlistId);
+
+            // キャッシュがあればそれを表示する
+            if (this.followPlaylistPocketsMap && this.followPlaylistPocketsMap[playlistId]) {
+                this.displayUserPocketList = this.followPlaylistPocketsMap[playlistId];
+                this.renderUserPocketListArea({noEdit:true});
+            }
+
+
+            // キャッシュが無ければ、ロードして表示する
+            var userPocketList = new UserPocketList();
+            userPocketList.bind('sync', _.bind(function () {
+                console.debug('suerPocketList: ', userPocketList);
+
+                this.followPlaylistPocketsMap = this.followPlaylistPocketsMap || {};
+                this.followPlaylistPocketsMap[playlistId] = userPocketList;
+
+                this.displayUserPocketList = userPocketList;
+                this.renderUserPocketListArea({noEdit:true});
+
+            }, this));
+            console.debug('current: ', this.currentPlaylist.attributes.user_pocket_ids);
+            userPocketList.fetch({reset:true, data:{targets:this.currentPlaylist.attributes.user_pocket_ids}});
+
+        },
 
 
 
+        /**
+            フォロープレイリストの編集表示、非表示
+        */
+        editFollowPlaylistButton: function (e) {
+            console.debug('editFollowPlaylistButton');
+            e.preventDefault();
+            
+            if ($('#followPlaylist').hasClass('edit')) {
+                $(e.currentTarget).text('編集');
+            } else {
+                $(e.currentTarget).text('完了');
+            }
+
+            $('#followPlaylist').toggleClass('edit');
+
+            return false;
+        },
+
+
+
+
+        /**
+            フォロー中のプレイリストを削除
+        */
+        deleteFollowPlaylist: function (e) {
+            e.preventDefault();
+            var playlistId = $(e.currentTarget).parents('[data-playlist-id]').data('playlist-id');
+            console.debug('deleteFollowPlaylist: ', playlistId);
+
+            // 削除処理
+            var fn = _.bind(function () {
+                var userPlaylist = this.userPlaylistList.get(playlistId);
+                userPlaylist.bind('sync', _.bind(function () {
+                    this.userPlaylistList.remove(userPlaylist);
+
+                    // もう一個のリストからも削除
+                    var model = this.userFollowPlaylistList.get(playlistId);
+                    this.userFollowPlaylistList.remove(model);
+
+                    // レンダリング
+                    this.renderUserFollowPlaylist();
+
+                }, this));
+                userPlaylist.destroy();
+            }, this);
+
+
+            // 確認ダイアログ
+            var confirmDialog = new ConfirmDialogView();
+            confirmDialog.show({
+                message: 'フォローしているPlaylistを削除しますか？',
+                yesButtonCallback: fn
+            });
+
+            return false;
+
+        },
 
 
 

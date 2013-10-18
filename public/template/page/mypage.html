@@ -48,22 +48,9 @@
             <!--他人のプレイリスト-->
             <div class="playlistHeader mt30">
                 <span class="fs18">他の人がつくったプレイリスト</span>
-                <a href="#" class="editButton">編集</a>
+                <a href="#" class="editButton" data-event-click="editFollowPlaylistButton">編集</a>
             </div>
-            <ul class="sidebarList edit">
-                <li>
-                    <a href="#">涙ながれるBGM (10)</a>
-                    <a href="#" class="clearBtn">×</a>
-                </li>
-                <li>
-                    <a href="#">眠い朝に聞きたい曲 (2)</a>
-                    <a href="#" class="clearBtn">×</a>
-                </li>
-                <li>
-                    <a href="#">テクノでノリノリ (44)</a>
-                    <a href="#" class="clearBtn">×</a>
-                </li>
-            </ul>
+            <ul id="followPlaylist" class="sidebarList"><!--JSで内容を追加--></ul>
 
 
         </div>
@@ -161,7 +148,9 @@
     <!--機能-->
     <div class="pocketListFncArea clearfix">
         <a href="#" class="randomPlayButton">ランダム再生</a>
-        <%if (options.edit) {%>
+        <%if (options.noEdit) {%>
+            <!--なし-->
+        <%}else if (options.edit) {%>
             <a href="#" class="editButton" data-event-click="editPocketList">完了</a>
         <%} else if (options.nowPlaylist) {%>
             <a href="#" class="editButton" data-event-click="editPocketList">Playlist編集</a>
@@ -200,14 +189,6 @@
 
 
 
-
-
-
-
-
-
-
-
 <!--ユーザープレイリスト一覧-->
 <script id="page_mypage_playlist" type="text/template">
     <%_.each(playlists, function (playlist) {%>
@@ -226,6 +207,22 @@
     <%});%>
 </script>
 
+
+
+
+<!--フォローしているプレイリスト一覧-->
+<script id="page_mypage_follow_playlist" type="text/template">
+    <%_.each(playlists, function (playlist) {%>
+
+        <li data-playlist-id="<%=playlist.attributes.id%>" data-event-click="showFollowPlaylist">
+            <%=playlist.attributes.title%> 
+            by <a style="display:inline;" href="#user/<%=playlist.attributes.user_id%>"><%=playlist.attributes.user_name%></a> 
+            (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
+            <a href="#" class="clearBtn" data-event-click="deleteFollowPlaylist">×</a>
+        </li>
+
+    <%});%>
+</script>
 
 
 
