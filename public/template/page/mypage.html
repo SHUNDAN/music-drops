@@ -24,10 +24,10 @@
             </div>
             <!--マイドロップ、チェックアーティスト、ユーザーフォロ-->
             <ul class="sidebarList">
-                <li data-event-click="showMyDrops">マイドロップ一覧</li>
-                <li data-event-click="showCheckArtists">チェックアーティスト</li>
-                <li data-event-click="showFollowUsers">フォローしているユーザー</li>
-                <li data-event-click="showFollowedUsers">フォローされているユーザー</li>
+                <li data-event-click="showMyDrops">マイドロップ一覧&nbsp;<span id="numOfMyDrops"></span></li>
+                <li data-event-click="showCheckArtists">チェックアーティスト&nbsp;<span id="numOfCheckArtists"></span></li>
+                <li data-event-click="showFollowUsers">フォローしているユーザー&nbsp;<span id="numOfFollowUsers"></span></li>
+                <li data-event-click="showFollowedUsers">フォローされているユーザー&nbsp;<span id="numOfFollowedUsers"></span></li>
             </ul>
 
             <!--自分のプレイリスト-->
@@ -142,14 +142,14 @@
 </script>
 
 
-<!--Pocket一覧-->
-<script id="page_mypage_user_pocket_list" type="text/template">
+<!--Pocket一覧エリア-->
+<script id="page_mypage_user_pocket_list_area" type="text/template">
     <!--絞り込み機能-->
     <div class="filterArea">
-        <input type="text" class="filterByNameInput"/>
-        <input type="button" class="filterByNameBtn" value="絞り込み"/>
+        <input type="text" id="filterByNameInput" class="filterByNameInput" placeholder="曲名やアーティスト名を入力" data-event-keyup="filterPockets"/>
+        <input type="button" class="filterByNameBtn" value="絞り込み" data-event-click="filterPockets"/>
         <div class="selectArea">
-            <select class="filterByFeelingSelect">
+            <select id="filterByFeelingSelect" class="filterByFeelingSelect" data-event-change="filterPockets2">
                 <option value="0"></option>
                 <%_.each(feelings, function (feeling) {%>
                     <option value="<%=feeling.id%>"><%=feeling.name%></option>
@@ -171,26 +171,40 @@
     </div>
 
     <!--Pocketリスト-->
-    <ul id="pocketListArea" class="pocketListArea clearfix <%if(options.edit){%>editStyle<%}%>">
-        <%_.each(pocketList, function (pocket) {%>
-            <li class="feeling-<%=pocket.attributes.feeling_id%>" data-pocket-id="<%=pocket.attributes.id%>">
-                <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>"/>
-                <div class="info">
-                    <div class="title">
-                        <a href="#music/<%=pocket.attributes.music_id%>"><%=pocket.attributes.title%></a>
-                    </div>
-                    <div class="artistName">
-                        <a href="#artist/<%=pocket.attributes.artist_id%>"><%=pocket.attributes.artist_name%></a>
-                    </div>
-                </div>
-                <div class="playBtn" data-event-click="playMusic">▶</div>
-                <div class="deleteBtn" data-event-click="deletePocket">×</div>
-            </li>
-        <%});%>
-
-    </ul>
+    <ul id="pocketListArea" class="pocketListArea clearfix <%if(options.edit){%>editStyle<%}%>"><!--JSで埋める--></ul>
 
 </script>
+
+
+
+<!--Pocket一覧-->
+<script id="page_mypage_user_pocket_list" type="text/template">
+    <%_.each(pocketList, function (pocket) {%>
+        <li class="feeling-<%=pocket.attributes.feeling_id%>" data-pocket-id="<%=pocket.attributes.id%>">
+            <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>"/>
+            <div class="info">
+                <div class="title">
+                    <a href="#music/<%=pocket.attributes.music_id%>"><%=pocket.attributes.title%></a>
+                </div>
+                <div class="artistName">
+                    <a href="#artist/<%=pocket.attributes.artist_id%>"><%=pocket.attributes.artist_name%></a>
+                </div>
+            </div>
+            <div class="playBtn" data-event-click="playMusic">▶</div>
+            <div class="deleteBtn" data-event-click="deletePocket">×</div>
+        </li>
+    <%});%>
+</script>
+
+
+
+
+
+
+
+
+
+
 
 
 

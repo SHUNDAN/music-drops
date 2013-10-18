@@ -20,7 +20,7 @@ define(function () {
         create: function () {
             console.log('create');
             this.save(this.attributes, {
-                headers: {uid: sessionStorage.getItem('uid')},
+                headers: {uid: localStorage.getItem('uid')},
                 success: _.bind(function () {
                     // this.trigger('success_save');
                 }, this),

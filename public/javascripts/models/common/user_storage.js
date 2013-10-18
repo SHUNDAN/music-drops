@@ -11,7 +11,7 @@ define([], function () {
          * Low Level API
          */
         getStorage: function (type) {
-            return (type === 'ls' ? localStorage : sessionStorage);
+            return (type === 'ls' ? localStorage : localStorage);
         },
         setItem: function (key, value, type) {
             this.getStorage(type).setItem(key, value);
@@ -23,7 +23,7 @@ define([], function () {
             this.setItem(key, JSON.stringify(value), type);
         },
         getObject: function (key, type) {
-            return JSON.parse(this.getItem(key, type)); 
+            return JSON.parse(this.getItem(key, type));
         },
 
 
@@ -74,11 +74,11 @@ define([], function () {
         getUser: function () {return this.getObject('user');},
 
 
-    
-    
-    
-    
-    
+
+
+
+
+
     });
 
 

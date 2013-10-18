@@ -2366,7 +2366,7 @@ _.formatTimestamp = function (timestamp) {
     var now  = new Date().getTime();
     var diff = now - timestamp;
 
-    // 秒表示 
+    // 秒表示
     if (diff < (60 * 1000)) {
         return Math.floor(diff / 1000) + '秒前';
     }
@@ -2390,7 +2390,7 @@ _.formatTimestamp = function (timestamp) {
 // Feeling Name.
 _.getFeelingName = function (feelingId) {
 
-    var feelings = JSON.parse(sessionStorage.getItem('common')).feelings || [];
+    var feelings = JSON.parse(localStorage.getItem('common')).feelings || [];
 
    for (var i = 0; i < feelings.length; i++) {
         var feeling = feelings[i];
@@ -2448,10 +2448,10 @@ _.extend(Backbone.Model.prototype, {
 
         // var uid = mb.userStorage.getUid();
         // if (uid) {
-        //     var headers = options.headers || {}; 
+        //     var headers = options.headers || {};
         //     headers.uid = uid;
         //     options.headers = headers;
-        // }   
+        // }
 
         console.log('options: ', options);
         var errorFnc = options.error;
@@ -2471,12 +2471,12 @@ _.extend(Backbone.Model.prototype, {
 
         Backbone.sync(method, model, options);
 
-    },  
+    },
 
 
     dummy: function () {},
 
-    
+
 });
 
 
@@ -2490,8 +2490,8 @@ _.sendActionLog = function (anUrl, params) {
           data: {
               url: anUrl,
               actionParam: params,
-          }   
-      }); 
+          }
+      });
 
 
 
