@@ -1,0 +1,60 @@
+// artistPopluar
+.artistPopluar {
+  position: relative;
+	width: 460px;
+  background-color: #fdfcf3;
+}
+
+//-------------------------------------
+// タイトル
+//-------------------------------------
+.artistPopluar-title {
+	background: #efede0;
+	padding: 13px 20px;
+	border-bottom: 1px solid #d4d2be;
+}
+
+//-------------------------------------
+// リスト
+//-------------------------------------
+.artistPopluar-list {
+
+}
+.artistPopluar-list-item {
+	border-bottom: 1px solid #d4d2be;
+	a {
+		display: block;
+		padding: 4px 20px;
+		&:hover {
+			background-color: #fff9d1; 
+		}
+	}
+	.dt {
+		width: 300px;
+		img {
+			width: 40px;
+			height: 40px;
+		}
+		p {
+			width: 250px;
+		}
+	}
+	.ico-play {
+		right: 40px;
+	}
+}
+.artistPopluar-list-item-dropCount {
+	position: absolute;
+	top: 50%;
+	right: 100px;
+	display: inline-block;
+	margin-top: -7px;
+	.ico-drop {
+		position: static;
+		margin-right: 5px;
+	}
+}
+// もっとみる　
+.artistPopluar-list-more {
+	padding: 10px; 
+}

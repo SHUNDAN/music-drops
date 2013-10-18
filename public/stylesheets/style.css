@@ -15910,6 +15910,13 @@ table {
 #99796d // secondaly color
 
 */
+/* line 189, ../dev/scss/core/_settings.scss */
+.list > li:last-child {
+  border: 0 !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
 /* line 7, ../dev/scss/core/_helper.scss */
 .gp:before,
 .gp:after {
@@ -16017,397 +16024,176 @@ table {
 }
 
 /* line 55, ../dev/scss/core/_helper.scss */
-.mod {
-  margin: 10px;
-}
-
-/* line 57, ../dev/scss/core/_helper.scss */
-.mgn {
-  margin: 0 !important;
-}
-
-/* line 59, ../dev/scss/core/_helper.scss */
-.mtn {
-  margin-top: 0 !important;
-}
-
-/* line 60, ../dev/scss/core/_helper.scss */
-.mts {
-  margin-top: 5px !important;
-}
-
-/* line 61, ../dev/scss/core/_helper.scss */
-.mtm {
-  margin-top: 10px !important;
-}
-
-/* line 62, ../dev/scss/core/_helper.scss */
-.mtl {
-  margin-top: 15px !important;
-}
-
-/* line 63, ../dev/scss/core/_helper.scss */
-.mtx {
-  margin-top: 20px !important;
-}
-
-/* line 65, ../dev/scss/core/_helper.scss */
-.mbn {
-  margin-bottom: 0 !important;
-}
-
-/* line 66, ../dev/scss/core/_helper.scss */
-.mbs {
-  margin-bottom: 5px !important;
-}
-
-/* line 67, ../dev/scss/core/_helper.scss */
-.mbm {
-  margin-bottom: 10px !important;
-}
-
-/* line 68, ../dev/scss/core/_helper.scss */
-.mbl {
-  margin-bottom: 15px !important;
-}
-
-/* line 69, ../dev/scss/core/_helper.scss */
-.mbx {
-  margin-bottom: 20px !important;
-}
-
-/* line 71, ../dev/scss/core/_helper.scss */
-.mln {
-  margin-left: 0 !important;
-}
-
-/* line 72, ../dev/scss/core/_helper.scss */
-.mls {
-  margin-left: 5px !important;
-}
-
-/* line 73, ../dev/scss/core/_helper.scss */
-.mlm {
-  margin-left: 10px !important;
-}
-
-/* line 74, ../dev/scss/core/_helper.scss */
-.mll {
-  margin-left: 15px !important;
-}
-
-/* line 75, ../dev/scss/core/_helper.scss */
-.mlx {
-  margin-left: 20px !important;
-}
-
-/* line 77, ../dev/scss/core/_helper.scss */
-.mrn {
-  margin-right: 0 !important;
-}
-
-/* line 78, ../dev/scss/core/_helper.scss */
-.mrs {
-  margin-right: 5px !important;
-}
-
-/* line 79, ../dev/scss/core/_helper.scss */
-.mrm {
+.mr10 {
   margin-right: 10px !important;
 }
 
-/* line 80, ../dev/scss/core/_helper.scss */
-.mrl {
-  margin-right: 15px !important;
-}
-
-/* line 81, ../dev/scss/core/_helper.scss */
-.mrx {
-  margin-right: 20px !important;
-}
-
-/* line 83, ../dev/scss/core/_helper.scss */
-.mra {
-  margin-right: auto !important;
-}
-
-/* line 84, ../dev/scss/core/_helper.scss */
-.mla {
-  margin-left: auto !important;
-}
-
-/* line 85, ../dev/scss/core/_helper.scss */
-.mca {
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* line 87, ../dev/scss/core/_helper.scss */
-.ptn {
-  padding-top: 0 !important;
-}
-
-/* line 88, ../dev/scss/core/_helper.scss */
-.pts {
-  padding-top: 5px !important;
-}
-
-/* line 89, ../dev/scss/core/_helper.scss */
-.ptm {
-  padding-top: 10px !important;
-}
-
-/* line 90, ../dev/scss/core/_helper.scss */
-.ptl {
-  padding-top: 15px !important;
-}
-
-/* line 91, ../dev/scss/core/_helper.scss */
-.ptx {
-  padding-top: 20px !important;
-}
-
-/* line 93, ../dev/scss/core/_helper.scss */
-.pbn {
-  padding-bottom: 0 !important;
-}
-
-/* line 94, ../dev/scss/core/_helper.scss */
-.pbs {
-  padding-bottom: 5px !important;
-}
-
-/* line 95, ../dev/scss/core/_helper.scss */
-.pbm {
-  padding-bottom: 10px !important;
-}
-
-/* line 96, ../dev/scss/core/_helper.scss */
-.pbl {
-  padding-bottom: 15px !important;
-}
-
-/* line 97, ../dev/scss/core/_helper.scss */
-.pbx {
-  padding-bottom: 20px !important;
-}
-
-/* line 99, ../dev/scss/core/_helper.scss */
-.pln {
-  padding-left: 0 !important;
-}
-
-/* line 100, ../dev/scss/core/_helper.scss */
-.pls {
-  padding-left: 5px !important;
-}
-
-/* line 101, ../dev/scss/core/_helper.scss */
-.plm {
-  padding-left: 10px !important;
-}
-
-/* line 102, ../dev/scss/core/_helper.scss */
-.pll {
-  padding-left: 15px !important;
-}
-
-/* line 103, ../dev/scss/core/_helper.scss */
-.plx {
-  padding-left: 20px !important;
-}
-
-/* line 105, ../dev/scss/core/_helper.scss */
-.prn {
-  padding-right: 0 !important;
-}
-
-/* line 106, ../dev/scss/core/_helper.scss */
-.prs {
-  padding-right: 5px !important;
-}
-
-/* line 107, ../dev/scss/core/_helper.scss */
-.prm {
-  padding-right: 10px !important;
-}
-
-/* line 108, ../dev/scss/core/_helper.scss */
-.prl {
-  padding-right: 15px !important;
-}
-
-/* line 109, ../dev/scss/core/_helper.scss */
-.prx {
-  padding-right: 20px !important;
-}
-
-/* line 115, ../dev/scss/core/_helper.scss */
+/* line 119, ../dev/scss/core/_helper.scss */
 .rn {
   border-radius: 0 !important;
 }
 
-/* line 116, ../dev/scss/core/_helper.scss */
+/* line 120, ../dev/scss/core/_helper.scss */
 .rs {
   border-radius: 4px;
 }
 
-/* line 117, ../dev/scss/core/_helper.scss */
+/* line 121, ../dev/scss/core/_helper.scss */
 .rm {
   border-radius: 8px;
 }
 
-/* line 118, ../dev/scss/core/_helper.scss */
+/* line 122, ../dev/scss/core/_helper.scss */
 .rl {
   border-radius: 16px;
 }
 
-/* line 124, ../dev/scss/core/_helper.scss */
+/* line 128, ../dev/scss/core/_helper.scss */
 .c-base {
   color: #68473c !important;
 }
 
-/* line 125, ../dev/scss/core/_helper.scss */
+/* line 129, ../dev/scss/core/_helper.scss */
 .c-sec {
   color: #99796d !important;
 }
 
-/* line 126, ../dev/scss/core/_helper.scss */
+/* line 130, ../dev/scss/core/_helper.scss */
 .c-fff {
   color: white !important;
 }
 
-/* line 127, ../dev/scss/core/_helper.scss */
+/* line 131, ../dev/scss/core/_helper.scss */
 .c-000 {
   color: black !important;
 }
 
-/* line 133, ../dev/scss/core/_helper.scss */
+/* line 137, ../dev/scss/core/_helper.scss */
 .b-base {
   background-color: #68473c !important;
 }
 
-/* line 134, ../dev/scss/core/_helper.scss */
+/* line 138, ../dev/scss/core/_helper.scss */
 .b-sec {
   background-color: #99796d !important;
 }
 
-/* line 135, ../dev/scss/core/_helper.scss */
+/* line 139, ../dev/scss/core/_helper.scss */
 .b-fff {
   background-color: white !important;
 }
 
-/* line 136, ../dev/scss/core/_helper.scss */
+/* line 140, ../dev/scss/core/_helper.scss */
 .b-000 {
   background-color: black !important;
 }
 
-/* line 138, ../dev/scss/core/_helper.scss */
+/* line 142, ../dev/scss/core/_helper.scss */
 .n {
   font-weight: normal !important;
 }
 
-/* line 139, ../dev/scss/core/_helper.scss */
+/* line 143, ../dev/scss/core/_helper.scss */
 .b {
   font-weight: bold !important;
 }
 
-/* line 140, ../dev/scss/core/_helper.scss */
+/* line 144, ../dev/scss/core/_helper.scss */
 .l {
   text-align: left !important;
 }
 
-/* line 141, ../dev/scss/core/_helper.scss */
+/* line 145, ../dev/scss/core/_helper.scss */
 .c {
   text-align: center !important;
 }
 
-/* line 142, ../dev/scss/core/_helper.scss */
+/* line 146, ../dev/scss/core/_helper.scss */
 .r {
   text-align: right !important;
 }
 
-/* line 143, ../dev/scss/core/_helper.scss */
+/* line 147, ../dev/scss/core/_helper.scss */
 .u {
   text-decoration: underline !important;
 }
 
-/* line 145, ../dev/scss/core/_helper.scss */
+/* line 149, ../dev/scss/core/_helper.scss */
 .f1 {
   font-size: 8px;
 }
 
-/* line 146, ../dev/scss/core/_helper.scss */
+/* line 150, ../dev/scss/core/_helper.scss */
 .f2 {
   font-size: 9px;
 }
 
-/* line 147, ../dev/scss/core/_helper.scss */
+/* line 151, ../dev/scss/core/_helper.scss */
 .f3 {
   font-size: 10px;
 }
 
-/* line 148, ../dev/scss/core/_helper.scss */
+/* line 152, ../dev/scss/core/_helper.scss */
 .fn {
   font-size: 13px !important;
 }
 
-/* line 149, ../dev/scss/core/_helper.scss */
+/* line 153, ../dev/scss/core/_helper.scss */
 .f4 {
   font-size: 11px;
 }
 
-/* line 150, ../dev/scss/core/_helper.scss */
+/* line 154, ../dev/scss/core/_helper.scss */
 .f5 {
   font-size: 12px;
 }
 
-/* line 151, ../dev/scss/core/_helper.scss */
+/* line 155, ../dev/scss/core/_helper.scss */
 .f6 {
   font-size: 14px;
 }
 
-/* line 153, ../dev/scss/core/_helper.scss */
+/* line 157, ../dev/scss/core/_helper.scss */
 .v0 {
   vertical-align: 0;
 }
 
-/* line 154, ../dev/scss/core/_helper.scss */
+/* line 158, ../dev/scss/core/_helper.scss */
 .v1 {
   vertical-align: -1px;
 }
 
-/* line 155, ../dev/scss/core/_helper.scss */
+/* line 159, ../dev/scss/core/_helper.scss */
 .v2 {
   vertical-align: -2px;
 }
 
-/* line 156, ../dev/scss/core/_helper.scss */
+/* line 160, ../dev/scss/core/_helper.scss */
 .v3 {
   vertical-align: -3px;
 }
 
-/* line 157, ../dev/scss/core/_helper.scss */
+/* line 161, ../dev/scss/core/_helper.scss */
 .v4 {
   vertical-align: -4px;
 }
 
-/* line 158, ../dev/scss/core/_helper.scss */
+/* line 162, ../dev/scss/core/_helper.scss */
 .v5 {
   vertical-align: -5px;
 }
 
-/* line 159, ../dev/scss/core/_helper.scss */
+/* line 163, ../dev/scss/core/_helper.scss */
 .vt {
   vertical-align: top;
 }
 
-/* line 160, ../dev/scss/core/_helper.scss */
+/* line 164, ../dev/scss/core/_helper.scss */
 .vm {
   vertical-align: middle;
 }
 
-/* line 161, ../dev/scss/core/_helper.scss */
+/* line 165, ../dev/scss/core/_helper.scss */
 .vb {
   vertical-align: bottom;
 }
@@ -16809,7 +16595,7 @@ header {
 /* line 2, ../dev/scss/modules/_page_header.scss */
 .page-header {
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 /* line 6, ../dev/scss/modules/_page_header.scss */
@@ -16957,6 +16743,15 @@ header {
 /* line 137, ../dev/scss/modules/_buttons.scss */
 .btn-text-color-brown.btn-text-arrow-right:after {
   border-left-color: #656457;
+}
+
+/* line 14, ../dev/scss/modules/_listviews.scss */
+.list > li {
+  padding: 1em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0;
+  -moz-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0;
+  box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0;
 }
 
 /* line 7, ../dev/scss/modules/_feelings.scss */
@@ -17263,14 +17058,11 @@ header {
 
 /* line 2, ../dev/scss/modules/_music_detail.scss */
 .musicDetail {
-  background-color: #fff;
-}
-/* line 4, ../dev/scss/modules/_music_detail.scss */
-.musicDetail.leftCol {
   width: 460px;
+  background-color: #fdfcf3;
 }
 
-/* line 10, ../dev/scss/modules/_music_detail.scss */
+/* line 8, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-thumb {
   position: relative;
   overflow: hidden;
@@ -17278,7 +17070,7 @@ header {
   height: 140px;
 }
 
-/* line 18, ../dev/scss/modules/_music_detail.scss */
+/* line 16, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info {
   position: relative;
   width: 310px;
@@ -17287,23 +17079,23 @@ header {
   color: #333;
 }
 
-/* line 25, ../dev/scss/modules/_music_detail.scss */
+/* line 23, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info-feeling {
   margin: 0 0 25px;
 }
 
-/* line 28, ../dev/scss/modules/_music_detail.scss */
+/* line 26, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info-title {
   font-size: 18px;
   margin: 0 0 10px;
 }
 
-/* line 32, ../dev/scss/modules/_music_detail.scss */
+/* line 30, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info-artist {
   margin: 0 0 25px;
 }
 
-/* line 37, ../dev/scss/modules/_music_detail.scss */
+/* line 35, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info-play-btn {
   position: absolute;
   top: 10px;
@@ -17319,71 +17111,71 @@ header {
   background: #ddd;
 }
 
-/* line 50, ../dev/scss/modules/_music_detail.scss */
+/* line 48, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-action {
   position: absolute;
   bottom: 0;
   height: 40px;
 }
-/* line 54, ../dev/scss/modules/_music_detail.scss */
+/* line 52, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-action .m-btn-PD {
   float: left;
   width: 94px;
 }
 
-/* line 59, ../dev/scss/modules/_music_detail.scss */
+/* line 57, ../dev/scss/modules/_music_detail.scss */
 .tag-feeling {
   float: left;
   width: 196px;
   margin-right: 10px;
 }
 
-/* line 70, ../dev/scss/modules/_music_detail.scss */
+/* line 68, ../dev/scss/modules/_music_detail.scss */
 .sprite-share {
   background-image: url('/../images/../images/sprite/share-s9e941c34b4.png');
   background-repeat: no-repeat;
   background-size: 50px 18px;
 }
-/* line 72, ../dev/scss/modules/_music_detail.scss */
+/* line 70, ../dev/scss/modules/_music_detail.scss */
 .sprite-share.share-youtube {
   width: 50px;
   height: 18px;
   background-position: 0 0;
 }
 
-/* line 76, ../dev/scss/modules/_music_detail.scss */
+/* line 74, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-otherLinks {
   position: relative;
   height: 37px;
 }
 
-/* line 80, ../dev/scss/modules/_music_detail.scss */
+/* line 78, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-otherLinks-service {
   position: absolute;
   top: 10px;
   left: 44px;
 }
 
-/* line 85, ../dev/scss/modules/_music_detail.scss */
+/* line 83, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-otherLinks-link {
   position: absolute;
   top: 10px;
   left: 154px;
 }
 
-/* line 93, ../dev/scss/modules/_music_detail.scss */
+/* line 91, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-pop {
   height: 123px;
   padding: 10px;
   background-color: #efede0;
 }
 
-/* line 98, ../dev/scss/modules/_music_detail.scss */
+/* line 96, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-pop-user {
   margin-bottom: 10px;
 }
 
-/* line 105, ../dev/scss/modules/_music_detail.scss */
+/* line 103, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-action-btn {
   float: left;
   display: block;
@@ -17393,27 +17185,27 @@ header {
   color: #d4d2be;
   background-color: #656457;
 }
-/* line 114, ../dev/scss/modules/_music_detail.scss */
+/* line 112, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-action-btn .ico-font.ico-follow {
   font-size: 28px;
 }
-/* line 117, ../dev/scss/modules/_music_detail.scss */
+/* line 115, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-action-btn .ico-font.ico-heart {
   font-size: 22px;
 }
-/* line 121, ../dev/scss/modules/_music_detail.scss */
+/* line 119, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-action-btn.is-active {
   color: #f3613f;
   background-color: #fec02b;
 }
 
-/* line 137, ../dev/scss/modules/_music_detail.scss */
+/* line 135, ../dev/scss/modules/_music_detail.scss */
 .text-link {
   position: relative;
   display: inline-block;
   padding-right: 16px;
 }
-/* line 141, ../dev/scss/modules/_music_detail.scss */
+/* line 139, ../dev/scss/modules/_music_detail.scss */
 .text-link .ico-font {
   position: absolute;
   top: 50%;
@@ -17422,7 +17214,7 @@ header {
   font-size: 8px;
   color: #c9c7b9;
 }
-/* line 150, ../dev/scss/modules/_music_detail.scss */
+/* line 148, ../dev/scss/modules/_music_detail.scss */
 .text-link:hover .ico-font {
   color: #656457;
 }
@@ -17864,32 +17656,96 @@ a:hover {
   border: 4px solid yellow;
 }
 
+/* line 2, ../dev/scss/pages/_popular_list.scss */
+.artistPopluar {
+  position: relative;
+  width: 460px;
+  background-color: #fdfcf3;
+}
+
+/* line 11, ../dev/scss/pages/_popular_list.scss */
+.artistPopluar-title {
+  background: #efede0;
+  padding: 13px 20px;
+  border-bottom: 1px solid #d4d2be;
+}
+
+/* line 23, ../dev/scss/pages/_popular_list.scss */
+.artistPopluar-list-item {
+  border-bottom: 1px solid #d4d2be;
+}
+/* line 25, ../dev/scss/pages/_popular_list.scss */
+.artistPopluar-list-item a {
+  display: block;
+  padding: 4px 20px;
+}
+/* line 28, ../dev/scss/pages/_popular_list.scss */
+.artistPopluar-list-item a:hover {
+  background-color: #fff9d1;
+}
+/* line 32, ../dev/scss/pages/_popular_list.scss */
+.artistPopluar-list-item .dt {
+  width: 300px;
+}
+/* line 34, ../dev/scss/pages/_popular_list.scss */
+.artistPopluar-list-item .dt img {
+  width: 40px;
+  height: 40px;
+}
+/* line 38, ../dev/scss/pages/_popular_list.scss */
+.artistPopluar-list-item .dt p {
+  width: 250px;
+}
+/* line 42, ../dev/scss/pages/_popular_list.scss */
+.artistPopluar-list-item .ico-play {
+  right: 40px;
+}
+
+/* line 46, ../dev/scss/pages/_popular_list.scss */
+.artistPopluar-list-item-dropCount {
+  position: absolute;
+  top: 50%;
+  right: 100px;
+  display: inline-block;
+  margin-top: -7px;
+}
+/* line 52, ../dev/scss/pages/_popular_list.scss */
+.artistPopluar-list-item-dropCount .ico-drop {
+  position: static;
+  margin-right: 5px;
+}
+
+/* line 58, ../dev/scss/pages/_popular_list.scss */
+.artistPopluar-list-more {
+  padding: 10px;
+}
+
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 59, ../dev/scss/style.scss */
+  /* line 61, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 66, ../dev/scss/style.scss */
+/* line 68, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 67, ../dev/scss/style.scss */
+/* line 69, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 68, ../dev/scss/style.scss */
+/* line 70, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 72, ../dev/scss/style.scss */
+/* line 74, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -17906,7 +17762,7 @@ a:hover {
 /*==============================
   Preview Area
 ===============================*/
-/* line 101, ../dev/scss/style.scss */
+/* line 103, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: relative !important;
   top: 0px !important;
@@ -17916,7 +17772,7 @@ a:hover {
   margin: 0 !important;
 }
 
-/* line 109, ../dev/scss/style.scss */
+/* line 111, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -17931,7 +17787,7 @@ a:hover {
   color: white;
 }
 
-/* line 123, ../dev/scss/style.scss */
+/* line 125, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -17947,7 +17803,7 @@ a:hover {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 140, ../dev/scss/style.scss */
+/* line 142, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -17955,14 +17811,14 @@ a:hover {
 /*==============================
   Base Frame
 ===============================*/
-/* line 154, ../dev/scss/style.scss */
+/* line 156, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 65px;
 }
 
-/* line 159, ../dev/scss/style.scss */
+/* line 161, ../dev/scss/style.scss */
 #main {
   width: 980px;
   margin: 0 auto;
