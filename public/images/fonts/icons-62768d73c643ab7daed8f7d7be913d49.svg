@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2013-10-16: Created.
+2013-10-18: Created.
 -->
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Wed Oct 16 15:12:17 2013
+Created by FontForge 20120731 at Fri Oct 18 20:31:18 2013
  By A13025
 Created by A13025 with FontForge 2.0 (http://fontforge.sf.net)
 </metadata>
@@ -22,7 +22,7 @@ Created by A13025 with FontForge 2.0 (http://fontforge.sf.net)
     bbox="-0.5 -64 512.5 448.5"
     underline-thickness="25.6"
     underline-position="-51.2"
-    unicode-range="U+F100-F112"
+    unicode-range="U+F100-F113"
   />
     <missing-glyph />
     <glyph glyph-name="uniF100" unicode="&#xf100;" horiz-adv-x="509" 
@@ -69,5 +69,8 @@ d="M255 370v0v0v0zM255 293v0v77h134v51l122 -89l-122 -90v51h-134v0zM102 370v-77h-
     <glyph glyph-name="uniF112" unicode="&#xf112;" horiz-adv-x="450" 
 d="M294 305c7 -12 24 -24 37 -27l106 -25c13 -3 17 -14 8 -24l-71 -82c-9 -10 -15 -30 -14 -44l9 -108c1 -14 -8 -21 -21 -16l-100 43c-13 5 -33 5 -46 0l-100 -43c-13 -5 -22 1 -21 15l10 109c1 14 -6 33 -15 43l-71 82c-9 10 -5 22 8 25l106 25c13 3 30 14 37 26l56 94
 c7 12 19 12 26 0z" />
+    <glyph glyph-name="uniF113" unicode="&#xf113;" horiz-adv-x="377" 
+d="M246 145c19 -26 135 -51 131 -209h-377c-4 158 112 183 131 209c12 16 12 36 10 50c-17 14 -27 34 -29 46c-1 3 -1 6 -2 10c0 0 -1 1 -1 2c-2 -1 -4 -2 -7 -2c-7 0 -13 5 -14 12l-4 27c-1 6 3 10 8 12c-3 13 -5 29 -5 47c0 51 43 99 101 99s71 -38 71 -38s43 -17 37 -71
+c-2 -14 -4 -27 -7 -38c4 -2 6 -6 5 -11l-4 -27c-1 -7 -8 -12 -15 -12c-3 0 -5 1 -7 2c-1 -1 -1 -1 -1 -2c-1 -4 -1 -7 -2 -10c-2 -12 -12 -32 -29 -46c-2 -14 -2 -34 10 -50z" />
   </font>
 </defs></svg>

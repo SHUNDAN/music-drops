@@ -963,13 +963,6 @@ h4 small {
   font-size: 14px;
 }
 
-/* line 806, ../dev/scss/libs/_bootstrap.scss */
-.page-header {
-  padding-bottom: 9px;
-  margin: 20px 0 30px;
-  border-bottom: 1px solid #eeeeee;
-}
-
 /* line 813, ../dev/scss/libs/_bootstrap.scss */
 ul,
 ol {
@@ -2672,7 +2665,7 @@ table th[class*="span"],
 
 /* line 2312, ../dev/scss/libs/_bootstrap.scss */
 .icon-glass {
-  background-position: 0 0;
+  background-position: 0      0;
 }
 
 /* line 2316, ../dev/scss/libs/_bootstrap.scss */
@@ -8097,13 +8090,6 @@ h4 small {
   font-size: 14px;
 }
 
-/* line 806, ../dev/scss/libs/_bootstrap.scss */
-.page-header {
-  padding-bottom: 9px;
-  margin: 20px 0 30px;
-  border-bottom: 1px solid #eeeeee;
-}
-
 /* line 813, ../dev/scss/libs/_bootstrap.scss */
 ul,
 ol {
@@ -9806,7 +9792,7 @@ table th[class*="span"],
 
 /* line 2312, ../dev/scss/libs/_bootstrap.scss */
 .icon-glass {
-  background-position: 0 0;
+  background-position: 0      0;
 }
 
 /* line 2316, ../dev/scss/libs/_bootstrap.scss */
@@ -16482,8 +16468,8 @@ button {
 
 @font-face {
   font-family: "icons";
-  src: url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.eot");
-  src: url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.eot?#iefix") format("embedded-opentype"), url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.woff") format("woff"), url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.ttf") format("truetype"), url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.svg?#icons") format("svg");
+  src: url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.eot");
+  src: url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.eot?#iefix") format("embedded-opentype"), url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.woff") format("woff"), url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.ttf") format("truetype"), url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.svg?#icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -16497,99 +16483,104 @@ button {
   -webkit-font-smoothing: antialiased;
 }
 
-/* line 31, ../dev/scss/fonts/_icons.scss */
+/* line 24, ../dev/scss/fonts/_icons.scss */
 .ico-below:before {
   content: "\f100";
 }
 
-/* line 34, ../dev/scss/fonts/_icons.scss */
+/* line 27, ../dev/scss/fonts/_icons.scss */
 .ico-delete:before {
   content: "\f101";
 }
 
-/* line 37, ../dev/scss/fonts/_icons.scss */
+/* line 30, ../dev/scss/fonts/_icons.scss */
 .ico-drop:before {
   content: "\f102";
 }
 
-/* line 40, ../dev/scss/fonts/_icons.scss */
+/* line 33, ../dev/scss/fonts/_icons.scss */
 .ico-follow:before {
   content: "\f103";
 }
 
-/* line 43, ../dev/scss/fonts/_icons.scss */
+/* line 36, ../dev/scss/fonts/_icons.scss */
 .ico-heart:before {
   content: "\f104";
 }
 
-/* line 46, ../dev/scss/fonts/_icons.scss */
+/* line 39, ../dev/scss/fonts/_icons.scss */
 .ico-image:before {
   content: "\f105";
 }
 
-/* line 49, ../dev/scss/fonts/_icons.scss */
+/* line 42, ../dev/scss/fonts/_icons.scss */
 .ico-list:before {
   content: "\f106";
 }
 
-/* line 52, ../dev/scss/fonts/_icons.scss */
+/* line 45, ../dev/scss/fonts/_icons.scss */
 .ico-mail:before {
   content: "\f107";
 }
 
-/* line 55, ../dev/scss/fonts/_icons.scss */
+/* line 48, ../dev/scss/fonts/_icons.scss */
 .ico-play-02:before {
   content: "\f108";
 }
 
-/* line 58, ../dev/scss/fonts/_icons.scss */
+/* line 51, ../dev/scss/fonts/_icons.scss */
 .ico-play-next:before {
   content: "\f109";
 }
 
-/* line 61, ../dev/scss/fonts/_icons.scss */
+/* line 54, ../dev/scss/fonts/_icons.scss */
 .ico-play-prev:before {
   content: "\f10a";
 }
 
-/* line 64, ../dev/scss/fonts/_icons.scss */
+/* line 57, ../dev/scss/fonts/_icons.scss */
 .ico-play-stop:before {
   content: "\f10b";
 }
 
-/* line 67, ../dev/scss/fonts/_icons.scss */
+/* line 60, ../dev/scss/fonts/_icons.scss */
 .ico-play:before {
   content: "\f10c";
 }
 
-/* line 70, ../dev/scss/fonts/_icons.scss */
+/* line 63, ../dev/scss/fonts/_icons.scss */
 .ico-plus:before {
   content: "\f10d";
 }
 
-/* line 73, ../dev/scss/fonts/_icons.scss */
+/* line 66, ../dev/scss/fonts/_icons.scss */
 .ico-refresh:before {
   content: "\f10e";
 }
 
-/* line 76, ../dev/scss/fonts/_icons.scss */
+/* line 69, ../dev/scss/fonts/_icons.scss */
 .ico-repeat:before {
   content: "\f10f";
 }
 
-/* line 79, ../dev/scss/fonts/_icons.scss */
+/* line 72, ../dev/scss/fonts/_icons.scss */
 .ico-search:before {
   content: "\f110";
 }
 
-/* line 82, ../dev/scss/fonts/_icons.scss */
+/* line 75, ../dev/scss/fonts/_icons.scss */
 .ico-shuffle:before {
   content: "\f111";
 }
 
-/* line 85, ../dev/scss/fonts/_icons.scss */
+/* line 78, ../dev/scss/fonts/_icons.scss */
 .ico-star:before {
   content: "\f112";
+}
+
+/* line 81, ../dev/scss/fonts/_icons.scss */
+.ico-user:before {
+  content: "\f113";
 }
 
 /* line 12, ../dev/scss/modules/_header.scss */
@@ -16790,29 +16781,60 @@ header {
 }
 
 /* line 178, ../dev/scss/modules/_header.scss */
-.header-menu-btn-favo {
-  left: 0;
-  width: 40px;
-  font-size: 24px;
-}
-
-/* line 183, ../dev/scss/modules/_header.scss */
-.header-menu-btn-drop {
-  left: 50px;
-  width: 40px;
-  font-size: 24px;
-}
-
-/* line 188, ../dev/scss/modules/_header.scss */
 .header-menu-btn-myList {
   left: 100px;
   width: 70px;
 }
 
-/* line 192, ../dev/scss/modules/_header.scss */
+/* line 182, ../dev/scss/modules/_header.scss */
 .header-menu-btn-noti {
   left: 180px;
   width: 70px;
+}
+
+/* line 189, ../dev/scss/modules/_header.scss */
+.header-menu-btn.btn-pocket {
+  left: 0;
+  width: 40px;
+  font-size: 24px;
+}
+
+/* line 195, ../dev/scss/modules/_header.scss */
+.header-menu-btn.btn-drop {
+  left: 50px;
+  width: 40px;
+  font-size: 24px;
+}
+
+/* line 2, ../dev/scss/modules/_page_header.scss */
+.page-header {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+/* line 6, ../dev/scss/modules/_page_header.scss */
+.page-header-title {
+  text-align: center;
+  font-size: 18px;
+  line-height: 26px;
+}
+
+/* line 16, ../dev/scss/modules/_page_header.scss */
+.page-header-userMenu {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  padding: 10px;
+  color: #929187;
+  background-color: #efede0;
+}
+/* line 23, ../dev/scss/modules/_page_header.scss */
+.page-header-userMenu p {
+  display: inline-block;
+}
+/* line 26, ../dev/scss/modules/_page_header.scss */
+.page-header-userMenu .ico-below {
+  font-size: 8px;
 }
 
 /* line 40, ../dev/scss/modules/_buttons.scss */
@@ -16843,6 +16865,98 @@ header {
 /* line 58, ../dev/scss/modules/_buttons.scss */
 .btn-play-youtube {
   color: #f00;
+}
+
+/* line 64, ../dev/scss/modules/_buttons.scss */
+.btn-PD {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  padding: 7px 0;
+  color: #656457;
+  text-align: center;
+}
+/* line 71, ../dev/scss/modules/_buttons.scss */
+.btn-PD:first-child {
+  margin-right: 10px;
+}
+/* line 74, ../dev/scss/modules/_buttons.scss */
+.btn-PD:hover {
+  background-color: #dedbc7;
+}
+/* line 77, ../dev/scss/modules/_buttons.scss */
+.btn-PD:active, .btn-PD .is-active {
+  background-color: #ffcf3c;
+}
+/* line 79, ../dev/scss/modules/_buttons.scss */
+.btn-PD:active .ico-font, .btn-PD .is-active .ico-font {
+  color: #fa732d;
+}
+/* line 83, ../dev/scss/modules/_buttons.scss */
+.btn-PD .ico-font {
+  font-size: 18px;
+}
+/* line 86, ../dev/scss/modules/_buttons.scss */
+.btn-PD span {
+  display: block;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+/* line 96, ../dev/scss/modules/_buttons.scss */
+.btn-text {
+  position: relative;
+  display: inline-block;
+  padding: 5px 8px;
+}
+/* line 100, ../dev/scss/modules/_buttons.scss */
+.btn-text:before, .btn-text:after {
+  position: absolute;
+  top: 0;
+  display: block;
+  content: "";
+  width: 0;
+  height: 0;
+}
+
+/* line 110, ../dev/scss/modules/_buttons.scss */
+.btn-text-arrow-left {
+  margin-left: 8px;
+  padding-left: 4px;
+}
+/* line 113, ../dev/scss/modules/_buttons.scss */
+.btn-text-arrow-left:before {
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-right: 8px solid;
+  left: -8px;
+}
+
+/* line 120, ../dev/scss/modules/_buttons.scss */
+.btn-text-arrow-right {
+  margin-right: 8px;
+  padding-right: 4px;
+}
+/* line 123, ../dev/scss/modules/_buttons.scss */
+.btn-text-arrow-right:after {
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 8px solid;
+  right: -8px;
+}
+
+/* line 131, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-brown {
+  color: #fff;
+  background-color: #656457;
+}
+/* line 134, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-brown.btn-text-arrow-left:before {
+  border-right-color: #656457;
+}
+/* line 137, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-brown.btn-text-arrow-right:after {
+  border-left-color: #656457;
 }
 
 /* line 7, ../dev/scss/modules/_feelings.scss */
@@ -17166,37 +17280,110 @@ header {
 
 /* line 18, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info {
+  position: relative;
+  width: 310px;
+  height: 140px;
+  padding-top: 20px;
   color: #333;
 }
 
-/* line 21, ../dev/scss/modules/_music_detail.scss */
+/* line 25, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info-feeling {
   margin: 0 0 25px;
 }
 
-/* line 24, ../dev/scss/modules/_music_detail.scss */
+/* line 28, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info-title {
   font-size: 18px;
   margin: 0 0 10px;
 }
 
-/* line 28, ../dev/scss/modules/_music_detail.scss */
+/* line 32, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info-artist {
   margin: 0 0 25px;
 }
 
-/* line 39, ../dev/scss/modules/_music_detail.scss */
+/* line 37, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-info-play-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 80px;
+  height: 80px;
+  font-size: 30px;
+  -webkit-border-radius: 80px;
+  -moz-border-radius: 80px;
+  -ms-border-radius: 80px;
+  -o-border-radius: 80px;
+  border-radius: 80px;
+  background: #ddd;
+}
+
+/* line 50, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-action {
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+}
+/* line 54, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-action .m-btn-PD {
+  float: left;
+  width: 94px;
+}
+
+/* line 59, ../dev/scss/modules/_music_detail.scss */
+.tag-feeling {
+  float: left;
+  width: 196px;
+  margin-right: 10px;
+}
+
+/* line 70, ../dev/scss/modules/_music_detail.scss */
+.sprite-share {
+  background-image: url('/../images/../images/sprite/share-s9e941c34b4.png');
+  background-repeat: no-repeat;
+  background-size: 50px 18px;
+}
+/* line 72, ../dev/scss/modules/_music_detail.scss */
+.sprite-share.share-youtube {
+  width: 50px;
+  height: 18px;
+  background-position: 0 0;
+}
+
+/* line 76, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-otherLinks {
+  position: relative;
+  height: 37px;
+}
+
+/* line 80, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-otherLinks-service {
+  position: absolute;
+  top: 10px;
+  left: 44px;
+}
+
+/* line 85, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-otherLinks-link {
+  position: absolute;
+  top: 10px;
+  left: 154px;
+}
+
+/* line 93, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-pop {
+  height: 123px;
   padding: 10px;
   background-color: #efede0;
 }
 
-/* line 43, ../dev/scss/modules/_music_detail.scss */
+/* line 98, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-pop-user {
   margin-bottom: 10px;
 }
 
-/* line 50, ../dev/scss/modules/_music_detail.scss */
+/* line 105, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-action-btn {
   float: left;
   display: block;
@@ -17206,27 +17393,27 @@ header {
   color: #d4d2be;
   background-color: #656457;
 }
-/* line 59, ../dev/scss/modules/_music_detail.scss */
+/* line 114, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-action-btn .ico-font.ico-follow {
   font-size: 28px;
 }
-/* line 62, ../dev/scss/modules/_music_detail.scss */
+/* line 117, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-action-btn .ico-font.ico-heart {
   font-size: 22px;
 }
-/* line 66, ../dev/scss/modules/_music_detail.scss */
+/* line 121, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-action-btn.is-active {
   color: #f3613f;
   background-color: #fec02b;
 }
 
-/* line 82, ../dev/scss/modules/_music_detail.scss */
+/* line 137, ../dev/scss/modules/_music_detail.scss */
 .text-link {
   position: relative;
   display: inline-block;
   padding-right: 16px;
 }
-/* line 86, ../dev/scss/modules/_music_detail.scss */
+/* line 141, ../dev/scss/modules/_music_detail.scss */
 .text-link .ico-font {
   position: absolute;
   top: 50%;
@@ -17235,7 +17422,7 @@ header {
   font-size: 8px;
   color: #c9c7b9;
 }
-/* line 95, ../dev/scss/modules/_music_detail.scss */
+/* line 150, ../dev/scss/modules/_music_detail.scss */
 .text-link:hover .ico-font {
   color: #656457;
 }
@@ -17679,30 +17866,30 @@ a:hover {
 
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 58, ../dev/scss/style.scss */
+  /* line 59, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 65, ../dev/scss/style.scss */
+/* line 66, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 66, ../dev/scss/style.scss */
+/* line 67, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 67, ../dev/scss/style.scss */
+/* line 68, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 71, ../dev/scss/style.scss */
+/* line 72, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -17719,7 +17906,7 @@ a:hover {
 /*==============================
   Preview Area
 ===============================*/
-/* line 100, ../dev/scss/style.scss */
+/* line 101, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: relative !important;
   top: 0px !important;
@@ -17729,7 +17916,7 @@ a:hover {
   margin: 0 !important;
 }
 
-/* line 108, ../dev/scss/style.scss */
+/* line 109, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -17744,7 +17931,7 @@ a:hover {
   color: white;
 }
 
-/* line 122, ../dev/scss/style.scss */
+/* line 123, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -17760,7 +17947,7 @@ a:hover {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 139, ../dev/scss/style.scss */
+/* line 140, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -17768,14 +17955,14 @@ a:hover {
 /*==============================
   Base Frame
 ===============================*/
-/* line 153, ../dev/scss/style.scss */
+/* line 154, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 65px;
 }
 
-/* line 158, ../dev/scss/style.scss */
+/* line 159, ../dev/scss/style.scss */
 #main {
   width: 980px;
   margin: 0 auto;

@@ -58,3 +58,84 @@
 .btn-play-youtube {
 	color: #f00;
 }
+
+//  ポケット・ドロップボタン
+//-------------------------------------
+.btn-PD {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	padding: 7px 0;
+	color: #656457;
+	text-align: center;
+	&:first-child {
+		margin-right: 10px;
+	}
+	&:hover {
+		background-color: #dedbc7;
+	}
+	&:active, .is-active {
+		background-color: #ffcf3c;
+		.ico-font {
+			color: #fa732d;
+		}
+	}
+	.ico-font {
+		font-size: 18px;
+	}
+	span {
+		display: block;
+		font-size: 9px;
+		white-space: nowrap;
+	}
+}
+
+
+//  テキストボタン
+//-------------------------------------
+.btn-text {
+	position: relative;
+	display: inline-block;
+	padding: 5px 8px;
+	&:before, &:after {
+		position: absolute;
+		top: 0;
+		display: block;
+		content: "";
+		width: 0;
+		height: 0;
+	}
+}
+// 矢印
+.btn-text-arrow-left {
+	margin-left: 8px;
+	padding-left: 4px;
+	&:before {
+		border-top: 12px solid transparent;
+		border-bottom: 12px solid transparent;
+		border-right: 8px solid;
+		left: -8px;
+	}
+}
+.btn-text-arrow-right {
+	margin-right: 8px;
+	padding-right: 4px;
+	&:after {
+	border-top: 12px solid transparent;
+	border-bottom: 12px solid transparent;
+	border-left: 8px solid;
+	right: -8px;
+	}
+}
+// 色
+.btn-text-color-brown {
+	color: #fff;
+	background-color: #656457;
+	&.btn-text-arrow-left:before {
+		border-right-color: #656457;
+	}
+	&.btn-text-arrow-right:after {
+		border-left-color: #656457;
+	}
+}
+// 個別

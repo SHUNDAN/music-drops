@@ -175,16 +175,6 @@ header {
   line-height: 40px;
   color: #656457;
 }
-.header-menu-btn-favo {
-  left: 0;
-  width: 40px;
-  font-size: 24px;
-}
-.header-menu-btn-drop {
-  left: 50px;
-  width: 40px;
-  font-size: 24px;
-}
 .header-menu-btn-myList {
   left: 100px;
   width: 70px;
@@ -192,4 +182,18 @@ header {
 .header-menu-btn-noti {
   left: 180px;
   width: 70px;
+}
+// ## 以下の2つは各ページ共通で使用するので、配置のみ。
+// ## カラー等は _buttons.scssを参照。
+// ポケットボタン
+.header-menu-btn.btn-pocket {
+  left: 0;
+  width: 40px;
+  font-size: 24px;
+}
+// ドロップボタン
+.header-menu-btn.btn-drop {
+  left: 50px;
+  width: 40px;
+  font-size: 24px;
 }
