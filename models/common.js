@@ -48,14 +48,14 @@ module.exports = {
     limit: 300,
 
 
-    /** 
-     * Select 
+    /**
+     * Select
      */
     selectObjects: function (conditionParam, callback) {
         conditionParam = conditionParam || {};
 
 
-        // Add Equal Condition. 
+        // Add Equal Condition.
         var conditions = [];
         var params = [];
         for (var prop in conditionParam) {
@@ -107,18 +107,18 @@ module.exports = {
         sql +=　' limit ' + limit;
 
 
-        
+
         // execute sql
         var stmt = db.prepare(sql, params);
         console.log('stmt: ', stmt, params);
         stmt.all(function(err, rows) {
             if (err) {
                 console.log(err);
-            }   
-                
+            }
+
             callback(err, (rows || []));
-        }); 
-    }, 
+        });
+    },
 
 
 
@@ -155,7 +155,7 @@ module.exports = {
             params.push(data[column]);
         });
 
-        
+
         // execute sql.
         var stmt = db.prepare(sql, params);
         console.log(stmt, params, data);
@@ -185,16 +185,20 @@ module.exports = {
         var targets = [];
         for (var prop in data) {
             if (data.hasOwnProperty(prop) && data[prop]) {
-                columnNames.push(prop);
-                targets.push(util.format('%s=?', prop));
+                if (this.hasColumn(prop)) {
+                    columnNames.push(prop);
+                    targets.push(util.format('%s=?', prop));
+                }
             }
         }
         var columnNames2 = [];
         var conditions = [];
         for (prop in conditionParam) {
             if (conditionParam.hasOwnProperty(prop)) {
-                columnNames2.push(prop);
-                conditions.push(util.format('%s=?', prop));
+                if (this.hasColumn(prop)) {
+                    columnNames2.push(prop);
+                    conditions.push(util.format('%s=?', prop));
+                }
             }
         }
         var sql = util.format('update %s set %s where %s', this.tableName, targets.join(','), conditions.join(' and '));
@@ -241,7 +245,7 @@ module.exports = {
         }
         var sql = util.format('delete from %s where %s', this.tableName, conditions.join(' and '));
 
-        
+
         // build params.
         var params = [];
         columnNames.forEach(function (column) {

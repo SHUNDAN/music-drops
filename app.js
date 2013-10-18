@@ -14,7 +14,7 @@ global.log4js = require('log4js');
 global.log4js.configure('settings/log4js_setting.json');
 var json = fs.readFileSync('./settings/setting.json', 'utf-8');
 global.mbSetting = JSON.parse(json);
-global.db_path = global.mbSetting.db_path; 
+global.db_path = global.mbSetting.db_path;
 console.log('mbSetting: ', global.mbSetting);
 
 var userModel = require('./models/user');
@@ -41,9 +41,9 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google').Strategy;
 passport.use(new GoogleStrategy({
     returnURL: global.mbSetting.OAuth.google.returnURL,
-    realm: global.mbSetting.OAuth.google.realm 
+    realm: global.mbSetting.OAuth.google.realm
 }, function (identifier, profile, done) {
-    console.log('identifier,profile,done: ', identifier, profile, done); 
+    console.log('identifier,profile,done: ', identifier, profile, done);
 
     // 既に存在するユーザーか？
     userModel.selectObjects({google_identifier:identifier}, function (err, rows) {
@@ -66,15 +66,15 @@ passport.use(new GoogleStrategy({
                 delete user.password;
                 done(err, user);
 
-                
+
                 // Playlistのデフォルトも作っておく。
-                var data = { 
+                var data = {
                     user_id: user.id,
                     type: 1,
                     title: '全てのPocket',
                     seq: 999,
                     user_pocket_ids: '[]'
-                };  
+                };
                 userPlaylistModel.insertObject(data, function () {});
 
 
@@ -93,7 +93,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 passport.use(new FacebookStrategy({
     clientID: global.mbSetting.OAuth.facebook.clientID,
     clientSecret: global.mbSetting.OAuth.facebook.clientSecret,
-    callbackURL: global.mbSetting.OAuth.facebook.callbackURL 
+    callbackURL: global.mbSetting.OAuth.facebook.callbackURL
 }, function (accessToken, refreshToken, profile, done) {
 
         console.log('accessToken: ', accessToken);
@@ -117,15 +117,15 @@ passport.use(new FacebookStrategy({
 
                     var user = rows[0];
                     done(null, user);
-                
+
                     // Playlistのデフォルトも作っておく。
-                    var data = { 
+                    var data = {
                         user_id: user.id,
                         type: 1,
                         title: '全てのPocket',
                         seq: 999,
                         user_pocket_ids: '[]'
-                    };  
+                    };
                     userPlaylistModel.insertObject(data, function () {});
 
                 });
@@ -146,7 +146,7 @@ passport.use(new TwitterStrategy({
     console.log('token: ', token);
     console.log('tokenSecret: ', tokenSecret);
     console.log('profile: ', profile);
-    
+
     // 既に存在するユーザーか？
     userModel.selectObjects({twitter_token:token, twitter_token_secret:tokenSecret}, function (err, rows) {
 
@@ -164,15 +164,15 @@ passport.use(new TwitterStrategy({
 
                 var user = rows[0];
                 done(null, user);
-                
+
                 // Playlistのデフォルトも作っておく。
-                var data = { 
+                var data = {
                     user_id: user.id,
                     type: 1,
                     title: '全てのPocket',
                     seq: 999,
                     user_pocket_ids: '[]'
-                };  
+                };
                 userPlaylistModel.insertObject(data, function () {});
 
             });
@@ -180,7 +180,7 @@ passport.use(new TwitterStrategy({
 
 
     });
-    
+
 }));
 
 
@@ -295,7 +295,7 @@ var oauthCallback = function (err, user, res) {
         return;
     }
 
-    global.sessionMap = global.sessionMap || {}; 
+    global.sessionMap = global.sessionMap || {};
 
     // 既に存在するCookieがあればそれを使う。
     var uid;
@@ -321,7 +321,7 @@ var oauthCallback = function (err, user, res) {
 
     console.log('sessionMap: ', global.sessionMap);
 
-    // Cookieの設定 
+    // Cookieの設定
     res.cookie('uid', uid, {maxAge:30*24*60*60, httpOnly:false});
     return res.redirect('/');
 
@@ -341,7 +341,7 @@ app.get('/auth/facebook/callback', function (req, res, next) {
     })(req, res, next);
 });
 
-// OAuth - Twitter 
+// OAuth - Twitter
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback', function (req, res, next) {
     passport.authenticate('twitter', function (err, user) {
@@ -395,9 +395,9 @@ app.get('/api/v1/artists/:id', artist.selectObject);
 // app.post('/api/v1/artists/:id/update', artist.update);
 // app.delete('/api/v1/artists/:id', artist.delete);
 
-// Pop 
+// Pop
 app.get('/api/v1/pops', pop.select);
-app.get('/api/v1/poplist', pop.selectPopList); 
+app.get('/api/v1/poplist', pop.selectPopList);
 app.put('/api/v1/likepop', pop.likePop);
 app.post('/api/v1/likepop/:id', pop.likePop);
 app.put('/api/v1/dislikepop', pop.dislikePop);
@@ -409,7 +409,7 @@ app.delete('/api/v1/pops/:id', pop.delete);
 // app.post('/api/v1.1/pops/:id/update', pop.update1_1);
 // app.delete('/api/v1.1/pops/:id', pop.delete1_1);
 
-// User 
+// User
 app.get('/api/v1/users', user.select);
 app.get('/api/v1/users/:id', user.selectObject);
 app.get('/api/v1/userInfo', user.userinfo);
@@ -417,9 +417,6 @@ app.post('/api/v1/users', user.add);
 app.post('/api/v1/users/:id/update', user.update);
 app.put('/api/v1/users/:id', user.update);
 app.delete('/api/v1/users/:id', user.delete);
-// app.post('/api/v1.1/users', user.add1_1);
-// app.post('/api/v1.1/users/:id/update', user.update1_1);
-// app.delete('/api/v1.1/users/:id', user.delete1_1);
 
 // User Pocket
 app.get('/api/v1/user_pockets', userPocket.select);

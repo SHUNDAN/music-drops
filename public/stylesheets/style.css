@@ -16683,8 +16683,6 @@ header {
   color: #fff;
   -webkit-border-radius: 26px;
   -moz-border-radius: 26px;
-  -ms-border-radius: 26px;
-  -o-border-radius: 26px;
   border-radius: 26px;
   background-color: rgba(255, 255, 255, 0.34);
 }
@@ -16809,8 +16807,6 @@ header {
   height: 60px;
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
-  -ms-border-radius: 60px;
-  -o-border-radius: 60px;
   border-radius: 60px;
 }
 /* line 53, ../dev/scss/modules/_buttons.scss */
@@ -16938,8 +16934,6 @@ header {
   line-height: 22px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 /* line 100, ../dev/scss/modules/_drop_list.scss */
@@ -17376,6 +17370,23 @@ a:hover {
   background-color: #ffcf3c;
   color: #8d7016;
   cursor: pointer;
+}
+/* line 355, ../dev/scss/pages/_mypage.scss */
+.pageMypage .pocketDeleteArea {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 300px;
+  height: 150px;
+  line-height: 300px;
+  text-align: center;
+  color: #8d7016;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+/* line 366, ../dev/scss/pages/_mypage.scss */
+.pageMypage .pocketDeleteArea.active {
+  border: 4px solid yellow;
 }
 
 /** スマホ用スタイル。とりあえずなもの。 */
