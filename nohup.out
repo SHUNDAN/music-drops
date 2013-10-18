@@ -76048,3 +76048,4 @@ stmt:  { sql: 'select a.id, a.user_id, b.name user_name, a.dest_user_id, c.name 
 [90mGET /api/v1/user_follows?user_id=8 [32m200 [90m28ms - 786b[0m
 { sql: 'select a.id, a.user_id, b.name user_name, a.artist_id, c.name artist_name, a.create_at, a.update_at from user_artist_follow a left outer join user b on a.user_id = b.id left outer join artist c on a.artist_id = c.id  where a.user_id=? limit 300' }
 [90mGET /api/v1/user_artist_follows/?user_id=8 [32m200 [90m2ms - 2b[0m
+[90mGET /www/delivery/lg.php?bannerid=55&amp;campaignid=7&amp;zoneid=1&amp;loc=http://o1.inviziads.com/rpcdelivery/?z=1&tim=1505&amp;referer=http://static.inviziads.com/openx/openx2.swf?zid=1&amp;cb=12d8a6cae4 [33m404 [90m2ms[0m
