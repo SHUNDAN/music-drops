@@ -16689,13 +16689,13 @@ header {
   white-space: nowrap;
 }
 
-/* line 96, ../dev/scss/modules/_buttons.scss */
+/* line 106, ../dev/scss/modules/_buttons.scss */
 .btn-text {
   position: relative;
   display: inline-block;
   padding: 5px 8px;
 }
-/* line 100, ../dev/scss/modules/_buttons.scss */
+/* line 110, ../dev/scss/modules/_buttons.scss */
 .btn-text:before, .btn-text:after {
   position: absolute;
   top: 0;
@@ -16705,12 +16705,12 @@ header {
   height: 0;
 }
 
-/* line 110, ../dev/scss/modules/_buttons.scss */
+/* line 120, ../dev/scss/modules/_buttons.scss */
 .btn-text-arrow-left {
   margin-left: 8px;
   padding-left: 4px;
 }
-/* line 113, ../dev/scss/modules/_buttons.scss */
+/* line 123, ../dev/scss/modules/_buttons.scss */
 .btn-text-arrow-left:before {
   border-top: 12px solid transparent;
   border-bottom: 12px solid transparent;
@@ -16718,12 +16718,12 @@ header {
   left: -8px;
 }
 
-/* line 120, ../dev/scss/modules/_buttons.scss */
+/* line 130, ../dev/scss/modules/_buttons.scss */
 .btn-text-arrow-right {
   margin-right: 8px;
   padding-right: 4px;
 }
-/* line 123, ../dev/scss/modules/_buttons.scss */
+/* line 133, ../dev/scss/modules/_buttons.scss */
 .btn-text-arrow-right:after {
   border-top: 12px solid transparent;
   border-bottom: 12px solid transparent;
@@ -16731,16 +16731,16 @@ header {
   right: -8px;
 }
 
-/* line 131, ../dev/scss/modules/_buttons.scss */
+/* line 141, ../dev/scss/modules/_buttons.scss */
 .btn-text-color-brown {
   color: #fff;
   background-color: #656457;
 }
-/* line 134, ../dev/scss/modules/_buttons.scss */
+/* line 144, ../dev/scss/modules/_buttons.scss */
 .btn-text-color-brown.btn-text-arrow-left:before {
   border-right-color: #656457;
 }
-/* line 137, ../dev/scss/modules/_buttons.scss */
+/* line 147, ../dev/scss/modules/_buttons.scss */
 .btn-text-color-brown.btn-text-arrow-right:after {
   border-left-color: #656457;
 }

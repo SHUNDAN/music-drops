@@ -93,6 +93,16 @@
 
 //  テキストボタン
 //-------------------------------------
+// ##  テキストが入るボタン
+// ##  共通class: .btn-text
+// ##  矢印の方向: .btn-text-arrow-left or btn-text-arrow-right
+// ##    左右につけたい場合は両方つける、要らない場合（四角）は取る
+// ##    heightはとりあえず24px固定
+// ##  ボタンの色: .btn-text-color-brown
+// ##    ★今後増えて行く。
+// ##  　★TODO::hover,:active 時もつくる
+// ##  
+//-------------------------------------
 .btn-text {
 	position: relative;
 	display: inline-block;
