@@ -135,9 +135,12 @@ define([
 
 
         // Pocketリスト表示（displayUserPocketをrendering）
-        renderUserPocketList: function () {
+        renderUserPocketList: function (options) {
+            options = options || {};
+            options.nowPlaylist = (this.currentPlaylist && this.currentPlaylist.attributes.type !== 1);
+            console.debug('options: ', options, this.currentPlaylist);
             var feelings = _.mbStorage.getCommon().feelings;
-            var snipet = _.mbTemplate('page_mypage_user_pocket_list', {pocketList:this.displayUserPocketList.models, feelings:feelings});
+            var snipet = _.mbTemplate('page_mypage_user_pocket_list', {pocketList:this.displayUserPocketList.models, feelings:feelings, options:options});
             this.$el.find('[data-type="dataArea"]').html(snipet);
 
             // 件数更新
@@ -407,14 +410,9 @@ define([
                     pocketId = $(e.currentTarget).data('pocket-id');
                     console.debug('drag start. ', pocketId);
 
-                    // 掃き溜め表示
-                    $('.pocketDeleteArea').removeClass('hidden');
 
                 }).off('dragend').on('dragend', function (e) {
                     console.debug('dragend');
-
-                    // 掃き溜め非表示
-                    $('.pocketDeleteArea').addClass('hidden');
                 });
 
             // Drop先
@@ -443,9 +441,6 @@ define([
                     e.preventDefault();
                     e.stopPropagation();
 
-                    // 掃き溜め非表示
-                    $('.pocketDeleteArea').addClass('hidden');
-
                     // プレイリストにまだ存在しないPocketIdの場合は、追加処理をする。
                     var playlist = self.userPlaylistList.get(playlistId);
                     var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
@@ -463,53 +458,187 @@ define([
                     }
                 });
 
-            // 掃き溜めエリア
-            $('#pocketDeleteArea')
-                .off('dragenter').on('dragenter', function (e) {
-                    $('#pocketDeleteArea').addClass('active');
-
-                }).off('dragover').on('dragover', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                }).off('dragleave').on('dragleave', function (e) {
-                    $('#pocketDeleteArea').removeClass('active');
-
-                }).off('drop').on('drop', function (e) {
-
-                    // 現在のPlaylistIdを特定する
-                    if (!self.currentPlaylist) {
-                        var models = _.filter(self.userPlaylistList.models, function (model) {
-                            return model.attributes.type === 1;
-                        });
-                        self.currentPlaylist = models[0];
-                    }
-
-                    // PlaylistからPocketを削除してサーバーへPush。
-                    var playlist = self.userPlaylistListp;
-                    var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
-                    console.debug('before: ', pocketIds);
-                    pocketIds = _.filter(pocketIds, function (id) {
-                        return id !== self.currentPlaylistId;
-                    });
-                    console.debug('after: ', pocketIds);
-                    playlist.set('user_pocket_ids', JSON.stringify(pocketIds));
-                    playlist.bind('sync', function () {
-
-                        // プレイリストを最新表示
-                        self.renderPlaylist();
-
-                        // Pocketリスト表示からも削除
-                        $('pocketListArea [data-pocket-id="'+pocketId+'"]').remove();
-                    });
-                    playlist.save();
-
-                });
-
-
          },
 
 
+
+
+         /**
+            Pocketリストの編集状態を切り替える
+         */
+         editPocketList: function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (this.$el.find('#pocketListArea').hasClass('editStyle')) {
+
+                if (!this.currentPlaylist || this.currentPlaylist.attributes.type === 1) {
+                    $(e.currentTarget).text('Pocket編集');
+                } else {
+                    $(e.currentTarget).text('playlist編集');
+                }
+                $('#pocketDeleteArea').addClass('hidden');
+
+
+            } else {
+                $(e.currentTarget).text('完了');
+
+                // // 掃き溜めエリア
+                // $('#pocketDeleteArea')
+                //     .removeClass('hidden')
+                //     .off('dragenter').on('dragenter', function (e) {
+                //         $('#pocketDeleteArea').addClass('active');
+
+                //     }).off('dragover').on('dragover', function (e) {
+                //         e.preventDefault();
+                //         e.stopPropagation();
+
+                //     }).off('dragleave').on('dragleave', function (e) {
+                //         $('#pocketDeleteArea').removeClass('active');
+
+                //     }).off('drop').on('drop', function (e) {
+
+                //         // 現在のPlaylistIdを特定する
+                //         if (!self.currentPlaylist) {
+                //             var models = _.filter(self.userPlaylistList.models, function (model) {
+                //                 return model.attributes.type === 1;
+                //             });
+                //             self.currentPlaylist = models[0];
+                //         }
+
+                //         // PlaylistからPocketを削除してサーバーへPush。
+                //         var playlist = self.userPlaylistListp;
+                //         var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
+                //         console.debug('before: ', pocketIds);
+                //         pocketIds = _.filter(pocketIds, function (id) {
+                //             return id !== self.currentPlaylistId;
+                //         });
+                //         console.debug('after: ', pocketIds);
+                //         playlist.set('user_pocket_ids', JSON.stringify(pocketIds));
+                //         playlist.bind('sync', function () {
+
+                //             // プレイリストを最新表示
+                //             self.renderPlaylist();
+
+                //             // Pocketリスト表示からも削除
+                //             $('pocketListArea [data-pocket-id="'+pocketId+'"]').remove();
+                //         });
+                //         playlist.save();
+
+                //     });
+
+
+
+
+            }
+
+            this.$el.find('#pocketListArea').toggleClass('editStyle');
+         },
+
+
+
+
+
+
+        /**
+         * Pocketを削除する
+         */
+        deletePocket: function (e) {
+
+            // 確認ダイアログを表示
+            var message;
+            var callback;
+            this.deleteTargetPocketId = $(e.currentTarget).parents('[data-pocket-id]').data('pocket-id');
+            if (!this.currentPlaylist || this.currentPlaylist.attributes.type === 1) { // ALL
+                message = 'Pocketを削除しますか？';
+                callback = _.bind(this._deletePocket, this);
+            } else {
+                message = 'プレイリストから削除しますか？';
+                callback = _.bind(this._deletePocketFromPlaylist, this);
+            }
+            var confirmDialog = new ConfirmDialogView();
+            confirmDialog.show({
+                message: message,
+                yesButtonCallback: callback
+            });
+
+        },
+
+
+        // Pocketを削除
+        _deletePocket: function () {
+
+            var pocketId = this.deleteTargetPocketId;
+            console.log('deletePocket', pocketId);
+
+            var aPocket = this.userPocketList.get(pocketId);
+            aPocket.bind('sync', _.bind(function () {
+
+                // Pocketリストから削除
+                this.userPocketList.remove(aPocket);
+
+                // 各プレイリストからも削除
+                _.each(this.userPlaylistList.models, function (model) {
+                    var oldIds = JSON.parse(model.attributes.user_pocket_ids);
+                    var newIds = _.filter(oldIds, function (id) {return id !== pocketId});
+
+                    if (oldIds.length != newIds.length) {
+                        model.attributes.user_pocket_ids = JSON.stringify(newIds);
+                        model.save();
+                    }
+                });
+
+                // 表示中のPocketsからも削除
+                var aModel = this.displayUserPocketList.get(pocketId);
+                if (aModel) {
+                    this.displayUserPocketList.remove(aModel);
+                }
+
+
+                // プレイリストを再レンダリング
+                this.renderPlaylist();
+
+                // Pocketsを再レンダリング
+                this.renderUserPocketList({edit:true});
+
+
+                // Localデータも更新
+                _.loadUserPockets({force: true});
+
+            }, this));
+            aPocket.destroy({wait: true});
+
+        },
+
+        // playlistから削除
+        _deletePocketFromPlaylist: function () {
+
+            var pocketId = this.deleteTargetPocketId;
+            console.log('deletePocketFromPlaylist', pocketId);
+
+            var model = this.currentPlaylist;
+            var oldIds = JSON.parse(model.attributes.user_pocket_ids);
+            var newIds = _.filter(oldIds, function (id) {return id !== pocketId});
+            model.attributes.user_pocket_ids = JSON.stringify(newIds);
+            model.bind('sync', _.bind(function () {
+
+                // 表示中のPocketsからも削除
+                var aModel = this.displayUserPocketList.get(pocketId);
+                if (aModel) {
+                    this.displayUserPocketList.remove(aModel);
+                }
+
+                // プレイリストを再レンダリング
+                this.renderPlaylist();
+
+                // Pocketsを再レンダリング
+                this.renderUserPocketList({edit:true});
+
+
+            }, this));
+            model.save();
+
+        },
 
 
 
@@ -603,50 +732,6 @@ define([
             mb.youtubeView.show(youtubeIds, this);
         },
 
-
-        /**
-         * Pocket削除
-         */
-        deletePocket: function (e) {
-
-            var $this = $(e.currentTarget);
-
-            // Pocket削除処理
-            var delFn = _.bind(function () {
-
-                var pocketId = $this.parents('[data-pocket-id]').data('pocket-id');
-                console.log('deletePocket', pocketId);
-
-                var aPocket = this.userPocketList.get(pocketId);
-                aPocket.bind('sync', _.bind(function () {
-
-                    // 再表示（古いやつ）
-                    this.showUserPocketList();
-                    // this.renderUserPocketList();
-
-                    // 削除アニメーション
-                    $this.parent().transit({opacity: 0, height: 0}, 200, 'ease', function () {
-                        $this.parent().remove();
-                    });
-
-                    // Localデータも更新
-                    _.loadUserPockets({force: true});
-
-                }, this));
-                aPocket.destroy({wait: true});
-
-            }, this);
-
-
-
-            // 確認ダイアログを表示
-            var confirmDialog = new ConfirmDialogView();
-            confirmDialog.show({
-                message: 'Pocketを削除しますか？',
-                yesButtonCallback: delFn
-            });
-
-        },
 
 
 

@@ -17269,7 +17269,22 @@ a:hover {
   line-height: 40px;
   border-radius: 5px;
 }
+/* line 264, ../dev/scss/pages/_mypage.scss */
+.pageMypage .pocketListFncArea {
+  padding: 10px 10px 10px 0;
+}
 /* line 267, ../dev/scss/pages/_mypage.scss */
+.pageMypage .pocketListFncArea .randomPlayButton {
+  width: 200px;
+  float: left;
+}
+/* line 272, ../dev/scss/pages/_mypage.scss */
+.pageMypage .pocketListFncArea .editButton {
+  width: 200px;
+  text-align: right;
+  float: right;
+}
+/* line 286, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li {
   position: relative;
   display: -webkit-box;
@@ -17281,11 +17296,11 @@ a:hover {
   color: #656457 !important;
   margin-bottom: 20px;
 }
-/* line 277, ../dev/scss/pages/_mypage.scss */
+/* line 296, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li:nth-child(2n) {
   margin-left: 10px;
 }
-/* line 280, ../dev/scss/pages/_mypage.scss */
+/* line 299, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li:after {
   position: absolute;
   top: 0;
@@ -17294,67 +17309,67 @@ a:hover {
   height: 72px;
   content: " ";
 }
-/* line 288, ../dev/scss/pages/_mypage.scss */
+/* line 307, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-1:after {
   background-color: #c85d94;
 }
-/* line 291, ../dev/scss/pages/_mypage.scss */
+/* line 310, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-2:after {
   background-color: #77b66a;
 }
-/* line 294, ../dev/scss/pages/_mypage.scss */
+/* line 313, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-3:after {
   background-color: red;
 }
-/* line 297, ../dev/scss/pages/_mypage.scss */
+/* line 316, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-4:after {
   background-color: #6880cc;
 }
-/* line 300, ../dev/scss/pages/_mypage.scss */
+/* line 319, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-5:after {
   background-color: #e97f45;
 }
-/* line 303, ../dev/scss/pages/_mypage.scss */
+/* line 322, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-6:after {
   background-color: #bc7ad4;
 }
-/* line 306, ../dev/scss/pages/_mypage.scss */
+/* line 325, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-7:after {
   background-color: #f4b74e;
 }
-/* line 310, ../dev/scss/pages/_mypage.scss */
+/* line 329, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .thumb {
   display: block;
   width: 72px;
   height: 72px;
 }
-/* line 315, ../dev/scss/pages/_mypage.scss */
+/* line 334, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .info {
   width: 150px;
   height: 72px;
   margin-left: 10px;
 }
-/* line 320, ../dev/scss/pages/_mypage.scss */
+/* line 339, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .title {
   padding: 10px 0;
   font-size: 14px;
   width: 100%;
 }
-/* line 324, ../dev/scss/pages/_mypage.scss */
+/* line 343, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .title a {
   display: inline;
 }
-/* line 328, ../dev/scss/pages/_mypage.scss */
+/* line 347, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .artistName {
   padding: 0 0 10px;
   font-size: 12px;
   width: 100%;
 }
-/* line 332, ../dev/scss/pages/_mypage.scss */
+/* line 351, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .artistName a {
   display: inline;
 }
-/* line 336, ../dev/scss/pages/_mypage.scss */
+/* line 355, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .playBtn {
   width: 42px;
   height: 42px;
@@ -17365,13 +17380,40 @@ a:hover {
   font-size: 22px;
   background-color: #dedbc7;
 }
-/* line 345, ../dev/scss/pages/_mypage.scss */
+/* line 364, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .playBtn:hover {
   background-color: #ffcf3c;
   color: #8d7016;
   cursor: pointer;
 }
-/* line 355, ../dev/scss/pages/_mypage.scss */
+/* line 370, ../dev/scss/pages/_mypage.scss */
+.pageMypage .pocketListArea .deleteBtn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  margin-left: 10px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  font-size: 22px;
+  font-weight: bold;
+  background-color: #dedbc7;
+}
+/* line 381, ../dev/scss/pages/_mypage.scss */
+.pageMypage .pocketListArea .deleteBtn:hover {
+  background-color: #ffcf3c;
+  color: #8d7016;
+  cursor: pointer;
+}
+/* line 390, ../dev/scss/pages/_mypage.scss */
+.pageMypage .pocketListArea.editStyle .playBtn {
+  display: none;
+}
+/* line 393, ../dev/scss/pages/_mypage.scss */
+.pageMypage .pocketListArea.editStyle .deleteBtn {
+  display: block;
+}
+/* line 403, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketDeleteArea {
   position: absolute;
   top: 10px;
@@ -17384,7 +17426,7 @@ a:hover {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
-/* line 366, ../dev/scss/pages/_mypage.scss */
+/* line 414, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketDeleteArea.active {
   border: 4px solid yellow;
 }

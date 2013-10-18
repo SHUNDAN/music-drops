@@ -260,6 +260,25 @@ a:hover {text-decoration: none;}
 	}
 
 
+	// ランダム再生とPocket編集機能
+	.pocketListFncArea {
+		padding: 10px 10px 10px 0;
+
+		.randomPlayButton {
+			width: 200px;
+			float: left;
+		}
+
+		.editButton {
+			width: 200px;
+			text-align: right;
+			float: right;
+		}
+
+
+	}
+
+
 
 
 	// Pocketリスト
@@ -348,7 +367,36 @@ a:hover {text-decoration: none;}
 				cursor: pointer;
 			}
 		}
+		.deleteBtn {
+			display: none;
+			width: 42px;
+			height: 42px;
+			margin-left: 10px;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 42px;
+			font-size: 22px;
+			font-weight: bold;
+			background-color: #dedbc7;
+			&:hover {
+				background-color: #ffcf3c;
+				color: #8d7016;
+				cursor: pointer;
+			}
+		}
+
+		// 編集状態のスタイル
+		&.editStyle {
+			.playBtn {
+				display: none;
+			}
+			.deleteBtn {
+				display: block;
+			}
+		}
 	}
+
+
 
 
 	// Pocketの掃き溜め

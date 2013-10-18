@@ -158,8 +158,20 @@
         </div>
     </div>
 
+    <!--機能-->
+    <div class="pocketListFncArea clearfix">
+        <a href="#" class="randomPlayButton">ランダム再生</a>
+        <%if (options.edit) {%>
+            <a href="#" class="editButton" data-event-click="editPocketList">完了</a>
+        <%} else if (options.nowPlaylist) {%>
+            <a href="#" class="editButton" data-event-click="editPocketList">Playlist編集</a>
+        <%} else {%>
+            <a href="#" class="editButton" data-event-click="editPocketList">Pocket編集</a>
+        <%}%>
+    </div>
+
     <!--Pocketリスト-->
-    <ul id="pocketListArea" class="pocketListArea clearfix">
+    <ul id="pocketListArea" class="pocketListArea clearfix <%if(options.edit){%>editStyle<%}%>">
         <%_.each(pocketList, function (pocket) {%>
             <li class="feeling-<%=pocket.attributes.feeling_id%>" data-pocket-id="<%=pocket.attributes.id%>">
                 <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>"/>
@@ -172,6 +184,7 @@
                     </div>
                 </div>
                 <div class="playBtn" data-event-click="playMusic">▶</div>
+                <div class="deleteBtn" data-event-click="deletePocket">×</div>
             </li>
         <%});%>
 
