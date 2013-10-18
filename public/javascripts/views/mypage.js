@@ -45,27 +45,27 @@ define([
             _.bindEvents(this);
 
 
-            _.bindAll(this, 
-                'render', 
+            _.bindAll(this,
+                'render',
                 'renderMyDrops',
                 'renderCheckArtists',
                 'renderFollowUsers',
                 'renderFollowedUsers',
 
-                'showUserPocketList', 
+                'showUserPocketList',
                 'renderUserPocketList',
                 'renderPlaylist',
-                'showUserNotificationList', 
-                'showYoutube', 
-                'deletePocket', 
-                'deleteNofitication', 
-                'changeTags', 
-                'filterPockets', 
-                'saveFilter', 
-                'useFilter', 
-                'clearFilter', 
-                'deleteFilter', 
-                'show', 
+                'showUserNotificationList',
+                'showYoutube',
+                'deletePocket',
+                'deleteNofitication',
+                'changeTags',
+                'filterPockets',
+                'saveFilter',
+                'useFilter',
+                'clearFilter',
+                'deleteFilter',
+                'show',
                 'dealloc');
 
             this.userPlaylistList = new UserPlaylistList();
@@ -151,6 +151,9 @@ define([
         renderPlaylist: function () {
             var snipet = _.mbTemplate('page_mypage_playlist', {playlists: this.userPlaylistList.models});
             this.$el.find('#playlistList').html(snipet);
+
+            // ドラッグ＆ドロップ機能を追加
+            this.addDragAndDropFacility();
         },
 
 
@@ -195,7 +198,7 @@ define([
             // 既にあればそれを表示
             if (this.checkArtists && this.checkArtists.length > 0) {
                 this.renderCheckArtists();
-            
+
             } else {
                 // 無ければロードして表示
                 this.checkArtists = new UserArtistFollowList();
@@ -220,7 +223,7 @@ define([
             // 既にあればそれを表示
             if (this.followUsers && this.followUsers.length > 0) {
                 this.renderFollowUsers();
-            
+
             } else {
                 // なければロードして表示
                 this.followUsers = new UserFollowList();
@@ -245,7 +248,7 @@ define([
             // 既にあればそれを表示
             if (this.followedUsers && this.followedUsers.length > 0) {
                 this.renderFollowedUsers();
-            
+
             } else {
                 // なければロードして表示
                 this.followedUsers = new UserFollowList();
@@ -396,18 +399,59 @@ define([
 
             var self = this;
             var pocketId;
+            var playlistId;
+
+            // Dragするもの
             this.$el.find('#pocketListArea li')
                 .attr('draggable', 'true')
-                .on('dragstart', function (e) {
+                .off('dragstart').on('dragstart', function (e) {
                     pocketId = $(e.currentTarget).data('pocket-id');
                     console.debug('drag start. ', pocketId);
                 });
 
             // Drop先
-            this.$el.find('[data-drop-target="playlist"]').on('drop', function (e) {
-                console.debug('dragenter');
-                $(e.currentTarget).addClass('dropTarget');
-            })
+            this.$el.find('[data-drop-target="playlist"]')
+                .css('-khtml-user-drag', 'element')
+                .off('dragenter').on('dragenter', function (e) {
+                    $(e.currentTarget).addClass('dropTarget');
+                    playlistId = $(e.currentTarget).data('playlist-id');
+                    console.debug('dragenter: ', playlistId);
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                }).off('dragover').on('dragover', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                }).off('dragleave').on('dragleave', function (e) {
+                    console.debug('dragleave', e);
+                    $(e.currentTarget).removeClass('dropTarget');
+                    playlistId = null;
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                }).off('drop').on('drop', function (e) {
+                    console.debug('drop', pocketId, playlistId);
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // プレイリストにまだ存在しないPocketIdの場合は、追加処理をする。
+                    var playlist = self.userPlaylistList.get(playlistId);
+                    var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
+                    if (!_.contains(pocketIds, pocketId)) {
+
+                        pocketIds.push(pocketId);
+                        playlist.set('user_pocket_ids', JSON.stringify(pocketIds));
+                        playlist.bind('sync', function () {
+                            self.renderPlaylist();
+                        });
+                        playlist.save();
+
+                    } else {
+                        console.debug('既に登録済みのPocketです。 pocketId=', pocketId);
+                    }
+                });
+
 
          },
 
@@ -604,7 +648,7 @@ define([
             });
             console.log('tags: ', tags);
 
-            
+
             // サーバーへ保存する
             var anUserPocket = new UserPocket();
             anUserPocket.set('id', id);
@@ -671,14 +715,14 @@ define([
 
                         var aTagString = model.attributes.tags;
                         if (!aTagString || aTagString.length === 0) {
-                            return false; 
+                            return false;
                         }
 
                         var aTags = aTagString.split(',');
                         var found = false;
                         _.each(aTags, function (tag) {
                             if (_.contains(tags, tag)) {
-                                found = true; 
+                                found = true;
                             }
                         });
                         return found;
@@ -732,7 +776,7 @@ define([
                 artist: artist,
                 tags: tags
             };
-            
+
 
             // concat condition.
             var conditions = this.user.pocket_filter || '[]';
@@ -754,7 +798,7 @@ define([
             }, this));
             anUser.save();
 
-            
+
 
 
         },
@@ -769,13 +813,13 @@ define([
             var tags = $this.data('tags');
             console.debug('useFilter: ', title, artist, tags);
 
-            
+
             // 表示きりかえ
             $('#savedFilter').children('div').removeClass('btn-warning');
             $this.addClass('btn-warning');
 
 
-            // set data. 
+            // set data.
             $('#titleCondition').val(title);
             $('#artistCondition').val(artist);
             $('#tagsCondition').val(tags);
@@ -812,11 +856,11 @@ define([
             var title = $target.data('title');
             var artist = $target.data('artist');
             var tags = $target.data('tags');
-            
+
             var pocketFilter = JSON.parse(this.user.pocket_filter);
             var newPocketFilter = [];
             for (var i = 0; i < pocketFilter.length; i++ ) {
-                var filter = pocketFilter[i];    
+                var filter = pocketFilter[i];
                 console.debug(filter, title, artist, tags);
                 if (title && title === filter.title || !title && !filter.title) {
                     if (artist && artist === filter.artist || !artist && !filter.artist) {
