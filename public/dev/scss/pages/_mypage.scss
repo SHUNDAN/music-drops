@@ -139,6 +139,21 @@ a:hover {text-decoration: none;}
 				  border-right: 0px solid transparent;
 				}
 			}
+			&.dropTarget {
+				background-color: #ffe77c;
+				&:after {
+				  position: absolute;
+				  top: 0;
+				  right: -12px;
+				  width: 0px;
+				  height: 0px;
+				  content: " ";
+				  border-top: 12px solid transparent;
+				  border-bottom: 12px solid transparent;
+				  border-left: 12px solid #ffe77c;
+				  border-right: 0px solid transparent;
+				}				
+			}
 
 			// 削除ボタン
 			.clearBtn {
@@ -154,6 +169,7 @@ a:hover {text-decoration: none;}
 				display: block;
 			}
 		}
+
 	}
 
 	// プレイリストを作るUI
@@ -305,11 +321,17 @@ a:hover {text-decoration: none;}
 			padding: 10px 0;
 			font-size: 14px;
 			width: 100%;
+			a {
+				display: inline;
+			}
 		}
 		.artistName {
 			padding: 0 0 10px;
 			font-size: 12px;
 			width: 100%;
+			a {
+				display: inline;
+			}
 		}
 		.playBtn {
 			width: 42px;

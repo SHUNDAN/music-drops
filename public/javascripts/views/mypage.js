@@ -141,12 +141,14 @@ define([
 
             // 件数更新
             this.$el.find('#numOfPockets').text(this.displayUserPocketList.length);
+
+            // ドラッグ＆ドロップ機能を追加
+            this.addDragAndDropFacility();
         },
 
 
         // Playlistを表示
         renderPlaylist: function () {
-            console.debug('renderPlaylist: ', this.userPlaylistList.models);
             var snipet = _.mbTemplate('page_mypage_playlist', {playlists: this.userPlaylistList.models});
             this.$el.find('#playlistList').html(snipet);
         },
@@ -304,6 +306,11 @@ define([
             var playlistId = $(e.currentTarget).data('playlist-id');
             var playlist = this.userPlaylistList.get(playlistId);
 
+            // 無い場合には、何もしない
+            if (!playlist) {
+                return false;
+            }
+
             var pocketIds = JSON.parse(playlist.attributes.user_pocket_ids);
             this.displayUserPocketList = new UserPocketList();
             _.each(pocketIds, _.bind(function (pocketId) {
@@ -366,6 +373,12 @@ define([
             console.debug('deletePlaylist: ', playlistId);
 
 
+            var userPlaylist = this.userPlaylistList.get(playlistId);
+            userPlaylist.bind('sync', _.bind(function () {
+                this.userPlaylistList.remove(userPlaylist);
+                this.renderPlaylist();
+            }, this));
+            userPlaylist.destroy();
 
             return false;
          },
@@ -373,6 +386,30 @@ define([
 
 
 
+         /**
+            ドラッグ＆ドロップ機能を追加
+         */
+         addDragAndDropFacility: function () {
+
+            // Pocket
+            // this.$el.find('#pocketListArea li').draggable({});
+
+            var self = this;
+            var pocketId;
+            this.$el.find('#pocketListArea li')
+                .attr('draggable', 'true')
+                .on('dragstart', function (e) {
+                    pocketId = $(e.currentTarget).data('pocket-id');
+                    console.debug('drag start. ', pocketId);
+                });
+
+            // Drop先
+            this.$el.find('[data-drop-target="playlist"]').on('drop', function (e) {
+                console.debug('dragenter');
+                $(e.currentTarget).addClass('dropTarget');
+            })
+
+         },
 
 
 
@@ -410,30 +447,6 @@ define([
             $('#poplist').html(snipet);
         },
 
-
-        // /**
-        //  * ユーザーPocketを表示する（並び替えとかする新しいやつ）
-        //  */
-        // renderUserPocketList: function () {
-        //     var template = $('#page_mypage_user_pocket_list').html();
-        //     var snipet = _.template(template, {pocketList:this.userPocketList.models});
-        //     this.$el.find('#pocketListArea').html(snipet);
-
-
-        //     // Drag & Dropを実装する
-        //     var self = this;
-        //     var fn = function () {
-        //         $('#pocketListArea .twoCols').sortable({
-        //             update: function (event, ui) {
-        //                 console.log('update');
-        //                 // $('#pocketListArea').sortable('destroy');
-        //                 // fn();
-        //             }
-        //         }).disableSelection();                
-        //     };
-        //     fn();
-
-        // },
 
 
 

@@ -66,8 +66,7 @@
 
 
         <!--右Colのデータ表示部分-->
-        <div class="rightCol" data-type="dataArea">
-        </div>
+        <div class="rightCol" data-type="dataArea"><!--JSで内容を設定する--></div>
 
 
     </div>
@@ -154,7 +153,7 @@
     </div>
 
     <!--Pocketリスト-->
-    <ul class="pocketListArea clearfix">
+    <ul id="pocketListArea" class="pocketListArea clearfix">
         <%_.each(pocketList, function (pocket) {%>
             <li class="feeling-<%=pocket.attributes.feeling_id%>" data-pocket-id="<%=pocket.attributes.id%>">
                 <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>"/>
@@ -179,12 +178,17 @@
 <!--ユーザープレイリスト一覧-->
 <script id="page_mypage_playlist" type="text/template">
     <%_.each(playlists, function (playlist) {%>
-        <li data-playlist-id="<%=playlist.attributes.id%>" data-event-click="showPlaylist">
-            <%=playlist.attributes.title%> (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
-            <%if (playlist.attributes.type !== 1) {%>
+
+        <%if (playlist.attributes.type !== 1) {%>
+            <li data-playlist-id="<%=playlist.attributes.id%>" data-event-click="showPlaylist" data-drop-target="playlist">
+                <%=playlist.attributes.title%> (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
                 <a href="#" class="clearBtn" data-event-click="deletePlaylist">×</a>
-            <%}%>
-        </li>
+            </li>
+        <%} else {%>
+            <li data-playlist-id="<%=playlist.attributes.id%>" data-event-click="showPlaylist">
+                <%=playlist.attributes.title%> (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
+            </li>
+        <%}%>
 
     <%});%>
 </script>
