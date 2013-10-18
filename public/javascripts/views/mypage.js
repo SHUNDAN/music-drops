@@ -479,56 +479,35 @@ define([
                 }
                 $('#pocketDeleteArea').addClass('hidden');
 
+                // ソート機能を解除
+                $('#pocketListArea').sortable('destroy');
+                // ドラッグ再開
+                $('#pocketListArea li').attr('draggable', 'true');
+
+
+                // ソート結果をサーバーへPushする
+                if (this.currentPlaylist && this.currentPlaylist.attributes.type !== 1) {
+
+                    var ids = [];
+                    $('#pocketListArea li').each(function () {
+                        ids.push($(this).data('pocket-id'));
+                    });
+                    console.debug('ids: ', ids);
+                    this.currentPlaylist.set('user_pocket_ids', JSON.stringify(ids));
+                    this.currentPlaylist.save();
+                }
+
 
             } else {
                 $(e.currentTarget).text('完了');
 
-                // // 掃き溜めエリア
-                // $('#pocketDeleteArea')
-                //     .removeClass('hidden')
-                //     .off('dragenter').on('dragenter', function (e) {
-                //         $('#pocketDeleteArea').addClass('active');
+                // ドラッグ停止
+                $('#pocketListArea li').attr('draggable', 'false');
 
-                //     }).off('dragover').on('dragover', function (e) {
-                //         e.preventDefault();
-                //         e.stopPropagation();
-
-                //     }).off('dragleave').on('dragleave', function (e) {
-                //         $('#pocketDeleteArea').removeClass('active');
-
-                //     }).off('drop').on('drop', function (e) {
-
-                //         // 現在のPlaylistIdを特定する
-                //         if (!self.currentPlaylist) {
-                //             var models = _.filter(self.userPlaylistList.models, function (model) {
-                //                 return model.attributes.type === 1;
-                //             });
-                //             self.currentPlaylist = models[0];
-                //         }
-
-                //         // PlaylistからPocketを削除してサーバーへPush。
-                //         var playlist = self.userPlaylistListp;
-                //         var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
-                //         console.debug('before: ', pocketIds);
-                //         pocketIds = _.filter(pocketIds, function (id) {
-                //             return id !== self.currentPlaylistId;
-                //         });
-                //         console.debug('after: ', pocketIds);
-                //         playlist.set('user_pocket_ids', JSON.stringify(pocketIds));
-                //         playlist.bind('sync', function () {
-
-                //             // プレイリストを最新表示
-                //             self.renderPlaylist();
-
-                //             // Pocketリスト表示からも削除
-                //             $('pocketListArea [data-pocket-id="'+pocketId+'"]').remove();
-                //         });
-                //         playlist.save();
-
-                //     });
-
-
-
+                // プレイリスト編集の場合は、並び替えをサポートする
+                if (this.currentPlaylist && this.currentPlaylist.attributes.type !== 1) {
+                    $('#pocketListArea').sortable();
+                }
 
             }
 

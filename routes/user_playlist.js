@@ -1,13 +1,13 @@
 "use strict";
 /*
- * User. 
+ * User.
  */
 var util = require('util');
 var appUtil = require('../util/utility');
 var userPlaylistModel = require('../models/user_playlist');
 
 /**
- * Select 
+ * Select
  */
 exports.select = function(req, res){
 
@@ -64,6 +64,9 @@ exports.add = function(req, res) {
 
     // defaults設定
     req.body.user_pocket_ids = req.body.user_pocket_ids || '[]';
+    if (!req.body.type) {
+        req.body.type = 2; // user custom playlist.
+    }
 
 
     // uidからユーザー情報を取得する
@@ -73,9 +76,9 @@ exports.add = function(req, res) {
         appUtil.actionLog(req, 'add pocket failed. no authentication.');
         res.json(403, {message: 'authentication error.'});
         return;
-    }   
+    }
 
-    req.body.user_id = user_id; 
+    req.body.user_id = user_id;
     console.log('req.body', req.body);
 
 
@@ -94,7 +97,7 @@ exports.add = function(req, res) {
 exports.update = function(req, res) {
 
 
-    // login check. 
+    // login check.
     if (!appUtil.isLogedIn(req)) {
         appUtil.response403(res);
         return;
@@ -117,7 +120,7 @@ exports.update = function(req, res) {
  */
 exports.delete = function(req, res) {
 
-    
+
     // パラメータチェック
     if (!req.params.id && !req.body.id) {
         res.json(400, 'id must be identified.');
@@ -131,7 +134,7 @@ exports.delete = function(req, res) {
         appUtil.actionLog(req, 'delete pocket failed. no authentication');
         appUtil.response403(res);
         return;
-    } 
+    }
 
     // 自分の以外は消せないようにする。
     var param = (req.params.id ? req.params : req.body);
