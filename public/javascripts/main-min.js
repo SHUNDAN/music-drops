@@ -379,7 +379,7 @@ define('models/common/user_storage',[], function () {
          * Low Level API
          */
         getStorage: function (type) {
-            return (type === 'ls' ? localStorage : sessionStorage);
+            return (type === 'ls' ? localStorage : localStorage);
         },
         setItem: function (key, value, type) {
             this.getStorage(type).setItem(key, value);
@@ -391,7 +391,7 @@ define('models/common/user_storage',[], function () {
             this.setItem(key, JSON.stringify(value), type);
         },
         getObject: function (key, type) {
-            return JSON.parse(this.getItem(key, type)); 
+            return JSON.parse(this.getItem(key, type));
         },
 
 
@@ -442,11 +442,11 @@ define('models/common/user_storage',[], function () {
         getUser: function () {return this.getObject('user');},
 
 
-    
-    
-    
-    
-    
+
+
+
+
+
     });
 
 
@@ -553,7 +553,7 @@ define('models/pop/pop',[],function () {
         create: function () {
             console.log('create');
             this.save(this.attributes, {
-                headers: {uid: sessionStorage.getItem('uid')},
+                headers: {uid: localStorage.getItem('uid')},
                 success: _.bind(function () {
                     // this.trigger('success_save');
                 }, this),
@@ -1801,7 +1801,7 @@ define('models/music/music_link',[], function () {
         create: function () {
             console.log('create');
             this.save(this.attributes, {
-                headers: {uid: sessionStorage.getItem('uid')},
+                headers: {uid: localStorage.getItem('uid')},
                 success: _.bind(function () {
                 }, this),
                 error: _.bind(function (jqXHR, status) {
@@ -1810,7 +1810,7 @@ define('models/music/music_link',[], function () {
                         mb.router.appView.authErrorHandler();
                     }
                 }, this),
-            }); 
+            });
         },
     });
 
@@ -1849,7 +1849,7 @@ define('models/user/user_pocket',[], function () {
     console.debug('load: model:user_pocket');
 
     var UserPocketModel = Backbone.Model.extend({
-    
+
         defaults: {
             id: null,
             user_id: null,
@@ -1874,7 +1874,7 @@ define('models/user/user_pocket',[], function () {
         create: function () {
             console.log('create');
             this.save(this.attributes, {
-                // headers: {uid: sessionStorage.getItem('uid')},
+                // headers: {uid: localStorage.getItem('uid')},
                 error: _.bind(function (jqXHR, statusObject, err) {
                     console.log('Pop save failed. reson: ', arguments);
                     if (statusObject.status === 403) {
@@ -2593,7 +2593,7 @@ define('views/login',[
         successCallback: null,
         userStorage: new UserStorage(),
 
-        
+
 
         initialize: function () {
             this.model = new UserModel();
@@ -2619,7 +2619,7 @@ define('views/login',[
         renderForMordal: function () {
 
             var self = this;
-        
+
             var $clickArea = $('<div id="clickArea"/>');
             $clickArea.css({
                 width: '100%',
@@ -2686,7 +2686,7 @@ define('views/login',[
                       alert('login successed');
 
                       // TODO とりあえずの実装なので直す
-                      sessionStorage.setItem('user', JSON.stringify(json.info));
+                      localStorage.setItem('user', JSON.stringify(json.info));
 
                       if (self.successCallback) {
                         self.successCallback();
@@ -2879,51 +2879,22 @@ define('models/user/user_playlist_list',['models/user/user_playlist'], function 
             return '/api/v1/user_playlists';
         },
 
+
+        fetchFollowPlaylist: function (userId) {
+            this.fetch({
+                reset: true,
+                url: '/api/v1/follow_playlists',
+                data: {
+                    user_id: userId
+                }
+            });
+        },
+
     });
 
     return UserPlaylistCollection;
 });
 
-
-/**
- * Model: User Notification
- */
-define('models/user/user_notification',[], function () {
-
-    var UserNotificationModel = Backbone.Model.extend({
-   
-        defaults: {
-            id: null,
-            type: null,
-            json: null,
-            create_at: null,
-            update_at: null
-        },
-
-        urlRoot: '/api/v1/user_notifications/',
-    });
-
-    return UserNotificationModel;
-
-});
-
-
-/**
- * Collection: User Notification
- */
-define('models/user/user_notification_list',['models/user/user_notification'], function (UserNotification) {
-
-    var UserNotificationCollection = Backbone.Collection.extend({
-
-        model: UserNotification,
-
-        url: '/api/v1/user_notifications',
-    });
-
-
-    return UserNotificationCollection;
-
-});
 
 
 /**
@@ -3011,7 +2982,6 @@ define('views/mypage',[
     'models/user/user_pocket_list',
     'models/user/user_playlist',
     'models/user/user_playlist_list',
-    'models/user/user_notification_list',
     'models/user/user_follow',
     'models/user/user_follow_list',
     'models/user/user_artist_follow',
@@ -3026,7 +2996,6 @@ define('views/mypage',[
     UserPocketList,
     UserPlaylist,
     UserPlaylistList,
-    UserNotificationList,
     UserFollow,
     UserFollowList,
     UserArtistFollow,
@@ -3053,27 +3022,18 @@ define('views/mypage',[
                 'renderCheckArtists',
                 'renderFollowUsers',
                 'renderFollowedUsers',
-
-                'showUserPocketList',
+                '_filterUserPocketList',
+                'renderUserPocketListArea',
                 'renderUserPocketList',
                 'renderPlaylist',
-                'showUserNotificationList',
-                'showYoutube',
+                'renderUserFollowPlaylist',
                 'deletePocket',
-                'deleteNofitication',
-                'changeTags',
                 'filterPockets',
-                'saveFilter',
-                'useFilter',
-                'clearFilter',
-                'deleteFilter',
                 'show',
                 'dealloc');
 
             this.userPlaylistList = new UserPlaylistList();
             this.userPlaylistList.bind('reset', this.renderPlaylist);
-            this.userNotifitactionList = new UserNotificationList();
-            this.userNotifitactionList.bind('reset', this.showUserNotificationList);
             this.userFollowedList = new UserFollowList();
             this.userFollowList = new UserFollowList();
             this.userFollowedList.bind('reset', this.renderUserFollowedList);
@@ -3081,23 +3041,9 @@ define('views/mypage',[
             this.userArtistFollowList = new UserArtistFollow();
             this.userArtistFollowList.bind('reset', this.renderUserArtistFollow);
 
-            if (_.isIphone || _.isAndroid) {
-                $(document).off().on('blur', '[data-event="filterPockets"]', this.filterPockets);
-            } else {
-                $(document).off().on('keyup', '[data-event="filterPockets"]', this.filterPockets);
-            }
+
         },
 
-        events: {
-            'click [data-event="showYoutube"]': 'showYoutube',
-            'click [data-event="deletePocket"]' : 'deletePocket',
-            'click [data-event="deleteNotification"]': 'deleteNofitication',
-            'blur [data-event="changeTags"]': 'changeTags',
-            'click [data-event="saveFilter"]': 'saveFilter',
-            'click [data-event="useFilter"]': 'useFilter',
-            'click [data-event="clearFilter"]': 'clearFilter',
-            'click [data-event="deleteFilter"]': 'deleteFilter',
-        },
 
 
         // マイページ表示
@@ -3111,6 +3057,8 @@ define('views/mypage',[
         renderMyDrops: function () {
             var snipet = _.mbTemplate('page_mypage_mypop_list', {popList:this.myPopList.models});
             this.$el.find('[data-type="dataArea"]').html(snipet);
+            // 件数も
+            $('#numOfMyDrops').text('(' + this.myPopList.length + ')');
         },
 
 
@@ -3118,6 +3066,8 @@ define('views/mypage',[
         renderCheckArtists: function () {
             var snipet = _.mbTemplate('page_mypage_check_artists', {checkArtists:this.checkArtists.models});
             this.$el.find('[data-type="dataArea"]').html(snipet);
+            // 件数も
+            $('#numOfCheckArtists').text('(' + this.checkArtists.length + ')');
         },
 
 
@@ -3125,6 +3075,8 @@ define('views/mypage',[
         renderFollowUsers: function () {
             var snipet = _.mbTemplate('page_mypage_follow_users', {followUsers: this.followUsers.models});
             this.$el.find('[data-type="dataArea"]').html(snipet);
+            // 件数も
+            $('#numOfFollowUsers').text('(' + this.followUsers.length + ')');
         },
 
 
@@ -3132,30 +3084,119 @@ define('views/mypage',[
         renderFollowedUsers: function () {
             var snipet = _.mbTemplate('page_mypage_followed_users', {followedUsers: this.followedUsers.models});
             this.$el.find('[data-type="dataArea"]').html(snipet);
+            // 件数も
+            $('#numOfFollowedUsers').text('(' + this.followedUsers.length + ')');
         },
 
 
         // Pocketリスト表示（displayUserPocketをrendering）
-        renderUserPocketList: function () {
+        renderUserPocketListArea: function (options) {
+
+            // Option系
+            options = options || {};
+            options.nowPlaylist = (this.currentPlaylist && this.currentPlaylist.attributes.type !== 1);
+            options.filterWords = this.filterWords || [];
+
             var feelings = _.mbStorage.getCommon().feelings;
-            var snipet = _.mbTemplate('page_mypage_user_pocket_list', {pocketList:this.displayUserPocketList.models, feelings:feelings});
+            var snipet = _.mbTemplate('page_mypage_user_pocket_list_area', {feelings:feelings, options:options});
             this.$el.find('[data-type="dataArea"]').html(snipet);
 
+            // 中身もレンダリング
+            this.renderUserPocketList(options);
+        },
+
+        // Pocketリスト表示
+        renderUserPocketList: function (options) {
+
+            // 表示情報
+            this.filteredPocketList = this._filterUserPocketList();
+
+            // Option系
+            options = options || {};
+            options.nowPlaylist = (this.currentPlaylist && this.currentPlaylist.attributes.type !== 1);
+            options.filterWords = this.filterWords || [];
+
+            var feelings = _.mbStorage.getCommon().feelings;
+            var snipet = _.mbTemplate('page_mypage_user_pocket_list', {pocketList:this.filteredPocketList.models, feelings:feelings, options:options});
+            this.$el.find('#pocketListArea').html(snipet);
+
             // 件数更新
-            this.$el.find('#numOfPockets').text(this.displayUserPocketList.length);
+            this.$el.find('#numOfPockets').text(this.filteredPocketList.length);
 
             // ドラッグ＆ドロップ機能を追加
             this.addDragAndDropFacility();
         },
 
 
+        // 表示Pocketをフィルタリング
+        _filterUserPocketList: function () {
+
+            var self = this;
+            var filteredPocketList = new UserPocketList();
+            var models = [];
+
+            // word絞り込み
+            if (self.filterWords && self.filterWords.length > 0) {
+                console.debug('aaaa', self.displayUserPocketList.models.length);
+                _.each(self.displayUserPocketList.models, function (pocket) {
+                    var good = false;
+                    _.each(self.filterWords, function (word) {
+                        if (pocket.attributes.title.indexOf(word) !== -1
+                            || pocket.attributes.artist_name.indexOf(word) !== -1) {
+                            good = true;
+                        }
+                    });
+                    if (good) {
+                        models.push(pocket);
+                    }
+                });
+
+            } else {
+                console.debug('bbb', self.displayUserPocketList.models.length);
+                models = self.displayUserPocketList.models;
+            }
+
+            // feeling絞り込み
+            if (self.filterFeelingId) {
+                console.debug('feelingId: ', self.filterFeelingId);
+                models = _.filter(models, function (model) {
+                    return model.attributes.feeling_id === self.filterFeelingId;
+                });
+            }
+
+            filteredPocketList.models = models;
+            return filteredPocketList;
+        },
+
+
+        // フィルター情報を削除
+        _clearFilter: function () {
+            this.filterWords = [];
+            $('#filterByNameInput').val('');
+            $('#filterByFeelingSelect option:eq(0)').select();
+        },
+
+
+
         // Playlistを表示
         renderPlaylist: function () {
-            var snipet = _.mbTemplate('page_mypage_playlist', {playlists: this.userPlaylistList.models});
+            var playlists = _.filter(this.userPlaylistList.models, function (playlist) {
+                return playlist.attributes.type !== 3; // フォロープレイリストではない。
+            });
+            var snipet = _.mbTemplate('page_mypage_playlist', {playlists: playlists});
             this.$el.find('#playlistList').html(snipet);
 
             // ドラッグ＆ドロップ機能を追加
             this.addDragAndDropFacility();
+        },
+
+
+        /**
+            フォローしているプレイリストを表示
+        */
+        renderUserFollowPlaylist: function () {
+            var snipet = _.mbTemplate('page_mypage_follow_playlist', {playlists: this.userFollowPlaylistList.models});
+            this.$el.find('#followPlaylist').html(snipet);
         },
 
 
@@ -3280,8 +3321,8 @@ define('views/mypage',[
             // startPos, playlist.
             options.startPos = 0;
             options.musicArray = [];
-            for (var i = 0; i < this.displayUserPocketList.models.length; i++) {
-                var model = this.displayUserPocketList.models[i];
+            for (var i = 0; i < this.filteredPocketList.models.length; i++) {
+                var model = this.filteredPocketList.models[i];
                 options.musicArray.push(model.attributes);
                 if (model.attributes.id === pocketId) {
                     options.startPos = i;
@@ -3304,6 +3345,47 @@ define('views/mypage',[
          },
 
 
+         /**
+            ランダム再生
+         */
+         randomPlay: function (e) {
+            e.preventDefault();
+
+            // playlist name.
+            var options = {};
+            options.playlistName = 'すべてのPocket';
+
+
+            // startPos, playlist.
+            options.startPos = 0;
+            options.musicArray = [];
+            for (var i = 0; i < this.filteredPocketList.models.length; i++) {
+                var model = this.filteredPocketList.models[i];
+                options.musicArray.push(model.attributes);
+            }
+            options.musicArray = _.shuffle(options.musicArray);
+ 
+            // callback.
+            options.callbackWhenWillStart = _.bind(function (music) {
+                // TODO ボタンをPlayとPauseの切替する
+            }, this);
+            options.callbackWhenEnd = _.bind(function () {
+                // TODO ボタンをすべてPlayにする
+            }, this);
+
+
+            // play
+            console.log('play music. arraycount=', options.musicArray.length, ',startPos=', options.startPos);
+            mb.musicPlayer.playMusics(options);
+
+
+
+            return false;
+         },
+
+
+
+
 
 
          // Playlistの中身を表示する
@@ -3318,13 +3400,17 @@ define('views/mypage',[
 
             this.currentPlaylist = playlist;
 
+            // 絞り込み条件はクリア
+            this._clearFilter();
+
+            // 表示するPocketリストを作る
             var pocketIds = JSON.parse(playlist.attributes.user_pocket_ids);
             this.displayUserPocketList = new UserPocketList();
             _.each(pocketIds, _.bind(function (pocketId) {
                 this.displayUserPocketList.add(this.userPocketList.get(pocketId));
             }, this));
 
-            this.renderUserPocketList();
+            this.renderUserPocketListArea();
          },
 
 
@@ -3378,13 +3464,23 @@ define('views/mypage',[
             var playlistId = $(e.currentTarget).parents('[data-playlist-id]').data('playlist-id');
             console.debug('deletePlaylist: ', playlistId);
 
+            // 削除処理
+            var fn = _.bind(function () {
+                var userPlaylist = this.userPlaylistList.get(playlistId);
+                userPlaylist.bind('sync', _.bind(function () {
+                    this.userPlaylistList.remove(userPlaylist);
+                    this.renderPlaylist();
+                }, this));
+                userPlaylist.destroy();
+            }, this);
 
-            var userPlaylist = this.userPlaylistList.get(playlistId);
-            userPlaylist.bind('sync', _.bind(function () {
-                this.userPlaylistList.remove(userPlaylist);
-                this.renderPlaylist();
-            }, this));
-            userPlaylist.destroy();
+
+            // 確認ダイアログ
+            var confirmDialog = new ConfirmDialogView();
+            confirmDialog.show({
+                message: 'Playlistを削除しますか？',
+                yesButtonCallback: fn
+            });
 
             return false;
          },
@@ -3408,14 +3504,9 @@ define('views/mypage',[
                     pocketId = $(e.currentTarget).data('pocket-id');
                     console.debug('drag start. ', pocketId);
 
-                    // 掃き溜め表示
-                    $('.pocketDeleteArea').removeClass('hidden');
 
                 }).off('dragend').on('dragend', function (e) {
                     console.debug('dragend');
-
-                    // 掃き溜め非表示
-                    $('.pocketDeleteArea').addClass('hidden');
                 });
 
             // Drop先
@@ -3444,9 +3535,6 @@ define('views/mypage',[
                     e.preventDefault();
                     e.stopPropagation();
 
-                    // 掃き溜め非表示
-                    $('.pocketDeleteArea').addClass('hidden');
-
                     // プレイリストにまだ存在しないPocketIdの場合は、追加処理をする。
                     var playlist = self.userPlaylistList.get(playlistId);
                     var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
@@ -3464,50 +3552,60 @@ define('views/mypage',[
                     }
                 });
 
-            // 掃き溜めエリア
-            $('#pocketDeleteArea')
-                .off('dragenter').on('dragenter', function (e) {
-                    $('#pocketDeleteArea').addClass('active');
+         },
 
-                }).off('dragover').on('dragover', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
 
-                }).off('dragleave').on('dragleave', function (e) {
-                    $('#pocketDeleteArea').removeClass('active');
 
-                }).off('drop').on('drop', function (e) {
 
-                    // 現在のPlaylistIdを特定する
-                    if (!self.currentPlaylist) {
-                        var models = _.filter(self.userPlaylistList.models, function (model) {
-                            return model.attributes.type === 1;
-                        });
-                        self.currentPlaylist = models[0];
-                    }
+         /**
+            Pocketリストの編集状態を切り替える
+         */
+         editPocketList: function (e) {
+            e.preventDefault();
+            e.stopPropagation();
 
-                    // PlaylistからPocketを削除してサーバーへPush。
-                    var playlist = self.userPlaylistListp;
-                    var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
-                    console.debug('before: ', pocketIds);
-                    pocketIds = _.filter(pocketIds, function (id) {
-                        return id !== self.currentPlaylistId;
+            if (this.$el.find('#pocketListArea').hasClass('editStyle')) {
+
+                if (!this.currentPlaylist || this.currentPlaylist.attributes.type === 1) {
+                    $(e.currentTarget).text('Pocket編集');
+                } else {
+                    $(e.currentTarget).text('playlist編集');
+                }
+                $('#pocketDeleteArea').addClass('hidden');
+
+                // ソート機能を解除
+                $('#pocketListArea').sortable('destroy');
+                // ドラッグ再開
+                $('#pocketListArea li').attr('draggable', 'true');
+
+
+                // ソート結果をサーバーへPushする
+                if (this.currentPlaylist && this.currentPlaylist.attributes.type !== 1) {
+
+                    var ids = [];
+                    $('#pocketListArea li').each(function () {
+                        ids.push($(this).data('pocket-id'));
                     });
-                    console.debug('after: ', pocketIds);
-                    playlist.set('user_pocket_ids', JSON.stringify(pocketIds));
-                    playlist.bind('sync', function () {
-
-                        // プレイリストを最新表示
-                        self.renderPlaylist();
-
-                        // Pocketリスト表示からも削除
-                        $('pocketListArea [data-pocket-id="'+pocketId+'"]').remove();
-                    });
-                    playlist.save();
-
-                });
+                    console.debug('ids: ', ids);
+                    this.currentPlaylist.set('user_pocket_ids', JSON.stringify(ids));
+                    this.currentPlaylist.save();
+                }
 
 
+            } else {
+                $(e.currentTarget).text('完了');
+
+                // ドラッグ停止
+                $('#pocketListArea li').attr('draggable', 'false');
+
+                // プレイリスト編集の場合は、並び替えをサポートする
+                if (this.currentPlaylist && this.currentPlaylist.attributes.type !== 1) {
+                    $('#pocketListArea').sortable();
+                }
+
+            }
+
+            this.$el.find('#pocketListArea').toggleClass('editStyle');
          },
 
 
@@ -3515,456 +3613,267 @@ define('views/mypage',[
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         /**
-         * ユーザーPocket一覧を表示
-         */
-        showUserPocketList: function () {
-            console.log('showUserPocketList');
-            var template = $('#page_mypage_poplist').html();
-            console.log(this.userPocketList.models);
-            this.displayPocketListModel = _.sortBy(this.userPocketList.models, function (model) {return model.attributes.create_at * -1;});
-            var snipet = _.template(template, {pocketList: this.displayPocketListModel, feelings: this.userStorage.getCommon().feelings});
-            $('#poplist').html(snipet);
-        },
-
-
-
-
-        /**
-         * ユーザーPocket一覧を表示2
-         */
-        showUserPocketList2: function () {
-            console.log('showUserPocketList2');
-            var template = $('#page_mypage_poplist').html();
-            this.displayPocketListModel = _.sortBy(this.displayPocketListModel, function (model) {return model.attributes.create_at * -1;});
-            var snipet = _.template(template, {pocketList: this.displayPocketListModel, feelings: this.userStorage.getCommon().feelings});
-            $('#poplist').html(snipet);
-        },
-
-        /**
-         * ユーザーお知らせ一覧の表示
-         */
-        showUserNotificationList: function () {
-            console.log('showUserNotificationList');
-            var template = $('#page_common_notification_list').html();
-            var models = _.sortBy(this.userNotifitactionList.models, function (model) {return model.attributes.create_at * -1;});
-            var snipet = _.template(template, {notificationList: models});
-            this.$el.find('#notification_list').html(snipet);
-        },
-
-
-
-
-        /**
-         * Youtube再生
-         */
-        showYoutube: function (e) {
-            var pos = $(e.currentTarget).data('pos');
-            console.log('showYoutube:', pos);
-
-
-            // YoutubeId一覧を取得
-            var ids = [];
-            _.each(this.displayPocketListModel, function (model) {
-                if (model.attributes.youtube_id) {
-                    ids.push(model.attributes.youtube_id);
-                }
-            });
-            console.log('ids', ids);
-
-            // 再生順に並び替える
-            var youtubeIds = [].concat(ids.slice(pos, ids.length)).concat(ids.slice(0,pos));
-            console.debug('youtubeIds: ', youtubeIds);
-
-
-            // Youtubeを再生する
-            if (mb.youtubeView) {
-                mb.youtubeView.dealloc();
-            }
-            mb.youtubeView = new YoutubeView();
-            mb.youtubeView.show(youtubeIds, this);
-        },
-
-
-        /**
-         * Pocket削除
+         * Pocketを削除する
          */
         deletePocket: function (e) {
 
-            var $this = $(e.currentTarget);
-
-            // Pocket削除処理
-            var delFn = _.bind(function () {
-
-                var pocketId = $this.parents('[data-pocket-id]').data('pocket-id');
-                console.log('deletePocket', pocketId);
-
-                var aPocket = this.userPocketList.get(pocketId);
-                aPocket.bind('sync', _.bind(function () {
-
-                    // 再表示（古いやつ）
-                    this.showUserPocketList();
-                    // this.renderUserPocketList();
-
-                    // 削除アニメーション
-                    $this.parent().transit({opacity: 0, height: 0}, 200, 'ease', function () {
-                        $this.parent().remove();
-                    });
-
-                    // Localデータも更新
-                    _.loadUserPockets({force: true});
-
-                }, this));
-                aPocket.destroy({wait: true});
-
-            }, this);
-
-
-
             // 確認ダイアログを表示
+            var message;
+            var callback;
+            this.deleteTargetPocketId = $(e.currentTarget).parents('[data-pocket-id]').data('pocket-id');
+            if (!this.currentPlaylist || this.currentPlaylist.attributes.type === 1) { // ALL
+                message = 'Pocketを削除しますか？';
+                callback = _.bind(this._deletePocket, this);
+            } else {
+                message = 'プレイリストから削除しますか？';
+                callback = _.bind(this._deletePocketFromPlaylist, this);
+            }
             var confirmDialog = new ConfirmDialogView();
             confirmDialog.show({
-                message: 'Pocketを削除しますか？',
-                yesButtonCallback: delFn
+                message: message,
+                yesButtonCallback: callback
             });
 
         },
 
 
+        // Pocketを削除
+        _deletePocket: function () {
+
+            var pocketId = this.deleteTargetPocketId;
+            console.log('deletePocket', pocketId);
+
+            var aPocket = this.userPocketList.get(pocketId);
+            aPocket.bind('sync', _.bind(function () {
+
+                // Pocketリストから削除
+                this.userPocketList.remove(aPocket);
+
+                // 各プレイリストからも削除
+                _.each(this.userPlaylistList.models, function (model) {
+                    var oldIds = JSON.parse(model.attributes.user_pocket_ids);
+                    var newIds = _.filter(oldIds, function (id) {return id !== pocketId});
+
+                    if (oldIds.length != newIds.length) {
+                        model.attributes.user_pocket_ids = JSON.stringify(newIds);
+                        model.save();
+                    }
+                });
+
+                // 表示中のPocketsからも削除
+                var aModel = this.displayUserPocketList.get(pocketId);
+                if (aModel) {
+                    this.displayUserPocketList.remove(aModel);
+                }
 
 
+                // プレイリストを再レンダリング
+                this.renderPlaylist();
+
+                // Pocketsを再レンダリング
+                this.renderUserPocketList({edit:true});
 
 
+                // Localデータも更新
+                _.loadUserPockets({force: true});
 
-         /**
-          * プレイリスト編集
-          */
-        editPlayList: function () {
-            console.debug('editPlayList');
+            }, this));
+            aPocket.destroy({wait: true});
+
+        },
+
+        // playlistから削除
+        _deletePocketFromPlaylist: function () {
+
+            var pocketId = this.deleteTargetPocketId;
+            console.log('deletePocketFromPlaylist', pocketId);
+
+            var model = this.currentPlaylist;
+            var oldIds = JSON.parse(model.attributes.user_pocket_ids);
+            var newIds = _.filter(oldIds, function (id) {return id !== pocketId});
+            model.attributes.user_pocket_ids = JSON.stringify(newIds);
+            model.bind('sync', _.bind(function () {
+
+                // 表示中のPocketsからも削除
+                var aModel = this.displayUserPocketList.get(pocketId);
+                if (aModel) {
+                    this.displayUserPocketList.remove(aModel);
+                }
+
+                // プレイリストを再レンダリング
+                this.renderPlaylist();
+
+                // Pocketsを再レンダリング
+                this.renderUserPocketList({edit:true});
+
+
+            }, this));
+            model.save();
+
         },
 
 
 
 
+        /**
+            Pocket絞り込み（フリーワード）
+        */
+        filterPockets: function () {
+
+            // 検索ワード
+            var conditions = [];
+            _.each($('#filterByNameInput').val().split(/\s/), function (word) {
+                word = _.trim(word);
+                if (word.length > 0) {
+                    conditions.push(word);
+                }
+            });
+            console.debug('conditions: ', conditions);
 
 
+            // 検索条件がある場合、または前に検索条件があった場合には、レンダリング
+            if (conditions.length > 0 || (this.filterWords && this.filterWords.length > 0)) {
+                this.filterWords = conditions;
+                this.renderUserPocketList();
+            }
+
+        },
 
 
+        /**
+            Pocketしぼり込み（気分）
+        */
+        filterPockets2: function () {
+            console.debug('filterPockets2');
+            this.filterFeelingId = parseInt($('#filterByFeelingSelect option:selected').val());
+            this.renderUserPocketList();
+        },
 
 
 
 
 
         /**
-         * お知らせ削除
-         */
-        deleteNofitication: function (e) {
-            var notifId = $(e.currentTarget).data('notification-id');
-            console.log('deleteNotification: ', notifId);
+            フォローしているプレイリストの中身を表示する
+        */
+        showFollowPlaylist: function (e) {
+            var playlistId = $(e.currentTarget).data('playlist-id');
+            console.debug('showFollowPlaylist: ', playlistId);
 
-            var notification = this.userNotifitactionList.get(notifId);
-            notification.bind('sync', _.bind(function () {
-                this.showUserNotificationList();
-            }, this));
-            notification.destroy({wait: true});
-        },
+            // 現在のプレイリストを設定する
+            this.currentPlaylist = this.userFollowPlaylistList.get(playlistId);
 
-
-        changeTags: function (e) {
-            var id = $(e.currentTarget).data('pocket-id');
-            var tagString = $(e.currentTarget).text();
-            console.log('changeTags', id, tagString);
-
-            var tags = [];
-            _.each(tagString.split(','), function (tag) {
-                tag = _.trim(tag);
-                if (tag.length !== 0) {
-                    tags.push(tag);
-                }
-            });
-            console.log('tags: ', tags);
-
-
-            // サーバーへ保存する
-            var anUserPocket = new UserPocket();
-            anUserPocket.set('id', id);
-            anUserPocket.set('tags', tags.join(','));
-            anUserPocket.bind('sync', function () {
-                console.log('update tags: ', id, tags);
-            });
-            anUserPocket.save();
-
-
-            // 表示中のPocketにも反映します。
-            var pocket = this.userPocketList.get(id);
-            pocket.set('tags', tags.join(','));
-
-
-        },
-
-
-
-        filterPockets: function () {
-            var title = $('#titleCondition').val();
-            var artist = $('#artistCondition').val();
-            var tagString = $('#tagsCondition').val();
-            console.log('filterPockets', title, artist, tagString);
-
-
-            // async process.
-            setTimeout(_.bind(function () {
-
-                // defaults.
-                var displayPocketListModel = this.userPocketList.models;
-
-                // filter by title.
-                title = _.trim(title);
-                console.log('title: ', title);
-                if (title.length !== 0) {
-                    displayPocketListModel = _.filter(displayPocketListModel, function (model) {
-                        return model.attributes.title.indexOf(title) + 1;
-                    });
-                }
-
-
-                // filter by artist
-                artist = _.trim(artist);
-                console.log('artist: ', artist);
-                if (artist.length !== 0) {
-                    displayPocketListModel = _.filter(displayPocketListModel, function (model) {
-                        return model.attributes.artist_name.indexOf(artist) + 1;
-                    });
-                }
-
-
-                // filter by tags.
-                var tags = [];
-                _.each(tagString.split(','), function (tag) {
-                    tag = _.trim(tag);
-                    if (tag.length !== 0) {
-                        tags.push(tag);
-                    }
-                });
-                console.log('tags: ', tags);
-                if (tags.length !== 0) {
-                    displayPocketListModel = _.filter(displayPocketListModel, function (model) {
-
-                        var aTagString = model.attributes.tags;
-                        if (!aTagString || aTagString.length === 0) {
-                            return false;
-                        }
-
-                        var aTags = aTagString.split(',');
-                        var found = false;
-                        _.each(aTags, function (tag) {
-                            if (_.contains(tags, tag)) {
-                                found = true;
-                            }
-                        });
-                        return found;
-                    });
-                }
-
-
-                // render
-                this.displayPocketListModel = displayPocketListModel;
-                this.showUserPocketList2();
-
-
-            }, this), 50);
-
-
-
-        },
-
-
-
-        saveFilter: function () {
-            var title = $('#titleCondition').val();
-            var artist = $('#artistCondition').val();
-            var tagString = $('#tagsCondition').val();
-            console.log('saveFilter: ', title, artist, tagString);
-
-
-            var tags = [];
-            _.each(tagString.split(','), function (tag) {
-                tag = _.trim(tag);
-                if (tag.length !== 0) {
-                    tags.push(tag);
-                }
-            });
-
-
-            // trim.
-            title = _.trim(title);
-            artist = _.trim(artist);
-
-            // empty check.
-            if (title.length === 0 && artist.length === 0 && tags.length === 0) {
-                alert('empty condition not allowed');
-                return;
+            // キャッシュがあればそれを表示する
+            if (this.followPlaylistPocketsMap && this.followPlaylistPocketsMap[playlistId]) {
+                this.displayUserPocketList = this.followPlaylistPocketsMap[playlistId];
+                this.renderUserPocketListArea({noEdit:true});
             }
 
 
-            // create condition.
-            var condition = {
-                title: title,
-                artist: artist,
-                tags: tags
-            };
+            // キャッシュが無ければ、ロードして表示する
+            var userPocketList = new UserPocketList();
+            userPocketList.bind('sync', _.bind(function () {
+                console.debug('suerPocketList: ', userPocketList);
 
+                this.followPlaylistPocketsMap = this.followPlaylistPocketsMap || {};
+                this.followPlaylistPocketsMap[playlistId] = userPocketList;
 
-            // concat condition.
-            var conditions = this.user.pocket_filter || '[]';
-            conditions = JSON.parse(conditions);
-            conditions.push(condition);
-            this.user.pocket_filter = JSON.stringify(conditions);
-            this.userStorage.setUser(this.user);
-
-
-            // Update by API
-            var anUser = new User();
-            anUser.set('id', this.user.id);
-            anUser.set('pocket_filter', JSON.stringify(conditions));
-            anUser.bind('sync', _.bind(function () {
-                alert('save filter successed');
-
-                // update UI
-                this.renderSavedFilter();
-            }, this));
-            anUser.save();
-
-
-
-
-        },
-
-
-
-
-        useFilter: function (e) {
-            var $this = $(e.currentTarget);
-            var title  = $this.data('title');
-            var artist = $this.data('artist');
-            var tags = $this.data('tags');
-            console.debug('useFilter: ', title, artist, tags);
-
-
-            // 表示きりかえ
-            $('#savedFilter').children('div').removeClass('btn-warning');
-            $this.addClass('btn-warning');
-
-
-            // set data.
-            $('#titleCondition').val(title);
-            $('#artistCondition').val(artist);
-            $('#tagsCondition').val(tags);
-
-            // action.
-            this.filterPockets();
-
-        },
-
-
-
-        clearFilter: function () {
-
-            // reset UI.
-            $('#titleCondition').val('');
-            $('#artistCondition').val('');
-            $('#tagsCondition').val('');
-            $('#savedFilter>div').removeClass('btn-warning');
-
-            // action.
-            this.filterPockets();
-        },
-
-
-
-        deleteFilter: function () {
-            var $target = $('#savedFilter .btn-warning');
-            if ($target.length === 0) {
-                alert('Filterが選択されていません');
-                return;
-            }
-
-            // 対象データを削除
-            var title = $target.data('title');
-            var artist = $target.data('artist');
-            var tags = $target.data('tags');
-
-            var pocketFilter = JSON.parse(this.user.pocket_filter);
-            var newPocketFilter = [];
-            for (var i = 0; i < pocketFilter.length; i++ ) {
-                var filter = pocketFilter[i];
-                console.debug(filter, title, artist, tags);
-                if (title && title === filter.title || !title && !filter.title) {
-                    if (artist && artist === filter.artist || !artist && !filter.artist) {
-                        if (!tags && !filter.tags) {
-                            continue;
-                        }
-                        if (!tags && !filter.tags.length) {
-                            continue;
-                        }
-                        if (tags.length === filter.tags.length) {
-                            var equal = true;
-                            for (var jj = 0; jj < tags.length; jj++) {
-                                if (tags[jj] !== filter.tags[jj]) {
-                                    equal = false;
-                                    break;
-                                }
-                            }
-                            if (equal) {
-                                continue;
-                            }
-                        }
-                    }
-                }
-                newPocketFilter.push(filter);
-            }
-
-            console.debug('old: ', pocketFilter);
-            console.debug('new: ', newPocketFilter);
-
-
-            this.user.pocket_filter = JSON.stringify(newPocketFilter);
-            this.userStorage.setUser(this.user);
-
-
-            // save to API.
-            var anUser = new User();
-            anUser.set('id', this.user.id);
-            anUser.set('pocket_filter', this.user.pocket_filter);
-            anUser.bind('sync', _.bind(function () {
-                alert('success');
-
-                // update UI
-                this.renderSavedFilter();
-                this.clearFilter();
+                this.displayUserPocketList = userPocketList;
+                this.renderUserPocketListArea({noEdit:true});
 
             }, this));
-            anUser.save();
+            console.debug('current: ', this.currentPlaylist.attributes.user_pocket_ids);
+            userPocketList.fetch({reset:true, data:{targets:this.currentPlaylist.attributes.user_pocket_ids}});
 
         },
+
+
+
+        /**
+            フォロープレイリストの編集表示、非表示
+        */
+        editFollowPlaylistButton: function (e) {
+            console.debug('editFollowPlaylistButton');
+            e.preventDefault();
+            
+            if ($('#followPlaylist').hasClass('edit')) {
+                $(e.currentTarget).text('編集');
+            } else {
+                $(e.currentTarget).text('完了');
+            }
+
+            $('#followPlaylist').toggleClass('edit');
+
+            return false;
+        },
+
+
+
+
+        /**
+            フォロー中のプレイリストを削除
+        */
+        deleteFollowPlaylist: function (e) {
+            e.preventDefault();
+            var playlistId = $(e.currentTarget).parents('[data-playlist-id]').data('playlist-id');
+            console.debug('deleteFollowPlaylist: ', playlistId);
+
+            // 削除処理
+            var fn = _.bind(function () {
+                var userPlaylist = this.userPlaylistList.get(playlistId);
+                userPlaylist.bind('sync', _.bind(function () {
+                    this.userPlaylistList.remove(userPlaylist);
+
+                    // もう一個のリストからも削除
+                    var model = this.userFollowPlaylistList.get(playlistId);
+                    this.userFollowPlaylistList.remove(model);
+
+                    // レンダリング
+                    this.renderUserFollowPlaylist();
+
+                }, this));
+                userPlaylist.destroy();
+            }, this);
+
+
+            // 確認ダイアログ
+            var confirmDialog = new ConfirmDialogView();
+            confirmDialog.show({
+                message: 'フォローしているPlaylistを削除しますか？',
+                yesButtonCallback: fn
+            });
+
+            return false;
+
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3983,7 +3892,7 @@ define('views/mypage',[
                 mb.router.navigate('login', true);
                 return;
             } else {
-                this.user = JSON.parse(sessionStorage.getItem('user'));
+                this.user = JSON.parse(localStorage.getItem('user'));
             }
 
 
@@ -3994,7 +3903,7 @@ define('views/mypage',[
             this.userPocketList = new UserPocketList();
             this.userPocketList.bind('reset', _.bind(function () {
                 this.displayUserPocketList = this.userPocketList;
-                this.renderUserPocketList();
+                this.renderUserPocketListArea();
                 // ついでにStorageにも保存しておく
                 _.mbStorage.setUserPocketsWithBackboneCollection(this.userPocketList);
 
@@ -4004,17 +3913,19 @@ define('views/mypage',[
             // ユーザーのプレイリストを取得
             this.userPlaylistList.fetch({reset:true, data:{user_id:this.user.id}});
 
-            // お知らせ一覧の取得
-            this.userNotifitactionList.fetch({reset: true, data: {user_id: this.user.id}});
-
             // フォローされているユーザー一覧取得
-            this.userFollowedList.fetch({reset:true, data: {dest_user_id:this.user.id}});
+            // this.userFollowedList.fetch({reset:true, data: {dest_user_id:this.user.id}});
 
             // フォローしているユーザー一覧
-            this.userFollowList.fetch({reset:true, data: {user_id:this.user.id}});
+            // this.userFollowList.fetch({reset:true, data: {user_id:this.user.id}});
 
             // フォローしているアーティスト
-            this.userArtistFollowList.fetch({reset:true, data:{user_id:this.user.id}});
+            // this.userArtistFollowList.fetch({reset:true, data:{user_id:this.user.id}});
+
+            // フォローしているプレイリスト
+            this.userFollowPlaylistList = new UserPlaylistList();
+            this.userFollowPlaylistList.bind('sync', this.renderUserFollowPlaylist);
+            this.userFollowPlaylistList.fetchFollowPlaylist(this.user.id);
 
         },
 
