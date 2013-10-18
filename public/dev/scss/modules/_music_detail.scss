@@ -1,7 +1,9 @@
 // musicDetail
-
 .musicDetail {
-
+  background-color: #fff;
+  &.leftCol {
+    width: 460px;
+  }
 }
 //  サムネイル
 //-------------------------------------
@@ -14,7 +16,7 @@
 //  曲情報
 //-------------------------------------
 .musicDetail-info {
-  color: #fff;
+  color: #333;
 }
 .musicDetail-info-feeling {
   margin: 0 0 25px;
@@ -25,4 +27,73 @@
 }
 .musicDetail-info-artist {
   margin: 0 0 25px;
+}
+//  曲のキモチ・ポケット、ドロップのアクション
+//-------------------------------------
+.musicDetail-action {
+
+}
+
+//  曲Drop
+//-------------------------------------
+.musicDetail-pop {
+  padding: 10px; 
+  background-color: #efede0;
+}
+.musicDetail-pop-user {
+  margin-bottom: 10px;
+}
+//  Drop投稿者に対するフォロー・いいねボタン
+//-------------------------------------
+.musicDetail-user-action {
+}
+.musicDetail-user-action-btn {
+  float: left;
+  display: block;
+  width: 50%;
+  height: 30px;
+  text-align: center;
+  color: #d4d2be;
+  background-color: #656457;
+  .ico-font {
+    &.ico-follow {
+      font-size: 28px;
+    }
+    &.ico-heart {
+      font-size: 22px;
+    }
+  }
+  &.is-active {
+    color: #f3613f;
+    background-color: #fec02b;
+  }
+}
+
+
+
+
+
+
+
+
+//  テキストリンク
+//  ##あとでどっかに移動
+//-------------------------------------
+.text-link {
+  position: relative;
+  display: inline-block;
+  padding-right: 16px;
+  .ico-font {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin: -5px 0 0 0;
+    font-size: 8px;
+    color: #c9c7b9;
+  }
+  &:hover {
+    .ico-font {
+      color: #656457;
+    }
+  }
 }

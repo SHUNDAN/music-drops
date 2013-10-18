@@ -17,7 +17,7 @@ header {
   width: 100%;
   min-width: 980px;
   height: 65px;
-  background-color: rgba(#f7f7f7, $alpha-2);
+  background-color: #fdfcf3;
 }
 
 //  ヘッダーの曲再生メーター
@@ -49,8 +49,8 @@ header {
   position: absolute;
   top: 10px;
   left: 0;
-  @include image(87px,40px,"../images/common/logo_main.png");
   a {
+    font-size: 20px;
     height: 40px;
   }
 }
@@ -63,7 +63,7 @@ header {
   width: 80px;
   height: 40px;
   text-align: center;
-  background-color: rgba(#fff, $alpha-54);
+  background-color: #dedbc7;
   p {
     width: 54px;
     line-height: 40px;
@@ -74,7 +74,6 @@ header {
   height: 40px;
   line-height: 40px;
   font-size: 8px;
-  background-color: rgba(#fff, $alpha-54);
 }
 
 //  プレイリスト
@@ -87,12 +86,11 @@ header {
   text-align: center;
   p:first-child {
     margin: 4px 0;
-    color: #fff;
+    color: #3d3c3c;
   }
 }
 .header-playList-title {
   padding: 4px; 
-  background-color: rgba(#fff, $alpha-54);
 }
 
 //  再生メニュー
@@ -102,7 +100,7 @@ header {
   left: 293px;
   width: 384px;
   height: 40px;
-  background-color: rgba($color-base, $alpha-54);
+  background-color: #656457;
   & > div {
     height: 40px;
   }
@@ -114,9 +112,9 @@ header {
   width: 26px;
   height: 26px;
   margin-top: -13px;
-  color: #fff;
+  color: #656457;
   @include border-radius(26px);
-  background-color: rgba(#fff, $alpha-34);
+  background-color: #fdfcf3;
 }
 .header-playMenu-btn-prev {
   left: 8px;
@@ -147,9 +145,9 @@ header {
   bottom: 4px;
   width: 30px;
   height: 20px;
-  color: $color-base;
+  color: #fff;
   &.is-active {
-    color: #f46116;
+    color: #ffe77c;
   }
 }
 .header-playSubMenu-btn-window {
@@ -175,8 +173,7 @@ header {
   font-size: 12px;
   text-align: center;
   line-height: 40px;
-  color: rgba($color-base, $alpha-54);
-  background-color: rgba(#fff, $alpha-54);
+  color: #656457;
 }
 .header-menu-btn-favo {
   left: 0;

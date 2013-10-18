@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../../stylesheets/style.css">
+</head>
+<body class="bgMadYellow">
+
+<div id="stage">
+  <header>
+  <div class="header-playGage">
+    <div class="value" style="width:40%;"></div>
+  </div><!-- /header-playGage -->
+
+  <div class="header-content">
+    <h1 class="header-logo">
+      <a href="/" class="db ir">Music Drops</a>
+    </h1>  
+
+    <div class="header-searchMenu gp">
+      <p class="fl">さがす</p>
+      <div class="header-searchMenu-btn fr">
+        <i class="ico-font ico-below"></i>
+      </div>
+    </div><!-- /header-searchMenu -->
+
+    <div class="header-playList">
+      <p>再生リスト</p>
+      <p id="mpPlaylistTitle" class="header-playList-title">新着一覧</p>
+    </div><!-- /header-searchMenu -->
+
+    <div class="header-playMenu">
+      <div class="ref">
+        <button class="js-playMenu-prev header-playMenu-btn header-playMenu-btn-prev">
+          <i class="ico-font ico-play-prev"></i>
+        </button>
+        <button class="js-playMenu-play header-playMenu-btn header-playMenu-btn-play">
+          <i class="ico-font ico-play"></i>
+        </button>
+        <button class="js-playMenu-next header-playMenu-btn header-playMenu-btn-next">
+          <i class="ico-font ico-play-next"></i>
+        </button>
+        <div class="header-playMenu-song">
+          <p id="mpMusicTitle" class="header-playMenu-song-title elps">もっとずっと一緒にいたかった…</p>
+          <p id="mpArtistName" class="header-playList-song-artist elps">by Berrys</p>
+        </div><!-- /header-playMenu-song -->
+        <button class="js-playMenu-movie header-playSubMenu-btn header-playSubMenu-btn-window is-active">
+          <i class="ico-font ico-image"></i>
+        </button>
+        <button class="js-playMenu-repeat header-playSubMenu-btn header-playSubMenu-btn-repeat">
+          <i class="ico-font ico-repeat"></i>
+        </button>
+        <button class="js-playMenu-movie header-playSubMenu-btn header-playSubMenu-btn-shuffle">
+          <i class="ico-font ico-shuffle"></i>
+        </button>
+      </div><!-- /ref -->
+    </div><!-- /header-playMenu -->
+
+    <div class="header-menu">
+      <div class="ref">
+        <a href="#" class="js-menu-favo header-menu-btn header-menu-btn-favo">
+          <i class="ico-font ico-star"></i>
+        </a>
+        <a href="#" class="js-menu-drop header-menu-btn header-menu-btn-drop">
+          <i class="ico-font ico-drop"></i>
+        </a>
+        <a href="#mypage" class="js-menu-myList header-menu-btn header-menu-btn-myList">
+          マイリスト
+        </a>
+        <a href="#" class="js-menu-noti header-menu-btn header-menu-btn-noti">
+          お知らせ
+        </a>
+      </div><!-- /ref -->
+    </div><!-- /header-searchMenu -->
+
+  </div><!-- /header-content -->
+</header>
+<div id="main">
+    <h1 class="text-center">My List</h1>
+
+	<div class="page-musicDetail">
+    <div class="gp">
+
+			<!--タイトル：ユーザー名、保有曲数-->
+      <div id="musicInfoArea" class="musicDetail leftCol">
+        <div class="gp">
+          <div class="musicDetail-thumb mrm fl">
+            <img src="http://a760.phobos.apple.com/us/r30/Music4/v4/76/4f/b5/764fb593-bd16-a8a8-69aa-7034615ac1a1/13UAAIM69596.170x170-75.jpg" width="140" height="140" alt="GALAXY SUPERNOVA / 少女時代">
+            <p><audio src="http://a144.phobos.apple.com/us/r30/Music4/v4/93/15/9a/93159a16-4799-818a-7550-6129fc0f2824/mzaf_2514186674109905995.plus.aac.p.m4a" controls=""></audio></p>
+            
+            <p><a href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&amp;subid=&amp;offerid=94348.1&amp;type=10&amp;tmpid=3910&amp;RD_PARM1=https://itunes.apple.com/jp/album/galaxy-supernova/id694237906?i=694238039&amp;uo=2" target="_blank">iTunesで曲を見る</a></p>
+            
+          </div>
+          <div class="musicDetail-info fl">
+            <h2 class="musicDetail-info-title">
+              <a class="text-link" href="#artist/533">GALAXY SUPERNOVA<i class="ico-font ico-play"></i></a>
+            </h2>
+            <p class="musicDetail-info-artist">
+                <a class="text-link" href="#artist/533">少女時代<i class="ico-font ico-play"></i></a>
+            </p>
+            <div class="musicDetail-action gp">
+              <div class="tag-feeling ref">
+                <i class="sprite-feeling feeling-01"></i>
+                <p class="tag-feeling-text">テンションがあがる</p>
+              </div>
+              <div class="">
+                <div class="ref">
+                  <button data-event="addPocket" data-feeling-id="0" class="js-menu-favo header-menu-btn header-menu-btn-favo">
+                    <i class="ico-font ico-star"></i>ポケット
+                  </button>
+                  <button class="js-menu-drop header-menu-btn header-menu-btn-drop">
+                    <i class="ico-font ico-drop"></i>
+                  </button>
+                </div><!-- /ref -->
+              </div><!-- /header-searchMenu -->
+                
+            </div>
+          </div>
+
+        </div>
+        <div class="musicDetail-pop">
+          <p class="musicDetail-pop-user b">
+            <a class="text-link" href="#user/8">よーへい<i class="ico-font ico-play"></i></a>
+          </p>
+          <p class="musicDetail-pop-text">Topページで再生テストするためのテストDropです。</p>
+        </div>
+        <div class="musicDetail-user-action gp">
+          <button class="js-follow-btn musicDetail-user-action-btn musicDetail-user-action-btn-follow">
+            <i class="ico-font ico-follow"></i>
+          </button>
+          <button class="js-like-btn musicDetail-user-action-btn musicDetail-user-action-btn-like is-active">
+            <i class="ico-font ico-heart"></i>
+          </button>
+        </div>
+      </div>
+
+  		<div class="rightCol">
+
+
+
+  		</div>
+    </div>
+
+	</div>
+
+
+</div>
+
+
+
+    
+    
+    
+    </section>
+
+
+
+
+</div></div><div id="playArea"></div></div>
+
+
+
+
+</body>
+</html>

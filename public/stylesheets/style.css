@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Courgette);
 /*
  * Bootstrap v2.3.2
  *
@@ -16432,52 +16433,57 @@ body {
   font-size: 14px;
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
-  background-attachment: fixed;
+  background-color: #dedbc7;
 }
 
-/* line 12, ../dev/scss/core/_base.scss */
+/* line 13, ../dev/scss/core/_base.scss */
 a {
   display: block;
   color: inherit;
   text-decoration: none;
 }
 
-/* line 18, ../dev/scss/core/_base.scss */
+/* line 19, ../dev/scss/core/_base.scss */
+a:hover {
+  text-decoration: none;
+}
+
+/* line 22, ../dev/scss/core/_base.scss */
 b {
   font-weight: bold;
 }
 
-/* line 22, ../dev/scss/core/_base.scss */
+/* line 26, ../dev/scss/core/_base.scss */
 i {
   display: inline-block;
 }
 
-/* line 25, ../dev/scss/core/_base.scss */
+/* line 29, ../dev/scss/core/_base.scss */
 em {
   font-style: normal;
 }
 
-/* line 28, ../dev/scss/core/_base.scss */
+/* line 32, ../dev/scss/core/_base.scss */
 select, button, input, textarea {
   display: block;
   width: 100%;
   -webkit-appearance: none;
 }
 
-/* line 33, ../dev/scss/core/_base.scss */
+/* line 37, ../dev/scss/core/_base.scss */
 button {
   background: none;
 }
 
-/* line 11, ../dev/scss/skins/_skin_sunset.scss */
-.bgMadYellow {
-  background-color: #dedbc7;
+/* line 49, ../dev/scss/core/_base.scss */
+.Courgette {
+  font-family: 'Courgette', cursive;
 }
 
 @font-face {
   font-family: "icons";
-  src: url("../images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.eot");
-  src: url("../images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.eot?#iefix") format("embedded-opentype"), url("../images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff") format("woff"), url("../images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.ttf") format("truetype"), url("../images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.svg?#icons") format("svg");
+  src: url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.eot");
+  src: url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.eot?#iefix") format("embedded-opentype"), url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.woff") format("woff"), url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.ttf") format("truetype"), url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.svg?#icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -16491,74 +16497,99 @@ button {
   -webkit-font-smoothing: antialiased;
 }
 
-/* line 24, ../dev/scss/fonts/_icons.scss */
+/* line 31, ../dev/scss/fonts/_icons.scss */
 .ico-below:before {
   content: "\f100";
 }
 
-/* line 27, ../dev/scss/fonts/_icons.scss */
+/* line 34, ../dev/scss/fonts/_icons.scss */
 .ico-delete:before {
   content: "\f101";
 }
 
-/* line 30, ../dev/scss/fonts/_icons.scss */
+/* line 37, ../dev/scss/fonts/_icons.scss */
 .ico-drop:before {
   content: "\f102";
 }
 
-/* line 33, ../dev/scss/fonts/_icons.scss */
-.ico-heart:before {
+/* line 40, ../dev/scss/fonts/_icons.scss */
+.ico-follow:before {
   content: "\f103";
 }
 
-/* line 36, ../dev/scss/fonts/_icons.scss */
-.ico-image:before {
+/* line 43, ../dev/scss/fonts/_icons.scss */
+.ico-heart:before {
   content: "\f104";
 }
 
-/* line 39, ../dev/scss/fonts/_icons.scss */
-.ico-play-02:before {
+/* line 46, ../dev/scss/fonts/_icons.scss */
+.ico-image:before {
   content: "\f105";
 }
 
-/* line 42, ../dev/scss/fonts/_icons.scss */
-.ico-play-next:before {
+/* line 49, ../dev/scss/fonts/_icons.scss */
+.ico-list:before {
   content: "\f106";
 }
 
-/* line 45, ../dev/scss/fonts/_icons.scss */
-.ico-play-prev:before {
+/* line 52, ../dev/scss/fonts/_icons.scss */
+.ico-mail:before {
   content: "\f107";
 }
 
-/* line 48, ../dev/scss/fonts/_icons.scss */
-.ico-play:before {
+/* line 55, ../dev/scss/fonts/_icons.scss */
+.ico-play-02:before {
   content: "\f108";
 }
 
-/* line 51, ../dev/scss/fonts/_icons.scss */
-.ico-plus:before {
+/* line 58, ../dev/scss/fonts/_icons.scss */
+.ico-play-next:before {
   content: "\f109";
 }
 
-/* line 54, ../dev/scss/fonts/_icons.scss */
-.ico-refresh:before {
+/* line 61, ../dev/scss/fonts/_icons.scss */
+.ico-play-prev:before {
   content: "\f10a";
 }
 
-/* line 57, ../dev/scss/fonts/_icons.scss */
-.ico-repeat:before {
+/* line 64, ../dev/scss/fonts/_icons.scss */
+.ico-play-stop:before {
   content: "\f10b";
 }
 
-/* line 60, ../dev/scss/fonts/_icons.scss */
-.ico-shuffle:before {
+/* line 67, ../dev/scss/fonts/_icons.scss */
+.ico-play:before {
   content: "\f10c";
 }
 
-/* line 63, ../dev/scss/fonts/_icons.scss */
-.ico-star:before {
+/* line 70, ../dev/scss/fonts/_icons.scss */
+.ico-plus:before {
   content: "\f10d";
+}
+
+/* line 73, ../dev/scss/fonts/_icons.scss */
+.ico-refresh:before {
+  content: "\f10e";
+}
+
+/* line 76, ../dev/scss/fonts/_icons.scss */
+.ico-repeat:before {
+  content: "\f10f";
+}
+
+/* line 79, ../dev/scss/fonts/_icons.scss */
+.ico-search:before {
+  content: "\f110";
+}
+
+/* line 82, ../dev/scss/fonts/_icons.scss */
+.ico-shuffle:before {
+  content: "\f111";
+}
+
+/* line 85, ../dev/scss/fonts/_icons.scss */
+.ico-star:before {
+  content: "\f112";
 }
 
 /* line 12, ../dev/scss/modules/_header.scss */
@@ -16570,7 +16601,7 @@ header {
   width: 100%;
   min-width: 980px;
   height: 65px;
-  background-color: rgba(247, 247, 247, 0.2);
+  background-color: #fdfcf3;
 }
 
 /* line 25, ../dev/scss/modules/_header.scss */
@@ -16603,16 +16634,10 @@ header {
   position: absolute;
   top: 10px;
   left: 0;
-  width: 87px;
-  height: 40px;
-  background-image: url("../images/common/logo_main.png");
-  -webkit-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  -o-background-size: 100% 100%;
-  background-size: 100% 100%;
 }
-/* line 53, ../dev/scss/modules/_header.scss */
+/* line 52, ../dev/scss/modules/_header.scss */
 .header-logo a {
+  font-size: 20px;
   height: 40px;
 }
 
@@ -16623,7 +16648,7 @@ header {
   width: 80px;
   height: 40px;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.54);
+  background-color: #dedbc7;
 }
 /* line 67, ../dev/scss/modules/_header.scss */
 .header-searchMenu p {
@@ -16637,10 +16662,9 @@ header {
   height: 40px;
   line-height: 40px;
   font-size: 8px;
-  background-color: rgba(255, 255, 255, 0.54);
 }
 
-/* line 82, ../dev/scss/modules/_header.scss */
+/* line 81, ../dev/scss/modules/_header.scss */
 .header-playList {
   top: 10px;
   left: 188px;
@@ -16648,53 +16672,52 @@ header {
   font-size: 12px;
   text-align: center;
 }
-/* line 88, ../dev/scss/modules/_header.scss */
+/* line 87, ../dev/scss/modules/_header.scss */
 .header-playList p:first-child {
   margin: 4px 0;
-  color: #fff;
+  color: #3d3c3c;
 }
 
-/* line 93, ../dev/scss/modules/_header.scss */
+/* line 92, ../dev/scss/modules/_header.scss */
 .header-playList-title {
   padding: 4px;
-  background-color: rgba(255, 255, 255, 0.54);
 }
 
-/* line 100, ../dev/scss/modules/_header.scss */
+/* line 98, ../dev/scss/modules/_header.scss */
 .header-playMenu {
   top: 10px;
   left: 293px;
   width: 384px;
   height: 40px;
-  background-color: rgba(104, 71, 60, 0.54);
+  background-color: #656457;
 }
-/* line 106, ../dev/scss/modules/_header.scss */
+/* line 104, ../dev/scss/modules/_header.scss */
 .header-playMenu > div {
   height: 40px;
 }
 
-/* line 111, ../dev/scss/modules/_header.scss */
+/* line 109, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn {
   position: absolute;
   top: 50%;
   width: 26px;
   height: 26px;
   margin-top: -13px;
-  color: #fff;
+  color: #656457;
   -webkit-border-radius: 26px;
   -moz-border-radius: 26px;
   -ms-border-radius: 26px;
   -o-border-radius: 26px;
   border-radius: 26px;
-  background-color: rgba(255, 255, 255, 0.34);
+  background-color: #fdfcf3;
 }
 
-/* line 121, ../dev/scss/modules/_header.scss */
+/* line 119, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn-prev {
   left: 8px;
 }
 
-/* line 124, ../dev/scss/modules/_header.scss */
+/* line 122, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn-play {
   left: 40px;
   width: 32px;
@@ -16702,12 +16725,12 @@ header {
   margin-top: -16px;
 }
 
-/* line 130, ../dev/scss/modules/_header.scss */
+/* line 128, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn-next {
   left: 76px;
 }
 
-/* line 134, ../dev/scss/modules/_header.scss */
+/* line 132, ../dev/scss/modules/_header.scss */
 .header-playMenu-song {
   position: absolute;
   left: 110px;
@@ -16715,47 +16738,47 @@ header {
   color: #fff;
 }
 
-/* line 140, ../dev/scss/modules/_header.scss */
+/* line 138, ../dev/scss/modules/_header.scss */
 .header-playMenu-song-title {
   margin: 6px 0 2px;
   font-size: 12px;
 }
 
-/* line 145, ../dev/scss/modules/_header.scss */
+/* line 143, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn {
   position: absolute;
   bottom: 4px;
   width: 30px;
   height: 20px;
-  color: #68473c;
+  color: #fff;
 }
-/* line 151, ../dev/scss/modules/_header.scss */
+/* line 149, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn.is-active {
-  color: #f46116;
+  color: #ffe77c;
 }
 
-/* line 155, ../dev/scss/modules/_header.scss */
+/* line 153, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn-window {
   right: 64px;
 }
 
-/* line 158, ../dev/scss/modules/_header.scss */
+/* line 156, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn-repeat {
   right: 34px;
 }
 
-/* line 161, ../dev/scss/modules/_header.scss */
+/* line 159, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn-shuffle {
   right: 4px;
 }
 
-/* line 167, ../dev/scss/modules/_header.scss */
+/* line 165, ../dev/scss/modules/_header.scss */
 .header-menu {
   top: 10px;
   left: 687px;
 }
 
-/* line 171, ../dev/scss/modules/_header.scss */
+/* line 169, ../dev/scss/modules/_header.scss */
 .header-menu-btn {
   position: absolute;
   top: 0;
@@ -16763,31 +16786,30 @@ header {
   font-size: 12px;
   text-align: center;
   line-height: 40px;
-  color: rgba(104, 71, 60, 0.54);
-  background-color: rgba(255, 255, 255, 0.54);
+  color: #656457;
 }
 
-/* line 181, ../dev/scss/modules/_header.scss */
+/* line 178, ../dev/scss/modules/_header.scss */
 .header-menu-btn-favo {
   left: 0;
   width: 40px;
   font-size: 24px;
 }
 
-/* line 186, ../dev/scss/modules/_header.scss */
+/* line 183, ../dev/scss/modules/_header.scss */
 .header-menu-btn-drop {
   left: 50px;
   width: 40px;
   font-size: 24px;
 }
 
-/* line 191, ../dev/scss/modules/_header.scss */
+/* line 188, ../dev/scss/modules/_header.scss */
 .header-menu-btn-myList {
   left: 100px;
   width: 70px;
 }
 
-/* line 195, ../dev/scss/modules/_header.scss */
+/* line 192, ../dev/scss/modules/_header.scss */
 .header-menu-btn-noti {
   left: 180px;
   width: 70px;
@@ -16821,6 +16843,160 @@ header {
 /* line 58, ../dev/scss/modules/_buttons.scss */
 .btn-play-youtube {
   color: #f00;
+}
+
+/* line 7, ../dev/scss/modules/_feelings.scss */
+.feeling-Happy {
+  color: #c85d94;
+}
+
+/* line 10, ../dev/scss/modules/_feelings.scss */
+.feeling-Relax {
+  color: #77b66a;
+}
+
+/* line 13, ../dev/scss/modules/_feelings.scss */
+.feeling-Sad {
+  color: red;
+}
+
+/* line 16, ../dev/scss/modules/_feelings.scss */
+.feeling-Cry {
+  color: #6880cc;
+}
+
+/* line 19, ../dev/scss/modules/_feelings.scss */
+.feeling-ight {
+  color: #e97f45;
+}
+
+/* line 22, ../dev/scss/modules/_feelings.scss */
+.feeling-Angry {
+  color: #bc7ad4;
+}
+
+/* line 25, ../dev/scss/modules/_feelings.scss */
+.feeling-Smile {
+  color: #f4b74e;
+}
+
+/* line 29, ../dev/scss/modules/_feelings.scss */
+.label-feeling {
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  line-height: 22px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 35, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-Happy {
+  background-color: #c85d94;
+}
+/* line 38, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-Relax {
+  background-color: #77b66a;
+}
+/* line 41, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-Sad {
+  background-color: red;
+}
+/* line 44, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-Cry {
+  background-color: #6880cc;
+}
+/* line 47, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-ight {
+  background-color: #e97f45;
+}
+/* line 50, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-Angry {
+  background-color: #bc7ad4;
+}
+/* line 53, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-Smile {
+  background-color: #f4b74e;
+}
+
+/* line 60, ../dev/scss/modules/_feelings.scss */
+.sprite-feeling {
+  background-image: url('/../images/../images/sprite/feeling-s4102400cd7.png');
+  background-repeat: no-repeat;
+  background-size: 46px 280px;
+}
+/* line 62, ../dev/scss/modules/_feelings.scss */
+.sprite-feeling.feeling-01 {
+  width: 46px;
+  height: 40px;
+  background-position: 0 0;
+}
+/* line 65, ../dev/scss/modules/_feelings.scss */
+.sprite-feeling.feeling-02 {
+  width: 46px;
+  height: 40px;
+  background-position: 0 0;
+}
+/* line 68, ../dev/scss/modules/_feelings.scss */
+.sprite-feeling.feeling-03 {
+  width: 46px;
+  height: 40px;
+  background-position: 0 0;
+}
+/* line 71, ../dev/scss/modules/_feelings.scss */
+.sprite-feeling.feeling-04 {
+  width: 46px;
+  height: 40px;
+  background-position: 0 0;
+}
+/* line 74, ../dev/scss/modules/_feelings.scss */
+.sprite-feeling.feeling-05 {
+  width: 46px;
+  height: 40px;
+  background-position: 0 0;
+}
+/* line 77, ../dev/scss/modules/_feelings.scss */
+.sprite-feeling.feeling-06 {
+  width: 46px;
+  height: 40px;
+  background-position: 0 0;
+}
+/* line 80, ../dev/scss/modules/_feelings.scss */
+.sprite-feeling.feeling-07 {
+  width: 46px;
+  height: 40px;
+  background-position: 0 0;
+}
+
+/* line 87, ../dev/scss/modules/_feelings.scss */
+.tag-feeling-text {
+  position: absolute;
+  top: 0;
+  left: 60px;
+  width: 136px;
+  height: 40px;
+  color: #333;
+  font-size: 12px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #efede0;
+}
+/* line 98, ../dev/scss/modules/_feelings.scss */
+.tag-feeling-text:before {
+  position: absolute;
+  top: 0;
+  left: -15px;
+  display: block;
+  content: "";
+  width: 15px;
+  height: 40px;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAoCAYAAAAhf6DEAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpDMjc5MDQxNDI4QTgxMUUzQTc4REY0MkY3QThEMzNBOCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCN0Y2RUVCNDI4QkUxMUUzQTc4REY0MkY3QThEMzNBOCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkMyNzkwNDEyMjhBODExRTNBNzhERjQyRjdBOEQzM0E4IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkMyNzkwNDEzMjhBODExRTNBNzhERjQyRjdBOEQzM0E4Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+B+uxYQAAARFJREFUeNqk1iFoQlEYxfGriMjAJhiWDBbTksViM9ksKwaDxWAziOAmKoogKwsmYTAMCzaTYNRiMolsYDEMbANliHq+8MrT+971eOBfrvy88DQ8z89qqgyWRBP7oVeZrX7t0ASnUILBHlTTfeiG0yjOYLn11embnXAGPTFYzl/cnqQOP6MYg32oavLjX8NZFGWwH1UM/3UXOIciDA7ccqsd59Ejgx9QWd04CxdQmMFBVFLEBBdRiMU5RU7w5z34Df2xeIveWSzroh2Lf1GPxbIO2rN4g/oslrXRP4vX6IPFshY6sPgbDVgsa6Aji5foi8XW7ScWL9CQxbKm0+1ueI5GLNa+j5jiGRqzWOneS84CDAAHfCjMPupkgwAAAABJRU5ErkJggg==');
+  -webkit-background-size: 15px 40px;
+  -moz-background-size: 15px 40px;
+  -o-background-size: 15px 40px;
+  background-size: 15px 40px;
 }
 
 /* line 8, ../dev/scss/modules/_drop_list.scss */
@@ -16971,7 +17147,16 @@ header {
   background-color: #f4b74e;
 }
 
-/* line 8, ../dev/scss/modules/_music_detail.scss */
+/* line 2, ../dev/scss/modules/_music_detail.scss */
+.musicDetail {
+  background-color: #fff;
+}
+/* line 4, ../dev/scss/modules/_music_detail.scss */
+.musicDetail.leftCol {
+  width: 460px;
+}
+
+/* line 10, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-thumb {
   position: relative;
   overflow: hidden;
@@ -16979,25 +17164,80 @@ header {
   height: 140px;
 }
 
-/* line 16, ../dev/scss/modules/_music_detail.scss */
+/* line 18, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info {
-  color: #fff;
+  color: #333;
 }
 
-/* line 19, ../dev/scss/modules/_music_detail.scss */
+/* line 21, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info-feeling {
   margin: 0 0 25px;
 }
 
-/* line 22, ../dev/scss/modules/_music_detail.scss */
+/* line 24, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info-title {
   font-size: 18px;
   margin: 0 0 10px;
 }
 
-/* line 26, ../dev/scss/modules/_music_detail.scss */
+/* line 28, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-info-artist {
   margin: 0 0 25px;
+}
+
+/* line 39, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-pop {
+  padding: 10px;
+  background-color: #efede0;
+}
+
+/* line 43, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-pop-user {
+  margin-bottom: 10px;
+}
+
+/* line 50, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-user-action-btn {
+  float: left;
+  display: block;
+  width: 50%;
+  height: 30px;
+  text-align: center;
+  color: #d4d2be;
+  background-color: #656457;
+}
+/* line 59, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-user-action-btn .ico-font.ico-follow {
+  font-size: 28px;
+}
+/* line 62, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-user-action-btn .ico-font.ico-heart {
+  font-size: 22px;
+}
+/* line 66, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-user-action-btn.is-active {
+  color: #f3613f;
+  background-color: #fec02b;
+}
+
+/* line 82, ../dev/scss/modules/_music_detail.scss */
+.text-link {
+  position: relative;
+  display: inline-block;
+  padding-right: 16px;
+}
+/* line 86, ../dev/scss/modules/_music_detail.scss */
+.text-link .ico-font {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin: -5px 0 0 0;
+  font-size: 8px;
+  color: #c9c7b9;
+}
+/* line 95, ../dev/scss/modules/_music_detail.scss */
+.text-link:hover .ico-font {
+  color: #656457;
 }
 
 /* line 7, ../dev/scss/pages/_mypage.scss */
@@ -17294,30 +17534,30 @@ header {
 
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 62, ../dev/scss/style.scss */
+  /* line 58, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 69, ../dev/scss/style.scss */
+/* line 65, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 70, ../dev/scss/style.scss */
+/* line 66, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 71, ../dev/scss/style.scss */
+/* line 67, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 75, ../dev/scss/style.scss */
+/* line 71, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -17334,7 +17574,7 @@ header {
 /*==============================
   Preview Area
 ===============================*/
-/* line 104, ../dev/scss/style.scss */
+/* line 100, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: relative !important;
   top: 0px !important;
@@ -17344,7 +17584,7 @@ header {
   margin: 0 !important;
 }
 
-/* line 112, ../dev/scss/style.scss */
+/* line 108, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -17359,7 +17599,7 @@ header {
   color: white;
 }
 
-/* line 126, ../dev/scss/style.scss */
+/* line 122, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -17375,7 +17615,7 @@ header {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 143, ../dev/scss/style.scss */
+/* line 139, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -17383,14 +17623,14 @@ header {
 /*==============================
   Base Frame
 ===============================*/
-/* line 157, ../dev/scss/style.scss */
+/* line 153, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 65px;
 }
 
-/* line 162, ../dev/scss/style.scss */
+/* line 158, ../dev/scss/style.scss */
 #main {
   width: 980px;
   margin: 0 auto;

@@ -2,16 +2,23 @@
 
 @font-face {
   font-family:"icons";
-  src:url("../images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.eot");
-  src:url("../images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.eot?#iefix") format("embedded-opentype"),
-		url("../images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.woff") format("woff"),
-		url("../images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.ttf") format("truetype"),
-		url("../images/fonts/icons-9079bb13690f5861e937643ae9ea9a04.svg?#icons") format("svg");
+  src:url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.eot");
+  src:url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.eot?#iefix") format("embedded-opentype"),
+		url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.woff") format("woff"),
+		url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.ttf") format("truetype"),
+		url("../images/fonts/icons-6de052d72241a0c976105e9940ab99c7.svg?#icons") format("svg");
   font-weight:normal;
   font-style:normal;
 }
 
 .ico-font {
+  font-family:"icons";
+  display:inline-block;
+  font-style:normal;
+  speak:none;
+  -webkit-font-smoothing:antialiased;
+}
+@mixin ico-font {
   font-family:"icons";
   display:inline-block;
   font-style:normal;
@@ -30,36 +37,51 @@
 .ico-drop:before {
   content:"\f102";
 }
-.ico-heart:before {
+.ico-follow:before {
   content:"\f103";
 }
-.ico-image:before {
+.ico-heart:before {
   content:"\f104";
 }
-.ico-play-02:before {
+.ico-image:before {
   content:"\f105";
 }
-.ico-play-next:before {
+.ico-list:before {
   content:"\f106";
 }
-.ico-play-prev:before {
+.ico-mail:before {
   content:"\f107";
 }
-.ico-play:before {
+.ico-play-02:before {
   content:"\f108";
 }
-.ico-plus:before {
+.ico-play-next:before {
   content:"\f109";
 }
-.ico-refresh:before {
+.ico-play-prev:before {
   content:"\f10a";
 }
-.ico-repeat:before {
+.ico-play-stop:before {
   content:"\f10b";
 }
-.ico-shuffle:before {
+.ico-play:before {
   content:"\f10c";
 }
-.ico-star:before {
+.ico-plus:before {
   content:"\f10d";
+}
+.ico-refresh:before {
+  content:"\f10e";
+}
+.ico-repeat:before {
+  content:"\f10f";
+}
+.ico-search:before {
+  content:"\f110";
+}
+.ico-shuffle:before {
+  content:"\f111";
+}
+.ico-star:before {
+  content:"\f112";
 }

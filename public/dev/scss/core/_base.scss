@@ -7,12 +7,16 @@ body {
 	font-size: 14px;
 	font-family: $font-family-body;
 	-webkit-text-size-adjust: 100%;
-	background-attachment: fixed;
+	background-color: #dedbc7;
 }
+
 a {
 	display: block;
 	// color: $color-base;
 	color: inherit;
+	text-decoration: none;
+}
+a:hover {
 	text-decoration: none;
 }
 b {
@@ -32,4 +36,16 @@ select, button, input, textarea {
 }
 button {
 	background: none;
+}
+
+
+//  Fonts
+//-------------------------------------
+@import url(http://fonts.googleapis.com/css?family=Courgette);
+
+@mixin Courgette {
+  font-family: 'Courgette', cursive;
+}
+.Courgette {
+  @include Courgette;
 }
