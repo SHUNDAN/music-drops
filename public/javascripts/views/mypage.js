@@ -10,7 +10,6 @@ define([
     'models/user/user_pocket_list',
     'models/user/user_playlist',
     'models/user/user_playlist_list',
-    'models/user/user_notification_list',
     'models/user/user_follow',
     'models/user/user_follow_list',
     'models/user/user_artist_follow',
@@ -25,7 +24,6 @@ define([
     UserPocketList,
     UserPlaylist,
     UserPlaylistList,
-    UserNotificationList,
     UserFollow,
     UserFollowList,
     UserArtistFollow,
@@ -54,23 +52,16 @@ define([
                 'renderFollowedUsers',
                 '_filterUserPocketList',
 
-                'showUserPocketList',
                 'renderUserPocketListArea',
                 'renderUserPocketList',
                 'renderPlaylist',
-                'showUserNotificationList',
-                'showYoutube',
                 'deletePocket',
-                'deleteNofitication',
-                'changeTags',
                 'filterPockets',
                 'show',
                 'dealloc');
 
             this.userPlaylistList = new UserPlaylistList();
             this.userPlaylistList.bind('reset', this.renderPlaylist);
-            this.userNotifitactionList = new UserNotificationList();
-            this.userNotifitactionList.bind('reset', this.showUserNotificationList);
             this.userFollowedList = new UserFollowList();
             this.userFollowList = new UserFollowList();
             this.userFollowedList.bind('reset', this.renderUserFollowedList);
@@ -78,25 +69,17 @@ define([
             this.userArtistFollowList = new UserArtistFollow();
             this.userArtistFollowList.bind('reset', this.renderUserArtistFollow);
 
-            // if (_.isIphone || _.isAndroid) {
-            //     $(document).off().on('blur', '[data-event="filterPockets"]', this.filterPockets);
-            // } else {
-            //     $(document).off().on('keyup', '[data-event="filterPockets"]', this.filterPockets);
-            // }
-
 
         },
 
-        events: {
-            'click [data-event="showYoutube"]': 'showYoutube',
-            'click [data-event="deletePocket"]' : 'deletePocket',
-            'click [data-event="deleteNotification"]': 'deleteNofitication',
-            'blur [data-event="changeTags"]': 'changeTags',
-            'click [data-event="saveFilter"]': 'saveFilter',
-            'click [data-event="useFilter"]': 'useFilter',
-            'click [data-event="clearFilter"]': 'clearFilter',
-            'click [data-event="deleteFilter"]': 'deleteFilter',
-        },
+        // events: {
+        //     'click [data-event="showYoutube"]': 'showYoutube',
+        //     'click [data-event="deletePocket"]' : 'deletePocket',
+        //     'click [data-event="saveFilter"]': 'saveFilter',
+        //     'click [data-event="useFilter"]': 'useFilter',
+        //     'click [data-event="clearFilter"]': 'clearFilter',
+        //     'click [data-event="deleteFilter"]': 'deleteFilter',
+        // },
 
 
         // マイページ表示
@@ -763,75 +746,6 @@ define([
 
 
 
-        /**
-         * ユーザーPocket一覧を表示
-         */
-        showUserPocketList: function () {
-            console.log('showUserPocketList');
-            var template = $('#page_mypage_poplist').html();
-            console.log(this.userPocketList.models);
-            this.displayPocketListModel = _.sortBy(this.userPocketList.models, function (model) {return model.attributes.create_at * -1;});
-            var snipet = _.template(template, {pocketList: this.displayPocketListModel, feelings: this.userStorage.getCommon().feelings});
-            $('#poplist').html(snipet);
-        },
-
-
-
-
-        /**
-         * ユーザーPocket一覧を表示2
-         */
-        showUserPocketList2: function () {
-            console.log('showUserPocketList2');
-            var template = $('#page_mypage_poplist').html();
-            this.displayPocketListModel = _.sortBy(this.displayPocketListModel, function (model) {return model.attributes.create_at * -1;});
-            var snipet = _.template(template, {pocketList: this.displayPocketListModel, feelings: this.userStorage.getCommon().feelings});
-            $('#poplist').html(snipet);
-        },
-
-        /**
-         * ユーザーお知らせ一覧の表示
-         */
-        showUserNotificationList: function () {
-            console.log('showUserNotificationList');
-            var template = $('#page_common_notification_list').html();
-            var models = _.sortBy(this.userNotifitactionList.models, function (model) {return model.attributes.create_at * -1;});
-            var snipet = _.template(template, {notificationList: models});
-            this.$el.find('#notification_list').html(snipet);
-        },
-
-
-
-
-        /**
-         * Youtube再生
-         */
-        showYoutube: function (e) {
-            var pos = $(e.currentTarget).data('pos');
-            console.log('showYoutube:', pos);
-
-
-            // YoutubeId一覧を取得
-            var ids = [];
-            _.each(this.displayPocketListModel, function (model) {
-                if (model.attributes.youtube_id) {
-                    ids.push(model.attributes.youtube_id);
-                }
-            });
-            console.log('ids', ids);
-
-            // 再生順に並び替える
-            var youtubeIds = [].concat(ids.slice(pos, ids.length)).concat(ids.slice(0,pos));
-            console.debug('youtubeIds: ', youtubeIds);
-
-
-            // Youtubeを再生する
-            if (mb.youtubeView) {
-                mb.youtubeView.dealloc();
-            }
-            mb.youtubeView = new YoutubeView();
-            mb.youtubeView.show(youtubeIds, this);
-        },
 
 
 
@@ -839,72 +753,6 @@ define([
 
 
 
-
-         /**
-          * プレイリスト編集
-          */
-        editPlayList: function () {
-            console.debug('editPlayList');
-        },
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /**
-         * お知らせ削除
-         */
-        deleteNofitication: function (e) {
-            var notifId = $(e.currentTarget).data('notification-id');
-            console.log('deleteNotification: ', notifId);
-
-            var notification = this.userNotifitactionList.get(notifId);
-            notification.bind('sync', _.bind(function () {
-                this.showUserNotificationList();
-            }, this));
-            notification.destroy({wait: true});
-        },
-
-
-        changeTags: function (e) {
-            var id = $(e.currentTarget).data('pocket-id');
-            var tagString = $(e.currentTarget).text();
-            console.log('changeTags', id, tagString);
-
-            var tags = [];
-            _.each(tagString.split(','), function (tag) {
-                tag = _.trim(tag);
-                if (tag.length !== 0) {
-                    tags.push(tag);
-                }
-            });
-            console.log('tags: ', tags);
-
-
-            // サーバーへ保存する
-            var anUserPocket = new UserPocket();
-            anUserPocket.set('id', id);
-            anUserPocket.set('tags', tags.join(','));
-            anUserPocket.bind('sync', function () {
-                console.log('update tags: ', id, tags);
-            });
-            anUserPocket.save();
-
-
-            // 表示中のPocketにも反映します。
-            var pocket = this.userPocketList.get(id);
-            pocket.set('tags', tags.join(','));
-
-
-        },
 
 
 
@@ -947,9 +795,6 @@ define([
 
             // ユーザーのプレイリストを取得
             this.userPlaylistList.fetch({reset:true, data:{user_id:this.user.id}});
-
-            // お知らせ一覧の取得
-            this.userNotifitactionList.fetch({reset: true, data: {user_id: this.user.id}});
 
             // フォローされているユーザー一覧取得
             this.userFollowedList.fetch({reset:true, data: {dest_user_id:this.user.id}});
