@@ -12,6 +12,17 @@ define(['models/user/user_playlist'], function (UserPlaylist) {
             return '/api/v1/user_playlists';
         },
 
+
+        fetchFollowPlaylist: function (userId) {
+            this.fetch({
+                reset: true,
+                url: '/api/v1/follow_playlists',
+                data: {
+                    user_id: userId
+                }
+            });
+        },
+
     });
 
     return UserPlaylistCollection;

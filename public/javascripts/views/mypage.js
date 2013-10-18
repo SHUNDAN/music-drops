@@ -51,10 +51,10 @@ define([
                 'renderFollowUsers',
                 'renderFollowedUsers',
                 '_filterUserPocketList',
-
                 'renderUserPocketListArea',
                 'renderUserPocketList',
                 'renderPlaylist',
+                'renderUserFollowPlaylist',
                 'deletePocket',
                 'filterPockets',
                 'show',
@@ -72,14 +72,6 @@ define([
 
         },
 
-        // events: {
-        //     'click [data-event="showYoutube"]': 'showYoutube',
-        //     'click [data-event="deletePocket"]' : 'deletePocket',
-        //     'click [data-event="saveFilter"]': 'saveFilter',
-        //     'click [data-event="useFilter"]': 'useFilter',
-        //     'click [data-event="clearFilter"]': 'clearFilter',
-        //     'click [data-event="deleteFilter"]': 'deleteFilter',
-        // },
 
 
         // マイページ表示
@@ -222,6 +214,14 @@ define([
             // ドラッグ＆ドロップ機能を追加
             this.addDragAndDropFacility();
         },
+
+
+        /**
+            フォローしているプレイリストを表示
+        */
+        renderUserFollowPlaylist: function () {
+            console.debug('aaa');
+        }
 
 
 
@@ -797,13 +797,18 @@ define([
             this.userPlaylistList.fetch({reset:true, data:{user_id:this.user.id}});
 
             // フォローされているユーザー一覧取得
-            this.userFollowedList.fetch({reset:true, data: {dest_user_id:this.user.id}});
+            // this.userFollowedList.fetch({reset:true, data: {dest_user_id:this.user.id}});
 
             // フォローしているユーザー一覧
-            this.userFollowList.fetch({reset:true, data: {user_id:this.user.id}});
+            // this.userFollowList.fetch({reset:true, data: {user_id:this.user.id}});
 
             // フォローしているアーティスト
-            this.userArtistFollowList.fetch({reset:true, data:{user_id:this.user.id}});
+            // this.userArtistFollowList.fetch({reset:true, data:{user_id:this.user.id}});
+
+            // フォローしているプレイリスト
+            this.userFollowPlaylistList = new UserPlaylistList();
+            this.userFollowPlaylistList.bind('sync', this.renderUserFollowPlaylist);
+            this.userFollowPlaylistList.fetchFollowPlaylist(this.user.id);
 
         },
 

@@ -458,9 +458,6 @@ app.get('/api/v1/itunes_rankings', iTunesRanking.select);
 app.post('/api/v1/itunes_rankings', iTunesRanking.add);
 app.post('/api/v1/itunes_rankings/:id/update', iTunesRanking.update);
 app.delete('/api/v1/itunes_rankings/:id', iTunesRanking.delete);
-// app.post('/api/v1.1/itunes_rankings', iTunesRanking.add1_1);
-// app.post('/api/v1.1/itunes_rankings/:id/update', iTunesRanking.update1_1);
-// app.delete('/api/v1.1/itunes_rankings/:id', iTunesRanking.delete1_1);
 
 
 // Master
