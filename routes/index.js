@@ -27,8 +27,19 @@ exports.index = function(req, res){
             template += fs.readFileSync(file, 'utf-8');
         });
 
+
+        // ユーザー情報あれば表示
+        var uid = req.cookies.uid;
+        var user = null;
+        if (global.tmpMap) {
+            user = global.tmpMap[uid];
+            console.log('user=', user);
+            delete global.tmpMap[uid];
+        }
+
+
         // response.
-        res.render('index', {title: 'Express', htmltemplate: template, mainJs: global.mbSetting.mainJs});
+        res.render('index', {title: 'Express', htmltemplate: template, mainJs: global.mbSetting.mainJs, user:JSON.stringify(user)});
 
     });
 
@@ -82,14 +93,6 @@ exports.login = function (req, res) {
             }   
       
             console.log('sessionMap: ', global.sessionMap);
-
-            // var uid = uuid.v4();
-            // global.sessionMap = global.sessionMap || {};
-            // while (global.sessionMap[uid]) {
-            //     uid = uuid.v4();
-            // }
-            // global.sessionMap[uid] = rows[0].id;
-            // console.log('sessionMap: ', global.sessionMap);
             
             // Request HeaderでUIDを返す
             var userInfo = rows[0];
@@ -101,8 +104,9 @@ exports.login = function (req, res) {
             
 
 
-
-            res.json({message: 'success', info: userInfo});
+            userModel.selectObject2({id:userInfo.id}, function (user) {
+                res.json({user:user, isNew:false});
+            });
         }
     });
 

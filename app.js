@@ -46,13 +46,12 @@ passport.use(new GoogleStrategy({
     console.log('identifier,profile,done: ', identifier, profile, done);
 
     // 既に存在するユーザーか？
-    userModel.selectObjects({google_identifier:identifier}, function (err, rows) {
+    userModel.selectObject2({google_identifier:identifier}, function (user) {
+
 
         // 存在する場合には、ログイン成功ということでSessionMapに追加して、Cookieを返す。
-        if (rows.length > 0) {
-            var user = rows[0];
-            delete user.password;
-            done(err, user);
+        if (user) {
+            done(null, user);
             return;
         }
 
@@ -60,10 +59,9 @@ passport.use(new GoogleStrategy({
         // 存在しない場合には、ユーザーを作成して、その後ログイン済みとして扱う。
         userModel.insertObject({name:profile.displayName, google_identifier:identifier}, function () {
 
-            userModel.selectObjects({google_identifier:identifier}, function (err, rows) {
+            userModel.selectObject2({google_identifier:identifier}, function (user) {
 
-                var user = rows[0];
-                delete user.password;
+                user.isNew = true;
                 done(err, user);
 
 
@@ -100,11 +98,10 @@ passport.use(new FacebookStrategy({
         console.log('profile: ', profile);
 
         // ユーザーは存在するか？
-        userModel.selectObjects({facebook_access_token:accessToken}, function (err, rows) {
+        userModel.selectObject2({facebook_access_token:accessToken}, function (user) {
 
             // 存在すれば、その情報を持って次へ
-            if (rows.length > 0) {
-                var user = rows[0];
+            if (user) {
                 done(null, user);
                 return;
             }
@@ -113,9 +110,9 @@ passport.use(new FacebookStrategy({
             userModel.insertObject({name:profile.displayName, facebook_access_token:accessToken}, function () {
 
                 // 作った情報を取得する
-                userModel.selectObjects({facebook_access_token:accessToken}, function (err, rows) {
+                userModel.selectObject2({facebook_access_token:accessToken}, function (user) {
 
-                    var user = rows[0];
+                    user.isNew = true;
                     done(null, user);
 
                     // Playlistのデフォルトも作っておく。
@@ -148,11 +145,10 @@ passport.use(new TwitterStrategy({
     console.log('profile: ', profile);
 
     // 既に存在するユーザーか？
-    userModel.selectObjects({twitter_token:token, twitter_token_secret:tokenSecret}, function (err, rows) {
+    userModel.selectObject2({twitter_token:token, twitter_token_secret:tokenSecret}, function (user) {
 
         // 既に存在する
-        if (rows.length > 0) {
-            var user = rows[0];
+        if (user) {
             done(null, user);
             return;
         }
@@ -160,9 +156,9 @@ passport.use(new TwitterStrategy({
         // 存在しない場合は、登録してから次へ
         userModel.insertObject({name:profile.displayName, twitter_token:token, twitter_token_secret:tokenSecret}, function () {
 
-            userModel.selectObjects({twitter_token:token, twitter_token_secret:tokenSecret}, function (err, rows) {
+            userModel.selectObject2({twitter_token:token, twitter_token_secret:tokenSecret}, function (user) {
 
-                var user = rows[0];
+                user.isNew = true;
                 done(null, user);
 
                 // Playlistのデフォルトも作っておく。
@@ -231,6 +227,7 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
+app.use(express.cookieSession({secret:'mockbu'}));
 app.use(express.session({secret: '1234567890QWERTY'}));
 // access log.
 app.use(function (req, res, next) {
@@ -288,7 +285,7 @@ if ('development' == app.get('env')) {
 
 
 // OAuth - Google
-var oauthCallback = function (err, user, res) {
+var oauthCallback = function (err, user, req, res) {
 
     if (err) {
         res.json(403, {message: 'error'});
@@ -323,13 +320,18 @@ var oauthCallback = function (err, user, res) {
 
     // Cookieの設定
     res.cookie('uid', uid, {maxAge:30*24*60*60, httpOnly:false});
+
+    // とりあえず保存
+    global.tmpMap = global.tmpMap || {};
+    global.tmpMap[uid] = user;
+
     return res.redirect('/');
 
 };
 app.get('/auth/google', passport.authenticate('google'));
 app.get('/auth/google/return', function (req, res, next) {
     passport.authenticate('google', function (err, user) {
-        oauthCallback(err, user, res);
+        oauthCallback(err, user, req, res);
     })(req, res, next);
 });
 
@@ -337,7 +339,7 @@ app.get('/auth/google/return', function (req, res, next) {
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', function (req, res, next) {
     passport.authenticate('facebook', function (err, user) {
-        oauthCallback(err, user, res);
+        oauthCallback(err, user, req, res);
     })(req, res, next);
 });
 
@@ -345,7 +347,7 @@ app.get('/auth/facebook/callback', function (req, res, next) {
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback', function (req, res, next) {
     passport.authenticate('twitter', function (err, user) {
-        oauthCallback(err, user, res);
+        oauthCallback(err, user, req, res);
     })(req, res, next);
 });
 

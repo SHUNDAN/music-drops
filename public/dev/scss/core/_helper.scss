@@ -163,3 +163,31 @@
 .vt { vertical-align: top; }
 .vm { vertical-align: middle; }
 .vb { vertical-align: bottom; }
+
+
+
+
+//  共通で使いたいHelper系クラス
+// _mypage.scssで定義していたものを、とりあえずこちらに移動しました（by ムネ）
+//-------------------------------------
+.fs18 {font-size: 18px;}
+.fs20 {font-size: 20px;}
+.fs32 {font-size: 32px;}
+.mt30 {margin-top: 30px;}
+.hidden {display: none;}
+a:hover {text-decoration: none;}
+.noAction {pointer-events: none;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

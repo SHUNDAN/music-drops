@@ -93,6 +93,14 @@ require([
         },
 
         userPage: function (userId) {
+
+            // もし自分のIDの場合は、マイページを表示する
+            var user = _.mbStorage.getUser();
+            if (user && user.id === parseInt(userId, 10)) {
+                mb.router.navigate('#mypage', true);
+                return;
+            }
+
             this.sendAction('/#user/' + userId);
             this.appView.toUserPage(userId);
             _gaq.push(['_trackPageview', '/#user/' + userId]);

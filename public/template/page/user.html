@@ -1,73 +1,240 @@
 
-<!-- ユーザーページ -->
+
+<!-- Mypage -->
 <script id="page_user" type="text/template">
-    <h1 class="text-center">User Page</h1>
-    <div id="userInfoArea"></div>
-    <div id="followedUserList"></div>
-    <div id="followUserList"></div>
-    <div>
-        <h3 class="text-center">Pocket List</h3>
-        <table class="table">
-            <tr>
-                <th>feeling</th>
-                <th>title</th>
-                <th>Song</th>
-                <th>Youtube</th>
-                <th>-</th>
-            </tr>
-            <tr>
-                <tbody id="pocketlist"></tbody>
-            </tr>
-        </table>
+
+    <!--タイトル-->
+    <h1 class="text-center">My List</h1>
+
+    <div class="pageMypage clearfix">
+
+
+        <div class="leftCol">
+
+            <!--タイトル：ユーザー名、保有曲数-->
+            <div class="playlistHeader">
+                <span class="fs18"><%=user.name%></span>
+                <span>/</span>
+                <span id="numOfPockets" class="fs32">0</span>
+                <span class="fs18">曲</span>
+            </div>
+            <!--マイドロップ、チェックアーティスト、ユーザーフォロ-->
+            <ul class="sidebarList">
+                <li data-event-click="showMyDrops">マイドロップ一覧&nbsp;<span id="numOfMyDrops"></span></li>
+                <li data-event-click="showCheckArtists">チェックアーティスト&nbsp;<span id="numOfCheckArtists"></span></li>
+                <li data-event-click="showFollowUsers">フォローしているユーザー&nbsp;<span id="numOfFollowUsers"></span></li>
+                <li data-event-click="showFollowedUsers">フォローされているユーザー&nbsp;<span id="numOfFollowedUsers"></span></li>
+            </ul>
+
+            <!--他人のプレイリスト-->
+            <div id="playlistEditArea" class="listEditArea">
+                <div class="playlistHeader mt30">
+                    <span class="fs18">プレイリスト一覧</span>
+                </div>
+                <ul id="playlistList" class="sidebarList"><!--プレイリストをJSで追加--></ul>
+            </div>
+
+
+        </div>
+
+
+
+
+        <!--右Colのデータ表示部分-->
+        <div class="rightCol" data-type="dataArea"><!--JSで内容を設定する--></div>
+
+
     </div>
-</script>
 
 
-<!-- ユーザー情報 -->
-<script id="page_user_info" type="text/template">
-    Nick Name: <%- name %><br>
-    Thumbnail: <img class="thumbM" src="<%- thumb_url %>" alt="ユーザーサムネイル" /><br>
-    <% if (targetUserId !== id && followed === false) { %>
-        <div class="btn mt5 mb5" data-event="followUser">フォローする</div>
-    <% } else { %>
-        <div class="btn mt5 mb5" data-event="unfollowUser">フォロー解除する</div>
-    <% } %>
+
 </script>
 
 
 
-<!-- Pocketリスト -->
-<script id="page_user_pocketlist" type="text/template">
-    <% var youtubeIdx = 0; %>
-    <% _.each(pocketList, function (pocket) { 
 
-        var feelingName = '-';
-        _.each(feelings, function (feeling) {
-            if (feeling.id === pocket.attributes.feeling_id) {
-                feelingName = feeling.name;
-            }
-        });
-        
-        %>
-        <tr>
-            <td><%- feelingName %></td>
-            <td><a href="#music/<%-pocket.attributes.music_id%>"><%=pocket.attributes.title%></a></td>
-            <td><audio src="<%-pocket.attributes.song%>" controls></audio></td>
-            <td>
-                <% if (pocket.attributes.youtube_id) { %>
-                    <div class="btn btn-primary" data-youtube-id="<%-pocket.attributes.youtube_id%>" data-event="showYoutube" data-youtube-idx="<%-youtubeIdx++%>">▶</div>
-                <% } else { %>
-                    <div class="text-center">-</div>
-                <% } %>
-            </td>
-            <td>
-                <%if (_.alreadyPocket(pocket.attributes.music_id) === false) {%>
-                    <div class="btn" data-music-id="<%-pocket.attributes.music_id%>" data-youtube-id="<%-pocket.attributes.youtube_id%>" data-event="addPocket">Pocketする</div>
-                <%} else {%>
-                    <div class="btn btn-primary" data-music-id="<%-pocket.attributes.music_id%>" data-youtube-id="<%-pocket.attributes.youtube_id%>" data-event="deletePocket">Pocket解除</div>
-                <%}%>
-            </td>
-        </tr>
 
-    <% }); %>
+
+<!--マイPop一覧-->
+<script id="page_user_mypop_list" type="text/template">
+    <%if (popList.length > 0) {%>
+        <%_.each(popList, function (pop) {%>
+            <%=pop.attributes.id%>,
+            <%=pop.attributes.comment%>
+            <br>
+        <%});%>
+    <%} else {%>
+        ないよー
+    <%}%>
 </script>
+
+
+<!--チェックアーティスト一覧-->
+<script id="page_user_check_artists" type="text/template">
+    <%if (checkArtists.length > 0) {%>
+        <%_.each(checkArtists, function (checkArtist) {%>
+            <%=checkArtist.attributes.id%>,
+            <%=checkArtist.attributes.artist_name%>
+            <br>
+        <%});%>
+    <%} else {%>
+        ないよー
+    <%}%>
+</script>
+
+
+<!--フォローしているユーザー一覧-->
+<script id="page_user_follow_users" type="text/template">
+    <%if (followUsers.length > 0) {%>
+        dest_user_id,dest_user_name<br>
+        <%_.each(followUsers, function (user) {%>
+            <%=user.attributes.dest_user_id%>,
+            <%=user.attributes.dest_user_name%><br>
+        <%});%>
+    <%} else {%>
+        ないよー
+    <%}%>
+</script>
+
+
+<!--フォローされてるユーザー一覧-->
+<script id="page_user_followed_users" type="text/template">
+    <%if (followedUsers.length > 0) {%>
+        user_id,user_name<br>
+        <%_.each(followedUsers, function (user) {%>
+            <%=user.attributes.user_id%>,
+            <%=user.attributes.user_name%><br>
+        <%});%>
+    <%} else {%>
+        ないよー
+    <%}%>
+</script>
+
+
+
+
+<!--Pocket一覧エリア-->
+<script id="page_user_user_pocket_list_area" type="text/template">
+
+    <!--絞り込み機能-->
+    <div class="filterArea">
+        <input type="text" id="filterByNameInput" class="filterByNameInput" placeholder="曲名やアーティスト名を入力" data-event-keyup="filterPockets"/>
+        <input type="button" class="filterByNameBtn" value="絞り込み" data-event-click="filterPockets"/>
+        <div class="selectArea">
+            <select id="filterByFeelingSelect" class="filterByFeelingSelect" data-event-change="filterPockets2">
+                <option value="0"></option>
+                <%_.each(feelings, function (feeling) {%>
+                    <option value="<%=feeling.id%>"><%=feeling.name%></option>
+                <%});%>
+            </select>
+        </div>
+    </div>
+
+    <!--機能-->
+    <div class="pocketListFncArea clearfix">
+        <!--あとでプレイリストフォロー機能を追加する-->
+        <!--<a href="#" class="editButton" data-event-click="editPocketList">完了</a>-->
+    </div>
+
+    <!--Pocketリスト-->
+    <ul id="pocketListArea" class="pocketListArea clearfix">
+
+        <%_.each(pocketList, function (pocket) {%>
+            <li class="feeling-<%=pocket.attributes.feeling_id%>" data-pocket-id="<%=pocket.attributes.id%>">
+                <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>"/>
+                <div class="info">
+                    <div class="title">
+                        <a href="#music/<%=pocket.attributes.music_id%>"><%=pocket.attributes.title%></a>
+                    </div>
+                    <div class="artistName">
+                        <a href="#artist/<%=pocket.attributes.artist_id%>"><%=pocket.attributes.artist_name%></a>
+                    </div>
+                </div>
+                <div class="playBtn" data-event-click="playMusic">▶</div>
+            </li>
+        <%});%>
+
+    </ul>
+
+</script>
+
+
+
+
+
+
+
+
+<!--ユーザープレイリスト一覧-->
+<script id="page_user_playlist" type="text/template">
+
+    <%_.each(playlists, function (playlist) {%>
+        <li data-playlist-id="<%=playlist.attributes.id%>" data-event-click="showPlaylist">
+            <%=playlist.attributes.title%> (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
+        </li>
+    <%});%>
+    
+</script>
+
+
+
+
+<!--フォローしているプレイリスト一覧-->
+<script id="page_user_follow_playlist" type="text/template">
+    <%_.each(playlists, function (playlist) {%>
+
+        <li data-playlist-id="<%=playlist.attributes.id%>" data-event-click="showFollowPlaylist">
+            <%=playlist.attributes.title%> 
+            by <a style="display:inline;" href="#user/<%=playlist.attributes.user_id%>"><%=playlist.attributes.user_name%></a> 
+            (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
+            <a href="#" class="clearBtn" data-event-click="deleteFollowPlaylist">×</a>
+        </li>
+
+    <%});%>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

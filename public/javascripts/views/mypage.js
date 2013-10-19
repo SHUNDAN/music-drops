@@ -343,6 +343,7 @@ define([
             var options = {};
 
             // playlist name.
+            // TODO 後でプレイリスト名とかユーザー名とか変更できるようにする。
             options.playlistName = 'すべてのPocket';
 
 
@@ -941,14 +942,6 @@ define([
             // ユーザーのプレイリストを取得
             this.userPlaylistList.fetch({reset:true, data:{user_id:this.user.id}});
 
-            // フォローされているユーザー一覧取得
-            // this.userFollowedList.fetch({reset:true, data: {dest_user_id:this.user.id}});
-
-            // フォローしているユーザー一覧
-            // this.userFollowList.fetch({reset:true, data: {user_id:this.user.id}});
-
-            // フォローしているアーティスト
-            // this.userArtistFollowList.fetch({reset:true, data:{user_id:this.user.id}});
 
             // フォローしているプレイリスト
             this.userFollowPlaylistList = new UserPlaylistList();

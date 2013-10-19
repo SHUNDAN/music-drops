@@ -106,16 +106,21 @@ define([
                 url: '/api/v1/login',
                 method: 'post',
                 data: {user_id: userId, password: password},
-                success: function (json) {
+                success: function (info) {
                       alert('login successed');
 
-                      // TODO とりあえずの実装なので直す
-                      localStorage.setItem('user', JSON.stringify(json.info));
+                      // Storage保存
+                      _.mbStorage.setUser(info.user);
 
                       if (self.successCallback) {
                         self.successCallback();
                       } else {
-                        mb.router.navigate('#', true);
+                        if (info.isNew) {
+                            mb.router.navigate('#', true);
+                        } else {
+                            mb.router.navigate('#mypage', true);
+
+                        }
                       }
                 },
                  error: function () {

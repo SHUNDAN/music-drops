@@ -1,46 +1,17 @@
 //======================================
 //	Mypageのモジュール
+
+// と思いきや、他人のマイページも同じスタイルなので、ちょっと間借りしちゃったです。。
+// ファイル分割とか共通部分抽出とか相談させてください。（by ムネ）
+
 //======================================
 
 
-// 共通にしたい ##するぜーーーbyコバ
-.fs18 {font-size: 18px;}
-.fs20 {font-size: 20px;}
-.fs32 {font-size: 32px;}
-.mt30 {margin-top: 30px;}
-.hidden {display: none;}
-a:hover {text-decoration: none;}
-.noAction {pointer-events: none;}
-
-
-// 気持ちの色
-.feeling-Happy, .feeling-1 {
-  color: $color-feel-Happy;
-}
-.feeling-Relax, .feeling-2 {
-  color: $color-feel-Relax;
-}
-.feeling-Sad, .feeling-3 {
-  color: $color-feel-Sad;
-}
-.feeling-Cry, .feeling-4 {
-  color: $color-feel-Cry;
-}
-.feeling-ight, .feeling-5 {
-  color: $color-feel-ight;
-}
-.feeling-Angry, .feeling-6 {
-  color: $color-feel-Angry;
-}
-.feeling-Smile, .feeling-7 {
-  color: $color-feel-Smile;
-}
-
-
-
+// TODO 以下で、Userページでも共通なので、なんとか綺麗にしたい。
+// とりあえず、.pageMypageと.pageUserを作ってしまった。。
 
 // 全体を囲む
-.pageMypage {
+.pageMypage, .pageUser {
 
 	// 左部分
 	.leftCol {
