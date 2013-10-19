@@ -109,6 +109,15 @@ _.mbStorage = {
     setUser: function (user) {
         storage.setItem('user', JSON.stringify(user));
     },
+    refreshUser: function () {
+        $.ajax({
+            url: '/api/v1/userInfo',
+            dataType: 'json',
+            success: function (user) {
+                _.mbStorage.setUser(user);
+            }
+        });
+    },
     getCommon: function () {
         return JSON.parse(storage.getItem('common'));
     },
@@ -374,6 +383,30 @@ _.alreadyPocket = function (musicId) {
     return false;
 
 };
+
+
+
+/**
+    指定されたUserIdが既にフォロー済みかを調べる
+*/
+_.alreadyFollow = function (userId) {
+
+    var user = _.mbStorage.getUser();
+    if (user) {
+        _.each(user.userFollows, function (follow) {
+            if (follow.user_id === userId) {
+                return true;
+            }
+        });
+    }
+    return false;
+},
+
+
+
+
+
+
 
 
 

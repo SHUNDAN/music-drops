@@ -87,7 +87,6 @@ define([
             ページ骨格＋ユーザー情報表示
         */
         render: function () {
-            console.debug('render', this.user);
             var snipet = _.mbTemplate('page_user', {user: this.user.attributes});
             this.$el.html(snipet);
         },
@@ -355,9 +354,48 @@ define([
             $('#filterByNameInput').val('');
             $('#filterByFeelingSelect option:eq(0)').select();
         },
-        
 
 
+
+
+
+        /**
+            ユーザーをフォローする。
+        */
+        followUser: function () {
+
+            var userFollow = new UserFollow();
+            userFollow.set('dest_user_id', this.user.id);
+            userFollow.bind('sync', function () {
+                // 表示きりかえ
+                $('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
+                // Storage情報も更新する
+                _.mbStorage.refreshUser();
+            });
+            userFollow.save();
+        },
+
+
+        /**
+            ユーザーフォローを解除する。
+        */
+        unfollowUser: function () {
+
+            $.ajax({
+                url: '/api/v1/user_follows',
+                method: 'delete',
+                data: {dest_user_id: this.user.id},
+                success: function () {
+                    // 表示きりかえ
+                    $('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
+                    // Storage情報も更新する
+                    _.mbStorage.refreshUser();
+                },
+                error: function () {
+                    alert('エラーが発生しました。リロードしてください。')
+                },
+            })
+        },
 
 
 
@@ -498,38 +536,6 @@ define([
 
 
 
-        followUser: function () {
-            console.log('followUser', this.userId);
-
-            this.userFollow = new UserFollow();
-            this.userFollow.set('dest_user_id', this.userId);
-            this.userFollow.bind('sync', function () {
-                alert('success');
-                location.reload();
-            });
-            this.userFollow.bind('error', function () {
-                alert('error');
-                console.log('user follow error.', arguments);
-            });
-            this.userFollow.save();
-        },
-
-
-        unfollowUser: function () {
-            console.log('unfollow');
-
-            this.userFollow = new UserFollow();
-            this.userFollow.set('id', this.user.attributes.user_follow_id);
-            this.userFollow.bind('sync', function () {
-                alert('success');
-                location.reload();
-            });
-            this.userFollow.bind('error', function () {
-                alert('error');
-            });
-            this.userFollow.destroy();
-
-        },
 
 
         /**

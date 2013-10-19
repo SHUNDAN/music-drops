@@ -17,6 +17,13 @@
                 <span>/</span>
                 <span id="numOfPockets" class="fs32">0</span>
                 <span class="fs18">曲</span>
+                <%if (_.alreadyFollow(user.id)) {%>
+                    <input type="button" class="userFollowButton" value="フォロー解除" data-event-click="unfollowUser"/>
+                    <input type="button" class="userFollowButton hidden" value="フォローする" data-event-click="followUser"/>
+                <%} else {%>
+                    <input type="button" class="userFollowButton hidden" value="フォロー解除" data-event-click="unfollowUser"/>
+                    <input type="button" class="userFollowButton" value="フォローする" data-event-click="followUser"/>
+                <%}%>
             </div>
             <!--マイドロップ、チェックアーティスト、ユーザーフォロ-->
             <ul class="sidebarList">
@@ -173,7 +180,7 @@
             <%=playlist.attributes.title%> (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
         </li>
     <%});%>
-    
+
 </script>
 
 

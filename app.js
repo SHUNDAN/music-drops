@@ -442,6 +442,7 @@ app.delete('/api/v1/user_playlists', userPlaylist.delete);
 app.get('/api/v1/user_follows', userFollow.select);
 app.post('/api/v1/user_follows', userFollow.add);
 app.delete('/api/v1/user_follows/:id', userFollow.delete);
+app.delete('/api/v1/user_follows', userFollow.delete);
 
 // User Artist Follow
 app.get('/api/v1/user_artist_follows', userArtistFollow.select);

@@ -63,6 +63,17 @@
 			right: 0;
 			display: none;
 		}
+		.userFollowButton {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 100px;
+			height: 32px;
+			line-height: 32px;
+			text-align: center;
+			color: #7d6a35;
+			background-color: #ffcf3c;
+		}
 	}
 
 	// サイドバーの表示

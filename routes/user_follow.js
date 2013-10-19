@@ -102,12 +102,20 @@ exports.update = function(req, res) {
  */
 exports.delete = function(req, res) {
 
+    var condition = {};
     
-    // パラメータチェック
-    if (!req.params.id && !req.body.id) {
-        appUtil.actionLog(req, 'unfollow user failed. id is missing');
-        res.json(400, {message: 'id is required.'});
-        return;
+    if (req.params.id || req.body.id) {
+        condition.id = req.params.id || req.body.id;
+    }
+
+    if (req.body.dest_user_id) {
+        condition.dest_user_id = req.body.dest_user_id;
+    }
+
+
+    // パラムチェック
+    if (!condition.id && !condition.dest_user_id) {
+        res.json(400, 'some condition are required');
     }
 
 

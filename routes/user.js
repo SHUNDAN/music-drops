@@ -94,25 +94,12 @@ exports.userinfo = function (req, res) {
     var uid = req.cookies.uid;
     var user_id = (global.sessionMap ? global.sessionMap[uid] : undefined);
     if (!user_id) {
-        res.json(403, {message: 'authentication error.'});
+        res.json({});
         return;
     }
 
-    userModel.selectObjects({id:user_id}, function (err, rows) {
-
-        if (rows.length > 0) {
-            var user = rows[0];
-            delete user.password;
-            delete user.google_identifier;
-            delete user.facebook_access_token;
-            delete user.twitter_token;
-            delete user.twitter_token_secret;
-            res.json(user);
-            return;
-        }
-
-        res.json(404, {message: 'user not found.'});
-
+    userModel.selectObject2({id:user_id}, function (user) {
+        res.json(user || {});
     });
 
 };
