@@ -62,7 +62,7 @@ passport.use(new GoogleStrategy({
             userModel.selectObject2({google_identifier:identifier}, function (user) {
 
                 user.isNew = true;
-                done(err, user);
+                done(null, user);
 
 
                 // Playlistのデフォルトも作っておく。
