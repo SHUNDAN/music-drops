@@ -58,17 +58,9 @@ define([
 
             _.bindAll(this, 
                 'render', 
+                'renderUserPocketListArea', 
                 'renderUserPocketList', 
                 'renderUserPlaylistList',
-
-
-                'renderUserFollowedList', 
-                'renderUserFollowList', 
-                'showYoutube', 
-                'addPocket', 
-                'deletePocket', 
-                'followUser', 
-                'unfollowUser', 
                 'show', 
                 'dealloc'
                 );
@@ -98,10 +90,7 @@ define([
         /**
             Pocket一覧を表示（displayUserPocketListを利用します）
         */
-        renderUserPocketList: function () {
-
-            // TODO あとで絞り込みを実装する
-            this.filteredUserPocketList = this.displayUserPocketList;
+        renderUserPocketListArea: function () {
 
             // 表示オプション
             var options = {};
@@ -110,19 +99,37 @@ define([
             }
 
 
-            console.log('renderPocketList.', this.filteredUserPocketList);
             var snipet = _.mbTemplate('page_user_user_pocket_list_area', {
-                pocketList: this.filteredUserPocketList.models,
                 feelings: _.mbStorage.getCommon().feelings,
                 options: options
             });
             this.$el.find('[data-type="dataArea"]').html(snipet);
 
 
+            // 中身表示
+            this.renderUserPocketList();
+        },
+
+
+        /**
+            Pocketリストを表示
+        */
+        renderUserPocketList: function () {
+
+            // 絞り込み結果を考慮する
+            this.filteredPocketList = this._filterUserPocketList();
+
+            console.log('renderPocketList.', this.filteredPocketList);
+            var snipet = _.mbTemplate('page_user_user_pocket_list', {
+                pocketList: this.filteredPocketList.models
+            });
+            this.$el.find('#pocketListArea').html(snipet);
 
             // 件数も更新する
             this.$el.find('#numOfPockets').text(this.displayUserPocketList.length);
         },
+
+
 
 
 
@@ -304,8 +311,8 @@ define([
             // startPos, playlist.
             options.startPos = 0;
             options.musicArray = [];
-            for (var i = 0; i < this.filteredUserPocketList.models.length; i++) {
-                var model = this.filteredUserPocketList.models[i];
+            for (var i = 0; i < this.filteredPocketList.models.length; i++) {
+                var model = this.filteredPocketList.models[i];
                 options.musicArray.push(model.attributes);
                 if (model.attributes.id === pocketId) {
                     options.startPos = i;
@@ -355,7 +362,49 @@ define([
                 this.displayUserPocketList.add(this.userPocketList.get(pocketId));
             }, this));
 
-            this.renderUserPocketList();
+            this.renderUserPocketListArea();
+        },
+
+
+
+        // 表示Pocketをフィルタリング
+        _filterUserPocketList: function () {
+
+            var self = this;
+            var filteredPocketList = new UserPocketList();
+            var models = [];
+
+            // word絞り込み
+            if (self.filterWords && self.filterWords.length > 0) {
+                console.debug('aaaa', self.displayUserPocketList.models.length);
+                _.each(self.displayUserPocketList.models, function (pocket) {
+                    var good = false;
+                    _.each(self.filterWords, function (word) {
+                        if (pocket.attributes.title.indexOf(word) !== -1
+                            || pocket.attributes.artist_name.indexOf(word) !== -1) {
+                            good = true;
+                        }
+                    });
+                    if (good) {
+                        models.push(pocket);
+                    }
+                });
+
+            } else {
+                console.debug('bbb', self.displayUserPocketList.models.length);
+                models = self.displayUserPocketList.models;
+            }
+
+            // feeling絞り込み
+            if (self.filterFeelingId) {
+                console.debug('feelingId: ', self.filterFeelingId);
+                models = _.filter(models, function (model) {
+                    return model.attributes.feeling_id === self.filterFeelingId;
+                });
+            }
+
+            filteredPocketList.models = models;
+            return filteredPocketList;
         },
 
 
@@ -469,147 +518,65 @@ define([
                 },
             });
 
-
-
-
-
-
-
-
             return false;
         },
 
 
 
 
+        /**
+            Pocket絞り込み（フリーワード）
+        */
+        filterPockets: function () {
 
-
-
-
-
-
-
-
-
-
-
-
-        renderUserFollowedList: function () {
-            console.log('renderUserFollowedList', this.userFollowedList);
-            var template = $('#page_common_followed_list').html();
-            var snipet = _.template(template, {users: this.userFollowedList.models});
-            this.$el.find('#followedUserList').html(snipet);
-        },
-
-        renderUserFollowList: function () {
-            console.log('renderUserFollowList', this.userFollowList);
-            var template = $('#page_common_follow_list').html();
-            var snipet = _.template(template, {users: this.userFollowList.models});
-            this.$el.find('#followUserList').html(snipet);
-            
-        },
-
-
-        showYoutube: function (e) {
-            var youtubeId = $(e.currentTarget).data('youtube-id');
-            console.log('showYoutube', youtubeId);
-
-
-            // 1曲だけにしようかと思ったけど、やっぱり全曲聞き回しがいいので作り直し。
-            var youtubeIdx = $(e.currentTarget).data('youtube-idx');
-            var youtubeIds = [];
-            $('[data-youtube-id][data-event="showYoutube"]').each(function () {
-                youtubeIds.push($(this).data('youtube-id'));
-            });
-            youtubeIds = [].concat(youtubeIds.slice(youtubeIdx, youtubeIds.length)).concat(youtubeIds.slice(0,youtubeIdx));
-            console.log('youtubeId,idx: ', youtubeIds, youtubeIdx);
-
-
-
-            mb.youtubeView = new YoutubeView();
-            mb.youtubeView.show(youtubeIds, this);
-
-        },
-
-        addPocket: function (e) {
-            var $this = $(e.currentTarget);
-            var musicId = $this.data('music-id');
-            var youtubeId = $this.data('youtube-id');
-            console.log('addPocket', musicId, youtubeId);
-
-            this.userPocket = new UserPocket();
-            this.userPocket.set('music_id', musicId);
-            this.userPocket.bind('sync', function () {
-
-                // UIとイベントを変更する
-                $('[data-event="addPocket"][data-music-id="'+musicId+'"]')
-                    .text('Pocket解除')
-                    .addClass('btn-primary')
-                    .attr('data-event', 'deletePocket');
-
-                // Localデータ更新
-                _.loadUserPockets({force: true});
-
-            });
-            this.userPocket.create();
-
-        },
-
-
-
-        deletePocket: function (e) {
-
-            var musicId = $(e.currentTarget).data('music-id');
-
-            // 対象を探して、削除
-            $.ajax({
-                url: '/api/v1/user_pockets',
-                data: {
-                    user_id: this.userStorage.getUser().id,
-                    music_id: musicId 
-                },  
-                dataType: 'json',
-                success: function (pockets) {
-                    console.debug('delete target pockets: ', pockets);
-
-                    var count = pockets.length;
-                    var doneCount = 0;
-
-                    // 1個ずつ削除
-                    for (var i = 0; i < pockets.length; i++) {
-                        var id = pockets[i].id;
-                        var pocket = new UserPocket();
-                        pocket.set('id', id);
-                        pocket.bind('sync', function () {
-                            if (++doneCount === count) {
-            
-                                // UIとイベントを変更する
-                                $('[data-event="deletePocket"][data-music-id="'+musicId+'"]')
-                                    .text('Pocketする')
-                                    .removeClass('btn-primary')
-                                    .attr('data-event', 'addPocket');
-
-                                // Localデータも更新
-                                _.loadUserPockets({force:true});
-                            }   
-                        }); 
-                        pocket.destroy({wait:true});
-                    }
- 
-                    // UIとイベントを変更する
-                    if (count === doneCount) {
-                        $('[data-event="deletePocket"][data-music-id="'+musicId+'"]')
-                            .text('Pocketする')
-                            .removeClass('btn-primary')
-                            .attr('data-event', 'addPocket');
-
-                        // Localデータも更新
-                        _.loadUserPockets({force:true});
-                    }
-
+            // 検索ワード
+            var conditions = [];
+            _.each($('#filterByNameInput').val().split(/\s/), function (word) {
+                word = _.trim(word);
+                if (word.length > 0) {
+                    conditions.push(word);
                 }
             });
+            console.debug('conditions: ', conditions);
+
+
+            // 検索条件がある場合、または前に検索条件があった場合には、レンダリング
+            if (conditions.length > 0 || (this.filterWords && this.filterWords.length > 0)) {
+                this.filterWords = conditions;
+                this.renderUserPocketList();
+            }
+
         },
+
+
+        /**
+            Pocketしぼり込み（気分）
+        */
+        filterPockets2: function () {
+            console.debug('filterPockets2');
+            this.filterFeelingId = parseInt($('#filterByFeelingSelect option:selected').val());
+            this.renderUserPocketList();
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -628,7 +595,7 @@ define([
             // Pocketリスト取得
             this.userPocketList.bind('sync', _.bind(function () {
                 this.displayUserPocketList = this.userPocketList;
-                this.renderUserPocketList();
+                this.renderUserPocketListArea();
             }, this));
             this.userPocketList.fetch({reset: true, data: {user_id: userId}});
 

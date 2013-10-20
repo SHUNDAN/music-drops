@@ -151,26 +151,36 @@
     </div>
 
     <!--Pocketリスト-->
-    <ul id="pocketListArea" class="pocketListArea clearfix">
-
-        <%_.each(pocketList, function (pocket) {%>
-            <li class="feeling-<%=pocket.attributes.feeling_id%>" data-pocket-id="<%=pocket.attributes.id%>">
-                <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>"/>
-                <div class="info">
-                    <div class="title">
-                        <a href="#music/<%=pocket.attributes.music_id%>"><%=pocket.attributes.title%></a>
-                    </div>
-                    <div class="artistName">
-                        <a href="#artist/<%=pocket.attributes.artist_id%>"><%=pocket.attributes.artist_name%></a>
-                    </div>
-                </div>
-                <div class="playBtn" data-event-click="playMusic">▶</div>
-            </li>
-        <%});%>
-
-    </ul>
+    <ul id="pocketListArea" class="pocketListArea clearfix"><!--JSで追加--></ul>
 
 </script>
+
+
+<!--Pocket一覧-->
+<script id="page_user_user_pocket_list" type="text/template">
+
+    <!--Pocketリスト-->
+    <%_.each(pocketList, function (pocket) {%>
+        <li class="feeling-<%=pocket.attributes.feeling_id%>" data-pocket-id="<%=pocket.attributes.id%>">
+            <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>"/>
+            <div class="info">
+                <div class="title">
+                    <a href="#music/<%=pocket.attributes.music_id%>"><%=pocket.attributes.title%></a>
+                </div>
+                <div class="artistName">
+                    <a href="#artist/<%=pocket.attributes.artist_id%>"><%=pocket.attributes.artist_name%></a>
+                </div>
+            </div>
+            <div class="playBtn" data-event-click="playMusic">▶</div>
+        </li>
+    <%});%>
+
+</script>
+
+
+
+
+
 
 
 
