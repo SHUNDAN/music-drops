@@ -19,7 +19,11 @@ _.isAndroid = navigator.userAgent.toLowerCase().indexOf('android') + 1;
 
 
 // 自動イベントバインドするメソッド
-_.bindEvents = function (view) {
+_.bindEvents = function (view, options) {
+    options = options || {};
+
+    // 対象エリア
+    var $el = options.$el || view.$el;
 
     _.each([
         'click',
@@ -27,7 +31,7 @@ _.bindEvents = function (view) {
         'change',
         'keyup'
         ], function (type) {
-            view.$el.on(type, '[data-event-' + type + ']', function (e) {
+            $el.on(type, '[data-event-' + type + ']', function (e) {
                 var $this = $(this);
                 var fnName = $this.data('event-' + type);
                 if (view[fnName]) {

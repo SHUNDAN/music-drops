@@ -1,7 +1,7 @@
 <!--Header Component-->
 <script id="component_header" type="text/template">
   <div class="header-playGage">
-    <div class="value" style="width:40%;"></div>
+    <div id="seekBar" class="value" style="width:0%;"></div><!--JSで長さを調整します-->
   </div><!-- /header-playGage -->
 
   <div class="header-content">
@@ -26,8 +26,11 @@
         <button class="js-playMenu-prev header-playMenu-btn header-playMenu-btn-prev">
           <i class="ico-font ico-play-prev"></i>
         </button>
-        <button class="js-playMenu-play header-playMenu-btn header-playMenu-btn-play">
+        <button class="js-playMenu-play header-playMenu-btn header-playMenu-btn-play" data-event-click="startMusic">
           <i class="ico-font ico-play"></i>
+        </button>
+        <button class="js-playMenu-play-stop header-playMenu-btn header-playMenu-btn-play hidden" data-event-click="pauseMusic">
+          <i class="ico-font ico-play-stop"></i>
         </button>
         <button class="js-playMenu-next header-playMenu-btn header-playMenu-btn-next">
           <i class="ico-font ico-play-next"></i>
@@ -36,7 +39,7 @@
           <p id="mpMusicTitle" class="header-playMenu-song-title elps">もっとずっと一緒にいたかった…</p>
           <p id="mpArtistName" class="header-playList-song-artist elps">by Berrys</p>
         </div><!-- /header-playMenu-song -->
-        <button class="js-playMenu-movie header-playSubMenu-btn header-playSubMenu-btn-window is-active">
+        <button class="js-playMenu-movie header-playSubMenu-btn header-playSubMenu-btn-window" data-event-click="togglePlayerVisible">
           <i class="ico-font ico-image"></i>
         </button>
         <button class="js-playMenu-repeat header-playSubMenu-btn header-playSubMenu-btn-repeat">

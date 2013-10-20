@@ -30,6 +30,7 @@ header {
   .value {
     height: 4px;
     background-color: #f46116;
+    -webkit-transition: width 1s ease;
   }
 }
 

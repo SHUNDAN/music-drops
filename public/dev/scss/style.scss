@@ -98,15 +98,19 @@
   Preview Area
 ===============================*/
 .previewArea {
-
+    transition: opacity .5 ease;
+    -webkit-transition: opacity .5 ease;
+    -moz-transition: opacity .5 ease;
+    -ms-transition: opacity .5 ease;
 }
 .previewArea.posNotShow {
-    position: relative !important;
-    top: 0px !important;
+    position: absolute !important;
+    top: -500px !important;
     left: 0px !important;
-    -webkit-transform: scale(.5);
-    -webkit-transform-origin: 0 0;
-    margin: 0 !important;
+    opacity: 0;
+    // -webkit-transform: scale(.5);
+    // -webkit-transform-origin: 0 0;
+    // margin: 0 !important;
 }
 .previewArea .closeBtn {
     position: absolute;
