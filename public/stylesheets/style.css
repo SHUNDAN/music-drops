@@ -16706,11 +16706,11 @@ header {
   background-color: #dedbc7;
 }
 /* line 77, ../dev/scss/modules/_buttons.scss */
-.btn-PD:active, .btn-PD .is-active {
+.btn-PD:active, .btn-PD.is-active {
   background-color: #ffcf3c;
 }
 /* line 79, ../dev/scss/modules/_buttons.scss */
-.btn-PD:active .ico-font, .btn-PD .is-active .ico-font {
+.btn-PD:active .ico-font, .btn-PD.is-active .ico-font {
   color: #fa732d;
 }
 /* line 83, ../dev/scss/modules/_buttons.scss */

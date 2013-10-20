@@ -74,7 +74,7 @@
 	&:hover {
 		background-color: #dedbc7;
 	}
-	&:active, .is-active {
+	&:active, &.is-active {
 		background-color: #ffcf3c;
 		.ico-font {
 			color: #fa732d;

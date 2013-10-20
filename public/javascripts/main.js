@@ -42,6 +42,7 @@ require([
             'user/new': 'registUser',
             'user/:id': 'userPage',
             'artist/:id': 'artist',
+            'timeline': 'timeline',
             '*path': 'defaultRoute'
         },
 
@@ -118,6 +119,11 @@ require([
             _gaq.push(['_trackPageview', '/#artist/' + artistId]);
         },
 
+        timeline: function () {
+            this.sendAction('/#timeline');
+            this.appView.toTimeline();
+            _gaq.push(['_trackPageview', '/#timeline']);
+        },
 
     
         // ページ遷移を通知

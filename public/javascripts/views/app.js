@@ -14,6 +14,7 @@ define([
     'views/mypage',
     'views/user/index',
     'views/user/regist',
+    'views/user/timeline',
     'views/artist/index',
     'models/common/user_storage',
 ], function (
@@ -28,6 +29,7 @@ define([
     MypageView,
     UserView,
     UserRegistView,
+    TimelineView,
     ArtistView,
     UserStorage
 ) {
@@ -126,6 +128,12 @@ define([
 
         toRegistUserPage: function () {
             this._prepareStage(UserRegistView, function () {
+                this.currentPageView.show();
+            });
+        },
+
+        toTimeline: function () {
+            this._prepareStage(TimelineView, function () {
                 this.currentPageView.show();
             });
         },
