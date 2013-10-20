@@ -9,6 +9,7 @@ var db = new sqlite3.Database(global.db_path);
 var userPocketModel = require('./user_pocket');
 var userFollowModel = require('./user_follow');
 var userArtistFollowModel = require('./user_artist_follow');
+var userPlaylistModel = require('./user_playlist');
 
 
 module.exports = _.extend({}, require('./common'), {
@@ -107,8 +108,14 @@ module.exports = _.extend({}, require('./common'), {
                     userArtistFollowModel.selectObjects({user_id:userId}, function (err, rows) {
                         user.userArtistFollows = rows;
 
-                        // 返却
-                        callback(user);
+                        // ユーザーフォロープレイリスト
+                        userPlaylistModel.selectObjects({user_id:userId,type:3}, function (err, rows) {
+                            user.userFollowPlaylistList = rows;
+                            
+                            // 返却
+                            callback(user);
+                        });
+
                     });
 
                 });

@@ -17,7 +17,7 @@
                 <span>/</span>
                 <span id="numOfPockets" class="fs32">0</span>
                 <span class="fs18">曲</span>
-                <%if (_.alreadyFollow(user.id)) {%>
+                <%if (_.alreadyUserFollow(user.id)) {%>
                     <input type="button" class="userFollowButton" value="フォロー解除" data-event-click="unfollowUser"/>
                     <input type="button" class="userFollowButton hidden" value="フォローする" data-event-click="followUser"/>
                 <%} else {%>
@@ -139,8 +139,15 @@
 
     <!--機能-->
     <div class="pocketListFncArea clearfix">
-        <!--あとでプレイリストフォロー機能を追加する-->
-        <!--<a href="#" class="editButton" data-event-click="editPocketList">完了</a>-->
+        <%if (options.playlistId) {%>
+            <%if (_.alreadyPlaylistFollow(options.playlistId)) {%>
+                <a href="#" class="playlistFollowButton hidden" data-event-click="followPlaylist">プレイリストをフォローする</a>
+                <a href="#" class="playlistFollowButton" data-event-click="unfollowPlaylist">プレイリストのフォローを解除する</a>
+            <%} else {%>
+                <a href="#" class="playlistFollowButton" data-event-click="followPlaylist">プレイリストをフォローする</a>
+                <a href="#" class="playlistFollowButton hidden" data-event-click="unfollowPlaylist">プレイリストのフォローを解除する</a>
+            <%}%>
+        <%}%>
     </div>
 
     <!--Pocketリスト-->

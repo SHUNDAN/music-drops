@@ -389,20 +389,41 @@ _.alreadyPocket = function (musicId) {
 /**
     指定されたUserIdが既にフォロー済みかを調べる
 */
-_.alreadyFollow = function (userId) {
+_.alreadyUserFollow = function (userId) {
+
+    var retValue = false;
 
     var user = _.mbStorage.getUser();
     if (user) {
         _.each(user.userFollows, function (follow) {
-            if (follow.user_id === userId) {
-                return true;
+            if (follow.dest_user_id === userId) {
+                retValue = true;
             }
         });
     }
-    return false;
-},
+    return retValue;
+};
 
 
+/**
+    指定されたPlaylistIdが既にフォロー済みかを調べる
+*/
+_.alreadyPlaylistFollow = function (playlistId) {
+
+    var retValue = false;
+
+    var user = _.mbStorage.getUser();
+    if (user) {
+
+        _.each(user.userFollowPlaylistList, function (playlist) {
+            if (playlist.dest_playlist_id === playlistId) {
+                retValue = true;
+            }
+        });        
+    }
+
+    return retValue;
+};
 
 
 

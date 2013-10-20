@@ -12,6 +12,7 @@ define([
     'views/common/youtube',
     'models/pop/pop_list',
     'models/user/user_artist_follow_list',
+    'models/user/user_playlist',
     'models/user/user_playlist_list',
 ], function (
     User,
@@ -23,6 +24,7 @@ define([
     YoutubeView,
     PopList,
     UserArtistFollowList,
+    UserPlaylist,
     UserPlaylistList
 ) {
 
@@ -101,12 +103,22 @@ define([
             // TODO あとで絞り込みを実装する
             this.filteredUserPocketList = this.displayUserPocketList;
 
+            // 表示オプション
+            var options = {};
+            if (this.currentPlaylist) {
+                options.playlistId = this.currentPlaylist.attributes.id;
+            }
+
+
             console.log('renderPocketList.', this.filteredUserPocketList);
             var snipet = _.mbTemplate('page_user_user_pocket_list_area', {
                 pocketList: this.filteredUserPocketList.models,
-                feelings: _.mbStorage.getCommon().feelings
+                feelings: _.mbStorage.getCommon().feelings,
+                options: options
             });
             this.$el.find('[data-type="dataArea"]').html(snipet);
+
+
 
             // 件数も更新する
             this.$el.find('#numOfPockets').text(this.displayUserPocketList.length);
@@ -184,7 +196,8 @@ define([
                 return playlist.attributes.type !== 3; // フォロープレイリストではない。
             });
 
-            var snipet = _.mbTemplate('page_mypage_playlist', {playlists: playlists});
+
+            var snipet = _.mbTemplate('page_mypage_playlist', {playlists:playlists});
             this.$el.find('#playlistList').html(snipet);
         },
 
@@ -399,7 +412,72 @@ define([
 
 
 
+        /**
+            プレイリストをフォローする
+        */
+        followPlaylist: function (e) {
+            e.preventDefault();
+            console.debug('followPlaylist:', this.currentPlaylist.attributes.id);
 
+            // プレイリスト追加
+            var aPlaylist = new UserPlaylist();
+            aPlaylist.set('user_id', this.user.id);
+            aPlaylist.set('title', this.currentPlaylist.attributes.title);
+            aPlaylist.set('dest_playlist_id', this.currentPlaylist.attributes.id);
+            aPlaylist.set('type', 3);
+            aPlaylist.bind('sync', _.bind(function () {
+
+                // 表示きりかえ
+                $('[data-event-click="followPlaylist"],[data-event-click="unfollowPlaylist"]').toggleClass('hidden');
+
+                // Storage更新
+                _.mbStorage.refreshUser({target:'userFollowPlaylistList', type:'add'});
+            }, this));
+            aPlaylist.save();
+
+
+
+
+            return false;
+        },
+
+
+        /**
+            プレイリストのフォローを解除する
+        */
+        unfollowPlaylist: function (e) {
+            e.preventDefault();
+            console.debug('unfollowPlaylist:', this.currentPlaylist.attributes.id);
+
+
+            // 削除
+            $.ajax({
+                url: '/api/v1/user_playlists',
+                method: 'delete',
+                data: {dest_playlist_id: this.currentPlaylist.attributes.id},
+                success: function () {
+
+                    // 表示きりかえ
+                    $('[data-event-click="followPlaylist"],[data-event-click="unfollowPlaylist"]').toggleClass('hidden');
+
+                    // Storage更新
+                    _.mbStorage.refreshUser({target:'userFollowPlaylistList', type:'delete'});
+
+                },
+                error: function () {
+                    alert('エラーが発生しました。リロードしてください。');
+                },
+            });
+
+
+
+
+
+
+
+
+            return false;
+        },
 
 
 

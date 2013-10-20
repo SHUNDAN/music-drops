@@ -121,12 +121,25 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
 
 
-    // パラメータチェック
-    if (!req.params.id && !req.body.id) {
-        res.json(400, 'id must be identified.');
-        return;
+    var condition = {};
+
+
+    // idの場合
+    if (req.params.id || req.body.id) {
+        condition.id = req.params.id || req.body.id;        
     }
 
+    // 条件の場合
+    if (req.body.dest_playlist_id) {
+        condition.dest_playlist_id = req.body.dest_playlist_id;        
+    }
+
+
+    // パラメータチェック
+    if (!condition.id && !condition.dest_playlist_id) {
+        res.json(400, 'id or dest_playlist_id must be set.');
+        return;
+    }
 
     // 認証チェック＆ユーザーID取得
     var user_id = appUtil.getUserIdFromRequest(req);
@@ -137,11 +150,10 @@ exports.delete = function(req, res) {
     }
 
     // 自分の以外は消せないようにする。
-    var param = (req.params.id ? req.params : req.body);
-    param.user_id = user_id;
-    console.log('param: ', param);
+    condition.user_id = user_id;
+    console.log('condition: ', condition);
 
-    userPlaylistModel.deleteObject(param, function (err) {
+    userPlaylistModel.deleteObject(condition, function (err) {
         appUtil.basicResponse(res, err);
     });
 

@@ -29,17 +29,30 @@ exports.index = function(req, res){
 
 
         // ユーザー情報あれば表示
-        var uid = req.cookies.uid;
-        var user = null;
-        if (global.tmpMap) {
-            user = global.tmpMap[uid];
-            console.log('user=', user);
-            delete global.tmpMap[uid];
+        var userId = appUtil.getUserIdFromUid(req);
+        if (userId) {
+            userModel.selectObject2({id:userId}, function (user) {
+
+                // response.
+                res.render('index', {title: 'Express', htmltemplate: template, mainJs: global.mbSetting.mainJs, user:JSON.stringify(user)});
+
+            });
+        
+        } else {
+            res.render('index', {title: 'Express', htmltemplate: template, mainJs: global.mbSetting.mainJs, user:null});            
         }
 
 
+        // var user = null;
+        // if (global.tmpMap) {
+        //     user = global.tmpMap[uid];
+        //     console.log('user=', user);
+        //     delete global.tmpMap[uid];
+        // }
+
+
         // response.
-        res.render('index', {title: 'Express', htmltemplate: template, mainJs: global.mbSetting.mainJs, user:JSON.stringify(user)});
+        // res.render('index', {title: 'Express', htmltemplate: template, mainJs: global.mbSetting.mainJs, user:JSON.stringify(user)});
 
     });
 
