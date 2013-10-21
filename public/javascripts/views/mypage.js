@@ -478,9 +478,13 @@ define([
             this.userPlaylist = new UserPlaylist();
             this.userPlaylist.set('title', title);
             this.userPlaylist.bind('sync', _.bind(function () {
-                this.userPlaylistList.add(this.userPlaylist);
-                this.renderPlaylist();
+
+                // プレイリスト再読み込み
+                this.userPlaylistList.fetch({reset:true, data:{user_id:this.user.id}});
+
+                // 入力欄は初期化
                 $('#playlistTitle').val('');
+
             }, this));
             this.userPlaylist.save();
          },
@@ -603,7 +607,10 @@ define([
                 $('#pocketDeleteArea').addClass('hidden');
 
                 // ソート機能を解除
-                $('#pocketListArea').sortable('destroy');
+                try {
+                    $('#pocketListArea').sortable('destroy');
+                } catch(e) {}
+
                 // ドラッグ再開
                 $('#pocketListArea li').attr('draggable', 'true');
 
