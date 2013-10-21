@@ -170,13 +170,13 @@
 <script id="page_mypage_user_pocket_list" type="text/template">
     <%_.each(pocketList, function (pocket) {%>
         <li class="feeling-<%=pocket.attributes.feeling_id%>" data-pocket-id="<%=pocket.attributes.id%>">
-            <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>"/>
+            <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>" draggable="false"/>
             <div class="info">
                 <div class="title">
-                    <a href="#music/<%=pocket.attributes.music_id%>"><%=pocket.attributes.title%></a>
+                    <a href="#music/<%=pocket.attributes.music_id%>" draggable="false"><%=pocket.attributes.title%></a>
                 </div>
                 <div class="artistName">
-                    <a href="#artist/<%=pocket.attributes.artist_id%>"><%=pocket.attributes.artist_name%></a>
+                    <a href="#artist/<%=pocket.attributes.artist_id%>" draggable="false"><%=pocket.attributes.artist_name%></a>
                 </div>
             </div>
             <div class="playBtn" data-event-click="playMusic">▶</div>
@@ -216,8 +216,8 @@
 
         <li data-playlist-id="<%=playlist.attributes.id%>" data-event-click="showFollowPlaylist">
             <%=playlist.attributes.title%> 
-            by <a style="display:inline;" href="#user/<%=playlist.attributes.user_id%>"><%=playlist.attributes.user_name%></a> 
             (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
+            &nbsp;by <a style="display:inline;" href="#user/<%=playlist.attributes.user_id%>"><%=playlist.attributes.user_name%></a> 
             <a href="#" class="clearBtn" data-event-click="deleteFollowPlaylist">×</a>
         </li>
 
