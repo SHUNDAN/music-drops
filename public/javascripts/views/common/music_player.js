@@ -118,7 +118,7 @@ define([], function () {
                 'background-color': 'black',
             }));
             if (!_.isIphone && !_.isAndroid) {
-                $previewArea.toggleClass('posNotShow'); // 最初は非表示                
+                $previewArea.toggleClass('posNotShow'); // 最初は非表示
             }
             this.$el.html($previewArea);
             this.$previewArea = $previewArea;
@@ -398,7 +398,7 @@ define([], function () {
 
             }
             if (window.YT) {
-                
+
                 $('#player').remove();
                 var $player = $('<div id="player"/>');
                 $player.css(this.movieSize);
@@ -444,7 +444,7 @@ define([], function () {
             function startSeeking() {
                 setInterval(function () {
 
-                    if (!self.youtubePlayer) return;
+                    if (!self.youtubePlayer || !self.youtubePlayer.getDuration) return;
 
                     maxTime = self.youtubePlayer.getDuration();
                     currentTime = self.youtubePlayer.getCurrentTime();

@@ -84,6 +84,9 @@ define('views/common/music_player',[], function () {
             _.bindEvents(this);
             _.bindEvents(this, {$el:this.$header});
 
+            // this binds.
+            _.bindAll(this, '_playMusicAtCurrentPos');
+
 
             // set elements.
             this.$playlistTitle = $('#mpPlaylistTitle');
@@ -108,33 +111,38 @@ define('views/common/music_player',[], function () {
          */
         playMusics: function (options) {
 
-            // 表示を初期化する
-            this.resetPlayer();
-
-            this.currentPos = options.startPos || 0;
-            var musicArray = options.musicArray;
-            var callbackWhenWillStart = options.callbackWhenWillStart || function () {};
-            var callbackWhenEnd = options.callbackWhenEnd || function () {};
-            this.options = options;
-
-            // set playlist name.
-            this.$playlistTitle.html(options.playlistName);
-
-
-            // 再生対象なければ何もしない
-            if (!musicArray || musicArray.length === 0) {
-                console.warn('musicArray is not defined or empty');
+            // 再生可能チェック
+            if (!options || !options.musicArray || options.musicArray.length === 0) {
+                console.warn('musicArray must be set');
                 return;
             }
 
-            // aliasを柔軟にする
-            _.each(musicArray, function (music) {
+
+            // 表示を初期化
+            this.resetPlayer();
+
+
+            // 再生位置
+            this.currentPos = options.startPos || 0;
+
+
+            // オプション指定
+            options = options || {};
+            options.callbackWhenWillStart = options.callbackWhenWillStart || function () {};
+            options.callbackWhenEnd = options.callbackWhenEnd || function () {};
+            options.musicArray = options.musicArray || [];
+            this.options = options;
+
+
+            // aliasの揺れを集約する
+            _.each(options.musicArray, function (music) {
                 music.youtubeId = music.youtubeId || music.youtube_id;
                 music.songUrl = music.songUrl || music.song_url;
                 music.musicId = music.musicId || music.music_id;
                 music.artistName = music.artistName || music.artist_name;
                 music.artistId = music.artistId || music.artist_id;
             });
+
 
 
             // ベースAreaを作る
@@ -148,61 +156,73 @@ define('views/common/music_player',[], function () {
                 'background-color': 'black',
             }));
             if (!_.isIphone && !_.isAndroid) {
-                $previewArea.toggleClass('posNotShow'); // 最初は非表示                
+                $previewArea.toggleClass('posNotShow'); // 最初は非表示
             }
             this.$el.html($previewArea);
+            this.$previewArea = $previewArea;
 
-
-            // 連続再生の関数
-            var self = this;
-            var next = function () {
-                console.debug('next is called. currentPos=', self.currentPos, 'musicArray.count=', musicArray.length);
-
-                // 初期化
-                self.youtubePlayer = null;
-                self.audioPlayer = null;
-                if (self.timerId) {
-                    clearInterval(self.timerId);
-                }
-
-                // 終了判定
-                if (self.currentPos >= musicArray.length) {
-                    console.debug('finish play musics. currentPos=', self.currentPos, 'musicArray.count=', musicArray.length);
-                    callbackWhenEnd();
-                    return;
-                }
-
-                var aMusic = musicArray[self.currentPos++];
-
-                var func = _.bind(aMusic.youtubeId ? self._playYoutube : self._playItunesMusic, self);
-                var param = aMusic.youtubeId || aMusic.songUrl;
-
-                // callback.
-                if (callbackWhenWillStart) {
-                    callbackWhenWillStart(aMusic);
-                }
-
-                // set infos.
-                self.$musicTitle.html(aMusic.title);
-                self.$artistName.html(aMusic.artistName);
-
-                func(param, $previewArea, function () {
-
-                    // next
-                    next();
-
-                });
-            };
-            _.bind(next, this);
 
             // 再生開始
-            next();
+            this._playMusicAtCurrentPos();
 
 
+            // プレイリスト名
+            this.$playlistTitle.html(options.playlistName);
             // プレイヤーを再生状態にする
             $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
         },
+
+
+        /**
+            曲の番号を指定して再生する
+        */
+        _playMusicAtCurrentPos: function () {
+            console.debug('_playMusicAtCurrentPos is called. currentPos=', this.currentPos, 'musicArray.count=', this.options.musicArray.length);
+
+            // 変数定義
+            var musicArray = this.options.musicArray;
+            var callbackWhenEnd = this.options.callbackWhenEnd;
+            var callbackWhenWillStart = this.options.callbackWhenWillStart;
+
+
+            // 初期化
+            this.youtubePlayer = null;
+            this.audioPlayer = null;
+            if (this.timerId) {
+                clearInterval(this.timerId);
+            }
+
+            // 終了判定
+            if (this.currentPos >= musicArray.length) {
+                console.debug('finish play musics. currentPos=', this.currentPos, 'musicArray.count=', musicArray.length);
+                callbackWhenEnd();
+                return;
+            }
+
+            var aMusic = musicArray[this.currentPos++];
+
+            var func = _.bind(aMusic.youtubeId ? this._playYoutube : this._playItunesMusic, this);
+            var param = aMusic.youtubeId || aMusic.songUrl;
+
+            // callback.
+            if (callbackWhenWillStart) {
+                callbackWhenWillStart(aMusic);
+            }
+
+            // set infos.
+            this.$musicTitle.html(aMusic.title);
+            this.$artistName.html(aMusic.artistName);
+
+            func(param, this.$previewArea, _.bind(function () {
+
+                // next
+                this._playMusicAtCurrentPos();
+
+            }, this));
+
+        },
+
 
 
         /**
@@ -416,7 +436,7 @@ define('views/common/music_player',[], function () {
 
             }
             if (window.YT) {
-                
+
                 $('#player').remove();
                 var $player = $('<div id="player"/>');
                 $player.css(this.movieSize);
@@ -462,7 +482,7 @@ define('views/common/music_player',[], function () {
             function startSeeking() {
                 setInterval(function () {
 
-                    if (!self.youtubePlayer) return;
+                    if (!self.youtubePlayer || !self.youtubePlayer.getDuration) return;
 
                     maxTime = self.youtubePlayer.getDuration();
                     currentTime = self.youtubePlayer.getCurrentTime();
@@ -491,6 +511,30 @@ define('views/common/music_player',[], function () {
             $('#previewArea').toggleClass('posNotShow');
         },
 
+
+
+        /**
+            次の曲へ
+        */
+        prevMusic: function () {
+            console.debug('prevMusic');
+            if (this.options) {
+                this.currentPos = Math.max(this.currentPos - 2, 0);
+                this._playMusicAtCurrentPos();
+            }
+        },
+
+
+        /**
+            前の曲へ
+        */
+        nextMusic: function () {
+            console.debug('nextMusic');
+            if (this.options) {
+                this.currentPos = Math.min(this.currentPos + 1, this.options.musicArray - 1);
+                this._playMusicAtCurrentPos();
+            }
+        },
 
 
 
