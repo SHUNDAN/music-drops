@@ -95,6 +95,7 @@ passport.use(new FacebookStrategy({
 }, function (accessToken, refreshToken, profile, done) {
 
         console.log('accessToken: ', accessToken);
+        console.log('refreshToken: ', refreshToken);
         console.log('profile: ', profile);
 
         // ユーザーは存在するか？

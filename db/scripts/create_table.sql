@@ -87,6 +87,7 @@ create table if not exists user(
   like_pop    text,         -- JavaScript Array of User like pop ids.
   uid         text,
   google_identifier text,
+  facebook_id text,
   facebook_access_token text,
   twitter_token text,
   twitter_token_secret text,
