@@ -35,6 +35,7 @@ module.exports = _.extend({}, require('./common'), {
         'like_pop',         // JSON: JavaScript Array of User like Pop Id.
         'uid',
         'google_identifier',
+        'facebook_id',
         'facebook_access_token',
         'twitter_token',
         'twitter_token_secret',

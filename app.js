@@ -99,7 +99,7 @@ passport.use(new FacebookStrategy({
         console.log('profile: ', profile);
 
         // ユーザーは存在するか？
-        userModel.selectObject2({facebook_access_token:accessToken}, function (user) {
+        userModel.selectObject2({facebook_id:profile.id}, function (user) {
 
             // 存在すれば、その情報を持って次へ
             if (user) {
@@ -108,10 +108,10 @@ passport.use(new FacebookStrategy({
             }
 
             // 存在しなければ、ユーザー作成して、次へ
-            userModel.insertObject({name:profile.displayName, facebook_access_token:accessToken}, function () {
+            userModel.insertObject({name:profile.displayName, facebook_access_token:accessToken, facebook_id:profile.id}, function () {
 
                 // 作った情報を取得する
-                userModel.selectObject2({facebook_access_token:accessToken}, function (user) {
+                userModel.selectObject2({facebook_id:profile.id}, function (user) {
 
                     user.isNew = true;
                     done(null, user);
