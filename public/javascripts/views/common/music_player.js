@@ -25,6 +25,18 @@ define([], function () {
         // 再生中のMusic
         currentMusic: null,
 
+        // 再生キュー
+        musicQueue: null,
+
+        // Playerを表示するか
+        playerVisible: false,
+
+        // シャッフルするか
+        shuffle: false,
+
+        // リピートするか
+        repeat: 0,
+
         // fields.
         $playlistTitle: undefined,
         $musicTitle: undefined,
@@ -69,6 +81,15 @@ define([], function () {
         render: function () {},
 
 
+        /**
+            曲一覧をレンダリングする
+        */
+        renderMusicQueueArea: function () {
+            var snipet = _.mbTemplate('header_component_music_list', {musicArray:this.musicQueue, currentMusic:this.currentMusic});
+            this.$header.find('#musicList').html(snipet);
+        },
+
+
 
         /**
          * YoutubeとiTunes視聴を交えて再生する
@@ -108,6 +129,15 @@ define([], function () {
             });
 
 
+            // プレイリストを生成する
+            if (this.shuffle) {
+                this.musicQueue = this._createShuffleMusicQueue(options.musicArray[this.currentPos].id);
+            } else {
+                this.musicQueue = options.musicArray;
+            }
+
+
+
 
             // ベースAreaを作る
             mb.$playArea.html(this.$el);
@@ -119,7 +149,7 @@ define([], function () {
                 margin: '-250px 0 0 -320px',
                 'background-color': 'black',
             }));
-            if (!_.isIphone && !_.isAndroid) {
+            if (!_.isIphone && !_.isAndroid && !this.playerVisible) {
                 $previewArea.toggleClass('posNotShow'); // 最初は非表示
             }
             this.$el.html($previewArea);
@@ -137,10 +167,7 @@ define([], function () {
             $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // プレイリスト中身表示を作る
-            console.debug('musicArray: ', options.musicArray);
-            var snipet = _.mbTemplate('header_component_music_list', {musicArray:options.musicArray, currentMusic:this.currentMusic});
-            this.$header.find('#musicList').html(snipet);
-
+            this.renderMusicQueueArea();
         },
 
 
@@ -148,10 +175,10 @@ define([], function () {
             曲の番号を指定して再生する
         */
         _playMusicAtCurrentPos: function () {
-            console.debug('_playMusicAtCurrentPos is called. currentPos=', this.currentPos, 'musicArray.count=', this.options.musicArray.length);
+            console.debug('_playMusicAtCurrentPos is called. currentPos=', this.currentPos, 'musicQueue.count=', this.musicQueue.length);
 
             // 変数定義
-            var musicArray = this.options.musicArray;
+            var musicQueue = this.musicQueue;
             var callbackWhenEnd = this.options.callbackWhenEnd;
             var callbackWhenWillStart = this.options.callbackWhenWillStart;
 
@@ -164,17 +191,34 @@ define([], function () {
             }
 
             // 終了判定
-            if (this.currentPos >= musicArray.length) {
-                console.debug('finish play musics. currentPos=', this.currentPos, 'musicArray.count=', musicArray.length);
-                callbackWhenEnd();
+            if (this.currentPos >= musicQueue.length) {
 
-                // 対象曲を削除
-                this.currentMusic = null;
+                // リピート設定の場合には、キューを作り直して次へ
+                if (this.repeat) {
+                    this.currentPos = 0;
+                    console.debug('最後までキタから作り直し。shuffle=', this.shuffle);
+                    if (this.shuffle) {
+                        this.musicQueue = this._createShuffleMusicQueue();
+                    } else {
+                        this.musicQueue = this.options.musicArray;
+                    }
 
-                return;
+                } else {
+                    // リピートでない場合には、終了する
+
+                    console.debug('finish play musics. currentPos=', this.currentPos, 'musicQueue.count=', musicQueue.length);
+                    callbackWhenEnd();
+
+                    // 対象曲を削除
+                    this.currentMusic = null;
+
+                    return;
+
+                }
+
             }
 
-            this.currentMusic = musicArray[this.currentPos++];
+            this.currentMusic = musicQueue[this.currentPos++];
             var func = _.bind(this.currentMusic.youtubeId ? this._playYoutube : this._playItunesMusic, this);
             var param = this.currentMusic.youtubeId || this.currentMusic.songUrl;
 
@@ -198,10 +242,39 @@ define([], function () {
             }, this));
 
 
+            // プレイリスト内の表示を切り替え
+            this._highlightMusicInPlaylist(this.currentMusic.id);
+
+
             // 再生回数を保存
             _.addMusicPlayCount(this.currentMusic.music_id);
 
         },
+
+
+        /**
+            （シャッフル専用）再生順を作る
+        */
+        _createShuffleMusicQueue: function (firstItemId) {
+
+            // 状態チェック
+            if (!this.shuffle) {
+                return;
+            }
+
+
+            // 曲順最初に持ってくるものを取得する
+            var firstItems = _.filter(this.options.musicArray, function (item) {return item.id === firstItemId;});
+
+            // 最初の曲以外のものを取得して、シャッフルする
+            var otherItems = _.filter(this.options.musicArray, function (item) {return item.id !== firstItemId;});
+            otherItems = _.shuffle(otherItems);
+
+            // くっつけて返す
+            return firstItems.concat(otherItems);
+
+        },
+
 
 
 
@@ -248,14 +321,14 @@ define([], function () {
          * 閉じる
          */
         close: function () {
+            this.togglePlayerVisible();
+            // if (this.options.callbackWhenEnd) {
+            //     this.options.callbackWhenEnd();
+            // }
 
-            if (this.options.callbackWhenEnd) {
-                this.options.callbackWhenEnd();
-            }
+            // this.$el.remove();
 
-            this.$el.remove();
-
-            this.resetPlayer();
+            // this.resetPlayer();
 
             return false;
         },
@@ -265,10 +338,7 @@ define([], function () {
          * 小さくする
          */
         minimize: function () {
-            console.log('minimize', this.scaleSize, this.$previewArea);
-
-            $('#previewArea').toggleClass('posNotShow');
-
+            this.togglePlayerVisible();
 
             return false;
         },
@@ -476,8 +546,6 @@ define([], function () {
             };
 
 
-
-
         },
 
 
@@ -487,7 +555,8 @@ define([], function () {
             Playerの表示、非表示を制御します。
         */
         togglePlayerVisible: function (e) {
-            $(e.currentTarget).toggleClass('is-active');
+            this.playerVisible = !this.playerVisible;
+            $('[data-event-click="togglePlayerVisible"]').toggleClass('is-active');
             $('#previewArea').toggleClass('posNotShow');
         },
 
@@ -511,7 +580,7 @@ define([], function () {
         nextMusic: function () {
             console.debug('nextMusic');
             if (this.options) {
-                this.currentPos = Math.min(this.currentPos, this.options.musicArray.length - 1);
+                this.currentPos = Math.min(this.currentPos, this.musicQueue.length - 1);
                 this._playMusicAtCurrentPos();
             }
         },
@@ -522,7 +591,7 @@ define([], function () {
         */
         pocket: function (e) {
             e.preventDefault();
-            
+
             // Pocket対象曲がなければ何もしない
             if (!this.currentMusic) {
                 return;
@@ -531,7 +600,7 @@ define([], function () {
             // alias.
             var $this = $(e.currentTarget);
 
-            
+
             // Pocket追加
             if (!$this.hasClass('is-active')) {
                 _.addPocket({music_id: this.currentMusic.music_id}, _.bind(function () {
@@ -540,7 +609,7 @@ define([], function () {
                     $(e.currentTarget).addClass('is-active');
 
                 }, this));
-            
+
 
             // Pocket削除
             } else {
@@ -575,8 +644,8 @@ define([], function () {
         openPlaylistPopup: function () {
 
             // 表示できるものがある時だけ開きます。
-            if (this.options.musicArray) {
-                $('#playlistPopup').removeClass('hidden');                
+            if (this.musicQueue) {
+                $('#playlistPopup').removeClass('hidden');
             }
         },
 
@@ -609,21 +678,16 @@ define([], function () {
             console.debug('playMusicAt');
 
             var $li = $(e.currentTarget).parents('li');
+            var id = parseInt($li.data('id'));
 
             // 表示制御
-            var $musicList = this.$header.find('#musicList');
-            $musicList.find('li').removeClass('is-active');
-            $musicList.find('[data-event-click="pauseMusicAt"]').addClass('hidden');
-            $musicList.find('[data-event-click="playMusicAt"]').removeClass('hidden');
-            $li.addClass('is-active');
-            $li.find('[data-event-click="playMusicAt"],[data-event-click="pauseMusicAt"]').toggleClass('hidden');
+            this._highlightMusicInPlaylist(id);
 
 
             // 再生位置を特定して再生する。
-            var id = parseInt($li.data('id'));
-            var musicArray = this.options.musicArray;
-            for (var i = 0; i < musicArray.length; i++) {
-                if (musicArray[i].id === id) {
+            var musicQueue = this.musicQueue;
+            for (var i = 0; i < musicQueue.length; i++) {
+                if (musicQueue[i].id === id) {
                     this.currentPos = i;
                     break;
                 }
@@ -631,6 +695,24 @@ define([], function () {
             this._playMusicAtCurrentPos();
 
             return false;
+        },
+
+
+        /**
+            プレイリスト内のハイライトを切り替える
+        */
+        _highlightMusicInPlaylist: function (id) {
+
+            var $musicList = this.$header.find('#musicList');
+            var $li = this.$header.find('#musicList [data-id="'+id+'"]');
+
+            // 表示制御
+            $musicList.find('li').removeClass('is-active');
+            $musicList.find('[data-event-click="pauseMusicAt"]').addClass('hidden');
+            $musicList.find('[data-event-click="playMusicAt"]').removeClass('hidden');
+            $li.addClass('is-active');
+            $li.find('[data-event-click="playMusicAt"],[data-event-click="pauseMusicAt"]').toggleClass('hidden');
+
         },
 
 
@@ -654,6 +736,54 @@ define([], function () {
 
 
 
+        /**
+            シャッフル状態を切り替える
+        */
+        toggleShuffle: function (e) {
+            $(e.currentTarget).toggleClass('is-active');
+            this.shuffle = !this.shuffle;
+
+            // 現在再生中の場合のみ
+            if (this.currentMusic) {
+
+                // シャッフル状態になった場合
+                if (this.shuffle) {
+                    // キューを現在曲を始めにしてシャッフルに作り直す
+                    this.musicQueue = this._createShuffleMusicQueue(this.currentMusic.id);
+
+
+                // シャッフルでなくなった場合
+                } else {
+
+                    // 現在曲+1の位置を再生位置にしておく
+                    var musicArray = this.options.musicArray;
+                    for (var i = 0; i < musicArray.length; i++) {
+                        if (musicArray[i].id === this.currentMusic.id) {
+                            this.currentPos = i + 1;
+                            break;
+                        }
+                    }
+                    this.musicQueue = this.options.musicArray;
+
+                }
+
+
+                // 曲一覧を再レンダリング
+                this.renderMusicQueueArea();
+            }
+
+
+        },
+
+
+
+        /**
+            リピート状態を切り替える
+        */
+        toggleRepeat: function (e) {
+            $(e.currentTarget).toggleClass('is-active');
+            this.repeat = !this.repeat;
+        },
 
 
 
