@@ -469,8 +469,8 @@ app.delete('/api/v1/itunes_rankings/:id', iTunesRanking.delete);
 
 
 // Master
-app.get('/master', master.index);
-app.get('/ap1/v1.1/master/all_tables', master.allTables);
+// app.get('/master', master.index);
+// app.get('/ap1/v1.1/master/all_tables', master.allTables);
 
 
 

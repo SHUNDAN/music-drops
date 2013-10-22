@@ -409,8 +409,8 @@
 
 
 
-	// ユーザーフォロー、フォローされている一覧
-	.followUserList {
+	// ユーザーフォロー、フォローされている一覧、チェックアーティスト
+	.followUserList, .followArtistList {
 		li {
 			height: 50px;
 			width: 100%;
@@ -420,7 +420,7 @@
 		    box-shadow: 0 1px 1px rgba(255,255,255,.5) inset, 0 -1px 1px rgba(0,0,0,.3) inset;
 		}
 		.message {
-			line-height: 50px;
+			line-height: 40px;
 		}
 		.userName {
 			float: left;

@@ -89,15 +89,35 @@
 
 <!--チェックアーティスト一覧-->
 <script id="page_mypage_check_artists" type="text/template">
-    <%if (checkArtists.length > 0) {%>
-        <%_.each(checkArtists, function (checkArtist) {%>
-            <%=checkArtist.attributes.id%>,
-            <%=checkArtist.attributes.artist_name%>
-            <br>
-        <%});%>
-    <%} else {%>
-        ないよー
-    <%}%>
+
+
+
+    <ul class="followArtistList">
+        <%if (checkArtists.length > 0) {%>
+            <%_.each(checkArtists, function (checkArtist) {%>
+
+
+
+                <li data-artist-id="<%=checkArtist.attributes.id%>">
+                    <a class="userName" href="#artist/<%=checkArtist.attributes.id%>"><%=checkArtist.attributes.artist_name%></a>
+
+                    <%if (_.alreadyArtistFollow(checkArtist.attributes.id)) {%>
+                        <input type="button" class="followUserButton hidden" value="フォローする" data-event-click="followArtist"/>
+                        <input type="button" class="unfollowUserButton" value="フォロー解除" data-event-click="unfollowArtist"/>
+                    <%} else {%>
+                        <input type="button" class="followUserButton" value="フォローする" data-event-click="followArtist"/>
+                        <input type="button" class="unfollowUserButton hidden" value="フォロー解除" data-event-click="unfollowArtist"/>
+                    <%}%>
+                </li>
+
+
+                <br>
+            <%});%>
+        <%} else {%>
+            <li class="message">フォローしているアーティストはいません</li>
+        <%}%>
+    </ul>
+
 </script>
 
 

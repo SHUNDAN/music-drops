@@ -409,6 +409,29 @@ _.alreadyUserFollow = function (userId) {
 };
 
 
+
+/**
+    指定されたアーティストが既にフォロー済みかを調べる
+*/
+_.alreadyArtistFollow = function (artistId) {
+
+    var retValue = false;
+
+    var user = _.mbStorage.getUser();
+    if (user) {
+        _.each(user.userArtistFollows, function (artistFollow) {
+            if (artistFollow.artist_id === artistId) {
+                retValue = true;
+            }
+        });
+    }
+
+    return retValue;
+};
+
+
+
+
 /**
     指定されたPlaylistIdが既にフォロー済みかを調べる
 */
