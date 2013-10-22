@@ -406,6 +406,53 @@
 	}
 
 
+
+
+
+	// ユーザーフォロー、フォローされている一覧
+	.followUserList {
+		li {
+			height: 50px;
+			width: 100%;
+			padding: 5px 10px;
+		    background-color: rgb(239, 237, 224);
+		    margin: 10px 0;
+		    box-shadow: 0 1px 1px rgba(255,255,255,.5) inset, 0 -1px 1px rgba(0,0,0,.3) inset;
+		}
+		.message {
+			line-height: 50px;
+		}
+		.userName {
+			float: left;
+			display: block;
+			// width: 80%;
+			height: 100%;
+			line-height: 40px;
+		}
+		.followUserButton, .unfollowUserButton {
+			float: right;
+			width: 100px;
+			height: 40px;
+			text-align: center;
+			border-radius: 5px;
+			color: #656457;
+			background-color: #dedbc7;
+		}
+		.unfollowUserButton {
+			color: #8d7016;
+			background-color: #ffcf3c;
+		}
+
+
+	}
+
+
+
+
+
+
+
+
 }
 
 

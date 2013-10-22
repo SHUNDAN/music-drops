@@ -2665,7 +2665,7 @@ table th[class*="span"],
 
 /* line 2312, ../dev/scss/libs/_bootstrap.scss */
 .icon-glass {
-  background-position: 0      0;
+  background-position: 0 0;
 }
 
 /* line 2316, ../dev/scss/libs/_bootstrap.scss */
@@ -9792,7 +9792,7 @@ table th[class*="span"],
 
 /* line 2312, ../dev/scss/libs/_bootstrap.scss */
 .icon-glass {
-  background-position: 0      0;
+  background-position: 0 0;
 }
 
 /* line 2316, ../dev/scss/libs/_bootstrap.scss */
@@ -17832,6 +17832,41 @@ header {
 /* line 403, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketDeleteArea.active, .pageUser .pocketDeleteArea.active {
   border: 4px solid yellow;
+}
+/* line 414, ../dev/scss/pages/_mypage.scss */
+.pageMypage .followUserList li, .pageUser .followUserList li {
+  height: 50px;
+  width: 100%;
+  padding: 5px 10px;
+  background-color: #efede0;
+  margin: 10px 0;
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5) inset, 0 -1px 1px rgba(0, 0, 0, 0.3) inset;
+}
+/* line 422, ../dev/scss/pages/_mypage.scss */
+.pageMypage .followUserList .message, .pageUser .followUserList .message {
+  line-height: 50px;
+}
+/* line 425, ../dev/scss/pages/_mypage.scss */
+.pageMypage .followUserList .userName, .pageUser .followUserList .userName {
+  float: left;
+  display: block;
+  height: 100%;
+  line-height: 40px;
+}
+/* line 432, ../dev/scss/pages/_mypage.scss */
+.pageMypage .followUserList .followUserButton, .pageMypage .followUserList .unfollowUserButton, .pageUser .followUserList .followUserButton, .pageUser .followUserList .unfollowUserButton {
+  float: right;
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  border-radius: 5px;
+  color: #656457;
+  background-color: #dedbc7;
+}
+/* line 441, ../dev/scss/pages/_mypage.scss */
+.pageMypage .followUserList .unfollowUserButton, .pageUser .followUserList .unfollowUserButton {
+  color: #8d7016;
+  background-color: #ffcf3c;
 }
 
 /* line 2, ../dev/scss/pages/_popular_list.scss */

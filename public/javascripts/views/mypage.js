@@ -886,7 +886,49 @@ define([
 
 
 
+        /**
+            ユーザーフォローする
+        */
+        followUser: function (e) {
+            console.debug('followUser');
 
+            var $li = $(e.currentTarget).parents('li');
+            var userId = $li.data('user-id');
+            _.followUser(userId, _.bind(function () {
+
+                $li.find('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
+
+            }, this));
+
+        },
+
+
+
+        /**
+            ユーザーフォロー解除する
+        */
+        unfollowUser: function (e) {
+            console.debug('unfollowUser');
+
+            var $li = $(e.currentTarget).parents('li');
+            var userId = $li.data('user-id');
+
+            // userFollowIdを探す
+            var id = _.selectUserFollowId(userId);
+            if (id) {
+                _.unfollowUser(id, _.bind(function () {
+
+                    $li.find('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
+
+                }, this));
+    
+            } else {
+                // IDが特定できない場合には、ログインを促す。
+                mb.router.appView.authErrorHandler();
+
+            }
+
+        },
 
 
 

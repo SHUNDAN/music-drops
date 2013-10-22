@@ -103,29 +103,59 @@
 
 <!--フォローしているユーザー一覧-->
 <script id="page_mypage_follow_users" type="text/template">
-    <%if (followUsers.length > 0) {%>
-        dest_user_id,dest_user_name<br>
-        <%_.each(followUsers, function (user) {%>
-            <%=user.attributes.dest_user_id%>,
-            <%=user.attributes.dest_user_name%><br>
-        <%});%>
-    <%} else {%>
-        ないよー
-    <%}%>
+
+    <ul class="followUserList">
+        <%if (followUsers.length > 0) {%>
+
+            <%_.each(followUsers, function (user) {%>
+                <li data-user-id="<%=user.attributes.dest_user_id%>">
+                    <a class="userName" href="#user/<%=user.attributes.dest_user_id%>"><%=user.attributes.dest_user_name%></a>
+
+                    <%if (_.alreadyUserFollow(user.attributes.dest_user_id)) {%>
+                        <input type="button" class="followUserButton hidden" value="フォローする" data-event-click="followUser"/>
+                        <input type="button" class="unfollowUserButton" value="フォロー解除" data-event-click="unfollowUser"/>
+                    <%} else {%>
+                        <input type="button" class="followUserButton" value="フォローする" data-event-click="followUser"/>
+                        <input type="button" class="unfollowUserButton hidden" value="フォロー解除" data-event-click="unfollowUser"/>
+                    <%}%>
+                </li>
+            <%});%>
+
+
+        <%} else {%>
+            <li class="message">フォローしているユーザーはいません</li>
+        <%}%>
+    </ul>
 </script>
 
 
 <!--フォローされてるユーザー一覧-->
 <script id="page_mypage_followed_users" type="text/template">
-    <%if (followedUsers.length > 0) {%>
-        user_id,user_name<br>
-        <%_.each(followedUsers, function (user) {%>
-            <%=user.attributes.user_id%>,
-            <%=user.attributes.user_name%><br>
-        <%});%>
-    <%} else {%>
-        ないよー
-    <%}%>
+
+
+    <ul class="followUserList">
+        <%if (followedUsers.length > 0) {%>
+
+            <%_.each(followedUsers, function (user) {%>
+                <li class="clearfix" data-user-id="<%=user.attributes.id%>">
+                    <a class="userName" href="#user/<%=user.attributes.id%>"><%=user.attributes.user_name%></a>
+
+                    <%if (_.alreadyUserFollow(user.attributes.id)) {%>
+                        <input type="button" class="followUserButton hidden" value="フォローする" data-event-click="followUser"/>
+                        <input type="button" class="unfollowUserButton" value="フォロー解除" data-event-click="unfollowUser"/>
+                    <%} else {%>
+                        <input type="button" class="followUserButton" value="フォローする" data-event-click="followUser"/>
+                        <input type="button" class="unfollowUserButton hidden" value="フォロー解除" data-event-click="unfollowUser"/>
+                    <%}%>
+                </li>
+            <%});%>
+
+
+        <%} else {%>
+            <li class="message">フォローされているユーザーはいません</li>
+        <%}%>
+    </ul>
+
 </script>
 
 
@@ -223,8 +253,6 @@
 
     <%});%>
 </script>
-
-
 
 
 

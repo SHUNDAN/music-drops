@@ -521,8 +521,8 @@ _.addPocket = function (data, callback) {
             console.debug('_.addPocket success.');
             if (callback) {
                 callback();
-                _.mbStorage.refreshUser();
             }
+            _.mbStorage.refreshUser();
         },
         error: function (xhr) {
             if (xhr.status === 403) {
@@ -549,8 +549,8 @@ _.deletePocket = function (pocketId, callback) {
             console.debug('_.deletePocket success.');
             if (callback) {
                 callback();
-                _.mbStorage.refreshUser();
             }
+            _.mbStorage.refreshUser();
         },
         error: function (xhr) {
             if (xhr.status === 403) {
@@ -568,8 +568,87 @@ _.deletePocket = function (pocketId, callback) {
 
 
 
+/**
+    UserIdから、フォローIDを取得する
+*/
+_.selectUserFollowId = function (userId) {
+
+    var userFollowId;
+
+    var user = _.mbStorage.getUser();
+    if (user) {
+        _.each(user.userFollows, function (userFollow) {
+            if (userFollow.dest_user_id === userId) {
+                userFollowId = userFollow.id;
+            }
+        });
+    }
+
+    return userFollowId;
+};
 
 
+
+
+
+/**
+    ユーザーフォローを行う
+*/
+_.followUser = function (userId, callback) {
+
+    $.ajax({
+        url: '/api/v1/user_follows',
+        method: 'post',
+        data: {dest_user_id: userId},
+        success: function () {
+            console.debug('_.followUser success.');
+            if (callback) {
+                callback();
+            }
+            _.mbStorage.refreshUser();
+        },
+        error: function (xhr) {
+            if (xhr.status === 403) {
+                mb.router.appView.authErrorHandler();
+                return;
+            } else {
+                alert('エラーが発生しました。お手数ですが再読み込みしてください。');
+                console.log('error: ', arguments);
+            }
+        },
+
+    });
+};
+
+
+
+/**
+    ユーザーフォロー解除を行う
+*/
+_.unfollowUser = function (userFollowId, callback) {
+
+    $.ajax({
+        url: '/api/v1/user_follows/' + userFollowId,
+        method: 'delete',
+        success: function () {
+            console.debug('_.unfollowUser success.');
+            if (callback) {
+                callback();
+            }
+            _.mbStorage.refreshUser();
+        },
+        error: function (xhr) {
+            if (xhr.status === 403) {
+                mb.router.appView.authErrorHandler();
+                return;
+            } else {
+                alert('エラーが発生しました。お手数ですが再読み込みしてください。');
+                console.log('error: ', arguments);
+            }
+        },
+
+    });
+};
 
 
 
