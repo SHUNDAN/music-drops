@@ -1,0 +1,19 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE user(
+  id          integer     primary key     autoincrement,
+  name        text,
+  thumb_url   text,
+  create_at   numeric,
+  update_at   numeric
+, user_id text, password text, sex integer, birthday integer, pocket_filter text, like_pop text, google_identifier text, facebook_access_token text, twitter_token text, twitter_token_secret text, uid text, facebook_id text);
+INSERT INTO "user" VALUES(2,'ヨッシー','http://yoheim.net/image/274.jpg',1376984152330,1377059178880,'user2','mockbu',1,20101213,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO "user" VALUES(3,'ばし','http://yoheim.net/image/272.jpg',1376984224949,1377058432404,'user3','mockbu',1,20101213,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO "user" VALUES(5,'うめちゃん','http://yoheim.net/image/271.jpg',1376995215155,1380883721948,'user5','mockbu',1,20101213,NULL,NULL,NULL,NULL,NULL,NULL,'c4bd370d-bd8c-4b66-99b8-e7e1873a20d6',NULL);
+INSERT INTO "user" VALUES(6,'コバ','http://yoheim.net/image/270.jpg',1377058394188,1382069512383,'user6','mockbu',1,20101213,NULL,'[26,8]',NULL,NULL,NULL,NULL,'8d6bb1fc-69e1-44a9-a9e2-17d42c9baf4e',NULL);
+INSERT INTO "user" VALUES(7,'マイケル','http://yoheim.net/image/269.jpg',1377058401871,1382277388929,'user7','mockbu',1,20101213,NULL,'[26,24,6,3]','https://www.google.com/accounts/o8/id?id=AItOawn9vwGaUueuoGUK4TFs7fNdYqdChirImK8',NULL,NULL,NULL,'ca0b7a0e-1720-47ca-98ee-e873298a6f7c',NULL);
+INSERT INTO "user" VALUES(8,'よーへい','http://yoheim.net/image/269.jpg',1377417989378,1382406993731,'user8','mockbu',1,20101213,'[{"title":"","artist":"Perfume","tags":[]},{"title":"","artist":"Perfume","tags":["fav"]},{"title":"","artist":"","tags":["fav"]},{"title":"","artist":"","tags":["梅"]}]','[26,7,24,12,28]','https://www.google.com/accounts/o8/id?id=AItOawlM8yToSrTl_dZ0prPKZOAOI3kVotD0Tjw','CAAHPZC4poQN0BAHmchao2fQUtdf7KR0VLnI8Mek5VQ3pqJVZBvLx3fXgSyVG8eibeyUqzKOuSTDllej4FnlPDoFtxvh7zoxCrbfCyZA7F7wZCm5gFzOvWr2nbluMMbJZCAmyQb580WmFpRErCWzcKDFPABSBEbwiZARcjSKL29ZCxLUTZCqJ5mmJs6tcoHiNC4QZD',NULL,NULL,'9d4094c6-5f9b-47b4-b6d6-39e3d1eb1040','100001935252338');
+INSERT INTO "user" VALUES(9,'なお','http://yoheim.net/image/269.jpg',0,0,'user9','mockbu',2,29191213,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO "user" VALUES(22,'Yuji  Umeki',NULL,1382352992891,1382352992953,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CAAHPZC4poQN0BAAxiI93m2Fwc65pSaZCMNmav360eLnso8J7mTDWDZCApVLgWbkEyiRpWiH3axyAPoN3nUi1zVbjNUAKN8FwlEpAv2OioJ2lSzkhtYmPwpieYOl5n2BA9wcc1mjtdrUOvjyiZCAinMmYWMZC94boZCKe3anSqOYeZA4DZCVwKMU7',NULL,NULL,'accfc017-cea4-4562-8ff5-f658d70f2384','100004081658704');
+INSERT INTO "user" VALUES(23,'Kobayashi Masahiro',NULL,1382354829541,1382354829601,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CAAHPZC4poQN0BAOklZCLJ8hg8dBfkLhUX58FhVDWZChZCvIiCdjwUZC8wVpAuJbQzipiZBKllLqu6OMHYs8kz6vZAczfNI1tqS5gYtZAAmAftY8fTpVimeyW9uhIJmWgqmyOH1KZA1PbWMgcqF452GJv5xOkFd94GLwqEnD0Gx0ZBUcBLmWbs6ljwn',NULL,NULL,'5c248e29-3137-4410-a2c9-88e72c0354c3','1268568641');
+COMMIT;
