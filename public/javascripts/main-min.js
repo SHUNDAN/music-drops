@@ -3130,6 +3130,7 @@ define('views/login',[
                 top: 0,
                 left: 0,
                 'background-color': 'rgba(255,255,255,.2)',
+                'z-index': 100,
             }).on('click', function (e) {
                 console.log('remove modal dialog.', e);
                 if (e.target.id !== 'clickArea') {
@@ -4365,7 +4366,49 @@ define('views/mypage',[
 
 
 
+        /**
+            ユーザーフォローする
+        */
+        followUser: function (e) {
+            console.debug('followUser');
 
+            var $li = $(e.currentTarget).parents('li');
+            var userId = $li.data('user-id');
+            _.followUser(userId, _.bind(function () {
+
+                $li.find('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
+
+            }, this));
+
+        },
+
+
+
+        /**
+            ユーザーフォロー解除する
+        */
+        unfollowUser: function (e) {
+            console.debug('unfollowUser');
+
+            var $li = $(e.currentTarget).parents('li');
+            var userId = $li.data('user-id');
+
+            // userFollowIdを探す
+            var id = _.selectUserFollowId(userId);
+            if (id) {
+                _.unfollowUser(id, _.bind(function () {
+
+                    $li.find('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
+
+                }, this));
+    
+            } else {
+                // IDが特定できない場合には、ログインを促す。
+                mb.router.appView.authErrorHandler();
+
+            }
+
+        },
 
 
 
@@ -5215,6 +5258,36 @@ define('views/user/timeline',[], function () {
 	return TimelineView;
 
 });
+/**
+	ユーザー設定画面
+*/
+define('views/user/setting',[], function () {
+
+	var UserSettingView = Backbone.View.extend({
+
+		initialize: function () {
+
+		},
+
+		render: function () {
+			var snipet = _.mbTemplate('page_user_setting', {});
+			this.$el.html(snipet);
+		},
+
+		show: function () {
+			console.debug('usersetting show');
+			this.render();
+		},
+
+		dealloc: function () {
+
+		},
+
+	});
+
+	return UserSettingView;
+
+});
 
 /**
  * Model: Artist
@@ -5458,6 +5531,7 @@ define('views/app',[
     'views/user/index',
     'views/user/regist',
     'views/user/timeline',
+    'views/user/setting',
     'views/artist/index',
     'models/common/user_storage',
 ], function (
@@ -5473,6 +5547,7 @@ define('views/app',[
     UserView,
     UserRegistView,
     TimelineView,
+    UserSettingView,
     ArtistView,
     UserStorage
 ) {
@@ -5491,18 +5566,17 @@ define('views/app',[
             mb.$playArea = $('#playArea');
             _.bindAll(this, 'authErrorHandler');
 
-
-
             // Add Header
             this.headerView = new HeaderView();
             this.headerView.show(); 
-
 
             // Music Player.
             // 各ページから使いたいので、グローバル変数へ代入する。
             this.musicPlayer = new MusicPlayerView();
             mb.musicPlayer = this.musicPlayer;
 
+            // ログイン処理のバインド
+            this.$el.on('click', '[data-event-click="login"]', _.bind(this.authErrorHandler, this));
 
         },
 
@@ -5577,6 +5651,12 @@ define('views/app',[
 
         toTimeline: function () {
             this._prepareStage(TimelineView, function () {
+                this.currentPageView.show();
+            });
+        },
+
+        toUserSetting: function () {
+            this._prepareStage(UserSettingView, function () {
                 this.currentPageView.show();
             });
         },
@@ -5658,12 +5738,57 @@ define('views/app',[
 
             }
 
+
+            // ログイン状況に合わせて、左上のモジュールを切り替える
+            console.debug('aaaaaaa: ', _.isLogedIn());
+            if (_.isLogedIn()) {
+                $('#appLoginModule').addClass('hidden');
+                $('#gotoUserSetting').removeClass('hidden');
+
+                var user = _.mbStorage.getUser();
+                $('#gotoUserSetting').text(user.name + ' ▼');
+            
+            } else {
+                $('#appLoginModule').removeClass('hidden').text('ログイン');
+                $('#gotoUserSetting').addClass('hidden');
+            }
+
+
+
+
         },
     
     });
 
     return ApplicationView;
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -5711,6 +5836,7 @@ require([
             'user/:id': 'userPage',
             'artist/:id': 'artist',
             'timeline': 'timeline',
+            'usersetting': 'usersetting',
             '*path': 'defaultRoute'
         },
 
@@ -5791,6 +5917,12 @@ require([
             this.sendAction('/#timeline');
             this.appView.toTimeline();
             _gaq.push(['_trackPageview', '/#timeline']);
+        },
+
+        usersetting: function () {
+            this.sendAction('/#usersetting');
+            this.appView.toUserSetting();
+            _gaq.push(['_trackPageview', '/#usersetting']);
         },
 
     
