@@ -321,10 +321,7 @@ define([], function () {
          * 閉じる
          */
         close: function () {
-            console.log('minimize', this.scaleSize, this.$previewArea);
-
-            $('#previewArea').toggleClass('posNotShow');
-
+            this.togglePlayerVisible();
             // if (this.options.callbackWhenEnd) {
             //     this.options.callbackWhenEnd();
             // }
@@ -341,10 +338,7 @@ define([], function () {
          * 小さくする
          */
         minimize: function () {
-            console.log('minimize', this.scaleSize, this.$previewArea);
-
-            $('#previewArea').toggleClass('posNotShow');
-
+            this.togglePlayerVisible();
 
             return false;
         },
@@ -552,8 +546,6 @@ define([], function () {
             };
 
 
-
-
         },
 
 
@@ -564,7 +556,7 @@ define([], function () {
         */
         togglePlayerVisible: function (e) {
             this.playerVisible = !this.playerVisible;
-            $(e.currentTarget).toggleClass('is-active');
+            $('[data-event-click="togglePlayerVisible"]').toggleClass('is-active');
             $('#previewArea').toggleClass('posNotShow');
         },
 
