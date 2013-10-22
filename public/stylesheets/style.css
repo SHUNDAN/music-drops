@@ -2665,7 +2665,7 @@ table th[class*="span"],
 
 /* line 2312, ../dev/scss/libs/_bootstrap.scss */
 .icon-glass {
-  background-position: 0 0;
+  background-position: 0      0;
 }
 
 /* line 2316, ../dev/scss/libs/_bootstrap.scss */
@@ -9792,7 +9792,7 @@ table th[class*="span"],
 
 /* line 2312, ../dev/scss/libs/_bootstrap.scss */
 .icon-glass {
-  background-position: 0 0;
+  background-position: 0      0;
 }
 
 /* line 2316, ../dev/scss/libs/_bootstrap.scss */
@@ -16410,7 +16410,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 9999;
   width: 100%;
   min-width: 980px;
   height: 65px;
@@ -16967,46 +16967,46 @@ header {
   background-size: 46px 280px;
 }
 /* line 62, ../dev/scss/modules/_feelings.scss */
-.sprite-feeling.feeling-01 {
+.sprite-feeling.feeling-1 {
   width: 46px;
   height: 40px;
   background-position: 0 0;
 }
 /* line 65, ../dev/scss/modules/_feelings.scss */
-.sprite-feeling.feeling-02 {
+.sprite-feeling.feeling-2 {
   width: 46px;
   height: 40px;
-  background-position: 0 0;
+  background-position: 0 -240px;
 }
 /* line 68, ../dev/scss/modules/_feelings.scss */
-.sprite-feeling.feeling-03 {
+.sprite-feeling.feeling-3 {
   width: 46px;
   height: 40px;
-  background-position: 0 0;
+  background-position: 0 -200px;
 }
 /* line 71, ../dev/scss/modules/_feelings.scss */
-.sprite-feeling.feeling-04 {
+.sprite-feeling.feeling-4 {
   width: 46px;
   height: 40px;
-  background-position: 0 0;
+  background-position: 0 -40px;
 }
 /* line 74, ../dev/scss/modules/_feelings.scss */
-.sprite-feeling.feeling-05 {
+.sprite-feeling.feeling-5 {
   width: 46px;
   height: 40px;
-  background-position: 0 0;
+  background-position: 0 -80px;
 }
 /* line 77, ../dev/scss/modules/_feelings.scss */
-.sprite-feeling.feeling-06 {
+.sprite-feeling.feeling-6 {
   width: 46px;
   height: 40px;
-  background-position: 0 0;
+  background-position: 0 -120px;
 }
 /* line 80, ../dev/scss/modules/_feelings.scss */
-.sprite-feeling.feeling-07 {
+.sprite-feeling.feeling-7 {
   width: 46px;
   height: 40px;
-  background-position: 0 0;
+  background-position: 0 -160px;
 }
 
 /* line 87, ../dev/scss/modules/_feelings.scss */
@@ -17230,6 +17230,7 @@ header {
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 1;
   width: 80px;
   height: 80px;
   font-size: 30px;
@@ -17238,74 +17239,87 @@ header {
   -ms-border-radius: 80px;
   -o-border-radius: 80px;
   border-radius: 80px;
-  background: #ddd;
+  background: #dedbc7;
+}
+/* line 45, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-info-play-btn:hover {
+  background-color: #ffcf3c;
+}
+/* line 47, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-info-play-btn:hover .ico-font {
+  color: #fa732d;
 }
 
-/* line 48, ../dev/scss/modules/_music_detail.scss */
+/* line 55, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-action {
   position: absolute;
   bottom: 0;
   height: 40px;
 }
-/* line 52, ../dev/scss/modules/_music_detail.scss */
+/* line 59, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-action .m-btn-PD {
   float: left;
   width: 94px;
 }
 
-/* line 57, ../dev/scss/modules/_music_detail.scss */
+/* line 64, ../dev/scss/modules/_music_detail.scss */
 .tag-feeling {
   float: left;
   width: 196px;
   margin-right: 10px;
 }
 
-/* line 68, ../dev/scss/modules/_music_detail.scss */
+/* line 75, ../dev/scss/modules/_music_detail.scss */
 .sprite-share {
   background-image: url('/../images/../images/sprite/share-s9e941c34b4.png');
   background-repeat: no-repeat;
   background-size: 50px 18px;
 }
-/* line 70, ../dev/scss/modules/_music_detail.scss */
+/* line 77, ../dev/scss/modules/_music_detail.scss */
 .sprite-share.share-youtube {
   width: 50px;
   height: 18px;
   background-position: 0 0;
 }
 
-/* line 74, ../dev/scss/modules/_music_detail.scss */
+/* line 81, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-otherLinks {
   position: relative;
   height: 37px;
 }
 
-/* line 78, ../dev/scss/modules/_music_detail.scss */
+/* line 85, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-otherLinks-service {
   position: absolute;
   top: 10px;
   left: 44px;
 }
 
-/* line 83, ../dev/scss/modules/_music_detail.scss */
+/* line 90, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-otherLinks-link {
   position: absolute;
   top: 10px;
   left: 154px;
 }
 
-/* line 91, ../dev/scss/modules/_music_detail.scss */
+/* line 98, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-pop {
   height: 123px;
   padding: 10px;
   background-color: #efede0;
 }
 
-/* line 96, ../dev/scss/modules/_music_detail.scss */
+/* line 103, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-pop-user {
   margin-bottom: 10px;
 }
 
-/* line 103, ../dev/scss/modules/_music_detail.scss */
+/* line 106, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-pop-text {
+  line-height: 18px;
+}
+
+/* line 113, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-action-btn {
   float: left;
   display: block;
@@ -17315,27 +17329,113 @@ header {
   color: #d4d2be;
   background-color: #656457;
 }
-/* line 112, ../dev/scss/modules/_music_detail.scss */
+/* line 122, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-action-btn .ico-font.ico-follow {
   font-size: 28px;
 }
-/* line 115, ../dev/scss/modules/_music_detail.scss */
+/* line 125, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-action-btn .ico-font.ico-heart {
   font-size: 22px;
 }
-/* line 119, ../dev/scss/modules/_music_detail.scss */
+/* line 129, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-action-btn.is-active {
   color: #f3613f;
   background-color: #fec02b;
 }
 
-/* line 135, ../dev/scss/modules/_music_detail.scss */
+/* line 140, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 {
+  width: 313px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+/* line 144, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3:nth-child(3n) {
+  margin-right: 0;
+}
+/* line 149, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 .musicDetail-thumb {
+  width: 100px;
+  height: 100px;
+}
+/* line 155, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 .musicDetail-info {
+  position: relative;
+  width: 213px;
+  height: 100px;
+  padding: 10px;
+}
+/* line 161, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 .musicDetail-info-feeling {
+  margin: 0 0 10px;
+}
+/* line 164, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 .musicDetail-info-title {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+/* line 168, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 .musicDetail-info-artist {
+  margin: 0 0 10px;
+}
+/* line 173, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 .musicDetail-info-play-btn {
+  position: absolute;
+  top: auto;
+  bottom: -26px;
+  right: 10px;
+  width: 56px;
+  height: 56px;
+  font-size: 20px;
+  -webkit-border-radius: 56px;
+  -moz-border-radius: 56px;
+  -ms-border-radius: 56px;
+  -o-border-radius: 56px;
+  border-radius: 56px;
+}
+/* line 186, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 .musicDetail-action {
+  position: absolute;
+  bottom: -20px;
+  height: 40px;
+}
+/* line 191, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 .tag-feeling {
+  float: none;
+  width: 190px;
+  margin-right: 0;
+}
+/* line 196, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 .tag-feeling-text {
+  left: 48px;
+  width: 82px;
+  height: 40px;
+  padding-top: 4px;
+  line-height: 16px;
+  background: none;
+}
+/* line 203, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 .tag-feeling-text:before {
+  display: none;
+}
+/* line 210, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 .musicDetail-otherLinks-service {
+  position: absolute;
+  top: 10px;
+  left: 25px;
+}
+/* line 218, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-col3 .musicDetail-pop {
+  height: 94px;
+}
+
+/* line 234, ../dev/scss/modules/_music_detail.scss */
 .text-link {
   position: relative;
   display: inline-block;
   padding-right: 16px;
 }
-/* line 139, ../dev/scss/modules/_music_detail.scss */
+/* line 238, ../dev/scss/modules/_music_detail.scss */
 .text-link .ico-font {
   position: absolute;
   top: 50%;
@@ -17344,7 +17444,7 @@ header {
   font-size: 8px;
   color: #c9c7b9;
 }
-/* line 148, ../dev/scss/modules/_music_detail.scss */
+/* line 247, ../dev/scss/modules/_music_detail.scss */
 .text-link:hover .ico-font {
   color: #656457;
 }
@@ -17800,30 +17900,30 @@ header {
 
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 61, ../dev/scss/style.scss */
+  /* line 72, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 68, ../dev/scss/style.scss */
+/* line 79, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 69, ../dev/scss/style.scss */
+/* line 80, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 70, ../dev/scss/style.scss */
+/* line 81, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 74, ../dev/scss/style.scss */
+/* line 85, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -17832,6 +17932,7 @@ header {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.85);
   opacity: 0;
+  z-index: 9998;
 }
 
 /*==============================
@@ -17840,15 +17941,16 @@ header {
 /*==============================
   Preview Area
 ===============================*/
-/* line 100, ../dev/scss/style.scss */
+/* line 112, ../dev/scss/style.scss */
 .previewArea {
+  z-index: 9998;
   transition: opacity .5s ease;
   -webkit-transition: opacity .5s ease;
   -moz-transition: opacity .5s ease;
   -ms-transition: opacity .5s ease;
 }
 
-/* line 106, ../dev/scss/style.scss */
+/* line 119, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: absolute !important;
   top: -500px !important;
@@ -17856,7 +17958,7 @@ header {
   opacity: 0;
 }
 
-/* line 112, ../dev/scss/style.scss */
+/* line 125, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -17871,7 +17973,7 @@ header {
   color: white;
 }
 
-/* line 126, ../dev/scss/style.scss */
+/* line 139, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -17887,7 +17989,7 @@ header {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 143, ../dev/scss/style.scss */
+/* line 156, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -17895,14 +17997,14 @@ header {
 /*==============================
   Base Frame
 ===============================*/
-/* line 157, ../dev/scss/style.scss */
+/* line 170, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 65px;
 }
 
-/* line 162, ../dev/scss/style.scss */
+/* line 175, ../dev/scss/style.scss */
 #main {
   width: 980px;
   margin: 0 auto;

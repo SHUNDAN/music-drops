@@ -54,6 +54,17 @@
 
 
 
+//  MEMOS
+//-------------------------------------
+//  z-index
+//    9999 : header
+//    9998 : .blackout, .previewArea
+//  
+//  
+
+
+
+
 
 
 /** スマホ用スタイル。とりあえずなもの。 */
@@ -79,6 +90,7 @@
     height: 100%;
     background-color: rgba(0,0,0,.85);
     opacity: 0;
+    z-index:9998;
 }
 
 
@@ -98,6 +110,7 @@
   Preview Area
 ===============================*/
 .previewArea {
+    z-index:9998;
     transition: opacity .5s ease;
     -webkit-transition: opacity .5s ease;
     -moz-transition: opacity .5s ease;

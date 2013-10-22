@@ -36,11 +36,18 @@
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 1;
   width: 80px;
   height: 80px;
   font-size: 30px;
   @include border-radius(80px);
-  background: #ddd;
+  background: #dedbc7;
+  &:hover {
+    background-color: #ffcf3c;
+    .ico-font {
+      color: #fa732d;
+    }
+  }
 }
 
 // 曲のキモチ・ポケット、ドロップのアクション
@@ -96,6 +103,9 @@ $map-share: sprite-map("../images/sprite/share/*.png");
 .musicDetail-pop-user {
   margin-bottom: 10px;
 }
+.musicDetail-pop-text {
+  line-height: 18px;
+}
 // Drop投稿者に対するフォロー・いいねボタン
 //-------------------------------------
 .musicDetail-user-action {
@@ -121,6 +131,95 @@ $map-share: sprite-map("../images/sprite/share/*.png");
     background-color: #fec02b;
   }
 }
+
+
+//-------------------------------------
+//  3カラム
+//   ## 基本2カラムをオーバーライド
+//-------------------------------------
+.musicDetail-col3 {
+  width: 313px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  &:nth-child(3n) {
+    margin-right: 0;
+  }
+  // サムネイル
+  //-------------------------------------
+  .musicDetail-thumb {
+    width: 100px;
+    height: 100px;
+  }
+  // 曲情報
+  //-------------------------------------
+  .musicDetail-info {
+    position: relative;
+    width: 213px;
+    height: 100px;
+    padding: 10px;
+  }
+  .musicDetail-info-feeling {
+    margin: 0 0 10px;
+  }
+  .musicDetail-info-title {
+    font-size: 14px;
+    margin: 0 0 10px;
+  }
+  .musicDetail-info-artist {
+    margin: 0 0 10px;
+  }
+  // 再生ボタン
+  //-------------------------------------
+  .musicDetail-info-play-btn {
+    position: absolute;
+    top: auto;
+    bottom: -26px;
+    right: 10px;
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
+    @include border-radius(56px);
+  }
+
+  // 曲のキモチ・ポケット、ドロップのアクション
+  //-------------------------------------
+  .musicDetail-action {
+    position: absolute;
+    bottom: -20px;
+    height: 40px;
+  }
+  .tag-feeling {
+    float: none;
+    width: 190px;
+    margin-right: 0;
+  }
+  .tag-feeling-text {
+    left: 48px;
+    width: 82px;
+    height: 40px;
+    padding-top: 4px;
+    line-height: 16px;
+    background: none;
+    &:before {
+      display: none;
+    }
+  }
+
+  // 動画元・iTunesリンク
+  //-------------------------------------
+  .musicDetail-otherLinks-service {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+  }
+
+  // 曲Drop
+  //-------------------------------------
+  .musicDetail-pop {
+    height: 94px;
+  }
+}
+
 
 
 

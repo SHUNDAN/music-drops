@@ -100,54 +100,54 @@ $font-family-body: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // - @param  $isSameChild {Boolean} default is false
 // - @usage  @include sprite(child, $map-tabs, home)
 @mixin sprite($isParent, $map, $map-item: foo, $isSameChild: false) {
-	@if not $isSameChild {
-		@if $isParent == "parent" {
-			background-image: sprite-url($map);
-			background-repeat: no-repeat;
-			background-size: round(image-width(sprite-path($map)) / 2) round(image-height(sprite-path($map)) / 2);
-		} @else {
-			$position-x: round(nth(sprite-position($map, $map-item), 1) / 2);
-			width: round(image-width(sprite-file($map, $map-item)) / 2);
-			height: round(image-height(sprite-file($map, $map-item)) / 2);
-			background-position: $position-x 0;
-		}
-	} @else {
-		@if $isParent == "parent" {
-			width: round(image-width(sprite-file($map, $map-item)) / 2);
-			height: round(image-height(sprite-file($map, $map-item)) / 2);
-			background-image: sprite-url($map);
-			background-repeat: no-repeat;
-			background-size: round(image-width(sprite-path($map)) / 2) round(image-height(sprite-path($map)) / 2);
-		} @else {
-			$position-x: round(nth(sprite-position($map, $map-item), 1) / 2);
-			background-position: $position-x 0;
-		}
-	}
+  @if not $isSameChild {
+    @if $isParent == "parent" {
+      background-image: sprite-url($map);
+      background-repeat: no-repeat;
+      background-size: round(image-width(sprite-path($map)) / 2) round(image-height(sprite-path($map)) / 2);
+    } @else {
+      $position-y: round(nth(sprite-position($map, $map-item), 2) / 2);
+      width: round(image-width(sprite-file($map, $map-item)) / 2);
+      height: round(image-height(sprite-file($map, $map-item)) / 2);
+      background-position: 0 $position-y;
+    }
+  } @else {
+    @if $isParent == "parent" {
+      width: round(image-width(sprite-file($map, $map-item)) / 2);
+      height: round(image-height(sprite-file($map, $map-item)) / 2);
+      background-image: sprite-url($map);
+      background-repeat: no-repeat;
+      background-size: round(image-width(sprite-path($map)) / 2) round(image-height(sprite-path($map)) / 2);
+    } @else {
+      $position-y: round(nth(sprite-position($map, $map-item), 2) / 2);
+      background-position: 0 $position-y;
+    }
+  }
 }
 @mixin spritePC($isParent, $map, $map-item: foo, $isSameChild: false) {
-	@if not $isSameChild {
-		@if $isParent == "parent" {
-			background-image: sprite-url($map);
-			background-repeat: no-repeat;
-			background-size: round(image-width(sprite-path($map))) round(image-height(sprite-path($map)));
-		} @else {
-			$position-x: round(nth(sprite-position($map, $map-item), 1));
-			width: round(image-width(sprite-file($map, $map-item)));
-			height: round(image-height(sprite-file($map, $map-item)));
-			background-position: $position-x 0;
-		}
-	} @else {
-		@if $isParent == "parent" {
-			width: round(image-width(sprite-file($map, $map-item)));
-			height: round(image-height(sprite-file($map, $map-item)));
-			background-image: sprite-url($map);
-			background-repeat: no-repeat;
-			background-size: round(image-width(sprite-path($map))) round(image-height(sprite-path($map)));
-		} @else {
-			$position-x: round(nth(sprite-position($map, $map-item), 1));
-			background-position: $position-x 0;
-		}
-	}
+  @if not $isSameChild {
+    @if $isParent == "parent" {
+      background-image: sprite-url($map);
+      background-repeat: no-repeat;
+      background-size: round(image-width(sprite-path($map))) round(image-height(sprite-path($map)));
+    } @else {
+      $position-y: round(nth(sprite-position($map, $map-item), 2));
+      width: round(image-width(sprite-file($map, $map-item)));
+      height: round(image-height(sprite-file($map, $map-item)));
+      background-position: 0 $position-y;
+    }
+  } @else {
+    @if $isParent == "parent" {
+      width: round(image-width(sprite-file($map, $map-item)));
+      height: round(image-height(sprite-file($map, $map-item)));
+      background-image: sprite-url($map);
+      background-repeat: no-repeat;
+      background-size: round(image-width(sprite-path($map))) round(image-height(sprite-path($map)));
+    } @else {
+      $position-y: round(nth(sprite-position($map, $map-item), 2));
+      background-position: 0 $position-y;
+    }
+  }
 }
 
 // $map-tabs: sprite-map("/files/img/sprite/tabs/*.png", $layout: horizontal);

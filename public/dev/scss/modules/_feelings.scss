@@ -59,25 +59,25 @@ $map-feeling: sprite-map("../images/sprite/feeling/*.png");
 
 .sprite-feeling {
   @include spritePC(parent, $map-feeling);
-  &.feeling-01 {
+  &.feeling-1 {
     @include spritePC(child, $map-feeling, ico-feeling-01);
   }
-  &.feeling-02 {
+  &.feeling-2 {
     @include spritePC(child, $map-feeling, ico-feeling-02);
   }
-  &.feeling-03 {
+  &.feeling-3 {
     @include spritePC(child, $map-feeling, ico-feeling-03);
   }
-  &.feeling-04 {
+  &.feeling-4 {
     @include spritePC(child, $map-feeling, ico-feeling-04);
   }
-  &.feeling-05 {
+  &.feeling-5 {
     @include spritePC(child, $map-feeling, ico-feeling-05);
   }
-  &.feeling-06 {
+  &.feeling-6 {
     @include spritePC(child, $map-feeling, ico-feeling-06);
   }
-  &.feeling-07 {
+  &.feeling-7 {
     @include spritePC(child, $map-feeling, ico-feeling-07);
   }
 }
