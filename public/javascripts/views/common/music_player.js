@@ -321,14 +321,17 @@ define([], function () {
          * 閉じる
          */
         close: function () {
+            console.log('minimize', this.scaleSize, this.$previewArea);
 
-            if (this.options.callbackWhenEnd) {
-                this.options.callbackWhenEnd();
-            }
+            $('#previewArea').toggleClass('posNotShow');
 
-            this.$el.remove();
+            // if (this.options.callbackWhenEnd) {
+            //     this.options.callbackWhenEnd();
+            // }
 
-            this.resetPlayer();
+            // this.$el.remove();
+
+            // this.resetPlayer();
 
             return false;
         },
