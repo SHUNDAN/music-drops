@@ -5,6 +5,11 @@ block content
     // Main Area
     div#stage
         header#header
+        div(style="position:relative;width:980px;margin:-60px auto 0;height:60px;")
+          div#appSubTitle 〜 みんなでつくるミュージックライブラリ 〜
+          div#appUserModule
+            div#appLoginModule.login(data-event-click="login")
+            a#gotoUserSetting.hidden.userInfo(href="#usersetting")
         div#main
         div#playArea
 

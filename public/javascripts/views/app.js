@@ -15,6 +15,7 @@ define([
     'views/user/index',
     'views/user/regist',
     'views/user/timeline',
+    'views/user/setting',
     'views/artist/index',
     'models/common/user_storage',
 ], function (
@@ -30,6 +31,7 @@ define([
     UserView,
     UserRegistView,
     TimelineView,
+    UserSettingView,
     ArtistView,
     UserStorage
 ) {
@@ -48,18 +50,17 @@ define([
             mb.$playArea = $('#playArea');
             _.bindAll(this, 'authErrorHandler');
 
-
-
             // Add Header
             this.headerView = new HeaderView();
             this.headerView.show(); 
-
 
             // Music Player.
             // 各ページから使いたいので、グローバル変数へ代入する。
             this.musicPlayer = new MusicPlayerView();
             mb.musicPlayer = this.musicPlayer;
 
+            // ログイン処理のバインド
+            this.$el.on('click', '[data-event-click="login"]', _.bind(this.authErrorHandler, this));
 
         },
 
@@ -134,6 +135,12 @@ define([
 
         toTimeline: function () {
             this._prepareStage(TimelineView, function () {
+                this.currentPageView.show();
+            });
+        },
+
+        toUserSetting: function () {
+            this._prepareStage(UserSettingView, function () {
                 this.currentPageView.show();
             });
         },
@@ -215,10 +222,55 @@ define([
 
             }
 
+
+            // ログイン状況に合わせて、左上のモジュールを切り替える
+            console.debug('aaaaaaa: ', _.isLogedIn());
+            if (_.isLogedIn()) {
+                $('#appLoginModule').addClass('hidden');
+                $('#gotoUserSetting').removeClass('hidden');
+
+                var user = _.mbStorage.getUser();
+                $('#gotoUserSetting').text(user.name + ' ▼');
+            
+            } else {
+                $('#appLoginModule').removeClass('hidden').text('ログイン');
+                $('#gotoUserSetting').addClass('hidden');
+            }
+
+
+
+
         },
     
     });
 
     return ApplicationView;
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

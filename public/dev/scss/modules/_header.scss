@@ -303,6 +303,37 @@ header {
 
 
 
+// 後ついでに
+// アプリのサブタイトル
+#appSubTitle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 11px;
+}
+
+
+// ログイン、ユーザーモジュール
+#appUserModule {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background-color: #efede0;
+
+  .login, .userInfo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+  }
+}
+
+
+
 
 
 

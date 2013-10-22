@@ -52,6 +52,7 @@ define([
                 top: 0,
                 left: 0,
                 'background-color': 'rgba(255,255,255,.2)',
+                'z-index': 100,
             }).on('click', function (e) {
                 console.log('remove modal dialog.', e);
                 if (e.target.id !== 'clickArea') {

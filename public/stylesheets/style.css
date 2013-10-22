@@ -16220,7 +16220,7 @@ table {
 
 /* line 177, ../dev/scss/core/_helper.scss */
 .hidden {
-  display: none;
+  display: none !important;
   opacity: 0;
 }
 
@@ -16720,6 +16720,33 @@ header {
   text-align: center;
   line-height: 36px;
   color: #efede0;
+}
+
+/* line 308, ../dev/scss/modules/_header.scss */
+#appSubTitle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 11px;
+}
+
+/* line 317, ../dev/scss/modules/_header.scss */
+#appUserModule {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background-color: #efede0;
+}
+/* line 327, ../dev/scss/modules/_header.scss */
+#appUserModule .login, #appUserModule .userInfo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
 }
 
 /* line 2, ../dev/scss/modules/_page_header.scss */
@@ -17973,6 +18000,11 @@ header {
 /*==============================
   Stage
 ===============================*/
+/* line 101, ../dev/scss/style.scss */
+#stage {
+  position: relative;
+}
+
 /*==============================
   Preview Area
 ===============================*/
