@@ -16519,8 +16519,6 @@ header {
   color: #656457;
   -webkit-border-radius: 26px;
   -moz-border-radius: 26px;
-  -ms-border-radius: 26px;
-  -o-border-radius: 26px;
   border-radius: 26px;
   background-color: #fdfcf3;
 }
@@ -16630,25 +16628,29 @@ header {
 
 /* line 205, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup {
+  display: none;
   position: fixed;
   top: 65px;
   left: 180px;
   width: 300px;
   height: 500px;
-  background-color: #fdfcf3;
+  background-color: #efede0;
+  border-radius: 5px;
+  -webkit-filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.3));
 }
-/* line 214, ../dev/scss/modules/_header.scss */
+/* line 219, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup:after {
   position: absolute;
   top: 0;
-  right: -12px;
+  left: 44px;
   width: 0px;
   height: 0px;
   content: " ";
-  border-top: 0px solid #fdfcf3;
-  border-bottom: 12px solid transparent;
+  border-top: 0px solid transparent;
+  border-bottom: 12px solid #efede0;
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
+  margin-top: -12px;
 }
 
 /* line 2, ../dev/scss/modules/_page_header.scss */
@@ -16698,8 +16700,6 @@ header {
   height: 60px;
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
-  -ms-border-radius: 60px;
-  -o-border-radius: 60px;
   border-radius: 60px;
 }
 /* line 53, ../dev/scss/modules/_buttons.scss */
@@ -16856,8 +16856,6 @@ header {
   line-height: 22px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 /* line 35, ../dev/scss/modules/_feelings.scss */
@@ -16891,7 +16889,7 @@ header {
 
 /* line 60, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling {
-  background-image: url('/../images/../images/sprite/feeling-s4102400cd7.png');
+  background-image: url('/../images/../images/sprite/feeling-scb5bd80b49.png');
   background-repeat: no-repeat;
   background-size: 46px 280px;
 }
@@ -17082,8 +17080,6 @@ header {
   line-height: 22px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 /* line 100, ../dev/scss/modules/_drop_list.scss */
@@ -17164,8 +17160,6 @@ header {
   font-size: 30px;
   -webkit-border-radius: 80px;
   -moz-border-radius: 80px;
-  -ms-border-radius: 80px;
-  -o-border-radius: 80px;
   border-radius: 80px;
   background: #ddd;
 }
