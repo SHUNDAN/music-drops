@@ -132,8 +132,14 @@ define([], function () {
 
             // プレイリスト名
             this.$playlistTitle.html(options.playlistName || 'プレイリスト');
+
             // プレイヤーを再生状態にする
             $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+
+            // プレイリスト中身表示を作る
+            console.debug('musicArray: ', options.musicArray);
+            var snipet = _.mbTemplate('header_component_music_list', {musicArray:options.musicArray, currentMusic:this.currentMusic});
+            this.$header.find('#musicList').html(snipet);
 
         },
 
@@ -563,16 +569,87 @@ define([], function () {
 
 
 
+        /**
+            プレイリストダイアログを開く
+        */
+        openPlaylistPopup: function () {
+
+            // 表示できるものがある時だけ開きます。
+            if (this.options.musicArray) {
+                $('#playlistPopup').removeClass('hidden');                
+            }
+        },
 
 
 
+        /**
+            プレイリストダイアログを閉じる
+        */
+        closePlaylistPopup: function (e) {
+            $('#playlistPopup').addClass('hidden');
+        },
 
 
+        /**
+            クリックされた際のイベントバブリングを防ぐ（想定しないダイアログ閉じをしない）
+        */
+        cancelEvent: function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        },
 
 
+        /**
+            曲を再生する（プレイリスト内で選択）
+        */
+        playMusicAt: function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.debug('playMusicAt');
+
+            var $li = $(e.currentTarget).parents('li');
+
+            // 表示制御
+            var $musicList = this.$header.find('#musicList');
+            $musicList.find('li').removeClass('is-active');
+            $musicList.find('[data-event-click="pauseMusicAt"]').addClass('hidden');
+            $musicList.find('[data-event-click="playMusicAt"]').removeClass('hidden');
+            $li.addClass('is-active');
+            $li.find('[data-event-click="playMusicAt"],[data-event-click="pauseMusicAt"]').toggleClass('hidden');
 
 
+            // 再生位置を特定して再生する。
+            var id = parseInt($li.data('id'));
+            var musicArray = this.options.musicArray;
+            for (var i = 0; i < musicArray.length; i++) {
+                if (musicArray[i].id === id) {
+                    this.currentPos = i;
+                    break;
+                }
+            }
+            this._playMusicAtCurrentPos();
 
+            return false;
+        },
+
+
+        /**
+            曲を停止する（プレイリスト内で選択）
+        */
+        pauseMusicAt: function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.debug('pauseMusicAt');
+
+            // 表示きりかえ
+            $(e.currentTarget).parents('li').find('[data-event-click="playMusicAt"],[data-event-click="pauseMusicAt"]').toggleClass('hidden');
+
+            // Pause処理
+            this.pauseMusic();
+
+            return false;
+        },
 
 
 
