@@ -304,8 +304,7 @@ define([
             var options = {};
 
             // playlist name.
-            // TODO 後でプレイリスト名とかユーザー名とか変更できるようにする。
-            options.playlistName = 'すべてのPocket';
+            options.playlistName = (this.currentPlaylist ? this.currentPlaylist.attributes.title : 'すべてのPocket');
 
 
             // startPos, playlist.

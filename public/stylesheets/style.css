@@ -16221,14 +16221,15 @@ table {
 /* line 177, ../dev/scss/core/_helper.scss */
 .hidden {
   display: none;
+  opacity: 0;
 }
 
-/* line 178, ../dev/scss/core/_helper.scss */
+/* line 181, ../dev/scss/core/_helper.scss */
 a:hover {
   text-decoration: none;
 }
 
-/* line 179, ../dev/scss/core/_helper.scss */
+/* line 182, ../dev/scss/core/_helper.scss */
 .noAction {
   pointer-events: none;
 }
@@ -16626,6 +16627,99 @@ header {
   left: 50px;
   width: 40px;
   font-size: 24px;
+}
+
+/* line 205, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup-area {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  -webkit-transition: opacity .5s ease;
+}
+
+/* line 215, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup {
+  position: fixed;
+  top: 65px;
+  left: 180px;
+  width: 480px;
+  height: 500px;
+  background-color: #efede0;
+  border-radius: 5px;
+  -webkit-filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.3));
+}
+/* line 227, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup:after {
+  position: absolute;
+  top: 0;
+  left: 90px;
+  width: 0px;
+  height: 0px;
+  content: " ";
+  border-top: 0px solid transparent;
+  border-bottom: 12px solid #efede0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  margin-top: -12px;
+}
+/* line 242, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup .musicList {
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+}
+/* line 249, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup li {
+  height: 60px;
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5) inset, 0 -1px 1px rgba(0, 0, 0, 0.3) inset;
+  padding: 5px;
+}
+/* line 254, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup li.is-active {
+  background-color: #ffcf3c;
+}
+/* line 259, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup li .thumb {
+  float: left;
+  width: 44px;
+  height: 44px;
+  margin: 3px 0 0 3px;
+}
+/* line 267, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup li .info {
+  width: 350px;
+  margin: 10px 0 0 10px;
+  float: left;
+}
+/* line 272, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup li .title {
+  height: 20px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+  overflow: hidden;
+}
+/* line 279, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup li .artistName {
+  height: 12px;
+  width: 100%;
+  font-size: 10px;
+  overflow: hidden;
+}
+/* line 287, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup li .playBtn, .header-playlist-content-popup li .pauseBtn {
+  float: left;
+  margin: 6px 5px 0 5px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #656457;
+  text-align: center;
+  line-height: 36px;
+  color: #efede0;
 }
 
 /* line 2, ../dev/scss/modules/_page_header.scss */
