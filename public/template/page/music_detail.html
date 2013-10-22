@@ -1,7 +1,7 @@
 
 <!-- Page: Music Detail Page  -->
 <script id="page_music_detail" type="text/template">
-    <div id="musicInfoArea"></div>
+    <div id="musicInfoArea" class="musicDetail fl"></div>
 
     <ul class="nav nav-tabs mt50">
         <li class="active">
@@ -22,36 +22,72 @@
 
 <!-- Parts: Music Info  -->
 <script id="page_music_detail_info" type="text/template">
-    <div class="musicDetail">
-        <div class="gp">
-            <div class="musicDetail-thumb mrm fl">
-                <img src="<%= artwork_url %>" width="140" height="140" alt="<%- title %> / <%- artist_name %>" />
-                <p><audio src="<%= song_url %>" controls></audio></p>
-                <% if (itunes_url) { %>
-                    <p><a href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&subid=&offerid=94348.1&type=10&tmpid=3910&RD_PARM1=<%- itunes_url %>" target="_blank">iTunesで曲を見る</a></p>
-                <% } %>
-            </div>
-            <div class="musicDetail-info fl">
-                <h2 class="musicDetail-info-title"><%- title %></h2>
-                <p class="musicDetail-info-artist">
-                    <a href="#artist/<%=artist_id%>"><%- artist_name %></a>
-                </p>
-                <div class="pocketBtnArea">
-                    <% _.each(feelings, function (feeling) { %>
-                        <!-- <div class="btn mb5" data-event="addPocket" data-feeling-id="<%-feeling.id%>"><%-feeling.name%></div> -->
-                    <% }); %>
-                    <%if (_.alreadyPocket(id) === false) {%>
-                        <div class="btn" data-event="addPocket" data-feeling-id="0">この曲をPocketする</div>
-                    <%} else {%>
-                        <div class="btn btn-primary" data-event="deletePocket" data-feeling-id="0">Pocket解除</div>
-                    <%}%>
+    <div class="gp">
+        <div class="musicDetail-thumb mrm fl">
+            <img src="<%= artwork_url %>" width="140" height="140" alt="<%- title %> / <%- artist_name %>" />
+            <p><audio src="<%= song_url %>" controls></audio></p>
+            <% if (itunes_url) { %>
+                <p><a href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&subid=&offerid=94348.1&type=10&tmpid=3910&RD_PARM1=<%- itunes_url %>" target="_blank">iTunesで曲を見る</a></p>
+            <% } %>
+        </div>
+        <div class="musicDetail-info fl">
+            <h2 class="musicDetail-info-title"><%- title %></h2>
+            <p class="musicDetail-info-artist">
+                <a href="#artist/<%=artist_id%>"><%- artist_name %></a>
+            </p>
+            <button class="musicDetail-info-play-btn">
+                <i class="ico-font ico-play"></i>
+            </button>
+
+            <div class="musicDetail-action gp">
+              <div class="tag-feeling ref">
+                  <i class="sprite-feeling feeling-1"></i>
+                  <p class="tag-feeling-text">テンションがあがる</p>
+              </div>
+              <div class="m-btn-PD">
+                <% _.each(feelings, function (feeling) { %>
+                    <!-- <div class="btn mb5" data-event="addPocket" data-feeling-id="<%-feeling.id%>"><%-feeling.name%></div> -->
+                <% }); %>
+                <%if (_.alreadyPocket(id) === false) {%>
+                <div class="js-menu-pocket btn-PD btn-pocket" data-event="addPocket" data-feeling-id="0">
+                    <i class="ico-font ico-star"></i>
+                    <span>ポケット</span>
                 </div>
+                <%} else {%>
+                <div class="js-menu-pocket btn-PD btn-pocket" data-event="deletePocket" data-feeling-id="0">
+                    <i class="ico-font ico-star"></i>
+                    <span>解除</span>
+                </div>
+                <%}%>
+                <div class="js-menu-drop btn-PD btn-drop">
+                    <i class="ico-font ico-drop"></i>
+                    <span>ドロップ</span>
+                </div>
+              </div>
+                
             </div>
-
-
         </div>
 
+
     </div>
+        <div class="musicDetail-otherLinks">
+          <i class="musicDetail-otherLinks-service sprite-share share-youtube"></i>
+          <a class="musicDetail-otherLinks-link text-link" href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&amp;subid=&amp;offerid=94348.1&amp;type=10&amp;tmpid=3910&amp;RD_PARM1=https://itunes.apple.com/jp/album/galaxy-supernova/id694237906?i=694238039&amp;uo=2" target="_blank">iTunesでこの曲を購入する<i class="ico-font ico-play"></i></a>
+        </div>
+        <div class="musicDetail-pop">
+          <p class="musicDetail-pop-user b">
+            <a class="text-link" href="#user/8">よーへい<i class="ico-font ico-play"></i></a>
+          </p>
+          <p class="musicDetail-pop-text">Topページで再生テストするためのテストDropです。</p>
+        </div>
+        <div class="musicDetail-user-action gp">
+          <button class="js-follow-btn musicDetail-user-action-btn musicDetail-user-action-btn-follow">
+            <i class="ico-font ico-follow"></i>
+          </button>
+          <button class="js-like-btn musicDetail-user-action-btn musicDetail-user-action-btn-like is-active">
+            <i class="ico-font ico-heart"></i>
+          </button>
+        </div>
 </script>
 
 <!-- Parts: Music Page's Pop List -->
