@@ -16628,6 +16628,29 @@ header {
   font-size: 24px;
 }
 
+/* line 205, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup {
+  position: fixed;
+  top: 65px;
+  left: 180px;
+  width: 300px;
+  height: 500px;
+  background-color: #fdfcf3;
+}
+/* line 214, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup:after {
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: 0px;
+  height: 0px;
+  content: " ";
+  border-top: 0px solid #fdfcf3;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+}
+
 /* line 2, ../dev/scss/modules/_page_header.scss */
 .page-header {
   position: relative;

@@ -22,6 +22,8 @@ define([], function () {
         // timer
         timerId: null,
 
+        // 再生中のMusic
+        currentMusic: null,
 
         // fields.
         $playlistTitle: undefined,
@@ -129,7 +131,7 @@ define([], function () {
 
 
             // プレイリスト名
-            this.$playlistTitle.html(options.playlistName);
+            this.$playlistTitle.html(options.playlistName || 'プレイリスト');
             // プレイヤーを再生状態にする
             $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
@@ -159,22 +161,28 @@ define([], function () {
             if (this.currentPos >= musicArray.length) {
                 console.debug('finish play musics. currentPos=', this.currentPos, 'musicArray.count=', musicArray.length);
                 callbackWhenEnd();
+
+                // 対象曲を削除
+                this.currentMusic = null;
+
                 return;
             }
 
-            var aMusic = musicArray[this.currentPos++];
-
-            var func = _.bind(aMusic.youtubeId ? this._playYoutube : this._playItunesMusic, this);
-            var param = aMusic.youtubeId || aMusic.songUrl;
+            this.currentMusic = musicArray[this.currentPos++];
+            var func = _.bind(this.currentMusic.youtubeId ? this._playYoutube : this._playItunesMusic, this);
+            var param = this.currentMusic.youtubeId || this.currentMusic.songUrl;
 
             // callback.
             if (callbackWhenWillStart) {
-                callbackWhenWillStart(aMusic);
+                callbackWhenWillStart(this.currentMusic);
             }
 
-            // set infos.
-            this.$musicTitle.html(aMusic.title);
-            this.$artistName.html(aMusic.artistName);
+            // 表示情報
+            this.$musicTitle.html(this.currentMusic.title);
+            this.$artistName.html(this.currentMusic.artistName);
+            if(_.alreadyPocket(this.currentMusic.music_id)) {
+                this.$header.find('[data-event-click="pocket"]').addClass('is-active');
+            };
 
             func(param, this.$previewArea, _.bind(function () {
 
@@ -182,6 +190,10 @@ define([], function () {
                 this._playMusicAtCurrentPos();
 
             }, this));
+
+
+            // 再生回数を保存
+            _.addMusicPlayCount(this.currentMusic.music_id);
 
         },
 
@@ -493,10 +505,97 @@ define([], function () {
         nextMusic: function () {
             console.debug('nextMusic');
             if (this.options) {
-                this.currentPos = Math.min(this.currentPos + 1, this.options.musicArray - 1);
+                this.currentPos = Math.min(this.currentPos, this.options.musicArray.length - 1);
                 this._playMusicAtCurrentPos();
             }
         },
+
+
+        /**
+            Pocketの追加、削除を行う
+        */
+        pocket: function (e) {
+            e.preventDefault();
+            
+            // Pocket対象曲がなければ何もしない
+            if (!this.currentMusic) {
+                return;
+            }
+
+            // alias.
+            var $this = $(e.currentTarget);
+
+            
+            // Pocket追加
+            if (!$this.hasClass('is-active')) {
+                _.addPocket({music_id: this.currentMusic.music_id}, _.bind(function () {
+
+                    // Pocketボタンの表示切替
+                    $(e.currentTarget).addClass('is-active');
+
+                }, this));
+            
+
+            // Pocket削除
+            } else {
+
+                // PocketIdを特定して、削除する
+                var pocketId = _.selectPocketId(this.currentMusic.music_id);
+
+                // もし見つからない場合には、未ログインと思われるので、ログインを促す。
+                if (!pocketId) {
+                    mb.router.appView.authErrorHandler();
+                    return;
+                }
+
+                // Pocketを削除する
+                _.deletePocket(pocketId, function () {
+
+                    // Pocketボタンの表示切替
+                    $(e.currentTarget).removeClass('is-active');
+
+                });
+
+            }
+
+            return false;
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

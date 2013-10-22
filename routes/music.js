@@ -200,10 +200,10 @@ exports.delete = function(req, res) {
 exports.addMusicPlayCount = function(req, res) {
 
     // login check.
-    if (!appUtil.isLogedIn(req)) {
-        appUtil.response403(res);
-        return;
-    }
+    // if (!appUtil.isLogedIn(req)) {
+    //     appUtil.response403(res);
+    //     return;
+    // }
 
 
     // query check.

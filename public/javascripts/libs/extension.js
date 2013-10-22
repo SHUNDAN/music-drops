@@ -485,6 +485,86 @@ _.addMusicLinkPlayCount = function (musicId, linkId) {
 
 
 
+/**
+    MusicIdから、ユーザーの保持するPocketIdを検索する
+*/
+_.selectPocketId = function (musicId) {
+
+    var pocketId;
+
+    var user = _.mbStorage.getUser();
+    if (user) {
+        _.each(user.userPockets, function (pocket) {
+            if (pocket.music_id === musicId) {
+                pocketId = pocket.id;
+            }
+        });
+    }
+
+    return pocketId;
+};
+
+
+
+
+
+/**
+    Pocketを追加する
+*/
+_.addPocket = function (data, callback) {
+
+    $.ajax({
+        url: '/api/v1/user_pockets',
+        method: 'post',
+        data: data,
+        success: function () {
+            console.debug('_.addPocket success.');
+            if (callback) {
+                callback();
+                _.mbStorage.refreshUser();
+            }
+        },
+        error: function (xhr) {
+            if (xhr.status === 403) {
+                mb.router.appView.authErrorHandler();
+                return;
+            } else {
+                alert('エラーが発生しました。お手数ですが再読み込みしてください。');
+                console.log('error: ', arguments);
+            }
+        },
+    });
+};
+
+
+/**
+    Pocketを削除する
+*/
+_.deletePocket = function (pocketId, callback) {
+
+    $.ajax({
+        url: '/api/v1/user_pockets/' + pocketId,
+        method: 'delete',
+        success: function () {
+            console.debug('_.deletePocket success.');
+            if (callback) {
+                callback();
+                _.mbStorage.refreshUser();
+            }
+        },
+        error: function (xhr) {
+            if (xhr.status === 403) {
+                mb.router.appView.authErrorHandler();
+                return;
+            } else {
+                alert('エラーが発生しました。お手数ですが再読み込みしてください。');
+                console.log('error: ', arguments);
+            }
+        },
+    });
+};
+
+
 
 
 
