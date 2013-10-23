@@ -64,8 +64,8 @@ define([
             this.hotPopList = new PopList();
             this.hotPopList.bind('reset', this.renderHotPopList);
 
-            var user = this.userStorage.getUser();
-            if (user) {
+            var user = _.mbStorage.getUser();
+            if (user && user.like_pop) {
                 this.likeArray = JSON.parse(user.like_pop) || [];
             } else {
                 this.likeArray = [];

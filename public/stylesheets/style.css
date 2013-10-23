@@ -1145,7 +1145,15 @@ header {
   font-size: 11px;
 }
 
-/* line 317, ../dev/scss/modules/_header.scss */
+/* line 316, ../dev/scss/modules/_header.scss */
+#pageTitle {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+/* line 325, ../dev/scss/modules/_header.scss */
 #appUserModule {
   position: absolute;
   top: 10px;
@@ -1156,7 +1164,7 @@ header {
   text-align: center;
   background-color: #efede0;
 }
-/* line 327, ../dev/scss/modules/_header.scss */
+/* line 335, ../dev/scss/modules/_header.scss */
 #appUserModule .login, #appUserModule .userInfo {
   display: block;
   width: 100%;
@@ -2557,8 +2565,8 @@ textarea.form {
   float: left;
   display: block;
   width: 500px;
-  height: 50px;
-  line-height: 40px;
+  height: 40px;
+  line-height: 30px;
   padding: 10px;
   background-color: #efede0;
   box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
@@ -2570,8 +2578,8 @@ textarea.form {
   float: left;
   display: block;
   width: 100px;
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
   color: #656457;
   background-color: #dedbc7;
   border-radius: 5px;

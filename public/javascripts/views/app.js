@@ -81,73 +81,85 @@ define([
 
         toTop: function () {
             this._prepareStage(TopView, function () {
+                $('#pageTitle').text('TOP');
                 this.currentPageView.show();
             });
         },
 
         toPopList: function (feelingId) {
             this._prepareStage(PopListView, function () {
+                $('#pageTitle').text('POP LIST');
                 this.currentPageView.show(feelingId);
             });
         },
 
         toMusicDetail: function (musicId) {
             this._prepareStage(MusicView, function () {
+                $('#pageTitle').text('MUSIC');
                 this.currentPageView.show(musicId);
             });
         },
 
         toMusicSearch: function () {
             this._prepareStage(MusicSearchView, function () {
+                $('#pageTitle').text('MUSIC SEARCH');
                 this.currentPageView.show();
             });
         },
 
         toAddPop: function (musicId) {
             this._prepareStage(PopView, function () {
+                $('#pageTitle').text('ADD POP');
                 this.currentPageView.show(musicId);
             });
         },
 
         toLogin: function () {
             this._prepareStage(LoginView, function () {
+                $('#pageTitle').text('LOGIN');
                 this.currentPageView.show();
             });
         },
 
         toMypage: function () {
             this._prepareStage(MypageView, function () {
-                this.currentPageView.show();
+                 $('#pageTitle').text('MYPAGE');
+               this.currentPageView.show();
             });
         },
 
         toUserPage: function (userId) {
             this._prepareStage(UserView, function () {
+                $('#pageTitle').text('USER');
                 this.currentPageView.show(userId);
             });
         },
 
         toRegistUserPage: function () {
             this._prepareStage(UserRegistView, function () {
+                $('#pageTitle').text('REGIST');
                 this.currentPageView.show();
             });
         },
 
         toTimeline: function () {
             this._prepareStage(TimelineView, function () {
+                $('#pageTitle').text('TIMELINE');
                 this.currentPageView.show();
             });
         },
 
         toUserSetting: function () {
             this._prepareStage(UserSettingView, function () {
+                $('#pageTitle').text('SETTING');
                 this.currentPageView.show();
             });
         },
 
         toArtist: function (artistId) {
             this._prepareStage(ArtistView, function () {
-                this.currentPageView.show(artistId);
+                 $('#pageTitle').text('ARTIST');
+               this.currentPageView.show(artistId);
             });
         },
 
