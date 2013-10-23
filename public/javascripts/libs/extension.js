@@ -108,10 +108,10 @@ var storage = window.localStorage;
 _.mbStorage = {
 
     getAppVersion: function () {
-        return localStorage.getItem('appVersion');
+        return parseInt(localStorage.getItem('appVersion'), 10);
     },
     setAppVersion: function (version) {
-        localStorage.setItem('appVersion', parseInt(version, 10));
+        localStorage.setItem('appVersion', version);
     },
     getUser: function () {
         return JSON.parse(storage.getItem('user'));
@@ -245,8 +245,9 @@ var ajaxInterceptor = {
                 if (_.mbStorage.getAppVersion() !== parseInt(appVersion, 10)) {
                     if (!alreadyAppUpdateAlert) {
                         alreadyAppUpdateAlert = true;
-                        alert('アプリケーションのバージョンが更新されました。リロードしてください。');
+                        alert('アプリケーションのバージョンが更新されました。リロードします。');
                         _.mbStorage.setAppVersion(appVersion);
+                        location.reload();
                     }
 
                 }
