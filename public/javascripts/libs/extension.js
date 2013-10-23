@@ -96,7 +96,7 @@ _.getFeelingName = function (feelingId) {
 
 // Login Check.
 _.isLogedIn = function () {
-    return localStorage.getItem('user') !== null;
+    return localStorage.getItem('user') !== null && $.cookie('uid');
 };
 
 
