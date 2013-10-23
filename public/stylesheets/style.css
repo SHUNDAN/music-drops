@@ -935,6 +935,8 @@ header {
   color: #656457;
   -webkit-border-radius: 26px;
   -moz-border-radius: 26px;
+  -ms-border-radius: 26px;
+  -o-border-radius: 26px;
   border-radius: 26px;
   background-color: #fdfcf3;
 }
@@ -1276,6 +1278,8 @@ header {
   height: 60px;
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
   border-radius: 60px;
 }
 /* line 53, ../dev/scss/modules/_buttons.scss */
@@ -1392,6 +1396,8 @@ header {
   vertical-align: middle;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
@@ -1509,6 +1515,8 @@ textarea.form {
   line-height: 22px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
   border-radius: 2px;
 }
 /* line 35, ../dev/scss/modules/_feelings.scss */
@@ -1542,7 +1550,7 @@ textarea.form {
 
 /* line 60, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling {
-  background-image: url('/../images/../images/sprite/feeling-scb5bd80b49.png');
+  background-image: url('/../images/../images/sprite/feeling-s4102400cd7.png');
   background-repeat: no-repeat;
   background-size: 46px 280px;
 }
@@ -1556,37 +1564,37 @@ textarea.form {
 .sprite-feeling.feeling-2 {
   width: 46px;
   height: 40px;
-  background-position: 0 -40px;
+  background-position: 0 -240px;
 }
 /* line 68, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-3 {
   width: 46px;
   height: 40px;
-  background-position: 0 -80px;
+  background-position: 0 -200px;
 }
 /* line 71, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-4 {
   width: 46px;
   height: 40px;
-  background-position: 0 -120px;
+  background-position: 0 -40px;
 }
 /* line 74, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-5 {
   width: 46px;
   height: 40px;
-  background-position: 0 -160px;
+  background-position: 0 -80px;
 }
 /* line 77, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-6 {
   width: 46px;
   height: 40px;
-  background-position: 0 -200px;
+  background-position: 0 -120px;
 }
 /* line 80, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-7 {
   width: 46px;
   height: 40px;
-  background-position: 0 -240px;
+  background-position: 0 -160px;
 }
 
 /* line 87, ../dev/scss/modules/_feelings.scss */
@@ -1733,6 +1741,8 @@ textarea.form {
   line-height: 22px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
   border-radius: 2px;
 }
 /* line 100, ../dev/scss/modules/_drop_list.scss */
@@ -1814,6 +1824,8 @@ textarea.form {
   font-size: 30px;
   -webkit-border-radius: 80px;
   -moz-border-radius: 80px;
+  -ms-border-radius: 80px;
+  -o-border-radius: 80px;
   border-radius: 80px;
   background: #dedbc7;
 }
@@ -1965,6 +1977,8 @@ textarea.form {
   font-size: 20px;
   -webkit-border-radius: 56px;
   -moz-border-radius: 56px;
+  -ms-border-radius: 56px;
+  -o-border-radius: 56px;
   border-radius: 56px;
 }
 /* line 186, ../dev/scss/modules/_music_detail.scss */

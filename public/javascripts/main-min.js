@@ -2208,13 +2208,7 @@ define('views/pop/index',[
                 this.$el.prepend($blackout);
 
                 // display as modal.
-                this.$el.find('#pagePop').css({
-                    position: 'fixed',
-                    top: '100px',
-                    left: '10%',
-                    width: '80%',
-                    'background-color': 'rgba(255,255,255,.9)',
-                });
+                this.$el.find('#pagePop').addClass('popUp');
             }
         },
 
@@ -2576,22 +2570,22 @@ define('views/music/index',[
 
         addLink: function (e) {
             var $this = $(e.currentTarget);
-            var $tr = $this.parents('tr');
-            var comment = $tr.find('[data-type="comment"]').text();
-            var link = $tr.find('[data-type="link"]').text();
+            var $container = $this.parents('.add-musicLink');
+            var comment = $container.find('[data-type="comment"]').text();
+            var link = $container.find('[data-type="link"]').text();
 
             // データチェック
             if (comment.length === 0) {
-                alert('Comment is required');
+                alert('コメントは必須です');
                 return;
             }
             if (link.length === 0) {
-                alert('Link is required');
+                alert('動画のリンクは必須です。');
                 return;
             }
             if (link.toLowerCase().indexOf('http://') !== 0
                     && link.toLowerCase().indexOf('https://') !== 0) {
-                alert('Link is invalid url. \nUrl must be http:// or https://');
+                alert('動画リンクのURLが正しくありません。. \nURLには、 http:// または https:// を付けてください。');
                 return;
             }
 
