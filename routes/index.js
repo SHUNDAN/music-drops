@@ -14,13 +14,6 @@ exports.index = function(req, res){
 
     // load templates.
     var template = '';
-    // var files = fs.readdirSync('./public/template/page/');
-    // files.forEach(function (fileName) {
-    //     if (fileName.indexOf('.html') !== -1) {
-    //         template += fs.readFileSync('./public/template/page/' + fileName, 'utf-8'); 
-    //     }
-    // });
-
     glob('./public/template/**/*.html', function (err, files) {
 
         files.forEach(function (file) {
@@ -28,31 +21,43 @@ exports.index = function(req, res){
         });
 
 
-        // ユーザー情報あれば表示
-        var userId = appUtil.getUserIdFromUid(req);
-        if (userId) {
-            userModel.selectObject2({id:userId}, function (user) {
+        // アプリ共通情報を取得
+        loadCommonInfo(function (common) {
 
-                // response.
-                res.render('index', {title: 'Express', htmltemplate: template, mainJs: global.mbSetting.mainJs, user:JSON.stringify(user)});
+            // ユーザー情報あれば表示
+            var userId = appUtil.getUserIdFromUid(req);
+            if (userId) {
+                userModel.selectObject2({id:userId}, function (user) {
 
-            });
-        
-        } else {
-            res.render('index', {title: 'Express', htmltemplate: template, mainJs: global.mbSetting.mainJs, user:null});            
-        }
+                    // response.
+                    res.render('index', {
+                        title: 'Express', 
+                        htmltemplate: template, 
+                        mainJs: global.mbSetting.mainJs,
+                        common: JSON.stringify(common),
+                        user:JSON.stringify(user)
+                    });
+
+                });
+            
+            } else {
+                res.render('index', {
+                    title: 'Express', 
+                    htmltemplate: template, 
+                    mainJs: global.mbSetting.mainJs, 
+                    common: JSON.stringify(common),
+                    user:null
+                });
+            }
 
 
-        // var user = null;
-        // if (global.tmpMap) {
-        //     user = global.tmpMap[uid];
-        //     console.log('user=', user);
-        //     delete global.tmpMap[uid];
-        // }
+        });
 
 
-        // response.
-        // res.render('index', {title: 'Express', htmltemplate: template, mainJs: global.mbSetting.mainJs, user:JSON.stringify(user)});
+
+
+
+
 
     });
 
@@ -130,29 +135,10 @@ exports.login = function (req, res) {
  * 基本情報を返却する
  */
 exports.common = function (req, res) {
-    var retValue = {};
 
-    // サーバー時間
-    retValue.currentTime = new Date().getTime();
-
-    // 感情一覧
-    feelingModel.selectObjects({}, function (err, rows) {
-
-        retValue.feelings = rows;
-
-        // コード一覧
-        codeModel.selectObjects({}, function (err, rows) {
-            retValue.codes = rows;
-
-
-            // return
-            res.json(retValue);
-
-        });
-
+    loadCommonInfo(function (common) {
+        res.json(common);
     });
-
-
 
 };
 
@@ -175,7 +161,30 @@ exports.log = function (req, res) {
 
 
 
+// プライベートメソッド
+var loadCommonInfo = function (callback) {
 
+    var common = {};
+
+    // サーバー時間
+    common.currentTime = new Date().getTime();
+
+    // 感情一覧
+    feelingModel.selectObjects({}, function (err, rows) {
+        common.feelings = rows;
+
+        // コード一覧
+        // codeModel.selectObjects({}, function (err, rows) {
+        //     common.codes = rows;
+
+            if (callback) {
+                callback(common);
+            }
+
+        // });
+    });
+
+};
 
 
 

@@ -128,6 +128,40 @@ _.mbStorage = {
     setCommon: function (common) {
         storage.setItem('common', JSON.stringify(common));
     },
+    loadCommonInfo: function (options) {
+        console.debug('loadCommonInfo!!');
+
+        // null safe.
+        options = options || {};
+
+        if (!this.getCommon() || options.force === true) {
+            console.debug('loadCommonInfo from server');
+
+            var self = this;
+            $.ajax({
+                url: '/api/v1/common',
+                dataType: 'json',
+                success: function (json) {
+                    json.lastRequestTime = new Date().getTime();
+                    self.setCommon(json);
+                    if (options.callback) {
+                        options.callback();
+                    }
+                },
+                error: function () {
+                    console.error('/api/v1/common error: ', arguments);
+                },
+            });
+
+        } else {
+            if (options.callback) {
+                options.callback();
+            }
+        }
+
+    },
+
+
     getUserPockets: function () {
         return JSON.parse(storage.getItem('userPockets'));
     },

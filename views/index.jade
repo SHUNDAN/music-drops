@@ -65,6 +65,15 @@ block content
         if (user) {
           _.mbStorage.setUser(user);
         }
+
+
+    script
+      var common = JSON.parse('!{common}');
+      console.debug('common: ', common);
+      if (common) {
+          _.mbStorage.setCommon(common);
+        }
+
     
 
     script(src="javascripts/#{global.mbSetting.mainJs}")
