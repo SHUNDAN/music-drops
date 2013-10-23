@@ -42,7 +42,7 @@
   font-size: 30px;
   @include border-radius(80px);
   background: #dedbc7;
-  &:hover {
+  &.is-active, &:hover {
     background-color: #ffcf3c;
     .ico-font {
       color: #fa732d;

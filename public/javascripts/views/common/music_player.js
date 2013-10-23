@@ -279,7 +279,7 @@ define([], function () {
 
 
         /**
-            曲を開始する
+            曲を再開する
         */
         startMusic: function () {
             $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
@@ -292,6 +292,11 @@ define([], function () {
             // Youtubeの場合
             if (this.youtubePlayer) {
                 this.youtubePlayer.playVideo();
+            }
+
+            // 開始Callbackを呼ぶ
+            if (this.options.callbackWhenWillStart) {
+                this.options.callbackWhenWillStart(this.musicQueue[this.currentPos]);
             }
 
         },
@@ -311,6 +316,11 @@ define([], function () {
             // Youtubeの場合
             if (this.youtubePlayer) {
                 this.youtubePlayer.pauseVideo();
+            }
+
+            // UI側は表示をキャンセルしたいので、いったんコールバックを呼ぶ
+            if (this.options.callbackWhenPause) {
+                this.options.callbackWhenPause();
             }
         },
 

@@ -17269,11 +17269,11 @@ header {
   background: #dedbc7;
 }
 /* line 45, ../dev/scss/modules/_music_detail.scss */
-.musicDetail-info-play-btn:hover {
+.musicDetail-info-play-btn.is-active, .musicDetail-info-play-btn:hover {
   background-color: #ffcf3c;
 }
 /* line 47, ../dev/scss/modules/_music_detail.scss */
-.musicDetail-info-play-btn:hover .ico-font {
+.musicDetail-info-play-btn.is-active .ico-font, .musicDetail-info-play-btn:hover .ico-font {
   color: #fa732d;
 }
 

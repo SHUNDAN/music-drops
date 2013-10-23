@@ -28,8 +28,7 @@
                         <option value="<%=feeling.id%>"><%=feeling.name%></option>
                     <%});%>
                 </select><br>
-                <a href="#" data-event="playAll" data-target="newPopList">新着Dropを全曲再生する</a>
-                <ul id="newPopList" class="gp"></ul>
+                <ul id="newPopList" class="gp" data-type="new"></ul>
             
             </div>
 
@@ -42,8 +41,7 @@
                         <option value="<%=feeling.id%>"><%=feeling.name%></option>
                     <%});%>
                 </select><br>
-                <a href="#" data-event="playAll" data-target="popularPopList">人気Dropを全曲再生する</a>
-                <ul id="popularPopList" class="gp"></ul>
+                <ul id="popularPopList" class="gp" data-type="popular"></ul>
             
             </div>
 
@@ -56,8 +54,7 @@
                         <option value="<%=feeling.id%>"><%=feeling.name%></option>
                     <%});%>
                 </select><br>
-                <a href="#" data-event="playAll" data-target="hotPopList">人気急上昇Dropを全曲再生する</a>
-                <ul id="hotPopList" class="gp"></ul>
+                <ul id="hotPopList" class="gp" data-type="hot"></ul>
             </div>
         </div>
 
@@ -106,16 +103,12 @@
                     <p class="musicDetail-info-artist">
                         <a class="text-link" href="#artist/<%=pop.attributes.artist_id%>"><%=pop.attributes.artist_name%><i class="ico-font ico-play"></i></a>
                     </p>
-                    <%if (pop.attributes.youtube_id) {%>
-                    <button class="musicDetail-info-play-btn" data-music-id="<%=pop.attributes.music_id%>" data-youtube-id="<%=pop.attributes.youtube_id%>" data-event="playSong" data-pop-id="<%=pop.attributes.id%>">
+                    <button class="musicDetail-info-play-btn" data-event-click="playSong" data-btn="play">
                         <i class="ico-font ico-play"></i>
                     </button>
-                    <%} else {%>
-                    <button class="musicDetail-info-play-btn" data-music-id="<%=pop.attributes.music_id%>" data-song-url="<%=pop.attributes.song_url%>" data-event="playSong" data-pop-id="<%=pop.attributes.id%>">
-                        <i class="ico-font ico-play"></i>
+                    <button class="musicDetail-info-play-btn is-active hidden" data-event-click="pauseSong" data-btn="pause">
+                        <i class="ico-font ico-play-stop"></i>
                     </button>
-                    <%}%>
-
                     <div class="musicDetail-action gp">
                         <div class="tag-feeling ref">
                           <i class="sprite-feeling feeling-<%=pop.attributes.feeling_id%>"></i>
