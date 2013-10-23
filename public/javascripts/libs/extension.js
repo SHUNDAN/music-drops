@@ -240,7 +240,7 @@ var ajaxInterceptor = {
 
             // APP Version Check
             var appVersion = jqXHR.getResponseHeader('appVersion');
-            console.debug('headers: ', appVersion);
+            // console.debug('headers: ', appVersion);
             if (appVersion) {
                 if (_.mbStorage.getAppVersion() !== parseInt(appVersion, 10)) {
                     if (!alreadyAppUpdateAlert) {
