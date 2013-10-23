@@ -966,7 +966,7 @@ define([
             console.log('show mypage');
 
             // session storageに該当情報が無い場合には、フォワード
-            if (!_.mbStorage.getUser()) {
+            if (!_.isLogedIn()) {
                 mb.router.navigate('login', true);
                 return;
             } else {
