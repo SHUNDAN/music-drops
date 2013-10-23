@@ -317,7 +317,7 @@ define('views/common/music_player',[], function () {
 
 
         /**
-            曲を開始する
+            曲を再開する
         */
         startMusic: function () {
             $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
@@ -330,6 +330,11 @@ define('views/common/music_player',[], function () {
             // Youtubeの場合
             if (this.youtubePlayer) {
                 this.youtubePlayer.playVideo();
+            }
+
+            // 開始Callbackを呼ぶ
+            if (this.options.callbackWhenWillStart) {
+                this.options.callbackWhenWillStart(this.musicQueue[this.currentPos]);
             }
 
         },
@@ -349,6 +354,11 @@ define('views/common/music_player',[], function () {
             // Youtubeの場合
             if (this.youtubePlayer) {
                 this.youtubePlayer.pauseVideo();
+            }
+
+            // UI側は表示をキャンセルしたいので、いったんコールバックを呼ぶ
+            if (this.options.callbackWhenPause) {
+                this.options.callbackWhenPause();
             }
         },
 
@@ -1740,6 +1750,10 @@ define('views/top',[
 
         initialize: function () {
 
+            // 自動イベントバインド
+            _.bindEvents(this);
+
+
             _.bindAll(this,
                 'render',
                 'renderFeelingList',
@@ -1816,6 +1830,7 @@ define('views/top',[
                     return model.attributes.feeling_id === this.feelingFilterOfNewPopList;
                 }, this));
             }
+            this.displayPopList = popList;
             var snipet = _.template(template, {popList:popList, likeArray:this.likeArray});
             this.$el.find('#newPopList').html(snipet);
         },
@@ -1830,6 +1845,7 @@ define('views/top',[
                     return model.attributes.feeling_id === this.feelingFilterOfPopularPopList;
                 }, this));
             }
+            this.displayPopList = popList;
             var snipet = _.template(template, {popList:popList, likeArray:this.likeArray});
             this.$el.find('#popularPopList').html(snipet);
         },
@@ -1844,6 +1860,7 @@ define('views/top',[
                     return model.attributes.feeling_id === this.feelingFilterOfHotPopList;
                 }, this));
             }
+            this.displayPopList = popList;
             var snipet = _.template(template, {popList:popList, likeArray:this.likeArray});
             this.$el.find('#hotPopList').html(snipet);
         },
@@ -1920,26 +1937,104 @@ define('views/top',[
 
 
         playSong: function (e) {
+
             var $this = $(e.currentTarget);
-            var youtubeId = $this.data('youtube-id');
-            var songUrl = $this.data('song-url');
-            var musicId = $this.data('music-id');
-            console.log('playSong: ', youtubeId, songUrl);
+            var type = $this.parents('[data-type]').data('type');
+            var popId = parseInt($this.parents('[data-pop-id]').data('pop-id'), 10);
+            console.debug('playSong: ', popId, this.displayPopList);
 
 
-            // play.
-            this.youtubeView = new YoutubeView();
-            if (youtubeId) {
-                this.youtubeView.show(youtubeId, this);
+            // 表示オプションを作成
+            var options = {};
 
-            } else {
-                this.youtubeView.playSampleMusic(songUrl, this);
+            // プレイリスト名
+            if (type === 'new') {
+                options.playlistName = '新着Drop';
+            } else if (type === 'popular') {
+                options.playlistName = '人気Drop';
+            } else if (type === 'hot') {
+                options.playlistName = '急上昇Drop';
             }
 
-            // add play count.
-            _.addMusicPlayCount(musicId);
+            // 再生曲と開始位置
+            options.musicArray = [];
+            _.each(this.displayPopList, function (pop, idx) {
+                if (pop.attributes.id === popId) {
+                    options.startPos = idx;
+                }
+                options.musicArray.push(pop.attributes);
+            });
+
+
+            // 開始前コールバック
+            options.callbackWhenWillStart = function (pop) {
+
+                // 表示をリセット
+                $('[data-btn="pause"]').addClass('hidden');
+                $('[data-btn="play"]').removeClass('hidden');
+
+                // 今回再生分をフォーカス
+                var $li = $('[data-type="'+type+'"] [data-pop-id="'+popId+'"]');
+                $li.find('[data-btn="pause"]').removeClass('hidden');
+                $li.find('[data-btn="play"]').addClass('hidden');
+
+
+            };
+
+            // 終了時コールバック、Pause時コールバック
+            options.callbackWhenPause = options.callbackWhenEnd = function () {
+                // 表示をリセット
+                $('[data-btn="pause"]').addClass('hidden');
+                $('[data-btn="play"]').removeClass('hidden');
+            };
+
+
+            // 再生開始
+            console.debug('play music. options=', options);
+            mb.musicPlayer.playMusics(options);
+
+
+
+
+
+
+
+            // var $this = $(e.currentTarget);
+            // var youtubeId = $this.data('youtube-id');
+            // var songUrl = $this.data('song-url');
+            // var musicId = $this.data('music-id');
+            // console.log('playSong: ', youtubeId, songUrl);
+
+
+            // // play.
+            // this.youtubeView = new YoutubeView();
+            // if (youtubeId) {
+            //     this.youtubeView.show(youtubeId, this);
+
+            // } else {
+            //     this.youtubeView.playSampleMusic(songUrl, this);
+            // }
+
+            // // add play count.
+            // _.addMusicPlayCount(musicId);
 
         },
+
+
+
+        /**
+            再生を一時停止する
+        */
+        pauseSong: function (e) {
+            mb.musicPlayer.pauseMusic();
+        },
+
+
+
+
+
+
+
 
 
         playAll: function (e) {
