@@ -9,57 +9,99 @@ var userModel = require('../models/user');
 var feelingModel = require('../models/feeling');
 var codeModel = require('../models/code');
 var appUtil = require('../util/utility.js');
+var onlineBatch = require('../util/online_batch');
+
 
 exports.index = function(req, res){
 
-    // load templates.
-    var template = '';
-    glob('./public/template/**/*.html', function (err, files) {
 
-        files.forEach(function (file) {
-            template += fs.readFileSync(file, 'utf-8');
+    // 必要情報を取得する
+    var template = global.mb.htmlTemplate;
+    var common = {feelings: global.mb.feelings};
+
+
+    // ユーザー情報あれば取得して表示する
+    var userId = appUtil.getUserIdFromUid(req);
+    if (userId) {
+        userModel.selectObject2({id:userId}, function (user) {
+
+            // response.
+            res.render('index', {
+                title: 'Express', 
+                htmltemplate: template, 
+                mainJs: global.mbSetting.mainJs,
+                common: JSON.stringify(common),
+                user: JSON.stringify(user),
+                appVersion: global.mb.appVersion
+            });
+
         });
+    
+    } else {
+        res.render('index', {
+            title: 'Express', 
+            htmltemplate: template, 
+            mainJs: global.mbSetting.mainJs, 
+            common: JSON.stringify(common),
+            user: null,
+            appVersion: global.mb.appVersion
+        });
+    }
 
 
-        // アプリ共通情報を取得
-        loadCommonInfo(function (common) {
 
-            // ユーザー情報あれば表示
-            var userId = appUtil.getUserIdFromUid(req);
-            if (userId) {
-                userModel.selectObject2({id:userId}, function (user) {
 
-                    // response.
-                    res.render('index', {
-                        title: 'Express', 
-                        htmltemplate: template, 
-                        mainJs: global.mbSetting.mainJs,
-                        common: JSON.stringify(common),
-                        user:JSON.stringify(user)
-                    });
 
-                });
+
+
+    // // load templates.
+    // var template = '';
+    // glob('./public/template/**/*.html', function (err, files) {
+
+    //     files.forEach(function (file) {
+    //         template += fs.readFileSync(file, 'utf-8');
+    //     });
+
+
+    //     // アプリ共通情報を取得
+    //     loadCommonInfo(function (common) {
+
+    //         // ユーザー情報あれば表示
+    //         var userId = appUtil.getUserIdFromUid(req);
+    //         if (userId) {
+    //             userModel.selectObject2({id:userId}, function (user) {
+
+    //                 // response.
+    //                 res.render('index', {
+    //                     title: 'Express', 
+    //                     htmltemplate: template, 
+    //                     mainJs: global.mbSetting.mainJs,
+    //                     common: JSON.stringify(common),
+    //                     user:JSON.stringify(user)
+    //                 });
+
+    //             });
             
-            } else {
-                res.render('index', {
-                    title: 'Express', 
-                    htmltemplate: template, 
-                    mainJs: global.mbSetting.mainJs, 
-                    common: JSON.stringify(common),
-                    user:null
-                });
-            }
+    //         } else {
+    //             res.render('index', {
+    //                 title: 'Express', 
+    //                 htmltemplate: template, 
+    //                 mainJs: global.mbSetting.mainJs, 
+    //                 common: JSON.stringify(common),
+    //                 user:null
+    //             });
+    //         }
 
 
-        });
-
-
-
+    //     });
 
 
 
 
-    });
+
+
+
+    // });
 
 
 
@@ -136,9 +178,10 @@ exports.login = function (req, res) {
  */
 exports.common = function (req, res) {
 
-    loadCommonInfo(function (common) {
-        res.json(common);
-    });
+    res.json({feelings: global.mb.feelings});
+    // loadCommonInfo(function (common) {
+    //     res.json(common);
+    // });
 
 };
 
@@ -190,6 +233,17 @@ var loadCommonInfo = function (callback) {
 
 
 
+
+/**
+    メモリ上にキャッシュしている内容を更新する
+*/
+exports.clearMemCache = function (req, res) {
+
+    onlineBatch.refreshMemCache(function () {
+        res.json({});
+    });
+
+};
 
 
 

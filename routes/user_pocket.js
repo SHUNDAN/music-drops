@@ -75,6 +75,10 @@ exports.add = function(req, res) {
     // execute.
     userPocketModel.insertObject(req.body, function (err) {
         appUtil.actionLog(req, ['add pocket.', JSON.stringify({music_id: req.body.music_id, feeling_id: req.body.feeling_id, youtube_id: req.body.youtube_id})]);
+
+        // バージョンチェック追加して返却
+        res.setHeader('appVersion', global.mb.appVersion);
+
         appUtil.basicResponse(res, err);
     });
 
@@ -201,6 +205,10 @@ exports.delete = function(req, res) {
 
     userPocketModel.deleteObject(param, function (err) {
         appUtil.actionLog(req, ['delete pocket', JSON.stringify({id: param.id})]);
+
+        // バージョンチェック追加して返却
+        res.setHeader('appVersion', global.mb.appVersion);
+
         appUtil.basicResponse(res, err);
     });
 

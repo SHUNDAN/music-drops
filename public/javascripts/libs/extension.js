@@ -107,6 +107,12 @@ _.isLogedIn = function () {
 var storage = window.localStorage;
 _.mbStorage = {
 
+    getAppVersion: function () {
+        return localStorage.getItem('appVersion');
+    },
+    setAppVersion: function (version) {
+        localStorage.setItem('appVersion', parseInt(version, 10));
+    },
     getUser: function () {
         return JSON.parse(storage.getItem('user'));
     },
@@ -218,21 +224,42 @@ _.trim = function (str) {
 
 
 // Backboneの機能拡張
-_.extend(Backbone.Model.prototype, {
-
+var alreadyAppUpdateAlert = false;
+var ajaxInterceptor = {
     // uidをHeaderへ付与する
     sync: function (method, model, options) {
 
         options = options || {};
-
-        // var uid = mb.userStorage.getUid();
-        // if (uid) {
-        //     var headers = options.headers || {};
-        //     headers.uid = uid;
-        //     options.headers = headers;
-        // }
-
         console.log('options: ', options);
+
+
+        // 成功処理のインターセプタ
+        var successFnc = options.success;
+        options.success = function (data, textStatus, jqXHR) {
+            console.debug('success intercepter: ', data, textStatus, jqXHR);
+
+            // APP Version Check
+            var appVersion = jqXHR.getResponseHeader('appVersion');
+            console.debug('headers: ', appVersion);
+            if (appVersion) {
+                if (_.mbStorage.getAppVersion() !== parseInt(appVersion, 10)) {
+                    if (!alreadyAppUpdateAlert) {
+                        alreadyAppUpdateAlert = true;
+                        alert('アプリケーションのバージョンが更新されました。リロードしてください。');
+                        _.mbStorage.setAppVersion(appVersion);
+                    }
+
+                }
+            }
+
+            // 本来の処理を呼び出し
+            if (successFnc && typeof successFnc === 'function') {
+                successFnc(data, textStatus, jqXHR);
+            }
+        };
+
+
+        // エラー処理のインターセプタ
         var errorFnc = options.error;
         options.error = function (xhr, statusObject, error) {
             console.log('api error', arguments);
@@ -251,12 +278,8 @@ _.extend(Backbone.Model.prototype, {
         Backbone.sync(method, model, options);
 
     },
-
-
-    dummy: function () {},
-
-
-});
+};
+_.extend(Backbone.Model.prototype, ajaxInterceptor);
 
 
 
@@ -706,6 +729,7 @@ _.unfollowUser = function (userFollowId, callback) {
 
     });
 };
+
 
 
 

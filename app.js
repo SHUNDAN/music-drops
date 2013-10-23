@@ -6,6 +6,7 @@ var fs = require('fs');
 var http = require('http');
 var path = require('path');
 var uuid = require('node-uuid');
+
 global.log4js = require('log4js');
 
 
@@ -19,17 +20,21 @@ console.log('mbSetting: ', global.mbSetting);
 
 var userModel = require('./models/user');
 var userPlaylistModel = require('./models/user_playlist');
+var onlineBatch = require('./util/online_batch');
 
 
 
-// 起動時にUIDをDBから復元する。
+
+// 起動時にUIDをDBから復元する、キャッシュをする
 global.sessionMap = global.sessionMap || {};
 userModel.selectUIDUser(function (users) {
     users.forEach(function (user) {
         global.sessionMap[user.uid] = user.id;
     });
 
-    console.log('sessionMap: ', global.sessionMap);
+
+    // メモリーキャッシュ
+    onlineBatch.refreshMemCache();
 });
 
 
@@ -369,6 +374,8 @@ app.post('/api/v1/login', routes.login);
 app.get('/api/v1/common', routes.common);
 // Async Log
 app.get('/api/v1/action', routes.log);
+// Cache Baster
+app.get('/api/v1/clearMemCache', routes.clearMemCache);
 
 // Feeling
 app.get('/api/v1/feelings', feeling.select);

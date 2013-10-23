@@ -55,6 +55,9 @@ exports.selectPopList = function(req, res) {
         if (err) {
             appUtil.basicResponse(res, err, rows);
         } else {
+
+            // バージョンチェック追加して返却
+            res.setHeader('appVersion', global.mb.appVersion);
             res.json(rows);
         }
     });

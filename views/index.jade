@@ -74,7 +74,8 @@ block content
           _.mbStorage.setCommon(common);
         }
 
-    
+    script
+      _.mbStorage.setAppVersion('!{appVersion}');    
 
     script(src="javascripts/#{global.mbSetting.mainJs}")
 

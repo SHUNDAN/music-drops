@@ -2,12 +2,16 @@
 /****************************************
  *  Online Batch
  ****************************************/
+var fs = require('fs');
 // var _ = require('underscore');
 // var util = require('util');
 // var sqlite3 = require('sqlite3').verbose();
 // var db = new sqlite3.Database(global.db_path);
+var glob = require('glob');
 var musicModel = require('../models/music');
 var popModel = require('../models/pop');
+var feelingModel = require('../models/feeling');
+
 
 module.exports = {
 
@@ -59,7 +63,55 @@ module.exports = {
 
 
 
+    /**
+        メモリ上の情報を最新化する
+    */
+    refreshMemCache: function (callback) {
+        console.log('refreshMemCache start.');
 
+        // いったん初期化
+        var mb = {};
+
+
+        // 設定ファイル
+        var json = fs.readFileSync('./settings/setting.json', 'utf-8');
+        global.mbSetting = JSON.parse(json);
+
+
+        // アプリケーションバージョン
+        var appVersion = fs.readFileSync('./settings/app_version.txt', 'utf-8');
+        mb.appVersion = appVersion.replace(/(\s|\n)/g, '');
+
+
+        // Templateファイル
+        var template = '';
+        glob('./public/template/**/*.html', function (err, files) {
+            files.forEach(function (file) {
+                template += fs.readFileSync(file, 'utf-8');
+            });
+            mb.htmlTemplate = template;
+
+            // 感情
+            feelingModel.selectObjects({}, function (err, rows) {
+                mb.feelings = rows;
+
+
+                // キャッシュ更新
+                global.mb = mb;
+
+
+                console.log('refreshMemCache finished.');
+                if (callback) {
+                    callback();
+                }
+
+
+            }); // end feeling model select
+        }); // end glob.
+
+
+
+    },
 
 
 
@@ -71,3 +123,40 @@ module.exports = {
 
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
