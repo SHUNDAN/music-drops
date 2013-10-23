@@ -119,12 +119,17 @@ _.mbStorage = {
     setUser: function (user) {
         storage.setItem('user', JSON.stringify(user));
     },
+    removeUser: function () {
+        storage.removeItem('user');
+    },
     refreshUser: function () {
         $.ajax({
             url: '/api/v1/userInfo',
             dataType: 'json',
             success: function (user) {
-                _.mbStorage.setUser(user);
+                if (user && user.id) {
+                    _.mbStorage.setUser(user);                    
+                }
             }
         });
     },

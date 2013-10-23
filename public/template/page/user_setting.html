@@ -1,13 +1,11 @@
 <!--ユーザー設定画面-->
 <script id="page_user_setting" type="text/template">
 
-    <h1>設定ページ</h1>
-
     <div class="settingPage">
 
         <div class="title">ユーザー名変更</div>
         <div class="userNameChangeArea clearfix">
-            <input id="userNameInput" type="text" value="よーへい"/>
+            <input id="userNameInput" type="text" value="<%=user.name%>" maxlength=15/>
             <input type="button" class="changeButton" value="変更する" data-event-click="changeName"/>
         </div>
         <br>
@@ -15,7 +13,7 @@
         <br>
 
         <div class="title">あなたのホーム</div>
-        <div id="yourUrl" class="urlArea">http://dev.music-drops.com/#user/8</div>
+        <div id="yourUrl" class="urlArea">http://dev.music-drops.com/#user/<%=user.id%></div>
         <br>
         <br>
         <br>

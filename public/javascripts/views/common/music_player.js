@@ -70,7 +70,7 @@ define([], function () {
             this.$artistName = $('#mpArtistName');
 
 
-            this.previewSize = {width: 640, height: 500};
+            this.previewSize = {width: 640, height: 450};
             this.movieSize = {width: 640, height: 390};
             this.scaleSize = 200 / this.previewSize.width;
 
@@ -146,7 +146,7 @@ define([], function () {
                 position: 'fixed',
                 top: '50%',
                 left: '50%',
-                margin: '-250px 0 0 -320px',
+                margin: '-225px 0 0 -320px',
                 'background-color': 'black',
             }));
             if (!_.isIphone && !_.isAndroid && !this.playerVisible) {
@@ -391,15 +391,17 @@ define([], function () {
 
 
             // 閉じるボタンを追加
-            var $closeBtn = $('<a href="#" class="closeBtn">×</a>');
-            $closeBtn.on('click', _.bind(this.close, this));
-            $appendView.append($closeBtn);
+            if (_.isIphone || _.isAndroid) {
+                var $closeBtn = $('<a href="#" class="closeBtn">×</a>');
+                $closeBtn.on('click', _.bind(this.close, this));
+                $appendView.append($closeBtn);                
+            }
 
 
             // 小さくするボタン
-            var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
-            $minimizeBtn.on('click', _.bind(this.minimize, this));
-            $appendView.append($minimizeBtn);
+            // var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
+            // $minimizeBtn.on('click', _.bind(this.minimize, this));
+            // $appendView.append($minimizeBtn);
 
 
             // audio tag.
@@ -463,15 +465,17 @@ define([], function () {
             $appendView.html('');
 
             // 閉じるボタンを追加
-            var $closeBtn = $('<a href="#" class="closeBtn">×</a>');
-            $closeBtn.on('click', _.bind(this.close, this));
-            $appendView.append($closeBtn);
+            if (_.isIphone || _.isAndroid) {
+                var $closeBtn = $('<a href="#" class="closeBtn">×</a>');
+                $closeBtn.on('click', _.bind(this.close, this));
+                $appendView.append($closeBtn);                
+            }
 
 
             // 小さくするボタン
-            var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
-            $minimizeBtn.on('click', _.bind(this.minimize, this));
-            $appendView.append($minimizeBtn);
+            // var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
+            // $minimizeBtn.on('click', _.bind(this.minimize, this));
+            // $appendView.append($minimizeBtn);
 
 
             // Youtubeエリア
