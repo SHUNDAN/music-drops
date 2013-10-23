@@ -220,7 +220,7 @@ var loggerAction = log4js.getLogger('action');
 
 // Basic認証
 if (global.mbSetting.basicAuth) {
-    app.use(express.basicAuth('mockbu', 'mockbu'));    
+    app.use(express.basicAuth('mockbu', 'mockbu'));
 }
 
 

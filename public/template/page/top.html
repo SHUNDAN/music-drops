@@ -29,7 +29,7 @@
                     <%});%>
                 </select><br>
                 <ul id="newPopList" class="gp" data-type="new"></ul>
-            
+
             </div>
 
             <div class="tab-pane" id="popularPopListArea">
@@ -42,7 +42,7 @@
                     <%});%>
                 </select><br>
                 <ul id="popularPopList" class="gp" data-type="popular"></ul>
-            
+
             </div>
 
             <div class="tab-pane" id="hotPopListArea">
@@ -60,9 +60,9 @@
 
 
 
-    
-    
-    
+
+
+
     </section>
 
 
@@ -72,14 +72,14 @@
 
 <!-- Top: ボタン一覧 -->
 <script id="page_top_btn_list" type="text/template">
-    <% for (var i = 0; i < feelings.length; i++) {  
+    <% for (var i = 0; i < feelings.length; i++) {
         var feeling = feelings[i];
         var btnColor = btnClasses[i];
         %>
-        <a href="#" 
-            class="btn btn-block btn-large mlra <%-btnColor%>" 
-            data-id="<%-feeling.attributes.id%>" 
-            data-label="<%-feeling.attributes.name%>" 
+        <a href="#"
+            class="btn btn-block btn-large mlra <%-btnColor%>"
+            data-id="<%-feeling.attributes.id%>"
+            data-label="<%-feeling.attributes.name%>"
             data-event="showPopList"><%-feeling.attributes.name%></a>
         <br>
         <br>
