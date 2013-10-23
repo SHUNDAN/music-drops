@@ -236,7 +236,7 @@ var ajaxInterceptor = {
         // 成功処理のインターセプタ
         var successFnc = options.success;
         options.success = function (data, textStatus, jqXHR) {
-            console.debug('success intercepter: ', data, textStatus, jqXHR);
+            // console.debug('success intercepter: ', data, textStatus, jqXHR);
 
             // APP Version Check
             var appVersion = jqXHR.getResponseHeader('appVersion');
@@ -281,6 +281,7 @@ var ajaxInterceptor = {
     },
 };
 _.extend(Backbone.Model.prototype, ajaxInterceptor);
+_.extend(Backbone.Collection.prototype, ajaxInterceptor);
 
 
 
@@ -504,7 +505,7 @@ _.alreadyPlaylistFollow = function (playlistId) {
             if (playlist.dest_playlist_id === playlistId) {
                 retValue = true;
             }
-        });        
+        });
     }
 
     return retValue;
