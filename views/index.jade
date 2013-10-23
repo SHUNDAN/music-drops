@@ -18,7 +18,7 @@ block content
 
     br
     br
-    // 音楽検索画面へ 
+    // 音楽検索画面へ
     a(href="#music/search") 音楽検索画面へ
     br
     // Loginへ
@@ -46,16 +46,16 @@ block content
       // ga('send', 'pageview');
 
 
-    script(src="javascripts/libs/all-libs.js")
-    // script(src="javascripts/libs/jquery-2.0.3.min.js")
-    // script(src="javascripts/libs/jquery.transit.0.1.3.min.js")
-    // script(src="javascripts/libs/underscore-min.js")
-    // script(src="javascripts/libs/backbone-min.js")
-    // script(src="javascripts/libs/bootstrap.js")
-    script(src="javascripts/libs/jquery.cookie.js")
-    script(src="javascripts/libs/jquery-ui-1.10.3.custom.js")
-    script(src="javascripts/libs/extension.js")
-    // script(src="javascripts/libs/require-2.1.8.min.js", data-main="javascripts/#{global.mbSetting.mainJs}")
+    script(src="javascripts/libs/all-libs.js?_=#{appVersion}")
+    // script(src="javascripts/libs/jquery-2.0.3.min.js?_=#{appVersion}")
+    // script(src="javascripts/libs/jquery.transit.0.1.3.min.js?_=#{appVersion}")
+    // script(src="javascripts/libs/underscore-min.js?_=#{appVersion}")
+    // script(src="javascripts/libs/backbone-min.js?_=#{appVersion}")
+    // script(src="javascripts/libs/bootstrap.js?_=#{appVersion}")
+    script(src="javascripts/libs/jquery.cookie.js?_=#{appVersion}")
+    script(src="javascripts/libs/jquery-ui-1.10.3.custom.js?_=#{appVersion}")
+    script(src="javascripts/libs/extension.js?_=#{appVersion}")
+    // script(src="javascripts/libs/require-2.1.8.min.js", data-main="javascripts/#{global.mbSetting.mainJs}?_=#{appVersion}")
 
 
     if (user)
@@ -75,7 +75,7 @@ block content
         }
 
     script
-      _.mbStorage.setAppVersion('!{appVersion}');    
+      _.mbStorage.setAppVersion('!{appVersion}');
 
     script(src="javascripts/#{global.mbSetting.mainJs}")
 

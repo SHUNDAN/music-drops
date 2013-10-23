@@ -5,7 +5,7 @@
 
     <section class="pl10 mb20">
 
-        <ul class="tab-01 gp">
+        <ul class="tab tab-01 gp">
             <li class="tab-btn active">
                 <a class="tab-btn-item" href="#popularPopListArea" data-toggle="tab">人気</a>
             </li>
@@ -19,7 +19,7 @@
 
         <div class="tab-content">
 
-            <div class="tab-pane" id="popularPopListArea">
+            <div class="tab-pane active" id="popularPopListArea">
                 <h3>人気Drop</h3>
                 <select id="popularPopListFilter">
                     <option value="0">ALL</option>
@@ -28,10 +28,9 @@
                     <%});%>
                 </select><br>
                 <ul id="popularPopList" class="gp" data-type="popular"></ul>
-            
             </div>
 
-            <div class="tab-pane active" id="newPopListArea">
+            <div class="tab-pane" id="newPopListArea">
                 <h3>新着Drop</h3>
                 <select id="newPopListFilter">
                     <option value="0">ALL</option>
@@ -40,7 +39,6 @@
                     <%});%>
                 </select><br>
                 <ul id="newPopList" class="gp" data-type="new"></ul>
-            
             </div>
 
             <div class="tab-pane" id="hotPopListArea">
@@ -55,11 +53,6 @@
             </div>
         </div>
 
-
-
-    
-    
-    
     </section>
 
 
@@ -69,14 +62,14 @@
 
 <!-- Top: ボタン一覧 -->
 <script id="page_top_btn_list" type="text/template">
-    <% for (var i = 0; i < feelings.length; i++) {  
+    <% for (var i = 0; i < feelings.length; i++) {
         var feeling = feelings[i];
         var btnColor = btnClasses[i];
         %>
-        <a href="#" 
-            class="btn btn-block btn-large mlra <%-btnColor%>" 
-            data-id="<%-feeling.attributes.id%>" 
-            data-label="<%-feeling.attributes.name%>" 
+        <a href="#"
+            class="btn btn-block btn-large mlra <%-btnColor%>"
+            data-id="<%-feeling.attributes.id%>"
+            data-label="<%-feeling.attributes.name%>"
             data-event="showPopList"><%-feeling.attributes.name%></a>
         <br>
         <br>

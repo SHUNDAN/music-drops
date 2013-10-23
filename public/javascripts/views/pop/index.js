@@ -70,13 +70,7 @@ define([
                 this.$el.prepend($blackout);
 
                 // display as modal.
-                this.$el.find('#pagePop').css({
-                    position: 'fixed',
-                    top: '100px',
-                    left: '10%',
-                    width: '80%',
-                    'background-color': 'rgba(255,255,255,.9)',
-                });
+                this.$el.find('#pagePop').addClass('popUp');
             }
         },
 

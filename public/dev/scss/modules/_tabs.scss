@@ -33,6 +33,14 @@
 	line-height: 20px;
 	color: #656457;
 }
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+	display: none;
+}
+.tab-content > .active,
+.pill-content > .active {
+	display: block;
+}
 
 //  タブ02
 //-------------------------------------

@@ -4,9 +4,9 @@
 <script id="page_pop" type="text/template">
     <div id="pagePop" style="padding:10px;">
         <% if (type === 'add') { %>
-            <h1 class="text-center">Add Pop</h1>
+            <h1 class="tc mb10">Add Pop</h1>
         <% } else { %>
-            <h1 class="text-center">Edit Pop</h1>
+            <h1 class="tc mb10">Edit Pop</h1>
         <% } %>
         <div id="popInfoArea" class="mt20"></div>
     </div>
@@ -15,16 +15,18 @@
 
 <!-- PopInfo  -->
 <script id="pop_info" type="text/template">
-    <div class="mt10 tb10 mlra">
-        <p class="bold">Feeling</p>
-        <select id="feeling_select" name="feeling_select"></select><br>
-        <p class="bold">Comment</p>
-        <textarea name="comment" rows="5" cols="50" class="block" style="width:80%;"></textarea><br>
-        <div class="text-center">
+    <div class="mt10">
+        <p class="bold mb10">Feeling</p>
+        <div class="form-select selectArea">
+            <select id="feeling_select" class="form form-selectMenu form-color-base" name="feeling_select"></select>
+        </div>
+        <p class="bold mb10">Comment</p>
+        <textarea name="comment" rows="5" cols="50" class="form form-color-base mb10"></textarea>
+        <div class="tc">
             <% if (feeling_id) { %>
-                <div id="updatePopBtn" class="btn btn-primary text-center" style="width:200px;">Update</div>
+            <div id="updatePopBtn" class="btn-text btn-text-back btn-text-arrow-left btn-text-arrow-right btn-text-color-brown Courgette" href="#">Update</div>
             <% } else { %>
-                <div id="updatePopBtn" class="btn btn-primary text-center" style="width:200px;">Add</div>
+            <div id="updatePopBtn" class="btn-text btn-text-back btn-text-arrow-left btn-text-arrow-right btn-text-color-brown Courgette" href="#">Add</div>
             <% } %>
         </div>
     </div>

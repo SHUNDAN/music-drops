@@ -178,11 +178,17 @@
   width: 980px;
   margin: 0 auto; 
 }
-
-
-
-
-
+#pagePop {
+    z-index: 9999;
+}
+.popUp {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    width: 400px;
+    margin-left: -200px;
+    background: #fff;
+}
 
 
 

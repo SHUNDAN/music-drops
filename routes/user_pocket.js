@@ -1,6 +1,6 @@
 "use strict";
 /*
- * User. 
+ * User.
  */
 var util = require('util');
 var appUtil = require('../util/utility');
@@ -14,7 +14,7 @@ var userModel = require('../models/user');
 var appUtil = require('../util/utility');
 
 /**
- * Select 
+ * Select
  */
 exports.select = function(req, res){
 
@@ -38,6 +38,9 @@ exports.selectWithMusicInfo = function (req, res) {
         if (err) {
             appUtil.basicResponse(res, err, rows);
         } else {
+
+            // バージョンチェック追加して返却
+            res.setHeader('appVersion', global.mb.appVersion);
             res.json(rows);
         }
     });
@@ -57,7 +60,7 @@ exports.add = function(req, res) {
         appUtil.actionLog(req, 'add pocket failed. music_is is missing.');
         res.json(400, {message: 'music_id is required.'});
         return;
-    }   
+    }
 
     // uidからユーザー情報を取得する
     var uid = req.cookies.uid;
@@ -66,9 +69,9 @@ exports.add = function(req, res) {
         appUtil.actionLog(req, 'add pocket failed. no authentication.');
         res.json(403, {message: 'authentication error.'});
         return;
-    }   
+    }
 
-    req.body.user_id = user_id; 
+    req.body.user_id = user_id;
     console.log('req.body', req.body);
 
 
@@ -181,7 +184,7 @@ exports.update = function(req, res) {
  */
 exports.delete = function(req, res) {
 
-    
+
     // パラメータチェック
     if (!req.params.id && !req.body.id) {
         appUtil.actionLog(req, 'delete pocket failed. id is missing');
@@ -196,7 +199,7 @@ exports.delete = function(req, res) {
         appUtil.actionLog(req, 'delete pocket failed. no authentication');
         appUtil.response403(res);
         return;
-    } 
+    }
 
     // 自分の以外は消せないようにする。
     var param = (req.params.id ? req.params : req.body);
