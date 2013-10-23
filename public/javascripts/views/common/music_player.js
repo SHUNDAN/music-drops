@@ -155,6 +155,9 @@ define([], function () {
             this.$el.html($previewArea);
             this.$previewArea = $previewArea;
 
+            // Drag可能にしてみる
+            this.$previewArea.draggable();
+
 
             // 再生開始
             this._playMusicAtCurrentPos();
