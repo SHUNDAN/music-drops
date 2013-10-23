@@ -305,15 +305,16 @@ var oauthCallback = function (err, user, req, res) {
     global.sessionMap = global.sessionMap || {};
 
     // 既に存在するCookieがあればそれを使う。
-    var uid;
-    for (var prop in global.sessionMap) {
-        if (global.sessionMap.hasOwnProperty(prop)) {
-            if (user.id === global.sessionMap[prop]) {
-                uid = prop;
-                break;
-            }
-        }
-    }
+    var uid = user.uid;
+    // for (var prop in global.sessionMap) {
+    //     if (global.sessionMap.hasOwnProperty(prop)) {
+    //         if (user.id === global.sessionMap[prop]) {
+    //             uid = prop;
+    //             break;
+    //         }
+    //     }
+    // }
+    global.sessionMap[uid] = user.id;
 
     if (!uid) {
         uid = uuid.v4();
@@ -332,8 +333,8 @@ var oauthCallback = function (err, user, req, res) {
     res.cookie('uid', uid, {maxAge:30*24*60*60, httpOnly:false});
 
     // とりあえず保存
-    global.tmpMap = global.tmpMap || {};
-    global.tmpMap[uid] = user;
+    // global.tmpMap = global.tmpMap || {};
+    // global.tmpMap[uid] = user;
 
     return res.redirect('/');
 
