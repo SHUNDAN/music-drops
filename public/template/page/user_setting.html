@@ -1,6 +1,34 @@
 <!--ユーザー設定画面-->
 <script id="page_user_setting" type="text/template">
-	
-	<div style="font-size:32px; text-align:center;">ユーザー情報設定画面だよー</div>
+
+    <h1>設定ページ</h1>
+
+    <div class="settingPage">
+
+        <div class="title">ユーザー名変更</div>
+        <div class="userNameChangeArea clearfix">
+            <input id="userNameInput" type="text" value="よーへい"/>
+            <input type="button" class="changeButton" value="変更する" data-event-click="changeName"/>
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <div class="title">あなたのホーム</div>
+        <div id="yourUrl" class="urlArea">http://dev.music-drops.com/#user/8</div>
+        <br>
+        <br>
+        <br>
+
+
+        <div class="title">ログアウト</div>
+        <input type="button" class="logoutButton" value="logout" data-event-click="logout"/>
+        <br>
+        <br>
+        <br>
+
+
+    </div>
+
 
 </script>

@@ -935,8 +935,6 @@ header {
   color: #656457;
   -webkit-border-radius: 26px;
   -moz-border-radius: 26px;
-  -ms-border-radius: 26px;
-  -o-border-radius: 26px;
   border-radius: 26px;
   background-color: #fdfcf3;
 }
@@ -1278,8 +1276,6 @@ header {
   height: 60px;
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
-  -ms-border-radius: 60px;
-  -o-border-radius: 60px;
   border-radius: 60px;
 }
 /* line 53, ../dev/scss/modules/_buttons.scss */
@@ -1396,8 +1392,6 @@ header {
   vertical-align: middle;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
   border-radius: 4px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
@@ -1515,8 +1509,6 @@ textarea.form {
   line-height: 22px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 /* line 35, ../dev/scss/modules/_feelings.scss */
@@ -1550,7 +1542,7 @@ textarea.form {
 
 /* line 60, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling {
-  background-image: url('/../images/../images/sprite/feeling-s4102400cd7.png');
+  background-image: url('/../images/../images/sprite/feeling-scb5bd80b49.png');
   background-repeat: no-repeat;
   background-size: 46px 280px;
 }
@@ -1564,37 +1556,37 @@ textarea.form {
 .sprite-feeling.feeling-2 {
   width: 46px;
   height: 40px;
-  background-position: 0 -240px;
+  background-position: 0 -40px;
 }
 /* line 68, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-3 {
   width: 46px;
   height: 40px;
-  background-position: 0 -200px;
+  background-position: 0 -80px;
 }
 /* line 71, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-4 {
   width: 46px;
   height: 40px;
-  background-position: 0 -40px;
+  background-position: 0 -120px;
 }
 /* line 74, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-5 {
   width: 46px;
   height: 40px;
-  background-position: 0 -80px;
+  background-position: 0 -160px;
 }
 /* line 77, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-6 {
   width: 46px;
   height: 40px;
-  background-position: 0 -120px;
+  background-position: 0 -200px;
 }
 /* line 80, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-7 {
   width: 46px;
   height: 40px;
-  background-position: 0 -160px;
+  background-position: 0 -240px;
 }
 
 /* line 87, ../dev/scss/modules/_feelings.scss */
@@ -1741,8 +1733,6 @@ textarea.form {
   line-height: 22px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 /* line 100, ../dev/scss/modules/_drop_list.scss */
@@ -1824,8 +1814,6 @@ textarea.form {
   font-size: 30px;
   -webkit-border-radius: 80px;
   -moz-border-radius: 80px;
-  -ms-border-radius: 80px;
-  -o-border-radius: 80px;
   border-radius: 80px;
   background: #dedbc7;
 }
@@ -1977,8 +1965,6 @@ textarea.form {
   font-size: 20px;
   -webkit-border-radius: 56px;
   -moz-border-radius: 56px;
-  -ms-border-radius: 56px;
-  -o-border-radius: 56px;
   border-radius: 56px;
 }
 /* line 186, ../dev/scss/modules/_music_detail.scss */
@@ -2535,32 +2521,93 @@ textarea.form {
   padding: 10px;
 }
 
+/* line 10, ../dev/scss/pages/_user_setting.scss */
+.settingPage .title {
+  font-size: 18px;
+  font-weight: bold;
+}
+/* line 16, ../dev/scss/pages/_user_setting.scss */
+.settingPage .userNameChangeArea {
+  margin-top: 20px;
+}
+/* line 19, ../dev/scss/pages/_user_setting.scss */
+.settingPage .userNameChangeArea:after {
+  display: block;
+  width: 0;
+  height: 0;
+  content: " ";
+  clear: both;
+}
+/* line 27, ../dev/scss/pages/_user_setting.scss */
+.settingPage .userNameChangeArea input[type=text] {
+  float: left;
+  display: block;
+  width: 500px;
+  height: 50px;
+  line-height: 40px;
+  padding: 10px;
+  background-color: #efede0;
+  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
+  -webkit-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
+  -moz-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
+}
+/* line 40, ../dev/scss/pages/_user_setting.scss */
+.settingPage .userNameChangeArea input[type=button] {
+  float: left;
+  display: block;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  color: #656457;
+  background-color: #dedbc7;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+/* line 55, ../dev/scss/pages/_user_setting.scss */
+.settingPage .urlArea {
+  width: 500px;
+  height: 50px;
+  line-height: 40px;
+  padding: 10px 10px 10px 0;
+}
+/* line 64, ../dev/scss/pages/_user_setting.scss */
+.settingPage .logoutButton {
+  display: block;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  color: #656457;
+  background-color: #dedbc7;
+  border-radius: 5px;
+  margin: 20px 0 0 0px;
+}
+
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 74, ../dev/scss/style.scss */
+  /* line 75, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 81, ../dev/scss/style.scss */
+/* line 82, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 82, ../dev/scss/style.scss */
+/* line 83, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 83, ../dev/scss/style.scss */
+/* line 84, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 87, ../dev/scss/style.scss */
+/* line 88, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -2575,7 +2622,7 @@ textarea.form {
 /*==============================
   Stage
 ===============================*/
-/* line 103, ../dev/scss/style.scss */
+/* line 104, ../dev/scss/style.scss */
 #stage {
   position: relative;
 }
@@ -2583,7 +2630,7 @@ textarea.form {
 /*==============================
   Preview Area
 ===============================*/
-/* line 114, ../dev/scss/style.scss */
+/* line 115, ../dev/scss/style.scss */
 .previewArea {
   z-index: 9998;
   transition: opacity .5s ease;
@@ -2592,7 +2639,7 @@ textarea.form {
   -ms-transition: opacity .5s ease;
 }
 
-/* line 121, ../dev/scss/style.scss */
+/* line 122, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: absolute !important;
   top: -500px !important;
@@ -2600,7 +2647,7 @@ textarea.form {
   opacity: 0;
 }
 
-/* line 127, ../dev/scss/style.scss */
+/* line 128, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -2615,7 +2662,7 @@ textarea.form {
   color: white;
 }
 
-/* line 141, ../dev/scss/style.scss */
+/* line 142, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -2631,7 +2678,7 @@ textarea.form {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 158, ../dev/scss/style.scss */
+/* line 159, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -2639,25 +2686,25 @@ textarea.form {
 /*==============================
   Base Frame
 ===============================*/
-/* line 172, ../dev/scss/style.scss */
+/* line 173, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 65px;
 }
 
-/* line 177, ../dev/scss/style.scss */
+/* line 178, ../dev/scss/style.scss */
 #main {
   width: 980px;
   margin: 0 auto;
 }
 
-/* line 181, ../dev/scss/style.scss */
+/* line 182, ../dev/scss/style.scss */
 #pagePop {
   z-index: 9999;
 }
 
-/* line 184, ../dev/scss/style.scss */
+/* line 185, ../dev/scss/style.scss */
 .popUp {
   position: fixed;
   top: 100px;

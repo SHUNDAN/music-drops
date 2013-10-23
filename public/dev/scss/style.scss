@@ -1,5 +1,5 @@
 //
-// style scssのエントリーポイント 
+// style scssのエントリーポイント
 //
 @import "compass";
 
@@ -53,6 +53,7 @@
 //-------------------------------------
 @import "./pages/mypage";
 @import "./pages/popular_list";
+@import "./pages/user_setting";
 
 
 
@@ -61,8 +62,8 @@
 //  z-index
 //    9999 : header
 //    9998 : .blackout, .previewArea
-//  
-//  
+//
+//
 
 
 
@@ -176,7 +177,7 @@
 }
 #main {
   width: 980px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 #pagePop {
     z-index: 9999;
