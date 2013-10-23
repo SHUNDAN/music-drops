@@ -24,6 +24,13 @@
 	white-space: nowrap;
 }
 
+.hidden {
+  display: none !important;
+  opacity: 0; // opacityはふんわり出るアニメーションで利用します。
+}
+
+.noAction { pointer-events: none; }
+
 .fl { float: left; }
 .fr { float: right; }
 
@@ -280,10 +287,10 @@
 //  Border Radius
 //-------------------------------------
 
-.rn { border-radius: 0 !important; }
-.rs { border-radius: $radius-base; }
-.rm { border-radius: $radius-2; }
-.rl { border-radius: $radius-3; }
+// .rn { border-radius: 0 !important; }
+// .rs { border-radius: $radius-base; }
+// .rm { border-radius: $radius-2; }
+// .rl { border-radius: $radius-3; }
 
 
 //  Text Decorative Classes
@@ -293,59 +300,56 @@
 .c-sec { color: $color-sec !important; }
 .c-fff { color: $color-fff !important; }
 .c-000 { color: $color-000 !important; }
+
+
+.fs8  { font-size: 8px; }
+.fs9  { font-size: 9px; }
+.fs10 { font-size: 10px; }
+.fs11 { font-size: 11px; }
+.fs12 { font-size: 12px; }
+.fs13 { font-size: 13px; }
+.fs14 { font-size: 14px; }
+.fs15 { font-size: 15px; }
+.fs16 { font-size: 16px; }
+.fs17 { font-size: 17px; }
+.fs18 { font-size: 18px; }
+.fs20 { font-size: 20px; }
+.fs32 { font-size: 32px; }
+
 // .ce { color: $color-e !important; }
 // .cf { color: $color-f !important; }
 // .cg { color: $color-g !important; }
 // .ch { color: $color-h !important; }
 
-.b-base { background-color: $color-base !important; }
-.b-sec { background-color: $color-sec !important; }
-.b-fff { background-color: $color-fff !important; }
-.b-000 { background-color: $color-000 !important; }
+// .b-base { background-color: $color-base !important; }
+// .b-sec { background-color: $color-sec !important; }
+// .b-fff { background-color: $color-fff !important; }
+// .b-000 { background-color: $color-000 !important; }
 
-.n { font-weight: normal !important; }
-.b { font-weight: bold !important; }
-.l { text-align: left !important; }
-.c { text-align: center !important; }
-.r { text-align: right !important; }
-.u { text-decoration: underline !important; }
+// .n { font-weight: normal !important; }
+// .b { font-weight: bold !important; }
+// .l { text-align: left !important; }
+// .c { text-align: center !important; }
+// .r { text-align: right !important; }
+// .u { text-decoration: underline !important; }
 
-.f1 { font-size: $font-size-1; }
-.f2 { font-size: $font-size-2; }
-.f3 { font-size: $font-size-3; }
-.fn { font-size: $font-size-base !important; } 
-.f4 { font-size: $font-size-4; }
-.f5 { font-size: $font-size-5; }
-.f6 { font-size: $font-size-6; }
+// .f1 { font-size: $font-size-1; }
+// .f2 { font-size: $font-size-2; }
+// .f3 { font-size: $font-size-3; }
+// .fn { font-size: $font-size-base !important; } 
+// .f4 { font-size: $font-size-4; }
+// .f5 { font-size: $font-size-5; }
+// .f6 { font-size: $font-size-6; }
 
-.v0 { vertical-align: 0; }
-.v1 { vertical-align: -1px; }
-.v2 { vertical-align: -2px; }
-.v3 { vertical-align: -3px; }
-.v4 { vertical-align: -4px; }
-.v5 { vertical-align: -5px; }
-.vt { vertical-align: top; }
-.vm { vertical-align: middle; }
-.vb { vertical-align: bottom; }
-
-
-
-
-//  共通で使いたいHelper系クラス
-// _mypage.scssで定義していたものを、とりあえずこちらに移動しました（by ムネ）
-//-------------------------------------
-.fs18 {font-size: 18px;}
-.fs20 {font-size: 20px;}
-.fs32 {font-size: 32px;}
-.hidden {
-	display: none !important;
-	opacity: 0; // opacityはふんわり出るアニメーションで利用します。
-}
-a:hover {text-decoration: none;}
-.noAction {pointer-events: none;}
-
-
-
+// .v0 { vertical-align: 0; }
+// .v1 { vertical-align: -1px; }
+// .v2 { vertical-align: -2px; }
+// .v3 { vertical-align: -3px; }
+// .v4 { vertical-align: -4px; }
+// .v5 { vertical-align: -5px; }
+// .vt { vertical-align: top; }
+// .vm { vertical-align: middle; }
+// .vb { vertical-align: bottom; }
 
 
 

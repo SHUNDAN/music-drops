@@ -16,8 +16,8 @@
     <div class="tab-content tab-02-content">
         <div class="tab-pane active" id="musicLinkListArea"></div>
         <div class="tab-pane" id="popListArea"></div>
+        <div class="btn-text btn-text-back btn-text-color-brown mt10" data-event="addPop">Popを追加する</div>
     </div>
-    <div class="btn" data-event="addPop">Popを追加する</div><br>
 </script>
 
 
@@ -93,18 +93,22 @@
 
 <!-- Parts: Music Page's Pop List -->
 <script id="page_music_detail_poplist" type="text/template">
-    <table class="table">
-        <tr>
-            <th>User</th>
-            <th>Feeling</th>
-            <th>Comment</th>
-        </tr>
-        <% _.each(popList, function (pop) {  %>
+    <table class="musicLink-table">
+        <thead>
             <tr>
-                <td class="wb"><a href="#user/<%=pop.attributes.user_id%>"><%- pop.attributes.user_name %></a></td>
-                <td class="wb" data-feeling-id="<%=pop.attributes.feeling_id%>"><%=_.getFeelingName(pop.attributes.feeling_id)%></td>
-                <td class="wb"><%- pop.attributes.comment  %></td>
+                <th width="25%">ユーザー</th>
+                <th width="15%">キモチ</th>
+                <th width="60%">コメント</th>
             </tr>
+        </thead>
+        <% _.each(popList, function (pop) {  %>
+        <tbody>
+            <tr>
+                <td><a class="text-link" href="#user/<%=pop.attributes.user_id%>"><%- pop.attributes.user_name %><i class="ico-font ico-play"></i></a></td>
+                <td data-feeling-id="<%=pop.attributes.feeling_id%>"><%=_.getFeelingName(pop.attributes.feeling_id)%></td>
+                <td><%- pop.attributes.comment  %></td>
+            </tr>
+        </tbody>
         <% }); %>
     </table>
 </script>
@@ -113,47 +117,56 @@
 <!-- 関連リンク集 -->
 <script id="page_music_detail_music_links" type="text/template">
     <p class="mb10">URLを追加するとリンクされた曲をMusic-Dropsで聴けるようになります。</p>
-    <form>
-        <input id="" type="text" name="" class="form form-color-base" value="" placeholder="YouTube等の動画URLを入力" />
-        <a id="" class="btn-text btn-text-back btn-text-color-brown" href="#">編集</a>
-        <a id="" class="btn-text btn-text-back btn-text-color-brown" href="#">削除</a>
-        <a id="" class="btn-text btn-text-back btn-text-color-brown" href="#">報告</a>
-        <a id="" class="btn-text btn-text-back btn-text-color-brown" href="#">URLをポケット</a>
-    </form>
-    <table class="table">
-        <tr>
-            <th>User</th>
-            <th>comment</th>
-            <th>link</th>
-            <th>Action</th>
-            <th>Action2</th>
-        </tr>
-        <% _.each(musicLinkList, function (musicLink) { %>
+    <div class="add-musicLink mb10">
+        <div class="form form-color-base" contenteditable="true" data-type="link"></div>
+        <div class="form form-color-base" contenteditable="true" data-type="comment"></div>
+        <div id="addLink" class="btn-text btn-text-back btn-text-color-brown">ADD</div>
+    </div>
+    <% _.each(musicLinkList, function (musicLink) { %>
+    <table class="musicLink-table">
+        <caption>登録済みのリンク</caption>
+        <thead>
             <tr>
-                <td class="wb"><a href="#user/<%-musicLink.attributes.user_id%>"><%=musicLink.attributes.user_name%></a></td>
-                <td class="wb"><%- musicLink.attributes.comment %></td>
-                <% if (musicLink.attributes.youtube_id) { %>
-                    <td class="wb"><a href="<%- musicLink.attributes.link %>" target="_blank" data-event="playYoutube" data-youtube-id="<%- musicLink.attributes.youtube_id %>"><%- musicLink.attributes.link %></a></td>
-                <% } else { %>
-                    <td class="wb"><a href="<%- musicLink.attributes.link %>" target="_blank"><%- musicLink.attributes.link %></a></td>
-                <% } %>
-                <td><div class="btn">Edit</div></td>
-                <td>
-                    <%if (_.alreadyPocket(musicLink.attributes.music_id) === false) {%>
-                        <div class="btn" data-event="addPocket" data-feeling-id="0" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">このリンクで<br>曲をPocketする</div></td>
-                    <%} else {%>
-                        <div class="btn btn-primary" data-event="deletePocket" data-feeling-id="0" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">Pocket解除</div></td>
-                    <%}%>
+                <th width="25%">ユーザー</th>
+                <th width="25%">コメント</th>
+                <th width="50%">動画URL</th>
             </tr>
-        <% }); %>
-        <tr>
-            <td class="text-center">-</td>
-            <td contenteditable="true" data-type="comment"></td>
-            <td contenteditable="true" data-type="link"></td>
-            <td><div id="addLink" class="btn">ADD</div></td>
-            <td class="text-center">-</td>
-        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <a class="text-link" href="#user/<%-musicLink.attributes.user_id%>"><%=musicLink.attributes.user_name%><i class="ico-font ico-play"></i></a>
+                    </td>
+                <td>
+                    <%- musicLink.attributes.comment %>
+                </td>
+                <td class="gp">
+                    <div class="musicLink-url mb10">
+                        <% if (musicLink.attributes.youtube_id) { %>
+                        <a class="text-link" href="<%- musicLink.attributes.link %>" target="_blank" data-event="playYoutube" data-youtube-id="<%- musicLink.attributes.youtube_id %>">
+                            <span class="elps"><%- musicLink.attributes.link %></span><i class="ico-font ico-play"></i>
+                        </a>
+                        <% } else { %>
+                        <a class="text-link" href="<%- musicLink.attributes.link %>" target="_blank">
+                            <span class="elps"><%- musicLink.attributes.link %></span><i class="ico-font ico-play"></i>
+                        </a>
+                        <% } %>
+                    </div>
+                    <div class="musicLink-edit fr">
+                        <a id="" class="btn-text btn-text-back btn-text-color-brown" href="#">編集</a>
+                        <a id="" class="btn-text btn-text-back btn-text-color-brown" href="#">削除</a>
+                        <a id="" class="btn-text btn-text-back btn-text-color-brown" href="#">報告</a>
+                        <%if (_.alreadyPocket(musicLink.attributes.music_id) === false) {%>
+                        <div id="" class="btn-text btn-text-back btn-text-color-brown" data-event="addPocket" data-feeling-id="0" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">URLをポケット</div>
+                        <%} else {%>
+                        <div id="" class="btn-text btn-text-back btn-text-color-brown" data-event="deletePocket" data-feeling-id="0" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">Pocket解除</div>
+                        <%}%>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
     </table>
+    <% }); %>
 </script>
 
 

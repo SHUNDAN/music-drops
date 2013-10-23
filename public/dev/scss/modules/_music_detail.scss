@@ -138,7 +138,7 @@ $map-share: sprite-map("../images/sprite/share/*.png");
 //   ## 基本2カラムをオーバーライド
 //-------------------------------------
 .musicDetail-col3 {
-  width: 313px;
+  width: 310px;
   margin-right: 20px;
   margin-bottom: 20px;
   &:nth-child(3n) {
@@ -154,7 +154,7 @@ $map-share: sprite-map("../images/sprite/share/*.png");
   //-------------------------------------
   .musicDetail-info {
     position: relative;
-    width: 213px;
+    width: 210px;
     height: 100px;
     padding: 10px;
   }
@@ -220,6 +220,39 @@ $map-share: sprite-map("../images/sprite/share/*.png");
   }
 }
 
+// 動画リンク追加
+//-------------------------------------
+.add-musicLink {
+  .form {
+    width: 100%;
+    line-height: 30px;
+  }
+}
+
+// 登録済みリスト
+//-------------------------------------
+.musicLink-table {
+  width: 100%;
+  text-align: left;
+  caption {
+    padding-bottom: 5px;
+    text-align: left;
+    border-bottom: 1px solid #d6d4c5;
+  }
+  thead {
+    border-bottom: 2px solid #d6d4c5;
+  }
+  tbody {
+    background-color: #efede0;
+  }
+  th, td {
+    padding: 10px;
+  }
+  .elps {
+    display: inline-block;
+    max-width: 450px;
+  }
+}
 
 
 
