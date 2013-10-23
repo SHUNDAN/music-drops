@@ -1,17 +1,18 @@
 
 
 <script id="page_login" type="text/template">
-    <h1 class="text-center">Login</h1>
-    <div class="mt20">
+
+      <!--ページヘッダーのモジュール-->
+      <div class="page-header gp">
+          <h1 class="page-header-title Courgette">Login</h1>
+      </div>
+      <!--ページヘッダーのモジュール-->
         <form>
-            <input id="userId" type="text" name="user_id" class="block mlra" value=""/>
-            <input id="password" type="password" name="password" class="block mlra" value=""/>
+            <input id="userId" type="text" name="user_id" class="form form-color-base mlra" value="" placeholder="ユーザーID" />
+            <input id="password" type="password" name="password" class="form form-color-base mlra" value=""  placeholder="パスワード" />
         </form>
-        <div class="displayWboxAcPc">
-            <div id="loginBtn" class="btn">Login</div>
-        </div>
-        <a href="#" class="block mt10 text-center" onclick="sessionStorage.removeItem('user'); location.href='/auth/google'; return false;">Login With Google</a>
-        <a href="#" class="block mt10 text-center" onclick="sessionStorage.removeItem('user'); location.href='/auth/facebook'; return false;">Login With Facebook</a>
-        <a href="#" class="block mt10 text-center" onclick="sessionStorage.removeItem('user'); location.href='/auth/twitter'; return false;">Login With Twitter</a>
-    </div>
+        <a id="loginBtn" class="btn-text btn-text-back btn-text-arrow-left btn-text-arrow-right btn-text-color-brown" href="#">Login</a>
+        <a href="#" class="btn-text btn-text-back btn-text-arrow-left btn-text-arrow-right btn-text-color-brown" onclick="sessionStorage.removeItem('user'); location.href='/auth/google'; return false;">Login With Google</a>
+        <a href="#" class="btn-text btn-text-back btn-text-arrow-left btn-text-arrow-right btn-text-color-brown" onclick="sessionStorage.removeItem('user'); location.href='/auth/facebook'; return false;">Login With Facebook</a>
+        <a href="#" class="btn-text btn-text-back btn-text-arrow-left btn-text-arrow-right btn-text-color-brown" onclick="sessionStorage.removeItem('user'); location.href='/auth/twitter'; return false;">Login With Twitter</a>
 </script>

@@ -5,36 +5,22 @@
 
     <section class="pl10 mb20">
 
-        <ul class="nav nav-tabs mt50">
-            <li class="active">
-                <a href="#newPopListArea" data-toggle="tab">新着Pop</a>
+        <ul class="tab-01 gp">
+            <li class="tab-btn active">
+                <a class="tab-btn-item" href="#popularPopListArea" data-toggle="tab">人気</a>
             </li>
-            <li>
-                <a href="#popularPopListArea" data-toggle="tab">人気Pop</a>
+            <li class="tab-btn">
+                <a class="tab-btn-item" href="#newPopListArea" data-toggle="tab">新着</a>
             </li>
-            <li>
-                <a href="#hotPopListArea" data-toggle="tab">急上昇Pop</a>
+            <li class="tab-btn">
+                <a class="tab-btn-item" href="#hotPopListArea" data-toggle="tab">急上昇</a>
             </li>
         </ul>
 
         <div class="tab-content">
 
-            <div class="tab-pane active" id="newPopListArea">
-                <h3>新着Drop</h3>
-                <p>投稿順が新しい順にDropを表示します。</p>
-                <select id="newPopListFilter">
-                    <option value="0">ALL</option>
-                    <%_.each(feelingList, function (feeling) {%>
-                        <option value="<%=feeling.id%>"><%=feeling.name%></option>
-                    <%});%>
-                </select><br>
-                <ul id="newPopList" class="gp" data-type="new"></ul>
-            
-            </div>
-
             <div class="tab-pane" id="popularPopListArea">
                 <h3>人気Drop</h3>
-                <p>Like数が多い順にDropを表示します。</p>
                 <select id="popularPopListFilter">
                     <option value="0">ALL</option>
                     <%_.each(feelingList, function (feeling) {%>
@@ -45,9 +31,20 @@
             
             </div>
 
+            <div class="tab-pane active" id="newPopListArea">
+                <h3>新着Drop</h3>
+                <select id="newPopListFilter">
+                    <option value="0">ALL</option>
+                    <%_.each(feelingList, function (feeling) {%>
+                        <option value="<%=feeling.id%>"><%=feeling.name%></option>
+                    <%});%>
+                </select><br>
+                <ul id="newPopList" class="gp" data-type="new"></ul>
+            
+            </div>
+
             <div class="tab-pane" id="hotPopListArea">
                 <h3>人気急上昇Drop</h3>
-                <p>最近Like数の増分が多いDropを表示します。</p>
                 <select id="hotPopListFilter">
                     <option value="0">ALL</option>
                     <%_.each(feelingList, function (feeling) {%>

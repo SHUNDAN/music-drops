@@ -3,12 +3,12 @@
 //
 @import "compass";
 
-@import "./libs/_bootstrap";
+// @import "./libs/_bootstrap";
 
 
 // Library
-@import "./libs/_bootstrap";
-@import "./libs/_bootstrap-responsive";
+// @import "./libs/_bootstrap";
+// @import "./libs/_bootstrap-responsive";
 
 // Components
 // @import "./utility";
@@ -35,7 +35,9 @@
 // common > heder
 @import "./modules/header";
 @import "./modules/page_header";
+@import "./modules/tabs";
 @import "./modules/buttons";
+@import "./modules/forms";
 @import "./modules/listviews";
 @import "./modules/feelings";
 

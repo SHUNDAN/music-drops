@@ -1,22 +1,23 @@
 
 <!-- Page: Music Detail Page  -->
 <script id="page_music_detail" type="text/template">
-    <div id="musicInfoArea" class="musicDetail fl"></div>
-
-    <ul class="nav nav-tabs mt50">
-        <li class="active">
-            <a href="#musicLinkListArea" data-toggle="tab">全曲再生ソース</a>
+    <div class="gp">
+        <div id="musicInfoArea" class="musicDetail fl"></div>
+    </div>
+    <ul class="tab-02 gp mt30">
+        <li class="tab-02-btn active">
+            <a class="tab-02-btn-item" href="#musicLinkListArea" data-toggle="tab">全曲再生ソース</a>
         </li>
-        <li>
-            <a href="#popListArea" data-toggle="tab">他のドロップ(999件)</a>
+        <li class="tab-02-btn">
+            <a class="tab-02-btn-item" href="#popListArea" data-toggle="tab">他のドロップ(999件)</a>
         </li>
     </ul>
 
-    <div class="tab-content">
+    <div class="tab-content tab-02-content">
         <div class="tab-pane active" id="musicLinkListArea"></div>
         <div class="tab-pane" id="popListArea"></div>
     </div>
-        <div class="btn" data-event="addPop">Popを追加する</div><br>
+    <div class="btn" data-event="addPop">Popを追加する</div><br>
 </script>
 
 
@@ -111,6 +112,12 @@
 
 <!-- 関連リンク集 -->
 <script id="page_music_detail_music_links" type="text/template">
+    <p>URLを追加するとリンクされた曲をMusic-Dropsで聴けるようになります。</p>
+    <form>
+        <input id="userId" type="text" name="user_id" class="form form-color-base mlra" value="" placeholder="ユーザーID" />
+    </form>
+
+
     <table class="table">
         <tr>
             <th>User</th>

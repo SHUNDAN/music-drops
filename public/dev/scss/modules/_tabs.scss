@@ -1,0 +1,63 @@
+// Tabs
+// 
+// A description.
+// 
+// Markup: <some markup with a specific {$modifier} like class or a pseudo class >
+// 
+// .class      - description of the class state
+// :pseudo     - description of the pseudo state
+// 
+// Styleguide 3 (digit number to increment eg chapter)
+
+
+
+//  タブ
+//-------------------------------------
+// 共通
+.tab-btn {
+	float: left;
+	width: 64px;
+	height: 20px;
+	margin-right: 5px;
+	background-color: #c6c2ab;
+	&.active {
+		background-color: #ffcf3c;
+	}
+	&:last-child {
+		margin-right: 0;
+	}
+}
+.tab-btn-item {
+	font-size: 12px;
+	text-align: center;
+	line-height: 20px;
+	color: #656457;
+}
+
+//  タブ02
+//-------------------------------------
+// 共通
+.tab-02-btn {
+	float: left;
+	width: 170px;
+	height: 40px;
+	background-color: #ccc9b2;
+	&.active {
+		background-color: #fdfcf3;
+	}
+	&:last-child {
+		margin-right: 0;
+	}
+}
+.tab-02-btn-item {
+	font-size: 12px;
+	text-align: center;
+	line-height: 40px;
+	color: #333;
+}
+// タブ02にひもづくBOX
+.tab-02-content {
+	padding: 20px; 
+	background-color: #fdfcf3;
+}
+

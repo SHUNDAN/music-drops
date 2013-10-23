@@ -125,10 +125,10 @@
 
     <!--絞り込み機能-->
     <div class="filterArea">
-        <input type="text" id="filterByNameInput" class="filterByNameInput" placeholder="曲名やアーティスト名を入力" data-event-keyup="filterPockets"/>
-        <input type="button" class="filterByNameBtn" value="絞り込み" data-event-click="filterPockets"/>
-        <div class="selectArea">
-            <select id="filterByFeelingSelect" class="filterByFeelingSelect" data-event-change="filterPockets2">
+        <input type="text" id="filterByNameInput" class="form form-color-base filterByNameInput" placeholder="曲名やアーティスト名を入力" data-event-keyup="filterPockets"/>
+        <input type="button" class="form-InBtn form-btn-color-base filterByNameBtn" value="絞り込み" data-event-click="filterPockets"/>
+        <div class="form-select selectArea">
+            <select id="filterByFeelingSelect" class="form form-selectMenu form-color-base filterByFeelingSelect" data-event-change="filterPockets2">
                 <option value="0"></option>
                 <%_.each(feelings, function (feeling) {%>
                     <option value="<%=feeling.id%>"><%=feeling.name%></option>

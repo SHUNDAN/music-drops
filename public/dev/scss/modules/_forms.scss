@@ -9,4 +9,64 @@
 // 
 // Styleguide 4 (digit number to increment eg chapter)
 
-.form-text {}
+
+// 共通
+//-------------------------------------
+.form {
+  display: inline-block;
+  height: 40px;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #555555;
+  vertical-align: middle;
+  @include border-radius(4px);
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  @include box-shadow(0 1px 1px rgba(0, 0, 0, 0.075) inset);
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+     -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+       -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+          transition: border linear 0.2s, box-shadow linear 0.2s;
+  &:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-9 */
+    @include box-shadow(0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6));
+  }
+}
+
+textarea {
+  height: auto;
+}
+.form-InBtn {
+  height: 32px;
+}
+
+// 色
+//-------------------------------------
+.form-color-base {
+  background-color: #efede0;
+  @include box-shadow(-1px 1px 1px rgba(0,0,0,.3) inset);
+}
+.form-btn-color-base {
+  color: #7d6a35;
+  background-color: #ffcf3c;
+}
+.form-select {
+  &:after {
+    position: absolute;
+    top: 1px;
+    right: 3px;
+    display: block;
+    width: 35px;
+    height: 35px;
+    content: "▼";
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 5px;
+  }
+}
