@@ -130,6 +130,7 @@ define([], function () {
 
 
             // プレイリストを生成する
+            console.debug('shuffle: ', this.shuffle);
             if (this.shuffle) {
                 this.musicQueue = this._createShuffleMusicQueue(options.musicArray[this.currentPos].id);
             } else {
@@ -394,7 +395,7 @@ define([], function () {
             if (_.isIphone || _.isAndroid) {
                 var $closeBtn = $('<a href="#" class="closeBtn">×</a>');
                 $closeBtn.on('click', _.bind(this.close, this));
-                $appendView.append($closeBtn);                
+                $appendView.append($closeBtn);
             }
 
 
@@ -468,7 +469,7 @@ define([], function () {
             if (_.isIphone || _.isAndroid) {
                 var $closeBtn = $('<a href="#" class="closeBtn">×</a>');
                 $closeBtn.on('click', _.bind(this.close, this));
-                $appendView.append($closeBtn);                
+                $appendView.append($closeBtn);
             }
 
 

@@ -329,8 +329,9 @@ var oauthCallback = function (err, user, req, res) {
 
     console.log('sessionMap: ', global.sessionMap);
 
-    // Cookieの設定    
-    res.cookie('uid', uid, {maxAge:365*24*60*60, httpOnly:false});
+    // Cookieの設定
+    // res.cookie('uid', uid, {maxAge:365*24*60*60, httpOnly:false});
+    res.cookie('uid', uid, {maxAge: 903600 * 3 * 1000, httpOnly:false});
 
     // とりあえず保存
     // global.tmpMap = global.tmpMap || {};
