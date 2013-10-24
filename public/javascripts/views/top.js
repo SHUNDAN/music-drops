@@ -21,6 +21,12 @@ define([
 
     var TopView = Backbone.View.extend({
 
+        // 表示タイプ
+        displayType: 'popular', // 'new', 'hot'
+
+        // 表示Pop情報
+        displayPopListMap: {},
+
         // fields.
         userStorage: new UserStorage(),
         collection: null,
@@ -95,16 +101,6 @@ define([
 
         renderFeelingList: function () {
 
-            /*
-            // buttons.
-            var renderData = {
-                feelings: this.collection.models,
-                btnClasses: ["", "btn-primary", "btn-info", "btn-success", "btn-warning", "btn-danger", "btn-inverse"],
-            };
-            var btnsHtml = _.template($('#page_top_btn_list').html(), renderData);
-            this.$el.append(btnsHtml);
-            */
-
         },
 
 
@@ -117,7 +113,7 @@ define([
                     return model.attributes.feeling_id === this.feelingFilterOfNewPopList;
                 }, this));
             }
-            this.displayPopList = popList;
+            this.displayPopListMap['new'] = popList;
             var snipet = _.template(template, {popList:popList, likeArray:this.likeArray});
             this.$el.find('#newPopList').html(snipet);
         },
@@ -132,7 +128,7 @@ define([
                     return model.attributes.feeling_id === this.feelingFilterOfPopularPopList;
                 }, this));
             }
-            this.displayPopList = popList;
+            this.displayPopListMap['popular'] = popList;
             var snipet = _.template(template, {popList:popList, likeArray:this.likeArray});
             this.$el.find('#popularPopList').html(snipet);
         },
@@ -147,7 +143,7 @@ define([
                     return model.attributes.feeling_id === this.feelingFilterOfHotPopList;
                 }, this));
             }
-            this.displayPopList = popList;
+            this.displayPopListMap['hot'] = popList;
             var snipet = _.template(template, {popList:popList, likeArray:this.likeArray});
             this.$el.find('#hotPopList').html(snipet);
         },
@@ -229,7 +225,8 @@ define([
             var $li = $this.parents('[data-pop-id]');
             var type = $this.parents('[data-type]').data('type');
             var popId = parseInt($li.data('pop-id'), 10);
-            console.debug('playSong: ', popId, this.displayPopList);
+            var displayPopList = this.displayPopListMap[this.displayType];
+            console.debug('playSong: ', popId, displayPopList);
 
 
             // もしPause中の場合には、再開のみを行う
@@ -254,7 +251,7 @@ define([
 
             // 再生曲と開始位置
             options.musicArray = [];
-            _.each(this.displayPopList, function (pop, idx) {
+            _.each(displayPopList, function (pop, idx) {
                 if (pop.attributes.id === popId) {
                     options.startPos = idx;
                 }
@@ -348,6 +345,36 @@ define([
             this.youtubeView.playMusics(params);
 
         },
+
+
+
+
+
+        /**
+            タブ変化（変化自体は、Bootstrapで行うが、現在の状況のみ知りたいのでイベントを貼る）
+        */
+        changeTab: function (e) {
+            this.displayType = $(e.currentTarget).data('tab-type');
+            console.debug('changeTab: ', this.displayType);
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         show: function () {
