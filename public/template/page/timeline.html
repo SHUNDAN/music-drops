@@ -14,10 +14,10 @@
                 <span class="fs18">タイムライン</span>
             </div>
             <ul class="sidebarList">
-                <li data-event-click="showMyDrops">すべて</li>
-                <li data-event-click="showMyDrops">いいね/視聴&nbsp;<span class="numOfLike">(123)</span></li>
-                <li data-event-click="showMyDrops">フォローユーザー&nbsp;<span class="numOfLike">(12)</span></li>
-                <li data-event-click="showMyDrops">フォローアーティスト&nbsp;<span class="numOfLike">(2)</span></li>
+                <li data-event-click="showAllNotif">すべて</li>
+                <li data-event-click="showLikeNotif">いいね&nbsp;<span id="numOfLike"></span></li>
+                <li data-event-click="showFollowUserNotif">フォローユーザー&nbsp;<span id="numOfFollowUser"></span></li>
+                <li data-event-click="showFollowArtistNotif">フォローアーティスト&nbsp;<span id="numOfFollowArtist"></span></li>
             </ul>
         </div>
 
@@ -25,14 +25,14 @@
         <!--右側: 本体-->
         <div class="rightCol" data-type="dataArea">
 
-            <ul class="timelineArea">
+            <ul id="timelineArea" class="timelineArea">
 
 
                 <%_.each(notifications, function (notif) {%>
 
                     <%if (notif.attributes.type === 1) { /*フォローしているユーザーがポケットを追加*/%> 
 
-                        <li class="">
+                        <li class="" data-notif-type="<%=notif.attributes.type%>">
                             <div>フォロー中の<a href="#user/<%=notif.attributes.json.user.id%>" class="di u"><%=notif.attributes.json.user.name%></a>さんが、「<a href="#music/<%=notif.attributes.json.music.id%>" class="di u"><%=notif.attributes.json.music.title%></a>」の曲を<span class="b">ポケット</span>しました。</div>
                             <div class="time"><%=_.formatTimestamp(notif.attributes.create_at)%></div>
                             <div class="musicInfoArea">
@@ -56,7 +56,7 @@
                     <%}else if(notif.attributes.type === 2) { /*フォローしているユーザーがDropを追加*/%>
 
 
-                        <li>
+                        <li data-notif-type="<%=notif.attributes.type%>">
                             <div>フォロー中の<a href="#user/<%=notif.attributes.json.followUser.id%>" class="di u"><%=notif.attributes.json.followUser.name%></a>さんが、「<a href="#music/<%=notif.attributes.json.music.id%>" class="di u"><%=notif.attributes.json.music.title%></a>」の曲を<span class="b">ドロップ</span>しました。</div>
                             <div class="time"><%=_.formatTimestamp(notif.attributes.create_at)%></div>
                             <div class="musicInfoArea">
@@ -78,7 +78,7 @@
 
                     <%}else if(notif.attributes.type === 3) { /*自分のDropがLikeされた*/%>
 
-                        <li>
+                        <li data-notif-type="<%=notif.attributes.type%>">
                             <div>あなたの「<a class="di u" href="#music/<%=notif.attributes.json.music.id%>"><%=notif.attributes.json.music.title%></a>」へのドロップに<a class="di u" href="#user/<%=notif.attributes.json.fromUser.id%>"><%=notif.attributes.json.fromUser.name%></a>さんが、いいねしました。</div>
                             <div class="time"><%=_.formatTimestamp(notif.attributes.create_at)%></div>
                         </li>
@@ -88,7 +88,7 @@
                     <%}else if(notif.attributes.type === 4) { /*自分のDropが役立った（よくわかんないから、サーバー側を実装してない）*/%>
 
 
-                        <li>
+                        <li data-notif-type="<%=notif.attributes.type%>">
                             <div>あなたの「<a class="di u" href="#">墾田永年私財法</a>」へのドロップを見て、<a class="di u" href="#">ばし</a>さんが曲を視聴しました。</div>
                             <div class="time">3時間前</div>
                         </li>
@@ -97,7 +97,7 @@
                     <%}else if(notif.attributes.type === 5) { /*フォローアーティストにリンクが追加*/%>
 
 
-                        <li>
+                        <li data-notif-type="<%=notif.attributes.type%>">
                             <div>フォローアーティスト「<a href="#artist/<%=notif.attributes.json.music.artist_id%>" class="di u"><%=notif.attributes.json.music.artist_name%></a>」の曲に、<span class="b">新しくリンクソースが追加</span>されました。</div>
                             <div class="time"><%=_.formatTimestamp(notif.attributes.create_at)%></div>
                             <div class="linkSourceArea">
@@ -116,7 +116,7 @@
 
                     <%}else if(notif.attributes.type === 6) { /*フォローアーティストにDropが追加*/%>
 
-                        <li>
+                        <li data-notif-type="<%=notif.attributes.type%>">
                             <div>フォローアーティスト「<a href="#artist/<%=notif.attributes.json.music.artist_id%>" class="di u"><%=notif.attributes.json.music.artist_name%></a>」に、<span class="b">新しい曲が追加</span>されました。</div>
                             <div class="time"><%=_.formatTimestamp(notif.attributes.create_at)%></div>
                             <div class="musicInfoArea">

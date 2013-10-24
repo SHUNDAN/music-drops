@@ -42,7 +42,63 @@ define([
 
 			var snipet = _.mbTemplate('page_timeline', {notifications: models});
 			this.$el.html(snipet);
+
+			// 件数も更新
+			var numOfLike = 0;
+			var numOfFollowUser = 0;
+			var numOfFollowArtist = 0;
+			_.each(this.userNotificationList.models, function (notif) {
+				if (notif.attributes.type === 1 || notif.attributes.type === 2) {
+					numOfFollowUser++;
+				} else if (notif.attributes.type === 3 || notif.attributes.type === 4) {
+					numOfLike++;
+				} else if (notif.attributes.type === 5 || notif.attributes.type === 6) {
+					numOfFollowArtist++;
+				}
+			});
+			this.$el.find('#numOfLike').text('(' + numOfLike + ')');
+			this.$el.find('#numOfFollowUser').text('(' + numOfFollowUser + ')');
+			this.$el.find('#numOfFollowArtist').text('(' + numOfFollowArtist + ')');
 		},
+
+
+
+		/**
+			お知らせを全件表示
+		*/
+		showAllNotif: function () {
+			this.$el.find('#timelineArea li').removeClass('hidden');
+		},
+
+
+		/**
+			いいね系お知らせ表示
+		*/
+		showLikeNotif: function () {
+			this.$el.find('#timelineArea li').addClass('hidden');
+			this.$el.find('#timelineArea').find('[data-notif-type="3"],[data-notif-type="4"]').removeClass('hidden');
+		},
+
+
+		/**
+			フォローユーザー系お知らせ表示
+		*/
+		showFollowUserNotif: function () {
+			this.$el.find('#timelineArea li').addClass('hidden');
+			this.$el.find('#timelineArea').find('[data-notif-type="1"],[data-notif-type="2"]').removeClass('hidden');
+		},
+
+
+		/**
+			フォローアーティスト系お知らせ表示
+		*/
+		showFollowArtistNotif: function () {
+			this.$el.find('#timelineArea li').addClass('hidden');
+			this.$el.find('#timelineArea').find('[data-notif-type="5"],[data-notif-type="6"]').removeClass('hidden');
+		},
+
+
+
 
 
 
