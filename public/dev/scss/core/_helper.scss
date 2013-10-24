@@ -4,7 +4,7 @@
 
 // Clearfix (.group)
 .gp:before,
-.gp:after { 
+.gp:after {
 	content: "";
 	display: table !important;
 }
@@ -18,7 +18,7 @@
 }
 
 // Ellipsis
-.elps {  
+.elps {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -331,16 +331,16 @@
 // .b-000 { background-color: $color-000 !important; }
 
 // .n { font-weight: normal !important; }
-// .b { font-weight: bold !important; }
+.b { font-weight: bold !important; }   // 使いたいので、復活させました（byムネ）
 // .l { text-align: left !important; }
 // .c { text-align: center !important; }
 // .r { text-align: right !important; }
-// .u { text-decoration: underline !important; }
+.u { text-decoration: underline !important; }   // 使いたいので、復活させました（byムネ）
 
 // .f1 { font-size: $font-size-1; }
 // .f2 { font-size: $font-size-2; }
 // .f3 { font-size: $font-size-3; }
-// .fn { font-size: $font-size-base !important; } 
+// .fn { font-size: $font-size-base !important; }
 // .f4 { font-size: $font-size-4; }
 // .f5 { font-size: $font-size-5; }
 // .f6 { font-size: $font-size-6; }

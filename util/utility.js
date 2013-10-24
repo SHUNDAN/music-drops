@@ -10,7 +10,7 @@ var db = new sqlite3.Database(global.db_path);
 
 
 if (global.log4js) {
-    var loggerAction = global.log4js.getLogger('action'); 
+    var loggerAction = global.log4js.getLogger('action');
 }
 
 
@@ -22,7 +22,7 @@ module.exports = {
      */
     basicResponse: function (res, err, data) {
         if (err) {
-            res.json(400, err.message || 'error'); 
+            res.json(400, err.message || 'error');
         } else {
             var retValue = {
                 status: 200,
@@ -50,7 +50,7 @@ module.exports = {
      */
     getUserIdFromRequest: function (req) {
         var uid = req.cookies.uid;
-        var user_id = (global.sessionMap ? global.sessionMap[uid] : undefined); 
+        var user_id = (global.sessionMap ? global.sessionMap[uid] : undefined);
         return user_id;
     },
 
@@ -113,7 +113,7 @@ module.exports = {
      */
     setUrid: function (res) {
         var urid = uuid.v4();
-        res.cookie('urid', urid, {maxAge:365*24*60*60, httpOnly:false});
+        res.cookie('urid', urid, {maxAge: 903600 * 3 * 1000, httpOnly:false});
     },
 
 
@@ -125,12 +125,12 @@ module.exports = {
         var uid = req.cookies.uid;
         if (uid) {
             if (!global.sessionMap) {
-                global.sessionMap = {}; 
-            }   
+                global.sessionMap = {};
+            }
             var anUserId = global.sessionMap[uid];
             if (anUserId) {
                 userId = anUserId;
-            }   
+            }
         }
 
         return userId;

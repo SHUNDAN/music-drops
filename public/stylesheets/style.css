@@ -655,6 +655,16 @@ table {
   font-size: 32px;
 }
 
+/* line 334, ../dev/scss/core/_helper.scss */
+.b {
+  font-weight: bold !important;
+}
+
+/* line 338, ../dev/scss/core/_helper.scss */
+.u {
+  text-decoration: underline !important;
+}
+
 /* line 4, ../dev/scss/core/_base.scss */
 body {
   padding-top: 65px;
@@ -2666,6 +2676,249 @@ textarea.form {
   text-align: center;
 }
 
+/* line 12, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .leftCol {
+  position: fixed;
+  float: left;
+  width: 320px;
+}
+/* line 19, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .rightCol {
+  float: right;
+  width: 612px;
+}
+/* line 26, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineHeader {
+  position: relative;
+  border-bottom: 1px solid #adaa95;
+}
+/* line 30, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineHeader .editButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/* line 35, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineHeader .doneButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}
+/* line 41, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineHeader .userFollowButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  color: #7d6a35;
+  background-color: #ffcf3c;
+}
+/* line 55, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList {
+  margin-top: 10px;
+}
+/* line 57, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li {
+  position: relative;
+  width: 310px;
+  height: 24px;
+  line-height: 24px;
+  margin: 10px 0;
+  padding-left: 10px;
+  color: #656457;
+}
+/* line 66, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li:hover {
+  background-color: #ffe77c;
+  cursor: pointer;
+}
+/* line 69, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li:hover:after {
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: 0px;
+  height: 0px;
+  content: " ";
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #ffe77c;
+  border-right: 0px solid transparent;
+}
+/* line 84, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li.select {
+  background-color: #ffe77c;
+}
+/* line 86, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li.select:after {
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: 0px;
+  height: 0px;
+  content: " ";
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #ffe77c;
+  border-right: 0px solid transparent;
+}
+/* line 99, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li.dropTarget {
+  background-color: #ffe77c;
+}
+/* line 101, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li.dropTarget:after {
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: 0px;
+  height: 0px;
+  content: " ";
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #ffe77c;
+  border-right: 0px solid transparent;
+}
+/* line 116, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li .clearBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+  pointer-events: auto;
+}
+/* line 125, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList.edit .clearBtn {
+  display: block;
+}
+/* line 136, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea li {
+  width: 95%;
+  margin-left: 5%;
+  background-color: #efede0;
+  color: #656457 !important;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+/* line 144, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea li.done {
+  background-color: #bfbfbf;
+}
+/* line 150, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .time {
+  margin-top: 7px;
+}
+/* line 155, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea {
+  margin-top: 10px;
+}
+/* line 158, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea:after {
+  display: block;
+  width: 0;
+  height: 0;
+  content: " ";
+  clear: both;
+}
+/* line 166, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .thumb {
+  float: left;
+  display: block;
+  width: 60px;
+  height: 60px;
+}
+/* line 173, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .info {
+  float: left;
+  margin-left: 10px;
+  width: 490px;
+}
+/* line 179, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .title {
+  font-size: 14px;
+}
+/* line 183, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling {
+  display: inline-block;
+  padding: 3px 10px;
+  margin-top: 5px;
+  color: white;
+}
+/* line 188, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type1 {
+  background-color: #c85d94;
+}
+/* line 191, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type2 {
+  background-color: #77b66a;
+}
+/* line 194, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type3 {
+  background-color: red;
+}
+/* line 197, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type4 {
+  background-color: #6880cc;
+}
+/* line 200, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type5 {
+  background-color: #e97f45;
+}
+/* line 203, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type6 {
+  background-color: #bc7ad4;
+}
+/* line 206, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type7 {
+  background-color: #f4b74e;
+}
+/* line 211, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .comment {
+  margin-top: 5px;
+}
+/* line 217, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea {
+  margin-top: 10px;
+}
+/* line 220, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea:after {
+  display: block;
+  width: 0;
+  height: 0;
+  content: " ";
+  clear: both;
+}
+/* line 228, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea .thumb {
+  float: left;
+  display: block;
+  width: 60px;
+  height: 60px;
+}
+/* line 235, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea .info {
+  float: left;
+  margin-left: 10px;
+  width: 490px;
+}
+/* line 241, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea .title {
+  font-weight: bold;
+  font-size: 14px;
+}
+/* line 246, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea .url {
+  margin-top: 10px;
+}
+/* line 250, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea .comment {
+  margin-top: 10px;
+}
+
 /* line 10, ../dev/scss/pages/_user_setting.scss */
 .settingPage .title {
   font-size: 18px;
@@ -2729,30 +2982,30 @@ textarea.form {
 
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 76, ../dev/scss/style.scss */
+  /* line 77, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 83, ../dev/scss/style.scss */
+/* line 84, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 84, ../dev/scss/style.scss */
+/* line 85, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 85, ../dev/scss/style.scss */
+/* line 86, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 89, ../dev/scss/style.scss */
+/* line 90, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -2767,7 +3020,7 @@ textarea.form {
 /*==============================
   Stage
 ===============================*/
-/* line 105, ../dev/scss/style.scss */
+/* line 106, ../dev/scss/style.scss */
 #stage {
   position: relative;
 }
@@ -2775,7 +3028,7 @@ textarea.form {
 /*==============================
   Preview Area
 ===============================*/
-/* line 116, ../dev/scss/style.scss */
+/* line 117, ../dev/scss/style.scss */
 .previewArea {
   z-index: 9998;
   transition: opacity .5s ease;
@@ -2784,7 +3037,7 @@ textarea.form {
   -ms-transition: opacity .5s ease;
 }
 
-/* line 123, ../dev/scss/style.scss */
+/* line 124, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: absolute !important;
   top: -500px !important;
@@ -2792,7 +3045,7 @@ textarea.form {
   opacity: 0;
 }
 
-/* line 129, ../dev/scss/style.scss */
+/* line 130, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -2807,7 +3060,7 @@ textarea.form {
   color: white;
 }
 
-/* line 143, ../dev/scss/style.scss */
+/* line 144, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -2823,7 +3076,7 @@ textarea.form {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 160, ../dev/scss/style.scss */
+/* line 161, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -2831,25 +3084,25 @@ textarea.form {
 /*==============================
   Base Frame
 ===============================*/
-/* line 174, ../dev/scss/style.scss */
+/* line 175, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 65px;
 }
 
-/* line 179, ../dev/scss/style.scss */
+/* line 180, ../dev/scss/style.scss */
 #main {
   width: 980px;
   margin: 0 auto;
 }
 
-/* line 183, ../dev/scss/style.scss */
+/* line 184, ../dev/scss/style.scss */
 #pagePop {
   z-index: 9999;
 }
 
-/* line 186, ../dev/scss/style.scss */
+/* line 187, ../dev/scss/style.scss */
 .popUp {
   position: fixed;
   top: 100px;

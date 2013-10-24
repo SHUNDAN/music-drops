@@ -3,9 +3,6 @@
 <!-- Mypage -->
 <script id="page_mypage" type="text/template">
 
-    <!--タイトル-->
-    <h1 class="text-center">My List</h1>
-
     <div class="pageMypage clearfix">
 
 
@@ -265,9 +262,9 @@
     <%_.each(playlists, function (playlist) {%>
 
         <li data-playlist-id="<%=playlist.attributes.id%>" data-event-click="showFollowPlaylist">
-            <%=playlist.attributes.title%> 
+            <%=playlist.attributes.title%>
             (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
-            &nbsp;by <a style="display:inline;" href="#user/<%=playlist.attributes.user_id%>"><%=playlist.attributes.user_name%></a> 
+            &nbsp;by <a style="display:inline;" href="#user/<%=playlist.attributes.user_id%>"><%=playlist.attributes.user_name%></a>
             <a href="#" class="clearBtn" data-event-click="deleteFollowPlaylist">×</a>
         </li>
 
