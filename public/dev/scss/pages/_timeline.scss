@@ -140,6 +140,10 @@
             color: #656457 !important;  // とりあえず上書き。
             margin-bottom: 20px;
             padding: 10px;
+
+            &.done {
+            background-color: #bfbfbf;
+            }
         }
 
         // 時間表示
