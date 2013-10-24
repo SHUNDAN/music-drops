@@ -19,6 +19,13 @@
 <script id="page_artist_info" type="text/text">
     id: <%=id%><br>
     name: <%=name%><br>
+    <%if (_.alreadyArtistFollow(id)) {%>
+        <input type="button" value="フォローする" data-event-click="followArtist" class="hidden" style="width:100px;height:50px;line-height:50px;text-align:center;"/>
+        <input type="button" value="フォロー解除" data-event-click="unfollowArtist" style="width:100px;height:50px;line-height:50px;text-align:center;"/>
+    <%} else {%>
+        <input type="button" value="フォローする" data-event-click="followArtist" style="width:100px;height:50px;line-height:50px;text-align:center;"/>
+        <input type="button" value="フォロー解除" data-event-click="unfollowArtist" class="hidden" style="width:100px;height:50px;line-height:50px;text-align:center;"/>
+    <%}%>
 </script>
 
 

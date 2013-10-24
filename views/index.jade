@@ -17,14 +17,14 @@ block content
 
 
 
-    br
-    br
+    // br
+    // br
     // 音楽検索画面へ
-    a(href="#music/search") 音楽検索画面へ
-    br
+    // a(href="#music/search") 音楽検索画面へ
+    // br
     // Loginへ
-    a(href="#login") Loginへ
-    br
+    // a(href="#login") Loginへ
+    // br
 
     // Google Analytics
     script
@@ -61,7 +61,8 @@ block content
 
     if (user)
       script
-        var user = JSON.parse('!{user}');
+        var user = !{user};
+        //- var user = JSON.parse('!{user}');
         console.debug('user: ', user);
         if (user) {
           _.mbStorage.setUser(user);

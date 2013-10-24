@@ -740,6 +740,88 @@ _.unfollowUser = function (userFollowId, callback) {
 
 
 
+/**
+    ArtistIdから、アーティストフォローIDを取得する
+*/
+_.selectArtistFollowId = function (artistId) {
+
+    var artistFollowId;
+
+    var user = _.mbStorage.getUser();
+    if (user && user.userArtistFollows) {
+        _.each(user.userArtistFollows, function (follow) {
+            if (follow.artist_id === artistId) {
+                artistFollowId = follow.id;
+            }
+        });
+    }
+
+    return artistFollowId;
+};
+
+
+
+
+
+/**
+    アーティストフォローを行う
+*/
+_.followArtist = function (artistId, callback) {
+
+    $.ajax({
+        url: '/api/v1/user_artist_follows',
+        method: 'post',
+        data: {artist_id: artistId},
+        success: function () {
+            console.debug('_.followArtist success.');
+            if (callback) {
+                callback();
+            }
+            _.mbStorage.refreshUser();
+        },
+        error: function (xhr) {
+            if (xhr.status === 403) {
+                mb.router.appView.authErrorHandler();
+                return;
+            } else {
+                alert('エラーが発生しました。お手数ですが再読み込みしてください。');
+                console.log('error: ', arguments);
+            }
+        },
+
+    });
+};
+
+
+
+/**
+    アーティストフォロー解除を行う
+*/
+_.unfollowArtist = function (artistFollowId, callback) {
+
+    $.ajax({
+        url: '/api/v1/user_artist_follows/' + artistFollowId,
+        method: 'delete',
+        success: function () {
+            console.debug('_.unfollowArtist success.');
+            if (callback) {
+                callback();
+            }
+            _.mbStorage.refreshUser();
+        },
+        error: function (xhr) {
+            if (xhr.status === 403) {
+                mb.router.appView.authErrorHandler();
+                return;
+            } else {
+                alert('エラーが発生しました。お手数ですが再読み込みしてください。');
+                console.log('error: ', arguments);
+            }
+        },
+
+    });
+};
+
 
 
 

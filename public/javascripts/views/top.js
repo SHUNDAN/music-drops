@@ -226,9 +226,18 @@ define([
         playSong: function (e) {
 
             var $this = $(e.currentTarget);
+            var $li = $this.parents('[data-pop-id]');
             var type = $this.parents('[data-type]').data('type');
-            var popId = parseInt($this.parents('[data-pop-id]').data('pop-id'), 10);
+            var popId = parseInt($li.data('pop-id'), 10);
             console.debug('playSong: ', popId, this.displayPopList);
+
+
+            // もしPause中の場合には、再開のみを行う
+            if ($li.data('nowpausing')) {
+                $li.removeAttr('nowpausing');
+                mb.musicPlayer.startMusic();
+                return;
+            }
 
 
             // 表示オプションを作成
@@ -314,6 +323,7 @@ define([
         */
         pauseSong: function (e) {
             mb.musicPlayer.pauseMusic();
+            $(e.currentTarget).parents('[data-pop-id]').attr('data-nowpausing', 'true');
         },
 
 
