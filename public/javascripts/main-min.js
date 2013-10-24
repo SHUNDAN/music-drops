@@ -108,7 +108,7 @@ define('views/common/music_player',[], function () {
             this.$artistName = $('#mpArtistName');
 
 
-            this.previewSize = {width: 640, height: 500};
+            this.previewSize = {width: 640, height: 450};
             this.movieSize = {width: 640, height: 390};
             this.scaleSize = 200 / this.previewSize.width;
 
@@ -184,7 +184,7 @@ define('views/common/music_player',[], function () {
                 position: 'fixed',
                 top: '50%',
                 left: '50%',
-                margin: '-250px 0 0 -320px',
+                margin: '-225px 0 0 -320px',
                 'background-color': 'black',
             }));
             if (!_.isIphone && !_.isAndroid && !this.playerVisible) {
@@ -429,15 +429,17 @@ define('views/common/music_player',[], function () {
 
 
             // 閉じるボタンを追加
-            var $closeBtn = $('<a href="#" class="closeBtn">×</a>');
-            $closeBtn.on('click', _.bind(this.close, this));
-            $appendView.append($closeBtn);
+            if (_.isIphone || _.isAndroid) {
+                var $closeBtn = $('<a href="#" class="closeBtn">×</a>');
+                $closeBtn.on('click', _.bind(this.close, this));
+                $appendView.append($closeBtn);                
+            }
 
 
             // 小さくするボタン
-            var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
-            $minimizeBtn.on('click', _.bind(this.minimize, this));
-            $appendView.append($minimizeBtn);
+            // var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
+            // $minimizeBtn.on('click', _.bind(this.minimize, this));
+            // $appendView.append($minimizeBtn);
 
 
             // audio tag.
@@ -501,15 +503,17 @@ define('views/common/music_player',[], function () {
             $appendView.html('');
 
             // 閉じるボタンを追加
-            var $closeBtn = $('<a href="#" class="closeBtn">×</a>');
-            $closeBtn.on('click', _.bind(this.close, this));
-            $appendView.append($closeBtn);
+            if (_.isIphone || _.isAndroid) {
+                var $closeBtn = $('<a href="#" class="closeBtn">×</a>');
+                $closeBtn.on('click', _.bind(this.close, this));
+                $appendView.append($closeBtn);                
+            }
 
 
             // 小さくするボタン
-            var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
-            $minimizeBtn.on('click', _.bind(this.minimize, this));
-            $appendView.append($minimizeBtn);
+            // var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
+            // $minimizeBtn.on('click', _.bind(this.minimize, this));
+            // $appendView.append($minimizeBtn);
 
 
             // Youtubeエリア
@@ -1780,8 +1784,8 @@ define('views/top',[
             this.hotPopList = new PopList();
             this.hotPopList.bind('reset', this.renderHotPopList);
 
-            var user = this.userStorage.getUser();
-            if (user) {
+            var user = _.mbStorage.getUser();
+            if (user && user.like_pop) {
                 this.likeArray = JSON.parse(user.like_pop) || [];
             } else {
                 this.likeArray = [];
@@ -1942,9 +1946,18 @@ define('views/top',[
         playSong: function (e) {
 
             var $this = $(e.currentTarget);
+            var $li = $this.parents('[data-pop-id]');
             var type = $this.parents('[data-type]').data('type');
-            var popId = parseInt($this.parents('[data-pop-id]').data('pop-id'), 10);
+            var popId = parseInt($li.data('pop-id'), 10);
             console.debug('playSong: ', popId, this.displayPopList);
+
+
+            // もしPause中の場合には、再開のみを行う
+            if ($li.data('nowpausing')) {
+                $li.removeAttr('nowpausing');
+                mb.musicPlayer.startMusic();
+                return;
+            }
 
 
             // 表示オプションを作成
@@ -2030,6 +2043,7 @@ define('views/top',[
         */
         pauseSong: function (e) {
             mb.musicPlayer.pauseMusic();
+            $(e.currentTarget).parents('[data-pop-id]').attr('data-nowpausing', 'true');
         },
 
 
@@ -2208,13 +2222,7 @@ define('views/pop/index',[
                 this.$el.prepend($blackout);
 
                 // display as modal.
-                this.$el.find('#pagePop').css({
-                    position: 'fixed',
-                    top: '100px',
-                    left: '10%',
-                    width: '80%',
-                    'background-color': 'rgba(255,255,255,.9)',
-                });
+                this.$el.find('#pagePop').addClass('popUp');
             }
         },
 
@@ -2576,22 +2584,22 @@ define('views/music/index',[
 
         addLink: function (e) {
             var $this = $(e.currentTarget);
-            var $tr = $this.parents('tr');
-            var comment = $tr.find('[data-type="comment"]').text();
-            var link = $tr.find('[data-type="link"]').text();
+            var $container = $this.parents('.add-musicLink');
+            var comment = $container.find('[data-type="comment"]').text();
+            var link = $container.find('[data-type="link"]').text();
 
             // データチェック
             if (comment.length === 0) {
-                alert('Comment is required');
+                alert('コメントは必須です');
                 return;
             }
             if (link.length === 0) {
-                alert('Link is required');
+                alert('動画のリンクは必須です。');
                 return;
             }
             if (link.toLowerCase().indexOf('http://') !== 0
                     && link.toLowerCase().indexOf('https://') !== 0) {
-                alert('Link is invalid url. \nUrl must be http:// or https://');
+                alert('動画リンクのURLが正しくありません。. \nURLには、 http:// または https:// を付けてください。');
                 return;
             }
 
@@ -4544,7 +4552,7 @@ define('views/mypage',[
             console.log('show mypage');
 
             // session storageに該当情報が無い場合には、フォワード
-            if (!_.mbStorage.getUser()) {
+            if (!_.isLogedIn()) {
                 mb.router.navigate('login', true);
                 return;
             } else {
@@ -5359,21 +5367,96 @@ define('views/user/timeline',[], function () {
 /**
 	ユーザー設定画面
 */
-define('views/user/setting',[], function () {
+define('views/user/setting',[
+    'views/common/confirmDialog',
+	'models/user/user',
+], function (
+	ConfirmDialogView,
+	UserModel
+) {
 
 	var UserSettingView = Backbone.View.extend({
 
 		initialize: function () {
 
+            // auto event bind.
+            _.bindEvents(this);
+
+
 		},
 
 		render: function () {
-			var snipet = _.mbTemplate('page_user_setting', {});
+			var snipet = _.mbTemplate('page_user_setting', {user: _.mbStorage.getUser()});
 			this.$el.html(snipet);
 		},
 
+
+		/**
+			名前変更処理
+		*/
+		changeName: function () {
+			console.debug('changeName');
+
+			var newName = _.trim($('#userNameInput').val());
+			if (!newName || newName.length === 0) {
+				alert('名前が未入力です。');
+				return;
+			}
+
+			// 更新
+			var user = new UserModel();
+			user.set('id', _.mbStorage.getUser().id);
+			user.set('name', newName);
+			user.bind('sync', function () {
+				alert('ユーザー名変更が完了しました');
+				location.reload();
+			});
+			user.save();
+
+		},
+
+
+
+		/**
+			ログアウト
+		*/
+		logout: function () {
+
+            // 確認ダイアログ
+            var confirmDialog = new ConfirmDialogView();
+            confirmDialog.show({
+                message: '本当にログアウトしてもよろしいですか？',
+                yesButtonCallback: function () {
+
+                	_.mbStorage.removeUser();
+                	$.removeCookie('uid', null);
+                	alert('ログアウトしました。');
+                	location.href = '#';
+                }
+            });
+
+
+
+		},
+
+
+
+
+
+
+
+
 		show: function () {
 			console.debug('usersetting show');
+
+
+			// もしもログインしていない場合には、TOPへ
+			if (!_.isLogedIn()) {
+				mb.router.navigate('#', true);
+				return;
+			}
+
+
 			this.render();
 		},
 
@@ -5452,6 +5535,10 @@ define('views/artist/index',[
 
         initialize: function () {
 
+            // auto event bind.
+            _.bindEvents(this);
+
+
             _.bindAll(this, 'renderArtistInfo', 'renderMusicList', 'playYoutube', 'pocket', 'deletePocket');
 
             this.artist.bind('change', this.renderArtistInfo);
@@ -5485,6 +5572,52 @@ define('views/artist/index',[
             this.$el.find('#music_list').html(snipet);
 
         },
+
+
+
+        /**
+            アーティストフォロー
+        */
+        followArtist: function () {
+            _.followArtist(this.artist.attributes.id, function () {
+                $('[data-event-click="followArtist"], [data-event-click="unfollowArtist"]').toggleClass('hidden');
+            });
+        },
+
+
+
+        /**
+            アーティストフォロー解除
+        */
+        unfollowArtist: function () {
+            var followArtistId = _.selectArtistFollowId(this.artist.attributes.id);
+            _.unfollowArtist(followArtistId, function () {
+                $('[data-event-click="followArtist"], [data-event-click="unfollowArtist"]').toggleClass('hidden');
+            });
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         playYoutube: function (e) {
             var $this = $(e.currentTarget);
@@ -5695,73 +5828,85 @@ define('views/app',[
 
         toTop: function () {
             this._prepareStage(TopView, function () {
+                $('#pageTitle').text('TOP');
                 this.currentPageView.show();
             });
         },
 
         toPopList: function (feelingId) {
             this._prepareStage(PopListView, function () {
+                $('#pageTitle').text('POP LIST');
                 this.currentPageView.show(feelingId);
             });
         },
 
         toMusicDetail: function (musicId) {
             this._prepareStage(MusicView, function () {
+                $('#pageTitle').text('MUSIC');
                 this.currentPageView.show(musicId);
             });
         },
 
         toMusicSearch: function () {
             this._prepareStage(MusicSearchView, function () {
+                $('#pageTitle').text('MUSIC SEARCH');
                 this.currentPageView.show();
             });
         },
 
         toAddPop: function (musicId) {
             this._prepareStage(PopView, function () {
+                $('#pageTitle').text('ADD POP');
                 this.currentPageView.show(musicId);
             });
         },
 
         toLogin: function () {
             this._prepareStage(LoginView, function () {
+                $('#pageTitle').text('LOGIN');
                 this.currentPageView.show();
             });
         },
 
         toMypage: function () {
             this._prepareStage(MypageView, function () {
-                this.currentPageView.show();
+                 $('#pageTitle').text('MYPAGE');
+               this.currentPageView.show();
             });
         },
 
         toUserPage: function (userId) {
             this._prepareStage(UserView, function () {
+                $('#pageTitle').text('USER');
                 this.currentPageView.show(userId);
             });
         },
 
         toRegistUserPage: function () {
             this._prepareStage(UserRegistView, function () {
+                $('#pageTitle').text('REGIST');
                 this.currentPageView.show();
             });
         },
 
         toTimeline: function () {
             this._prepareStage(TimelineView, function () {
+                $('#pageTitle').text('TIMELINE');
                 this.currentPageView.show();
             });
         },
 
         toUserSetting: function () {
             this._prepareStage(UserSettingView, function () {
+                $('#pageTitle').text('SETTING');
                 this.currentPageView.show();
             });
         },
 
         toArtist: function (artistId) {
             this._prepareStage(ArtistView, function () {
-                this.currentPageView.show(artistId);
+                 $('#pageTitle').text('ARTIST');
+               this.currentPageView.show(artistId);
             });
         },
 

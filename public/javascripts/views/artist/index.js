@@ -26,6 +26,10 @@ define([
 
         initialize: function () {
 
+            // auto event bind.
+            _.bindEvents(this);
+
+
             _.bindAll(this, 'renderArtistInfo', 'renderMusicList', 'playYoutube', 'pocket', 'deletePocket');
 
             this.artist.bind('change', this.renderArtistInfo);
@@ -59,6 +63,52 @@ define([
             this.$el.find('#music_list').html(snipet);
 
         },
+
+
+
+        /**
+            アーティストフォロー
+        */
+        followArtist: function () {
+            _.followArtist(this.artist.attributes.id, function () {
+                $('[data-event-click="followArtist"], [data-event-click="unfollowArtist"]').toggleClass('hidden');
+            });
+        },
+
+
+
+        /**
+            アーティストフォロー解除
+        */
+        unfollowArtist: function () {
+            var followArtistId = _.selectArtistFollowId(this.artist.attributes.id);
+            _.unfollowArtist(followArtistId, function () {
+                $('[data-event-click="followArtist"], [data-event-click="unfollowArtist"]').toggleClass('hidden');
+            });
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         playYoutube: function (e) {
             var $this = $(e.currentTarget);
