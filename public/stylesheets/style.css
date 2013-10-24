@@ -649,6 +649,16 @@ table {
   font-size: 32px;
 }
 
+/* line 330, ../dev/scss/core/_helper.scss */
+.b {
+  font-weight: bold !important;
+}
+
+/* line 334, ../dev/scss/core/_helper.scss */
+.u {
+  text-decoration: underline !important;
+}
+
 /* line 4, ../dev/scss/core/_base.scss */
 body {
   padding-top: 65px;
@@ -935,8 +945,6 @@ header {
   color: #656457;
   -webkit-border-radius: 26px;
   -moz-border-radius: 26px;
-  -ms-border-radius: 26px;
-  -o-border-radius: 26px;
   border-radius: 26px;
   background-color: #fdfcf3;
 }
@@ -1286,8 +1294,6 @@ header {
   height: 60px;
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
-  -ms-border-radius: 60px;
-  -o-border-radius: 60px;
   border-radius: 60px;
 }
 /* line 53, ../dev/scss/modules/_buttons.scss */
@@ -1404,8 +1410,6 @@ header {
   vertical-align: middle;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
   border-radius: 4px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
@@ -1523,8 +1527,6 @@ textarea.form {
   line-height: 22px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 /* line 35, ../dev/scss/modules/_feelings.scss */
@@ -1558,7 +1560,7 @@ textarea.form {
 
 /* line 60, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling {
-  background-image: url('/../images/../images/sprite/feeling-s4102400cd7.png');
+  background-image: url('/../images/../images/sprite/feeling-scb5bd80b49.png');
   background-repeat: no-repeat;
   background-size: 46px 280px;
 }
@@ -1572,37 +1574,37 @@ textarea.form {
 .sprite-feeling.feeling-2 {
   width: 46px;
   height: 40px;
-  background-position: 0 -240px;
+  background-position: 0 -40px;
 }
 /* line 68, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-3 {
   width: 46px;
   height: 40px;
-  background-position: 0 -200px;
+  background-position: 0 -80px;
 }
 /* line 71, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-4 {
   width: 46px;
   height: 40px;
-  background-position: 0 -40px;
+  background-position: 0 -120px;
 }
 /* line 74, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-5 {
   width: 46px;
   height: 40px;
-  background-position: 0 -80px;
+  background-position: 0 -160px;
 }
 /* line 77, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-6 {
   width: 46px;
   height: 40px;
-  background-position: 0 -120px;
+  background-position: 0 -200px;
 }
 /* line 80, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-7 {
   width: 46px;
   height: 40px;
-  background-position: 0 -160px;
+  background-position: 0 -240px;
 }
 
 /* line 87, ../dev/scss/modules/_feelings.scss */
@@ -1749,8 +1751,6 @@ textarea.form {
   line-height: 22px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 /* line 100, ../dev/scss/modules/_drop_list.scss */
@@ -1832,8 +1832,6 @@ textarea.form {
   font-size: 30px;
   -webkit-border-radius: 80px;
   -moz-border-radius: 80px;
-  -ms-border-radius: 80px;
-  -o-border-radius: 80px;
   border-radius: 80px;
   background: #dedbc7;
 }
@@ -1985,8 +1983,6 @@ textarea.form {
   font-size: 20px;
   -webkit-border-radius: 56px;
   -moz-border-radius: 56px;
-  -ms-border-radius: 56px;
-  -o-border-radius: 56px;
   border-radius: 56px;
 }
 /* line 186, ../dev/scss/modules/_music_detail.scss */
@@ -2543,6 +2539,323 @@ textarea.form {
   padding: 10px;
 }
 
+/* line 12, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .leftCol {
+  position: fixed;
+  float: left;
+  width: 320px;
+}
+/* line 19, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .rightCol {
+  float: right;
+  width: 612px;
+}
+/* line 28, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .listEditArea.edit .editButton {
+  display: none;
+}
+/* line 31, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .listEditArea.edit .doneButton {
+  display: block;
+}
+/* line 34, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .listEditArea.edit .clearBtn {
+  display: block;
+}
+/* line 37, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .listEditArea.edit .addPlaylistArea {
+  display: block;
+}
+/* line 47, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineHeader {
+  position: relative;
+  border-bottom: 1px solid #adaa95;
+}
+/* line 51, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineHeader .editButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/* line 56, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineHeader .doneButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}
+/* line 62, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineHeader .userFollowButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  color: #7d6a35;
+  background-color: #ffcf3c;
+}
+/* line 76, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList {
+  margin-top: 10px;
+}
+/* line 78, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li {
+  position: relative;
+  width: 310px;
+  height: 24px;
+  line-height: 24px;
+  margin: 10px 0;
+  padding-left: 10px;
+  color: #656457;
+}
+/* line 87, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li:hover {
+  background-color: #ffe77c;
+  cursor: pointer;
+}
+/* line 90, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li:hover:after {
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: 0px;
+  height: 0px;
+  content: " ";
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #ffe77c;
+  border-right: 0px solid transparent;
+}
+/* line 105, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li.select {
+  background-color: #ffe77c;
+}
+/* line 107, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li.select:after {
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: 0px;
+  height: 0px;
+  content: " ";
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #ffe77c;
+  border-right: 0px solid transparent;
+}
+/* line 120, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li.dropTarget {
+  background-color: #ffe77c;
+}
+/* line 122, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li.dropTarget:after {
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: 0px;
+  height: 0px;
+  content: " ";
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #ffe77c;
+  border-right: 0px solid transparent;
+}
+/* line 137, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList li .clearBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+  pointer-events: auto;
+}
+/* line 146, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .sidebarList.edit .clearBtn {
+  display: block;
+}
+/* line 154, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .addPlaylistArea {
+  position: relative;
+  display: none;
+}
+/* line 159, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .addPlaylistArea input[type="text"] {
+  display: block;
+  width: 320px;
+  height: 40px;
+  background-color: #efede0;
+  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
+}
+/* line 168, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .addPlaylistArea input[type="button"] {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: block;
+  width: 64px;
+  height: 32px;
+  color: #50504b;
+  text-align: center;
+  background-color: #ccc9b2;
+}
+/* line 184, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .filterArea {
+  position: relative;
+  height: 60px;
+}
+/* line 188, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .filterArea .filterByNameInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 382px;
+}
+/* line 196, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .filterArea .filterByNameBtn {
+  position: absolute;
+  top: 5px;
+  left: 312px;
+  display: block;
+  width: 64px;
+  text-align: center;
+}
+/* line 205, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .filterArea .selectArea {
+  position: absolute;
+  top: 0;
+  left: 388px;
+  display: block;
+  width: 218px;
+  height: 40px;
+}
+/* line 212, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .filterArea .selectArea select {
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+}
+/* line 226, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea li {
+  width: 95%;
+  margin-left: 5%;
+  background-color: #efede0;
+  color: #656457 !important;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+/* line 236, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .time {
+  margin-top: 7px;
+}
+/* line 241, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea {
+  margin-top: 10px;
+}
+/* line 244, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea:after {
+  display: block;
+  width: 0;
+  height: 0;
+  content: " ";
+  clear: both;
+}
+/* line 252, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .thumb {
+  float: left;
+  display: block;
+  width: 60px;
+  height: 60px;
+}
+/* line 259, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .info {
+  float: left;
+  margin-left: 10px;
+  width: 490px;
+}
+/* line 265, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .title {
+  font-size: 14px;
+}
+/* line 269, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling {
+  display: inline-block;
+  padding: 3px 10px;
+  margin-top: 5px;
+  color: white;
+}
+/* line 274, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type1 {
+  background-color: #c85d94;
+}
+/* line 277, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type2 {
+  background-color: #77b66a;
+}
+/* line 280, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type3 {
+  background-color: red;
+}
+/* line 283, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type4 {
+  background-color: #6880cc;
+}
+/* line 286, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type5 {
+  background-color: #e97f45;
+}
+/* line 289, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type6 {
+  background-color: #bc7ad4;
+}
+/* line 292, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .feeling.type7 {
+  background-color: #f4b74e;
+}
+/* line 297, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .musicInfoArea .comment {
+  margin-top: 5px;
+}
+/* line 303, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea {
+  margin-top: 10px;
+}
+/* line 306, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea:after {
+  display: block;
+  width: 0;
+  height: 0;
+  content: " ";
+  clear: both;
+}
+/* line 314, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea .thumb {
+  float: left;
+  display: block;
+  width: 60px;
+  height: 60px;
+}
+/* line 321, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea .info {
+  float: left;
+  margin-left: 10px;
+  width: 490px;
+}
+/* line 327, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea .title {
+  font-weight: bold;
+  font-size: 14px;
+}
+/* line 332, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea .url {
+  margin-top: 10px;
+}
+/* line 336, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea .linkSourceArea .comment {
+  margin-top: 10px;
+}
+
 /* line 10, ../dev/scss/pages/_user_setting.scss */
 .settingPage .title {
   font-size: 18px;
@@ -2606,30 +2919,30 @@ textarea.form {
 
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 75, ../dev/scss/style.scss */
+  /* line 76, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 82, ../dev/scss/style.scss */
+/* line 83, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 83, ../dev/scss/style.scss */
+/* line 84, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 84, ../dev/scss/style.scss */
+/* line 85, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 88, ../dev/scss/style.scss */
+/* line 89, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -2644,7 +2957,7 @@ textarea.form {
 /*==============================
   Stage
 ===============================*/
-/* line 104, ../dev/scss/style.scss */
+/* line 105, ../dev/scss/style.scss */
 #stage {
   position: relative;
 }
@@ -2652,7 +2965,7 @@ textarea.form {
 /*==============================
   Preview Area
 ===============================*/
-/* line 115, ../dev/scss/style.scss */
+/* line 116, ../dev/scss/style.scss */
 .previewArea {
   z-index: 9998;
   transition: opacity .5s ease;
@@ -2661,7 +2974,7 @@ textarea.form {
   -ms-transition: opacity .5s ease;
 }
 
-/* line 122, ../dev/scss/style.scss */
+/* line 123, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: absolute !important;
   top: -500px !important;
@@ -2669,7 +2982,7 @@ textarea.form {
   opacity: 0;
 }
 
-/* line 128, ../dev/scss/style.scss */
+/* line 129, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -2684,7 +2997,7 @@ textarea.form {
   color: white;
 }
 
-/* line 142, ../dev/scss/style.scss */
+/* line 143, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -2700,7 +3013,7 @@ textarea.form {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 159, ../dev/scss/style.scss */
+/* line 160, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -2708,25 +3021,25 @@ textarea.form {
 /*==============================
   Base Frame
 ===============================*/
-/* line 173, ../dev/scss/style.scss */
+/* line 174, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 65px;
 }
 
-/* line 178, ../dev/scss/style.scss */
+/* line 179, ../dev/scss/style.scss */
 #main {
   width: 980px;
   margin: 0 auto;
 }
 
-/* line 182, ../dev/scss/style.scss */
+/* line 183, ../dev/scss/style.scss */
 #pagePop {
   z-index: 9999;
 }
 
-/* line 185, ../dev/scss/style.scss */
+/* line 186, ../dev/scss/style.scss */
 .popUp {
   position: fixed;
   top: 100px;

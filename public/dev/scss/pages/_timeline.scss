@@ -1,0 +1,385 @@
+//======================================
+//  Timelineのモジュール
+
+// と思いきや、他人のマイページも同じスタイルなので、共通化しなきゃ。
+//======================================
+
+
+// 全体を囲む
+.pageTimeline {
+
+    // 左部分
+    .leftCol {
+        position: fixed;
+        float: left;
+        width: 320px;
+    }
+
+    // 右部分
+    .rightCol {
+        float: right;
+        width: 612px;
+    }
+
+
+    // リスト編集機能
+    .listEditArea {
+        &.edit {
+            .editButton {
+                display: none;
+            }
+            .doneButton {
+                display: block;
+            }
+            .clearBtn {
+                display: block;
+            }
+            .addPlaylistArea {
+                display: block;
+            }
+        }
+    }
+
+
+
+
+    // プレイリストタイトル業
+    .timelineHeader {
+        position: relative;
+        border-bottom: 1px solid #adaa95;
+
+        .editButton {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .doneButton {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: none;
+        }
+        .userFollowButton {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            color: #7d6a35;
+            background-color: #ffcf3c;
+        }
+    }
+
+    // サイドバーの表示
+    .sidebarList {
+        margin-top: 10px;
+        li {
+            position: relative;
+            width: 310px;
+            height: 24px;
+            line-height: 24px;
+            margin: 10px 0;
+            padding-left: 10px;
+            color: #656457;
+
+            &:hover {
+                background-color: #ffe77c;
+                cursor: pointer;
+                &:after {
+                  position: absolute;
+                  top: 0;
+                  right: -12px;
+                  width: 0px;
+                  height: 0px;
+                  content: " ";
+                  border-top: 12px solid transparent;
+                  border-bottom: 12px solid transparent;
+                  border-left: 12px solid #ffe77c;
+                  border-right: 0px solid transparent;
+                }
+            }
+
+
+            &.select {
+                background-color: #ffe77c;
+                &:after {
+                  position: absolute;
+                  top: 0;
+                  right: -12px;
+                  width: 0px;
+                  height: 0px;
+                  content: " ";
+                  border-top: 12px solid transparent;
+                  border-bottom: 12px solid transparent;
+                  border-left: 12px solid #ffe77c;
+                  border-right: 0px solid transparent;
+                }
+            }
+            &.dropTarget {
+                background-color: #ffe77c;
+                &:after {
+                  position: absolute;
+                  top: 0;
+                  right: -12px;
+                  width: 0px;
+                  height: 0px;
+                  content: " ";
+                  border-top: 12px solid transparent;
+                  border-bottom: 12px solid transparent;
+                  border-left: 12px solid #ffe77c;
+                  border-right: 0px solid transparent;
+                }
+            }
+
+            // 削除ボタン
+            .clearBtn {
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: none;
+                pointer-events: auto;
+            }
+        }
+        &.edit {
+            .clearBtn {
+                display: block;
+            }
+        }
+
+    }
+
+    // プレイリストを作るUI
+    .addPlaylistArea {
+        position: relative;
+        display: none;
+
+        // 入力欄
+        input[type="text"] {
+            display: block;
+            width: 320px;
+            height: 40px;
+            background-color: #efede0;
+            box-shadow: -1px 1px 1px rgba(0,0,0,.3) inset;
+        }
+
+        // 追加ボタン
+        input[type="button"] {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: block;
+            width: 64px;
+            height: 32px;
+            color: #50504b;
+            text-align: center;
+            background-color: #ccc9b2;
+        }
+    }
+
+
+
+    // Pocketの絞り込みUI
+    .filterArea {
+        position: relative;
+        height: 60px;
+
+        .filterByNameInput {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 382px;
+        }
+
+        .filterByNameBtn {
+            position: absolute;
+            top: 5px;
+            left: 312px;
+            display: block;
+            width: 64px;
+            text-align: center;
+        }
+
+        .selectArea {
+            position: absolute;
+            top: 0;
+            left: 388px;
+            display: block;
+            width: 218px;
+            height: 40px;
+            select {
+                width: 100%;
+                height: 100%;
+                padding-left: 10px;
+            }
+        }
+    }
+
+
+
+
+
+    // タイムラインの個別中身
+    .timelineArea {
+        li {
+            width: 95%;
+            margin-left: 5%;
+            background-color: #efede0;
+            color: #656457 !important;  // とりあえず上書き。
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        // 時間表示
+        .time {
+            margin-top: 7px;
+        }
+
+        // 曲を表示する
+        .musicInfoArea {
+            margin-top: 10px;
+
+            &:after {
+                display: block;
+                width: 0;
+                height: 0;
+                content: " ";
+                clear: both;
+            }
+
+            .thumb {
+                float: left;
+                display: block;
+                width: 60px;
+                height: 60px;
+            }
+
+            .info {
+                float: left;
+                margin-left: 10px;
+                width: 490px;
+            }
+
+            .title {
+                font-size: 14px;
+            }
+
+            .feeling {
+                display: inline-block;
+                padding: 3px 10px;
+                margin-top: 5px;
+                color: white;
+                &.type1 {
+                    background-color: $bgColor-feel-Happy;
+                }
+                &.type2 {
+                    background-color: $bgColor-feel-Relax;
+                }
+                &.type3 {
+                    background-color: $bgColor-feel-Sad;
+                }
+                &.type4 {
+                    background-color: $bgColor-feel-Cry;
+                }
+                &.type5 {
+                    background-color: $bgColor-feel-ight;
+                }
+                &.type6 {
+                    background-color: $bgColor-feel-Angry;
+                }
+                &.type7 {
+                    background-color: $bgColor-feel-Smile;
+                }
+            }
+
+            .comment {
+                margin-top: 5px;
+            }
+        }
+
+        // リンクソース追加
+        .linkSourceArea {
+            margin-top: 10px;
+
+            &:after {
+                display: block;
+                width: 0;
+                height: 0;
+                content: " ";
+                clear: both;
+            }
+
+            .thumb {
+                float: left;
+                display: block;
+                width: 60px;
+                height: 60px;
+            }
+
+            .info {
+                float: left;
+                margin-left: 10px;
+                width: 490px;
+            }
+
+            .title {
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            .url {
+                margin-top: 10px;
+            }
+
+            .comment {
+                margin-top: 10px;
+            }
+        }
+    }
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
