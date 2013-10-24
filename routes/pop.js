@@ -97,6 +97,10 @@ exports.add = function(req, res) {
         // 曲のFeelingを再計算する
         onlineBatch.setMusicFeeling(req.body.music_id);
 
+        // お知らせ追加
+        onlineBatch.addNotificationWhenAddDropToFollowArtistMusic(req.body.music_id, user_id);
+        onlineBatch.addNotificationWhenFollowUserAddDrop(req.body.music_id, user_id);
+
     });
 
 };
