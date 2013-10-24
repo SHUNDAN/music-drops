@@ -1946,9 +1946,18 @@ define('views/top',[
         playSong: function (e) {
 
             var $this = $(e.currentTarget);
+            var $li = $this.parents('[data-pop-id]');
             var type = $this.parents('[data-type]').data('type');
-            var popId = parseInt($this.parents('[data-pop-id]').data('pop-id'), 10);
+            var popId = parseInt($li.data('pop-id'), 10);
             console.debug('playSong: ', popId, this.displayPopList);
+
+
+            // もしPause中の場合には、再開のみを行う
+            if ($li.data('nowpausing')) {
+                $li.removeAttr('nowpausing');
+                mb.musicPlayer.startMusic();
+                return;
+            }
 
 
             // 表示オプションを作成
@@ -2034,6 +2043,7 @@ define('views/top',[
         */
         pauseSong: function (e) {
             mb.musicPlayer.pauseMusic();
+            $(e.currentTarget).parents('[data-pop-id]').attr('data-nowpausing', 'true');
         },
 
 
@@ -5525,6 +5535,10 @@ define('views/artist/index',[
 
         initialize: function () {
 
+            // auto event bind.
+            _.bindEvents(this);
+
+
             _.bindAll(this, 'renderArtistInfo', 'renderMusicList', 'playYoutube', 'pocket', 'deletePocket');
 
             this.artist.bind('change', this.renderArtistInfo);
@@ -5558,6 +5572,52 @@ define('views/artist/index',[
             this.$el.find('#music_list').html(snipet);
 
         },
+
+
+
+        /**
+            アーティストフォロー
+        */
+        followArtist: function () {
+            _.followArtist(this.artist.attributes.id, function () {
+                $('[data-event-click="followArtist"], [data-event-click="unfollowArtist"]').toggleClass('hidden');
+            });
+        },
+
+
+
+        /**
+            アーティストフォロー解除
+        */
+        unfollowArtist: function () {
+            var followArtistId = _.selectArtistFollowId(this.artist.attributes.id);
+            _.unfollowArtist(followArtistId, function () {
+                $('[data-event-click="followArtist"], [data-event-click="unfollowArtist"]').toggleClass('hidden');
+            });
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         playYoutube: function (e) {
             var $this = $(e.currentTarget);
