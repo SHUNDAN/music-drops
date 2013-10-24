@@ -2550,41 +2550,25 @@ textarea.form {
   float: right;
   width: 612px;
 }
-/* line 28, ../dev/scss/pages/_timeline.scss */
-.pageTimeline .listEditArea.edit .editButton {
-  display: none;
-}
-/* line 31, ../dev/scss/pages/_timeline.scss */
-.pageTimeline .listEditArea.edit .doneButton {
-  display: block;
-}
-/* line 34, ../dev/scss/pages/_timeline.scss */
-.pageTimeline .listEditArea.edit .clearBtn {
-  display: block;
-}
-/* line 37, ../dev/scss/pages/_timeline.scss */
-.pageTimeline .listEditArea.edit .addPlaylistArea {
-  display: block;
-}
-/* line 47, ../dev/scss/pages/_timeline.scss */
+/* line 26, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineHeader {
   position: relative;
   border-bottom: 1px solid #adaa95;
 }
-/* line 51, ../dev/scss/pages/_timeline.scss */
+/* line 30, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineHeader .editButton {
   position: absolute;
   top: 0;
   right: 0;
 }
-/* line 56, ../dev/scss/pages/_timeline.scss */
+/* line 35, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineHeader .doneButton {
   position: absolute;
   top: 0;
   right: 0;
   display: none;
 }
-/* line 62, ../dev/scss/pages/_timeline.scss */
+/* line 41, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineHeader .userFollowButton {
   position: absolute;
   top: 0;
@@ -2596,11 +2580,11 @@ textarea.form {
   color: #7d6a35;
   background-color: #ffcf3c;
 }
-/* line 76, ../dev/scss/pages/_timeline.scss */
+/* line 55, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .sidebarList {
   margin-top: 10px;
 }
-/* line 78, ../dev/scss/pages/_timeline.scss */
+/* line 57, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .sidebarList li {
   position: relative;
   width: 310px;
@@ -2610,12 +2594,12 @@ textarea.form {
   padding-left: 10px;
   color: #656457;
 }
-/* line 87, ../dev/scss/pages/_timeline.scss */
+/* line 66, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .sidebarList li:hover {
   background-color: #ffe77c;
   cursor: pointer;
 }
-/* line 90, ../dev/scss/pages/_timeline.scss */
+/* line 69, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .sidebarList li:hover:after {
   position: absolute;
   top: 0;
@@ -2628,11 +2612,11 @@ textarea.form {
   border-left: 12px solid #ffe77c;
   border-right: 0px solid transparent;
 }
-/* line 105, ../dev/scss/pages/_timeline.scss */
+/* line 84, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .sidebarList li.select {
   background-color: #ffe77c;
 }
-/* line 107, ../dev/scss/pages/_timeline.scss */
+/* line 86, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .sidebarList li.select:after {
   position: absolute;
   top: 0;
@@ -2645,11 +2629,11 @@ textarea.form {
   border-left: 12px solid #ffe77c;
   border-right: 0px solid transparent;
 }
-/* line 120, ../dev/scss/pages/_timeline.scss */
+/* line 99, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .sidebarList li.dropTarget {
   background-color: #ffe77c;
 }
-/* line 122, ../dev/scss/pages/_timeline.scss */
+/* line 101, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .sidebarList li.dropTarget:after {
   position: absolute;
   top: 0;
@@ -2662,7 +2646,7 @@ textarea.form {
   border-left: 12px solid #ffe77c;
   border-right: 0px solid transparent;
 }
-/* line 137, ../dev/scss/pages/_timeline.scss */
+/* line 116, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .sidebarList li .clearBtn {
   position: absolute;
   top: 0;
@@ -2670,73 +2654,11 @@ textarea.form {
   display: none;
   pointer-events: auto;
 }
-/* line 146, ../dev/scss/pages/_timeline.scss */
+/* line 125, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .sidebarList.edit .clearBtn {
   display: block;
 }
-/* line 154, ../dev/scss/pages/_timeline.scss */
-.pageTimeline .addPlaylistArea {
-  position: relative;
-  display: none;
-}
-/* line 159, ../dev/scss/pages/_timeline.scss */
-.pageTimeline .addPlaylistArea input[type="text"] {
-  display: block;
-  width: 320px;
-  height: 40px;
-  background-color: #efede0;
-  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
-}
-/* line 168, ../dev/scss/pages/_timeline.scss */
-.pageTimeline .addPlaylistArea input[type="button"] {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  display: block;
-  width: 64px;
-  height: 32px;
-  color: #50504b;
-  text-align: center;
-  background-color: #ccc9b2;
-}
-/* line 184, ../dev/scss/pages/_timeline.scss */
-.pageTimeline .filterArea {
-  position: relative;
-  height: 60px;
-}
-/* line 188, ../dev/scss/pages/_timeline.scss */
-.pageTimeline .filterArea .filterByNameInput {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 382px;
-}
-/* line 196, ../dev/scss/pages/_timeline.scss */
-.pageTimeline .filterArea .filterByNameBtn {
-  position: absolute;
-  top: 5px;
-  left: 312px;
-  display: block;
-  width: 64px;
-  text-align: center;
-}
-/* line 205, ../dev/scss/pages/_timeline.scss */
-.pageTimeline .filterArea .selectArea {
-  position: absolute;
-  top: 0;
-  left: 388px;
-  display: block;
-  width: 218px;
-  height: 40px;
-}
-/* line 212, ../dev/scss/pages/_timeline.scss */
-.pageTimeline .filterArea .selectArea select {
-  width: 100%;
-  height: 100%;
-  padding-left: 10px;
-}
-/* line 226, ../dev/scss/pages/_timeline.scss */
+/* line 136, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea li {
   width: 95%;
   margin-left: 5%;
@@ -2745,15 +2667,15 @@ textarea.form {
   margin-bottom: 20px;
   padding: 10px;
 }
-/* line 236, ../dev/scss/pages/_timeline.scss */
+/* line 146, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .time {
   margin-top: 7px;
 }
-/* line 241, ../dev/scss/pages/_timeline.scss */
+/* line 151, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea {
   margin-top: 10px;
 }
-/* line 244, ../dev/scss/pages/_timeline.scss */
+/* line 154, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea:after {
   display: block;
   width: 0;
@@ -2761,67 +2683,67 @@ textarea.form {
   content: " ";
   clear: both;
 }
-/* line 252, ../dev/scss/pages/_timeline.scss */
+/* line 162, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .thumb {
   float: left;
   display: block;
   width: 60px;
   height: 60px;
 }
-/* line 259, ../dev/scss/pages/_timeline.scss */
+/* line 169, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .info {
   float: left;
   margin-left: 10px;
   width: 490px;
 }
-/* line 265, ../dev/scss/pages/_timeline.scss */
+/* line 175, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .title {
   font-size: 14px;
 }
-/* line 269, ../dev/scss/pages/_timeline.scss */
+/* line 179, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling {
   display: inline-block;
   padding: 3px 10px;
   margin-top: 5px;
   color: white;
 }
-/* line 274, ../dev/scss/pages/_timeline.scss */
+/* line 184, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type1 {
   background-color: #c85d94;
 }
-/* line 277, ../dev/scss/pages/_timeline.scss */
+/* line 187, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type2 {
   background-color: #77b66a;
 }
-/* line 280, ../dev/scss/pages/_timeline.scss */
+/* line 190, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type3 {
   background-color: red;
 }
-/* line 283, ../dev/scss/pages/_timeline.scss */
+/* line 193, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type4 {
   background-color: #6880cc;
 }
-/* line 286, ../dev/scss/pages/_timeline.scss */
+/* line 196, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type5 {
   background-color: #e97f45;
 }
-/* line 289, ../dev/scss/pages/_timeline.scss */
+/* line 199, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type6 {
   background-color: #bc7ad4;
 }
-/* line 292, ../dev/scss/pages/_timeline.scss */
+/* line 202, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type7 {
   background-color: #f4b74e;
 }
-/* line 297, ../dev/scss/pages/_timeline.scss */
+/* line 207, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .comment {
   margin-top: 5px;
 }
-/* line 303, ../dev/scss/pages/_timeline.scss */
+/* line 213, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea {
   margin-top: 10px;
 }
-/* line 306, ../dev/scss/pages/_timeline.scss */
+/* line 216, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea:after {
   display: block;
   width: 0;
@@ -2829,29 +2751,29 @@ textarea.form {
   content: " ";
   clear: both;
 }
-/* line 314, ../dev/scss/pages/_timeline.scss */
+/* line 224, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea .thumb {
   float: left;
   display: block;
   width: 60px;
   height: 60px;
 }
-/* line 321, ../dev/scss/pages/_timeline.scss */
+/* line 231, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea .info {
   float: left;
   margin-left: 10px;
   width: 490px;
 }
-/* line 327, ../dev/scss/pages/_timeline.scss */
+/* line 237, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea .title {
   font-weight: bold;
   font-size: 14px;
 }
-/* line 332, ../dev/scss/pages/_timeline.scss */
+/* line 242, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea .url {
   margin-top: 10px;
 }
-/* line 336, ../dev/scss/pages/_timeline.scss */
+/* line 246, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea .comment {
   margin-top: 10px;
 }
