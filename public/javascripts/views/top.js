@@ -264,13 +264,14 @@ define([
 
             // 開始前コールバック
             options.callbackWhenWillStart = function (pop) {
+                console.debug('callbackWhenWillStart is called.');
 
                 // 表示をリセット
                 $('[data-btn="pause"]').addClass('hidden');
                 $('[data-btn="play"]').removeClass('hidden');
 
                 // 今回再生分をフォーカス
-                var $li = $('[data-type="'+type+'"] [data-pop-id="'+popId+'"]');
+                var $li = $('[data-type="'+type+'"] [data-pop-id="'+pop.id+'"]');
                 $li.find('[data-btn="pause"]').removeClass('hidden');
                 $li.find('[data-btn="play"]').addClass('hidden');
 
@@ -288,31 +289,6 @@ define([
             // 再生開始
             console.debug('play music. options=', options);
             mb.musicPlayer.playMusics(options);
-
-
-
-
-
-
-
-            // var $this = $(e.currentTarget);
-            // var youtubeId = $this.data('youtube-id');
-            // var songUrl = $this.data('song-url');
-            // var musicId = $this.data('music-id');
-            // console.log('playSong: ', youtubeId, songUrl);
-
-
-            // // play.
-            // this.youtubeView = new YoutubeView();
-            // if (youtubeId) {
-            //     this.youtubeView.show(youtubeId, this);
-
-            // } else {
-            //     this.youtubeView.playSampleMusic(songUrl, this);
-            // }
-
-            // // add play count.
-            // _.addMusicPlayCount(musicId);
 
         },
 
