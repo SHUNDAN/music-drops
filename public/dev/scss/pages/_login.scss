@@ -1,0 +1,21 @@
+// Login Page
+
+//  ログインブロック
+//-------------------------------------
+.page-login {
+  width: 480px;
+  margin: 0 auto;
+}
+.page-login-service {
+  .btn-text {
+    width: 120px;
+  }
+}
+.page-login-sns {
+  .btn-text {
+    display: block;
+    width: 454px;
+    margin: 0 auto 10px;
+    text-align: center;
+  }
+}
