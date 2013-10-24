@@ -182,6 +182,10 @@ exports.likePop = function (req, res) {
 
         // response.
         res.json('success');
+
+
+        // お知らせ追加
+        onlineBatch.addNotificationWhenMyDropLiked(popId, user.id);
     });
 
 };

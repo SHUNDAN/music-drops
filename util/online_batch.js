@@ -9,8 +9,10 @@ var fs = require('fs');
 // var db = new sqlite3.Database(global.db_path);
 var glob = require('glob');
 var musicModel = require('../models/music');
+var userModel = require('../models/user');
 var popModel = require('../models/pop');
 var feelingModel = require('../models/feeling');
+var userNotificationModel = require('../models/user_notification');
 
 
 module.exports = {
@@ -115,6 +117,77 @@ module.exports = {
 
 
 
+
+    /**
+        お知らせ追加：自分のドロップがLikeされた
+    */
+    addNotificationWhenMyDropLiked: function (popId, fromUserId) {
+
+        // Popを検索します
+        popModel.selectObjects({id:popId}, function (err, rows) {
+
+            // 存在しなければ終了
+            if (rows.length === 0) {
+                console.warn('addNotificationWhenMyDropLiked: not found pop. id=', popId);
+                return;
+            }
+
+            // 自分のPopの場合には終了
+            if (rows[0].user_id === fromUserId) {
+                console.log('like pop of mine.');
+                return;
+            }
+
+            var pop = rows[0];
+
+            // 曲名を取得します
+            musicModel.selectObjects({id: pop.music_id}, function (err, rows) {
+
+                // 存在しなければ終わり
+                if (rows.length === 0) {
+                    console.warn('addNotificationWhenMyDropLiked: not found music. id=', pop.music_id);
+                    return;
+                }
+
+                var music = rows[0];
+
+
+                // Likeしたユーザー名を取得します
+                userModel.selectObjects({id: fromUserId}, function (err, rows) {
+
+                    // なければ終わり
+                    if (rows.length === 0) {
+                        console.warn('addNotificationWhenMyDropLiked: not found like user. id=', fromUserId);
+                        return;
+                    }
+
+                    var fromUser = rows[0];
+
+
+                    // 通知情報を作って、登録
+                    var jsonText = JSON.stringify({
+                        pop: pop,
+                        music: music,
+                        fromUser: fromUser
+                    });
+
+
+                    // 追加処理
+                    var data = {
+                        user_id: pop.user_id,
+                        type: 3,
+                        json: jsonText
+                    };
+
+                    // 保存する
+                    userNotificationModel.insertObject(data);
+
+                });
+
+            });
+
+        });
+    },
 
 
 
