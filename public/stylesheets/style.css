@@ -2667,15 +2667,19 @@ textarea.form {
   margin-bottom: 20px;
   padding: 10px;
 }
-/* line 146, ../dev/scss/pages/_timeline.scss */
+/* line 144, ../dev/scss/pages/_timeline.scss */
+.pageTimeline .timelineArea li.done {
+  background-color: #bfbfbf;
+}
+/* line 150, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .time {
   margin-top: 7px;
 }
-/* line 151, ../dev/scss/pages/_timeline.scss */
+/* line 155, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea {
   margin-top: 10px;
 }
-/* line 154, ../dev/scss/pages/_timeline.scss */
+/* line 158, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea:after {
   display: block;
   width: 0;
@@ -2683,67 +2687,67 @@ textarea.form {
   content: " ";
   clear: both;
 }
-/* line 162, ../dev/scss/pages/_timeline.scss */
+/* line 166, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .thumb {
   float: left;
   display: block;
   width: 60px;
   height: 60px;
 }
-/* line 169, ../dev/scss/pages/_timeline.scss */
+/* line 173, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .info {
   float: left;
   margin-left: 10px;
   width: 490px;
 }
-/* line 175, ../dev/scss/pages/_timeline.scss */
+/* line 179, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .title {
   font-size: 14px;
 }
-/* line 179, ../dev/scss/pages/_timeline.scss */
+/* line 183, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling {
   display: inline-block;
   padding: 3px 10px;
   margin-top: 5px;
   color: white;
 }
-/* line 184, ../dev/scss/pages/_timeline.scss */
+/* line 188, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type1 {
   background-color: #c85d94;
 }
-/* line 187, ../dev/scss/pages/_timeline.scss */
+/* line 191, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type2 {
   background-color: #77b66a;
 }
-/* line 190, ../dev/scss/pages/_timeline.scss */
+/* line 194, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type3 {
   background-color: red;
 }
-/* line 193, ../dev/scss/pages/_timeline.scss */
+/* line 197, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type4 {
   background-color: #6880cc;
 }
-/* line 196, ../dev/scss/pages/_timeline.scss */
+/* line 200, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type5 {
   background-color: #e97f45;
 }
-/* line 199, ../dev/scss/pages/_timeline.scss */
+/* line 203, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type6 {
   background-color: #bc7ad4;
 }
-/* line 202, ../dev/scss/pages/_timeline.scss */
+/* line 206, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type7 {
   background-color: #f4b74e;
 }
-/* line 207, ../dev/scss/pages/_timeline.scss */
+/* line 211, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .comment {
   margin-top: 5px;
 }
-/* line 213, ../dev/scss/pages/_timeline.scss */
+/* line 217, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea {
   margin-top: 10px;
 }
-/* line 216, ../dev/scss/pages/_timeline.scss */
+/* line 220, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea:after {
   display: block;
   width: 0;
@@ -2751,29 +2755,29 @@ textarea.form {
   content: " ";
   clear: both;
 }
-/* line 224, ../dev/scss/pages/_timeline.scss */
+/* line 228, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea .thumb {
   float: left;
   display: block;
   width: 60px;
   height: 60px;
 }
-/* line 231, ../dev/scss/pages/_timeline.scss */
+/* line 235, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea .info {
   float: left;
   margin-left: 10px;
   width: 490px;
 }
-/* line 237, ../dev/scss/pages/_timeline.scss */
+/* line 241, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea .title {
   font-weight: bold;
   font-size: 14px;
 }
-/* line 242, ../dev/scss/pages/_timeline.scss */
+/* line 246, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea .url {
   margin-top: 10px;
 }
-/* line 246, ../dev/scss/pages/_timeline.scss */
+/* line 250, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .linkSourceArea .comment {
   margin-top: 10px;
 }
