@@ -3,14 +3,21 @@
  *  Online Batch
  ****************************************/
 var fs = require('fs');
-// var _ = require('underscore');
+var _ = require('underscore');
 // var util = require('util');
 // var sqlite3 = require('sqlite3').verbose();
 // var db = new sqlite3.Database(global.db_path);
 var glob = require('glob');
 var musicModel = require('../models/music');
+var musicLinkModel = require('../models/music_link');
+var userModel = require('../models/user');
 var popModel = require('../models/pop');
 var feelingModel = require('../models/feeling');
+var userPocketModel = require('../models/user_pocket');
+var userFollowModel = require('../models/user_follow');
+var userNotificationModel = require('../models/user_notification');
+var userArtistFollowModel = require('../models/user_artist_follow');
+var userPlaylistModel = require('../models/user_playlist');
 
 
 module.exports = {
@@ -108,14 +115,466 @@ module.exports = {
 
             }); // end feeling model select
         }); // end glob.
+    },
 
 
 
+    /**
+        お知らせ追加：フォローしているユーザーがDropを追加
+    */
+    addNotificationWhenFollowUserAddDrop: function (musicId, userId) {
+
+        // 対象のPopを検索する
+        popModel.selectObjects({music_id: musicId}, function (err, rows) {
+
+            // 0件の場合は終了
+            if (rows.length === 0) {
+                console.log('addNotificationWhenFollowUserAddDrop: no pop found. musicId=', musicId);
+                return;
+            }
+
+            // 最新のものを対象とする
+            var pop = rows[rows.length-1];
+
+            // 曲の詳細情報を取得する
+            musicModel.selectObjects({id: musicId}, function (err, rows) {
+
+                // 0件の場合は終了
+                if (rows.length === 0) {
+                    console.log('addNotificationWhenFollowUserAddDrop: no music found. musicId=', musicId);
+                    return;
+                }
+
+                var music = rows[0];
+
+
+                // Dropを書いた人の情報を取得する
+                userModel.selectObjects({id: userId}, function (err, rows) {
+
+                    // 0件の場合は終了
+                    if (rows.length === 0) {
+                        console.log('addNotificationWhenFollowUserAddDrop: no user found. userId=', userId);
+                        return;
+                    }
+
+                    var followUser = rows[0];
+
+
+                    // 該当アーティストをフォローしている人を捜す
+                    userFollowModel.selectObjects({dest_user_id:userId}, function (err, rows) {
+
+                        // 誰もいなければ終わり
+                        if (rows.length === 0) {
+                            console.log('addNotificationWhenAddDropToFollowArtistMusic: no dest_user. userId = ', userId);
+                            return;
+                        }
+
+                        // 1人ずつ通知を登録する
+                        rows.forEach(function (follow) {
+
+                            // 自分以外のみ
+                            if (follow.user_id !== userId) {
+
+                                // 通知情報を作って、登録
+                                var jsonText = JSON.stringify({
+                                    music: music,
+                                    pop: pop,
+                                    followUser: followUser
+                                });
+
+
+                                // 追加処理
+                                var data = {
+                                    user_id: follow.user_id,
+                                    type: 2,
+                                    json: jsonText
+                                };
+
+                                // 保存する
+                                userNotificationModel.insertObject(data);
+                            }
+
+                        });
+                    });
+
+                });
+
+
+
+
+
+            });
+        });
     },
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+        お知らせ追加：自分のドロップがLikeされた
+    */
+    addNotificationWhenMyDropLiked: function (popId, fromUserId) {
+
+        // Popを検索します
+        popModel.selectObjects({id:popId}, function (err, rows) {
+
+            // 存在しなければ終了
+            if (rows.length === 0) {
+                console.warn('addNotificationWhenMyDropLiked: not found pop. id=', popId);
+                return;
+            }
+
+            // 自分のPopの場合には終了
+            if (rows[0].user_id === fromUserId) {
+                console.log('like pop of mine.');
+                return;
+            }
+
+            var pop = rows[0];
+
+            // 曲名を取得します
+            musicModel.selectObjects({id: pop.music_id}, function (err, rows) {
+
+                // 存在しなければ終わり
+                if (rows.length === 0) {
+                    console.warn('addNotificationWhenMyDropLiked: not found music. id=', pop.music_id);
+                    return;
+                }
+
+                var music = rows[0];
+
+
+                // Likeしたユーザー名を取得します
+                userModel.selectObjects({id: fromUserId}, function (err, rows) {
+
+                    // なければ終わり
+                    if (rows.length === 0) {
+                        console.warn('addNotificationWhenMyDropLiked: not found like user. id=', fromUserId);
+                        return;
+                    }
+
+                    var fromUser = rows[0];
+
+
+                    // 通知情報を作って、登録
+                    var jsonText = JSON.stringify({
+                        pop: pop,
+                        music: music,
+                        fromUser: fromUser
+                    });
+
+
+                    // 追加処理
+                    var data = {
+                        user_id: pop.user_id,
+                        type: 3,
+                        json: jsonText
+                    };
+
+                    // 保存する
+                    userNotificationModel.insertObject(data);
+
+                });
+
+            });
+
+        });
+    },
+
+
+
+    /**
+        お知らせ追加：フォローユーザーがPocketを追加した
+    */
+    addUserNotificationWhenFollowUserAddPocket: function (userId, musicId) {
+
+        // このユーザーの情報を取得する。
+        userModel.selectObjects({id:userId}, function (err, rows) {
+
+            // 検索が失敗したら、何もしない。
+            if (err || rows.length === 0) {
+                return;
+            }
+
+            // ユーザー情報
+            var user = rows[0];
+            delete user.password;
+            delete user.uid;
+            delete user.sex;
+            delete user.google_identifier;
+            delete user.facebook_access_token;
+            delete user.twitter_token;
+            delete user.twitter_token_secret;
+
+
+            // 曲の詳細を取得する。
+            musicModel.selectObjects({id: musicId}, function (err, rows) {
+
+                // 検索失敗の場合は何もしない
+                if (err || rows.length === 0) {
+                    return;
+                }
+
+                // 曲詳細を取得する
+                var music = rows[0];
+
+                // フォローユーザーを取得する
+                userFollowModel.selectObjects({dest_user_id: userId}, function (err, rows) {
+
+                    rows.forEach(function (row) {
+                        // console.log('row: ', row);
+
+                        var jsonText = JSON.stringify({
+                            user: user,
+                            music: music
+                        });
+
+                        // 追加処理
+                        var data = {
+                            user_id: row.user_id,
+                            type: 1,
+                            json: jsonText
+                        };
+
+                        // 保存する
+                        userNotificationModel.insertObject(data);
+
+                    });
+                });
+            });
+        });
+    },
+
+
+
+    /**
+        お知らせ追加：フォローアーティストにリンク追加（該当曲に新規の場合のみ）
+    */
+    addNotificationWhenAddLinkToFollowArtistMusic: function (musicId, userId) {
+        console.log('addNotificationWhenAddLinkToFollowArtistMusic starts');
+
+        // 前の処理で登録されたリンクを探す
+        musicLinkModel.selectObjects({music_id: musicId}, function (err, rows) {
+
+            // 存在しない or 2個以上ある場合には、パス
+            if (rows.length !== 1) {
+                console.log('addNotificationWhenAddLinkToFollowArtistMusic: no need. link count = ', rows.length);
+                return;
+            }
+
+            var musicLink = rows[0];
+
+
+            // アーティスト情報を取得する
+            musicModel.selectObjects({id: musicId}, function (err, rows) {
+
+                // 無い場合には終わり
+                if (rows.length === 0) {
+                    console.warn('addNotificationWhenAddLinkToFollowArtistMusic: not found music. musicId=', musicId);
+                    return;
+                }
+
+                var music = rows[0];
+
+                // 該当アーティストをフォローしている人を捜す
+                userArtistFollowModel.selectObjects({artist_id: music.artist_id}, function (err, rows) {
+
+                    // 誰もいなければ終わり
+                    if (rows.length === 0) {
+                        console.log('addNotificationWhenAddLinkToFollowArtistMusic: no need. follow count = ', rows.length);
+                        return;
+                    }
+
+
+                    // 1人ずつ通知を登録する
+                    rows.forEach(function (follow) {
+
+                        // 自分以外のみ
+                        if (follow.user_id !== userId) {
+
+                            // 通知情報を作って、登録
+                            var jsonText = JSON.stringify({
+                                music: music,
+                                musicLink: musicLink
+                            });
+
+
+                            // 追加処理
+                            var data = {
+                                user_id: follow.user_id,
+                                type: 5,
+                                json: jsonText
+                            };
+
+                            // 保存する
+                            userNotificationModel.insertObject(data);
+
+                        }
+
+                    });
+                });
+
+            });
+        });
+    },
+
+
+
+    /**
+        お知らせ追加：フォローアーティストにDrop追加
+    */
+    addNotificationWhenAddDropToFollowArtistMusic: function (musicId, userId) {
+
+        // 対象のPopを検索する
+        popModel.selectObjects({music_id: musicId}, function (err, rows) {
+
+            // 0件の場合は終了
+            if (rows.length === 0) {
+                console.log('addNotificationWhenAddDropToFollowArtistMusic: no pop found. musicId=', musicId);
+                return;
+            }
+
+            // 最新のものを対象とする
+            var pop = rows[rows.length-1];
+
+            // 曲の詳細情報を取得する
+            musicModel.selectObjects({id: musicId}, function (err, rows) {
+
+                // 0件の場合は終了
+                if (rows.length === 0) {
+                    console.log('addNotificationWhenAddDropToFollowArtistMusic: no music found. musicId=', musicId);
+                    return;
+                }
+
+                var music = rows[0];
+
+                // 該当アーティストをフォローしている人を捜す
+                userArtistFollowModel.selectObjects({artist_id: music.artist_id}, function (err, rows) {
+
+                    // 誰もいなければ終わり
+                    if (rows.length === 0) {
+                        console.log('addNotificationWhenAddDropToFollowArtistMusic: no need. follow count = ', rows.length);
+                        return;
+                    }
+
+                    // 1人ずつ通知を登録する
+                    rows.forEach(function (follow) {
+
+                        // 自分以外のみ
+                        if (follow.user_id !== userId) {
+
+                            // 通知情報を作って、登録
+                            var jsonText = JSON.stringify({
+                                music: music,
+                                pop: pop
+                            });
+
+
+                            // 追加処理
+                            var data = {
+                                user_id: follow.user_id,
+                                type: 6,
+                                json: jsonText
+                            };
+
+                            // 保存する
+                            userNotificationModel.insertObject(data);
+                        }
+
+                    });
+                });
+            });
+        });
+    },
+
+
+
+
+    /**
+        Pocket追加に合わせて、ユーザーPlaylistを最新化する
+    */
+    refreshUserPlaylistByAddingPocket: function (userId, musicId) {
+
+        // Pocketデータを取得する
+        userPocketModel.selectObjects({user_id: userId, music_id: musicId}, function (err, rows) {
+
+            // なぜか見つからなければ終わり
+            if (rows.length === 0) {
+                console.log('refreshUserPlaylistByAddingPocket: pocket not found. userId=' + userId + ', musicId=' + musicId);
+                return;
+            }
+
+            // 最新のものが今回追加されたPocketを判断する。
+            var pocket = rows[rows.length-1];
+
+            // ユーザープレイリスト（ALLのみ）を取得する
+            userPlaylistModel.selectObjects({user_id: userId, type: 1}, function (err, rows) {
+
+                // なぜか無い場合には終わり
+                if (rows.length === 0) {
+                    console.log('refreshUserPlaylistByAddingPocket: userPlaylist not found. userId=' + userId + ', type=1');
+                    return;
+                }
+
+                // 今回Pocketされたものを追加する
+                var playlist = rows[0];
+                var pocketIds = JSON.parse(playlist.user_pocket_ids);
+                pocketIds.push(pocket.id);
+
+                // DBへ保存する
+                userPlaylistModel.updateObject({user_pocket_ids: JSON.stringify(pocketIds)}, {id: playlist.id});
+
+            });
+
+        });
+    },
+
+
+    /**
+        Pocket削除に合わせて、ユーザーPlaylistを最新化する
+    */
+    refreshUserPlaylistByDeletingPocket: function (userId, userPocketId) {
+        userPocketId = parseInt(userPocketId, 10);
+
+        // ユーザーのプレイリストを全て取得する
+        userPlaylistModel.selectObjects({user_id: userId}, function (err, rows) {
+
+            // プレイリストが無ければ終わり
+            if (rows.length === 0) {
+                console.log('refreshUserPlaylistByDeletingPocket: playlist not found. userId=', userId);
+                return;
+            }
+
+
+            // 該当のPocketがあればプレイリストから削除してDBを更新する
+            rows.forEach(function (playlist) {
+
+                var pocketIds = JSON.parse(playlist.user_pocket_ids);
+                var newPocketIds = _.filter(pocketIds, function (id) {
+                    return id != userPocketId;
+                });
+
+                if (pocketIds.length !== newPocketIds.length) {
+                    console.log('refreshUserPlaylistByDeletingPocket works. userId=' + userId + ', playlistId=' + playlist.id);
+                    userPlaylistModel.updateObject({user_pocket_ids: JSON.stringify(newPocketIds)}, {id: playlist.id});
+                }
+            });
+
+        });
+    },
 
 
 

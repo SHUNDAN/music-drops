@@ -10,7 +10,7 @@ var userNotificationModel = require('../models/user_notification');
 var appUtil = require('../util/utility');
 
 /**
- * Select 
+ * Select
  */
 exports.select = function(req, res){
 
@@ -25,9 +25,11 @@ exports.select = function(req, res){
                 row.json = JSON.parse(row.json);
             }
 
-
-
             res.json(rows);
+
+
+            // 対象を既読とする
+            userNotificationModel.updateObject({read: 1}, req.query);
         }
     });
 
@@ -44,7 +46,7 @@ exports.add = function(req, res) {
     if (!req.body.music_id) {
         res.json(400, {message: 'music_id is required.'});
         return;
-    }   
+    }
 
     // uidからユーザー情報を取得する
     var uid = req.cookies.uid;
@@ -52,9 +54,9 @@ exports.add = function(req, res) {
     if (!user_id) {
         res.json(403, {message: 'authentication error.'});
         return;
-    }   
+    }
 
-    req.body.user_id = user_id; 
+    req.body.user_id = user_id;
     console.log('req.body', req.body);
 
     // execute.
@@ -90,7 +92,7 @@ exports.update = function(req, res) {
  */
 exports.delete = function(req, res) {
 
-    
+
     // パラメータチェック
     if (!req.params.id && !req.body.id) {
         appUtil.actionLog(req, 'delete user notification failed. id is missing');
@@ -105,7 +107,7 @@ exports.delete = function(req, res) {
         appUtil.actionLog(req, 'delete user notification failed. no authentication');
         appUtil.response403(res);
         return;
-    } 
+    }
 
     // 自分の以外は消せないようにする。
     var param = (req.params.id ? req.params : req.body);

@@ -24,6 +24,7 @@ module.exports = _.extend({}, require('./common'), {
         'user_id',
         'type',
         'json',
+        'read',
         'create_at',
         'update_at',
     ],
