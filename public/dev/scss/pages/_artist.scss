@@ -1,0 +1,157 @@
+// 
+// アーティストページ
+//==============================================================================
+
+// 全体を囲う
+.pageArtist {
+
+	// アーティスト詳細情報
+	.artistInfoArea {
+		width: 500px;
+		background-color: #fdfcf3;
+
+		// &:after {
+		// 	display: block;
+		// 	width: 0;
+		// 	height: 0;
+		// 	content: " ";
+		// 	clear: both;
+		// }
+
+		// サムネ
+		.thumb {
+			float: left;
+			display: block;
+			width: 150px;
+			height: 150px;
+		}
+
+		.infoArea {
+
+			&:after {
+				display: block;
+				width: 0;
+				height: 0;
+				content: " ";
+				clear: both;
+			}
+		}
+
+		.info {
+			float: left;
+			width: 330px;
+			padding: 10px;
+			margin-left: 10px;
+		}
+
+		.artistName {
+			font-size: 20px;
+			font-weight: bold;
+			height: 68px;
+			line-height: 58px;
+		}
+
+		.description {
+			font-size: 12px;
+			padding-bottom: 10px;
+		}
+
+		// 代表的なキモチを表示
+		.feelingArea {
+			position: relative;
+
+			&:after {
+				display: block;
+				width: 0;
+				height: 0;
+				content: " ";
+				clear: both;
+			}
+
+			.sprite-feeling {
+				float: left;
+			}
+
+			.feelingLabel {
+				float: left;
+				height: 40px;
+				width: 230px;
+				line-height: 40px;
+				margin-left: 15px;
+				background-color: #efede0;
+
+				&:before {
+					position: absolute;
+					top: 0px;
+					left: 46px;
+					display: block;
+					width: 0px;
+					height: 0px;
+					content: " ";
+					border-top: 20px solid transparent;
+					border-bottom: 20px solid transparent;
+					border-left: 0px solid transparent;
+					border-right: 15px solid #dedbc7;
+				}
+
+			}
+		}
+
+		// アーティストフォロー
+		.followButton {
+			width: 100%;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			color: #dbdad1;
+			background-color: #595849;
+		}
+	}
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

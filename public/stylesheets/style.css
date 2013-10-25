@@ -2980,32 +2980,120 @@ textarea.form {
   margin: 20px 0 0 0px;
 }
 
+/* line 9, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea {
+  width: 500px;
+  background-color: #fdfcf3;
+}
+/* line 22, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .thumb {
+  float: left;
+  display: block;
+  width: 150px;
+  height: 150px;
+}
+/* line 31, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .infoArea:after {
+  display: block;
+  width: 0;
+  height: 0;
+  content: " ";
+  clear: both;
+}
+/* line 40, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .info {
+  float: left;
+  width: 330px;
+  padding: 10px;
+  margin-left: 10px;
+}
+/* line 47, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .artistName {
+  font-size: 20px;
+  font-weight: bold;
+  height: 68px;
+  line-height: 58px;
+}
+/* line 54, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .description {
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+/* line 60, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .feelingArea {
+  position: relative;
+}
+/* line 63, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .feelingArea:after {
+  display: block;
+  width: 0;
+  height: 0;
+  content: " ";
+  clear: both;
+}
+/* line 71, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .feelingArea .sprite-feeling {
+  float: left;
+}
+/* line 75, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .feelingArea .feelingLabel {
+  float: left;
+  height: 40px;
+  width: 230px;
+  line-height: 40px;
+  margin-left: 15px;
+  background-color: #efede0;
+}
+/* line 83, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .feelingArea .feelingLabel:before {
+  position: absolute;
+  top: 0px;
+  left: 46px;
+  display: block;
+  width: 0px;
+  height: 0px;
+  content: " ";
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 0px solid transparent;
+  border-right: 15px solid #dedbc7;
+}
+/* line 101, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .followButton {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #dbdad1;
+  background-color: #595849;
+}
+
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 77, ../dev/scss/style.scss */
+  /* line 78, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 84, ../dev/scss/style.scss */
+/* line 85, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 85, ../dev/scss/style.scss */
+/* line 86, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 86, ../dev/scss/style.scss */
+/* line 87, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 90, ../dev/scss/style.scss */
+/* line 91, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -3020,7 +3108,7 @@ textarea.form {
 /*==============================
   Stage
 ===============================*/
-/* line 106, ../dev/scss/style.scss */
+/* line 107, ../dev/scss/style.scss */
 #stage {
   position: relative;
 }
@@ -3028,7 +3116,7 @@ textarea.form {
 /*==============================
   Preview Area
 ===============================*/
-/* line 117, ../dev/scss/style.scss */
+/* line 118, ../dev/scss/style.scss */
 .previewArea {
   z-index: 9998;
   transition: opacity .5s ease;
@@ -3037,7 +3125,7 @@ textarea.form {
   -ms-transition: opacity .5s ease;
 }
 
-/* line 124, ../dev/scss/style.scss */
+/* line 125, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: absolute !important;
   top: -500px !important;
@@ -3045,7 +3133,7 @@ textarea.form {
   opacity: 0;
 }
 
-/* line 130, ../dev/scss/style.scss */
+/* line 131, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -3060,7 +3148,7 @@ textarea.form {
   color: white;
 }
 
-/* line 144, ../dev/scss/style.scss */
+/* line 145, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -3076,7 +3164,7 @@ textarea.form {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 161, ../dev/scss/style.scss */
+/* line 162, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -3084,25 +3172,25 @@ textarea.form {
 /*==============================
   Base Frame
 ===============================*/
-/* line 175, ../dev/scss/style.scss */
+/* line 176, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 65px;
 }
 
-/* line 180, ../dev/scss/style.scss */
+/* line 181, ../dev/scss/style.scss */
 #main {
   width: 980px;
   margin: 0 auto;
 }
 
-/* line 184, ../dev/scss/style.scss */
+/* line 185, ../dev/scss/style.scss */
 #pagePop {
   z-index: 9999;
 }
 
-/* line 187, ../dev/scss/style.scss */
+/* line 188, ../dev/scss/style.scss */
 .popUp {
   position: fixed;
   top: 100px;
