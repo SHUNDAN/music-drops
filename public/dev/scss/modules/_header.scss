@@ -45,15 +45,23 @@ header {
     position: absolute;
   }
 }
+// ロゴSprite
+$map-logo: sprite-map("../images/sprite/logo/*.png");
+
+.sprite-logo {
+  @include spritePC(parent, $map-logo);
+  &.logo-headter {
+    @include spritePC(child, $map-logo, logo-header);
+  }
+  &.logo-l {
+    @include spritePC(child, $map-logo, logo-l);
+  }
+}
 // ロゴ
 .header-logo {
   position: absolute;
-  top: 10px;
+  top: 5px;
   left: 0;
-  a {
-    font-size: 20px;
-    height: 40px;
-  }
 }
 
 //  さがす

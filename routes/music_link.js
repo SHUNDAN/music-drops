@@ -8,6 +8,7 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database("./db/mockbu.db");
 var musicLinkModel = require('../models/music_link');
 var musicModel = require('../models/music');
+var onlineBatch = require('../util/online_batch');
 var appUtil = require('../util/utility');
 
 /**
@@ -99,6 +100,10 @@ exports.add = function(req, res) {
     musicLinkModel.insertObject(req.body, function (err) {
         appUtil.actionLog(req, ['add music link',JSON.stringify(req.body)]);
         appUtil.basicResponse(res, err);
+
+
+        // お知らせに追加
+        onlineBatch.addNotificationWhenAddLinkToFollowArtistMusic(req.body.music_id, user_id);
     });
 
     // YoutubeIdはMusicにも設定する。

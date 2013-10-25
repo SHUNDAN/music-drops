@@ -151,16 +151,18 @@ module.exports = {
         // build parameters.
         var params = [];
         columnNames.forEach(function (column) {
-            console.log(column, data[column]);
             params.push(data[column]);
         });
 
 
         // execute sql.
+        console.log(sql);
         var stmt = db.prepare(sql, params);
-        console.log(stmt, params, data);
+        // console.log(stmt, params, data);
         stmt.run(function(err) {
-            console.log(err);
+            if (err) {
+                console.log(err);                
+            }
             if (callback) {
                 callback(err);
             }

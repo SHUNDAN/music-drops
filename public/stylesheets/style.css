@@ -205,456 +205,462 @@ table {
 
 /* Layout */
 /* line 68, ../dev/scss/core/_helper.scss */
+.mo {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* line 72, ../dev/scss/core/_helper.scss */
 .mt0 {
   margin-top: 0px !important;
 }
 
-/* line 71, ../dev/scss/core/_helper.scss */
+/* line 75, ../dev/scss/core/_helper.scss */
 .mr0 {
   margin-right: 0px !important;
 }
 
-/* line 74, ../dev/scss/core/_helper.scss */
+/* line 78, ../dev/scss/core/_helper.scss */
 .mb0 {
   margin-bottom: 0px !important;
 }
 
-/* line 77, ../dev/scss/core/_helper.scss */
+/* line 81, ../dev/scss/core/_helper.scss */
 .ml0 {
   margin-left: 0px !important;
 }
 
-/* line 80, ../dev/scss/core/_helper.scss */
+/* line 84, ../dev/scss/core/_helper.scss */
 .mt5 {
   margin-top: 5px !important;
 }
 
-/* line 83, ../dev/scss/core/_helper.scss */
+/* line 87, ../dev/scss/core/_helper.scss */
 .mr5 {
   margin-right: 5px !important;
 }
 
-/* line 86, ../dev/scss/core/_helper.scss */
+/* line 90, ../dev/scss/core/_helper.scss */
 .mb5 {
   margin-bottom: 5px !important;
 }
 
-/* line 89, ../dev/scss/core/_helper.scss */
+/* line 93, ../dev/scss/core/_helper.scss */
 .ml5 {
   margin-left: 5px !important;
 }
 
-/* line 92, ../dev/scss/core/_helper.scss */
+/* line 96, ../dev/scss/core/_helper.scss */
 .mt10 {
   margin-top: 10px !important;
 }
 
-/* line 95, ../dev/scss/core/_helper.scss */
+/* line 99, ../dev/scss/core/_helper.scss */
 .mr10 {
   margin-right: 10px !important;
 }
 
-/* line 98, ../dev/scss/core/_helper.scss */
+/* line 102, ../dev/scss/core/_helper.scss */
 .mb10 {
   margin-bottom: 10px !important;
 }
 
-/* line 101, ../dev/scss/core/_helper.scss */
+/* line 105, ../dev/scss/core/_helper.scss */
 .ml10 {
   margin-left: 10px !important;
 }
 
-/* line 104, ../dev/scss/core/_helper.scss */
+/* line 108, ../dev/scss/core/_helper.scss */
 .mt15 {
   margin-top: 15px !important;
 }
 
-/* line 107, ../dev/scss/core/_helper.scss */
+/* line 111, ../dev/scss/core/_helper.scss */
 .mr15 {
   margin-right: 15px !important;
 }
 
-/* line 110, ../dev/scss/core/_helper.scss */
+/* line 114, ../dev/scss/core/_helper.scss */
 .mb15 {
   margin-bottom: 15px !important;
 }
 
-/* line 113, ../dev/scss/core/_helper.scss */
+/* line 117, ../dev/scss/core/_helper.scss */
 .ml15 {
   margin-left: 15px !important;
 }
 
-/* line 116, ../dev/scss/core/_helper.scss */
+/* line 120, ../dev/scss/core/_helper.scss */
 .mt20 {
   margin-top: 20px !important;
 }
 
-/* line 119, ../dev/scss/core/_helper.scss */
+/* line 123, ../dev/scss/core/_helper.scss */
 .mr20 {
   margin-right: 20px !important;
 }
 
-/* line 122, ../dev/scss/core/_helper.scss */
+/* line 126, ../dev/scss/core/_helper.scss */
 .mb20 {
   margin-bottom: 20px !important;
 }
 
-/* line 125, ../dev/scss/core/_helper.scss */
+/* line 129, ../dev/scss/core/_helper.scss */
 .ml20 {
   margin-left: 20px !important;
 }
 
-/* line 128, ../dev/scss/core/_helper.scss */
+/* line 132, ../dev/scss/core/_helper.scss */
 .mt25 {
   margin-top: 25px !important;
 }
 
-/* line 131, ../dev/scss/core/_helper.scss */
+/* line 135, ../dev/scss/core/_helper.scss */
 .mr25 {
   margin-right: 25px !important;
 }
 
-/* line 134, ../dev/scss/core/_helper.scss */
+/* line 138, ../dev/scss/core/_helper.scss */
 .mb25 {
   margin-bottom: 25px !important;
 }
 
-/* line 137, ../dev/scss/core/_helper.scss */
+/* line 141, ../dev/scss/core/_helper.scss */
 .ml25 {
   margin-left: 25px !important;
 }
 
-/* line 140, ../dev/scss/core/_helper.scss */
+/* line 144, ../dev/scss/core/_helper.scss */
 .mt30 {
   margin-top: 30px !important;
 }
 
-/* line 143, ../dev/scss/core/_helper.scss */
+/* line 147, ../dev/scss/core/_helper.scss */
 .mr30 {
   margin-right: 30px !important;
 }
 
-/* line 146, ../dev/scss/core/_helper.scss */
+/* line 150, ../dev/scss/core/_helper.scss */
 .mb30 {
   margin-bottom: 30px !important;
 }
 
-/* line 149, ../dev/scss/core/_helper.scss */
+/* line 153, ../dev/scss/core/_helper.scss */
 .ml30 {
   margin-left: 30px !important;
 }
 
-/* line 152, ../dev/scss/core/_helper.scss */
+/* line 156, ../dev/scss/core/_helper.scss */
 .mt35 {
   margin-top: 35px !important;
 }
 
-/* line 155, ../dev/scss/core/_helper.scss */
+/* line 159, ../dev/scss/core/_helper.scss */
 .mr35 {
   margin-right: 35px !important;
 }
 
-/* line 158, ../dev/scss/core/_helper.scss */
+/* line 162, ../dev/scss/core/_helper.scss */
 .mb35 {
   margin-bottom: 35px !important;
 }
 
-/* line 161, ../dev/scss/core/_helper.scss */
+/* line 165, ../dev/scss/core/_helper.scss */
 .ml35 {
   margin-left: 35px !important;
 }
 
-/* line 164, ../dev/scss/core/_helper.scss */
+/* line 168, ../dev/scss/core/_helper.scss */
 .mt40 {
   margin-top: 40px !important;
 }
 
-/* line 167, ../dev/scss/core/_helper.scss */
+/* line 171, ../dev/scss/core/_helper.scss */
 .mr40 {
   margin-right: 40px !important;
 }
 
-/* line 170, ../dev/scss/core/_helper.scss */
+/* line 174, ../dev/scss/core/_helper.scss */
 .mb40 {
   margin-bottom: 40px !important;
 }
 
-/* line 173, ../dev/scss/core/_helper.scss */
+/* line 177, ../dev/scss/core/_helper.scss */
 .ml40 {
   margin-left: 40px !important;
 }
 
-/* line 177, ../dev/scss/core/_helper.scss */
+/* line 181, ../dev/scss/core/_helper.scss */
 .pt0 {
   padding-top: 0px !important;
 }
 
-/* line 180, ../dev/scss/core/_helper.scss */
+/* line 184, ../dev/scss/core/_helper.scss */
 .pr0 {
   padding-right: 0px !important;
 }
 
-/* line 183, ../dev/scss/core/_helper.scss */
+/* line 187, ../dev/scss/core/_helper.scss */
 .pb0 {
   padding-bottom: 0px !important;
 }
 
-/* line 186, ../dev/scss/core/_helper.scss */
+/* line 190, ../dev/scss/core/_helper.scss */
 .pl0 {
   padding-left: 0px !important;
 }
 
-/* line 189, ../dev/scss/core/_helper.scss */
+/* line 193, ../dev/scss/core/_helper.scss */
 .pt5 {
   padding-top: 5px !important;
 }
 
-/* line 192, ../dev/scss/core/_helper.scss */
+/* line 196, ../dev/scss/core/_helper.scss */
 .pr5 {
   padding-right: 5px !important;
 }
 
-/* line 195, ../dev/scss/core/_helper.scss */
+/* line 199, ../dev/scss/core/_helper.scss */
 .pb5 {
   padding-bottom: 5px !important;
 }
 
-/* line 198, ../dev/scss/core/_helper.scss */
+/* line 202, ../dev/scss/core/_helper.scss */
 .pl5 {
   padding-left: 5px !important;
 }
 
-/* line 201, ../dev/scss/core/_helper.scss */
+/* line 205, ../dev/scss/core/_helper.scss */
 .pt10 {
   padding-top: 10px !important;
 }
 
-/* line 204, ../dev/scss/core/_helper.scss */
+/* line 208, ../dev/scss/core/_helper.scss */
 .pr10 {
   padding-right: 10px !important;
 }
 
-/* line 207, ../dev/scss/core/_helper.scss */
+/* line 211, ../dev/scss/core/_helper.scss */
 .pb10 {
   padding-bottom: 10px !important;
 }
 
-/* line 210, ../dev/scss/core/_helper.scss */
+/* line 214, ../dev/scss/core/_helper.scss */
 .pl10 {
   padding-left: 10px !important;
 }
 
-/* line 213, ../dev/scss/core/_helper.scss */
+/* line 217, ../dev/scss/core/_helper.scss */
 .pt15 {
   padding-top: 15px !important;
 }
 
-/* line 216, ../dev/scss/core/_helper.scss */
+/* line 220, ../dev/scss/core/_helper.scss */
 .pr15 {
   padding-right: 15px !important;
 }
 
-/* line 219, ../dev/scss/core/_helper.scss */
+/* line 223, ../dev/scss/core/_helper.scss */
 .pb15 {
   padding-bottom: 15px !important;
 }
 
-/* line 222, ../dev/scss/core/_helper.scss */
+/* line 226, ../dev/scss/core/_helper.scss */
 .pl15 {
   padding-left: 15px !important;
 }
 
-/* line 225, ../dev/scss/core/_helper.scss */
+/* line 229, ../dev/scss/core/_helper.scss */
 .pt20 {
   padding-top: 20px !important;
 }
 
-/* line 228, ../dev/scss/core/_helper.scss */
+/* line 232, ../dev/scss/core/_helper.scss */
 .pr20 {
   padding-right: 20px !important;
 }
 
-/* line 231, ../dev/scss/core/_helper.scss */
+/* line 235, ../dev/scss/core/_helper.scss */
 .pb20 {
   padding-bottom: 20px !important;
 }
 
-/* line 234, ../dev/scss/core/_helper.scss */
+/* line 238, ../dev/scss/core/_helper.scss */
 .pl20 {
   padding-left: 20px !important;
 }
 
-/* line 237, ../dev/scss/core/_helper.scss */
+/* line 241, ../dev/scss/core/_helper.scss */
 .pt25 {
   padding-top: 25px !important;
 }
 
-/* line 240, ../dev/scss/core/_helper.scss */
+/* line 244, ../dev/scss/core/_helper.scss */
 .pr25 {
   padding-right: 25px !important;
 }
 
-/* line 243, ../dev/scss/core/_helper.scss */
+/* line 247, ../dev/scss/core/_helper.scss */
 .pb25 {
   padding-bottom: 25px !important;
 }
 
-/* line 246, ../dev/scss/core/_helper.scss */
+/* line 250, ../dev/scss/core/_helper.scss */
 .pl25 {
   padding-left: 25px !important;
 }
 
-/* line 249, ../dev/scss/core/_helper.scss */
+/* line 253, ../dev/scss/core/_helper.scss */
 .pt30 {
   padding-top: 30px !important;
 }
 
-/* line 252, ../dev/scss/core/_helper.scss */
+/* line 256, ../dev/scss/core/_helper.scss */
 .pr30 {
   padding-right: 30px !important;
 }
 
-/* line 255, ../dev/scss/core/_helper.scss */
+/* line 259, ../dev/scss/core/_helper.scss */
 .pb30 {
   padding-bottom: 30px !important;
 }
 
-/* line 258, ../dev/scss/core/_helper.scss */
+/* line 262, ../dev/scss/core/_helper.scss */
 .pl30 {
   padding-left: 30px !important;
 }
 
-/* line 261, ../dev/scss/core/_helper.scss */
+/* line 265, ../dev/scss/core/_helper.scss */
 .pt35 {
   padding-top: 35px !important;
 }
 
-/* line 264, ../dev/scss/core/_helper.scss */
+/* line 268, ../dev/scss/core/_helper.scss */
 .pr35 {
   padding-right: 35px !important;
 }
 
-/* line 267, ../dev/scss/core/_helper.scss */
+/* line 271, ../dev/scss/core/_helper.scss */
 .pb35 {
   padding-bottom: 35px !important;
 }
 
-/* line 270, ../dev/scss/core/_helper.scss */
+/* line 274, ../dev/scss/core/_helper.scss */
 .pl35 {
   padding-left: 35px !important;
 }
 
-/* line 273, ../dev/scss/core/_helper.scss */
+/* line 277, ../dev/scss/core/_helper.scss */
 .pt40 {
   padding-top: 40px !important;
 }
 
-/* line 276, ../dev/scss/core/_helper.scss */
+/* line 280, ../dev/scss/core/_helper.scss */
 .pr40 {
   padding-right: 40px !important;
 }
 
-/* line 279, ../dev/scss/core/_helper.scss */
+/* line 283, ../dev/scss/core/_helper.scss */
 .pb40 {
   padding-bottom: 40px !important;
 }
 
-/* line 282, ../dev/scss/core/_helper.scss */
+/* line 286, ../dev/scss/core/_helper.scss */
 .pl40 {
   padding-left: 40px !important;
 }
 
-/* line 299, ../dev/scss/core/_helper.scss */
+/* line 303, ../dev/scss/core/_helper.scss */
 .c-base {
   color: #68473c !important;
 }
 
-/* line 300, ../dev/scss/core/_helper.scss */
+/* line 304, ../dev/scss/core/_helper.scss */
 .c-sec {
   color: #99796d !important;
 }
 
-/* line 301, ../dev/scss/core/_helper.scss */
+/* line 305, ../dev/scss/core/_helper.scss */
 .c-fff {
   color: white !important;
 }
 
-/* line 302, ../dev/scss/core/_helper.scss */
+/* line 306, ../dev/scss/core/_helper.scss */
 .c-000 {
   color: black !important;
 }
 
-/* line 305, ../dev/scss/core/_helper.scss */
+/* line 309, ../dev/scss/core/_helper.scss */
 .fs8 {
   font-size: 8px;
 }
 
-/* line 306, ../dev/scss/core/_helper.scss */
+/* line 310, ../dev/scss/core/_helper.scss */
 .fs9 {
   font-size: 9px;
 }
 
-/* line 307, ../dev/scss/core/_helper.scss */
+/* line 311, ../dev/scss/core/_helper.scss */
 .fs10 {
   font-size: 10px;
 }
 
-/* line 308, ../dev/scss/core/_helper.scss */
+/* line 312, ../dev/scss/core/_helper.scss */
 .fs11 {
   font-size: 11px;
 }
 
-/* line 309, ../dev/scss/core/_helper.scss */
+/* line 313, ../dev/scss/core/_helper.scss */
 .fs12 {
   font-size: 12px;
 }
 
-/* line 310, ../dev/scss/core/_helper.scss */
+/* line 314, ../dev/scss/core/_helper.scss */
 .fs13 {
   font-size: 13px;
 }
 
-/* line 311, ../dev/scss/core/_helper.scss */
+/* line 315, ../dev/scss/core/_helper.scss */
 .fs14 {
   font-size: 14px;
 }
 
-/* line 312, ../dev/scss/core/_helper.scss */
+/* line 316, ../dev/scss/core/_helper.scss */
 .fs15 {
   font-size: 15px;
 }
 
-/* line 313, ../dev/scss/core/_helper.scss */
+/* line 317, ../dev/scss/core/_helper.scss */
 .fs16 {
   font-size: 16px;
 }
 
-/* line 314, ../dev/scss/core/_helper.scss */
+/* line 318, ../dev/scss/core/_helper.scss */
 .fs17 {
   font-size: 17px;
 }
 
-/* line 315, ../dev/scss/core/_helper.scss */
+/* line 319, ../dev/scss/core/_helper.scss */
 .fs18 {
   font-size: 18px;
 }
 
-/* line 316, ../dev/scss/core/_helper.scss */
+/* line 320, ../dev/scss/core/_helper.scss */
 .fs20 {
   font-size: 20px;
 }
 
-/* line 317, ../dev/scss/core/_helper.scss */
+/* line 321, ../dev/scss/core/_helper.scss */
 .fs32 {
   font-size: 32px;
 }
 
-/* line 330, ../dev/scss/core/_helper.scss */
+/* line 334, ../dev/scss/core/_helper.scss */
 .b {
   font-weight: bold !important;
 }
 
-/* line 334, ../dev/scss/core/_helper.scss */
+/* line 338, ../dev/scss/core/_helper.scss */
 .u {
   text-decoration: underline !important;
 }
@@ -868,19 +874,33 @@ header {
   position: absolute;
 }
 
-/* line 49, ../dev/scss/modules/_header.scss */
-.header-logo {
-  position: absolute;
-  top: 10px;
-  left: 0;
+/* line 51, ../dev/scss/modules/_header.scss */
+.sprite-logo {
+  background-image: url('/../images/../images/sprite/logo-sb10bd9cfe1.png');
+  background-repeat: no-repeat;
+  background-size: 110px 144px;
 }
 /* line 53, ../dev/scss/modules/_header.scss */
-.header-logo a {
-  font-size: 20px;
-  height: 40px;
+.sprite-logo.logo-headter {
+  width: 56px;
+  height: 49px;
+  background-position: 0 -95px;
+}
+/* line 56, ../dev/scss/modules/_header.scss */
+.sprite-logo.logo-l {
+  width: 110px;
+  height: 95px;
+  background-position: 0 0;
 }
 
 /* line 61, ../dev/scss/modules/_header.scss */
+.header-logo {
+  position: absolute;
+  top: 5px;
+  left: 0;
+}
+
+/* line 69, ../dev/scss/modules/_header.scss */
 .header-searchMenu {
   top: 10px;
   left: 97px;
@@ -889,13 +909,13 @@ header {
   text-align: center;
   background-color: #dedbc7;
 }
-/* line 68, ../dev/scss/modules/_header.scss */
+/* line 76, ../dev/scss/modules/_header.scss */
 .header-searchMenu p {
   width: 54px;
   line-height: 40px;
 }
 
-/* line 73, ../dev/scss/modules/_header.scss */
+/* line 81, ../dev/scss/modules/_header.scss */
 .header-searchMenu-btn {
   width: 26px;
   height: 40px;
@@ -903,7 +923,7 @@ header {
   font-size: 8px;
 }
 
-/* line 82, ../dev/scss/modules/_header.scss */
+/* line 90, ../dev/scss/modules/_header.scss */
 .header-playList {
   top: 10px;
   left: 188px;
@@ -911,18 +931,18 @@ header {
   font-size: 12px;
   text-align: center;
 }
-/* line 88, ../dev/scss/modules/_header.scss */
+/* line 96, ../dev/scss/modules/_header.scss */
 .header-playList p:first-child {
   margin: 4px 0;
   color: #3d3c3c;
 }
 
-/* line 93, ../dev/scss/modules/_header.scss */
+/* line 101, ../dev/scss/modules/_header.scss */
 .header-playList-title {
   padding: 4px;
 }
 
-/* line 99, ../dev/scss/modules/_header.scss */
+/* line 107, ../dev/scss/modules/_header.scss */
 .header-playMenu {
   top: 10px;
   left: 293px;
@@ -930,12 +950,12 @@ header {
   height: 40px;
   background-color: #656457;
 }
-/* line 105, ../dev/scss/modules/_header.scss */
+/* line 113, ../dev/scss/modules/_header.scss */
 .header-playMenu > div {
   height: 40px;
 }
 
-/* line 110, ../dev/scss/modules/_header.scss */
+/* line 118, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn {
   position: absolute;
   top: 50%;
@@ -945,16 +965,18 @@ header {
   color: #656457;
   -webkit-border-radius: 26px;
   -moz-border-radius: 26px;
+  -ms-border-radius: 26px;
+  -o-border-radius: 26px;
   border-radius: 26px;
   background-color: #fdfcf3;
 }
 
-/* line 120, ../dev/scss/modules/_header.scss */
+/* line 128, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn-prev {
   left: 8px;
 }
 
-/* line 123, ../dev/scss/modules/_header.scss */
+/* line 131, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn-play {
   left: 40px;
   width: 32px;
@@ -962,12 +984,12 @@ header {
   margin-top: -16px;
 }
 
-/* line 129, ../dev/scss/modules/_header.scss */
+/* line 137, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn-next {
   left: 76px;
 }
 
-/* line 133, ../dev/scss/modules/_header.scss */
+/* line 141, ../dev/scss/modules/_header.scss */
 .header-playMenu-song {
   position: absolute;
   left: 110px;
@@ -975,13 +997,13 @@ header {
   color: #fff;
 }
 
-/* line 139, ../dev/scss/modules/_header.scss */
+/* line 147, ../dev/scss/modules/_header.scss */
 .header-playMenu-song-title {
   margin: 6px 0 2px;
   font-size: 12px;
 }
 
-/* line 144, ../dev/scss/modules/_header.scss */
+/* line 152, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn {
   position: absolute;
   bottom: 4px;
@@ -989,33 +1011,33 @@ header {
   height: 20px;
   color: #fff;
 }
-/* line 150, ../dev/scss/modules/_header.scss */
+/* line 158, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn.is-active {
   color: #ffe77c;
 }
 
-/* line 154, ../dev/scss/modules/_header.scss */
+/* line 162, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn-window {
   right: 64px;
 }
 
-/* line 157, ../dev/scss/modules/_header.scss */
+/* line 165, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn-repeat {
   right: 34px;
 }
 
-/* line 160, ../dev/scss/modules/_header.scss */
+/* line 168, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn-shuffle {
   right: 4px;
 }
 
-/* line 166, ../dev/scss/modules/_header.scss */
+/* line 174, ../dev/scss/modules/_header.scss */
 .header-menu {
   top: 10px;
   left: 687px;
 }
 
-/* line 170, ../dev/scss/modules/_header.scss */
+/* line 178, ../dev/scss/modules/_header.scss */
 .header-menu-btn {
   position: absolute;
   top: 0;
@@ -1026,33 +1048,33 @@ header {
   color: #656457;
 }
 
-/* line 179, ../dev/scss/modules/_header.scss */
+/* line 187, ../dev/scss/modules/_header.scss */
 .header-menu-btn-myList {
   left: 100px;
   width: 70px;
 }
 
-/* line 183, ../dev/scss/modules/_header.scss */
+/* line 191, ../dev/scss/modules/_header.scss */
 .header-menu-btn-noti {
   left: 180px;
   width: 70px;
 }
 
-/* line 190, ../dev/scss/modules/_header.scss */
+/* line 198, ../dev/scss/modules/_header.scss */
 .header-menu-btn.btn-pocket {
   left: 0;
   width: 40px;
   font-size: 24px;
 }
 
-/* line 196, ../dev/scss/modules/_header.scss */
+/* line 204, ../dev/scss/modules/_header.scss */
 .header-menu-btn.btn-drop {
   left: 50px;
   width: 40px;
   font-size: 24px;
 }
 
-/* line 205, ../dev/scss/modules/_header.scss */
+/* line 213, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup-area {
   position: fixed !important;
   top: 0;
@@ -1063,7 +1085,7 @@ header {
   -webkit-transition: opacity .5s ease;
 }
 
-/* line 215, ../dev/scss/modules/_header.scss */
+/* line 223, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup {
   position: fixed;
   top: 65px;
@@ -1074,7 +1096,7 @@ header {
   border-radius: 5px;
   -webkit-filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.3));
 }
-/* line 227, ../dev/scss/modules/_header.scss */
+/* line 235, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup:after {
   position: absolute;
   top: 0;
@@ -1088,36 +1110,36 @@ header {
   border-right: 12px solid transparent;
   margin-top: -12px;
 }
-/* line 242, ../dev/scss/modules/_header.scss */
+/* line 250, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup .musicList {
   overflow: scroll;
   width: 100%;
   height: 100%;
 }
-/* line 249, ../dev/scss/modules/_header.scss */
+/* line 257, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup li {
   height: 60px;
   box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5) inset, 0 -1px 1px rgba(0, 0, 0, 0.3) inset;
   padding: 5px;
 }
-/* line 254, ../dev/scss/modules/_header.scss */
+/* line 262, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup li.is-active {
   background-color: #ffcf3c;
 }
-/* line 259, ../dev/scss/modules/_header.scss */
+/* line 267, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup li .thumb {
   float: left;
   width: 44px;
   height: 44px;
   margin: 3px 0 0 3px;
 }
-/* line 267, ../dev/scss/modules/_header.scss */
+/* line 275, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup li .info {
   width: 350px;
   margin: 10px 0 0 10px;
   float: left;
 }
-/* line 272, ../dev/scss/modules/_header.scss */
+/* line 280, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup li .title {
   height: 20px;
   width: 100%;
@@ -1125,14 +1147,14 @@ header {
   font-weight: bold;
   overflow: hidden;
 }
-/* line 279, ../dev/scss/modules/_header.scss */
+/* line 287, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup li .artistName {
   height: 12px;
   width: 100%;
   font-size: 10px;
   overflow: hidden;
 }
-/* line 287, ../dev/scss/modules/_header.scss */
+/* line 295, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup li .playBtn, .header-playlist-content-popup li .pauseBtn {
   float: left;
   margin: 6px 5px 0 5px;
@@ -1145,7 +1167,7 @@ header {
   color: #efede0;
 }
 
-/* line 308, ../dev/scss/modules/_header.scss */
+/* line 316, ../dev/scss/modules/_header.scss */
 #appSubTitle {
   position: absolute;
   top: 10px;
@@ -1153,7 +1175,7 @@ header {
   font-size: 11px;
 }
 
-/* line 316, ../dev/scss/modules/_header.scss */
+/* line 324, ../dev/scss/modules/_header.scss */
 #pageTitle {
   text-align: center;
   font-size: 16px;
@@ -1161,7 +1183,7 @@ header {
   padding-top: 10px;
 }
 
-/* line 325, ../dev/scss/modules/_header.scss */
+/* line 333, ../dev/scss/modules/_header.scss */
 #appUserModule {
   position: absolute;
   top: 10px;
@@ -1172,7 +1194,7 @@ header {
   text-align: center;
   background-color: #efede0;
 }
-/* line 335, ../dev/scss/modules/_header.scss */
+/* line 343, ../dev/scss/modules/_header.scss */
 #appUserModule .login, #appUserModule .userInfo {
   display: block;
   width: 100%;
@@ -1294,6 +1316,8 @@ header {
   height: 60px;
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
   border-radius: 60px;
 }
 /* line 53, ../dev/scss/modules/_buttons.scss */
@@ -1385,17 +1409,101 @@ header {
 }
 
 /* line 141, ../dev/scss/modules/_buttons.scss */
+.btn-text-size-l {
+  padding: 14px 8px;
+}
+/* line 143, ../dev/scss/modules/_buttons.scss */
+.btn-text-size-l.btn-text-arrow-left {
+  margin-left: 8px;
+  padding-left: 4px;
+}
+/* line 146, ../dev/scss/modules/_buttons.scss */
+.btn-text-size-l.btn-text-arrow-left:before {
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 12px solid;
+  left: -12px;
+}
+/* line 153, ../dev/scss/modules/_buttons.scss */
+.btn-text-size-l.btn-text-arrow-right {
+  margin-right: 8px;
+  padding-right: 4px;
+}
+/* line 156, ../dev/scss/modules/_buttons.scss */
+.btn-text-size-l.btn-text-arrow-right:after {
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 12px solid;
+  right: -12px;
+}
+
+/* line 166, ../dev/scss/modules/_buttons.scss */
 .btn-text-color-brown {
   color: #fff;
   background-color: #656457;
 }
-/* line 144, ../dev/scss/modules/_buttons.scss */
+/* line 169, ../dev/scss/modules/_buttons.scss */
 .btn-text-color-brown.btn-text-arrow-left:before {
   border-right-color: #656457;
 }
-/* line 147, ../dev/scss/modules/_buttons.scss */
+/* line 172, ../dev/scss/modules/_buttons.scss */
 .btn-text-color-brown.btn-text-arrow-right:after {
   border-left-color: #656457;
+}
+
+/* line 176, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-brown-02 {
+  background-color: #dedbc7;
+}
+/* line 178, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-brown-02.btn-text-arrow-left:before {
+  border-right-color: #dedbc7;
+}
+/* line 181, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-brown-02.btn-text-arrow-right:after {
+  border-left-color: #dedbc7;
+}
+
+/* line 186, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-google {
+  color: #fff;
+  background-color: #d94d32;
+}
+/* line 189, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-google.btn-text-arrow-left:before {
+  border-right-color: #d94d32;
+}
+/* line 192, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-google.btn-text-arrow-right:after {
+  border-left-color: #d94d32;
+}
+
+/* line 196, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-fb {
+  color: #fff;
+  background-color: #3b579d;
+}
+/* line 199, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-fb.btn-text-arrow-left:before {
+  border-right-color: #3b579d;
+}
+/* line 202, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-fb.btn-text-arrow-right:after {
+  border-left-color: #3b579d;
+}
+
+/* line 206, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-tw {
+  color: #fff;
+  background-color: #00acee;
+}
+/* line 209, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-tw.btn-text-arrow-left:before {
+  border-right-color: #00acee;
+}
+/* line 212, ../dev/scss/modules/_buttons.scss */
+.btn-text-color-tw.btn-text-arrow-right:after {
+  border-left-color: #00acee;
 }
 
 /* line 15, ../dev/scss/modules/_forms.scss */
@@ -1410,6 +1518,8 @@ header {
   vertical-align: middle;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
@@ -1527,6 +1637,8 @@ textarea.form {
   line-height: 22px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
   border-radius: 2px;
 }
 /* line 35, ../dev/scss/modules/_feelings.scss */
@@ -1560,7 +1672,7 @@ textarea.form {
 
 /* line 60, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling {
-  background-image: url('/../images/../images/sprite/feeling-scb5bd80b49.png');
+  background-image: url('/../images/../images/sprite/feeling-s4102400cd7.png');
   background-repeat: no-repeat;
   background-size: 46px 280px;
 }
@@ -1574,37 +1686,37 @@ textarea.form {
 .sprite-feeling.feeling-2 {
   width: 46px;
   height: 40px;
-  background-position: 0 -40px;
+  background-position: 0 -240px;
 }
 /* line 68, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-3 {
   width: 46px;
   height: 40px;
-  background-position: 0 -80px;
+  background-position: 0 -200px;
 }
 /* line 71, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-4 {
   width: 46px;
   height: 40px;
-  background-position: 0 -120px;
+  background-position: 0 -40px;
 }
 /* line 74, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-5 {
   width: 46px;
   height: 40px;
-  background-position: 0 -160px;
+  background-position: 0 -80px;
 }
 /* line 77, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-6 {
   width: 46px;
   height: 40px;
-  background-position: 0 -200px;
+  background-position: 0 -120px;
 }
 /* line 80, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-7 {
   width: 46px;
   height: 40px;
-  background-position: 0 -240px;
+  background-position: 0 -160px;
 }
 
 /* line 87, ../dev/scss/modules/_feelings.scss */
@@ -1751,6 +1863,8 @@ textarea.form {
   line-height: 22px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
   border-radius: 2px;
 }
 /* line 100, ../dev/scss/modules/_drop_list.scss */
@@ -1832,6 +1946,8 @@ textarea.form {
   font-size: 30px;
   -webkit-border-radius: 80px;
   -moz-border-radius: 80px;
+  -ms-border-radius: 80px;
+  -o-border-radius: 80px;
   border-radius: 80px;
   background: #dedbc7;
 }
@@ -1983,6 +2099,8 @@ textarea.form {
   font-size: 20px;
   -webkit-border-radius: 56px;
   -moz-border-radius: 56px;
+  -ms-border-radius: 56px;
+  -o-border-radius: 56px;
   border-radius: 56px;
 }
 /* line 186, ../dev/scss/modules/_music_detail.scss */
@@ -2539,6 +2657,25 @@ textarea.form {
   padding: 10px;
 }
 
+/* line 5, ../dev/scss/pages/_login.scss */
+.page-login {
+  width: 480px;
+  margin: 0 auto;
+}
+
+/* line 10, ../dev/scss/pages/_login.scss */
+.page-login-service .btn-text {
+  width: 120px;
+}
+
+/* line 15, ../dev/scss/pages/_login.scss */
+.page-login-sns .btn-text {
+  display: block;
+  width: 454px;
+  margin: 0 auto 10px;
+  text-align: center;
+}
+
 /* line 12, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .leftCol {
   position: fixed;
@@ -2845,30 +2982,30 @@ textarea.form {
 
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 76, ../dev/scss/style.scss */
+  /* line 77, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 83, ../dev/scss/style.scss */
+/* line 84, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 84, ../dev/scss/style.scss */
+/* line 85, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 85, ../dev/scss/style.scss */
+/* line 86, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 89, ../dev/scss/style.scss */
+/* line 90, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -2883,7 +3020,7 @@ textarea.form {
 /*==============================
   Stage
 ===============================*/
-/* line 105, ../dev/scss/style.scss */
+/* line 106, ../dev/scss/style.scss */
 #stage {
   position: relative;
 }
@@ -2891,7 +3028,7 @@ textarea.form {
 /*==============================
   Preview Area
 ===============================*/
-/* line 116, ../dev/scss/style.scss */
+/* line 117, ../dev/scss/style.scss */
 .previewArea {
   z-index: 9998;
   transition: opacity .5s ease;
@@ -2900,7 +3037,7 @@ textarea.form {
   -ms-transition: opacity .5s ease;
 }
 
-/* line 123, ../dev/scss/style.scss */
+/* line 124, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: absolute !important;
   top: -500px !important;
@@ -2908,7 +3045,7 @@ textarea.form {
   opacity: 0;
 }
 
-/* line 129, ../dev/scss/style.scss */
+/* line 130, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -2923,7 +3060,7 @@ textarea.form {
   color: white;
 }
 
-/* line 143, ../dev/scss/style.scss */
+/* line 144, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -2939,7 +3076,7 @@ textarea.form {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 160, ../dev/scss/style.scss */
+/* line 161, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -2947,25 +3084,25 @@ textarea.form {
 /*==============================
   Base Frame
 ===============================*/
-/* line 174, ../dev/scss/style.scss */
+/* line 175, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 65px;
 }
 
-/* line 179, ../dev/scss/style.scss */
+/* line 180, ../dev/scss/style.scss */
 #main {
   width: 980px;
   margin: 0 auto;
 }
 
-/* line 183, ../dev/scss/style.scss */
+/* line 184, ../dev/scss/style.scss */
 #pagePop {
   z-index: 9999;
 }
 
-/* line 186, ../dev/scss/style.scss */
+/* line 187, ../dev/scss/style.scss */
 .popUp {
   position: fixed;
   top: 100px;

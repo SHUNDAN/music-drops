@@ -137,6 +137,31 @@
 	right: -8px;
 	}
 }
+// 　サイズ
+.btn-text-size-l {
+	padding: 14px 8px;
+	&.btn-text-arrow-left {
+		margin-left: 8px;
+		padding-left: 4px;
+		&:before {
+			border-top: 20px solid transparent;
+			border-bottom: 20px solid transparent;
+			border-right: 12px solid;
+			left: -12px;
+		}
+	}
+	&.btn-text-arrow-right {
+		margin-right: 8px;
+		padding-right: 4px;
+		&:after {
+		border-top: 20px solid transparent;
+		border-bottom: 20px solid transparent;
+		border-left: 12px solid;
+		right: -12px;
+		}
+	}
+}
+
 // 色
 .btn-text-color-brown {
 	color: #fff;
@@ -146,6 +171,46 @@
 	}
 	&.btn-text-arrow-right:after {
 		border-left-color: #656457;
+	}
+}
+.btn-text-color-brown-02 {
+	background-color: #dedbc7;
+	&.btn-text-arrow-left:before {
+		border-right-color: #dedbc7;
+	}
+	&.btn-text-arrow-right:after {
+		border-left-color: #dedbc7;
+	}
+}
+// SNS用の色
+.btn-text-color-google {
+	color: #fff;
+	background-color: #d94d32;
+	&.btn-text-arrow-left:before {
+		border-right-color: #d94d32;
+	}
+	&.btn-text-arrow-right:after {
+		border-left-color: #d94d32;
+	}
+}
+.btn-text-color-fb {
+	color: #fff;
+	background-color: #3b579d;
+	&.btn-text-arrow-left:before {
+		border-right-color: #3b579d;
+	}
+	&.btn-text-arrow-right:after {
+		border-left-color: #3b579d;
+	}
+}
+.btn-text-color-tw {
+	color: #fff;
+	background-color: #00acee;
+	&.btn-text-arrow-left:before {
+		border-right-color: #00acee;
+	}
+	&.btn-text-arrow-right:after {
+		border-left-color: #00acee;
 	}
 }
 // 個別
