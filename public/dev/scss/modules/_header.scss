@@ -252,56 +252,36 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
   overflow: scroll;      
   width: 100%;
   height: 100%;
-  // Playlist中身
-  li {
-    height: 60px;
-    padding: 5px;
-    border-bottom: 1px solid #d6d4c5;
-    &:last-child {
-      border-bottom: none;
-    }
-    &.is-active {
-      background-color: #ffcf3c;
-    }
-    // サムネ画像
-    .thumb {
-      float: left;
-      width: 44px;
-      height: 44px;
-      margin: 3px 0 0 3px;
-    }
-    // 情報エリア
-    .info {
-      width: 350px;
-      margin: 10px 0 0 10px;
-      float: left;
-    }
-    .title {
-      height: 20px;
-      width: 100%;
-      font-size: 14px;
-      font-weight: bold;
-      overflow: hidden;
-    }
-    .artistName {
-      height: 12px;
-      width: 100%;
-      font-size: 10px;
-      overflow: hidden;
-    }
-    // 再生ボタン
-    .playBtn, .pauseBtn {
-      float: left;
-      margin: 6px 5px 0 5px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background-color: #656457;
-      text-align: center;
-      line-height: 36px;
-      color: rgb(239, 237, 224);
-    }
+}
+.header-musicList-item {
+  height: 60px;
+  padding: 5px;
+  border-bottom: 1px solid #d6d4c5;
+  &:last-child {
+    border-bottom: none;
   }
+  &.is-active {
+    background-color: #ffcf3c;
+  }
+  // サムネ画像
+  .thumb {
+    width: 44px;
+    height: 44px;
+    margin: 3px 0 0 3px;
+  }
+}
+// 再生ボタン
+.header-musicList-btn {
+  top: 50%;
+  right: 10px;
+  margin-top: -18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #656457;
+  text-align: center;
+  line-height: 36px;
+  color: rgb(239, 237, 224);
 }
 
 

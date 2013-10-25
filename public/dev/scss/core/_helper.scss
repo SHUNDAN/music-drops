@@ -40,6 +40,7 @@
 .quater { width: 25%; }
 .fifth  { width: 20%; }
 
+.fix { position: fixed; }
 .ref { position: relative; }
 .abs { position: absolute; }
 
@@ -56,10 +57,6 @@
 .ds { display: inline-block !important;  }
 .dt { display: table !important; }
 .dc { display: table-cell !important;}
-
-.tc { text-align: center; }
-.tl { text-align: left; }
-.tr { text-align: right; }
 
 
 //  Spacing Classes
@@ -332,12 +329,17 @@
 // .b-fff { background-color: $color-fff !important; }
 // .b-000 { background-color: $color-000 !important; }
 
-// .n { font-weight: normal !important; }
-.b { font-weight: bold !important; }   // 使いたいので、復活させました（byムネ）
-// .l { text-align: left !important; }
-// .c { text-align: center !important; }
-// .r { text-align: right !important; }
-.u { text-decoration: underline !important; }   // 使いたいので、復活させました（byムネ）
+.n { font-weight: normal !important; }
+.b { font-weight: bold !important; }
+.l { text-align: left !important; }
+.c { text-align: center !important; }
+.r { text-align: right !important; }
+.u { text-decoration: underline !important; }
+
+// かぶった。。。後で整理w Byコバ
+.tc { text-align: center; }
+.tl { text-align: left; }
+.tr { text-align: right; }
 
 // .f1 { font-size: $font-size-1; }
 // .f2 { font-size: $font-size-2; }

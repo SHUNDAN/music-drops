@@ -73,9 +73,9 @@
     </div><!-- /header-searchMenu -->
 
 
-    <div id="playlistPopup" class="header-playlist-content-popup-area hidden" data-event-click="closePlaylistPopup">
-      <div class="header-playlist-content-popup-box mo">
-        <div class="header-playlist-content-popup">
+    <div id="playlistPopup" class="header-playlist-content-popup-area fix hidden" data-event-click="closePlaylistPopup">
+      <div class="header-playlist-content-popup-box ref mo">
+        <div class="header-playlist-content-popup abs">
             <ul id="musicList" class="header-musicList" data-event-click="cancelEvent"><!--JSで中身を埋める--></ul>
           
         </div>
@@ -91,28 +91,28 @@
 <script id="header_component_music_list" type="text/template">
   <%_.each(musicArray, function (music) {%>
     <%if (music.id === currentMusic.id) {%>
-      <li class="clearfix is-active" data-id="<%=music.id%>">
+      <li class="header-musicList-item gp ref is-active" data-id="<%=music.id%>">
     <%} else {%>
-      <li class="clearfix" data-id="<%=music.id%>">
+      <li class="header-musicList-item gp ref" data-id="<%=music.id%>">
     <%}%>
-      <img class="thumb" src="<%=music.artwork_url%>" alt="<%=music.title%>"/>
-      <div class="info">
-        <div class="title"><%=music.title%></div>
-        <div class="artistName"><%=music.artist_name%></div>
+      <img class="thumb fl" src="<%=music.artwork_url%>" alt="<%=music.title%>"/>
+      <div class="fl mt10 ml10">
+        <div class="title mb5 fs14 b elps"><%=music.title%></div>
+        <div class="artistName fs10 elps"><%=music.artist_name%></div>
       </div>
 
       <%if (music.id === currentMusic.id) {%>
-        <div class="playBtn hidden" data-event-click="playMusicAt">
+        <div class="header-musicList-btn abs hidden" data-event-click="playMusicAt">
           <i class="ico-font ico-play"></i>
         </div>
-        <div class="pauseBtn" data-event-click="pauseMusicAt">
+        <div class="header-musicList-btn abs" data-event-click="pauseMusicAt">
           <i class="ico-font ico-play-stop"></i>
         </div>
       <%} else {%>
-        <div class="playBtn" data-event-click="playMusicAt">
+        <div class="header-musicList-btn abs" data-event-click="playMusicAt">
           <i class="ico-font ico-play"></i>
         </div>
-        <div class="pauseBtn hidden" data-event-click="pauseMusicAt">
+        <div class="header-musicList-btn abs hidden" data-event-click="pauseMusicAt">
           <i class="ico-font ico-play-stop"></i>
         </div>
       <%}%>
