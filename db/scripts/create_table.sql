@@ -1,15 +1,15 @@
--- 
+--
 -- Mockbu Table Definition
--- 
+--
 
 
 -- Feeling
 create table if not exists feeling(
-    id          numeric     primary key, 
-    name         text, 
-    create_at   numeric, 
+    id          numeric     primary key,
+    name         text,
+    create_at   numeric,
     update_at   numeric
-); 
+);
 
 
 
@@ -151,6 +151,7 @@ create table if not exists user_notification (
     user_id     integer,
     type        integer,
     json        text,
+    read        integer,
     create_at   numeric,
     update_at   numeric
 );
@@ -158,7 +159,7 @@ create table if not exists user_notification (
 
 
 
--- iTunes Ranking 
+-- iTunes Ranking
 create table if not exists itunes_ranking(
     id          integer     primary key   autoincrement,
     ranking     integer,
