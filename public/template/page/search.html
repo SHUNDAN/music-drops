@@ -1,24 +1,94 @@
 
 
-<!-- Base  -->
+<!-- 検索ページの枠組み  -->
 <script id="page_search" type="text/template">
-    <h1 class="text-center">Search Music</h1>
 
-    タブ：
-    <a href="#" data-event="showITunesRanking">iTunes Rankingを表示</a>&nbsp;&nbsp;
-    <a href="#" data-event="showITunesSearch">iTunes Searchを表示</a><br><br>
+    <div class="pageSearch">
+
+        <!--検索条件入力エリア-->
+        <div class="conditionArea">
+            <input id="conditionInput" type="text" placeholder="曲名やアーティスト名で検索"/>
+            <input type="button" value="検索する" data-event-click="searchByItunes"/>
+        </div>
 
 
+        <!--検索結果エリア-->
+        <div class="resultArea">
 
-    <div id="searchArea"></div>
+            <!--検索件数-->
+            <p class="numOfResult">検索結果：<span id="numOfResult">300</span>件</p>
+
+            <!--結果内容-->
+            <ul id="resultList" class="resultList"><!--JSで埋め込む--></ul>
+        </div>
+    </div>
 </script>
+
+
+
+<!--iTunes検索結果-->
+<script id="page_search_itunes_results" type="text/template">
+    <%_.each(results, function (result, idx) {%>
+        <li data-pos="<%=idx%>">
+            <img class="thumb" src="<%=result.artworkUrl100%>" alt=""/>
+            <div class="info">
+                <div class="title"><%=result.trackName%></div>
+                <div class="artistName"><%=result.artistName%></div>
+            </div>
+            <div class="actionArea">
+                <input type="button" class="writePopButton" value="感想を書く" data-event-click="writeDrop"/>
+                <input type="button" class="goDetail" value="詳細を見る" data-event-click="goMusicDetail"/>
+            </div>
+        </li>
+    <%});%>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- iTunes Ranking Tab Content -->
 <script id="page_search_itunes_ranking" type="text/template">
     <select id="genreSelect" name="dummy">
         <% _.each(genres, function (genre) { %>
-            <option value="<%- genre.key2 %>"><%- genre.value %></option> 
+            <option value="<%- genre.key2 %>"><%- genre.value %></option>
         <% }); %>
     </select>&nbsp;&nbsp;&nbsp;&nbsp;
     <div id="searchResult"></div>
@@ -35,7 +105,7 @@
                 <%=(i+1)%>&nbsp;
             <% } %>
         <% } %>
-    </div> 
+    </div>
     <table class="table">
         <tr>
             <th>#</th>
@@ -94,9 +164,9 @@
             <td colspan=4>No Search Result</td>
         </tr>
     <% } else { %>
-        <% 
-            for (var i = 0; i < results.length; i++) { 
-                var result = results[i]; 
+        <%
+            for (var i = 0; i < results.length; i++) {
+                var result = results[i];
         %>
             <tr>
                 <td><%=(i+1)%></td>
