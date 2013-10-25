@@ -165,7 +165,11 @@ define([], function () {
 
 
             // プレイリスト名
-            this.$playlistTitle.html(options.playlistName || 'プレイリスト');
+            var playlistNameText = options.playlistName || 'プレイリスト';
+            this.$playlistTitle
+                .html('<span class="elps">' + playlistNameText + '</span>')
+                .append('<i class="ico-font ico-below fr fs9"></i>')
+                .removeClass('hidden');
 
             // プレイヤーを再生状態にする
             $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');

@@ -1,6 +1,6 @@
 "use strict";
 /*
- * Music. 
+ * Music.
  */
 var _ = require('underscore');
 var appUtil = require('../util/utility');
@@ -11,7 +11,7 @@ var artistModel = require('../models/artist');
 
 
 /**
- * Select 
+ * Select
  */
 exports.select = function(req, res) {
 
@@ -19,7 +19,7 @@ exports.select = function(req, res) {
     var conditions = {};
     var id = req.params.id;
     if (id) {
-        conditions.id = id; 
+        conditions.id = id;
     }
 
     if (req.query) {
@@ -52,7 +52,7 @@ exports.searchWithITunes = function (req, res) {
     var musicFound = false;
     var artistFound = false;
     musicModel.selectObjects(params, function (err, rows) {
-        
+
         if (rows.length > 0) {
             console.log('find music');
         } else {
@@ -75,9 +75,9 @@ exports.searchWithITunes = function (req, res) {
 
             // 曲もアーティストもある場合には、曲のIDを返す。
             if (musicFound && artistFound) {
-                res.json({music_id: rows[0].id});
+                res.json(rows[0]);
                 return;
-            
+
             } else if (artistFound) {
                 // アーティストが既にある場合には、曲を登録してからそのIDを返す。
                 var data = {
@@ -90,7 +90,7 @@ exports.searchWithITunes = function (req, res) {
                 };
                 musicModel.insertObject(data, function () {
                     musicModel.selectObjects(data, function (err, rows) {
-                        res.json({music_id: rows[0].id});
+                        res.json(rows[0]);
                     });
                 });
 
@@ -115,7 +115,7 @@ exports.searchWithITunes = function (req, res) {
                         };
                         musicModel.insertObject(data, function () {
                             musicModel.selectObjects(data, function (err, rows) {
-                                res.json({music_id: rows[0].id});
+                                res.json(rows[0]);
                             });
                         });
 
@@ -147,7 +147,7 @@ exports.add = function(req, res) {
 
     // execute.
     musicModel.insertObject(req.body, function (err) {
-        appUtil.basicResponse(res, err); 
+        appUtil.basicResponse(res, err);
     });
 
 };
@@ -216,7 +216,7 @@ exports.addMusicPlayCount = function(req, res) {
 
     // add play count.
     musicModel.addPlayCount(musicId, function () {
-        res.json({});   
+        res.json({});
     });
 
 };

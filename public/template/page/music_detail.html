@@ -101,15 +101,15 @@
                 <th width="60%">コメント</th>
             </tr>
         </thead>
-        <% _.each(popList, function (pop) {  %>
         <tbody>
+        <% _.each(popList, function (pop) {  %>
             <tr>
                 <td><a class="text-link" href="#user/<%=pop.attributes.user_id%>"><%- pop.attributes.user_name %><i class="ico-font ico-play"></i></a></td>
                 <td data-feeling-id="<%=pop.attributes.feeling_id%>"><%=_.getFeelingName(pop.attributes.feeling_id)%></td>
                 <td><%- pop.attributes.comment  %></td>
             </tr>
-        </tbody>
         <% }); %>
+        </tbody>
     </table>
 </script>
 
@@ -118,11 +118,10 @@
 <script id="page_music_detail_music_links" type="text/template">
     <p class="mb10">URLを追加するとリンクされた曲をMusic-Dropsで聴けるようになります。</p>
     <div class="add-musicLink mb10">
-        <div class="form form-color-base" contenteditable="true" data-type="link"></div>
-        <div class="form form-color-base" contenteditable="true" data-type="comment"></div>
+        <div class="form form-color-base" contenteditable="true" data-type="link">Youtubeなどの動画リンクを入力</div>
+        <div class="form form-color-base" contenteditable="true" data-type="comment">動画の説明やコメント</div>
         <div id="addLink" class="btn-text btn-text-back btn-text-color-brown">ADD</div>
     </div>
-    <% _.each(musicLinkList, function (musicLink) { %>
     <table class="musicLink-table">
         <caption>登録済みのリンク</caption>
         <thead>
@@ -133,6 +132,7 @@
             </tr>
         </thead>
         <tbody>
+            <% _.each(musicLinkList, function (musicLink) { %>
             <tr>
                 <td>
                     <a class="text-link" href="#user/<%-musicLink.attributes.user_id%>"><%=musicLink.attributes.user_name%><i class="ico-font ico-play"></i></a>
@@ -164,9 +164,9 @@
                     </div>
                 </td>
             </tr>
+            <% }); %>
         </tbody>
     </table>
-    <% }); %>
 </script>
 
 
