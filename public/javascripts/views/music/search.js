@@ -2,9 +2,11 @@
  * View: Music - Search
  */
 define([
+    'views/pop/index',
     'views/music/itunes_ranking',
     'views/music/itunes_search',
 ], function (
+    PopView,
     ITunesRankingView,
     ITunesSearchView
 
@@ -140,10 +142,10 @@ define([
         goMusicDetail: function (e) {
 
             var pos = $(e.currentTarget).parents('li').data('pos');
-            this._loadMusicInfo(pos, function (music) {
+            this._loadMusicInfo(pos, _.bind(function (music) {
                 // 曲詳細へ遷移
                 mb.router.navigate('music/' + music.id, true);
-            });
+            }, this));
 
         },
 
@@ -156,12 +158,14 @@ define([
         writeDrop: function (e) {
 
             var pos = $(e.currentTarget).parents('li').data('pos');
-            this._loadMusicInfo(pos, function (music) {
+            this._loadMusicInfo(pos, _.bind(function (music) {
 
-                // Drop書くUI
-                alert('ドロップを書く！');
+                // show PopView.
+                this.popView = new PopView();
+                this.$el.append(this.popView.$el);
+                this.popView.show(this.music_id, undefined, 'modal');
 
-            });
+            }, this));
 
         },
 
