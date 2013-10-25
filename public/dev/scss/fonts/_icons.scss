@@ -2,11 +2,11 @@
 
 @font-face {
   font-family:"icons";
-  src:url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.eot");
-  src:url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.eot?#iefix") format("embedded-opentype"),
-		url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.woff") format("woff"),
-		url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.ttf") format("truetype"),
-		url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.svg?#icons") format("svg");
+  src:url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.eot");
+  src:url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.eot?#iefix") format("embedded-opentype"),
+		url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.woff") format("woff"),
+		url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.ttf") format("truetype"),
+		url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.svg?#icons") format("svg");
   font-weight:normal;
   font-style:normal;
 }
@@ -27,57 +27,63 @@
 .ico-delete:before {
   content:"\f101";
 }
-.ico-drop:before {
+.ico-drop-write:before {
   content:"\f102";
 }
-.ico-follow:before {
+.ico-drop:before {
   content:"\f103";
 }
-.ico-heart:before {
+.ico-follow:before {
   content:"\f104";
 }
-.ico-image:before {
+.ico-heart:before {
   content:"\f105";
 }
-.ico-list:before {
+.ico-image:before {
   content:"\f106";
 }
-.ico-mail:before {
+.ico-list:before {
   content:"\f107";
 }
-.ico-play-02:before {
+.ico-mail:before {
   content:"\f108";
 }
-.ico-play-next:before {
+.ico-menu:before {
   content:"\f109";
 }
-.ico-play-prev:before {
+.ico-play-02:before {
   content:"\f10a";
 }
-.ico-play-stop:before {
+.ico-play-next:before {
   content:"\f10b";
 }
-.ico-play:before {
+.ico-play-prev:before {
   content:"\f10c";
 }
-.ico-plus:before {
+.ico-play-stop:before {
   content:"\f10d";
 }
-.ico-refresh:before {
+.ico-play:before {
   content:"\f10e";
 }
-.ico-repeat:before {
+.ico-plus:before {
   content:"\f10f";
 }
-.ico-search:before {
+.ico-refresh:before {
   content:"\f110";
 }
-.ico-shuffle:before {
+.ico-repeat:before {
   content:"\f111";
 }
-.ico-star:before {
+.ico-search:before {
   content:"\f112";
 }
-.ico-user:before {
+.ico-shuffle:before {
   content:"\f113";
+}
+.ico-star:before {
+  content:"\f114";
+}
+.ico-user:before {
+  content:"\f115";
 }

@@ -9,16 +9,19 @@
       <a href="#" class="sprite-logo logo-headter ir">Music Drops</a>
     </h1>
 
-    <div class="header-searchMenu gp">
-      <p class="fl">さがす</p>
-      <div class="header-searchMenu-btn fr">
+    <div class="header-menu gp">
+      <p class="fl">
+        <i class="ico-font ico-menu db fs30"></i>
+        <span class="db fs9">メニュー</span>
+      </p>
+      <div class="header-menu-btn fr">
         <i class="ico-font ico-below"></i>
       </div>
     </div><!-- /header-searchMenu -->
 
     <div class="header-playList">
       <p>再生リスト</p>
-      <p id="mpPlaylistTitle" class="header-playList-title" data-event-click="openPlaylistPopup"><!--JSで埋めます--></p>
+      <p id="mpPlaylistTitle" class="header-playList-title hidden gp" data-event-click="openPlaylistPopup"><!--JSで埋めます--></p>
     </div><!-- /header-searchMenu -->
 
     <div class="header-playMenu">
@@ -51,7 +54,7 @@
       </div><!-- /ref -->
     </div><!-- /header-playMenu -->
 
-    <div class="header-menu">
+    <div class="header-userMenu">
       <div class="ref">
         <div class="m-btn-PD">
           <a href="#" class="js-menu-pocket btn-PD btn-pocket" data-event-click="pocket">
@@ -62,10 +65,10 @@
             <i class="ico-font ico-drop"></i>
             <span>ドロップ</span>
           </a>
-          <a href="#mypage" class="js-menu-myList header-menu-btn header-menu-btn-myList">
+          <a href="#mypage" class="js-menu-myList header-userMenu-btn header-menu-btn-myList">
             マイリスト
           </a>
-          <a href="#timeline" class="js-menu-noti header-menu-btn header-menu-btn-noti">
+          <a href="#timeline" class="js-menu-noti header-userMenu-btn header-menu-btn-noti">
             お知らせ
           </a>
         </div><!-- /m-btn-PD -->
