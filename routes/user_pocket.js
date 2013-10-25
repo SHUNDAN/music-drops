@@ -11,6 +11,7 @@ var userFollowModel = require('../models/user_follow');
 var userNotificationModel = require('../models/user_notification');
 var musicModel = require('../models/music');
 var userModel = require('../models/user');
+var onlineBatch = require('../util/online_batch');
 var appUtil = require('../util/utility');
 
 /**
@@ -84,6 +85,11 @@ exports.add = function(req, res) {
 
         appUtil.basicResponse(res, err);
     });
+
+
+    // ユーザーのプレイリスト更新
+    onlineBatch.refreshUserPlaylistByAddingPocket(user_id, req.body.music_id);
+
 
 
 
@@ -213,6 +219,11 @@ exports.delete = function(req, res) {
         res.setHeader('appVersion', global.mb.appVersion);
 
         appUtil.basicResponse(res, err);
+
+
+        // プレイリストを更新する
+        onlineBatch.refreshUserPlaylistByDeletingPocket(user_id, req.params.id);
+
     });
 
 };
