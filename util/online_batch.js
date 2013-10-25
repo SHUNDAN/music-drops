@@ -11,6 +11,11 @@ var glob = require('glob');
 var musicModel = require('../models/music');
 var popModel = require('../models/pop');
 var feelingModel = require('../models/feeling');
+var userPocketModel = require('../models/user_pocket');
+var userFollowModel = require('../models/user_follow');
+var userNotificationModel = require('../models/user_notification');
+var musicModel = require('../models/music');
+var userModel = require('../models/user');
 
 
 module.exports = {
@@ -109,9 +114,106 @@ module.exports = {
             }); // end feeling model select
         }); // end glob.
 
-
-
     },
+
+
+
+
+    /**
+        お知らせ追加：フォローユーザーがPocketを追加した
+    */
+    addUserNotificationWhenFollowUserAddPocket: function (userId, musicId) {
+
+        // このユーザーの情報を取得する。
+        userModel.selectObjects({id:userId}, function (err, rows) {
+
+            // 検索が失敗したら、何もしない。
+            if (err || rows.length === 0) {
+                return;
+            }
+
+            // ユーザー情報
+            var user = rows[0];
+            delete user.password;
+            delete user.uid;
+            delete user.sex;
+            delete user.google_identifier;
+            delete user.facebook_access_token;
+            delete user.twitter_token;
+            delete user.twitter_token_secret;
+
+
+            // 曲の詳細を取得する。
+            musicModel.selectObjects({id: musicId}, function (err, rows) {
+
+                // 検索失敗の場合は何もしない
+                if (err || rows.length === 0) {
+                    return;
+                }
+
+                // 曲詳細を取得する
+                var music = rows[0];
+
+                // フォローユーザーを取得する
+                userFollowModel.selectObjects({dest_user_id: userId}, function (err, rows) {
+
+                    rows.forEach(function (row) {
+                        // console.log('row: ', row);
+
+                        var jsonText = JSON.stringify({
+                            user: user,
+                            music: music
+                        });
+
+                        // 追加処理
+                        var data = {
+                            user_id: row.user_id,
+                            type: 1,
+                            json: jsonText
+                        };
+
+                        // 保存する
+                        userNotificationModel.insertObject(data);
+
+                    });
+                });
+            });
+        });
+    },
+
+
+
+    /**
+        お知らせ追加：フォローユーザーがDropを追加した
+    */
+    addUserNotificationWhenFollowUserAddDrop: function (userId, popId) {
+
+        // このユーザーの情報を取得する。
+        userModel.selectObjects({id:userId}, function (err, rows) {
+
+            // 検索が失敗したら、何もしない。
+            if (err || rows.length === 0) {
+                return;
+            }
+
+            // ユーザー情報
+            var user = rows[0];
+            delete user.password;
+            delete user.uid;
+            delete user.sex;
+            delete user.google_identifier;
+            delete user.facebook_access_token;
+            delete user.twitter_token;
+            delete user.twitter_token_secret;
+
+
+            // TODO 実装する
+        });
+    },
+
+
+
+
 
 
 

@@ -12,6 +12,7 @@ var userNotificationModel = require('../models/user_notification');
 var musicModel = require('../models/music');
 var userModel = require('../models/user');
 var appUtil = require('../util/utility');
+var onlineBatch = require('../util/online_batch');
 
 /**
  * Select
@@ -88,73 +89,7 @@ exports.add = function(req, res) {
 
 
     // フォローユーザーへお知らせを追加する。
-
-    // このユーザーの情報を取得する。
-    userModel.selectObjects({id:user_id}, function (err, rows) {
-
-        // 検索が失敗したら、何もしない。
-        if (err || rows.length === 0) {
-            return;
-        }
-
-        // ユーザー情報
-        var user = rows[0];
-        user.password = '';
-
-
-        // 曲の詳細を取得する。
-        musicModel.selectObjects({id: req.body.music_id}, function (err, rows) {
-
-            // 検索失敗の場合は何もしない
-            if (err || rows.length === 0) {
-                return;
-            }
-
-            // 曲詳細を取得する
-            var music = rows[0];
-
-
-            // フォローユーザーを取得する
-            userFollowModel.selectObjects({dest_user_id: user_id}, function (err, rows) {
-
-                rows.forEach(function (row) {
-
-                    console.log('row: ', row);
-
-
-                    var jsonText = JSON.stringify({
-                        user: user,
-                        music: music,
-                        feeling_id: req.body.feeling_id
-                    });
-
-                    // 追加処理
-                    var data = {
-                        user_id: row.user_id,
-                        type: 1,
-                        json: jsonText
-                    };
-
-                    // 保存する
-                    userNotificationModel.insertObject(data, function (err) {
-                        // 特に何もしない
-                    });
-
-
-                });
-
-            });
-
-
-
-        });
-
-
-
-    });
-
-
-
+    onlineBatch.addUserNotificationWhenFollowUserAddPocket(user_id, req.body.music_id);
 
 };
 
