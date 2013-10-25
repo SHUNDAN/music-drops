@@ -3,7 +3,7 @@
  *  Online Batch
  ****************************************/
 var fs = require('fs');
-// var _ = require('underscore');
+var _ = require('underscore');
 // var util = require('util');
 // var sqlite3 = require('sqlite3').verbose();
 // var db = new sqlite3.Database(global.db_path);
@@ -13,9 +13,11 @@ var musicLinkModel = require('../models/music_link');
 var userModel = require('../models/user');
 var popModel = require('../models/pop');
 var feelingModel = require('../models/feeling');
+var userPocketModel = require('../models/user_pocket');
+var userFollowModel = require('../models/user_follow');
 var userNotificationModel = require('../models/user_notification');
 var userArtistFollowModel = require('../models/user_artist_follow');
-var userFollowModel = require('../models/user_follow');
+var userPlaylistModel = require('../models/user_playlist');
 
 
 module.exports = {
@@ -113,9 +115,6 @@ module.exports = {
 
             }); // end feeling model select
         }); // end glob.
-
-
-
     },
 
 
@@ -143,7 +142,7 @@ module.exports = {
                 // 0件の場合は終了
                 if (rows.length === 0) {
                     console.log('addNotificationWhenFollowUserAddDrop: no music found. musicId=', musicId);
-                    return;                    
+                    return;
                 }
 
                 var music = rows[0];
@@ -155,7 +154,7 @@ module.exports = {
                     // 0件の場合は終了
                     if (rows.length === 0) {
                         console.log('addNotificationWhenFollowUserAddDrop: no user found. userId=', userId);
-                        return;                    
+                        return;
                     }
 
                     var followUser = rows[0];
@@ -297,6 +296,67 @@ module.exports = {
 
 
 
+    /**
+        お知らせ追加：フォローユーザーがPocketを追加した
+    */
+    addUserNotificationWhenFollowUserAddPocket: function (userId, musicId) {
+
+        // このユーザーの情報を取得する。
+        userModel.selectObjects({id:userId}, function (err, rows) {
+
+            // 検索が失敗したら、何もしない。
+            if (err || rows.length === 0) {
+                return;
+            }
+
+            // ユーザー情報
+            var user = rows[0];
+            delete user.password;
+            delete user.uid;
+            delete user.sex;
+            delete user.google_identifier;
+            delete user.facebook_access_token;
+            delete user.twitter_token;
+            delete user.twitter_token_secret;
+
+
+            // 曲の詳細を取得する。
+            musicModel.selectObjects({id: musicId}, function (err, rows) {
+
+                // 検索失敗の場合は何もしない
+                if (err || rows.length === 0) {
+                    return;
+                }
+
+                // 曲詳細を取得する
+                var music = rows[0];
+
+                // フォローユーザーを取得する
+                userFollowModel.selectObjects({dest_user_id: userId}, function (err, rows) {
+
+                    rows.forEach(function (row) {
+                        // console.log('row: ', row);
+
+                        var jsonText = JSON.stringify({
+                            user: user,
+                            music: music
+                        });
+
+                        // 追加処理
+                        var data = {
+                            user_id: row.user_id,
+                            type: 1,
+                            json: jsonText
+                        };
+
+                        // 保存する
+                        userNotificationModel.insertObject(data);
+
+                    });
+                });
+            });
+        });
+    },
 
 
 
@@ -396,7 +456,7 @@ module.exports = {
                 // 0件の場合は終了
                 if (rows.length === 0) {
                     console.log('addNotificationWhenAddDropToFollowArtistMusic: no music found. musicId=', musicId);
-                    return;                    
+                    return;
                 }
 
                 var music = rows[0];
@@ -443,7 +503,78 @@ module.exports = {
 
 
 
+    /**
+        Pocket追加に合わせて、ユーザーPlaylistを最新化する
+    */
+    refreshUserPlaylistByAddingPocket: function (userId, musicId) {
 
+        // Pocketデータを取得する
+        userPocketModel.selectObjects({user_id: userId, music_id: musicId}, function (err, rows) {
+
+            // なぜか見つからなければ終わり
+            if (rows.length === 0) {
+                console.log('refreshUserPlaylistByAddingPocket: pocket not found. userId=' + userId + ', musicId=' + musicId);
+                return;
+            }
+
+            // 最新のものが今回追加されたPocketを判断する。
+            var pocket = rows[rows.length-1];
+
+            // ユーザープレイリスト（ALLのみ）を取得する
+            userPlaylistModel.selectObjects({user_id: userId, type: 1}, function (err, rows) {
+
+                // なぜか無い場合には終わり
+                if (rows.length === 0) {
+                    console.log('refreshUserPlaylistByAddingPocket: userPlaylist not found. userId=' + userId + ', type=1');
+                    return;
+                }
+
+                // 今回Pocketされたものを追加する
+                var playlist = rows[0];
+                var pocketIds = JSON.parse(playlist.user_pocket_ids);
+                pocketIds.push(pocket.id);
+
+                // DBへ保存する
+                userPlaylistModel.updateObject({user_pocket_ids: JSON.stringify(pocketIds)}, {id: playlist.id});
+
+            });
+
+        });
+    },
+
+
+    /**
+        Pocket削除に合わせて、ユーザーPlaylistを最新化する
+    */
+    refreshUserPlaylistByDeletingPocket: function (userId, userPocketId) {
+        userPocketId = parseInt(userPocketId, 10);
+
+        // ユーザーのプレイリストを全て取得する
+        userPlaylistModel.selectObjects({user_id: userId}, function (err, rows) {
+
+            // プレイリストが無ければ終わり
+            if (rows.length === 0) {
+                console.log('refreshUserPlaylistByDeletingPocket: playlist not found. userId=', userId);
+                return;
+            }
+
+
+            // 該当のPocketがあればプレイリストから削除してDBを更新する
+            rows.forEach(function (playlist) {
+
+                var pocketIds = JSON.parse(playlist.user_pocket_ids);
+                var newPocketIds = _.filter(pocketIds, function (id) {
+                    return id != userPocketId;
+                });
+
+                if (pocketIds.length !== newPocketIds.length) {
+                    console.log('refreshUserPlaylistByDeletingPocket works. userId=' + userId + ', playlistId=' + playlist.id);
+                    userPlaylistModel.updateObject({user_pocket_ids: JSON.stringify(newPocketIds)}, {id: playlist.id});
+                }
+            });
+
+        });
+    },
 
 
 
