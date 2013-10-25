@@ -3983,7 +3983,7 @@ define('views/mypage',[
                 options.musicArray.push(model.attributes);
             }
             options.musicArray = _.shuffle(options.musicArray);
- 
+
             // callback.
             options.callbackWhenWillStart = _.bind(function (music) {
                 // TODO ボタンをPlayとPauseの切替する
@@ -4024,6 +4024,12 @@ define('views/mypage',[
 
             // 表示するPocketリストを作る
             var pocketIds = JSON.parse(playlist.attributes.user_pocket_ids);
+
+            // ALLの場合のみ、最新順とする
+            if (playlist.attributes.type === 1) {
+                pocketIds.reverse();
+            }
+
             this.displayUserPocketList = new UserPocketList();
             _.each(pocketIds, _.bind(function (pocketId) {
                 this.displayUserPocketList.add(this.userPocketList.get(pocketId));
@@ -4422,7 +4428,7 @@ define('views/mypage',[
         editFollowPlaylistButton: function (e) {
             console.debug('editFollowPlaylistButton');
             e.preventDefault();
-            
+
             if ($('#followPlaylist').hasClass('edit')) {
                 $(e.currentTarget).text('編集');
             } else {
@@ -4511,7 +4517,7 @@ define('views/mypage',[
                     $li.find('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
 
                 }, this));
-    
+
             } else {
                 // IDが特定できない場合には、ログインを促す。
                 mb.router.appView.authErrorHandler();
