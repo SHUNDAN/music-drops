@@ -36,7 +36,9 @@
                             <div>フォロー中の<a href="#user/<%=notif.attributes.json.user.id%>" class="di u"><%=notif.attributes.json.user.name%></a>さんが、「<a href="#music/<%=notif.attributes.json.music.id%>" class="di u"><%=notif.attributes.json.music.title%></a>」の曲を<span class="b">ポケット</span>しました。</div>
                             <div class="time"><%=_.formatTimestamp(notif.attributes.create_at)%></div>
                             <div class="musicInfoArea">
-                                <img class="thumb" src="<%=notif.attributes.json.music.artwork_url%>" alt="<%=notif.attributes.json.music.title%>"/>
+                                <a href="#music/<%=notif.attributes.json.music.id%>">
+                                    <img class="thumb" src="<%=notif.attributes.json.music.artwork_url%>" alt="<%=notif.attributes.json.music.title%>"/>
+                                </a>
                                 <div class="info">
                                     <div class="title">
                                         <a href="#user/<%=notif.attributes.json.music.id%>" class="di b"><%=notif.attributes.json.music.title%></a> / <a href="#artist/<%=notif.attributes.json.music.artist_id%>" class="di"><%=notif.attributes.json.music.artist_name%></a>
@@ -60,7 +62,9 @@
                             <div>フォロー中の<a href="#user/<%=notif.attributes.json.followUser.id%>" class="di u"><%=notif.attributes.json.followUser.name%></a>さんが、「<a href="#music/<%=notif.attributes.json.music.id%>" class="di u"><%=notif.attributes.json.music.title%></a>」の曲を<span class="b">ドロップ</span>しました。</div>
                             <div class="time"><%=_.formatTimestamp(notif.attributes.create_at)%></div>
                             <div class="musicInfoArea">
-                                <img class="thumb" src="<%=notif.attributes.json.music.artwork_url%>" alt="<%=notif.attributes.json.music.title%>"/>
+                                <a href="#music/<%=notif.attributes.json.music.id%>">
+                                    <img class="thumb" src="<%=notif.attributes.json.music.artwork_url%>" alt="<%=notif.attributes.json.music.title%>"/>
+                                </a>
                                 <div class="info">
                                     <div class="title">
                                         <a href="#music/<%=notif.attributes.json.music.id%>" class="di b"><%=notif.attributes.json.music.title%></a> / <a href="#artist/<%=notif.attributes.json.music.artist_id%>" class="di"><%=notif.attributes.json.music.artist_name%></a>
@@ -101,7 +105,9 @@
                             <div>フォローアーティスト「<a href="#artist/<%=notif.attributes.json.music.artist_id%>" class="di u"><%=notif.attributes.json.music.artist_name%></a>」の曲に、<span class="b">新しくリンクソースが追加</span>されました。</div>
                             <div class="time"><%=_.formatTimestamp(notif.attributes.create_at)%></div>
                             <div class="linkSourceArea">
-                                <img class="thumb" src="<%=notif.attributes.json.music.artwork_url%>" alt="<%=notif.attributes.json.music.title%>"/>
+                                <a href="#music/<%=notif.attributes.json.music.id%>">
+                                    <img class="thumb" src="<%=notif.attributes.json.music.artwork_url%>" alt="<%=notif.attributes.json.music.title%>"/>
+                                </a>
                                 <div class="info">
                                     <div class="title"><%=notif.attributes.json.music.title%></div>
                                     <a href="#music/<%=notif.attributes.json.music.id%>" class="url"><%=notif.attributes.json.musicLink.link%></a>
@@ -120,7 +126,9 @@
                             <div>フォローアーティスト「<a href="#artist/<%=notif.attributes.json.music.artist_id%>" class="di u"><%=notif.attributes.json.music.artist_name%></a>」に、<span class="b">新しい曲が追加</span>されました。</div>
                             <div class="time"><%=_.formatTimestamp(notif.attributes.create_at)%></div>
                             <div class="musicInfoArea">
-                                <img class="thumb" src="<%=notif.attributes.json.music.artwork_url%>" alt="<%=notif.attributes.json.music.title%>"/>
+                                <a href="#music/<%=notif.attributes.json.music.id%>">
+                                    <img class="thumb" src="<%=notif.attributes.json.music.artwork_url%>" alt="<%=notif.attributes.json.music.title%>"/>
+                                </a>
                                 <div class="info">
                                     <div class="title">
                                         <a href="#music/<%=notif.attributes.json.music.id%>" class="di b"><%=notif.attributes.json.music.title%></a> / <a href="#artist/<%=notif.attributes.json.music.artist_id%>" class="di"><%=notif.attributes.json.music.artist_name%></a>

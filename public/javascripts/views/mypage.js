@@ -980,6 +980,13 @@ define([
             // ユーザーPocketリストを取得
             this.userPocketList = new UserPocketList();
             this.userPocketList.bind('reset', _.bind(function () {
+
+                // 日付の新しい順に並び替える
+                this.userPocketList.models = _.sortBy(this.userPocketList.models, function (model) {
+                    return model.attributes.create_at * -1;
+                });
+
+
                 this.displayUserPocketList = this.userPocketList;
                 this.renderUserPocketListArea();
                 // ついでにStorageにも保存しておく

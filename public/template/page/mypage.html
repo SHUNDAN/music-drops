@@ -217,7 +217,9 @@
 <script id="page_mypage_user_pocket_list" type="text/template">
     <%_.each(pocketList, function (pocket) {%>
         <li class="feeling-<%=pocket.attributes.feeling_id%>" data-pocket-id="<%=pocket.attributes.id%>">
-            <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>" draggable="false"/>
+            <a href="#music/<%=pocket.attributes.music_id%>">
+                <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>" draggable="false"/>
+            </a>
             <div class="info">
                 <div class="title">
                     <a href="#music/<%=pocket.attributes.music_id%>" draggable="false"><%=pocket.attributes.title%></a>
