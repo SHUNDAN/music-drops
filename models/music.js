@@ -32,6 +32,7 @@ module.exports = _.extend({}, require('./common'), {
         'feeling_id',
         'play_count',
         'play_count_speed',
+        'pop_count',
         'create_at',
         'update_at',
     ],

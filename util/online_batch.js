@@ -71,7 +71,7 @@ module.exports = {
     /**
         Pop追加/削除時に、曲のPop数を再集計する
     */
-    updatePopCountAtMusic: function (musicId) {
+    updatePopCountAtMusic: function (musicId, callback) {
 
         // 該当曲のPop数を計算する
         var sql = 'select count(1) cnt from pop where music_id = ' + musicId;
@@ -81,10 +81,12 @@ module.exports = {
             var numOfPop = rows[0].cnt;
 
             // 曲を更新する
-            
-
+            musicModel.updateObject({pop_count: numOfPop}, {id: musicId}, function () {
+                if (callback) {
+                    callback();
+                }
+            });
         });
-
     },
 
 

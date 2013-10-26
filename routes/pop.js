@@ -97,6 +97,9 @@ exports.add = function(req, res) {
         // 曲のFeelingを再計算する
         onlineBatch.setMusicFeeling(req.body.music_id);
 
+        // 曲のPOP数を最新化する
+        onlineBatch.updatePopCountAtMusic(req.body.music_id);
+
         // お知らせ追加
         onlineBatch.addNotificationWhenAddDropToFollowArtistMusic(req.body.music_id, user_id);
         onlineBatch.addNotificationWhenFollowUserAddDrop(req.body.music_id, user_id);
@@ -257,6 +260,10 @@ exports.delete = function(req, res) {
 
     popModel.deleteObject(req.params, function (err) {
         appUtil.basicResponse(res, err);
+
+        // 曲のPOP数を最新化する
+        onlineBatch.updatePopCountAtMusic(req.body.music_id);
+
     });
 
 };
