@@ -13,7 +13,7 @@ _.sprintf = sprintf;
 
 
 // UserAgent.
-_.isIphone = navigator.userAgent.toLowerCase().indexOf('iphone') + 1;
+_.isIphone = navigator.userAgent.toLowerCase().indexOf('iphone') + 1 || navigator.userAgent.toLowerCase().indexOf('ipad') + 1;
 _.isAndroid = navigator.userAgent.toLowerCase().indexOf('android') + 1;
 
 
