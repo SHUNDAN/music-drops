@@ -646,51 +646,56 @@ table {
 }
 
 /* line 320, ../dev/scss/core/_helper.scss */
+.fs30 {
+  font-size: 30px;
+}
+
+/* line 321, ../dev/scss/core/_helper.scss */
 .fs32 {
   font-size: 32px;
 }
 
-/* line 332, ../dev/scss/core/_helper.scss */
+/* line 333, ../dev/scss/core/_helper.scss */
 .n {
   font-weight: normal !important;
 }
 
-/* line 333, ../dev/scss/core/_helper.scss */
+/* line 334, ../dev/scss/core/_helper.scss */
 .b {
   font-weight: bold !important;
 }
 
-/* line 334, ../dev/scss/core/_helper.scss */
+/* line 335, ../dev/scss/core/_helper.scss */
 .l {
   text-align: left !important;
 }
 
-/* line 335, ../dev/scss/core/_helper.scss */
+/* line 336, ../dev/scss/core/_helper.scss */
 .c {
   text-align: center !important;
 }
 
-/* line 336, ../dev/scss/core/_helper.scss */
+/* line 337, ../dev/scss/core/_helper.scss */
 .r {
   text-align: right !important;
 }
 
-/* line 337, ../dev/scss/core/_helper.scss */
+/* line 338, ../dev/scss/core/_helper.scss */
 .u {
   text-decoration: underline !important;
 }
 
-/* line 340, ../dev/scss/core/_helper.scss */
+/* line 341, ../dev/scss/core/_helper.scss */
 .tc {
   text-align: center;
 }
 
-/* line 341, ../dev/scss/core/_helper.scss */
+/* line 342, ../dev/scss/core/_helper.scss */
 .tl {
   text-align: left;
 }
 
-/* line 342, ../dev/scss/core/_helper.scss */
+/* line 343, ../dev/scss/core/_helper.scss */
 .tr {
   text-align: right;
 }
@@ -751,8 +756,8 @@ button {
 
 @font-face {
   font-family: "icons";
-  src: url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.eot");
-  src: url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.eot?#iefix") format("embedded-opentype"), url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.woff") format("woff"), url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.ttf") format("truetype"), url("../images/fonts/icons-62768d73c643ab7daed8f7d7be913d49.svg?#icons") format("svg");
+  src: url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.eot");
+  src: url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.eot?#iefix") format("embedded-opentype"), url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.woff") format("woff"), url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.ttf") format("truetype"), url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.svg?#icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -777,93 +782,103 @@ button {
 }
 
 /* line 30, ../dev/scss/fonts/_icons.scss */
-.ico-drop:before {
+.ico-drop-write:before {
   content: "\f102";
 }
 
 /* line 33, ../dev/scss/fonts/_icons.scss */
-.ico-follow:before {
+.ico-drop:before {
   content: "\f103";
 }
 
 /* line 36, ../dev/scss/fonts/_icons.scss */
-.ico-heart:before {
+.ico-follow:before {
   content: "\f104";
 }
 
 /* line 39, ../dev/scss/fonts/_icons.scss */
-.ico-image:before {
+.ico-heart:before {
   content: "\f105";
 }
 
 /* line 42, ../dev/scss/fonts/_icons.scss */
-.ico-list:before {
+.ico-image:before {
   content: "\f106";
 }
 
 /* line 45, ../dev/scss/fonts/_icons.scss */
-.ico-mail:before {
+.ico-list:before {
   content: "\f107";
 }
 
 /* line 48, ../dev/scss/fonts/_icons.scss */
-.ico-play-02:before {
+.ico-mail:before {
   content: "\f108";
 }
 
 /* line 51, ../dev/scss/fonts/_icons.scss */
-.ico-play-next:before {
+.ico-menu:before {
   content: "\f109";
 }
 
 /* line 54, ../dev/scss/fonts/_icons.scss */
-.ico-play-prev:before {
+.ico-play-02:before {
   content: "\f10a";
 }
 
 /* line 57, ../dev/scss/fonts/_icons.scss */
-.ico-play-stop:before {
+.ico-play-next:before {
   content: "\f10b";
 }
 
 /* line 60, ../dev/scss/fonts/_icons.scss */
-.ico-play:before {
+.ico-play-prev:before {
   content: "\f10c";
 }
 
 /* line 63, ../dev/scss/fonts/_icons.scss */
-.ico-plus:before {
+.ico-play-stop:before {
   content: "\f10d";
 }
 
 /* line 66, ../dev/scss/fonts/_icons.scss */
-.ico-refresh:before {
+.ico-play:before {
   content: "\f10e";
 }
 
 /* line 69, ../dev/scss/fonts/_icons.scss */
-.ico-repeat:before {
+.ico-plus:before {
   content: "\f10f";
 }
 
 /* line 72, ../dev/scss/fonts/_icons.scss */
-.ico-search:before {
+.ico-refresh:before {
   content: "\f110";
 }
 
 /* line 75, ../dev/scss/fonts/_icons.scss */
-.ico-shuffle:before {
+.ico-repeat:before {
   content: "\f111";
 }
 
 /* line 78, ../dev/scss/fonts/_icons.scss */
-.ico-star:before {
+.ico-search:before {
   content: "\f112";
 }
 
 /* line 81, ../dev/scss/fonts/_icons.scss */
-.ico-user:before {
+.ico-shuffle:before {
   content: "\f113";
+}
+
+/* line 84, ../dev/scss/fonts/_icons.scss */
+.ico-star:before {
+  content: "\f114";
+}
+
+/* line 87, ../dev/scss/fonts/_icons.scss */
+.ico-user:before {
+  content: "\f115";
 }
 
 /* line 12, ../dev/scss/modules/_header.scss */
@@ -931,48 +946,68 @@ header {
 }
 
 /* line 69, ../dev/scss/modules/_header.scss */
-.header-searchMenu {
+.header-menu {
   top: 10px;
-  left: 97px;
+  left: 64px;
   width: 80px;
   height: 40px;
   text-align: center;
-  background-color: #dedbc7;
 }
-/* line 76, ../dev/scss/modules/_header.scss */
-.header-searchMenu p {
+/* line 75, ../dev/scss/modules/_header.scss */
+.header-menu:after {
+  position: absolute;
+  top: -5px;
+  left: 85px;
+  display: block !important;
+  content: "";
+  width: 1px;
+  height: 50px;
+  border-right: 1px solid #bdb99c;
+}
+/* line 85, ../dev/scss/modules/_header.scss */
+.header-menu p {
   width: 54px;
-  line-height: 40px;
+}
+/* line 87, ../dev/scss/modules/_header.scss */
+.header-menu p span {
+  margin-top: -5px;
 }
 
-/* line 81, ../dev/scss/modules/_header.scss */
-.header-searchMenu-btn {
+/* line 92, ../dev/scss/modules/_header.scss */
+.header-menu-btn {
   width: 26px;
   height: 40px;
   line-height: 40px;
   font-size: 8px;
 }
 
-/* line 90, ../dev/scss/modules/_header.scss */
+/* line 101, ../dev/scss/modules/_header.scss */
 .header-playList {
   top: 10px;
-  left: 188px;
+  left: 156px;
   width: 96px;
   font-size: 12px;
   text-align: center;
 }
-/* line 96, ../dev/scss/modules/_header.scss */
+/* line 107, ../dev/scss/modules/_header.scss */
 .header-playList p:first-child {
   margin: 4px 0;
   color: #3d3c3c;
 }
-
-/* line 101, ../dev/scss/modules/_header.scss */
-.header-playList-title {
-  padding: 4px;
+/* line 111, ../dev/scss/modules/_header.scss */
+.header-playList span {
+  display: inline-block;
+  width: 74px;
 }
 
-/* line 107, ../dev/scss/modules/_header.scss */
+/* line 116, ../dev/scss/modules/_header.scss */
+.header-playList-title {
+  height: 20px;
+  padding: 4px;
+  background-color: #dedbc7;
+}
+
+/* line 124, ../dev/scss/modules/_header.scss */
 .header-playMenu {
   top: 10px;
   left: 293px;
@@ -980,12 +1015,12 @@ header {
   height: 40px;
   background-color: #656457;
 }
-/* line 113, ../dev/scss/modules/_header.scss */
+/* line 130, ../dev/scss/modules/_header.scss */
 .header-playMenu > div {
   height: 40px;
 }
 
-/* line 118, ../dev/scss/modules/_header.scss */
+/* line 135, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn {
   position: absolute;
   top: 50%;
@@ -1001,12 +1036,12 @@ header {
   background-color: #fdfcf3;
 }
 
-/* line 128, ../dev/scss/modules/_header.scss */
+/* line 145, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn-prev {
   left: 8px;
 }
 
-/* line 131, ../dev/scss/modules/_header.scss */
+/* line 148, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn-play {
   left: 40px;
   width: 32px;
@@ -1014,12 +1049,12 @@ header {
   margin-top: -16px;
 }
 
-/* line 137, ../dev/scss/modules/_header.scss */
+/* line 154, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn-next {
   left: 76px;
 }
 
-/* line 141, ../dev/scss/modules/_header.scss */
+/* line 158, ../dev/scss/modules/_header.scss */
 .header-playMenu-song {
   position: absolute;
   left: 110px;
@@ -1027,13 +1062,13 @@ header {
   color: #fff;
 }
 
-/* line 147, ../dev/scss/modules/_header.scss */
+/* line 164, ../dev/scss/modules/_header.scss */
 .header-playMenu-song-title {
   margin: 6px 0 2px;
   font-size: 12px;
 }
 
-/* line 152, ../dev/scss/modules/_header.scss */
+/* line 169, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn {
   position: absolute;
   bottom: 4px;
@@ -1041,34 +1076,34 @@ header {
   height: 20px;
   color: #fff;
 }
-/* line 158, ../dev/scss/modules/_header.scss */
+/* line 175, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn.is-active {
   color: #ffe77c;
 }
 
-/* line 162, ../dev/scss/modules/_header.scss */
+/* line 179, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn-window {
   right: 64px;
 }
 
-/* line 165, ../dev/scss/modules/_header.scss */
+/* line 182, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn-repeat {
   right: 34px;
 }
 
-/* line 168, ../dev/scss/modules/_header.scss */
+/* line 185, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn-shuffle {
   right: 4px;
 }
 
-/* line 174, ../dev/scss/modules/_header.scss */
-.header-menu {
+/* line 191, ../dev/scss/modules/_header.scss */
+.header-userMenu {
   top: 10px;
   left: 687px;
 }
 
-/* line 178, ../dev/scss/modules/_header.scss */
-.header-menu-btn {
+/* line 195, ../dev/scss/modules/_header.scss */
+.header-userMenu-btn {
   position: absolute;
   top: 0;
   height: 40px;
@@ -1078,35 +1113,34 @@ header {
   color: #656457;
 }
 
-/* line 187, ../dev/scss/modules/_header.scss */
-.header-menu-btn-myList {
+/* line 204, ../dev/scss/modules/_header.scss */
+.header-userMenu-btn-myList {
   left: 100px;
   width: 70px;
 }
 
-/* line 191, ../dev/scss/modules/_header.scss */
-.header-menu-btn-noti {
+/* line 208, ../dev/scss/modules/_header.scss */
+.header-userMenu-btn-noti {
   left: 180px;
   width: 70px;
 }
 
-/* line 198, ../dev/scss/modules/_header.scss */
-.header-menu-btn.btn-pocket {
+/* line 215, ../dev/scss/modules/_header.scss */
+.header-userMenu-btn.btn-pocket {
   left: 0;
   width: 40px;
   font-size: 24px;
 }
 
-/* line 204, ../dev/scss/modules/_header.scss */
-.header-menu-btn.btn-drop {
+/* line 221, ../dev/scss/modules/_header.scss */
+.header-userMenu-btn.btn-drop {
   left: 50px;
   width: 40px;
   font-size: 24px;
 }
 
-/* line 213, ../dev/scss/modules/_header.scss */
+/* line 230, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup-area {
-  position: fixed !important;
   top: 0;
   left: 0;
   width: 100%;
@@ -1115,17 +1149,15 @@ header {
   -webkit-transition: opacity .5s ease;
 }
 
-/* line 222, ../dev/scss/modules/_header.scss */
+/* line 238, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup-box {
-  position: relative;
   width: 980px;
 }
 
-/* line 226, ../dev/scss/modules/_header.scss */
+/* line 241, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup {
-  position: absolute;
-  top: 72px;
-  left: 150px;
+  top: 64px;
+  left: 96px;
   width: 480px;
   height: 500px;
   background-color: #efede0;
@@ -1138,7 +1170,7 @@ header {
   -moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
 }
-/* line 236, ../dev/scss/modules/_header.scss */
+/* line 250, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup:after {
   position: absolute;
   top: 0;
@@ -1153,35 +1185,35 @@ header {
   margin-top: -12px;
 }
 
-/* line 251, ../dev/scss/modules/_header.scss */
+/* line 265, ../dev/scss/modules/_header.scss */
 .header-musicList {
   overflow: scroll;
   width: 100%;
   height: 100%;
 }
 
-/* line 256, ../dev/scss/modules/_header.scss */
+/* line 270, ../dev/scss/modules/_header.scss */
 .header-musicList-item {
   height: 60px;
   padding: 5px;
   border-bottom: 1px solid #d6d4c5;
 }
-/* line 260, ../dev/scss/modules/_header.scss */
+/* line 274, ../dev/scss/modules/_header.scss */
 .header-musicList-item:last-child {
   border-bottom: none;
 }
-/* line 263, ../dev/scss/modules/_header.scss */
+/* line 277, ../dev/scss/modules/_header.scss */
 .header-musicList-item.is-active {
   background-color: #ffcf3c;
 }
-/* line 267, ../dev/scss/modules/_header.scss */
+/* line 281, ../dev/scss/modules/_header.scss */
 .header-musicList-item .thumb {
   width: 44px;
   height: 44px;
   margin: 3px 0 0 3px;
 }
 
-/* line 274, ../dev/scss/modules/_header.scss */
+/* line 288, ../dev/scss/modules/_header.scss */
 .header-musicList-btn {
   top: 50%;
   right: 10px;
@@ -1195,7 +1227,7 @@ header {
   color: #efede0;
 }
 
-/* line 293, ../dev/scss/modules/_header.scss */
+/* line 307, ../dev/scss/modules/_header.scss */
 #appSubTitle {
   position: absolute;
   top: 10px;
@@ -1203,7 +1235,7 @@ header {
   font-size: 11px;
 }
 
-/* line 301, ../dev/scss/modules/_header.scss */
+/* line 315, ../dev/scss/modules/_header.scss */
 #pageTitle {
   text-align: center;
   font-size: 16px;
@@ -1211,7 +1243,7 @@ header {
   padding-top: 10px;
 }
 
-/* line 310, ../dev/scss/modules/_header.scss */
+/* line 324, ../dev/scss/modules/_header.scss */
 #appUserModule {
   position: absolute;
   top: 10px;
@@ -1222,7 +1254,7 @@ header {
   text-align: center;
   background-color: #efede0;
 }
-/* line 320, ../dev/scss/modules/_header.scss */
+/* line 334, ../dev/scss/modules/_header.scss */
 #appUserModule .login, #appUserModule .userInfo {
   display: block;
   width: 100%;
@@ -3008,6 +3040,94 @@ textarea.form {
   margin: 20px 0 0 0px;
 }
 
+/* line 9, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea {
+  width: 500px;
+  background-color: #fdfcf3;
+}
+/* line 22, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .thumb {
+  float: left;
+  display: block;
+  width: 150px;
+  height: 150px;
+}
+/* line 31, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .infoArea:after {
+  display: block;
+  width: 0;
+  height: 0;
+  content: " ";
+  clear: both;
+}
+/* line 40, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .info {
+  float: left;
+  width: 330px;
+  padding: 10px;
+  margin-left: 10px;
+}
+/* line 47, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .artistName {
+  font-size: 20px;
+  font-weight: bold;
+  height: 68px;
+  line-height: 58px;
+}
+/* line 54, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .description {
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+/* line 60, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .feelingArea {
+  position: relative;
+}
+/* line 63, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .feelingArea:after {
+  display: block;
+  width: 0;
+  height: 0;
+  content: " ";
+  clear: both;
+}
+/* line 71, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .feelingArea .sprite-feeling {
+  float: left;
+}
+/* line 75, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .feelingArea .feelingLabel {
+  float: left;
+  height: 40px;
+  width: 230px;
+  line-height: 40px;
+  margin-left: 15px;
+  background-color: #efede0;
+}
+/* line 83, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .feelingArea .feelingLabel:before {
+  position: absolute;
+  top: 0px;
+  left: 46px;
+  display: block;
+  width: 0px;
+  height: 0px;
+  content: " ";
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 0px solid transparent;
+  border-right: 15px solid #dedbc7;
+}
+/* line 101, ../dev/scss/pages/_artist.scss */
+.pageArtist .artistInfoArea .followButton {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #dbdad1;
+  background-color: #595849;
+}
+
 /* line 10, ../dev/scss/pages/_music_search.scss */
 .pageSearch .conditionArea {
   padding: 20px;
@@ -3122,30 +3242,30 @@ textarea.form {
 
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 78, ../dev/scss/style.scss */
+  /* line 79, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 85, ../dev/scss/style.scss */
+/* line 86, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 86, ../dev/scss/style.scss */
+/* line 87, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 87, ../dev/scss/style.scss */
+/* line 88, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 91, ../dev/scss/style.scss */
+/* line 92, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -3160,7 +3280,7 @@ textarea.form {
 /*==============================
   Stage
 ===============================*/
-/* line 107, ../dev/scss/style.scss */
+/* line 108, ../dev/scss/style.scss */
 #stage {
   position: relative;
 }
@@ -3168,7 +3288,7 @@ textarea.form {
 /*==============================
   Preview Area
 ===============================*/
-/* line 118, ../dev/scss/style.scss */
+/* line 119, ../dev/scss/style.scss */
 .previewArea {
   z-index: 9998;
   transition: opacity .5s ease;
@@ -3177,7 +3297,7 @@ textarea.form {
   -ms-transition: opacity .5s ease;
 }
 
-/* line 125, ../dev/scss/style.scss */
+/* line 126, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: absolute !important;
   top: -500px !important;
@@ -3185,7 +3305,7 @@ textarea.form {
   opacity: 0;
 }
 
-/* line 131, ../dev/scss/style.scss */
+/* line 132, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -3200,7 +3320,7 @@ textarea.form {
   color: white;
 }
 
-/* line 145, ../dev/scss/style.scss */
+/* line 146, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -3216,7 +3336,7 @@ textarea.form {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 162, ../dev/scss/style.scss */
+/* line 163, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -3224,25 +3344,25 @@ textarea.form {
 /*==============================
   Base Frame
 ===============================*/
-/* line 176, ../dev/scss/style.scss */
+/* line 177, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 65px;
 }
 
-/* line 181, ../dev/scss/style.scss */
+/* line 182, ../dev/scss/style.scss */
 #main {
   width: 980px;
   margin: 0 auto;
 }
 
-/* line 185, ../dev/scss/style.scss */
+/* line 186, ../dev/scss/style.scss */
 #pagePop {
   z-index: 9999;
 }
 
-/* line 188, ../dev/scss/style.scss */
+/* line 189, ../dev/scss/style.scss */
 .popUp {
   position: fixed;
   top: 100px;

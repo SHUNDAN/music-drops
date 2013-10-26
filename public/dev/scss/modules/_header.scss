@@ -64,21 +64,32 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
   left: 0;
 }
 
-//  さがす
+//  メニュー
 //-------------------------------------
-.header-searchMenu {
+.header-menu {
   top: 10px;
-  left: 97px;
+  left: 64px;
   width: 80px;
   height: 40px;
   text-align: center;
-  background-color: #dedbc7;
+  &:after {
+    position: absolute;
+    top: -5px;
+    left: 85px;
+    display: block !important;
+    content: "";
+    width: 1px;
+    height: 50px;
+    border-right: 1px solid #bdb99c;
+  }
   p {
     width: 54px;
-    line-height: 40px;
+    span {
+      margin-top: -5px;
+    }
   }
 }
-.header-searchMenu-btn {
+.header-menu-btn {
   width: 26px;
   height: 40px;
   line-height: 40px;
@@ -89,7 +100,7 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
 //-------------------------------------
 .header-playList {
   top: 10px;
-  left: 188px;
+  left: 156px;
   width: 96px;
   font-size: 12px;
   text-align: center;
@@ -97,9 +108,15 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
     margin: 4px 0;
     color: #3d3c3c;
   }
+  span {
+    display: inline-block;
+    width: 74px;
+  }
 }
 .header-playList-title {
+  height: 20px;
   padding: 4px;
+  background-color: #dedbc7; 
 }
 
 //  再生メニュー
@@ -171,11 +188,11 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
 
 //  ユーザーメニュー
 //-------------------------------------
-.header-menu {
+.header-userMenu {
   top: 10px;
   left: 687px;
 }
-.header-menu-btn {
+.header-userMenu-btn {
   position: absolute;
   top: 0;
   height: 40px;
@@ -184,24 +201,24 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
   line-height: 40px;
   color: #656457;
 }
-.header-menu-btn-myList {
+.header-userMenu-btn-myList {
   left: 100px;
   width: 70px;
 }
-.header-menu-btn-noti {
+.header-userMenu-btn-noti {
   left: 180px;
   width: 70px;
 }
 // ## 以下の2つは各ページ共通で使用するので、配置のみ。
 // ## カラー等は _buttons.scssを参照。
 // ポケットボタン
-.header-menu-btn.btn-pocket {
+.header-userMenu-btn.btn-pocket {
   left: 0;
   width: 40px;
   font-size: 24px;
 }
 // ドロップボタン
-.header-menu-btn.btn-drop {
+.header-userMenu-btn.btn-drop {
   left: 50px;
   width: 40px;
   font-size: 24px;
@@ -211,7 +228,6 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
 // プレイリスト内曲表示Popup
 //-------------------------------------
 .header-playlist-content-popup-area {
-  position: fixed !important;
   top: 0;
   left: 0;
   width: 100%;
@@ -220,18 +236,16 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
   -webkit-transition: opacity .5s ease;
 }
 .header-playlist-content-popup-box {
-  position: relative;
   width: 980px;
 }
 .header-playlist-content-popup {
-    position: absolute;
-    top: 72px;
-    left: 150px;
-    width: 480px;
-    height: 500px;
-    background-color: rgb(239, 237, 224);
-    @include border-radius(5px);
-    @include box-shadow(0px 0px 6px rgba(0,0,0,0.2));
+  top: 64px;
+  left: 96px;
+  width: 480px;
+  height: 500px;
+  background-color: rgb(239, 237, 224);
+  @include border-radius(5px);
+  @include box-shadow(0px 0px 6px rgba(0,0,0,0.2));
   // 上向き吹き出し
   &:after {
     position: absolute;

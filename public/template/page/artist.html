@@ -1,6 +1,83 @@
 <!-- Page: Artist -->
 <script id="page_artist" type="text/template">
-    <h1 class="text-center">Artist Page</h1>
+
+
+    <div class="pageArtist">
+
+        
+        <!--アーティストの詳細情報を表示-->
+        <div class="artistInfoArea">
+
+            <div class="infoArea">
+                <img class="thumb" src="http://a760.phobos.apple.com/us/r30/Music4/v4/76/4f/b5/764fb593-bd16-a8a8-69aa-7034615ac1a1/13UAAIM69596.170x170-75.jpg" alt=""/>
+                <div class="info">
+                    <div class="artistName">ハヴァナ・ブラウン</div>
+                    <div class="description">みんながえらぶ【代表的なキモチ】</div>
+                    <div class="feelingArea">
+                        <i class="sprite-feeling feeling-1"></i>
+                        <div class="feelingLabel">テンションがあがる</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="followButton">このアーティストをフォローする</div>
+            <div class="followButton hidden">このアーティストをフォローする</div>
+
+        </div>
+
+
+        <!--曲数表示-->
+        <div class="NumOfMusicArea">
+            <span class="b">アーティストの楽曲一覧</span>
+            <span id="numOfMusic" class="numOfMusic">124</span>&nbsp;曲
+        </div>
+
+
+        <!--曲のリスト表示-->
+        <ul id="musicList" class="musicList">
+
+            <li data-feeling-id="1" data-music-id="1">
+                <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt=""/>
+                <div class="info">
+                    <div class="title">友〜旅立ちのとき〜&nbps;▶</div>
+                    <div class="numOfDrops">30ドロップ</div>
+                </div>
+
+                <div class="js-menu-pocket btn-PD btn-pocket" data-event="addPocket" data-feeling-id="0">
+                    <i class="ico-font ico-star"></i>
+                    <span>ポケット</span>
+                </div>
+
+                <button class="musicDetail-info-play-btn" data-event-click="playSong" data-btn="play">
+                    <i class="ico-font ico-play"></i>
+                </button>
+            </li>
+
+
+        </ul>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
     <div id="artist_info" class="mt20"></div>
     <h3 class="text-center">Music List</h3>
     <table class="table">
