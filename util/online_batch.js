@@ -5,8 +5,8 @@
 var fs = require('fs');
 var _ = require('underscore');
 // var util = require('util');
-// var sqlite3 = require('sqlite3').verbose();
-// var db = new sqlite3.Database(global.db_path);
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database(global.db_path);
 var glob = require('glob');
 var musicModel = require('../models/music');
 var musicLinkModel = require('../models/music_link');
@@ -65,8 +65,37 @@ module.exports = {
 
         });
 
+    },
+
+
+    /**
+        Pop追加/削除時に、曲のPop数を再集計する
+    */
+    updatePopCountAtMusic: function (musicId) {
+
+        // 該当曲のPop数を計算する
+        var sql = 'select count(1) cnt from pop where music_id = ' + musicId;
+        db.all(sql, function (err, rows) {
+
+            // Pop数
+            var numOfPop = rows[0].cnt;
+
+            // 曲を更新する
+            
+
+        });
 
     },
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -575,6 +604,20 @@ module.exports = {
 
         });
     },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -41,6 +41,7 @@ create table if not exists music(
     feeling_id  integer,
     play_count  numeric,
     play_count_speed numeric,
+    pop_count   numeric,
     create_at   numeric,
     update_at   numeric
 );
