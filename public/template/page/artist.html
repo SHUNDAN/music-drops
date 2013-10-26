@@ -9,19 +9,24 @@
         <div class="artistInfoArea">
 
             <div class="infoArea">
-                <img class="thumb" src="http://a760.phobos.apple.com/us/r30/Music4/v4/76/4f/b5/764fb593-bd16-a8a8-69aa-7034615ac1a1/13UAAIM69596.170x170-75.jpg" alt=""/>
+                <img class="thumb" src="<%=repMusic.attributes.artwork_url%>" alt="<%=repMusic.attributes.title%>"/>
                 <div class="info">
-                    <div class="artistName">ハヴァナ・ブラウン</div>
+                    <div class="artistName"><%=repMusic.attributes.artist_name%></div>
                     <div class="description">みんながえらぶ【代表的なキモチ】</div>
                     <div class="feelingArea">
-                        <i class="sprite-feeling feeling-1"></i>
-                        <div class="feelingLabel">テンションがあがる</div>
+                        <i class="sprite-feeling feeling-<%=repFeelingId%>"></i>
+                        <div class="feelingLabel"><%=_.getFeelingName(repFeelingId)%></div>
                     </div>
                 </div>
             </div>
 
-            <div class="followButton">このアーティストをフォローする</div>
-            <div class="followButton hidden">このアーティストをフォローする</div>
+            <%if (_.alreadyArtistFollow(repMusic.attributes.artist_id)) {%>
+                <div class="followButton hidden" data-event-click="followArtist">このアーティストをフォローする</div>
+                <div class="followButton" data-event-click="unfollowArtist">アーティストフォローを解除する</div>
+            <%} else {%>
+                <div class="followButton" data-event-click="followArtist">このアーティストをフォローする</div>
+                <div class="followButton hidden" data-event-click="unfollowArtist">アーティストフォローを解除する</div>
+            <%}%>
 
         </div>
 
@@ -29,184 +34,57 @@
         <!--曲数表示-->
         <div class="numOfMusicArea">
             <span class="b">アーティストの楽曲一覧</span>
-            <span id="numOfMusic" class="numOfMusic">124</span>&nbsp;曲
+            <span id="numOfMusic" class="numOfMusic"><%=musicList.length%></span>&nbsp;曲
         </div>
 
 
         <!--曲のリスト表示-->
         <ul id="musicList" class="musicList clearfix">
 
-            <li class="clearfix" data-feeling-id="1" data-music-id="1">
-                <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt=""/>
-                <div class="info">
-                    <div class="title">友〜旅立ちのとき〜 ▶</div>
-                    <div class="numOfDrops">30ドロップ</div>
-                </div>
+            <%_.each(musicList, function (music, idx) {%>
+                <li class="clearfix feeling-<%=music.attributes.feeling_id%>" data-idx="<%=idx%>" data-music-id="<%=music.attributes.id%>">
+                    <img class="thumb" src="<%=music.attributes.artwork_url%>" alt="<%=music.attributes.title%>"/>
+                    <div class="info">
+                        <div class="title">
+                            <a href="#music/<%=music.attributes.id%>"><%=music.attributes.title%> ▶</a>
+                        </div>
+                        <div class="numOfDrops"><%=music.attributes.pop_count || 0%>ドロップ</div>
+                    </div>
 
-                <div class="btn-PD btn-pocket" data-event="addPocket" data-feeling-id="0">
-                    <i class="ico-font ico-star"></i>
-                    <span>ポケット</span>
-                </div>
+                    <%if (_.alreadyPocket(music.attributes.id)) {%>
+                        <div class="btn-PD btn-pocket hidden" data-event-click="addPocket">
+                            <i class="ico-font ico-star"></i>
+                            <span>ポケット</span>
+                        </div>
+                        <div class="btn-PD btn-pocket is-active" data-event-click="deletePocket">
+                            <i class="ico-font ico-star"></i>
+                            <span>ポケット</span>
+                        </div>
+                    <%} else {%>
+                        <div class="btn-PD btn-pocket" data-event-click="addPocket">
+                            <i class="ico-font ico-star"></i>
+                            <span>ポケット</span>
+                        </div>
+                        <div class="btn-PD btn-pocket is-active hidden" data-event-click="deletePocket">
+                            <i class="ico-font ico-star"></i>
+                            <span>ポケット</span>
+                        </div>
+                    <%}%>
 
-                <button class="playBtn" data-event-click="playSong" data-btn="play">
-                    <i class="ico-font ico-play"></i>
-                </button>
-            </li>
+                    <button class="playBtn" data-event-click="playMusic">
+                        <i class="ico-font ico-play"></i>
+                    </button>
+                    <button class="playBtn is-active hidden" data-event-click="pauseMusic">
+                        <i class="ico-font ico-play-stop"></i>
+                    </button>
 
-            <li class="clearfix" data-feeling-id="1" data-music-id="1">
-                <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt=""/>
-                <div class="info">
-                    <div class="title">友〜旅立ちのとき〜 ▶</div>
-                    <div class="numOfDrops">30ドロップ</div>
-                </div>
-
-                <div class="btn-PD btn-pocket" data-event="addPocket" data-feeling-id="0">
-                    <i class="ico-font ico-star"></i>
-                    <span>ポケット</span>
-                </div>
-
-                <button class="playBtn" data-event-click="playSong" data-btn="play">
-                    <i class="ico-font ico-play"></i>
-                </button>
-            </li>
-
-            <li class="clearfix" data-feeling-id="1" data-music-id="1">
-                <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt=""/>
-                <div class="info">
-                    <div class="title">友〜旅立ちのとき〜 ▶</div>
-                    <div class="numOfDrops">30ドロップ</div>
-                </div>
-
-                <div class="btn-PD btn-pocket" data-event="addPocket" data-feeling-id="0">
-                    <i class="ico-font ico-star"></i>
-                    <span>ポケット</span>
-                </div>
-
-                <button class="playBtn" data-event-click="playSong" data-btn="play">
-                    <i class="ico-font ico-play"></i>
-                </button>
-            </li>
-
-            <li class="clearfix" data-feeling-id="1" data-music-id="1">
-                <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt=""/>
-                <div class="info">
-                    <div class="title">友〜旅立ちのとき〜 ▶</div>
-                    <div class="numOfDrops">30ドロップ</div>
-                </div>
-
-                <div class="btn-PD btn-pocket" data-event="addPocket" data-feeling-id="0">
-                    <i class="ico-font ico-star"></i>
-                    <span>ポケット</span>
-                </div>
-
-                <button class="playBtn" data-event-click="playSong" data-btn="play">
-                    <i class="ico-font ico-play"></i>
-                </button>
-            </li>
-
-            <li class="clearfix" data-feeling-id="1" data-music-id="1">
-                <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt=""/>
-                <div class="info">
-                    <div class="title">友〜旅立ちのとき〜 ▶</div>
-                    <div class="numOfDrops">30ドロップ</div>
-                </div>
-
-                <div class="btn-PD btn-pocket" data-event="addPocket" data-feeling-id="0">
-                    <i class="ico-font ico-star"></i>
-                    <span>ポケット</span>
-                </div>
-
-                <button class="playBtn" data-event-click="playSong" data-btn="play">
-                    <i class="ico-font ico-play"></i>
-                </button>
-            </li>
-
-
-
-
+                </li>
+            <%});%>
 
         </ul>
 
-
-
-
-
-
     </div>
 
-
-
-
-
-
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-
-    <div id="artist_info" class="mt20"></div>
-    <h3 class="text-center">Music List</h3>
-    <table class="table">
-        <tr>
-            <th>title</th>
-            <th>Sample</th>
-            <th>Youtube</th>
-            <th>Action</th>
-        </tr>
-        <tbody id="music_list"></tbody>
-    </table>
 </script>
-
-
-<!-- Artist Info -->
-<script id="page_artist_info" type="text/text">
-    id: <%=id%><br>
-    name: <%=name%><br>
-    <%if (_.alreadyArtistFollow(id)) {%>
-        <input type="button" value="フォローする" data-event-click="followArtist" class="hidden" style="width:100px;height:50px;line-height:50px;text-align:center;"/>
-        <input type="button" value="フォロー解除" data-event-click="unfollowArtist" style="width:100px;height:50px;line-height:50px;text-align:center;"/>
-    <%} else {%>
-        <input type="button" value="フォローする" data-event-click="followArtist" style="width:100px;height:50px;line-height:50px;text-align:center;"/>
-        <input type="button" value="フォロー解除" data-event-click="unfollowArtist" class="hidden" style="width:100px;height:50px;line-height:50px;text-align:center;"/>
-    <%}%>
-</script>
-
-
-<!-- Music List -->
-<script id="page_artist_music_list" type="text/template">
-    <% if (musics.length === 0) { %>
-        <tr>
-            <td>なし</td>
-        </tr>
-    <% } else { %>
-    <% 
-        var idx = 0;
-        _.each(musics, function (music) { 
-    %>
-            <tr>
-                <td><a href="#music/<%=music.attributes.id%>"><%=music.attributes.title%></a></td>
-                <td><audio src="<%=music.attributes.song_url%>" controls></audio></td>
-                <% if (music.attributes.youtube_id) { %>
-                    <td><div class="btn btn-primary" data-youtube-id="<%=music.attributes.youtube_id%>" data-event="playYoutube" data-pos=<%=idx++%>>▶</div></td>
-                <% } else { %>
-                    <td class="text-center">-</td>
-                <% } %>
-                <td>
-                    <%if (_.alreadyPocket(music.attributes.id) === false) {%>
-                        <div class="btn" data-music-id="<%=music.attributes.id%>" data-event="pocket">Pocketする</div>
-                    <%} else {%>
-                        <div class="btn btn-primary" data-music-id="<%=music.attributes.id%>" data-event="deletePocket">Pocket解除</div>
-                    <%}%>
-                </td>
-            </tr>
-    <% }); %>
-    <% } %>
-</script>
-
 
 

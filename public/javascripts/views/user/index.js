@@ -305,6 +305,7 @@ define([
 
             // playlist name.
             options.playlistName = (this.currentPlaylist ? this.currentPlaylist.attributes.title : 'すべてのPocket');
+            options.identifier = 'user' + this.user.id + (this.currentPlaylist ? this.currentPlaylist.attributes.id : 'すべてのPocket');
 
 
             // startPos, playlist.

@@ -249,6 +249,9 @@ define([
                 options.playlistName = '急上昇Drop';
             }
 
+            // 一意特定キー
+            options.identifier = 'top_' + type;
+
             // 再生曲と開始位置
             options.musicArray = [];
             _.each(displayPopList, function (pop, idx) {

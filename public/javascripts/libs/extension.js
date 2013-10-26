@@ -80,6 +80,7 @@ _.formatTimestamp = function (timestamp) {
 
 // Feeling Name.
 _.getFeelingName = function (feelingId) {
+    feelingId = parseInt(feelingId, 10);
 
     var feelings = JSON.parse(localStorage.getItem('common')).feelings || [];
 
@@ -576,6 +577,7 @@ _.addMusicLinkPlayCount = function (musicId, linkId) {
     MusicIdから、ユーザーの保持するPocketIdを検索する
 */
 _.selectPocketId = function (musicId) {
+    musicId = parseInt(musicId);
 
     var pocketId;
 
@@ -744,6 +746,7 @@ _.unfollowUser = function (userFollowId, callback) {
     ArtistIdから、アーティストフォローIDを取得する
 */
 _.selectArtistFollowId = function (artistId) {
+    artistId = parseInt(artistId, 10);
 
     var artistFollowId;
 

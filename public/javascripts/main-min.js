@@ -140,13 +140,26 @@ define('views/common/music_player',[], function () {
                 return;
             }
 
+            // 必須項目チェック
+            if (!options.identifier) {
+                throw 'identifier must be set.';
+            }
+
+
+            // もし現在保持するプレイリストと同一の場合には、曲の再開のみする
+            // if (this.options && this.options.identifier === options.identifier) {
+            //     this.startMusic();
+            //     return;
+            // }
+
+
 
             // 表示を初期化
             this.resetPlayer();
 
 
             // 再生位置
-            this.currentPos = options.startPos || 0;
+            this.currentPos = parseInt(options.startPos || 0, 10);
 
 
             // オプション指定
@@ -203,10 +216,14 @@ define('views/common/music_player',[], function () {
 
 
             // プレイリスト名
-            this.$playlistTitle.html(options.playlistName || 'プレイリスト');
+            var playlistNameText = options.playlistName || 'プレイリスト';
+            this.$playlistTitle
+                .html('<span class="elps">' + playlistNameText + '</span>')
+                .append('<i class="ico-font ico-below fr fs9"></i>')
+                .removeClass('hidden');
 
             // プレイヤーを再生状態にする
-            $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+            this.$el.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // プレイリスト中身表示を作る
             this.renderMusicQueueArea();
@@ -324,7 +341,7 @@ define('views/common/music_player',[], function () {
             曲を再開する
         */
         startMusic: function () {
-            $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+            this.$el.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // audioタグの場合
             if (this.audioPlayer) {
@@ -338,7 +355,7 @@ define('views/common/music_player',[], function () {
 
             // 開始Callbackを呼ぶ
             if (this.options.callbackWhenWillStart) {
-                this.options.callbackWhenWillStart(this.musicQueue[this.currentPos]);
+                this.options.callbackWhenWillStart(this.musicQueue[this.currentPos-1]);
             }
 
         },
@@ -348,7 +365,7 @@ define('views/common/music_player',[], function () {
             曲を一時停止させる
         */
         pauseMusic: function () {
-            $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+            this.$el.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // audioタグの場合
             if (this.audioPlayer) {
@@ -1969,6 +1986,9 @@ define('views/top',[
             } else if (type === 'hot') {
                 options.playlistName = '急上昇Drop';
             }
+
+            // 一意特定キー
+            options.identifier = 'top_' + type;
 
             // 再生曲と開始位置
             options.musicArray = [];
@@ -4107,8 +4127,8 @@ define('views/mypage',[
             var options = {};
 
             // playlist name.
-            // TODO 後でプレイリスト名とかユーザー名とか変更できるようにする。
             options.playlistName = (this.currentPlaylist ? this.currentPlaylist.attributes.title : 'すべてのPocket');
+            options.identifier = 'mylist ' + options.playlistName;
 
 
             // startPos, playlist.
@@ -4136,46 +4156,6 @@ define('views/mypage',[
             console.log('play music. arraycount=', options.musicArray.length, ',startPos=', options.startPos);
             mb.musicPlayer.playMusics(options);
          },
-
-
-         /**
-            ランダム再生
-         */
-         randomPlay: function (e) {
-            e.preventDefault();
-
-            // playlist name.
-            var options = {};
-            options.playlistName = 'すべてのPocket';
-
-
-            // startPos, playlist.
-            options.startPos = 0;
-            options.musicArray = [];
-            for (var i = 0; i < this.filteredPocketList.models.length; i++) {
-                var model = this.filteredPocketList.models[i];
-                options.musicArray.push(model.attributes);
-            }
-            options.musicArray = _.shuffle(options.musicArray);
-
-            // callback.
-            options.callbackWhenWillStart = _.bind(function (music) {
-                // TODO ボタンをPlayとPauseの切替する
-            }, this);
-            options.callbackWhenEnd = _.bind(function () {
-                // TODO ボタンをすべてPlayにする
-            }, this);
-
-
-            // play
-            console.log('play music. arraycount=', options.musicArray.length, ',startPos=', options.startPos);
-            mb.musicPlayer.playMusics(options);
-
-
-
-            return false;
-         },
-
 
 
 
@@ -5093,6 +5073,7 @@ define('views/user/index',[
 
             // playlist name.
             options.playlistName = (this.currentPlaylist ? this.currentPlaylist.attributes.title : 'すべてのPocket');
+            options.identifier = 'user' + this.user.id + (this.currentPlaylist ? this.currentPlaylist.attributes.id : 'すべてのPocket');
 
 
             // startPos, playlist.
@@ -5879,7 +5860,6 @@ define('views/artist/index',[
         // fields.
         artistId: null,
         artist: new Artist(),
-        musicList: new MusicList(),
         userStorage: new UserStorage(),
 
         initialize: function () {
@@ -5888,39 +5868,37 @@ define('views/artist/index',[
             _.bindEvents(this);
 
 
-            _.bindAll(this, 'renderArtistInfo', 'renderMusicList', 'playYoutube', 'pocket', 'deletePocket');
+            // _.bindAll(this, 
+            //     'renderArtistInfo', 
+            //     'renderMusicList', 
+            //     'playYoutube', 
+            //     'pocket', 
+            //     'deletePocket');
 
-            this.artist.bind('change', this.renderArtistInfo);
-            this.musicList.bind('reset', this.renderMusicList);
+            // this.artist.bind('change', this.renderArtistInfo);
+            // this.musicList.bind('reset', this.renderMusicList);
         },
 
-        events: {
-            'click [data-event="playYoutube"]': 'playYoutube',
-            'click [data-event="pocket"]': 'pocket',
-            'click [data-event="deletePocket"]': 'deletePocket',
-        },
+        // events: {
+        //     'click [data-event="playYoutube"]': 'playYoutube',
+        //     'click [data-event="pocket"]': 'pocket',
+        //     'click [data-event="deletePocket"]': 'deletePocket',
+        // },
 
+
+        /**
+            画面を表示する
+        */
         render: function () {
-            console.log('artistview render');
-            var template = $('#page_artist').html();
-            var snipet = _.template(template, {});
+            var data = {
+                repFeelingId: this.repFeelingId,
+                repMusic: this.repMusic,
+                musicList: this.musicList.models
+            };
+            var snipet = _.mbTemplate('page_artist', data);
             this.$el.html(snipet);
         },
 
-        renderArtistInfo: function () {
-            console.log('renderArtistInfo');
-            var template = $('#page_artist_info').html();
-            var snipet = _.template(template, this.artist.attributes);
-            this.$el.find('#artist_info').html(snipet);
-        },
-
-        renderMusicList: function () {
-            console.log('renderMusicList');
-            var template = $('#page_artist_music_list').html();
-            var snipet = _.template(template, {musics: this.musicList.models});
-            this.$el.find('#music_list').html(snipet);
-
-        },
 
 
 
@@ -5928,7 +5906,7 @@ define('views/artist/index',[
             アーティストフォロー
         */
         followArtist: function () {
-            _.followArtist(this.artist.attributes.id, function () {
+            _.followArtist(this.artistId, function () {
                 $('[data-event-click="followArtist"], [data-event-click="unfollowArtist"]').toggleClass('hidden');
             });
         },
@@ -5939,7 +5917,7 @@ define('views/artist/index',[
             アーティストフォロー解除
         */
         unfollowArtist: function () {
-            var followArtistId = _.selectArtistFollowId(this.artist.attributes.id);
+            var followArtistId = _.selectArtistFollowId(this.artistId);
             _.unfollowArtist(followArtistId, function () {
                 $('[data-event-click="followArtist"], [data-event-click="unfollowArtist"]').toggleClass('hidden');
             });
@@ -5947,142 +5925,176 @@ define('views/artist/index',[
 
 
 
+        /**
+            Pocketを追加する
+        */
+        addPocket: function (e) {
+            var $li = $(e.currentTarget).parents('li');
+            var musicId = $li.data('music-id');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        playYoutube: function (e) {
-            var $this = $(e.currentTarget);
-            var youtubeId = $this.data('youtube-id');
-            var pos = $this.data('pos');
-            console.log('playYoutube', youtubeId, pos);
-
-            // 再生リストを作成
-            var ids = [];
-            _.each(this.musicList.models, function (model) {
-                if (model.attributes.youtube_id) {
-                    ids.push(model.attributes.youtube_id);
-                }
+            _.addPocket({music_id: musicId}, function () {
+                $li.find('[data-event-click="addPocket"], [data-event-click="deletePocket"]').toggleClass('hidden');
             });
-            console.log(ids);
-
-            var playList = [];
-            playList = [].concat(ids.slice(pos, ids.length)).concat(ids.slice(0,pos));
-            console.log('playlist: ', playList);
-            
-
-            mb.youtubeView = new YoutubeView();
-            mb.youtubeView.show(playList, this);
-
-
         },
 
-        pocket: function (e) {
-            var musicId = $(e.currentTarget).data('music-id');
-            console.log('pocket', musicId);
 
-            this.userPocket = new UserPocket();
-            this.userPocket.set('music_id', musicId);
-            this.userPocket.bind('sync', function () {
-
-                // UIとイベントを変更する
-                $(e.currentTarget)
-                    .text('Pocket解除')
-                    .addClass('btn-primary')
-                    .attr('data-event', 'deletePocket');
-
-                // Localデータも更新
-                _.loadUserPockets({force: true});
-
-            });
-            this.userPocket.create();
-        },
-
-        
+        /**
+            Pocketを削除する
+        */
         deletePocket: function (e) {
 
-            var musicId = $(e.currentTarget).data('music-id');
+            var $li = $(e.currentTarget).parents('li');
+            var musicId = $li.data('music-id');
+            var pocketId = _.selectPocketId(musicId);
 
-            // 対象を探して、削除
-            $.ajax({
-                url: '/api/v1/user_pockets',
-                data: {
-                    user_id: this.userStorage.getUser().id,
-                    music_id: musicId 
-                },  
-                dataType: 'json',
-                success: function (pockets) {
-                    console.debug('delete target pockets: ', pockets);
+            _.deletePocket(pocketId, function () {
+                $li.find('[data-event-click="addPocket"], [data-event-click="deletePocket"]').toggleClass('hidden');
+            });
 
-                    var count = pockets.length;
-                    var doneCount = 0;
+        },
 
-                    // 1個ずつ削除
-                    for (var i = 0; i < pockets.length; i++) {
-                        var id = pockets[i].id;
-                        var pocket = new UserPocket();
-                        pocket.set('id', id);
-                        pocket.bind('sync', function () {
-                            if (++doneCount === count) {
-    
-                                // UIとイベントを変更する
-                                $(e.currentTarget)
-                                    .text('Pocketする')
-                                    .removeClass('btn-primary')
-                                    .attr('data-event', 'pocket');
 
-                                // Localデータも更新
-                                _.loadUserPockets({force:true});
-                            }   
-                        }); 
-                        pocket.destroy({wait:true});
-                    }
 
-                    // UIとイベントを変更する
-                    if (count === doneCount) {
-                        $(e.currentTarget)
-                            .text('Pocketする')
-                            .removeClass('btn-primary')
-                            .attr('data-event', 'addPocket');
+        /**
+            音楽を再生する
+        */
+        playMusic: function (e) {
 
-                        // Localデータも更新
-                        _.loadUserPockets({force:true});
-                    }
+            var $li = $(e.currentTarget).parents('li');
+            var idx = $li.data('idx');
 
+
+            // もしPause中の場合には、再開のみを行う
+            if ($li.data('nowpausing')) {
+                $li.removeAttr('nowpausing');
+                mb.musicPlayer.startMusic();
+                return;
+            }
+
+
+            // 表示オプションを作成
+            var options = {};
+            options.playlistName = this.repMusic.attributes.artist_name + 'の曲';
+            options.identifier = 'artist_page' + this.artistId;
+            options.musicArray = _.map(this.musicList.models, function (music) {
+                music.attributes.music_id = music.attributes.id;
+                return music.attributes;
+            });
+            options.startPos = $li.data('idx');
+            options.callbackWhenWillStart = _.bind(function (music) {
+                // 表示をリセット
+                $('[data-event-click="pauseMusic"]').addClass('hidden');
+                $('[data-event-click="playMusic"]').removeClass('hidden');
+                // 次の曲をアクティブに
+                var $li = this.$el.find('[data-music-id="'+music.id+'"]');
+                $li.find('[data-event-click="pauseMusic"]').removeClass('hidden');
+                $li.find('[data-event-click="playMusic"]').addClass('hidden');
+            }, this);
+            options.callbackWhenPause = options.callbackWhenEnd = function () {
+                // 表示をリセット
+                $('[data-event-click="pauseMusic"]').addClass('hidden');
+                $('[data-event-click="playMusic"]').removeClass('hidden');
+            };
+
+            console.log('playMusic: ', options);
+            mb.musicPlayer.playMusics(options);
+        },
+
+
+
+        /**
+            再生を一時停止する
+        */
+        pauseMusic: function (e) {
+            mb.musicPlayer.pauseMusic();
+
+            var $li = $(e.currentTarget).parents('li');
+            $li.find('[data-event-click="pauseMusic"]').addClass('hidden');
+            $li.find('[data-event-click="playMusic"]').removeClass('hidden');
+            $li.attr('data-nowpausing', 'true');
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /**
+            代表的なキモチを計算する
+        */
+        _calcRepresentativeFeeling: function () {
+
+            var feelingMap = {};
+            _.each(this.musicList.models, function (music) {
+
+                var feelingId = music.attributes.feeling_id;
+                var popCount = music.attributes.pop_count;
+
+                if (feelingId && popCount > 0) {
+                    feelingMap[feelingId] = (feelingMap[feelingId] || 0) + popCount;
+                }
+            });
+            console.debug('feelingMap: ', feelingMap);
+
+            var mostFeelingId = 1;
+            var maxScore = 0;
+            _.each(feelingMap, function (val, key) {
+                if (maxScore < val) {
+                    mostFeelingId = key;
                 }
             });
 
+            return mostFeelingId;
 
         },
+
+
+
 
         show: function (artistId) {
             this.artistId = artistId;
-            this.render();
 
-            // load artist.
-            this.artist.set('id', artistId, {silent: true});
-            this.artist.fetch();
 
-            // load music list.
+            // 該当アーティストの曲を全曲取得する
+            this.musicList = new MusicList();
+            this.musicList.bind('sync', _.bind(function () {
+
+                // Pop数順に並び替える
+                this.musicList.models = _.sortBy(this.musicList.models, function (music) {
+                    return music.attributes.pop_count * -1 || 0;
+                });
+
+                // 代表曲を取得する
+                this.repMusic = this.musicList.models[0];
+
+                // 代表的なキモチを計算する
+                this.repFeelingId = this._calcRepresentativeFeeling();
+
+                // 描画
+                this.render();
+
+            }, this));
             this.musicList.fetch({reset: true, data: {artist_id: artistId}});
+
         },
+
+
+
 
         dealloc: function () {
 
