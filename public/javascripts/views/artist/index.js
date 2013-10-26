@@ -21,7 +21,6 @@ define([
         // fields.
         artistId: null,
         artist: new Artist(),
-        musicList: new MusicList(),
         userStorage: new UserStorage(),
 
         initialize: function () {
@@ -30,24 +29,53 @@ define([
             _.bindEvents(this);
 
 
-            _.bindAll(this, 'renderArtistInfo', 'renderMusicList', 'playYoutube', 'pocket', 'deletePocket');
+            // _.bindAll(this, 
+            //     'renderArtistInfo', 
+            //     'renderMusicList', 
+            //     'playYoutube', 
+            //     'pocket', 
+            //     'deletePocket');
 
-            this.artist.bind('change', this.renderArtistInfo);
-            this.musicList.bind('reset', this.renderMusicList);
+            // this.artist.bind('change', this.renderArtistInfo);
+            // this.musicList.bind('reset', this.renderMusicList);
         },
 
-        events: {
-            'click [data-event="playYoutube"]': 'playYoutube',
-            'click [data-event="pocket"]': 'pocket',
-            'click [data-event="deletePocket"]': 'deletePocket',
-        },
+        // events: {
+        //     'click [data-event="playYoutube"]': 'playYoutube',
+        //     'click [data-event="pocket"]': 'pocket',
+        //     'click [data-event="deletePocket"]': 'deletePocket',
+        // },
 
+
+        /**
+            画面を表示する
+        */
         render: function () {
-            console.log('artistview render');
-            var template = $('#page_artist').html();
-            var snipet = _.template(template, {});
+            var data = {
+                repFeelingId: this.repFeelingId,
+                repMusic: this.repMusic,
+                musicList: this.musicList.models
+            };
+            var snipet = _.mbTemplate('page_artist', data);
             this.$el.html(snipet);
         },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         renderArtistInfo: function () {
             console.log('renderArtistInfo');
@@ -214,16 +242,77 @@ define([
 
         },
 
+
+
+
+        /**
+            代表的なキモチを計算する
+        */
+        _calcRepresentativeFeeling: function () {
+
+            var feelingMap = {};
+            _.each(this.musicList.models, function (music) {
+
+                var feelingId = music.feeling_id;
+                var popCount = music.popCount;
+
+                if (feelingId && popCount > 0) {
+                    feelingMap[feelingId] = (feelingMap[feelingId] || 0) + popCount;
+                }
+            });
+
+            var mostFeelingId = 1;
+            var maxScore = 0;
+            _.each(feelingMap, function (val, key) {
+                if (maxScore < val) {
+                    mostFeelingId = key;
+                }
+            });
+
+            return mostFeelingId;
+
+        },
+
+
+
+
         show: function (artistId) {
             this.artistId = artistId;
-            this.render();
+
+
+            // 該当アーティストの曲を全曲取得する
+            this.musicList = new MusicList();
+            this.musicList.bind('sync', _.bind(function () {
+
+                // Pop数順に並び替える
+                this.musicList.models = _.sortBy(this.musicList.models, function (music) {
+                    return music.attributes.pop_count * -1 || 0;
+                });
+
+                // 代表曲を取得する
+                this.repMusic = this.musicList.models[0];
+
+                // 代表的なキモチを計算する
+                this.repFeelingId = this._calcRepresentativeFeeling();
+
+                // 描画
+                this.render();
+
+            }, this));
+            this.musicList.fetch({reset: true, data: {artist_id: artistId}});
+
+
+
+
+
+            // this.render();
 
             // load artist.
-            this.artist.set('id', artistId, {silent: true});
-            this.artist.fetch();
+            // this.artist.set('id', artistId, {silent: true});
+            // this.artist.fetch();
 
             // load music list.
-            this.musicList.fetch({reset: true, data: {artist_id: artistId}});
+            // this.musicList.fetch({reset: true, data: {artist_id: artistId}});
         },
 
         dealloc: function () {
