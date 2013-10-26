@@ -102,13 +102,26 @@ define([], function () {
                 return;
             }
 
+            // 必須項目チェック
+            if (!options.identifier) {
+                throw 'identifier must be set.';
+            }
+
+
+            // もし現在保持するプレイリストと同一の場合には、曲の再開のみする
+            // if (this.options && this.options.identifier === options.identifier) {
+            //     this.startMusic();
+            //     return;
+            // }
+
+
 
             // 表示を初期化
             this.resetPlayer();
 
 
             // 再生位置
-            this.currentPos = options.startPos || 0;
+            this.currentPos = parseInt(options.startPos || 0, 10);
 
 
             // オプション指定
@@ -172,7 +185,7 @@ define([], function () {
                 .removeClass('hidden');
 
             // プレイヤーを再生状態にする
-            $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+            this.$el.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // プレイリスト中身表示を作る
             this.renderMusicQueueArea();
@@ -290,7 +303,7 @@ define([], function () {
             曲を再開する
         */
         startMusic: function () {
-            $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+            this.$el.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // audioタグの場合
             if (this.audioPlayer) {
@@ -304,7 +317,7 @@ define([], function () {
 
             // 開始Callbackを呼ぶ
             if (this.options.callbackWhenWillStart) {
-                this.options.callbackWhenWillStart(this.musicQueue[this.currentPos]);
+                this.options.callbackWhenWillStart(this.musicQueue[this.currentPos-1]);
             }
 
         },
@@ -314,7 +327,7 @@ define([], function () {
             曲を一時停止させる
         */
         pauseMusic: function () {
-            $('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+            this.$el.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // audioタグの場合
             if (this.audioPlayer) {

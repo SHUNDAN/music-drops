@@ -146,6 +146,36 @@
 			&:nth-child(3n), &:nth-child(3n+2) {
 				margin-left: 24px;
 			}
+			&:after {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 10px;
+				height: 72px;
+				content: " ";
+			}
+			&.feeling-1:after {
+				background-color: $color-feel-Happy;
+			}
+			&.feeling-2:after {
+				background-color: $color-feel-Relax;
+			}
+			&.feeling-3:after {
+				background-color: $color-feel-Sad;
+			}
+			&.feeling-4:after {
+				background-color: $color-feel-Cry;
+			}
+			&.feeling-5:after {
+				background-color: $color-feel-fight;
+			}
+			&.feeling-6:after {
+				background-color: $color-feel-Angry;
+			}
+			&.feeling-7:after {
+				background-color: $color-feel-Smile;
+			}
+
 		}
 
 		.thumb {
@@ -158,7 +188,7 @@
 			float:left;
 			padding-top: 10px;
 			margin-left: 5px;
-			width: 110px;
+			width: 104px;
 		}
 		.title {
 			max-height: 26px;

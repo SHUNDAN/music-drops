@@ -343,8 +343,8 @@ define([
             var options = {};
 
             // playlist name.
-            // TODO 後でプレイリスト名とかユーザー名とか変更できるようにする。
             options.playlistName = (this.currentPlaylist ? this.currentPlaylist.attributes.title : 'すべてのPocket');
+            options.identifier = 'mylist ' + options.playlistName;
 
 
             // startPos, playlist.
@@ -372,46 +372,6 @@ define([
             console.log('play music. arraycount=', options.musicArray.length, ',startPos=', options.startPos);
             mb.musicPlayer.playMusics(options);
          },
-
-
-         /**
-            ランダム再生
-         */
-         randomPlay: function (e) {
-            e.preventDefault();
-
-            // playlist name.
-            var options = {};
-            options.playlistName = 'すべてのPocket';
-
-
-            // startPos, playlist.
-            options.startPos = 0;
-            options.musicArray = [];
-            for (var i = 0; i < this.filteredPocketList.models.length; i++) {
-                var model = this.filteredPocketList.models[i];
-                options.musicArray.push(model.attributes);
-            }
-            options.musicArray = _.shuffle(options.musicArray);
-
-            // callback.
-            options.callbackWhenWillStart = _.bind(function (music) {
-                // TODO ボタンをPlayとPauseの切替する
-            }, this);
-            options.callbackWhenEnd = _.bind(function () {
-                // TODO ボタンをすべてPlayにする
-            }, this);
-
-
-            // play
-            console.log('play music. arraycount=', options.musicArray.length, ',startPos=', options.startPos);
-            mb.musicPlayer.playMusics(options);
-
-
-
-            return false;
-         },
-
 
 
 

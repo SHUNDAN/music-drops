@@ -3165,35 +3165,72 @@ textarea.form {
 .pageArtist .musicList li:nth-child(3n), .pageArtist .musicList li:nth-child(3n+2) {
   margin-left: 24px;
 }
-/* line 151, ../dev/scss/pages/_artist.scss */
+/* line 149, ../dev/scss/pages/_artist.scss */
+.pageArtist .musicList li:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 72px;
+  content: " ";
+}
+/* line 157, ../dev/scss/pages/_artist.scss */
+.pageArtist .musicList li.feeling-1:after {
+  background-color: #c85d94;
+}
+/* line 160, ../dev/scss/pages/_artist.scss */
+.pageArtist .musicList li.feeling-2:after {
+  background-color: #77b66a;
+}
+/* line 163, ../dev/scss/pages/_artist.scss */
+.pageArtist .musicList li.feeling-3:after {
+  background-color: red;
+}
+/* line 166, ../dev/scss/pages/_artist.scss */
+.pageArtist .musicList li.feeling-4:after {
+  background-color: #6880cc;
+}
+/* line 169, ../dev/scss/pages/_artist.scss */
+.pageArtist .musicList li.feeling-5:after {
+  background-color: #e97f45;
+}
+/* line 172, ../dev/scss/pages/_artist.scss */
+.pageArtist .musicList li.feeling-6:after {
+  background-color: #bc7ad4;
+}
+/* line 175, ../dev/scss/pages/_artist.scss */
+.pageArtist .musicList li.feeling-7:after {
+  background-color: #f4b74e;
+}
+/* line 181, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList .thumb {
   float: left;
   display: block;
   width: 70px;
   height: 70px;
 }
-/* line 157, ../dev/scss/pages/_artist.scss */
+/* line 187, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList .info {
   float: left;
   padding-top: 10px;
   margin-left: 5px;
-  width: 110px;
+  width: 104px;
 }
-/* line 163, ../dev/scss/pages/_artist.scss */
+/* line 193, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList .title {
   max-height: 26px;
   overflow: hidden;
 }
-/* line 167, ../dev/scss/pages/_artist.scss */
+/* line 197, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList .numOfDrops {
   margin-top: 10px;
 }
-/* line 170, ../dev/scss/pages/_artist.scss */
+/* line 200, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList .btn-pocket {
   float: left;
   margin: 14px 0 0 10px;
 }
-/* line 174, ../dev/scss/pages/_artist.scss */
+/* line 204, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList .playBtn {
   float: left;
   width: 44px;
@@ -3205,7 +3242,7 @@ textarea.form {
   border-radius: 50%;
   background-color: #dedbc7;
 }
-/* line 185, ../dev/scss/pages/_artist.scss */
+/* line 215, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList .playBtn:hover, .pageArtist .musicList .playBtn.is-active {
   color: #fa732d;
   background-color: #ffcf3c;
