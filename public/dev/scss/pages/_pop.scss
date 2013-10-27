@@ -1,0 +1,138 @@
+//
+// Drop追加、編集画面
+//=======================================================
+
+
+// 大きなものでくくる
+.pagePop {
+	padding: 10px;
+	background-color: #fdfcf3;
+
+	// 左側
+	.leftCol {
+		float: left;
+		width: 170px;
+		padding: 5px;
+		.thumb {
+			display: block;
+			width: 160px;
+			height: 160px;
+		}
+		.title {
+			padding-top: 10px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		.artistName {
+			 padding-top: 5px;
+		}
+	}
+
+	// 右側
+	.rightCol {
+		float: left;
+		padding-left: 10px;
+		.label {
+			padding-bottom: 5px;
+		}
+		.feelingList {
+			width: 500px;
+
+			input[type=radio] {
+				position: absolute;
+				top: -1000px;
+				left: 0;
+				opacity: 0;
+			}
+			label {
+				float: left;
+				display: block;
+				width: 154px;
+				height: 22px;
+				line-height: 22px;
+				margin: 0 5px 10px 0;
+				color: white;
+				padding-left: 5px;
+
+				&.feeling-1 {
+					background-color: $color-feel-Happy;
+				}
+				&.feeling-2 {
+					background-color: $color-feel-Relax;
+				}
+				&.feeling-3 {
+					background-color: $color-feel-Sad;
+				}
+				&.feeling-4 {
+					background-color: $color-feel-Cry;
+				}
+				&.feeling-5 {
+					background-color: $color-feel-fight;
+				}
+				&.feeling-6 {
+					background-color: $color-feel-Angry;
+				}
+				&.feeling-7 {
+					background-color: $color-feel-Smile;
+				}
+			}
+		}
+
+		.commentArea {
+			position: relative;
+		}
+		textarea {
+			padding: 5px;
+		}
+		.count {
+			position: absolute;
+			bottom: 5px;
+			right: 5px;
+			font-size: 12px;
+			color: #b7b7b7;
+		}
+		.submitBtn {
+			display: block;
+			padding: 5px 8px;
+			color: white;
+			background-color: #656457;
+			margin: 10px 0 0 364px;
+		}
+
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

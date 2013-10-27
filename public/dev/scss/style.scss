@@ -58,6 +58,7 @@
 @import "./pages/user_setting";
 @import "./pages/artist";
 @import "./pages/music_search";
+@import "./pages/pop";
 
 
 
@@ -190,9 +191,9 @@
     position: fixed;
     top: 100px;
     left: 50%;
-    width: 400px;
-    margin-left: -200px;
-    background: #fff;
+    width: 700px;
+    margin-left: -350px;
+    // background: #fff;
 }
 
 

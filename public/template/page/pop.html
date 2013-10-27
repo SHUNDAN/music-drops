@@ -2,15 +2,99 @@
 
 <!-- Page: Pop -->
 <script id="page_pop" type="text/template">
-    <div id="pagePop" style="padding:10px;">
+    <div id="pagePop" class="pagePop">
         <% if (type === 'add') { %>
-            <h1 class="tc mb10">Add Pop</h1>
+            <h1 class="tc mb10 b">Dropを書く</h1>
         <% } else { %>
-            <h1 class="tc mb10">Edit Pop</h1>
+            <h1 class="tc mb10 b">Dropを編集する</h1>
         <% } %>
+
+
+        <div class="popPageArea clearfix">
+
+            <!--左側-->
+            <div class="leftCol">
+                <img class="thumb" src="http://a1450.phobos.apple.com/us/r30/Music4/v4/65/22/0c/65220c4e-5270-af5c-aed0-6aa179edeb0e/RGB.170x170-75.jpg" alt="" />
+                <div class="title">友〜旅立ちのとき〜</div>
+                <div class="artistName">ゆず</div>
+            </div>
+
+
+            <!--右側-->
+            <div class="rightCol">
+                <div class="label">ドロップの種類</div>
+                <div class="feelingList clearfix">
+                    <input id="feelingSelect1" type="radio" name="feelingSelect" value="1"/><label for="feelingSelect1" class="feeling-1">はずむ</label>
+                    <input id="feelingSelect2" type="radio" name="feelingSelect" value="1"/><label for="feelingSelect2" class="feeling-2">はずむ</label>
+                    <input id="feelingSelect3" type="radio" name="feelingSelect" value="1"/><label for="feelingSelect3" class="feeling-3">はずむ</label>
+                    <input id="feelingSelect4" type="radio" name="feelingSelect" value="1"/><label for="feelingSelect4" class="feeling-4">はずむ</label>
+                    <input id="feelingSelect5" type="radio" name="feelingSelect" value="1"/><label for="feelingSelect5" class="feeling-5">はずむ</label>
+                    <input id="feelingSelect6" type="radio" name="feelingSelect" value="1"/><label for="feelingSelect6" class="feeling-6">はずむ</label>
+                    <input id="feelingSelect7" type="radio" name="feelingSelect" value="1"/><label for="feelingSelect7" class="feeling-7">はずむ</label>
+                </div>
+                <div class="commentArea">
+                    <textarea id="comment" cols="30" rows="10" placeholder="ドロップを書く..."></textarea>
+                    <div class="count"><span id="numOfCharacter">0</span>/140</div>
+                </div>
+                <% if (type === 'add') { %>
+                    <div class="submitBtn">ドロップを投稿する</div>
+                <% } else { %>
+                    <div class="submitBtn">編集を完了する</div>
+                <% } %>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
         <div id="popInfoArea" class="mt20"></div>
     </div>
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- PopInfo  -->
