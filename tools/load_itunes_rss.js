@@ -7,7 +7,7 @@
 var http = require('http');
 var util = require('util');
 var xml2json = require('xml2json');
-global.db_path = './db/mockbu.db';
+global.db_path = '../db/mockbu.db';
 var artistModel = require('../models/artist');
 var iTunesRankingModel = require('../models/itunes_ranking');
 var musicModel = require('../models/music');
