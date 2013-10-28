@@ -107,15 +107,6 @@ define([], function () {
                 throw 'identifier must be set.';
             }
 
-
-            // もし現在保持するプレイリストと同一の場合には、曲の再開のみする
-            // if (this.options && this.options.identifier === options.identifier) {
-            //     this.startMusic();
-            //     return;
-            // }
-
-
-
             // 表示を初期化
             this.resetPlayer();
 
@@ -171,6 +162,13 @@ define([], function () {
 
             // Drag可能にしてみる
             this.$previewArea.draggable();
+
+
+
+
+
+
+
 
 
             // 再生開始
@@ -416,10 +414,18 @@ define([], function () {
             }
 
 
-            // 小さくするボタン
-            // var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
-            // $minimizeBtn.on('click', _.bind(this.minimize, this));
-            // $appendView.append($minimizeBtn);
+            // iTunesリンクエリアを追加する
+            if (this.currentMusic.itunes_url) {
+                var $a = $('<a target="_blank"/>').css({
+                    display: 'inline-block',
+                    position: 'absolute',
+                    bottom: '10px',
+                    right: '10px',
+                    color: 'white'
+                });
+                $a.attr('href', _.createItunesUrl(this.currentMusic.itunes_url)).text('iTunesでこの曲をチェックする');
+                this.$previewArea.append($a);                
+            }
 
 
             // audio tag.
@@ -490,10 +496,21 @@ define([], function () {
             }
 
 
-            // 小さくするボタン
-            // var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
-            // $minimizeBtn.on('click', _.bind(this.minimize, this));
-            // $appendView.append($minimizeBtn);
+
+            if (this.currentMusic.itunes_url) {
+                var $a = $('<a target="_blank"/>').css({
+                    display: 'inline-block',
+                    position: 'absolute',
+                    bottom: '10px',
+                    right: '10px',
+                    color: 'white'
+                });
+                $a.attr('href', _.createItunesUrl(this.currentMusic.itunes_url)).text('iTunesでこの曲をチェックする');
+                this.$previewArea.append($a);                
+            }
+
+
+
 
 
             // Youtubeエリア

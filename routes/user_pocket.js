@@ -118,6 +118,58 @@ exports.update = function(req, res) {
 
 
 
+/**
+    Copy
+*/
+exports.copy = function (req, res) {
+
+    // パラメータチェック
+    var id = parseInt(req.params.id, 10);
+    if (isNaN(id)) {
+        res.json(400, 'id parameter is invalid.');
+        return;
+    }
+
+
+    // ログインチェック
+    var userId = appUtil.getUserIdFromRequest(req);
+    if (!userId) {
+        appUtil.response403(res);
+    }
+
+
+    // copy
+    userPocketModel.selectObjects({id:id}, function (err, rows) {
+
+        if (rows.length === 0) {
+            res.json(400, 'id parameter is invalid.');
+            return;
+        }
+
+        var pocket = rows[0];
+
+        userPocketModel.insertObject({
+            user_id: userId,
+            music_id: pocket.music_id,
+            music_link_id: pocket.music_link_id,
+            youtube_id: pocket.youtube_id
+        }, function (err) {
+
+            res.json('success');
+        });
+
+    });
+
+};
+
+
+
+
+
+
+
+
+
 
 
 /**

@@ -479,12 +479,14 @@ _.alreadyUserFollow = function (userId) {
     指定されたアーティストが既にフォロー済みかを調べる
 */
 _.alreadyArtistFollow = function (artistId) {
+    artistId = parseInt(artistId, 10);
 
     var retValue = false;
 
     var user = _.mbStorage.getUser();
     if (user) {
         _.each(user.userArtistFollows, function (artistFollow) {
+            console.debug('af: ', artistFollow.artist_id, artistId);
             if (artistFollow.artist_id === artistId) {
                 retValue = true;
             }
@@ -827,6 +829,10 @@ _.unfollowArtist = function (artistFollowId, callback) {
 
 
 
+// iTunesリンクURLを生成する
+_.createItunesUrl = function (url) {
+    return 'http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&amp;subid=&amp;offerid=94348.1&amp;type=10&amp;tmpid=3910&amp;RD_PARM1=' + url;
+};
 
 
 

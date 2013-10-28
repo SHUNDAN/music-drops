@@ -440,6 +440,7 @@ app.get('/api/v1/user_pockets2', userPocket.selectWithMusicInfo);
 app.post('/api/v1/user_pockets', userPocket.add);
 app.put('/api/v1/user_pockets/:id', userPocket.update);
 app.post('/api/v1/user_pockets/:id/update', userPocket.update);
+app.post('/api/v1/copy_pockets/:id', userPocket.copy);
 app.delete('/api/v1/user_pockets/:id', userPocket.delete);
 app.delete('/api/v1/user_pockets', userPocket.delete);
 

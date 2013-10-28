@@ -503,9 +503,23 @@ define([
                     pocketId = $(e.currentTarget).data('pocket-id');
                     console.debug('drag start. ', pocketId);
 
+                    // 自分のプレイリストの曲をDragDropの場合には、全ては反応させない
+                    if (!self.currentPlaylist || self.currentPlaylist.attributes.type === 2) {
+                        self.$el.find('[data-pleylist-type="1"]').addClass('noAction');
+                    }
+
+                    // 自分自身のプレイリストにもDragDropさせない
+                    if (self.currentPlaylist) {
+                        self.$el.find('#playlistList [data-playlist-id="'+self.currentPlaylist.attributes.id+'"]').addClass('noAction');                        
+                    }
+
+
 
                 }).off('dragend').on('dragend', function (e) {
                     console.debug('dragend');
+
+                    // Drag開始時に付与した制約を解除する
+                    self.$el.find('#playlistList li').removeClass('noAction');
                 });
 
             // Drop先
@@ -534,11 +548,36 @@ define([
                     e.preventDefault();
                     e.stopPropagation();
 
+
+                    // 他人のプレイリストからのドラッグドロップに対応する
+                    if (self.currentPlaylist && self.currentPlaylist.attributes.type === 3) {
+                        self._treatDragDropFromOtherPlaylist(pocketId);                        
+                    
+
+                    // 自分のプレイリストのを扱う
+                    } else {
+
+
+
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
                     // プレイリストにまだ存在しないPocketIdの場合は、追加処理をする。
                     var playlist = self.userPlaylistList.get(playlistId);
                     var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
                     if (!_.contains(pocketIds, pocketId)) {
 
+                        // プレイリストの更新
                         pocketIds.push(pocketId);
                         playlist.set('user_pocket_ids', JSON.stringify(pocketIds));
                         playlist.bind('sync', function () {
@@ -546,12 +585,52 @@ define([
                         });
                         playlist.save();
 
+
+                        // 他人のプレイリストからのDragDropの場合で該当曲のPocketをまだ保持していない場合には、Pocketの追加も行います。
+                        var allPocketIds = _.map(self.userPocketList.models, function (pocket) {return pocket.attributes.id;});
+                        console.debug('target pocket_id: ', pocketId);
+                        console.debug('allPocketIds: ', allPocketIds);
+                        if (!_.contains(allPocketIds, pocketId)) {
+
+                            $.ajax({
+                                url: '/api/v1/copy_pockets/' + pocketId,
+                                method: 'post',
+                                dataType: 'json',
+                                success: function () {
+                                    console.debug('copy pocket successed.');
+                                },
+                                error: function (xhr) {
+                                    if (xhr.status === 403) {
+                                        mb.router.appView.authErrorHandler();
+                                        return;
+                                    } else {
+                                        alert('api error');
+                                        console.log('error: ', arguments);
+                                    }
+                                },
+                            });
+                        };
+
+
+
                     } else {
                         console.debug('既に登録済みのPocketです。 pocketId=', pocketId);
                     }
                 });
 
          },
+
+
+
+         /**
+            他人のプレイリストからのドラッグドロップに対応する
+         */
+         _treatDragDropFromOtherPlaylist: function (pocketId) {
+
+         },
+
+
+
 
 
 
@@ -899,7 +978,37 @@ define([
 
 
 
+        /**
+            アーティストフォローする
+        */
+        followArtist: function (e) {
+            var $li = $(e.currentTarget).parents('li');
+            var artistId = $li.data('artist-id');
+            console.debug('followArtist:', artistId);
 
+            // フォロー
+            _.followArtist(artistId, function () {
+                $li.find('[data-event-click="followArtist"], [data-event-click="unfollowArtist"]').toggleClass('hidden');
+            });
+        },
+
+
+        /**
+            アーティストフォローを解除する
+        */
+        unfollowArtist: function (e) {
+            var $li = $(e.currentTarget).parents('li');
+            var artistId = $li.data('artist-id');
+            console.debug('unfollowArtist:', artistId);
+
+            // idを取得
+            var id = _.selectArtistFollowId(artistId);
+            // アンフォロー
+            _.unfollowArtist(id, function () {
+                $li.find('[data-event-click="followArtist"], [data-event-click="unfollowArtist"]').toggleClass('hidden');
+            });
+
+        },
 
 
 
