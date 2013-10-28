@@ -510,7 +510,7 @@ define([
 
                     // 自分自身のプレイリストにもDragDropさせない
                     if (self.currentPlaylist) {
-                        self.$el.find('#playlistList [data-playlist-id="'+self.currentPlaylist.attributes.id+'"]').addClass('noAction');                        
+                        self.$el.find('#playlistList [data-playlist-id="'+self.currentPlaylist.attributes.id+'"]').addClass('noAction');
                     }
 
 
@@ -549,26 +549,11 @@ define([
                     e.stopPropagation();
 
 
-                    // 他人のプレイリストからのドラッグドロップに対応する
+                    // 他人のプレイリストからのドラッグドロップは色々と面倒なため、別対応する
                     if (self.currentPlaylist && self.currentPlaylist.attributes.type === 3) {
-                        self._treatDragDropFromOtherPlaylist(pocketId);                        
-                    
-
-                    // 自分のプレイリストのを扱う
-                    } else {
-
-
-
-
+                        self._treatDragDropFromOtherPlaylist(pocketId, playlistId);
+                        return;
                     }
-
-
-
-
-
-
-
-
 
 
 
@@ -585,34 +570,6 @@ define([
                         });
                         playlist.save();
 
-
-                        // 他人のプレイリストからのDragDropの場合で該当曲のPocketをまだ保持していない場合には、Pocketの追加も行います。
-                        var allPocketIds = _.map(self.userPocketList.models, function (pocket) {return pocket.attributes.id;});
-                        console.debug('target pocket_id: ', pocketId);
-                        console.debug('allPocketIds: ', allPocketIds);
-                        if (!_.contains(allPocketIds, pocketId)) {
-
-                            $.ajax({
-                                url: '/api/v1/copy_pockets/' + pocketId,
-                                method: 'post',
-                                dataType: 'json',
-                                success: function () {
-                                    console.debug('copy pocket successed.');
-                                },
-                                error: function (xhr) {
-                                    if (xhr.status === 403) {
-                                        mb.router.appView.authErrorHandler();
-                                        return;
-                                    } else {
-                                        alert('api error');
-                                        console.log('error: ', arguments);
-                                    }
-                                },
-                            });
-                        };
-
-
-
                     } else {
                         console.debug('既に登録済みのPocketです。 pocketId=', pocketId);
                     }
@@ -625,7 +582,113 @@ define([
          /**
             他人のプレイリストからのドラッグドロップに対応する
          */
-         _treatDragDropFromOtherPlaylist: function (pocketId) {
+         _treatDragDropFromOtherPlaylist: function (pocketId, playlistId) {
+
+            var self = this;
+
+            // 対象のPocketと同一曲が自分のPocketに無い場合には、まずはPocket追加する
+            var pocket = this.followPlaylistPocketsMap[this.currentPlaylist.attributes.id].get(pocketId);
+            if (!pocket) {
+                alert('エラーが発生しました');
+                return;
+            }
+
+            // 同一曲のPocketがあるかを探す
+            var userPocket = _.filter(this.userPocketList.models, function (userPocket) {
+                return userPocket.attributes.music_id === pocket.attributes.music_id;
+            });
+
+
+            // 同一曲のPocketがある場合
+            if (userPocket.length > 0) {
+                pocketId = userPocket[0].attributes.id;
+
+                // プレイリストにまだ存在しないPocketIdの場合は、追加処理をする。
+                var playlist = self.userPlaylistList.get(playlistId);
+                var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
+                if (!_.contains(pocketIds, pocketId)) {
+
+                    // プレイリストの更新
+                    pocketIds.push(pocketId);
+                    playlist.set('user_pocket_ids', JSON.stringify(pocketIds));
+                    playlist.bind('sync', function () {
+                        self.renderPlaylist();
+                    });
+                    playlist.save();
+
+                } else {
+                    console.debug('既に登録済みのPocketです。 pocketId=', pocketId);
+                }
+
+                return;
+            }
+
+
+            // 存在しない曲の場合、Pocketを新規作成してからそれをプレイリストに登録する
+            $.ajax({
+                url: '/api/v1/copy_pockets/' + pocketId,
+                method: 'post',
+                dataType: 'json',
+                success: function (json) {
+                    console.debug('copy pocket successed.');
+
+                    // UserPocketListに追加しておく
+                    console.debug('userPocketList.length: ', self.userPocketList.length);
+                    // var userPocket = UserPocket.createInstance(json);
+                    var userPocket = new UserPocket();
+                    userPocket.set('id', json.id);
+                    userPocket.attributes = json;
+                    self.userPocketList.add(userPocket);
+                    console.debug('userPocketList.length: ', self.userPocketList.length);
+
+
+                    pocketId = json.id;
+
+
+                    // Drop先のプレイリスト
+                    var playlist = self.userPlaylistList.get(playlistId);
+                    var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
+                    pocketIds.push(pocketId);
+                    playlist.set('user_pocket_ids', JSON.stringify(pocketIds));
+                    playlist.bind('sync', function () {
+                        self.renderPlaylist();
+                    });
+                    playlist.save();
+
+                    // Allのプレイリスト（該当プレイリストがALLでは無い場合）
+                    if (playlist.attributes.type !== 1) {
+                        var allPlaylistId;
+                        _.each(self.userPlaylistList.models, function (playlist) {
+                            if (playlist.attributes.type === 1) {
+                                allPlaylistId = playlist.attributes.id;
+                            }
+                        });
+                        var playlistAll = self.userPlaylistList.get(allPlaylistId);
+                        var pocketIds = JSON.parse(playlistAll.get('user_pocket_ids'));
+                        pocketIds.push(pocketId);
+                        playlistAll.set('user_pocket_ids', JSON.stringify(pocketIds));
+                        playlistAll.bind('sync', function () {
+                            self.renderPlaylist();
+                        });
+                        playlistAll.save();
+                    }
+
+
+
+
+
+                },
+                error: function (xhr) {
+                    if (xhr.status === 403) {
+                        mb.router.appView.authErrorHandler();
+                        return;
+                    } else {
+                        alert('api error');
+                        console.log('error: ', arguments);
+                    }
+                },
+            });
+
 
          },
 

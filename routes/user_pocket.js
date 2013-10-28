@@ -155,7 +155,11 @@ exports.copy = function (req, res) {
             youtube_id: pocket.youtube_id
         }, function (err) {
 
-            res.json('success');
+            userPocketModel.selectObjectsIncludeMusic({user_id: userId, music_id:pocket.music_id}, function (err, rows) {
+
+                // 返却
+                res.json(rows[0]);
+            });
         });
 
     });

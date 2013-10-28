@@ -40,8 +40,25 @@ define([], function () {
                 }, this),
             });
         },
-
     });
+
+
+    // static method.
+    UserPocketModel.createInstance = function (data) {
+
+        var userPocket = new UserPocketModel();
+        userPocket.set('id', data.id);
+        userPocket.set('user_id', data.user_id);
+        userPocket.set('music_id', data.music_id);
+        userPocket.set('youtube_id', data.youtube_id);
+        userPocket.set('music_link_id', data.music_link_id);
+        userPocket.set('create_at', data.create_at);
+        userPocket.set('update_at', data.update_at);
+        return userPocket;
+    };
+
+
+
 
     return UserPocketModel;
 });
