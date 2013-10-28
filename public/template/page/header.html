@@ -9,15 +9,17 @@
       <a href="#" class="sprite-logo logo-headter ir">Music Drops</a>
     </h1>
 
-    <div class="header-menu gp">
+    <div class="header-search gp">
       <a href="#music/search">
         <p class="fl">
-          <i class="ico-font ico-menu db fs30"></i>
-          <span class="db fs9">メニュー</span>
+          <i class="ico-font ico-search db fs30"></i>
+          <span class="db fs9">さがす</span>
         </p>
-        <div class="header-menu-btn fr">
+        <!--
+        <div class="header-search-btn fr">
           <i class="ico-font ico-below"></i>
         </div>
+        -->
       </a>
     </div><!-- /header-searchMenu -->
 
@@ -28,29 +30,30 @@
 
     <div class="header-playMenu">
       <div class="ref">
-        <button class="js-playMenu-prev header-playMenu-btn header-playMenu-btn-prev" data-event-click="prevMusic">
+        <button class="js-playMenu-prev header-playMenu-btn header-playMenu-btn-prev btn-mouse-action" data-event-click="prevMusic">
           <i class="ico-font ico-play-prev"></i>
         </button>
-        <button class="js-playMenu-play header-playMenu-btn header-playMenu-btn-play" data-event-click="startMusic">
+        <button class="js-playMenu-play header-playMenu-btn header-playMenu-btn-play btn-mouse-action" data-event-click="startMusic">
           <i class="ico-font ico-play"></i>
         </button>
-        <button class="js-playMenu-play-stop header-playMenu-btn header-playMenu-btn-play hidden" data-event-click="pauseMusic">
+        <button class="js-playMenu-play-stop header-playMenu-btn header-playMenu-btn-play btn-mouse-action hidden" data-event-click="pauseMusic">
           <i class="ico-font ico-play-stop"></i>
         </button>
-        <button class="js-playMenu-next header-playMenu-btn header-playMenu-btn-next" data-event-click="nextMusic">
+        <button class="js-playMenu-next header-playMenu-btn header-playMenu-btn-next btn-mouse-action" data-event-click="nextMusic">
           <i class="ico-font ico-play-next"></i>
         </button>
         <div class="header-playMenu-song">
           <p id="mpMusicTitle" class="header-playMenu-song-title elps"><!--JSで埋めます--></p>
           <p id="mpArtistName" class="header-playList-song-artist elps"><!--JSで埋めます--></p>
+          <p id="mpMusicTitleDefaultText" class="header-playMenu-song-title elps"><!--JSで埋めます--></p>
         </div><!-- /header-playMenu-song -->
-        <button class="js-playMenu-movie header-playSubMenu-btn header-playSubMenu-btn-window" data-event-click="togglePlayerVisible">
+        <button class="js-playMenu-movie header-playSubMenu-btn header-playSubMenu-btn-window btn-mouse-action" data-event-click="togglePlayerVisible">
           <i class="ico-font ico-image"></i>
         </button>
-        <button class="js-playMenu-repeat header-playSubMenu-btn header-playSubMenu-btn-repeat" data-event-click="toggleRepeat">
+        <button class="js-playMenu-repeat header-playSubMenu-btn header-playSubMenu-btn-repeat btn-mouse-action" data-event-click="toggleRepeat">
           <i class="ico-font ico-repeat"></i>
         </button>
-        <button class="js-playMenu-movie header-playSubMenu-btn header-playSubMenu-btn-shuffle" data-event-click="toggleShuffle">
+        <button class="js-playMenu-movie header-playSubMenu-btn header-playSubMenu-btn-shuffle btn-mouse-action" data-event-click="toggleShuffle">
           <i class="ico-font ico-shuffle"></i>
         </button>
       </div><!-- /ref -->
@@ -59,18 +62,20 @@
     <div class="header-userMenu">
       <div class="ref">
         <div class="m-btn-PD">
-          <a href="#" class="js-menu-pocket btn-PD btn-pocket" data-event-click="pocket">
-            <i class="ico-font ico-star"></i>
+          <a href="#" class="js-menu-pocket btn-PD btn-pocket btn-mouse-action" data-event-click="pocket">
+            <i class="ico-font ico-star fs18"></i>
             <span>ポケット</span>
           </a>
-          <a href="#" class="js-menu-drop btn-PD btn-drop">
-            <i class="ico-font ico-drop"></i>
+          <a href="#" class="js-menu-drop btn-PD btn-drop btn-mouse-action">
+            <i class="ico-font ico-drop fs18"></i>
             <span>ドロップ</span>
           </a>
-          <a href="#mypage" class="js-menu-myList header-userMenu-btn header-userMenu-btn-myList">
+          <a href="#mypage" class="js-menu-myList header-userMenu-btn header-userMenu-btn-myList btn-mouse-action">
+            <i class="ico-font ico-list db fs18"></i>
             マイリスト
           </a>
-          <a href="#timeline" class="js-menu-noti header-userMenu-btn header-userMenu-btn-noti">
+          <a href="#timeline" class="js-menu-noti header-userMenu-btn header-userMenu-btn-noti btn-mouse-action">
+            <i class="ico-font ico-mail db fs18"></i>
             お知らせ
           </a>
         </div><!-- /m-btn-PD -->

@@ -163,14 +163,6 @@ define([], function () {
             // Drag可能にしてみる
             this.$previewArea.draggable();
 
-
-
-
-
-
-
-
-
             // 再生開始
             this._playMusicAtCurrentPos();
 

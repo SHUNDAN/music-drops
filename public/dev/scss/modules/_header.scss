@@ -66,7 +66,7 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
 
 //  メニュー
 //-------------------------------------
-.header-menu {
+.header-search {
   top: 10px;
   left: 64px;
   width: 80px;
@@ -89,7 +89,7 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
     }
   }
 }
-.header-menu-btn {
+.header-search-btn {
   width: 26px;
   height: 40px;
   line-height: 40px;
@@ -123,8 +123,8 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
 //-------------------------------------
 .header-playMenu {
   top: 10px;
-  left: 293px;
-  width: 384px;
+  left: 262px;
+  width: 440px;
   height: 40px;
   background-color: #656457;
   & > div {
@@ -190,24 +190,35 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
 //-------------------------------------
 .header-userMenu {
   top: 10px;
-  left: 687px;
+  left: 707px;
+  &:after {
+    position: absolute;
+    top: -5px;
+    left: 93px;
+    display: block !important;
+    content: "";
+    width: 1px;
+    height: 50px;
+    border-right: 1px solid #bdb99c;
+  }
 }
 .header-userMenu-btn {
   position: absolute;
   top: 0;
   height: 40px;
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
-  line-height: 40px;
   color: #656457;
 }
 .header-userMenu-btn-myList {
   left: 100px;
   width: 70px;
+  padding-top: 7px;
 }
 .header-userMenu-btn-noti {
   left: 180px;
   width: 70px;
+  padding-top: 7px;
 }
 // ## 以下の2つは各ページ共通で使用するので、配置のみ。
 // ## カラー等は _buttons.scssを参照。

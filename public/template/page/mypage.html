@@ -3,38 +3,38 @@
 <!-- Mypage -->
 <script id="page_mypage" type="text/template">
 
-    <div class="pageMypage clearfix">
+    <div class="pageMypage gp">
 
 
         <!--PlaylistからPocket削除エリア-->
         <div id="pocketDeleteArea" class="pocketDeleteArea hidden">DropしてPlaylistから削除</div>
 
 
-        <div class="leftCol">
+        <div class="userPage-leftCol fl fix">
 
             <!--タイトル：ユーザー名、保有曲数-->
-            <div class="playlistHeader">
+            <div class="userPage-playlistHeader">
                 <span class="fs18"><%=user.name%></span>
                 <span>/</span>
                 <span id="numOfPockets" class="fs32">0</span>
                 <span class="fs18">曲</span>
             </div>
             <!--マイドロップ、チェックアーティスト、ユーザーフォロ-->
-            <ul class="sidebarList">
-                <li data-event-click="showMyDrops">マイドロップ一覧&nbsp;<span id="numOfMyDrops"></span></li>
-                <li data-event-click="showCheckArtists">フォローしているアーティスト&nbsp;<span id="numOfCheckArtists"></span></li>
-                <li data-event-click="showFollowUsers">フォローしているユーザー&nbsp;<span id="numOfFollowUsers"></span></li>
-                <li data-event-click="showFollowedUsers">フォローされているユーザー&nbsp;<span id="numOfFollowedUsers"></span></li>
+            <ul class="userPage-sidebarList">
+                <li class="userPage-sidebarList-item" data-event-click="showMyDrops">マイドロップ一覧&nbsp;<span id="numOfMyDrops"></span></li>
+                <li class="userPage-sidebarList-item" data-event-click="showCheckArtists">フォローしているアーティスト&nbsp;<span id="numOfCheckArtists"></span></li>
+                <li class="userPage-sidebarList-item" data-event-click="showFollowUsers">フォローしているユーザー&nbsp;<span id="numOfFollowUsers"></span></li>
+                <li class="userPage-sidebarList-item" data-event-click="showFollowedUsers">フォローされているユーザー&nbsp;<span id="numOfFollowedUsers"></span></li>
             </ul>
 
             <!--自分のプレイリスト-->
-            <div id="playlistEditArea" class="listEditArea">
-                <div class="playlistHeader mt30">
+            <div id="playlistEditArea" class="userPage-listEditArea">
+                <div class="userPage-playlistHeader mt30">
                     <span class="fs18">自分でつくったプレイリスト</span>
                     <a href="#" class="editButton" data-event-click="switchPlaylistEditStyle">編集</a>
                     <a href="#" class="doneButton" data-event-click="switchPlaylistEditStyle">完了</a>
                 </div>
-                <ul id="playlistList" class="sidebarList"><!--プレイリストをJSで追加--></ul>
+                <ul id="playlistList" class="userPage-sidebarList"><!--プレイリストをJSで追加--></ul>
                 <div class="addPlaylistArea">
                     <input id="playlistTitle" type="text" value="" placeholder="+ 新しいプレイリスト名"/>
                     <input type="button" value="追加" class="addPlaylistBtn" data-event-click="addPlaylist"/>
@@ -43,11 +43,11 @@
 
 
             <!--他人のプレイリスト-->
-            <div class="playlistHeader mt30">
+            <div class="userPage-playlistHeader mt30">
                 <span class="fs18">他の人がつくったプレイリスト</span>
                 <a href="#" class="editButton" data-event-click="editFollowPlaylistButton">編集</a>
             </div>
-            <ul id="followPlaylist" class="sidebarList"><!--JSで内容を追加--></ul>
+            <ul id="followPlaylist" class="userPage-sidebarList"><!--JSで内容を追加--></ul>
 
 
         </div>
@@ -56,7 +56,7 @@
 
 
         <!--右Colのデータ表示部分-->
-        <div class="rightCol" data-type="dataArea"><!--JSで内容を設定する--></div>
+        <div class="userPage-rightCol fr" data-type="dataArea"><!--JSで内容を設定する--></div>
 
 
     </div>
@@ -242,12 +242,12 @@
     <%_.each(playlists, function (playlist) {%>
 
         <%if (playlist.attributes.type !== 1) {%>
-            <li data-playlist-id="<%=playlist.attributes.id%>" data-pleylist-type="<%=playlist.attributes.type%>" data-event-click="showPlaylist" data-drop-target="playlist">
+            <li class="userPage-sidebarList-item" data-playlist-id="<%=playlist.attributes.id%>" data-pleylist-type="<%=playlist.attributes.type%>" data-event-click="showPlaylist" data-drop-target="playlist">
                 <%=playlist.attributes.title%> (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
                 <a href="#" class="clearBtn" data-event-click="deletePlaylist">×</a>
             </li>
         <%} else {%>
-            <li data-playlist-id="<%=playlist.attributes.id%>" data-pleylist-type="<%=playlist.attributes.type%>" data-event-click="showPlaylist" data-drop-target="playlist">
+            <li class="userPage-sidebarList-item" data-playlist-id="<%=playlist.attributes.id%>" data-pleylist-type="<%=playlist.attributes.type%>" data-event-click="showPlaylist" data-drop-target="playlist">
                 <%=playlist.attributes.title%> (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
             </li>
         <%}%>
@@ -262,7 +262,7 @@
 <script id="page_mypage_follow_playlist" type="text/template">
     <%_.each(playlists, function (playlist) {%>
 
-        <li data-playlist-id="<%=playlist.attributes.id%>" data-event-click="showFollowPlaylist">
+        <li class="userPage-sidebarList-item" data-playlist-id="<%=playlist.attributes.id%>" data-event-click="showFollowPlaylist">
             <%=playlist.attributes.title%>
             (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
             &nbsp;by <a style="display:inline;" href="#user/<%=playlist.attributes.user_id%>"><%=playlist.attributes.user_name%></a>
