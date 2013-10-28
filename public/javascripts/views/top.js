@@ -92,7 +92,7 @@ define([
 
         render: function () {
 
-            var feelingList = this.userStorage.getCommon().feelings;
+            var feelingList = _.mbStorage.getCommon().feelings;
             var template = $('#page_top').html();
             var snipet = _.template(template, {feelingList:feelingList});
             this.$el.html(snipet);
@@ -105,12 +105,13 @@ define([
 
 
         renderNewPopList: function () {
-            console.log('renderNewPopList. popList: ', this.newPopList);
+            console.log('renderNewPopList. popList: ', this.newPopList, this.filterFeelings);
             var template = $('#page_top_poplist').html();
             var popList = this.newPopList.models;
-            if (this.feelingFilterOfNewPopList) {
+            if (this.filterFeelings) {
                 popList = _.filter(popList, _.bind(function (model) {
-                    return model.attributes.feeling_id === this.feelingFilterOfNewPopList;
+                    return _.contains(this.filterFeelings, model.attributes.feeling_id);
+                    // return model.attributes.feeling_id === this.feelingFilterOfNewPopList;
                 }, this));
             }
             this.displayPopListMap['new'] = popList;
@@ -123,9 +124,10 @@ define([
             console.log('renderPopularPopList. popList: ', this.popularPopList);
             var template = $('#page_top_poplist').html();
             var popList = this.popularPopList.models;
-            if (this.feelingFilterOfPopularPopList) {
+            if (this.filterFeelings) {
                 popList = _.filter(popList, _.bind(function (model) {
-                    return model.attributes.feeling_id === this.feelingFilterOfPopularPopList;
+                    return _.contains(this.filterFeelings, model.attributes.feeling_id);
+                    // return model.attributes.feeling_id === this.feelingFilterOfNewPopList;
                 }, this));
             }
             this.displayPopListMap['popular'] = popList;
@@ -138,9 +140,10 @@ define([
             console.log('renderHotPopList. popList: ', this.hotPopList);
             var template = $('#page_top_poplist').html();
             var popList = this.hotPopList.models;
-            if (this.feelingFilterOfHotPopList) {
+            if (this.filterFeelings) {
                 popList = _.filter(popList, _.bind(function (model) {
-                    return model.attributes.feeling_id === this.feelingFilterOfHotPopList;
+                    return _.contains(this.filterFeelings, model.attributes.feeling_id);
+                    // return model.attributes.feeling_id === this.feelingFilterOfNewPopList;
                 }, this));
             }
             this.displayPopListMap['hot'] = popList;
@@ -363,6 +366,51 @@ define([
 
 
 
+
+        /**
+            キモチでのPocket絞り込み
+        */
+        filterWithFeelings: function (e) {
+            console.debug('filterWithFeelings');
+
+            var $this = $(e.currentTarget);
+
+            // もしAllの場合には、それらしい動きをさせる
+            if ($this.data('feeling-id') === 0) {
+                $this.toggleClass('is-active');
+
+                if ($this.hasClass('is-active')) {
+                    this.$el.find('#feelingFilter li').addClass('is-active');
+                } else {
+                    this.$el.find('#feelingFilter li').removeClass('is-active');
+                }
+
+            // ALL以外
+            } else {
+                $this.toggleClass('is-active');
+
+                // もし全部アクティブなら、ALLもアクティブにする
+                if ( this.$el.find('#feelingFilter .is-active:not([data-feeling-id="0"])').length === _.mbStorage.getCommon().feelings.length) {
+                    this.$el.find('#feelingFilter [data-feeling-id="0"]').addClass('is-active');   
+                } else {
+                    this.$el.find('#feelingFilter [data-feeling-id="0"]').removeClass('is-active');   
+                }
+            }
+
+            // レンダリング
+            var self = this;
+            this.filterFeelings = [];
+            this.$el.find('#feelingFilter .is-active').each(function () {
+                self.filterFeelings.push($(this).data('feeling-id'));
+            });
+
+            console.debug('filterFeelings: ', this.filterFeelings);
+            this.renderHotPopList();
+            this.renderPopularPopList();
+            this.renderNewPopList();
+
+
+        },
 
 
 

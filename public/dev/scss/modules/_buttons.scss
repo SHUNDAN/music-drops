@@ -69,7 +69,7 @@
 	color: #656457;
 	text-align: center;
 	&:first-child {
-		margin-right: 10px;
+		margin-right: 5px;
 	}
 	&:hover {
 		background-color: #dedbc7;
@@ -89,6 +89,22 @@
 		white-space: nowrap;
 	}
 }
+
+//  ボタンマウスアクション用
+//-------------------------------------
+.btn-mouse-action:hover {
+	&:hover {
+		background-color: #dedbc7;
+	}
+	&:active {
+		color: #fa732d;
+		background-color: #ffcf3c;
+		.ico-font {
+			color: #fa732d;
+		}
+	}
+}
+
 
 
 //  テキストボタン

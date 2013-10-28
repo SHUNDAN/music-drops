@@ -10,150 +10,152 @@
 // TODO 以下で、Userページでも共通なので、なんとか綺麗にしたい。
 // とりあえず、.pageMypageと.pageUserを作ってしまった。。
 
+// キレイにし始めたけど途中です byコバ
+
+
+//  共通
+//-------------------------------------
+// 左部分
+.userPage-leftCol {
+	width: 320px;
+}
+// 右部分
+.userPage-rightCol {
+	width: 612px;
+}
+
+//  共通
+//-------------------------------------
+// プレイリストタイトル業
+.userPage-playlistHeader {
+	position: relative;
+	border-bottom: 1px solid #adaa95;
+	.editButton {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	.doneButton {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: none;
+	}
+	.userFollowButton {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 100px;
+		height: 32px;
+		line-height: 32px;
+		text-align: center;
+		color: #7d6a35;
+		background-color: #ffcf3c;
+	}
+}
+// サイドバーの表示
+.userPage-sidebarList {
+	margin-top: 10px;
+	&.edit {
+		.clearBtn {
+			display: block;
+		}
+	}
+}
+.userPage-sidebarList-item {
+	position: relative;
+	width: 310px;
+	height: 24px;
+	line-height: 24px;
+	margin: 10px 0;
+	padding-left: 10px;
+	color: #656457;
+
+	&:hover {
+		background-color: #ffe77c;
+		cursor: pointer;
+		&:after {
+		  position: absolute;
+		  top: 0;
+		  right: -12px;
+		  width: 0px;
+		  height: 0px;
+		  content: " ";
+		  border-top: 12px solid transparent;
+		  border-bottom: 12px solid transparent;
+		  border-left: 12px solid #ffe77c;
+		  border-right: 0px solid transparent;
+		}
+	}
+	&.select {
+		background-color: #ffe77c;
+		&:after {
+		  position: absolute;
+		  top: 0;
+		  right: -12px;
+		  width: 0px;
+		  height: 0px;
+		  content: " ";
+		  border-top: 12px solid transparent;
+		  border-bottom: 12px solid transparent;
+		  border-left: 12px solid #ffe77c;
+		  border-right: 0px solid transparent;
+		}
+	}
+	&.dropTarget {
+		background-color: #ffe77c;
+		&:after {
+		  position: absolute;
+		  top: 0;
+		  right: -12px;
+		  width: 0px;
+		  height: 0px;
+		  content: " ";
+		  border-top: 12px solid transparent;
+		  border-bottom: 12px solid transparent;
+		  border-left: 12px solid #ffe77c;
+		  border-right: 0px solid transparent;
+		}
+	}
+	// 削除ボタン
+	.clearBtn {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: none;
+		pointer-events: auto;
+	}
+}
+// リスト編集機能
+.userPage-listEditArea {
+	&.edit {
+		.editButton {
+			display: none;
+		}
+		.doneButton {
+			display: block;
+		}
+		.clearBtn {
+			display: block;
+		}
+		.addPlaylistArea {
+			display: block;
+		}
+	}
+}
+
+
+
 // 全体を囲む
 .pageMypage, .pageUser {
 
-	// 左部分
-	.leftCol {
-		position: fixed;
-		float: left;
-		width: 320px;
-	}
-
-	// 右部分
-	.rightCol {
-		float: right;
-		width: 612px;
-	}
-
-
-	// リスト編集機能
-	.listEditArea {
-		&.edit {
-			.editButton {
-				display: none;
-			}
-			.doneButton {
-				display: block;
-			}
-			.clearBtn {
-				display: block;
-			}
-			.addPlaylistArea {
-				display: block;
-			}
-		}
-	}
 
 
 
 
-	// プレイリストタイトル業
-	.playlistHeader {
-		position: relative;
-		border-bottom: 1px solid #adaa95;
-
-		.editButton {
-			position: absolute;
-			top: 0;
-			right: 0;
-		}
-		.doneButton {
-			position: absolute;
-			top: 0;
-			right: 0;
-			display: none;
-		}
-		.userFollowButton {
-			position: absolute;
-			top: 0;
-			right: 0;
-			width: 100px;
-			height: 32px;
-			line-height: 32px;
-			text-align: center;
-			color: #7d6a35;
-			background-color: #ffcf3c;
-		}
-	}
-
-	// サイドバーの表示
-	.sidebarList {
-		margin-top: 10px;
-		li {
-			position: relative;
-			width: 310px;
-			height: 24px;
-			line-height: 24px;
-			margin: 10px 0;
-			padding-left: 10px;
-			color: #656457;
-
-			&:hover {
-				background-color: #ffe77c;
-				cursor: pointer;
-				&:after {
-				  position: absolute;
-				  top: 0;
-				  right: -12px;
-				  width: 0px;
-				  height: 0px;
-				  content: " ";
-				  border-top: 12px solid transparent;
-				  border-bottom: 12px solid transparent;
-				  border-left: 12px solid #ffe77c;
-				  border-right: 0px solid transparent;
-				}
-			}
 
 
-			&.select {
-				background-color: #ffe77c;
-				&:after {
-				  position: absolute;
-				  top: 0;
-				  right: -12px;
-				  width: 0px;
-				  height: 0px;
-				  content: " ";
-				  border-top: 12px solid transparent;
-				  border-bottom: 12px solid transparent;
-				  border-left: 12px solid #ffe77c;
-				  border-right: 0px solid transparent;
-				}
-			}
-			&.dropTarget {
-				background-color: #ffe77c;
-				&:after {
-				  position: absolute;
-				  top: 0;
-				  right: -12px;
-				  width: 0px;
-				  height: 0px;
-				  content: " ";
-				  border-top: 12px solid transparent;
-				  border-bottom: 12px solid transparent;
-				  border-left: 12px solid #ffe77c;
-				  border-right: 0px solid transparent;
-				}
-			}
 
-			// 削除ボタン
-			.clearBtn {
-				position: absolute;
-				top: 0;
-				right: 0;
-				display: none;
-				pointer-events: auto;
-			}
-		}
-		&.edit {
-			.clearBtn {
-				display: block;
-			}
-		}
-
-	}
 
 	// プレイリストを作るUI
 	.addPlaylistArea {
