@@ -145,15 +145,6 @@ define('views/common/music_player',[], function () {
                 throw 'identifier must be set.';
             }
 
-
-            // もし現在保持するプレイリストと同一の場合には、曲の再開のみする
-            // if (this.options && this.options.identifier === options.identifier) {
-            //     this.startMusic();
-            //     return;
-            // }
-
-
-
             // 表示を初期化
             this.resetPlayer();
 
@@ -209,6 +200,13 @@ define('views/common/music_player',[], function () {
 
             // Drag可能にしてみる
             this.$previewArea.draggable();
+
+
+
+
+
+
+
 
 
             // 再生開始
@@ -454,10 +452,18 @@ define('views/common/music_player',[], function () {
             }
 
 
-            // 小さくするボタン
-            // var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
-            // $minimizeBtn.on('click', _.bind(this.minimize, this));
-            // $appendView.append($minimizeBtn);
+            // iTunesリンクエリアを追加する
+            if (this.currentMusic.itunes_url) {
+                var $a = $('<a target="_blank"/>').css({
+                    display: 'inline-block',
+                    position: 'absolute',
+                    bottom: '10px',
+                    right: '10px',
+                    color: 'white'
+                });
+                $a.attr('href', _.createItunesUrl(this.currentMusic.itunes_url)).text('iTunesでこの曲をチェックする');
+                this.$previewArea.append($a);                
+            }
 
 
             // audio tag.
@@ -528,10 +534,21 @@ define('views/common/music_player',[], function () {
             }
 
 
-            // 小さくするボタン
-            // var $minimizeBtn = $('<a href="#" class="minimizeBtn">-</a>');
-            // $minimizeBtn.on('click', _.bind(this.minimize, this));
-            // $appendView.append($minimizeBtn);
+
+            if (this.currentMusic.itunes_url) {
+                var $a = $('<a target="_blank"/>').css({
+                    display: 'inline-block',
+                    position: 'absolute',
+                    bottom: '10px',
+                    right: '10px',
+                    color: 'white'
+                });
+                $a.attr('href', _.createItunesUrl(this.currentMusic.itunes_url)).text('iTunesでこの曲をチェックする');
+                this.$previewArea.append($a);                
+            }
+
+
+
 
 
             // Youtubeエリア
@@ -4297,9 +4314,23 @@ define('views/mypage',[
                     pocketId = $(e.currentTarget).data('pocket-id');
                     console.debug('drag start. ', pocketId);
 
+                    // 自分のプレイリストの曲をDragDropの場合には、全ては反応させない
+                    if (!self.currentPlaylist || self.currentPlaylist.attributes.type === 2) {
+                        self.$el.find('[data-pleylist-type="1"]').addClass('noAction');
+                    }
+
+                    // 自分自身のプレイリストにもDragDropさせない
+                    if (self.currentPlaylist) {
+                        self.$el.find('#playlistList [data-playlist-id="'+self.currentPlaylist.attributes.id+'"]').addClass('noAction');                        
+                    }
+
+
 
                 }).off('dragend').on('dragend', function (e) {
                     console.debug('dragend');
+
+                    // Drag開始時に付与した制約を解除する
+                    self.$el.find('#playlistList li').removeClass('noAction');
                 });
 
             // Drop先
@@ -4328,11 +4359,36 @@ define('views/mypage',[
                     e.preventDefault();
                     e.stopPropagation();
 
+
+                    // 他人のプレイリストからのドラッグドロップに対応する
+                    if (self.currentPlaylist && self.currentPlaylist.attributes.type === 3) {
+                        self._treatDragDropFromOtherPlaylist(pocketId);                        
+                    
+
+                    // 自分のプレイリストのを扱う
+                    } else {
+
+
+
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
                     // プレイリストにまだ存在しないPocketIdの場合は、追加処理をする。
                     var playlist = self.userPlaylistList.get(playlistId);
                     var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
                     if (!_.contains(pocketIds, pocketId)) {
 
+                        // プレイリストの更新
                         pocketIds.push(pocketId);
                         playlist.set('user_pocket_ids', JSON.stringify(pocketIds));
                         playlist.bind('sync', function () {
@@ -4340,12 +4396,52 @@ define('views/mypage',[
                         });
                         playlist.save();
 
+
+                        // 他人のプレイリストからのDragDropの場合で該当曲のPocketをまだ保持していない場合には、Pocketの追加も行います。
+                        var allPocketIds = _.map(self.userPocketList.models, function (pocket) {return pocket.attributes.id;});
+                        console.debug('target pocket_id: ', pocketId);
+                        console.debug('allPocketIds: ', allPocketIds);
+                        if (!_.contains(allPocketIds, pocketId)) {
+
+                            $.ajax({
+                                url: '/api/v1/copy_pockets/' + pocketId,
+                                method: 'post',
+                                dataType: 'json',
+                                success: function () {
+                                    console.debug('copy pocket successed.');
+                                },
+                                error: function (xhr) {
+                                    if (xhr.status === 403) {
+                                        mb.router.appView.authErrorHandler();
+                                        return;
+                                    } else {
+                                        alert('api error');
+                                        console.log('error: ', arguments);
+                                    }
+                                },
+                            });
+                        };
+
+
+
                     } else {
                         console.debug('既に登録済みのPocketです。 pocketId=', pocketId);
                     }
                 });
 
          },
+
+
+
+         /**
+            他人のプレイリストからのドラッグドロップに対応する
+         */
+         _treatDragDropFromOtherPlaylist: function (pocketId) {
+
+         },
+
+
+
 
 
 
@@ -4693,7 +4789,37 @@ define('views/mypage',[
 
 
 
+        /**
+            アーティストフォローする
+        */
+        followArtist: function (e) {
+            var $li = $(e.currentTarget).parents('li');
+            var artistId = $li.data('artist-id');
+            console.debug('followArtist:', artistId);
 
+            // フォロー
+            _.followArtist(artistId, function () {
+                $li.find('[data-event-click="followArtist"], [data-event-click="unfollowArtist"]').toggleClass('hidden');
+            });
+        },
+
+
+        /**
+            アーティストフォローを解除する
+        */
+        unfollowArtist: function (e) {
+            var $li = $(e.currentTarget).parents('li');
+            var artistId = $li.data('artist-id');
+            console.debug('unfollowArtist:', artistId);
+
+            // idを取得
+            var id = _.selectArtistFollowId(artistId);
+            // アンフォロー
+            _.unfollowArtist(id, function () {
+                $li.find('[data-event-click="followArtist"], [data-event-click="unfollowArtist"]').toggleClass('hidden');
+            });
+
+        },
 
 
 
