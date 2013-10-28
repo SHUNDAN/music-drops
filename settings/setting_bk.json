@@ -1,22 +1,24 @@
 {
-    "port": 3000,
+    "port": 80,
     "db_path": "./db/mockbu.db",
-    "mainJs": "main.js",
+    "mainJs": "main-min.js",
+    "basicAuth": true,
+    "env": "production",
 
     "OAuth": {
         "google": {
-            "returnURL": "http://localhost:3000/auth/google/return",
-            "realm": "http://localhost:3000/"
+            "returnURL": "http://dev.music-drops.com/auth/google/return",
+            "realm": "http://dev.music-drops.com/"
         },
         "facebook": {
-            "clientID": "234055280083084",
-            "clientSecret": "ed766a92d8cf3ebe26d0c6802a7d7852",
-            "callbackURL": "http://localhost:3000/auth/facebook/callback"
+            "clientID": "510171422408925",
+            "clientSecret": "6ddc7a4e8f8ffb1642b919db17bbbb02",
+            "callbackURL": "http://dev.music-drops.com/auth/facebook/callback"
         },
         "twitter": {
             "consumerKey": "JkyuVRj2NqbJbthObbJmuQ",
             "consumerSecret": "Lhwac5bc3wRgE5PFIxBMscM40HBtGjxf8I9Q9AeQ9A",
-            "callbackURL": "http://localhost:3000/auth/twitter/callback"
+            "callbackURL": "http://dev.music-drops.com/auth/twitter/callback"
         }
     }
 }
