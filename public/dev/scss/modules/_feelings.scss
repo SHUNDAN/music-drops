@@ -1,30 +1,67 @@
 // Feeling Labels
 
 
-// //  キモチ別の色指定
-// //-------------------------------------
-// ハッピー
-.feeling-Happy {
-  color: $color-feel-Happy;
+//  キモチ別の色指定
+//-------------------------------------
+// フォントカラー
+.feeling-1 {
+  color: $color-feel-1;
 }
-.feeling-Relax {
-  color: $color-feel-Relax;
+.feeling-2 {
+  color: $color-feel-2;
 }
-.feeling-Sad {
-  color: $color-feel-Sad;
+.feeling-3 {
+  color: $color-feel-3;
 }
-.feeling-Cry {
-  color: $color-feel-Cry;
+.feeling-4 {
+  color: $color-feel-4;
 }
-.feeling-ight {
-  color: $color-feel-ight;
+.feeling-5 {
+  color: $color-feel-5;
 }
-.feeling-Angry {
-  color: $color-feel-Angry;
+.feeling-6 {
+  color: $color-feel-6;
 }
-.feeling-Smile {
-  color: $color-feel-Smile;
+.feeling-7 {
+  color: $color-feel-7;
 }
+// 背景色＋フォントカラー
+.feelig-bg-all {
+  color: #656457;
+  background-color: $bgColor-feel-all;
+}
+.feeling-bg-1 {
+  color: #fff;
+  background-color: $bgColor-feel-1;
+}
+.feeling-bg-2 {
+  color: #fff;
+  background-color: $bgColor-feel-2;
+}
+.feeling-bg-3 {
+  color: #fff;
+  background-color: $bgColor-feel-3;
+}
+.feeling-bg-4 {
+  color: #fff;
+  background-color: $bgColor-feel-4;
+}
+.feeling-bg-5 {
+  color: #fff;
+  background-color: $bgColor-feel-5;
+}
+.feeling-bg-6 {
+  color: #fff;
+  background-color: $bgColor-feel-6;
+}
+.feeling-bg-7 {
+  color: #fff;
+  background-color: $bgColor-feel-7;
+}
+
+
+
+
 // ラベル
 .label-feeling {
   color: #fff;
@@ -32,26 +69,26 @@
   font-size: 12px;
   line-height: 22px;
   @include border-radius(2px);
-  &.label-feeling-bg-Happy {
-    background-color: $bgColor-feel-Happy;
+  &.label-feeling-bg-1 {
+    background-color: $bgColor-feel-1;
   }
-  &.label-feeling-bg-Relax {
-    background-color: $bgColor-feel-Relax;
+  &.label-feeling-bg-2 {
+    background-color: $bgColor-feel-2;
   }
-  &.label-feeling-bg-Sad {
-    background-color: $bgColor-feel-Sad;
+  &.label-feeling-bg-3 {
+    background-color: $bgColor-feel-3;
   }
-  &.label-feeling-bg-Cry {
-    background-color: $bgColor-feel-Cry;
+  &.label-feeling-bg-4 {
+    background-color: $bgColor-feel-4;
   }
-  &.label-feeling-bg-ight {
-    background-color: $bgColor-feel-ight;
+  &.label-feeling-bg-5 {
+    background-color: $bgColor-feel-5;
   }
-  &.label-feeling-bg-Angry {
-    background-color: $bgColor-feel-Angry;
+  &.label-feeling-bg-6 {
+    background-color: $bgColor-feel-6;
   }
-  &.label-feeling-bg-Smile {
-    background-color: $bgColor-feel-Smile;
+  &.label-feeling-bg-7 {
+    background-color: $bgColor-feel-7;
   }
 }
 // タグ

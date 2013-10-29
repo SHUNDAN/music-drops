@@ -22,12 +22,12 @@
                 background-color: rgba(255,0,0,.5);
             }
         </style>
-        <ul id="feelingFilter" class="feeling-conditions clearfix">
-            <li class="is-active" data-feeling-id="0" data-event-click="filterWithFeelings">
+        <ul id="feelingFilter" class="feeling-conditions-tab mb10 gp">
+            <li class="is-active feeling-conditions-tab-item feelig-bg-all tc fl" data-feeling-id="0" data-event-click="filterWithFeelings">
                 すべて
             </li>
             <%_.each(feelingList, function (feeling) {%>
-                <li class="is-active" data-feeling-id="<%=feeling.id%>" data-event-click="filterWithFeelings">
+                <li class="feeling-conditions-tab-item feeling-bg-<%=feeling.id%> tc fl" data-feeling-id="<%=feeling.id%>" data-event-click="filterWithFeelings">
                     <%=feeling.name%>
                 </li>
             <%});%>

@@ -16,26 +16,38 @@ $color-000: #000; // Black
 #99796d // secondaly color
 
 */
-
+//-------------------------------------//
+//  Feeling Color Settings
+//-------------------------------------
+// ## Feeling ID
+//      1:テンションあがる
+//      2:キモチが弾む
+//      3:目が覚める
+//      4:キモチが優しくなる
+//      5:泣ける
+//      6:ココロがふるえる
+//      7:胸がキュンとする
+//-------------------------------------
 // Feeling Colors
-
-$color-feel-Happy: #c85d94;
-$color-feel-Relax: #77b66a;
-$color-feel-Sad: #f00;
-$color-feel-Cry: #6880cc;
-$color-feel-ight: #e97f45; $color-feel-fight: #e97f45;
-$color-feel-Angry: #bc7ad4;
-$color-feel-Smile: #f4b74e;
+$color-feel-1: #fb665c; // テンションあがる
+$color-feel-2: #ffb006; // キモチが弾む
+$color-feel-3: #ffcf3c; // 目が覚める
+$color-feel-4: #5dc988; // キモチが優しくなる
+$color-feel-5: #48a9d9; // 泣ける
+$color-feel-6: #bf7fe8; // ココロがふるえる
+$color-feel-7: #ffa4e2; // 胸がキュンとする
 
 // Feeling BgColors
+$bgColor-feel-all: #fff;  // ぜんぶ
+$bgColor-feel-1: #fb665c; // テンションあがる
+$bgColor-feel-2: #ffb006; // キモチが弾む
+$bgColor-feel-3: #ffcf3c; // 目が覚める
+$bgColor-feel-4: #5dc988; // キモチが優しくなる
+$bgColor-feel-5: #48a9d9; // 泣ける
+$bgColor-feel-6: #bf7fe8; // ココロがふるえる
+$bgColor-feel-7: #ffa4e2; // 胸がキュンとする
 
-$bgColor-feel-Happy: #c85d94;
-$bgColor-feel-Relax: #77b66a;
-$bgColor-feel-Sad: #f00;
-$bgColor-feel-Cry: #6880cc;
-$bgColor-feel-ight: #e97f45;
-$bgColor-feel-Angry: #bc7ad4;
-$bgColor-feel-Smile: #f4b74e;
+
 
 // Alpha Colors
 $alpha-2: 0.2;
@@ -44,7 +56,6 @@ $alpha-34: 0.34;
 $alpha-54: 0.54;
 $alpha-7: 0.7;
 $alpha-8: 0.8;
-
 
 // Spaces
 $space-base: 5px;

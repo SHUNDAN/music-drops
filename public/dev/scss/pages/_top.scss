@@ -1,0 +1,50 @@
+//  TOPページ
+//-------------------------------------
+// キモチでの絞り込み
+.feeling-conditions-tab {
+
+}
+.feeling-conditions-tab-item {
+  width: 235px;
+  line-height: 40px;
+  margin: 0 10px 10px 0;
+  color: #656457;
+  background-color: #EFEDE0;
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
+  &.is-active {
+    &.feelig-bg-all {
+      color: #656457;
+      background-color: $bgColor-feel-all;
+    }
+    &.feeling-bg-1 {
+      color: #fff;
+      background-color: $bgColor-feel-1;
+    }
+    &.feeling-bg-2 {
+      color: #fff;
+      background-color: $bgColor-feel-2;
+    }
+    &.feeling-bg-3 {
+      color: #fff;
+      background-color: $bgColor-feel-3;
+    }
+    &.feeling-bg-4 {
+      color: #fff;
+      background-color: $bgColor-feel-4;
+    }
+    &.feeling-bg-5 {
+      color: #fff;
+      background-color: $bgColor-feel-5;
+    }
+    &.feeling-bg-6 {
+      color: #fff;
+      background-color: $bgColor-feel-6;
+    }
+    &.feeling-bg-7 {
+      color: #fff;
+      background-color: $bgColor-feel-7;
+    }
+  }
+}

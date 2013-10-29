@@ -56,25 +56,25 @@
 				opacity: .5;
 
 				&.feeling-1 {
-					background-color: $color-feel-Happy;
+					background-color: $color-feel-1;
 				}
 				&.feeling-2 {
-					background-color: $color-feel-Relax;
+					background-color: $color-feel-2;
 				}
 				&.feeling-3 {
-					background-color: $color-feel-Sad;
+					background-color: $color-feel-3;
 				}
 				&.feeling-4 {
-					background-color: $color-feel-Cry;
+					background-color: $color-feel-4;
 				}
 				&.feeling-5 {
-					background-color: $color-feel-fight;
+					background-color: $color-feel-5;
 				}
 				&.feeling-6 {
-					background-color: $color-feel-Angry;
+					background-color: $color-feel-6;
 				}
 				&.feeling-7 {
-					background-color: $color-feel-Smile;
+					background-color: $color-feel-7;
 				}
 			}
 			input[type=radio]:checked + label {

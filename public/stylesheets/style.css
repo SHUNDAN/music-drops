@@ -64,7 +64,7 @@ table {
 #99796d // secondaly color
 
 */
-/* line 189, ../dev/scss/core/_settings.scss */
+/* line 200, ../dev/scss/core/_settings.scss */
 .list > li:last-child {
   border: 0 !important;
   -webkit-box-shadow: none !important;
@@ -1681,41 +1681,89 @@ textarea.form {
 }
 
 /* line 7, ../dev/scss/modules/_feelings.scss */
-.feeling-Happy {
-  color: #c85d94;
+.feeling-1 {
+  color: #fb665c;
 }
 
 /* line 10, ../dev/scss/modules/_feelings.scss */
-.feeling-Relax {
-  color: #77b66a;
+.feeling-2 {
+  color: #ffb006;
 }
 
 /* line 13, ../dev/scss/modules/_feelings.scss */
-.feeling-Sad {
-  color: red;
+.feeling-3 {
+  color: #ffcf3c;
 }
 
 /* line 16, ../dev/scss/modules/_feelings.scss */
-.feeling-Cry {
-  color: #6880cc;
+.feeling-4 {
+  color: #5dc988;
 }
 
 /* line 19, ../dev/scss/modules/_feelings.scss */
-.feeling-ight {
-  color: #e97f45;
+.feeling-5 {
+  color: #48a9d9;
 }
 
 /* line 22, ../dev/scss/modules/_feelings.scss */
-.feeling-Angry {
-  color: #bc7ad4;
+.feeling-6 {
+  color: #bf7fe8;
 }
 
 /* line 25, ../dev/scss/modules/_feelings.scss */
-.feeling-Smile {
-  color: #f4b74e;
+.feeling-7 {
+  color: #ffa4e2;
 }
 
 /* line 29, ../dev/scss/modules/_feelings.scss */
+.feelig-bg-all {
+  color: #656457;
+  background-color: white;
+}
+
+/* line 33, ../dev/scss/modules/_feelings.scss */
+.feeling-bg-1 {
+  color: #fff;
+  background-color: #fb665c;
+}
+
+/* line 37, ../dev/scss/modules/_feelings.scss */
+.feeling-bg-2 {
+  color: #fff;
+  background-color: #ffb006;
+}
+
+/* line 41, ../dev/scss/modules/_feelings.scss */
+.feeling-bg-3 {
+  color: #fff;
+  background-color: #ffcf3c;
+}
+
+/* line 45, ../dev/scss/modules/_feelings.scss */
+.feeling-bg-4 {
+  color: #fff;
+  background-color: #5dc988;
+}
+
+/* line 49, ../dev/scss/modules/_feelings.scss */
+.feeling-bg-5 {
+  color: #fff;
+  background-color: #48a9d9;
+}
+
+/* line 53, ../dev/scss/modules/_feelings.scss */
+.feeling-bg-6 {
+  color: #fff;
+  background-color: #bf7fe8;
+}
+
+/* line 57, ../dev/scss/modules/_feelings.scss */
+.feeling-bg-7 {
+  color: #fff;
+  background-color: #ffa4e2;
+}
+
+/* line 66, ../dev/scss/modules/_feelings.scss */
 .label-feeling {
   color: #fff;
   text-align: center;
@@ -1727,85 +1775,85 @@ textarea.form {
   -o-border-radius: 2px;
   border-radius: 2px;
 }
-/* line 35, ../dev/scss/modules/_feelings.scss */
-.label-feeling.label-feeling-bg-Happy {
-  background-color: #c85d94;
+/* line 72, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-1 {
+  background-color: #fb665c;
 }
-/* line 38, ../dev/scss/modules/_feelings.scss */
-.label-feeling.label-feeling-bg-Relax {
-  background-color: #77b66a;
+/* line 75, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-2 {
+  background-color: #ffb006;
 }
-/* line 41, ../dev/scss/modules/_feelings.scss */
-.label-feeling.label-feeling-bg-Sad {
-  background-color: red;
+/* line 78, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-3 {
+  background-color: #ffcf3c;
 }
-/* line 44, ../dev/scss/modules/_feelings.scss */
-.label-feeling.label-feeling-bg-Cry {
-  background-color: #6880cc;
+/* line 81, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-4 {
+  background-color: #5dc988;
 }
-/* line 47, ../dev/scss/modules/_feelings.scss */
-.label-feeling.label-feeling-bg-ight {
-  background-color: #e97f45;
+/* line 84, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-5 {
+  background-color: #48a9d9;
 }
-/* line 50, ../dev/scss/modules/_feelings.scss */
-.label-feeling.label-feeling-bg-Angry {
-  background-color: #bc7ad4;
+/* line 87, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-6 {
+  background-color: #bf7fe8;
 }
-/* line 53, ../dev/scss/modules/_feelings.scss */
-.label-feeling.label-feeling-bg-Smile {
-  background-color: #f4b74e;
+/* line 90, ../dev/scss/modules/_feelings.scss */
+.label-feeling.label-feeling-bg-7 {
+  background-color: #ffa4e2;
 }
 
-/* line 60, ../dev/scss/modules/_feelings.scss */
+/* line 97, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling {
   background-image: url('/../images/../images/sprite/feeling-s4102400cd7.png');
   background-repeat: no-repeat;
   background-size: 46px 280px;
 }
-/* line 62, ../dev/scss/modules/_feelings.scss */
+/* line 99, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-1 {
   width: 46px;
   height: 40px;
   background-position: 0 0;
 }
-/* line 65, ../dev/scss/modules/_feelings.scss */
+/* line 102, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-2 {
   width: 46px;
   height: 40px;
   background-position: 0 -240px;
 }
-/* line 68, ../dev/scss/modules/_feelings.scss */
+/* line 105, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-3 {
   width: 46px;
   height: 40px;
   background-position: 0 -200px;
 }
-/* line 71, ../dev/scss/modules/_feelings.scss */
+/* line 108, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-4 {
   width: 46px;
   height: 40px;
   background-position: 0 -40px;
 }
-/* line 74, ../dev/scss/modules/_feelings.scss */
+/* line 111, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-5 {
   width: 46px;
   height: 40px;
   background-position: 0 -80px;
 }
-/* line 77, ../dev/scss/modules/_feelings.scss */
+/* line 114, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-6 {
   width: 46px;
   height: 40px;
   background-position: 0 -120px;
 }
-/* line 80, ../dev/scss/modules/_feelings.scss */
+/* line 117, ../dev/scss/modules/_feelings.scss */
 .sprite-feeling.feeling-7 {
   width: 46px;
   height: 40px;
   background-position: 0 -160px;
 }
 
-/* line 87, ../dev/scss/modules/_feelings.scss */
+/* line 124, ../dev/scss/modules/_feelings.scss */
 .tag-feeling-text {
   position: absolute;
   top: 0;
@@ -1818,7 +1866,7 @@ textarea.form {
   text-align: center;
   background-color: #efede0;
 }
-/* line 98, ../dev/scss/modules/_feelings.scss */
+/* line 135, ../dev/scss/modules/_feelings.scss */
 .tag-feeling-text:before {
   position: absolute;
   top: 0;
@@ -1904,82 +1952,6 @@ textarea.form {
 .dropList-pop-user {
   font-size: 10px;
   color: #68473c;
-}
-
-/* line 72, ../dev/scss/modules/_drop_list.scss */
-.feeling-Happy {
-  color: #c85d94;
-}
-
-/* line 75, ../dev/scss/modules/_drop_list.scss */
-.feeling-Relax {
-  color: #77b66a;
-}
-
-/* line 78, ../dev/scss/modules/_drop_list.scss */
-.feeling-Sad {
-  color: red;
-}
-
-/* line 81, ../dev/scss/modules/_drop_list.scss */
-.feeling-Cry {
-  color: #6880cc;
-}
-
-/* line 84, ../dev/scss/modules/_drop_list.scss */
-.feeling-ight {
-  color: #e97f45;
-}
-
-/* line 87, ../dev/scss/modules/_drop_list.scss */
-.feeling-Angry {
-  color: #bc7ad4;
-}
-
-/* line 90, ../dev/scss/modules/_drop_list.scss */
-.feeling-Smile {
-  color: #f4b74e;
-}
-
-/* line 94, ../dev/scss/modules/_drop_list.scss */
-.label-feeling {
-  color: #fff;
-  text-align: center;
-  font-size: 12px;
-  line-height: 22px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  border-radius: 2px;
-}
-/* line 100, ../dev/scss/modules/_drop_list.scss */
-.label-feeling.label-feeling-bg-Happy {
-  background-color: #c85d94;
-}
-/* line 103, ../dev/scss/modules/_drop_list.scss */
-.label-feeling.label-feeling-bg-Relax {
-  background-color: #77b66a;
-}
-/* line 106, ../dev/scss/modules/_drop_list.scss */
-.label-feeling.label-feeling-bg-Sad {
-  background-color: red;
-}
-/* line 109, ../dev/scss/modules/_drop_list.scss */
-.label-feeling.label-feeling-bg-Cry {
-  background-color: #6880cc;
-}
-/* line 112, ../dev/scss/modules/_drop_list.scss */
-.label-feeling.label-feeling-bg-ight {
-  background-color: #e97f45;
-}
-/* line 115, ../dev/scss/modules/_drop_list.scss */
-.label-feeling.label-feeling-bg-Angry {
-  background-color: #bc7ad4;
-}
-/* line 118, ../dev/scss/modules/_drop_list.scss */
-.label-feeling.label-feeling-bg-Smile {
-  background-color: #f4b74e;
 }
 
 /* line 2, ../dev/scss/modules/_music_detail.scss */
@@ -2280,6 +2252,59 @@ textarea.form {
   color: #656457;
 }
 
+/* line 7, ../dev/scss/pages/_top.scss */
+.feeling-conditions-tab-item {
+  width: 235px;
+  line-height: 40px;
+  margin: 0 10px 10px 0;
+  color: #656457;
+  background-color: #EFEDE0;
+}
+/* line 13, ../dev/scss/pages/_top.scss */
+.feeling-conditions-tab-item:nth-child(4n) {
+  margin-right: 0;
+}
+/* line 17, ../dev/scss/pages/_top.scss */
+.feeling-conditions-tab-item.is-active.feelig-bg-all {
+  color: #656457;
+  background-color: white;
+}
+/* line 21, ../dev/scss/pages/_top.scss */
+.feeling-conditions-tab-item.is-active.feeling-bg-1 {
+  color: #fff;
+  background-color: #fb665c;
+}
+/* line 25, ../dev/scss/pages/_top.scss */
+.feeling-conditions-tab-item.is-active.feeling-bg-2 {
+  color: #fff;
+  background-color: #ffb006;
+}
+/* line 29, ../dev/scss/pages/_top.scss */
+.feeling-conditions-tab-item.is-active.feeling-bg-3 {
+  color: #fff;
+  background-color: #ffcf3c;
+}
+/* line 33, ../dev/scss/pages/_top.scss */
+.feeling-conditions-tab-item.is-active.feeling-bg-4 {
+  color: #fff;
+  background-color: #5dc988;
+}
+/* line 37, ../dev/scss/pages/_top.scss */
+.feeling-conditions-tab-item.is-active.feeling-bg-5 {
+  color: #fff;
+  background-color: #48a9d9;
+}
+/* line 41, ../dev/scss/pages/_top.scss */
+.feeling-conditions-tab-item.is-active.feeling-bg-6 {
+  color: #fff;
+  background-color: #bf7fe8;
+}
+/* line 45, ../dev/scss/pages/_top.scss */
+.feeling-conditions-tab-item.is-active.feeling-bg-7 {
+  color: #fff;
+  background-color: #ffa4e2;
+}
+
 /* line 19, ../dev/scss/pages/_mypage.scss */
 .userPage-leftCol {
   width: 320px;
@@ -2527,31 +2552,31 @@ textarea.form {
 }
 /* line 278, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-1:after, .pageUser .pocketListArea li.feeling-1:after {
-  background-color: #c85d94;
+  background-color: #fb665c;
 }
 /* line 281, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-2:after, .pageUser .pocketListArea li.feeling-2:after {
-  background-color: #77b66a;
+  background-color: #ffb006;
 }
 /* line 284, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-3:after, .pageUser .pocketListArea li.feeling-3:after {
-  background-color: red;
+  background-color: #ffcf3c;
 }
 /* line 287, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-4:after, .pageUser .pocketListArea li.feeling-4:after {
-  background-color: #6880cc;
+  background-color: #5dc988;
 }
 /* line 290, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-5:after, .pageUser .pocketListArea li.feeling-5:after {
-  background-color: #e97f45;
+  background-color: #48a9d9;
 }
 /* line 293, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-6:after, .pageUser .pocketListArea li.feeling-6:after {
-  background-color: #bc7ad4;
+  background-color: #bf7fe8;
 }
 /* line 296, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-7:after, .pageUser .pocketListArea li.feeling-7:after {
-  background-color: #f4b74e;
+  background-color: #ffa4e2;
 }
 /* line 300, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .thumb, .pageUser .pocketListArea .thumb {
@@ -2939,31 +2964,31 @@ textarea.form {
 }
 /* line 188, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type1 {
-  background-color: #c85d94;
+  background-color: #fb665c;
 }
 /* line 191, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type2 {
-  background-color: #77b66a;
+  background-color: #ffb006;
 }
 /* line 194, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type3 {
-  background-color: red;
+  background-color: #ffcf3c;
 }
 /* line 197, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type4 {
-  background-color: #6880cc;
+  background-color: #5dc988;
 }
 /* line 200, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type5 {
-  background-color: #e97f45;
+  background-color: #48a9d9;
 }
 /* line 203, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type6 {
-  background-color: #bc7ad4;
+  background-color: #bf7fe8;
 }
 /* line 206, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .feeling.type7 {
-  background-color: #f4b74e;
+  background-color: #ffa4e2;
 }
 /* line 211, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .musicInfoArea .comment {
@@ -3205,31 +3230,31 @@ textarea.form {
 }
 /* line 157, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList li.feeling-1:after {
-  background-color: #c85d94;
+  background-color: #fb665c;
 }
 /* line 160, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList li.feeling-2:after {
-  background-color: #77b66a;
+  background-color: #ffb006;
 }
 /* line 163, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList li.feeling-3:after {
-  background-color: red;
+  background-color: #ffcf3c;
 }
 /* line 166, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList li.feeling-4:after {
-  background-color: #6880cc;
+  background-color: #5dc988;
 }
 /* line 169, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList li.feeling-5:after {
-  background-color: #e97f45;
+  background-color: #48a9d9;
 }
 /* line 172, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList li.feeling-6:after {
-  background-color: #bc7ad4;
+  background-color: #bf7fe8;
 }
 /* line 175, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList li.feeling-7:after {
-  background-color: #f4b74e;
+  background-color: #ffa4e2;
 }
 /* line 181, ../dev/scss/pages/_artist.scss */
 .pageArtist .musicList .thumb {
@@ -3470,31 +3495,31 @@ textarea.form {
 }
 /* line 58, ../dev/scss/pages/_pop.scss */
 .pagePop .rightCol .feelingList label.feeling-1 {
-  background-color: #c85d94;
+  background-color: #fb665c;
 }
 /* line 61, ../dev/scss/pages/_pop.scss */
 .pagePop .rightCol .feelingList label.feeling-2 {
-  background-color: #77b66a;
+  background-color: #ffb006;
 }
 /* line 64, ../dev/scss/pages/_pop.scss */
 .pagePop .rightCol .feelingList label.feeling-3 {
-  background-color: red;
+  background-color: #ffcf3c;
 }
 /* line 67, ../dev/scss/pages/_pop.scss */
 .pagePop .rightCol .feelingList label.feeling-4 {
-  background-color: #6880cc;
+  background-color: #5dc988;
 }
 /* line 70, ../dev/scss/pages/_pop.scss */
 .pagePop .rightCol .feelingList label.feeling-5 {
-  background-color: #e97f45;
+  background-color: #48a9d9;
 }
 /* line 73, ../dev/scss/pages/_pop.scss */
 .pagePop .rightCol .feelingList label.feeling-6 {
-  background-color: #bc7ad4;
+  background-color: #bf7fe8;
 }
 /* line 76, ../dev/scss/pages/_pop.scss */
 .pagePop .rightCol .feelingList label.feeling-7 {
-  background-color: #f4b74e;
+  background-color: #ffa4e2;
 }
 /* line 80, ../dev/scss/pages/_pop.scss */
 .pagePop .rightCol .feelingList input[type=radio]:checked + label {
@@ -3530,30 +3555,30 @@ textarea.form {
 
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 80, ../dev/scss/style.scss */
+  /* line 81, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 87, ../dev/scss/style.scss */
+/* line 88, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 88, ../dev/scss/style.scss */
+/* line 89, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 89, ../dev/scss/style.scss */
+/* line 90, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 93, ../dev/scss/style.scss */
+/* line 94, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -3568,7 +3593,7 @@ textarea.form {
 /*==============================
   Stage
 ===============================*/
-/* line 109, ../dev/scss/style.scss */
+/* line 110, ../dev/scss/style.scss */
 #stage {
   position: relative;
 }
@@ -3576,7 +3601,7 @@ textarea.form {
 /*==============================
   Preview Area
 ===============================*/
-/* line 120, ../dev/scss/style.scss */
+/* line 121, ../dev/scss/style.scss */
 .previewArea {
   z-index: 9998;
   transition: opacity .5s ease;
@@ -3585,7 +3610,7 @@ textarea.form {
   -ms-transition: opacity .5s ease;
 }
 
-/* line 127, ../dev/scss/style.scss */
+/* line 128, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: absolute !important;
   top: -500px !important;
@@ -3593,7 +3618,7 @@ textarea.form {
   opacity: 0;
 }
 
-/* line 133, ../dev/scss/style.scss */
+/* line 134, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -3608,7 +3633,7 @@ textarea.form {
   color: white;
 }
 
-/* line 147, ../dev/scss/style.scss */
+/* line 148, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -3624,7 +3649,7 @@ textarea.form {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 164, ../dev/scss/style.scss */
+/* line 165, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -3632,25 +3657,25 @@ textarea.form {
 /*==============================
   Base Frame
 ===============================*/
-/* line 178, ../dev/scss/style.scss */
+/* line 179, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 65px;
 }
 
-/* line 183, ../dev/scss/style.scss */
+/* line 184, ../dev/scss/style.scss */
 #main {
   width: 980px;
   margin: 0 auto;
 }
 
-/* line 187, ../dev/scss/style.scss */
+/* line 188, ../dev/scss/style.scss */
 #pagePop {
   z-index: 9999;
 }
 
-/* line 190, ../dev/scss/style.scss */
+/* line 191, ../dev/scss/style.scss */
 .popUp {
   position: fixed;
   top: 100px;
