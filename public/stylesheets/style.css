@@ -2661,7 +2661,7 @@ textarea.form {
   height: 100%;
   line-height: 30px;
 }
-/* line 414, ../dev/scss/pages/_mypage.scss */
+/* line 413, ../dev/scss/pages/_mypage.scss */
 .pageMypage .followUserList .followUserButton, .pageMypage .followUserList .unfollowUserButton, .pageMypage .followArtistList .followUserButton, .pageMypage .followArtistList .unfollowUserButton, .pageUser .followUserList .followUserButton, .pageUser .followUserList .unfollowUserButton, .pageUser .followArtistList .followUserButton, .pageUser .followArtistList .unfollowUserButton {
   float: right;
   width: 100px;
@@ -2671,7 +2671,7 @@ textarea.form {
   color: #656457;
   background-color: #dedbc7;
 }
-/* line 423, ../dev/scss/pages/_mypage.scss */
+/* line 422, ../dev/scss/pages/_mypage.scss */
 .pageMypage .followUserList .unfollowUserButton, .pageMypage .followArtistList .unfollowUserButton, .pageUser .followUserList .unfollowUserButton, .pageUser .followArtistList .unfollowUserButton {
   color: #8d7016;
   background-color: #ffcf3c;
