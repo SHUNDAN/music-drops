@@ -64,57 +64,105 @@
 
 <!--マイPop一覧-->
 <script id="page_user_mypop_list" type="text/template">
-    <%if (popList.length > 0) {%>
-        <%_.each(popList, function (pop) {%>
-            <%=pop.attributes.id%>,
-            <%=pop.attributes.comment%>
-            <br>
-        <%});%>
-    <%} else {%>
-        ないよー
-    <%}%>
+    <ul class="followArtistList list">
+        <%if (popList.length > 0) {%>
+            <%_.each(popList, function (pop) {%>
+                <li class="list-item gp" data-pop-id="<%=pop.attributes.id%>">
+                    <p class="fs14 mb10"><%=pop.attributes.comment%></p>
+                    <img class="thumb fl mr10" src="<%=pop.attributes.artwork_url%>" alt="<%=pop.attributes.title%>" width="44" height="44" />
+                    <div class="info">
+                        <div class="mt20 mb5">
+                            <a class="b text-link" href="#music/<%=pop.attributes.music_id%>"><%=pop.attributes.title%><i class="ico-font ico-play"></i></a>
+                        </div>
+                        <div class="fs10">
+                            <a class="text-link" href="#artist/<%=pop.attributes.artist_id%>"><%=pop.attributes.artist_name%><i class="ico-font ico-play"></i></a>
+                        </div>
+                    </div>
+                </li>
+            <%});%>
+        <%} else {%>
+            <li class="list-item message">Dropの投稿はありません</li>
+        <%}%>
+    </ul>
+
 </script>
 
 
 <!--チェックアーティスト一覧-->
 <script id="page_user_check_artists" type="text/template">
-    <%if (checkArtists.length > 0) {%>
-        <%_.each(checkArtists, function (checkArtist) {%>
-            <%=checkArtist.attributes.id%>,
-            <%=checkArtist.attributes.artist_name%>
-            <br>
-        <%});%>
-    <%} else {%>
-        ないよー
-    <%}%>
+    <ul class="followArtistList list">
+        <%if (checkArtists.length > 0) {%>
+            <%_.each(checkArtists, function (checkArtist) {%>
+                <li class="list-item" data-artist-id="<%=checkArtist.attributes.artist_id%>">
+                    <a class="userName" href="#artist/<%=checkArtist.attributes.artist_id%>"><%=checkArtist.attributes.artist_name%></a>
+
+                    <%if (_.alreadyArtistFollow(checkArtist.attributes.artist_id)) {%>
+                        <input type="button" class="followUserButton hidden" value="フォローする" data-event-click="followArtist"/>
+                        <input type="button" class="unfollowUserButton" value="フォロー解除" data-event-click="unfollowArtist"/>
+                    <%} else {%>
+                        <input type="button" class="followUserButton" value="フォローする" data-event-click="followArtist"/>
+                        <input type="button" class="unfollowUserButton hidden" value="フォロー解除" data-event-click="unfollowArtist"/>
+                    <%}%>
+                </li>
+            <%});%>
+        <%} else {%>
+            <li class="list-item message">フォローしているアーティストはいません</li>
+        <%}%>
+    </ul>
 </script>
 
 
 <!--フォローしているユーザー一覧-->
 <script id="page_user_follow_users" type="text/template">
-    <%if (followUsers.length > 0) {%>
-        dest_user_id,dest_user_name<br>
-        <%_.each(followUsers, function (user) {%>
-            <%=user.attributes.dest_user_id%>,
-            <%=user.attributes.dest_user_name%><br>
-        <%});%>
-    <%} else {%>
-        ないよー
-    <%}%>
+    <ul class="followUserList list">
+        <%if (followUsers.length > 0) {%>
+
+            <%_.each(followUsers, function (user) {%>
+                <li class="list-item" data-user-id="<%=user.attributes.dest_user_id%>">
+                    <a class="userName" href="#user/<%=user.attributes.dest_user_id%>"><%=user.attributes.dest_user_name%></a>
+
+                    <%if (_.alreadyUserFollow(user.attributes.dest_user_id)) {%>
+                        <input type="button" class="followUserButton hidden" value="フォローする" data-event-click="followUser"/>
+                        <input type="button" class="unfollowUserButton" value="フォロー解除" data-event-click="unfollowUser"/>
+                    <%} else {%>
+                        <input type="button" class="followUserButton" value="フォローする" data-event-click="followUser"/>
+                        <input type="button" class="unfollowUserButton hidden" value="フォロー解除" data-event-click="unfollowUser"/>
+                    <%}%>
+                </li>
+            <%});%>
+
+
+        <%} else {%>
+            <li class="list-item message">フォローしているユーザーはいません</li>
+        <%}%>
+    </ul>
 </script>
 
 
 <!--フォローされてるユーザー一覧-->
 <script id="page_user_followed_users" type="text/template">
-    <%if (followedUsers.length > 0) {%>
-        user_id,user_name<br>
-        <%_.each(followedUsers, function (user) {%>
-            <%=user.attributes.user_id%>,
-            <%=user.attributes.user_name%><br>
-        <%});%>
-    <%} else {%>
-        ないよー
-    <%}%>
+    <ul class="followUserList list">
+        <%if (followedUsers.length > 0) {%>
+
+            <%_.each(followedUsers, function (user) {%>
+                <li class="list-item gp" data-user-id="<%=user.attributes.id%>">
+                    <a class="userName" href="#user/<%=user.attributes.id%>"><%=user.attributes.user_name%></a>
+
+                    <%if (_.alreadyUserFollow(user.attributes.id)) {%>
+                        <input type="button" class="followUserButton hidden" value="フォローする" data-event-click="followUser"/>
+                        <input type="button" class="unfollowUserButton" value="フォロー解除" data-event-click="unfollowUser"/>
+                    <%} else {%>
+                        <input type="button" class="followUserButton" value="フォローする" data-event-click="followUser"/>
+                        <input type="button" class="unfollowUserButton hidden" value="フォロー解除" data-event-click="unfollowUser"/>
+                    <%}%>
+                </li>
+            <%});%>
+
+
+        <%} else {%>
+            <li class="list-item message">フォローされているユーザーはいません</li>
+        <%}%>
+    </ul>
 </script>
 
 

@@ -64,13 +64,6 @@ table {
 #99796d // secondaly color
 
 */
-/* line 200, ../dev/scss/core/_settings.scss */
-.list > li:last-child {
-  border: 0 !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-}
-
 /* line 7, ../dev/scss/core/_helper.scss */
 .gp:before,
 .gp:after {
@@ -1657,15 +1650,6 @@ textarea.form {
   border-radius: 5px;
 }
 
-/* line 14, ../dev/scss/modules/_listviews.scss */
-.list > li {
-  padding: 1em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0;
-  -moz-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0;
-  box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0;
-}
-
 /* line 7, ../dev/scss/modules/_feelings.scss */
 .feeling-1 {
   color: #fb665c;
@@ -2659,9 +2643,9 @@ textarea.form {
 }
 /* line 396, ../dev/scss/pages/_mypage.scss */
 .pageMypage .followUserList li, .pageMypage .followArtistList li, .pageUser .followUserList li, .pageUser .followArtistList li {
-  height: 50px;
+  min-height: 50px;
   width: 100%;
-  padding: 5px 10px;
+  padding: 10px;
   background-color: #efede0;
   margin: 10px 0;
   box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5) inset, 0 -1px 1px rgba(0, 0, 0, 0.3) inset;
