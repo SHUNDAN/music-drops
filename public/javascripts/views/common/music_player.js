@@ -181,7 +181,7 @@ define([], function () {
             this.renderMusicQueueArea();
 
             // ga
-            _gaq.push(['_trackEvent', 'playMusic', '']);
+            _gaq.push(['_trackEvent', 'playMusic', (options.playlistType || '')]);
 
         },
 
