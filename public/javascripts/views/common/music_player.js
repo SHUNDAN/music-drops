@@ -179,6 +179,10 @@ define([], function () {
 
             // プレイリスト中身表示を作る
             this.renderMusicQueueArea();
+
+            // ga
+            _gaq.push(['_trackEvent', 'playMusic', '']);
+
         },
 
 
@@ -832,6 +836,16 @@ define([], function () {
 
 
 
+
+        /**
+            Dropを追加する
+        */
+        addDrop: function () {
+            // ga
+            _gaq.push(['_trackEvent', 'addDropWithCurrentMusic', '']);
+
+            alert('now building');
+        },
 
 
 

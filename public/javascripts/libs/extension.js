@@ -321,6 +321,10 @@ _.likePop = function (popId, callback) {
             if (callback) {
                 callback();
             }
+
+                // ga
+                _gaq.push(['_trackEvent', 'likePop', popId]);
+
         },
         error: function (xhr) {
             if (xhr.status === 403) {
@@ -347,6 +351,10 @@ _.dislikePop = function (popId, callback) {
             if (callback) {
                 callback();
             }
+
+            // ga
+            _gaq.push(['_trackEvent', 'dislikePop', popId]);
+
         },
         error: function (xhr) {
             if (xhr.status === 403) {
@@ -563,6 +571,7 @@ _.addMusicLinkPlayCount = function (musicId, linkId) {
             dataType: 'json',
             success: function () {
                 console.debug('add music play count successed. id=', musicId);
+
             },
             error: function () {
                 console.debug('add music play count failed. reason=', arguments);
@@ -614,6 +623,10 @@ _.addPocket = function (data, callback) {
                 callback();
             }
             _.mbStorage.refreshUser();
+
+            // ga
+            _gaq.push(['_trackEvent', 'addPocket', data.music_id]);
+
         },
         error: function (xhr) {
             if (xhr.status === 403) {
@@ -642,6 +655,10 @@ _.deletePocket = function (pocketId, callback) {
                 callback();
             }
             _.mbStorage.refreshUser();
+
+            // ga
+            _gaq.push(['_trackEvent', 'deletePocket', pocketId]);
+
         },
         error: function (xhr) {
             if (xhr.status === 403) {
@@ -697,6 +714,9 @@ _.followUser = function (userId, callback) {
                 callback();
             }
             _.mbStorage.refreshUser();
+
+            // ga
+            _gaq.push(['_trackEvent', 'followUser', userId]);
         },
         error: function (xhr) {
             if (xhr.status === 403) {
@@ -727,6 +747,10 @@ _.unfollowUser = function (userFollowId, callback) {
                 callback();
             }
             _.mbStorage.refreshUser();
+
+            // ga
+            _gaq.push(['_trackEvent', 'unfollowUser', userFollowId]);
+
         },
         error: function (xhr) {
             if (xhr.status === 403) {
@@ -783,6 +807,10 @@ _.followArtist = function (artistId, callback) {
                 callback();
             }
             _.mbStorage.refreshUser();
+
+            // ga
+            _gaq.push(['_trackEvent', 'followArtist', artistId]);
+
         },
         error: function (xhr) {
             if (xhr.status === 403) {
@@ -813,6 +841,10 @@ _.unfollowArtist = function (artistFollowId, callback) {
                 callback();
             }
             _.mbStorage.refreshUser();
+
+            // ga
+            _gaq.push(['_trackEvent', 'unfollowArtist', artistFollowId]);
+
         },
         error: function (xhr) {
             if (xhr.status === 403) {
