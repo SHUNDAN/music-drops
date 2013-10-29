@@ -2652,14 +2652,14 @@ textarea.form {
 }
 /* line 404, ../dev/scss/pages/_mypage.scss */
 .pageMypage .followUserList .message, .pageMypage .followArtistList .message, .pageUser .followUserList .message, .pageUser .followArtistList .message {
-  line-height: 40px;
+  line-height: 30px;
 }
 /* line 407, ../dev/scss/pages/_mypage.scss */
 .pageMypage .followUserList .userName, .pageMypage .followArtistList .userName, .pageUser .followUserList .userName, .pageUser .followArtistList .userName {
   float: left;
   display: block;
   height: 100%;
-  line-height: 40px;
+  line-height: 30px;
 }
 /* line 414, ../dev/scss/pages/_mypage.scss */
 .pageMypage .followUserList .followUserButton, .pageMypage .followUserList .unfollowUserButton, .pageMypage .followArtistList .followUserButton, .pageMypage .followArtistList .unfollowUserButton, .pageUser .followUserList .followUserButton, .pageUser .followUserList .unfollowUserButton, .pageUser .followArtistList .followUserButton, .pageUser .followArtistList .unfollowUserButton {
