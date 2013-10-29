@@ -5,12 +5,12 @@ block content
     // Main Area
     div#stage
         header#header
-        div(style="position:relative;width:980px;margin:-60px auto 0;height:60px;")
-          div#appSubTitle 〜 みんなの感動があつまるミュージックライブラリー 〜
-          div#pageTitle.Courgette 
+        div.page-header
+          div#appSubTitle.appSubTitleText 〜 みんなの感動があつまるミュージックライブラリー 〜
+          div#pageTitle.page-header-title.Courgette
           div#appUserModule
-            div#appLoginModule.login(data-event-click="login")
-            a#gotoUserSetting.hidden.userInfo(href="#usersetting")
+            div#appLoginModule.page-header-userMenu.login(data-event-click="login")
+            a#gotoUserSetting.page-header-userMenu.hidden.userInfo(href="#usersetting")
         div#main
         div#playArea
 

@@ -242,7 +242,7 @@ define([
                 $('#gotoUserSetting').removeClass('hidden');
 
                 var user = _.mbStorage.getUser();
-                $('#gotoUserSetting').text(user.name + ' ▼');
+                $('#gotoUserSetting').html('<i class="ico-font ico-user mr5"></i>' + user.name);
             
             } else {
                 $('#appLoginModule').removeClass('hidden').text('ログイン');

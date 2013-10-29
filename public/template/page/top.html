@@ -27,7 +27,7 @@
                 すべて
             </li>
             <%_.each(feelingList, function (feeling) {%>
-                <li class="feeling-conditions-tab-item feeling-bg-<%=feeling.id%> tc fl" data-feeling-id="<%=feeling.id%>" data-event-click="filterWithFeelings">
+                <li class="is-active feeling-conditions-tab-item feeling-bg-<%=feeling.id%> tc fl" data-feeling-id="<%=feeling.id%>" data-event-click="filterWithFeelings">
                     <%=feeling.name%>
                 </li>
             <%});%>
@@ -111,8 +111,10 @@
                     </button>
                     <div class="musicDetail-action gp">
                         <div class="tag-feeling ref">
-                          <i class="sprite-feeling feeling-<%=pop.attributes.feeling_id%>"></i>
-                          <p class="tag-feeling-text"><%=_.getFeelingName(pop.attributes.feeling_id)%></p>
+                            <i class="sprite-feeling feeling-<%=pop.attributes.feeling_id%>"></i>
+                            <p class="tag-feeling-text dt">
+                                <span class="dc vm"><%=_.getFeelingName(pop.attributes.feeling_id)%></span>
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -391,11 +391,12 @@ define([
 
                 // もし全部アクティブなら、ALLもアクティブにする
                 if ( this.$el.find('#feelingFilter .is-active:not([data-feeling-id="0"])').length === _.mbStorage.getCommon().feelings.length) {
-                    this.$el.find('#feelingFilter [data-feeling-id="0"]').addClass('is-active');   
+                    this.$el.find('#feelingFilter [data-feeling-id="0"]').addClass('is-active');
                 } else {
                     this.$el.find('#feelingFilter [data-feeling-id="0"]').removeClass('is-active');   
                 }
             }
+
 
             // レンダリング
             var self = this;
