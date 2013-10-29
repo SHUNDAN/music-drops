@@ -217,6 +217,10 @@ define('views/common/music_player',[], function () {
 
             // プレイリスト中身表示を作る
             this.renderMusicQueueArea();
+
+            // ga
+            _gaq.push(['_trackEvent', 'playMusic', (options.playlistType || '')]);
+
         },
 
 
@@ -870,6 +874,16 @@ define('views/common/music_player',[], function () {
 
 
 
+
+        /**
+            Dropを追加する
+        */
+        addDrop: function () {
+            // ga
+            _gaq.push(['_trackEvent', 'addDropWithCurrentMusic', '']);
+
+            alert('now building');
+        },
 
 
 
@@ -2336,6 +2350,10 @@ define('views/pop/index',[
             pop.set('feeling_id', feelingId);
             pop.set('comment', comment);
             pop.bind('sync', _.bind(function () {
+
+                // ga
+                _gaq.push(['_trackEvent', 'addPop', feelingId]);
+
                 alert('登録完了しました');
                 location.reload();
             }, this));
@@ -4215,6 +4233,9 @@ define('views/mypage',[
             options.playlistName = (this.currentPlaylist ? this.currentPlaylist.attributes.title : 'すべてのPocket');
             options.identifier = 'mylist ' + options.playlistName;
 
+            // ga用
+            options.playlistType = (this.currentPlaylist ? 'type' + this.currentPlaylist.attributes.type : '');
+
 
             // startPos, playlist.
             options.startPos = 0;
@@ -4305,6 +4326,8 @@ define('views/mypage',[
             // check max size.
             if (this.userPlaylistList.length >= 10) {
                 alert('プレイリスト登録は最大10件までです。新規に登録する場合には、先にプレイリストを削除してください');
+                // ga
+                _gaq.push(['_trackEvent', 'addPlaylistError', 'Max Playlist Count']);
                 return;
             }
 
@@ -4319,6 +4342,10 @@ define('views/mypage',[
 
                 // 入力欄は初期化
                 $('#playlistTitle').val('');
+
+                // ga
+                _gaq.push(['_trackEvent', 'addPlaylist', '']);
+
 
             }, this));
             this.userPlaylist.save();
@@ -5506,6 +5533,11 @@ define('views/user/index',[
 
                 // Storage更新
                 _.mbStorage.refreshUser({target:'userFollowPlaylistList', type:'add'});
+
+                // ga
+                _gaq.push(['_trackEvent', 'followPlaylist', this.user.id]);
+
+
             }, this));
             aPlaylist.save();
 
