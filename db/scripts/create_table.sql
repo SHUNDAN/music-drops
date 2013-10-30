@@ -194,7 +194,7 @@ create table if not exists report (
     id          integer     primary key     autoincrement,
     type        integer,
     user_id     integer,
-    comment     text,
+    json        text,
     create_at   numeric,
     update_at   numeric
 );
