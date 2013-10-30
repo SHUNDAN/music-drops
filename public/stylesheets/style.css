@@ -1911,10 +1911,11 @@ textarea.form {
 footer {
   position: relative;
   width: 100%;
+  margin-top: 80px;
   background-color: #656457;
 }
 
-/* line 17, ../dev/scss/modules/_footer.scss */
+/* line 18, ../dev/scss/modules/_footer.scss */
 .footer-content {
   width: 980px;
   margin: 0 auto;
@@ -1922,11 +1923,11 @@ footer {
   color: #fff;
   font-weight: normal;
 }
-/* line 23, ../dev/scss/modules/_footer.scss */
+/* line 24, ../dev/scss/modules/_footer.scss */
 .footer-content a:hover {
   color: rgba(255, 255, 255, 0.6);
 }
-/* line 26, ../dev/scss/modules/_footer.scss */
+/* line 27, ../dev/scss/modules/_footer.scss */
 .footer-content:after {
   position: absolute;
   top: 50px;
@@ -1938,7 +1939,7 @@ footer {
   border-top: 1px dotted rgba(255, 255, 255, 0.6);
 }
 
-/* line 38, ../dev/scss/modules/_footer.scss */
+/* line 39, ../dev/scss/modules/_footer.scss */
 .footer-links li {
   display: inline-block;
   margin-right: 20px;
@@ -3747,15 +3748,16 @@ footer {
 /* line 185, ../dev/scss/style.scss */
 #main {
   width: 980px;
+  min-height: 600px;
   margin: 0 auto;
 }
 
-/* line 189, ../dev/scss/style.scss */
+/* line 190, ../dev/scss/style.scss */
 #pagePop {
   z-index: 9999;
 }
 
-/* line 192, ../dev/scss/style.scss */
+/* line 193, ../dev/scss/style.scss */
 .popUp {
   position: fixed;
   top: 100px;
