@@ -346,9 +346,6 @@ define([
             options.playlistName = (this.currentPlaylist ? this.currentPlaylist.attributes.title : 'すべてのPocket');
             options.identifier = 'mylist ' + options.playlistName;
 
-            // ga用
-            options.playlistType = (this.currentPlaylist ? 'type' + this.currentPlaylist.attributes.type : '');
-
 
             // startPos, playlist.
             options.startPos = 0;
@@ -439,8 +436,6 @@ define([
             // check max size.
             if (this.userPlaylistList.length >= 10) {
                 alert('プレイリスト登録は最大10件までです。新規に登録する場合には、先にプレイリストを削除してください');
-                // ga
-                _gaq.push(['_trackEvent', 'addPlaylistError', 'Max Playlist Count']);
                 return;
             }
 
@@ -455,10 +450,6 @@ define([
 
                 // 入力欄は初期化
                 $('#playlistTitle').val('');
-
-                // ga
-                _gaq.push(['_trackEvent', 'addPlaylist', '']);
-
 
             }, this));
             this.userPlaylist.save();
