@@ -429,7 +429,7 @@ app.delete('/api/v1/pops/:id', pop.delete);
 app.get('/api/v1/users', user.select);
 app.get('/api/v1/users/:id', user.selectObject);
 app.get('/api/v1/userInfo', user.userinfo);
-app.post('/api/v1/users', user.add);
+// app.post('/api/v1/users', user.add);
 app.post('/api/v1/users/:id/update', user.update);
 app.put('/api/v1/users/:id', user.update);
 app.delete('/api/v1/users/:id', user.delete);

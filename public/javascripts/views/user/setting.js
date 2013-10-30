@@ -35,7 +35,11 @@ define([
 			if (!newName || newName.length === 0) {
 				alert('名前が未入力です。');
 				return;
-			}
+
+            } else if (newName.length > 16) {
+                alert('名前は16文字以内でお願いします。');
+                return;
+            }
 
 			// 更新
 			var user = new UserModel();
