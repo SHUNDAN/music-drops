@@ -208,6 +208,7 @@ var userFollow = require('./routes/user_follow');
 var userArtistFollow = require('./routes/user_artist_follow');
 var userNotification = require('./routes/user_notification');
 var iTunesRanking = require('./routes/itunes_ranking');
+var report = require('./routes/report');
 var master = require('./routes/master');
 
 var app = express();
@@ -479,6 +480,13 @@ app.get('/api/v1/itunes_rankings', iTunesRanking.select);
 app.post('/api/v1/itunes_rankings', iTunesRanking.add);
 app.post('/api/v1/itunes_rankings/:id/update', iTunesRanking.update);
 app.delete('/api/v1/itunes_rankings/:id', iTunesRanking.delete);
+
+// iTunesRanking
+app.get('/api/v1/reports', report.select);
+app.post('/api/v1/reports', report.add);
+// app.post('/api/v1/itunes_rankings/:id/update', iTunesRanking.update);
+// app.delete('/api/v1/itunes_rankings/:id', iTunesRanking.delete);
+
 
 
 // Master
