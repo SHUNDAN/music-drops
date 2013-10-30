@@ -180,7 +180,6 @@ define([
                 });
 
             } else {
-                console.debug('bbb', self.displayUserPocketList.models.length);
                 models = self.displayUserPocketList.models;
             }
 

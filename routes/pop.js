@@ -72,10 +72,20 @@ exports.selectPopList = function(req, res) {
  */
 exports.add = function(req, res) {
 
-    // TODO check params.
+    // 必須：Feeling、MusicID
     if (!req.body.music_id || !req.body.feeling_id) {
         res.json(400, {message: 'music_id or feeling_id are required.'});
         return;
+    }
+
+    // 必須：Comment、120文字以内
+    var comment = req.body.comment;
+    if (!comment || comment.length === 0) {
+        res.json(400, 'comment must be set.');
+        return;
+    } else if (comment.length > 120) {
+        res.json(400, 'comment must be within 120 characters.');
+        return;        
     }
 
 

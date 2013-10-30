@@ -236,7 +236,6 @@ define([
 
 
             // ログイン状況に合わせて、左上のモジュールを切り替える
-            console.debug('aaaaaaa: ', _.isLogedIn());
             if (_.isLogedIn()) {
                 $('#appLoginModule').addClass('hidden');
                 $('#gotoUserSetting').removeClass('hidden');
