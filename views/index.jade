@@ -60,6 +60,14 @@ block content
         console.debug('user: ', user);
         if (user) {
           _.mbStorage.setUser(user);
+
+          if (user.isNew) {
+            // ga
+            _gaq.push(['_trackEvent', 'registUser', '']);
+          } else {
+            // ga
+            _gaq.push(['_trackEvent', 'login', '']);
+          }
         }
 
 
@@ -76,14 +84,21 @@ block content
 
     // User定義
     script
-      var pageTracker = _gat._getTracker("UA-44689989-1");
-      pageTracker._initData();
-      pageTracker._trackPageview();
-      if (_.isLogedIn()) {
-        pageTracker._setVar("LoginUser");
-      } else {
-        pageTracker._setVar("Guest");
-      }
+      var fnc = function () {
+        if (!window._gat) {
+          setTimeout(fnc, 500);
+          return;
+        }
+        var pageTracker = _gat._getTracker("UA-44689989-1");
+        pageTracker._initData();
+        pageTracker._trackPageview();
+        if (_.isLogedIn()) {
+          pageTracker._setVar("LoginUser");
+        } else {
+          pageTracker._setVar("Guest");
+        }
+      };
+      fnc();
 
 
     script(src="javascripts/#{global.mbSetting.mainJs}")

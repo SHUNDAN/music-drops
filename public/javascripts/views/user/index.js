@@ -481,6 +481,11 @@ define([
 
                 // Storage更新
                 _.mbStorage.refreshUser({target:'userFollowPlaylistList', type:'add'});
+
+                // ga
+                _gaq.push(['_trackEvent', 'followPlaylist', this.user.id]);
+
+
             }, this));
             aPlaylist.save();
 

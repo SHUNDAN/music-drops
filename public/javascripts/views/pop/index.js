@@ -102,6 +102,10 @@ define([
             pop.set('feeling_id', feelingId);
             pop.set('comment', comment);
             pop.bind('sync', _.bind(function () {
+
+                // ga
+                _gaq.push(['_trackEvent', 'addPop', feelingId]);
+
                 alert('登録完了しました');
                 location.reload();
             }, this));
