@@ -75,15 +75,15 @@ block content
 
 
     // User定義
-    //- script
-    //-   var pageTracker = _gat._getTracker("UA-44689989-1");
-    //-   pageTracker._initData();
-    //-   pageTracker._trackPageview();
-    //-   if (_.isLogedIn()) {
-    //-     pageTracker._setVar("LoginUser");
-    //-   } else {
-    //-     pageTracker._setVar("Guest");
-    //-   }
+    script
+      var pageTracker = _gat._getTracker("UA-44689989-1");
+      pageTracker._initData();
+      pageTracker._trackPageview();
+      if (_.isLogedIn()) {
+        pageTracker._setVar("LoginUser");
+      } else {
+        pageTracker._setVar("Guest");
+      }
 
 
     script(src="javascripts/#{global.mbSetting.mainJs}")
