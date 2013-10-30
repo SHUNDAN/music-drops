@@ -36,6 +36,362 @@ define('views/common/header',[], function () {
     return HeaderView;
 });
 
+
+/**
+ * Model: LocalStorage and SessionStorage
+ */
+define('models/common/user_storage',[], function () {
+
+    var UserStorage = Backbone.Model.extend({
+
+
+        /**
+         * Low Level API
+         */
+        getStorage: function (type) {
+            return (type === 'ls' ? localStorage : localStorage);
+        },
+        setItem: function (key, value, type) {
+            this.getStorage(type).setItem(key, value);
+        },
+        getItem: function (key, type) {
+            return this.getStorage(type).getItem(key);
+        },
+        setObject: function (key, value, type) {
+            this.setItem(key, JSON.stringify(value), type);
+        },
+        getObject: function (key, type) {
+            return JSON.parse(this.getItem(key, type));
+        },
+
+
+        // API: uid
+        setUid: function (uid) {this.setItem('uid', uid);},
+        getUid: function () {return this.getItem('uid');},
+
+        // API: common
+        setCommon: function (common) {this.setObject('common', common);},
+        getCommon: function () {return this.getObject('common');},
+
+        loadCommonInfo: function (options) {
+            console.debug('loadCommonInfo!!');
+
+            // null safe.
+            options = options || {};
+
+            if (!this.getCommon() || options.force === true) {
+                console.debug('loadCommonInfo from server');
+
+                var common = this.getCommon();
+                var self = this;
+                $.ajax({
+                    url: '/api/v1/common',
+                    dataType: 'json',
+                    success: function (json) {
+                        json.lastRequestTime = new Date().getTime();
+                        self.setCommon(json);
+                        if (options.callback) {
+                            options.callback();
+                        }
+                    },
+                    error: function () {
+                        console.error('/api/v1/common error: ', arguments);
+                    },
+                });
+
+            } else {
+                if (options.callback) {
+                    options.callback();
+                }
+            }
+
+        },
+
+        // API: user
+        setUser: function (user) {this.setObject('user', user);},
+        getUser: function () {return this.getObject('user');},
+
+
+
+
+
+
+
+    });
+
+
+    // ちょっとズル
+    mb.userStorage = new UserStorage();
+
+
+
+    return UserStorage;
+});
+
+/*
+ * Music
+ */
+define('models/music/music',[],function () {
+    var Music = Backbone.Model.extend({
+        defaults: {
+            id: null,
+            title: null,
+            artwork_url: null,
+            song_url: null,
+            artist_id: null,
+            artist_name: null,
+            itunes_url: null,
+            create_at: null,
+            update_at: null,
+        },
+        urlRoot: '/api/v1/musics/',
+        loadData: function (musicId) {
+            this.set('id', musicId);
+            this.fetch();
+        },
+    });
+    
+    return Music;
+});
+
+/*
+ *  Pop
+ */
+define('models/pop/pop',[],function () {
+
+    var Pop = Backbone.Model.extend({
+        defaults: {
+            id: null,
+            feeling_id: null,
+            artwork_url: null,
+            user_name: null,
+            comment: null,
+            music_id: null,
+        },
+
+        url: function () {
+            return '/api/v1/pops';
+        },
+
+        create: function () {
+            console.log('create');
+            this.save(this.attributes, {
+                headers: {uid: localStorage.getItem('uid')},
+                success: _.bind(function () {
+                    // this.trigger('success_save');
+                }, this),
+                error: _.bind(function () {
+                    console.log('Pop save failed. reson: ', arguments);
+                    // this.trigger('fail_save');
+                }, this),
+            });
+
+        },
+
+        update: function () {
+            console.log('update');
+            throw new '実装する';
+        },
+    });
+
+
+    return Pop;
+});
+
+
+/**
+ * View: Pop
+ */
+define('views/pop/index',[
+    'models/common/user_storage',
+    'models/music/music',
+    'models/pop/pop'
+], function (
+    UserStorage,
+    MusicModel,
+    PopModel
+) {
+
+    var popView = Backbone.View.extend({
+
+        // data field.
+        displayType:    'normal', // normal or modal
+        type:           null, // add or update
+        musicId:       null,
+        popId:         null,
+
+
+        initialize: function () {
+
+            // auto event bind.
+            _.bindEvents(this);
+        },
+
+
+
+        render: function () {
+
+            // レンダリング
+            var snipet = _.mbTemplate('page_pop', {
+                type: this.type,
+                feelingList: _.mbStorage.getCommon().feelings,
+                music: this.music,
+                pop: this.pop
+            });
+            this.$el.html(snipet);
+
+
+            // モーダルの場合の表示制御
+            if (this.displayType === 'modal') {
+
+                // expand area.
+                this.$el.css({
+                    width: '100%',
+                    height: '100%',
+                });
+
+                // black background.
+                var $blackout = $('<div class="blackout"/>').css({opacity:1});
+                $blackout.on('click', _.bind(function () {
+                    this.$el.remove();
+                    this.dealloc();
+                }, this));
+                this.$el.prepend($blackout);
+
+                // display as modal.
+                this.$el.find('#pagePop').addClass('popUp');
+            }
+        },
+
+
+
+        /**
+            文字数を数える
+        */
+        countCharacters: function () {
+            var length = this.$el.find('#comment').val().length;
+            this.$el.find('#numOfCharacters').text(length);
+        },
+
+
+        /**
+            POPを投稿する
+        */
+        addPop: function () {
+
+            // 選択されたキモチ
+            var feelingId = this.$el.find('[name="feelingSelect"]:checked').val();
+            // コメント
+            var comment = this.$el.find('#comment').val();
+
+
+            // キモチが選択されていない場合はだめ
+            if (!feelingId) {
+                alert('ドロップの種類を選択してください');
+                return;
+            }
+
+            // コメントが入力されていない場合はだめ
+            if (!comment) {
+                alert('感想は１文字以上入力してください');
+            }
+
+            // 登録する
+            var pop = new PopModel();
+            pop.set('music_id', this.musicId);
+            pop.set('feeling_id', feelingId);
+            pop.set('comment', comment);
+            pop.bind('sync', _.bind(function () {
+
+                // ga
+                _gaq.push(['_trackEvent', 'addPop', feelingId]);
+
+                alert('登録完了しました');
+                location.reload();
+            }, this));
+            pop.save();
+
+        },
+
+
+
+
+        show: function (musicId, popId, displayType) {
+            console.log('pop:show: ', musicId, popId);
+
+            // set data.
+            this.type = (popId ? 'update' : 'add');
+            this.musicId = musicId;
+            this.music_id = musicId;
+            this.pop_id = popId;
+            this.displayType = displayType;
+
+
+            // musicのロード
+            this.music = new MusicModel();
+            this.music.set('id', musicId);
+            this.music.bind('sync', _.bind(function () {
+
+                // 新規の場合には、画面をレンダリング
+                if (this.type === 'add') {
+                    this.render();
+                
+                // 変更の場合に既にpopIdがあれば、レンダリング
+                } else if (this.popId) {
+                    this.render();
+                
+                } else {
+                    // popのロード待ち
+                }
+
+            }, this));
+            this.music.fetch();
+
+
+
+            // popのロード
+            this.pop = new PopModel();
+            this.pop.set('id', popId);
+            this.pop.bind('sync', _.bind(function () {
+
+                // 既にMusicがロード済みの場合には、表示
+                if (this.music) {
+                    this.render();
+                
+                } else {
+                    // Musicがまだ無ければそれ待ち
+                }
+
+            }, this));
+
+        },
+
+
+
+        dealloc: function () {},
+    });
+
+    return popView;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * View: MusicPlayerView
 
@@ -44,7 +400,11 @@ define('views/common/header',[], function () {
     理想の責務分担はこれから考えます。
 
  */
-define('views/common/music_player',[], function () {
+define('views/common/music_player',[
+    'views/pop/index'
+], function (
+    PopView
+) {
 
     var MusicPlayerView = Backbone.View.extend({
 
@@ -285,7 +645,9 @@ define('views/common/music_player',[], function () {
             this.$artistName.html(this.currentMusic.artistName);
             if(_.alreadyPocket(this.currentMusic.music_id)) {
                 this.$header.find('[data-event-click="pocket"]').addClass('is-active');
-            };
+            } else {
+                this.$header.find('[data-event-click="pocket"]').removeClass('is-active');
+            }
 
             func(param, this.$previewArea, _.bind(function () {
 
@@ -335,7 +697,7 @@ define('views/common/music_player',[], function () {
             曲を再開する
         */
         startMusic: function () {
-            this.$el.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+            this.$header.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // audioタグの場合
             if (this.audioPlayer) {
@@ -359,7 +721,7 @@ define('views/common/music_player',[], function () {
             曲を一時停止させる
         */
         pauseMusic: function () {
-            this.$el.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+            this.$header.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // audioタグの場合
             if (this.audioPlayer) {
@@ -458,7 +820,7 @@ define('views/common/music_player',[], function () {
                     color: 'white'
                 });
                 $a.attr('href', _.createItunesUrl(this.currentMusic.itunes_url)).text('iTunesでこの曲をチェックする');
-                this.$previewArea.append($a);                
+                this.$previewArea.append($a);
             }
 
 
@@ -540,7 +902,7 @@ define('views/common/music_player',[], function () {
                     color: 'white'
                 });
                 $a.attr('href', _.createItunesUrl(this.currentMusic.itunes_url)).text('iTunesでこの曲をチェックする');
-                this.$previewArea.append($a);                
+                this.$previewArea.append($a);
             }
 
 
@@ -878,11 +1240,25 @@ define('views/common/music_player',[], function () {
         /**
             Dropを追加する
         */
-        addDrop: function () {
+        addDrop: function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Playerが使われていない場合には、動かさない
+            if (!this.currentMusic) {
+                return false;
+            }
+
             // ga
             _gaq.push(['_trackEvent', 'addDropWithCurrentMusic', '']);
 
-            alert('now building');
+            // show PopView.
+            this.popView = new PopView();
+            this.$el.append(this.popView.$el);
+            this.popView.show(this.currentMusic.music_id, undefined, 'modal');
+
+            return false;
         },
 
 
@@ -924,98 +1300,6 @@ define('views/common/music_player',[], function () {
     });
 
     return MusicPlayerView;
-});
-
-
-/**
- * Model: LocalStorage and SessionStorage
- */
-define('models/common/user_storage',[], function () {
-
-    var UserStorage = Backbone.Model.extend({
-
-
-        /**
-         * Low Level API
-         */
-        getStorage: function (type) {
-            return (type === 'ls' ? localStorage : localStorage);
-        },
-        setItem: function (key, value, type) {
-            this.getStorage(type).setItem(key, value);
-        },
-        getItem: function (key, type) {
-            return this.getStorage(type).getItem(key);
-        },
-        setObject: function (key, value, type) {
-            this.setItem(key, JSON.stringify(value), type);
-        },
-        getObject: function (key, type) {
-            return JSON.parse(this.getItem(key, type));
-        },
-
-
-        // API: uid
-        setUid: function (uid) {this.setItem('uid', uid);},
-        getUid: function () {return this.getItem('uid');},
-
-        // API: common
-        setCommon: function (common) {this.setObject('common', common);},
-        getCommon: function () {return this.getObject('common');},
-
-        loadCommonInfo: function (options) {
-            console.debug('loadCommonInfo!!');
-
-            // null safe.
-            options = options || {};
-
-            if (!this.getCommon() || options.force === true) {
-                console.debug('loadCommonInfo from server');
-
-                var common = this.getCommon();
-                var self = this;
-                $.ajax({
-                    url: '/api/v1/common',
-                    dataType: 'json',
-                    success: function (json) {
-                        json.lastRequestTime = new Date().getTime();
-                        self.setCommon(json);
-                        if (options.callback) {
-                            options.callback();
-                        }
-                    },
-                    error: function () {
-                        console.error('/api/v1/common error: ', arguments);
-                    },
-                });
-
-            } else {
-                if (options.callback) {
-                    options.callback();
-                }
-            }
-
-        },
-
-        // API: user
-        setUser: function (user) {this.setObject('user', user);},
-        getUser: function () {return this.getObject('user');},
-
-
-
-
-
-
-
-    });
-
-
-    // ちょっとズル
-    mb.userStorage = new UserStorage();
-
-
-
-    return UserStorage;
 });
 
 
@@ -1089,50 +1373,6 @@ define('models/feeling/feeling_list',[
     });
 
     return FeelingList;
-});
-
-/*
- *  Pop
- */
-define('models/pop/pop',[],function () {
-
-    var Pop = Backbone.Model.extend({
-        defaults: {
-            id: null,
-            feeling_id: null,
-            artwork_url: null,
-            user_name: null,
-            comment: null,
-            music_id: null,
-        },
-
-        url: function () {
-            return '/api/v1/pops';
-        },
-
-        create: function () {
-            console.log('create');
-            this.save(this.attributes, {
-                headers: {uid: localStorage.getItem('uid')},
-                success: _.bind(function () {
-                    // this.trigger('success_save');
-                }, this),
-                error: _.bind(function () {
-                    console.log('Pop save failed. reson: ', arguments);
-                    // this.trigger('fail_save');
-                }, this),
-            });
-
-        },
-
-        update: function () {
-            console.log('update');
-            throw new '実装する';
-        },
-    });
-
-
-    return Pop;
 });
 
 
@@ -2233,226 +2473,6 @@ define('views/top',[
 
     return TopView;
 });
-
-/*
- * Music
- */
-define('models/music/music',[],function () {
-    var Music = Backbone.Model.extend({
-        defaults: {
-            id: null,
-            title: null,
-            artwork_url: null,
-            song_url: null,
-            artist_id: null,
-            artist_name: null,
-            itunes_url: null,
-            create_at: null,
-            update_at: null,
-        },
-        urlRoot: '/api/v1/musics/',
-        loadData: function (musicId) {
-            this.set('id', musicId);
-            this.fetch();
-        },
-    });
-    
-    return Music;
-});
-
-
-/**
- * View: Pop
- */
-define('views/pop/index',[
-    'models/common/user_storage',
-    'models/music/music',
-    'models/pop/pop'
-], function (
-    UserStorage,
-    MusicModel,
-    PopModel
-) {
-
-    var popView = Backbone.View.extend({
-
-        // data field.
-        displayType:    'normal', // normal or modal
-        type:           null, // add or update
-        musicId:       null,
-        popId:         null,
-
-
-        initialize: function () {
-
-            // auto event bind.
-            _.bindEvents(this);
-        },
-
-
-
-        render: function () {
-
-            // レンダリング
-            var snipet = _.mbTemplate('page_pop', {
-                type: this.type,
-                feelingList: _.mbStorage.getCommon().feelings,
-                music: this.music,
-                pop: this.pop
-            });
-            this.$el.html(snipet);
-
-
-            // モーダルの場合の表示制御
-            if (this.displayType === 'modal') {
-
-                // expand area.
-                this.$el.css({
-                    width: '100%',
-                    height: '100%',
-                });
-
-                // black background.
-                var $blackout = $('<div class="blackout"/>').css({opacity:1});
-                $blackout.on('click', _.bind(function () {
-                    this.$el.remove();
-                    this.dealloc();
-                }, this));
-                this.$el.prepend($blackout);
-
-                // display as modal.
-                this.$el.find('#pagePop').addClass('popUp');
-            }
-        },
-
-
-
-        /**
-            文字数を数える
-        */
-        countCharacters: function () {
-            var length = this.$el.find('#comment').val().length;
-            this.$el.find('#numOfCharacters').text(length);
-        },
-
-
-        /**
-            POPを投稿する
-        */
-        addPop: function () {
-
-            // 選択されたキモチ
-            var feelingId = this.$el.find('[name="feelingSelect"]:checked').val();
-            // コメント
-            var comment = this.$el.find('#comment').val();
-
-
-            // キモチが選択されていない場合はだめ
-            if (!feelingId) {
-                alert('ドロップの種類を選択してください');
-                return;
-            }
-
-            // コメントが入力されていない場合はだめ
-            if (!comment) {
-                alert('感想は１文字以上入力してください');
-            }
-
-            // 登録する
-            var pop = new PopModel();
-            pop.set('music_id', this.musicId);
-            pop.set('feeling_id', feelingId);
-            pop.set('comment', comment);
-            pop.bind('sync', _.bind(function () {
-
-                // ga
-                _gaq.push(['_trackEvent', 'addPop', feelingId]);
-
-                alert('登録完了しました');
-                location.reload();
-            }, this));
-            pop.save();
-
-        },
-
-
-
-
-        show: function (musicId, popId, displayType) {
-            console.log('pop:show: ', musicId, popId);
-
-            // set data.
-            this.type = (popId ? 'update' : 'add');
-            this.musicId = musicId;
-            this.music_id = musicId;
-            this.pop_id = popId;
-            this.displayType = displayType;
-
-
-            // musicのロード
-            this.music = new MusicModel();
-            this.music.set('id', musicId);
-            this.music.bind('sync', _.bind(function () {
-
-                // 新規の場合には、画面をレンダリング
-                if (this.type === 'add') {
-                    this.render();
-                
-                // 変更の場合に既にpopIdがあれば、レンダリング
-                } else if (this.popId) {
-                    this.render();
-                
-                } else {
-                    // popのロード待ち
-                }
-
-            }, this));
-            this.music.fetch();
-
-
-
-            // popのロード
-            this.pop = new PopModel();
-            this.pop.set('id', popId);
-            this.pop.bind('sync', _.bind(function () {
-
-                // 既にMusicがロード済みの場合には、表示
-                if (this.music) {
-                    this.render();
-                
-                } else {
-                    // Musicがまだ無ければそれ待ち
-                }
-
-            }, this));
-
-        },
-
-
-
-        dealloc: function () {},
-    });
-
-    return popView;
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
  * PopListView
