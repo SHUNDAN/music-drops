@@ -127,6 +127,22 @@
                     <a class="text-link" href="#user/<%=pop.attributes.user_id%>"><%=pop.attributes.user_name%><i class="ico-font ico-play"></i></a>
                 </p>
                 <p class="musicDetail-pop-text"><%=pop.attributes.comment%></p>
+
+                <%if (_.alreadyLike(pop.attributes.id)) {%>
+                    <a href="#" class="like-btn hidden" data-event-click="likePop">
+                        <i class="ico-font ico-heart"></i>
+                    </a>
+                    <a href="#" class="like-btn is-active" data-event-click="dislikePop">
+                        <i class="ico-font ico-heart"></i>
+                    </a>
+                <%} else {%>
+                    <a href="#" class="like-btn" data-event-click="likePop">
+                        <i class="ico-font ico-heart"></i>
+                    </a>
+                    <a href="#" class="like-btn is-active hidden" data-event-click="dislikePop">
+                        <i class="ico-font ico-heart"></i>
+                    </a>
+                <%}%>
             </div>
         </li>
     <%});%>
