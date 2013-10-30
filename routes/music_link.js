@@ -102,16 +102,49 @@ exports.add = function(req, res) {
         appUtil.basicResponse(res, err);
 
 
+
+    // 今回のリンクにYoutubeIdがある場合には、リンクの再設定をする可能性がある。
+    if (youtube_id) {
+
+        // 該当曲のリンクを全て取得する
+        musicLinkModel.selectObjects({music_id: req.body.music_id}, function (err, rows) {
+
+            // プレイ回数の多いリンクを採用する
+            var youtubeId;
+            var maxPlayCount = -1;
+            rows.forEach(function (musicLink) {
+                var count = musicLink.play_count || 0;
+                if (count > maxPlayCount && musicLink.youtube_id) {
+                    maxPlayCount = count;
+                    youtubeId = musicLink.youtube_id;
+                }
+            });
+
+            console.log('aaaaa: ', youtubeId, req.body.music_id);
+            musicModel.updateObject({youtube_id: youtubeId}, {id: req.body.music_id});
+
+        });
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
         // お知らせに追加
         onlineBatch.addNotificationWhenAddLinkToFollowArtistMusic(req.body.music_id, user_id);
     });
 
-    // YoutubeIdはMusicにも設定する。
-    // TODO 設定するアルゴリズムを考える。
-    if (youtube_id) {
-        console.log('aaaaa: ', req.body, req.body.music_id);
-        musicModel.updateObject({youtube_id: youtube_id}, {id: req.body.music_id});
-    }
+
 
 };
 
