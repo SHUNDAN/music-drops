@@ -216,8 +216,6 @@ define('views/pop/index',[
         // data field.
         displayType:    'normal', // normal or modal
         type:           null, // add or update
-        musicId:       null,
-        popId:         null,
 
 
         initialize: function () {
@@ -229,6 +227,8 @@ define('views/pop/index',[
 
 
         render: function () {
+
+            console.debug('render.', this.pop);
 
             // レンダリング
             var snipet = _.mbTemplate('page_pop', {
@@ -259,6 +259,9 @@ define('views/pop/index',[
 
                 // display as modal.
                 this.$el.find('#pagePop').addClass('popUp');
+
+                // 文字数の数え上げをしておく
+                this.countCharacters();
             }
         },
 
@@ -296,19 +299,25 @@ define('views/pop/index',[
             }
 
             // 登録する
-            var pop = new PopModel();
-            pop.set('music_id', this.musicId);
-            pop.set('feeling_id', feelingId);
-            pop.set('comment', comment);
-            pop.bind('sync', _.bind(function () {
+            this.pop.set('music_id', this.music.attributes.id);
+            this.pop.set('feeling_id', feelingId);
+            this.pop.set('comment', comment);
+            this.pop.bind('sync', _.bind(function () {
 
                 // ga
                 _gaq.push(['_trackEvent', 'addPop', feelingId]);
 
-                alert('登録完了しました');
+                if (this.type === 'add') {
+                    alert('登録完了しました');
+                } else {
+                    alert('編集完了しました');
+                }
+
                 location.reload();
+
+
             }, this));
-            pop.save();
+            this.pop.save();
 
         },
 
@@ -320,9 +329,6 @@ define('views/pop/index',[
 
             // set data.
             this.type = (popId ? 'update' : 'add');
-            this.musicId = musicId;
-            this.music_id = musicId;
-            this.pop_id = popId;
             this.displayType = displayType;
 
 
@@ -333,14 +339,17 @@ define('views/pop/index',[
 
                 // 新規の場合には、画面をレンダリング
                 if (this.type === 'add') {
+                    console.debug('aaaaa');
                     this.render();
-                
+
                 // 変更の場合に既にpopIdがあれば、レンダリング
-                } else if (this.popId) {
+                } else if (this.pop.attributes.feeling_id) {
+                    console.debug('bbbb');
                     this.render();
-                
+
                 } else {
                     // popのロード待ち
+                    console.log('cccc');
                 }
 
             }, this));
@@ -354,14 +363,17 @@ define('views/pop/index',[
             this.pop.bind('sync', _.bind(function () {
 
                 // 既にMusicがロード済みの場合には、表示
-                if (this.music) {
+                if (this.music.attributes.title) {
+                    console.debug('dddd', this.pop, this.music);
                     this.render();
-                
+
                 } else {
                     // Musicがまだ無ければそれ待ち
+                    console.debug('eeee');
                 }
 
             }, this));
+            this.pop.fetch();
 
         },
 
@@ -2686,10 +2698,15 @@ define('views/music/index',[
         userStorage: new UserStorage(),
 
         initialize: function () {
+
+            // auto event bind.
+            _.bindEvents(this);
+
+
             this.model = new Music();
             this.collection = new PopList();
             this.musicLinkCollection = new MusicLinkList();
-            _.bindAll(this, 'addLink', 'render', 'renderMusicInfo', 'renderPopList', 'renderMusicLinkList', 'finishUserAddMusicLink', 'addPop', 'pocket', 'deletePocket', 'show', 'showYoutube', 'dealloc');
+            _.bindAll(this, 'addLink', 'render', 'renderMusicInfo', 'renderPopList', 'renderMusicLinkList', 'finishUserAddMusicLink', 'pocket', 'deletePocket', 'show', 'showYoutube', 'dealloc');
             this.model.bind('change', this.renderMusicInfo);
             this.collection.bind('reset', this.renderPopList);
             this.musicLinkCollection.bind('reset', this.renderMusicLinkList);
@@ -2699,7 +2716,6 @@ define('views/music/index',[
             'click #addLink': 'addLink',
             'click [data-event="addPocket"]': 'pocket',
             'click [data-event="deletePocket"]': 'deletePocket',
-            'click [data-event="addPop"]': 'addPop',
             'click [data-event="playYoutube"]': 'showYoutube',
         },
 
@@ -2731,15 +2747,6 @@ define('views/music/index',[
 
         },
 
-        show: function (musicId) {
-            this.music_id = musicId;
-            this.render();
-
-            // 情報を取得する
-            this.model.loadData(musicId);
-            this.collection.refreshDataWithMusicId(musicId);
-            this.musicLinkCollection.refreshDataWithMusicId(musicId);
-        },
 
         addLink: function (e) {
             var $this = $(e.currentTarget);
@@ -2839,7 +2846,7 @@ define('views/music/index',[
                         pocket.set('id', id);
                         pocket.bind('sync', function () {
                             if (++doneCount === count) {
-        
+
                                 // UIとイベントを変更する
                                 $('[data-event="deletePocket"]')
                                     .text('Pocketする')
@@ -2896,6 +2903,33 @@ define('views/music/index',[
             // aタグ機能は無効化
             return false;
         },
+
+
+
+
+
+        show: function (musicId) {
+            this.music_id = musicId;
+            this.render();
+
+            // 情報を取得する
+            this.music = new Music();
+            this.music.set('id', musicId);
+            this.music.bind('sync', _.bind(function () {
+
+                // デフォルト値を設定する
+                this.music.attributes.feeling_id = this.music.attributes.feeling_id || 1;
+                this.renderMusicInfo();
+            }, this));
+
+            this.model.loadData(musicId);
+            this.collection.refreshDataWithMusicId(musicId);
+            this.musicLinkCollection.refreshDataWithMusicId(musicId);
+        },
+
+
+
+
 
 
 
@@ -3924,6 +3958,7 @@ define('models/user/user_artist_follow_list',['models/user/user_artist_follow'],
 define('views/mypage',[
     'views/common/youtube',
     'views/common/confirmDialog',
+    'views/pop/index',
     'models/user/user',
     'models/user/user_pocket',
     'models/user/user_pocket_list',
@@ -3939,6 +3974,7 @@ define('views/mypage',[
 ], function (
     YoutubeView,
     ConfirmDialogView,
+    PopView,
     User,
     UserPocket,
     UserPocketList,
@@ -5004,6 +5040,13 @@ define('views/mypage',[
             var $li = $(e.currentTarget).parents('[data-pop-id]');
             var popId = $li.data('pop-id');
             console.debug('editPop', popId);
+
+            var pop = this.myPopList.get(popId);
+
+            this.popView = new PopView();
+            this.$el.append(this.popView.$el);
+            this.popView.show(pop.attributes.music_id, popId, 'modal');
+
         },
 
 
@@ -6455,6 +6498,45 @@ define('views/artist/index',[
 
 });
 
+/**
+	ユーザー設定画面
+*/
+define('views/rules/index',[
+], function (
+) {
+
+	var RulesView = Backbone.View.extend({
+
+		initialize: function () {
+
+		},
+
+		render: function () {
+			var snipet = _.mbTemplate('page_rules');
+			this.$el.html(snipet);
+		},
+
+
+
+
+
+
+
+
+		show: function () {
+
+			this.render();
+		},
+
+		dealloc: function () {
+
+		},
+
+	});
+
+	return RulesView;
+
+});
 
 /**
  * Header
@@ -6511,6 +6593,7 @@ define('views/app',[
     'views/user/timeline',
     'views/user/setting',
     'views/artist/index',
+    'views/rules/index',
     'views/common/footer',
     'models/common/user_storage',
 ], function (
@@ -6528,6 +6611,7 @@ define('views/app',[
     TimelineView,
     UserSettingView,
     ArtistView,
+    RulesView,
     FooterView,
     UserStorage
 ) {
@@ -6549,6 +6633,10 @@ define('views/app',[
             // Add Header
             this.headerView = new HeaderView();
             this.headerView.show(); 
+
+            // Add Footer
+            this.footerView = new FooterView();
+            this.footerView.show(); 
 
             // Music Player.
             // 各ページから使いたいので、グローバル変数へ代入する。
@@ -6656,6 +6744,13 @@ define('views/app',[
             this._prepareStage(ArtistView, function () {
                  $('#pageTitle').text('Artist Page');
                this.currentPageView.show(artistId);
+            });
+        },
+
+        toRules: function () {
+            this._prepareStage(RulesView, function () {
+                $('#pageTitle').text('Rules');
+                this.currentPageView.show();
             });
         },
 

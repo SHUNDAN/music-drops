@@ -44,6 +44,7 @@ require([
             'artist/:id': 'artist',
             'timeline': 'timeline',
             'usersetting': 'usersetting',
+            'rules': 'rules',
             '*path': 'defaultRoute'
         },
 
@@ -130,6 +131,12 @@ require([
             this.sendAction('/#usersetting');
             this.appView.toUserSetting();
             _gaq.push(['_trackPageview', '/#usersetting']);
+        },
+
+        rules: function () {
+            this.sendAction('/#rules');
+            this.appView.toRules();
+            _gaq.push(['_trackPageview', '/#rules']);
         },
 
     

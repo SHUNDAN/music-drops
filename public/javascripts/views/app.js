@@ -17,6 +17,7 @@ define([
     'views/user/timeline',
     'views/user/setting',
     'views/artist/index',
+    'views/rules/index',
     'views/common/footer',
     'models/common/user_storage',
 ], function (
@@ -34,6 +35,7 @@ define([
     TimelineView,
     UserSettingView,
     ArtistView,
+    RulesView,
     FooterView,
     UserStorage
 ) {
@@ -166,6 +168,13 @@ define([
             this._prepareStage(ArtistView, function () {
                  $('#pageTitle').text('Artist Page');
                this.currentPageView.show(artistId);
+            });
+        },
+
+        toRules: function () {
+            this._prepareStage(RulesView, function () {
+                $('#pageTitle').text('Rules');
+                this.currentPageView.show();
             });
         },
 

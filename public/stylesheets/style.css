@@ -3634,32 +3634,43 @@ footer {
   margin: 10px 0 0 350px;
 }
 
+/* line 3, ../dev/scss/pages/_rules.scss */
+.rules {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+/* line 8, ../dev/scss/pages/_rules.scss */
+.rules * {
+  line-height: 18px;
+  margin-bottom: 20px;
+}
+
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 82, ../dev/scss/style.scss */
+  /* line 83, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 89, ../dev/scss/style.scss */
+/* line 90, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 90, ../dev/scss/style.scss */
+/* line 91, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 91, ../dev/scss/style.scss */
+/* line 92, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 95, ../dev/scss/style.scss */
+/* line 96, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -3674,7 +3685,7 @@ footer {
 /*==============================
   Stage
 ===============================*/
-/* line 111, ../dev/scss/style.scss */
+/* line 112, ../dev/scss/style.scss */
 #stage {
   position: relative;
 }
@@ -3682,7 +3693,7 @@ footer {
 /*==============================
   Preview Area
 ===============================*/
-/* line 122, ../dev/scss/style.scss */
+/* line 123, ../dev/scss/style.scss */
 .previewArea {
   z-index: 9998;
   transition: opacity .5s ease;
@@ -3691,7 +3702,7 @@ footer {
   -ms-transition: opacity .5s ease;
 }
 
-/* line 129, ../dev/scss/style.scss */
+/* line 130, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: absolute !important;
   top: -500px !important;
@@ -3699,7 +3710,7 @@ footer {
   opacity: 0;
 }
 
-/* line 135, ../dev/scss/style.scss */
+/* line 136, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -3714,7 +3725,7 @@ footer {
   color: white;
 }
 
-/* line 149, ../dev/scss/style.scss */
+/* line 150, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -3730,7 +3741,7 @@ footer {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 166, ../dev/scss/style.scss */
+/* line 167, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -3738,26 +3749,26 @@ footer {
 /*==============================
   Base Frame
 ===============================*/
-/* line 180, ../dev/scss/style.scss */
+/* line 181, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 12px;
 }
 
-/* line 185, ../dev/scss/style.scss */
+/* line 186, ../dev/scss/style.scss */
 #main {
   width: 980px;
   min-height: 600px;
   margin: 0 auto;
 }
 
-/* line 190, ../dev/scss/style.scss */
+/* line 191, ../dev/scss/style.scss */
 #pagePop {
   z-index: 9999;
 }
 
-/* line 193, ../dev/scss/style.scss */
+/* line 194, ../dev/scss/style.scss */
 .popUp {
   position: fixed;
   top: 100px;
