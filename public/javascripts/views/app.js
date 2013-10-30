@@ -17,6 +17,7 @@ define([
     'views/user/timeline',
     'views/user/setting',
     'views/artist/index',
+    'views/common/footer',
     'models/common/user_storage',
 ], function (
     HeaderView,
@@ -33,6 +34,7 @@ define([
     TimelineView,
     UserSettingView,
     ArtistView,
+    FooterView,
     UserStorage
 ) {
 
@@ -53,6 +55,10 @@ define([
             // Add Header
             this.headerView = new HeaderView();
             this.headerView.show(); 
+
+            // Add Footer
+            this.footerView = new FooterView();
+            this.footerView.show(); 
 
             // Music Player.
             // 各ページから使いたいので、グローバル変数へ代入する。

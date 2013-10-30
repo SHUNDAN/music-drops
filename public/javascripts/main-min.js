@@ -169,9 +169,8 @@ define('models/pop/pop',[],function () {
             music_id: null,
         },
 
-        url: function () {
-            return '/api/v1/pops';
-        },
+        urlRoot: '/api/v1/pops',
+
 
         create: function () {
             console.log('create');
@@ -3934,6 +3933,7 @@ define('views/mypage',[
     'models/user/user_follow_list',
     'models/user/user_artist_follow',
     'models/user/user_artist_follow_list',
+    'models/pop/pop',
     'models/pop/pop_list',
     'models/common/user_storage',
 ], function (
@@ -3948,6 +3948,7 @@ define('views/mypage',[
     UserFollowList,
     UserArtistFollow,
     UserArtistFollowList,
+    Pop,
     PopList,
     UserStorage
 ) {
@@ -4266,9 +4267,6 @@ define('views/mypage',[
             options.playlistName = (this.currentPlaylist ? this.currentPlaylist.attributes.title : 'すべてのPocket');
             options.identifier = 'mylist ' + options.playlistName;
 
-            // ga用
-            options.playlistType = (this.currentPlaylist ? 'type' + this.currentPlaylist.attributes.type : '');
-
 
             // startPos, playlist.
             options.startPos = 0;
@@ -4359,8 +4357,6 @@ define('views/mypage',[
             // check max size.
             if (this.userPlaylistList.length >= 10) {
                 alert('プレイリスト登録は最大10件までです。新規に登録する場合には、先にプレイリストを削除してください');
-                // ga
-                _gaq.push(['_trackEvent', 'addPlaylistError', 'Max Playlist Count']);
                 return;
             }
 
@@ -4375,10 +4371,6 @@ define('views/mypage',[
 
                 // 入力欄は初期化
                 $('#playlistTitle').val('');
-
-                // ga
-                _gaq.push(['_trackEvent', 'addPlaylist', '']);
-
 
             }, this));
             this.userPlaylist.save();
@@ -5005,6 +4997,42 @@ define('views/mypage',[
 
 
 
+        /**
+            Popを編集する
+        */
+        editPop: function (e) {
+            var $li = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $li.data('pop-id');
+            console.debug('editPop', popId);
+        },
+
+
+        /**
+            Popを削除する
+        */
+        deletePop: function (e) {
+            var $li = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $li.data('pop-id');
+            console.debug('deletePop', popId);
+
+            // OKの場合のみ削除する
+            if (window.confirm('Popを削除しますか？')) {
+
+                var pop = this.myPopList.get(popId);
+                pop.bind('sync', _.bind(function () {
+
+                    this.myPopList.remove(pop);
+                    this.renderMyDrops();
+
+                }, this));
+                pop.destroy({wait:true});
+            }
+        },
+
+
+
+
+
 
 
 
@@ -5566,11 +5594,6 @@ define('views/user/index',[
 
                 // Storage更新
                 _.mbStorage.refreshUser({target:'userFollowPlaylistList', type:'add'});
-
-                // ga
-                _gaq.push(['_trackEvent', 'followPlaylist', this.user.id]);
-
-
             }, this));
             aPlaylist.save();
 
@@ -6433,6 +6456,43 @@ define('views/artist/index',[
 });
 
 
+/**
+ * Header
+ */
+define('views/common/footer',[], function () {
+
+    var FooterView = Backbone.View.extend({
+
+        initialize: function () {
+            this.$el = $('footer');
+            _.bindAll(this, 'show');
+        },
+
+        events: {
+
+        },
+
+        render: function () {
+            var template = $('#component_footer').html();
+            this.$el.html(template);
+        },
+
+        show: function () {
+            this.render();
+        },
+
+        dealloc: function () {
+
+        },
+
+
+
+    });
+
+    return FooterView;
+});
+
+
 /*
  *  Application View 
  */
@@ -6451,6 +6511,7 @@ define('views/app',[
     'views/user/timeline',
     'views/user/setting',
     'views/artist/index',
+    'views/common/footer',
     'models/common/user_storage',
 ], function (
     HeaderView,
@@ -6467,6 +6528,7 @@ define('views/app',[
     TimelineView,
     UserSettingView,
     ArtistView,
+    FooterView,
     UserStorage
 ) {
 
