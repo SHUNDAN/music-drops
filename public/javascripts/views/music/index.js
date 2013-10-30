@@ -306,6 +306,40 @@ define([
         },
 
 
+        /**
+            Popに対するLike（その他リンク向け）
+        */
+        likePop2: function (e) {
+            e.preventDefault();
+            e.stopPropagation();            
+
+            var $parent = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $parent.data('pop-id');
+
+            _.likePop(popId, function () {
+                $parent.find('[data-event-click="likePop2"], [data-event-click="dislikePop2"]').toggleClass('hidden');
+            });
+
+            return false;
+        },
+
+
+        /**
+            PopのLike解除（その他リンク向け）
+        */
+        dislikePop2: function (e) {
+            e.preventDefault();
+            e.stopPropagation();            
+
+            var $parent = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $parent.data('pop-id');
+
+            _.dislikePop(popId, function () {
+                $parent.find('[data-event-click="likePop2"], [data-event-click="dislikePop2"]').toggleClass('hidden');
+            });
+
+            return false;
+        },
 
 
 

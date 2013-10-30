@@ -2312,14 +2312,18 @@ footer {
   display: inline-block;
   max-width: 450px;
 }
+/* line 276, ../dev/scss/modules/_music_detail.scss */
+.musicLink-table .like-btn.is-active {
+  color: #f3613f;
+}
 
-/* line 288, ../dev/scss/modules/_music_detail.scss */
+/* line 291, ../dev/scss/modules/_music_detail.scss */
 .text-link {
   position: relative;
   display: inline-block;
   padding-right: 16px;
 }
-/* line 292, ../dev/scss/modules/_music_detail.scss */
+/* line 295, ../dev/scss/modules/_music_detail.scss */
 .text-link .ico-font {
   position: absolute;
   top: 50%;
@@ -2328,7 +2332,7 @@ footer {
   font-size: 8px;
   color: #c9c7b9;
 }
-/* line 301, ../dev/scss/modules/_music_detail.scss */
+/* line 304, ../dev/scss/modules/_music_detail.scss */
 .text-link:hover .ico-font {
   color: #656457;
 }

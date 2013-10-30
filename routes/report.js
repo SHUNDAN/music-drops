@@ -63,6 +63,7 @@ exports.add = function(req, res) {
 
         param.json = {};
         param.json.music_link_id = req.body.music_link_id;
+        param.json = JSON.stringify(param.json);
     
     } else {
         res.json(400, 'type !== 1 not supported.');

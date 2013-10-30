@@ -139,7 +139,8 @@
             <tr>
                 <th width="25%">ユーザー</th>
                 <th width="15%">キモチ</th>
-                <th width="60%">コメント</th>
+                <th width="55%">コメント</th>
+                <th width="5%"></th>
             </tr>
         </thead>
         <tbody>
@@ -148,6 +149,23 @@
                 <td><a class="text-link" href="#user/<%=pop.attributes.user_id%>"><%- pop.attributes.user_name %><i class="ico-font ico-play"></i></a></td>
                 <td data-feeling-id="<%=pop.attributes.feeling_id%>"><%=_.getFeelingName(pop.attributes.feeling_id)%></td>
                 <td><%- pop.attributes.comment  %></td>
+                <td data-pop-id="<%=pop.attributes.id%>">
+                    <%if (_.alreadyLike(pop.attributes.id)) {%>
+                        <a href="#" class="like-btn hidden" data-event-click="likePop2">
+                            <i class="ico-font ico-heart"></i>
+                        </a>
+                        <a href="#" class="like-btn is-active" data-event-click="dislikePop2">
+                            <i class="ico-font ico-heart"></i>
+                        </a>
+                    <%} else {%>
+                        <a href="#" class="like-btn" data-event-click="likePop2">
+                            <i class="ico-font ico-heart"></i>
+                        </a>
+                        <a href="#" class="like-btn is-active hidden" data-event-click="dislikePop2">
+                            <i class="ico-font ico-heart"></i>
+                        </a>
+                    <%}%>
+                </td>
             </tr>
         <% }); %>
         </tbody>
