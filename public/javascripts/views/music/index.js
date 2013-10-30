@@ -28,10 +28,15 @@ define([
         userStorage: new UserStorage(),
 
         initialize: function () {
+
+            // auto event bind.
+            _.bindEvents(this);
+
+
             this.model = new Music();
             this.collection = new PopList();
             this.musicLinkCollection = new MusicLinkList();
-            _.bindAll(this, 'addLink', 'render', 'renderMusicInfo', 'renderPopList', 'renderMusicLinkList', 'finishUserAddMusicLink', 'addPop', 'pocket', 'deletePocket', 'show', 'showYoutube', 'dealloc');
+            _.bindAll(this, 'addLink', 'render', 'renderMusicInfo', 'renderPopList', 'renderMusicLinkList', 'finishUserAddMusicLink', 'pocket', 'deletePocket', 'show', 'showYoutube', 'dealloc');
             this.model.bind('change', this.renderMusicInfo);
             this.collection.bind('reset', this.renderPopList);
             this.musicLinkCollection.bind('reset', this.renderMusicLinkList);
@@ -41,7 +46,6 @@ define([
             'click #addLink': 'addLink',
             'click [data-event="addPocket"]': 'pocket',
             'click [data-event="deletePocket"]': 'deletePocket',
-            'click [data-event="addPop"]': 'addPop',
             'click [data-event="playYoutube"]': 'showYoutube',
         },
 
@@ -73,15 +77,6 @@ define([
 
         },
 
-        show: function (musicId) {
-            this.music_id = musicId;
-            this.render();
-
-            // 情報を取得する
-            this.model.loadData(musicId);
-            this.collection.refreshDataWithMusicId(musicId);
-            this.musicLinkCollection.refreshDataWithMusicId(musicId);
-        },
 
         addLink: function (e) {
             var $this = $(e.currentTarget);
@@ -181,7 +176,7 @@ define([
                         pocket.set('id', id);
                         pocket.bind('sync', function () {
                             if (++doneCount === count) {
-        
+
                                 // UIとイベントを変更する
                                 $('[data-event="deletePocket"]')
                                     .text('Pocketする')
@@ -238,6 +233,33 @@ define([
             // aタグ機能は無効化
             return false;
         },
+
+
+
+
+
+        show: function (musicId) {
+            this.music_id = musicId;
+            this.render();
+
+            // 情報を取得する
+            this.music = new Music();
+            this.music.set('id', musicId);
+            this.music.bind('sync', _.bind(function () {
+
+                // デフォルト値を設定する
+                this.music.attributes.feeling_id = this.music.attributes.feeling_id || 1;
+                this.renderMusicInfo();
+            }, this));
+
+            this.model.loadData(musicId);
+            this.collection.refreshDataWithMusicId(musicId);
+            this.musicLinkCollection.refreshDataWithMusicId(musicId);
+        },
+
+
+
+
 
 
 
