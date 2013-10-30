@@ -2175,50 +2175,49 @@ define('views/top',[
 
 
         likePop: function (e) {
-            var popId = $(e.currentTarget).data('pop-id');
+            e.preventDefault();
+            e.stopPropagation();
+
+            var $li = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $li.data('pop-id');
             console.log('likePop: ', popId);
 
             _.likePop(popId, _.bind(function () {
 
-                // change visual.
-                var $btns = this.$el.find('[data-pop-id="'+popId+'"].btn');
-                $btns.addClass('btn-primary');
-                $btns.attr('data-event', 'dislikePop');
+                // 表示制御
+                $li.find('[data-event-click="likePop"], [data-event-click="dislikePop"]').toggleClass('hidden');
 
-                // save to local.
-                this.likeArray.push(popId);
-                var user = this.userStorage.getUser();
-                user.like_pop = JSON.stringify(this.likeArray);
-                this.userStorage.setUser(user);
+                // 情報更新
+                _.mbStorage.refreshUser();
 
             }, this));
 
+            return false;
         },
 
 
 
         dislikePop: function (e) {
-            var popId = $(e.currentTarget).data('pop-id');
-            console.debug('dislikePop: ', popId);
+            e.preventDefault();
+            e.stopPropagation();
 
+            var $li = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $li.data('pop-id');
+            console.debug('dislikePop: ', popId);
 
             _.dislikePop(popId, _.bind(function () {
 
                 console.log('success dilike.');
 
-                // change visual.
-                var $btns = this.$el.find('[data-pop-id="'+popId+'"].btn');
-                $btns.removeClass('btn-primary');
-                $btns.attr('data-event', 'likePop');
+                // 表示制御
+                $li.find('[data-event-click="likePop"], [data-event-click="dislikePop"]').toggleClass('hidden');
 
-                // save to local.
-                this.likeArray = _.without(this.likeArray, popId);
-                var user = this.userStorage.getUser();
-                user.like_pop = JSON.stringify(this.likeArray);
-                this.userStorage.setUser(user);
+                // 情報更新
+                _.mbStorage.refreshUser();
 
             }, this));
 
+            return false;
         },
 
 

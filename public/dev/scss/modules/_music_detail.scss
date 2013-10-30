@@ -97,7 +97,7 @@ $map-share: sprite-map("../images/sprite/share/*.png");
 //-------------------------------------
 .musicDetail-pop {
   height: 123px;
-  padding: 10px; 
+  padding: 10px;
   background-color: #efede0;
 }
 .musicDetail-pop-user {
@@ -216,7 +216,28 @@ $map-share: sprite-map("../images/sprite/share/*.png");
   // 曲Drop
   //-------------------------------------
   .musicDetail-pop {
+    position: relative;
     height: 94px;
+
+    // 右下にLikeボタン
+    .like-btn {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: block;
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      line-height: 28px;
+      padding: 5px;
+      background-color: rgba(239, 237, 224, .65);
+
+      &.is-active {
+//         background-color: rgba(254, 192, 43, .5);
+        color: rgb(243, 97, 63);
+      }
+    }
+
   }
 }
 
