@@ -192,7 +192,7 @@
         </thead>
         <tbody>
             <% _.each(musicLinkList, function (musicLink) { %>
-            <tr>
+            <tr data-musiclink-id="<%=musicLink.attributes.id%>">
                 <td>
                     <a class="text-link" href="#user/<%-musicLink.attributes.user_id%>"><%=musicLink.attributes.user_name%><i class="ico-font ico-play"></i></a>
                     </td>
