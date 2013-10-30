@@ -2726,7 +2726,7 @@ define('views/music/index',[
 
             var musicInfo = _.template($('#page_music_detail_info').html(), _.extend({
                 repPop: this.repPop
-            }, this.music.attributes, this.userStorage.getCommon()));
+            }, this.music.attributes, _.mbStorage.getCommon()));
             this.$el.find('#musicInfoArea').html(musicInfo);
         },
 
@@ -2877,6 +2877,8 @@ define('views/music/index',[
             // play
             console.log('play music. arraycount=', options.musicArray.length, ',startPos=', options.startPos);
             mb.musicPlayer.playMusics(options);
+
+
         },
 
 
@@ -2906,6 +2908,11 @@ define('views/music/index',[
             // play
             console.log('play music. arraycount=', options.musicArray.length, ',startPos=', options.startPos);
             mb.musicPlayer.playMusics(options);
+
+            // リンクの再生回数を通知
+            var musicLinkId = $(e.currentTarget).parents('[data-musiclink-id]').data('musiclink-id');
+            _.addMusicLinkPlayCount(this.music.id, musicLinkId);
+
 
             return false;
         },
