@@ -573,7 +573,7 @@ define('views/common/music_player',[
                 .removeClass('hidden');
 
             // プレイヤーを再生状態にする
-            this.$el.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+            this.$header.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // プレイリスト中身表示を作る
             this.renderMusicQueueArea();
