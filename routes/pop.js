@@ -13,7 +13,7 @@ var onlineBatch = require('../util/online_batch');
 
 
 /**
- * Select 
+ * Select
  */
 exports.select = function(req, res){
 
@@ -164,7 +164,7 @@ exports.likePop = function (req, res) {
 
     // user
     appUtil.getUserFromRequest(req, function (err, user) {
-        
+
         // auth error.
         if (!user) {
             appUtil.response403(res);
@@ -214,14 +214,14 @@ exports.dislikePop = function (req, res) {
 
     // user
     appUtil.getUserFromRequest(req, function (err, user) {
-        
+
         // auth error.
         if (!user) {
             appUtil.response403(res);
             return;
         }
 
-        // LikeしていないPopIdはだめ 
+        // LikeしていないPopIdはだめ
         var likePopArray = JSON.parse(user.like_pop) || [];
         var alreadyLiked = _.contains(likePopArray, popId);
         if (!alreadyLiked) {
@@ -258,13 +258,57 @@ exports.dislikePop = function (req, res) {
  */
 exports.delete = function(req, res) {
 
-    popModel.deleteObject(req.params, function (err) {
-        appUtil.basicResponse(res, err);
+    // パラメータチェック
+    if (!req.params.id && !req.body.id) {
+        appUtil.actionLog(req, 'delete pocket failed. id is missing');
+        res.json(400, {message: 'id is required.'});
+        return;
+    }
 
-        // 曲のPOP数を最新化する
-        onlineBatch.updatePopCountAtMusic(req.body.music_id);
+
+    // 認証チェック＆ユーザーID取得
+    var user_id = appUtil.getUserIdFromRequest(req);
+    if (!user_id) {
+        appUtil.actionLog(req, 'delete pocket failed. no authentication');
+        appUtil.response403(res);
+        return;
+    }
+
+    // 自分の以外は消せないようにする。
+    var param = (req.params.id ? req.params : req.body);
+    param.user_id = user_id;
+    console.log('param: ', param);
+
+
+    // 該当があるかを検索する
+    popModel.selectObjects(param, function (err, rows) {
+
+        // なければ終わり
+        if (rows.length === 0) {
+            res.json(404, 'pop not found');
+            return;
+        }
+
+        // あればよし
+        var musicId = rows[0].music_id;
+
+
+        // 削除する
+        popModel.deleteObject(param, function (err) {
+            appUtil.basicResponse(res, err);
+
+            // 曲のPOP数を最新化する
+            onlineBatch.updatePopCountAtMusic(musicId);
+
+        });
+
 
     });
+
+
+
+
+
 
 };
 

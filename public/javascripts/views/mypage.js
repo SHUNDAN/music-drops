@@ -14,6 +14,7 @@ define([
     'models/user/user_follow_list',
     'models/user/user_artist_follow',
     'models/user/user_artist_follow_list',
+    'models/pop/pop',
     'models/pop/pop_list',
     'models/common/user_storage',
 ], function (
@@ -28,6 +29,7 @@ define([
     UserFollowList,
     UserArtistFollow,
     UserArtistFollowList,
+    Pop,
     PopList,
     UserStorage
 ) {
@@ -1081,6 +1083,42 @@ define([
             });
 
         },
+
+
+
+
+        /**
+            Popを編集する
+        */
+        editPop: function (e) {
+            var $li = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $li.data('pop-id');
+            console.debug('editPop', popId);
+        },
+
+
+        /**
+            Popを削除する
+        */
+        deletePop: function (e) {
+            var $li = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $li.data('pop-id');
+            console.debug('deletePop', popId);
+
+            // OKの場合のみ削除する
+            if (window.confirm('Popを削除しますか？')) {
+
+                var pop = this.myPopList.get(popId);
+                pop.bind('sync', _.bind(function () {
+
+                    this.myPopList.remove(pop);
+                    this.renderMyDrops();
+
+                }, this));
+                pop.destroy({wait:true});
+            }
+        },
+
 
 
 

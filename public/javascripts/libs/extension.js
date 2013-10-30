@@ -331,7 +331,7 @@ _.likePop = function (popId, callback) {
                 mb.router.appView.authErrorHandler();
                 return;
             } else {
-                alert('api error');
+                alert('エラーが発生しました。ブラウザのリロードをお願いします。');
                 console.log('error: ', arguments);
             }
         },
@@ -361,7 +361,7 @@ _.dislikePop = function (popId, callback) {
                 mb.router.appView.authErrorHandler();
                 return;
             } else {
-                alert('api error');
+                alert('エラーが発生しました。ブラウザのリロードをお願いします。');
                 console.log('error: ', arguments);
             }
         },

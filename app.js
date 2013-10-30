@@ -421,6 +421,7 @@ app.post('/api/v1/dislikepop/:id', pop.dislikePop);
 app.post('/api/v1/pops', pop.add);
 app.post('/api/v1/pops/:id/update', pop.update);
 app.delete('/api/v1/pops/:id', pop.delete);
+app.delete('/api/v1/pops', pop.delete);
 // app.post('/api/v1.1/pops', pop.add1_1);
 // app.post('/api/v1.1/pops/:id/update', pop.update1_1);
 // app.delete('/api/v1.1/pops/:id', pop.delete1_1);
