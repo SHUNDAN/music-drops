@@ -58,7 +58,7 @@ define([
 
             var musicInfo = _.template($('#page_music_detail_info').html(), _.extend({
                 repPop: this.repPop
-            }, this.music.attributes, this.userStorage.getCommon()));
+            }, this.music.attributes, _.mbStorage.getCommon()));
             this.$el.find('#musicInfoArea').html(musicInfo);
         },
 
