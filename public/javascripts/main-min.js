@@ -2136,7 +2136,7 @@ define('views/top',[
 
             var $this = $(e.currentTarget);
 
-            // もしAllの場合には、それらしい動きをさせる
+            // もしAllの場合には、ALLらしい動きをさせる
             if ($this.data('feeling-id') === 0) {
                 $this.toggleClass('is-active');
 
@@ -2148,14 +2148,28 @@ define('views/top',[
 
             // ALL以外
             } else {
-                $this.toggleClass('is-active');
 
-                // もし全部アクティブなら、ALLもアクティブにする
-                if ( this.$el.find('#feelingFilter .is-active:not([data-feeling-id="0"])').length === _.mbStorage.getCommon().feelings.length) {
-                    this.$el.find('#feelingFilter [data-feeling-id="0"]').addClass('is-active');
+                // もし全部がONの場合には、特別にそれのみを選択状態にする
+                if (this.$el.find('#feelingFilter li').length === this.$el.find('#feelingFilter .is-active').length) {
+                    this.$el.find('#feelingFilter li').removeClass('is-active');
+                    $this.addClass('is-active');
+
+
+                // 上記の特別仕様以外の場合
                 } else {
-                    this.$el.find('#feelingFilter [data-feeling-id="0"]').removeClass('is-active');   
+
+                    $this.toggleClass('is-active');
+
+                    // もし全部アクティブなら、ALLもアクティブにする
+                    if ( this.$el.find('#feelingFilter .is-active:not([data-feeling-id="0"])').length === _.mbStorage.getCommon().feelings.length) {
+                        this.$el.find('#feelingFilter [data-feeling-id="0"]').addClass('is-active');
+                    } else {
+                        this.$el.find('#feelingFilter [data-feeling-id="0"]').removeClass('is-active');
+                    }
+
                 }
+
+
             }
 
 
@@ -6020,7 +6034,11 @@ define('views/user/setting',[
 			if (!newName || newName.length === 0) {
 				alert('名前が未入力です。');
 				return;
-			}
+
+            } else if (newName.length > 16) {
+                alert('名前は16文字以内でお願いします。');
+                return;
+            }
 
 			// 更新
 			var user = new UserModel();
