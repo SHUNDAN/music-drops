@@ -46,47 +46,51 @@ module.exports = _.extend({}, require('./common'), {
      * Select: Userテーブルと結合したデータ
      */
     selectWithUser: function (conditionParam, callback) {
-        conditionParam = conditionParam || {}; 
+        conditionParam = conditionParam || {};
 
 
         // build sql.
-        var columnNames = []; 
-        var conditions = []; 
+        var columnNames = [];
+        var conditions = [];
         for (var prop in conditionParam) {
-            if (conditionParam.hasOwnProperty(prop)) {
+            if (conditionParam.hasOwnProperty(prop) && this.hasColumn(prop)) {
                 columnNames.push(prop);
                 conditions.push(util.format('a.%s=?', prop));
-            }   
-        }   
+            }
+        }
 
-        var sql = 'select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id, ' + 
+        var sql = 'select a.id, a.music_id, a.user_id, b.name user_name, a.comment, a.link, a.youtube_id, a.nico_id, ' +
                     ' a.create_at, a.update_at from music_link as a left outer join user as b on a.user_id = b.id ';
+        // var sql = 'select a.id, a.music_id, a.user_id, a.comment, a.link, a.youtube_id, a.nico_id, ' +
+        //             ' a.create_at, a.update_at from music_link as a ';
         if (conditions.length > 0) {
             sql = sql + ' where ' + conditions.join(' and ');
+            // sql = sql + ' where music_id=9422';
         }
-        console.log('sql!!!!!', sql); 
 
 
         // create params.
-        var params = []; 
+        var params = [];
         columnNames.forEach(function (column) {
             params.push(conditionParam[column]);
-        }); 
+        });
 
-    
+
         // execute sql
         var stmt = db.prepare(sql, params);
         console.log('stmt: ', stmt, params);
         stmt.all(function(err, rows) {
+            rows = rows || [];
             if (err) {
                 console.log(err);
-            }   
-    
+            }
+
+            console.log('count=', rows.length);
             callback(err, (rows || []));
-        }); 
+        });
 
     },
-    
+
 
 
     /**
@@ -100,8 +104,8 @@ module.exports = _.extend({}, require('./common'), {
         db.run(sql, function () {
             if (callback) {
                 callback();
-            } 
-        }); 
+            }
+        });
 
     },
 

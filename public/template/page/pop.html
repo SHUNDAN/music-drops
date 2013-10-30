@@ -24,22 +24,22 @@
             <div class="rightCol">
                 <div class="label">[1] ドロップの種類を選ぶ</div>
                 <div class="feelingList clearfix">
-                    <%_.each(feelingList, function (feeling) {%>
+                    <%_.each(feelingList, function (feeling) { console.debug(feeling.id, pop.attributes);%>
                         <div>
-                            <input id="feelingSelect<%=feeling.id%>" type="radio" name="feelingSelect" value="<%=feeling.id%>"/>
+                            <input id="feelingSelect<%=feeling.id%>" type="radio" name="feelingSelect" value="<%=feeling.id%>" <%if(feeling.id === pop.attributes.feeling_id){%>checked="true"<%}%>/>
                             <label for="feelingSelect<%=feeling.id%>" class="feeling-<%=feeling.id%>"><%=feeling.name%></label>
                         </div>
                     <%});%>
                 </div>
                 <div class="commentArea">
                     <div class="label">[2] 感想を書く</div>
-                    <textarea id="comment" cols="30" rows="10" placeholder="ドロップを書く..." maxlength=120 data-event-keyup="countCharacters"></textarea>
+                    <textarea id="comment" cols="30" rows="10" placeholder="ドロップを書く..." maxlength=120 data-event-keyup="countCharacters"><%=pop.attributes.comment%></textarea>
                     <div class="count"><span id="numOfCharacters">0</span>/120</div>
                 </div>
                 <% if (type === 'add') { %>
                     <div class="submitBtn" data-event-click="addPop">[3]ドロップを投稿する</div>
                 <% } else { %>
-                    <div class="submitBtn" data-event-click="finishEdit">[3] 編集を完了する</div>
+                    <div class="submitBtn" data-event-click="addPop">[3] 編集を完了する</div>
                 <% } %>
             </div>
 

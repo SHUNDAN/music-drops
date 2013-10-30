@@ -13,15 +13,18 @@ var onlineBatch = require('../util/online_batch');
 
 
 /**
- * Select 
+ * Select
  */
 exports.select = function(req, res){
 
-    popModel.selectObjects(req.query, function (err, rows) {
+    var param = (req.params.id ? req.params : req.query);
+    console.log('param=', param);
+
+    popModel.selectObjects(param, function (err, rows) {
         if (err) {
             appUtil.basicResponse(res, err, rows);
         } else {
-            res.json(rows);
+            res.json((rows.length === 1 ? rows[0] : rows));
         }
     });
 
@@ -72,13 +75,22 @@ exports.selectPopList = function(req, res) {
  */
 exports.add = function(req, res) {
 
-    // TODO check params.
+    // 必須：Feeling、MusicID
     if (!req.body.music_id || !req.body.feeling_id) {
         res.json(400, {message: 'music_id or feeling_id are required.'});
         return;
     }
 
-
+    // 必須：Comment、120文字以内
+    var comment = req.body.comment;
+    if (!comment || comment.length === 0) {
+        res.json(400, 'comment must be set.');
+        return;
+    }
+    if (comment.length > 120) {
+        res.json(400, 'comment max 120 characters. actual=' + comment.length);
+        return;
+    }
 
     // uidからユーザー情報を取得する
     var uid = req.cookies.uid;
@@ -87,7 +99,6 @@ exports.add = function(req, res) {
         res.json(403, {message: 'authentication error.'});
         return;
     }
-
     req.body.user_id = user_id;
 
     // execute.
@@ -129,7 +140,34 @@ exports.add1_1 = function(req, res) {
  */
 exports.update = function(req, res) {
 
-    // TODO check params.
+    // 必須チェック
+    if (!req.body.music_id || !req.body.feeling_id) {
+        res.json(400, {message: 'music_id or feeling_id are required.'});
+        return;
+    }
+
+    // コメント：必須、120文字以内
+    var comment = req.body.comment;
+    if (!comment || comment.length === 0) {
+        res.json(400, 'comment must be set.');
+        return;
+    }
+    if (comment.length > 120) {
+        res.json(400, 'comment max 120 characters. actual=' + comment.length);
+        return;
+    }
+
+    // uidからユーザー情報を取得する
+    var uid = req.cookies.uid;
+    var user_id = (global.sessionMap ? global.sessionMap[uid] : undefined);
+    if (!user_id) {
+        res.json(403, {message: 'authentication error.'});
+        return;
+    }
+    req.body.user_id = user_id;
+
+
+
 
     // execute.
     popModel.updateObject(req.body, req.params, function (err) {
@@ -164,7 +202,7 @@ exports.likePop = function (req, res) {
 
     // user
     appUtil.getUserFromRequest(req, function (err, user) {
-        
+
         // auth error.
         if (!user) {
             appUtil.response403(res);
@@ -214,14 +252,14 @@ exports.dislikePop = function (req, res) {
 
     // user
     appUtil.getUserFromRequest(req, function (err, user) {
-        
+
         // auth error.
         if (!user) {
             appUtil.response403(res);
             return;
         }
 
-        // LikeしていないPopIdはだめ 
+        // LikeしていないPopIdはだめ
         var likePopArray = JSON.parse(user.like_pop) || [];
         var alreadyLiked = _.contains(likePopArray, popId);
         if (!alreadyLiked) {
@@ -258,13 +296,57 @@ exports.dislikePop = function (req, res) {
  */
 exports.delete = function(req, res) {
 
-    popModel.deleteObject(req.params, function (err) {
-        appUtil.basicResponse(res, err);
+    // パラメータチェック
+    if (!req.params.id && !req.body.id) {
+        appUtil.actionLog(req, 'delete pocket failed. id is missing');
+        res.json(400, {message: 'id is required.'});
+        return;
+    }
 
-        // 曲のPOP数を最新化する
-        onlineBatch.updatePopCountAtMusic(req.body.music_id);
+
+    // 認証チェック＆ユーザーID取得
+    var user_id = appUtil.getUserIdFromRequest(req);
+    if (!user_id) {
+        appUtil.actionLog(req, 'delete pocket failed. no authentication');
+        appUtil.response403(res);
+        return;
+    }
+
+    // 自分の以外は消せないようにする。
+    var param = (req.params.id ? req.params : req.body);
+    param.user_id = user_id;
+    console.log('param: ', param);
+
+
+    // 該当があるかを検索する
+    popModel.selectObjects(param, function (err, rows) {
+
+        // なければ終わり
+        if (rows.length === 0) {
+            res.json(404, 'pop not found');
+            return;
+        }
+
+        // あればよし
+        var musicId = rows[0].music_id;
+
+
+        // 削除する
+        popModel.deleteObject(param, function (err) {
+            appUtil.basicResponse(res, err);
+
+            // 曲のPOP数を最新化する
+            onlineBatch.updatePopCountAtMusic(musicId);
+
+        });
+
 
     });
+
+
+
+
+
 
 };
 

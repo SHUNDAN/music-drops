@@ -5,6 +5,7 @@
 define([
     'views/common/youtube',
     'views/common/confirmDialog',
+    'views/pop/index',
     'models/user/user',
     'models/user/user_pocket',
     'models/user/user_pocket_list',
@@ -14,11 +15,13 @@ define([
     'models/user/user_follow_list',
     'models/user/user_artist_follow',
     'models/user/user_artist_follow_list',
+    'models/pop/pop',
     'models/pop/pop_list',
     'models/common/user_storage',
 ], function (
     YoutubeView,
     ConfirmDialogView,
+    PopView,
     User,
     UserPocket,
     UserPocketList,
@@ -28,6 +31,7 @@ define([
     UserFollowList,
     UserArtistFollow,
     UserArtistFollowList,
+    Pop,
     PopList,
     UserStorage
 ) {
@@ -180,7 +184,6 @@ define([
                 });
 
             } else {
-                console.debug('bbb', self.displayUserPocketList.models.length);
                 models = self.displayUserPocketList.models;
             }
 
@@ -346,9 +349,6 @@ define([
             options.playlistName = (this.currentPlaylist ? this.currentPlaylist.attributes.title : 'すべてのPocket');
             options.identifier = 'mylist ' + options.playlistName;
 
-            // ga用
-            options.playlistType = (this.currentPlaylist ? 'type' + this.currentPlaylist.attributes.type : '');
-
 
             // startPos, playlist.
             options.startPos = 0;
@@ -439,8 +439,6 @@ define([
             // check max size.
             if (this.userPlaylistList.length >= 10) {
                 alert('プレイリスト登録は最大10件までです。新規に登録する場合には、先にプレイリストを削除してください');
-                // ga
-                _gaq.push(['_trackEvent', 'addPlaylistError', 'Max Playlist Count']);
                 return;
             }
 
@@ -455,10 +453,6 @@ define([
 
                 // 入力欄は初期化
                 $('#playlistTitle').val('');
-
-                // ga
-                _gaq.push(['_trackEvent', 'addPlaylist', '']);
-
 
             }, this));
             this.userPlaylist.save();
@@ -1081,6 +1075,49 @@ define([
             });
 
         },
+
+
+
+
+        /**
+            Popを編集する
+        */
+        editPop: function (e) {
+            var $li = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $li.data('pop-id');
+            console.debug('editPop', popId);
+
+            var pop = this.myPopList.get(popId);
+
+            this.popView = new PopView();
+            this.$el.append(this.popView.$el);
+            this.popView.show(pop.attributes.music_id, popId, 'modal');
+
+        },
+
+
+        /**
+            Popを削除する
+        */
+        deletePop: function (e) {
+            var $li = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $li.data('pop-id');
+            console.debug('deletePop', popId);
+
+            // OKの場合のみ削除する
+            if (window.confirm('Popを削除しますか？')) {
+
+                var pop = this.myPopList.get(popId);
+                pop.bind('sync', _.bind(function () {
+
+                    this.myPopList.remove(pop);
+                    this.renderMyDrops();
+
+                }, this));
+                pop.destroy({wait:true});
+            }
+        },
+
 
 
 
