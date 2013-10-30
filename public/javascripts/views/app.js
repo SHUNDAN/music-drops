@@ -1,6 +1,6 @@
 "use strict";
 /*
- *  Application View 
+ *  Application View
  */
 define([
     'views/common/header',
@@ -17,7 +17,8 @@ define([
     'views/user/timeline',
     'views/user/setting',
     'views/artist/index',
-    'views/common/footer',
+    // 'views/common/footer',
+    'views/artist/index',
     'models/common/user_storage',
 ], function (
     HeaderView,
@@ -40,8 +41,8 @@ define([
 
     // AppView
     var ApplicationView = Backbone.View.extend({
-   
-        // Field 
+
+        // Field
         currentPageView: null,
         userStorage: new UserStorage(),
         $mainArea: null,
@@ -54,11 +55,11 @@ define([
 
             // Add Header
             this.headerView = new HeaderView();
-            this.headerView.show(); 
+            this.headerView.show();
 
             // Add Footer
             this.footerView = new FooterView();
-            this.footerView.show(); 
+            this.footerView.show();
 
             // Music Player.
             // 各ページから使いたいので、グローバル変数へ代入する。
@@ -187,7 +188,7 @@ define([
             var delay = 300;
             var self = this;
             $('body').transition({opacity: 0}, duration, function() {
-                old$el.remove(); 
+                old$el.remove();
                 window.scrollTo(0,0);
             });
 
@@ -220,7 +221,7 @@ define([
                         url: '/api/v1/userInfo',
                         dataType: 'json',
                         success: function (user) {
-                            self.userStorage.setUser(user); 
+                            self.userStorage.setUser(user);
 
                             // ユーザーにひもづく各種情報も取得しておく
                             _.loadUserPockets({force:true});
@@ -249,7 +250,7 @@ define([
 
                 var user = _.mbStorage.getUser();
                 $('#gotoUserSetting').html('<i class="ico-font ico-user mr5"></i>' + user.name);
-            
+
             } else {
                 $('#appLoginModule').removeClass('hidden').text('ログイン');
                 $('#gotoUserSetting').addClass('hidden');
@@ -259,7 +260,7 @@ define([
 
 
         },
-    
+
     });
 
     return ApplicationView;
