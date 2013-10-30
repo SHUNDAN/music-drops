@@ -361,6 +361,45 @@ define([
 
 
 
+        /**
+            レポート機能
+        */
+        report: function (e) {
+            e.preventDefault();
+            e.stopPropagation();            
+
+            var musicLinkId = $(e.currentTarget).parents('[data-musiclink-id]').data('musiclink-id');
+            console.debug('report.', musicLinkId);
+
+            // 今はリンク切れだけ
+            $.ajax({
+                url: '/api/v1/reports',
+                method: 'post',
+                data: {
+                    type: 1,
+                    music_link_id: musicLinkId
+                },
+                success: function () {
+                    alert('報告ありがとうございます');
+                },
+                error: function (xhr) {
+                    if (xhr.status === 403) {
+                        mb.router.appView.authErrorHandler();
+                        return;
+                    } else {
+                        alert('エラーが発生しました。ブラウザのリロードをお願いします。');
+                        console.log('error: ', arguments);
+                    }
+                },
+            });
+
+
+
+            return false;
+        },
+        
+
+
 
 
 

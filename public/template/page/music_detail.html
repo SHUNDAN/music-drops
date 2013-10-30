@@ -197,7 +197,7 @@
                         <%if (_.mbStorage.getUserId() === musicLink.attributes.user_id) {%>
                             <a class="btn-text btn-text-back btn-text-color-brown" href="#" data-event-click="deleteLink">削除</a>
                         <%}%>
-                        <a id="" class="btn-text btn-text-back btn-text-color-brown" href="#">報告</a>
+                        <a id="" class="btn-text btn-text-back btn-text-color-brown" href="#" data-event-click="report">リンク切れを報告</a>
                         <%if (_.alreadyPocket(musicLink.attributes.music_id) === false) {%>
                         <div id="" class="btn-text btn-text-back btn-text-color-brown" data-event-click="addPocket" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">URLをポケット</div>
                         <div id="" class="btn-text btn-text-back btn-text-color-brown hidden" data-event-click="deletePocket" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">Pocket解除</div>
