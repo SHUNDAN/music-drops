@@ -74,28 +74,45 @@ exports.add = function(req, res) {
     }
 
     req.body.user_id = user_id;
-    console.log('req.body', req.body);
 
 
-    // execute.
-    userPocketModel.insertObject(req.body, function (err) {
-        appUtil.actionLog(req, ['add pocket.', JSON.stringify({music_id: req.body.music_id, feeling_id: req.body.feeling_id, youtube_id: req.body.youtube_id})]);
+    // 個数制限（最大で300）
+    userPocketModel.countObjects({user_id:user_id}, function (err, count) {
 
-        // バージョンチェック追加して返却
-        res.setHeader('appVersion', global.mb.appVersion);
+        console.log('userPocket count=', count);
+        if (count >= 300) {
+            res.json(400, 'max hold count proceeded. max=300');
+            return;
+        }
 
-        appUtil.basicResponse(res, err);
+
+        // execute.
+        userPocketModel.insertObject(req.body, function (err) {
+            appUtil.actionLog(req, ['add pocket.', JSON.stringify({music_id: req.body.music_id, feeling_id: req.body.feeling_id, youtube_id: req.body.youtube_id})]);
+
+            // バージョンチェック追加して返却
+            res.setHeader('appVersion', global.mb.appVersion);
+
+            appUtil.basicResponse(res, err);
+        });
+
+        // ユーザーのプレイリスト更新
+        onlineBatch.refreshUserPlaylistByAddingPocket(user_id, req.body.music_id);
+
+        // フォローユーザーへお知らせを追加する。
+        onlineBatch.addUserNotificationWhenFollowUserAddPocket(user_id, req.body.music_id);
+
     });
 
 
-    // ユーザーのプレイリスト更新
-    onlineBatch.refreshUserPlaylistByAddingPocket(user_id, req.body.music_id);
 
 
 
 
-    // フォローユーザーへお知らせを追加する。
-    onlineBatch.addUserNotificationWhenFollowUserAddPocket(user_id, req.body.music_id);
+
+
+
+
 
 };
 

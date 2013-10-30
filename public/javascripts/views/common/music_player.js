@@ -6,7 +6,11 @@
     理想の責務分担はこれから考えます。
 
  */
-define([], function () {
+define([
+    'views/pop/index'
+], function (
+    PopView
+) {
 
     var MusicPlayerView = Backbone.View.extend({
 
@@ -175,7 +179,7 @@ define([], function () {
                 .removeClass('hidden');
 
             // プレイヤーを再生状態にする
-            this.$el.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+            this.$header.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // プレイリスト中身表示を作る
             this.renderMusicQueueArea();
@@ -247,7 +251,9 @@ define([], function () {
             this.$artistName.html(this.currentMusic.artistName);
             if(_.alreadyPocket(this.currentMusic.music_id)) {
                 this.$header.find('[data-event-click="pocket"]').addClass('is-active');
-            };
+            } else {
+                this.$header.find('[data-event-click="pocket"]').removeClass('is-active');
+            }
 
             func(param, this.$previewArea, _.bind(function () {
 
@@ -297,7 +303,7 @@ define([], function () {
             曲を再開する
         */
         startMusic: function () {
-            this.$el.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+            this.$header.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // audioタグの場合
             if (this.audioPlayer) {
@@ -321,7 +327,7 @@ define([], function () {
             曲を一時停止させる
         */
         pauseMusic: function () {
-            this.$el.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
+            this.$header.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
 
             // audioタグの場合
             if (this.audioPlayer) {
@@ -420,7 +426,7 @@ define([], function () {
                     color: 'white'
                 });
                 $a.attr('href', _.createItunesUrl(this.currentMusic.itunes_url)).text('iTunesでこの曲をチェックする');
-                this.$previewArea.append($a);                
+                this.$previewArea.append($a);
             }
 
 
@@ -502,7 +508,7 @@ define([], function () {
                     color: 'white'
                 });
                 $a.attr('href', _.createItunesUrl(this.currentMusic.itunes_url)).text('iTunesでこの曲をチェックする');
-                this.$previewArea.append($a);                
+                this.$previewArea.append($a);
             }
 
 
@@ -840,11 +846,25 @@ define([], function () {
         /**
             Dropを追加する
         */
-        addDrop: function () {
+        addDrop: function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Playerが使われていない場合には、動かさない
+            if (!this.currentMusic) {
+                return false;
+            }
+
             // ga
             _gaq.push(['_trackEvent', 'addDropWithCurrentMusic', '']);
 
-            alert('now building');
+            // show PopView.
+            this.popView = new PopView();
+            this.$el.append(this.popView.$el);
+            this.popView.show(this.currentMusic.music_id, undefined, 'modal');
+
+            return false;
         },
 
 

@@ -129,7 +129,7 @@ _.mbStorage = {
             dataType: 'json',
             success: function (user) {
                 if (user && user.id) {
-                    _.mbStorage.setUser(user);                    
+                    _.mbStorage.setUser(user);
                 }
             }
         });
@@ -236,7 +236,7 @@ var ajaxInterceptor = {
     sync: function (method, model, options) {
 
         options = options || {};
-        console.log('options: ', options);
+        // console.log('options: ', options);
 
 
         // 成功処理のインターセプタ
@@ -331,7 +331,7 @@ _.likePop = function (popId, callback) {
                 mb.router.appView.authErrorHandler();
                 return;
             } else {
-                alert('api error');
+                alert('エラーが発生しました。ブラウザのリロードをお願いします。');
                 console.log('error: ', arguments);
             }
         },
@@ -361,7 +361,7 @@ _.dislikePop = function (popId, callback) {
                 mb.router.appView.authErrorHandler();
                 return;
             } else {
-                alert('api error');
+                alert('エラーが発生しました。ブラウザのリロードをお願いします。');
                 console.log('error: ', arguments);
             }
         },
@@ -437,6 +437,23 @@ _.loadUserArtistFollow = function (options) {
 
 
 
+// 既にLike済みかを判断する
+_.alreadyLike = function (popId) {
+
+    // LikePopを把握していない場合には、false
+    var user = _.mbStorage.getUser();
+    if (!user) {
+        return false;
+    }
+    var likePops = user.like_pop;
+    if (!likePops || likePops.length === 0) {
+        return false;
+    }
+
+    likePops = JSON.parse(likePops);
+    return _.contains(likePops, popId);
+};
+
 
 
 
@@ -444,18 +461,21 @@ _.loadUserArtistFollow = function (options) {
 _.alreadyPocket = function (musicId) {
 
     // UserPocketを把握していない場合は、false
-    var userPocketString = localStorage.getItem('userPockets');
-    if (!userPocketString) {
+    var user = _.mbStorage.getUser();
+    if (!user) {
+        return false;
+    }
+    var userPockets = user.userPockets;
+    if (!userPockets) {
         return false;
     }
 
-    var userPockets = JSON.parse(userPocketString);
+
     for (var i = 0; i < userPockets.length; i++) {
         if (userPockets[i].music_id === musicId) {
             return true;
         }
     }
-
 
     return false;
 
@@ -612,6 +632,20 @@ _.selectPocketId = function (musicId) {
     Pocketを追加する
 */
 _.addPocket = function (data, callback) {
+
+    // Loginチェック
+    if (!_.isLogedIn()) {
+        mb.router.appView.authErrorHandler();
+        return;
+    }
+
+    // Max個数チェック
+    var userPockets = _.mbStorage.getUser().userPockets;
+    if (userPockets.length >= 300) {
+        alert('Pocketは最大個数に到達しました。追加する場合にはまず不要なPocketを削除してください。');
+        return;
+    }
+
 
     $.ajax({
         url: '/api/v1/user_pockets',

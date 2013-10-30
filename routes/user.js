@@ -1,6 +1,6 @@
 "use strict";
 /*
- * User. 
+ * User.
  */
 var util = require('util');
 var appUtil = require('../util/utility');
@@ -10,7 +10,7 @@ var userModel = require('../models/user');
 var userFollowModel = require('../models/user_follow');
 
 /**
- * Select 
+ * Select
  */
 exports.select = function(req, res){
 
@@ -26,7 +26,7 @@ exports.select = function(req, res){
 
 
 /**
- * SelectObject 
+ * SelectObject
  */
 exports.selectObject = function(req, res){
 
@@ -37,7 +37,7 @@ exports.selectObject = function(req, res){
         }
 
         var result = (rows.length > 0 ? rows[0] : {});
-        
+
         // 検索結果が無い場合には、そのまま返す
         if (rows.length === 0) {
             res.json(result);
@@ -50,13 +50,13 @@ exports.selectObject = function(req, res){
         var uid = req.cookies.uid;
         if (uid) {
             if (!global.sessionMap) {
-                global.sessionMap = {}; 
-            }   
+                global.sessionMap = {};
+            }
             var anUserId = global.sessionMap[uid];
             if (anUserId) {
                 userId = anUserId;
-            }   
-        } 
+            }
+        }
 
         // もしログインしていない場合には、フォロー可能ユーザーとして返す。
         if (!userId) {
@@ -112,16 +112,17 @@ exports.userinfo = function (req, res) {
 /**
  *  Add
  */
-exports.add = function(req, res) {
+// 現在はサポートしていない
+// exports.add = function(req, res) {
 
-    // TODO check params.
+//     // TODO check params.
 
-    // execute.
-    userModel.insertObject(req.body, function (err) {
-        appUtil.basicResponse(res, err);
-    });
+//     // execute.
+//     userModel.insertObject(req.body, function (err) {
+//         appUtil.basicResponse(res, err);
+//     });
 
-};
+// };
 
 
 
@@ -130,10 +131,25 @@ exports.add = function(req, res) {
  */
 exports.update = function(req, res) {
 
-    // TODO check params.
+    // いまのところは名前変更だけ受付可能
+    var name = req.body.name;
+    if (!name || name.length === 0) {
+        res.json(400, 'name must be set.');
+        return;
+    } else if (name.length > 16) {
+        res.json(400, 'name max length 16. actual=' + name.length);
+        return;
+    }
+
+
+    // param
+    var param = {
+        name: name
+    };
+
 
     // execute
-    userModel.updateObject(req.body, req.params, function (err) {
+    userModel.updateObject(param, req.params, function (err) {
         appUtil.basicResponse(res, err);
     });
 

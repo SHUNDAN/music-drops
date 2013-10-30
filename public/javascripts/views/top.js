@@ -174,50 +174,49 @@ define([
 
 
         likePop: function (e) {
-            var popId = $(e.currentTarget).data('pop-id');
+            e.preventDefault();
+            e.stopPropagation();
+
+            var $li = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $li.data('pop-id');
             console.log('likePop: ', popId);
 
             _.likePop(popId, _.bind(function () {
 
-                // change visual.
-                var $btns = this.$el.find('[data-pop-id="'+popId+'"].btn');
-                $btns.addClass('btn-primary');
-                $btns.attr('data-event', 'dislikePop');
+                // 表示制御
+                $li.find('[data-event-click="likePop"], [data-event-click="dislikePop"]').toggleClass('hidden');
 
-                // save to local.
-                this.likeArray.push(popId);
-                var user = this.userStorage.getUser();
-                user.like_pop = JSON.stringify(this.likeArray);
-                this.userStorage.setUser(user);
+                // 情報更新
+                _.mbStorage.refreshUser();
 
             }, this));
 
+            return false;
         },
 
 
 
         dislikePop: function (e) {
-            var popId = $(e.currentTarget).data('pop-id');
-            console.debug('dislikePop: ', popId);
+            e.preventDefault();
+            e.stopPropagation();
 
+            var $li = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $li.data('pop-id');
+            console.debug('dislikePop: ', popId);
 
             _.dislikePop(popId, _.bind(function () {
 
                 console.log('success dilike.');
 
-                // change visual.
-                var $btns = this.$el.find('[data-pop-id="'+popId+'"].btn');
-                $btns.removeClass('btn-primary');
-                $btns.attr('data-event', 'likePop');
+                // 表示制御
+                $li.find('[data-event-click="likePop"], [data-event-click="dislikePop"]').toggleClass('hidden');
 
-                // save to local.
-                this.likeArray = _.without(this.likeArray, popId);
-                var user = this.userStorage.getUser();
-                user.like_pop = JSON.stringify(this.likeArray);
-                this.userStorage.setUser(user);
+                // 情報更新
+                _.mbStorage.refreshUser();
 
             }, this));
 
+            return false;
         },
 
 
@@ -375,7 +374,7 @@ define([
 
             var $this = $(e.currentTarget);
 
-            // もしAllの場合には、それらしい動きをさせる
+            // もしAllの場合には、ALLらしい動きをさせる
             if ($this.data('feeling-id') === 0) {
                 $this.toggleClass('is-active');
 
@@ -387,14 +386,28 @@ define([
 
             // ALL以外
             } else {
-                $this.toggleClass('is-active');
 
-                // もし全部アクティブなら、ALLもアクティブにする
-                if ( this.$el.find('#feelingFilter .is-active:not([data-feeling-id="0"])').length === _.mbStorage.getCommon().feelings.length) {
-                    this.$el.find('#feelingFilter [data-feeling-id="0"]').addClass('is-active');
+                // もし全部がONの場合には、特別にそれのみを選択状態にする
+                if (this.$el.find('#feelingFilter li').length === this.$el.find('#feelingFilter .is-active').length) {
+                    this.$el.find('#feelingFilter li').removeClass('is-active');
+                    $this.addClass('is-active');
+
+
+                // 上記の特別仕様以外の場合
                 } else {
-                    this.$el.find('#feelingFilter [data-feeling-id="0"]').removeClass('is-active');   
+
+                    $this.toggleClass('is-active');
+
+                    // もし全部アクティブなら、ALLもアクティブにする
+                    if ( this.$el.find('#feelingFilter .is-active:not([data-feeling-id="0"])').length === _.mbStorage.getCommon().feelings.length) {
+                        this.$el.find('#feelingFilter [data-feeling-id="0"]').addClass('is-active');
+                    } else {
+                        this.$el.find('#feelingFilter [data-feeling-id="0"]').removeClass('is-active');
+                    }
+
                 }
+
+
             }
 
 

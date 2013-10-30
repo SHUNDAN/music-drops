@@ -13,9 +13,8 @@ define(function () {
             music_id: null,
         },
 
-        url: function () {
-            return '/api/v1/pops';
-        },
+        urlRoot: '/api/v1/pops',
+
 
         create: function () {
             console.log('create');

@@ -73,7 +73,29 @@ exports.add = function(req, res) {
  */
 exports.update = function(req, res) {
 
-    // TODO check params.
+    // パラメータチェック
+    if (!req.params.id) {
+        res.json(400, 'id must be set.');
+        return;
+    }
+
+
+    // 認証チェック＆ユーザーID取得
+    var user_id = appUtil.getUserIdFromRequest(req);
+    if (!user_id) {
+        appUtil.actionLog(req, 'delete user notification failed. no authentication');
+        appUtil.response403(res);
+        return;
+    }
+
+    // 自分の以外は消せないようにする。
+    var param = (req.params.id ? req.params : req.body);
+    param.user_id = user_id;
+    console.log('param: ', param);
+
+
+
+
 
 
     // execute

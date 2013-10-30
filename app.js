@@ -413,14 +413,17 @@ app.get('/api/v1/artists/:id', artist.selectObject);
 
 // Pop
 app.get('/api/v1/pops', pop.select);
+app.get('/api/v1/pops/:id', pop.select);
 app.get('/api/v1/poplist', pop.selectPopList);
 app.put('/api/v1/likepop', pop.likePop);
 app.post('/api/v1/likepop/:id', pop.likePop);
 app.put('/api/v1/dislikepop', pop.dislikePop);
 app.post('/api/v1/dislikepop/:id', pop.dislikePop);
 app.post('/api/v1/pops', pop.add);
+app.put('/api/v1/pops/:id', pop.update);
 app.post('/api/v1/pops/:id/update', pop.update);
 app.delete('/api/v1/pops/:id', pop.delete);
+app.delete('/api/v1/pops', pop.delete);
 // app.post('/api/v1.1/pops', pop.add1_1);
 // app.post('/api/v1.1/pops/:id/update', pop.update1_1);
 // app.delete('/api/v1.1/pops/:id', pop.delete1_1);
@@ -429,7 +432,7 @@ app.delete('/api/v1/pops/:id', pop.delete);
 app.get('/api/v1/users', user.select);
 app.get('/api/v1/users/:id', user.selectObject);
 app.get('/api/v1/userInfo', user.userinfo);
-app.post('/api/v1/users', user.add);
+// app.post('/api/v1/users', user.add);
 app.post('/api/v1/users/:id/update', user.update);
 app.put('/api/v1/users/:id', user.update);
 app.delete('/api/v1/users/:id', user.delete);
