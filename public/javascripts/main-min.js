@@ -1062,7 +1062,7 @@ define('views/common/music_player',[
 
             // Pocket追加
             if (!$this.hasClass('is-active')) {
-                _.addPocket({music_id: this.currentMusic.music_id}, _.bind(function () {
+                _.addPocket({music_id: this.currentMusic.music_id, youtube_id:this.currentMusic.youtube_id}, _.bind(function () {
 
                     // Pocketボタンの表示切替
                     $(e.currentTarget).addClass('is-active');
@@ -2555,9 +2555,7 @@ define('models/music/music_link',[], function () {
         },
 
 
-        url: function () {
-            return '/api/v1/music_links';
-        },
+        urlRoot: '/api/v1/music_links',
 
 
         create: function () {
@@ -2703,20 +2701,13 @@ define('views/music/index',[
             _.bindEvents(this);
 
 
-            this.model = new Music();
-            this.collection = new PopList();
             this.musicLinkCollection = new MusicLinkList();
-            _.bindAll(this, 'addLink', 'render', 'renderMusicInfo', 'renderPopList', 'renderMusicLinkList', 'finishUserAddMusicLink', 'pocket', 'deletePocket', 'show', 'showYoutube', 'dealloc');
-            this.model.bind('change', this.renderMusicInfo);
-            this.collection.bind('reset', this.renderPopList);
+            _.bindAll(this, 'addLink', 'render', 'renderMusicInfo', 'renderPopList', 'renderMusicLinkList', 'finishUserAddMusicLink', 'show', 'dealloc');
             this.musicLinkCollection.bind('reset', this.renderMusicLinkList);
         },
 
         events: {
             'click #addLink': 'addLink',
-            'click [data-event="addPocket"]': 'pocket',
-            'click [data-event="deletePocket"]': 'deletePocket',
-            'click [data-event="playYoutube"]': 'showYoutube',
         },
 
         render: function () {
@@ -2728,17 +2719,26 @@ define('views/music/index',[
             this.$el.append(frame);
         },
 
+
+
         renderMusicInfo: function () {
-            console.log('renderMusicInfo', this.model.attributes);
-            var musicInfo = _.template($('#page_music_detail_info').html(), _.extend({}, this.model.attributes, this.userStorage.getCommon()));
+            console.log('renderMusicInfo', this.music.attributes);
+
+            var musicInfo = _.template($('#page_music_detail_info').html(), _.extend({
+                repPop: this.repPop
+            }, this.music.attributes, this.userStorage.getCommon()));
             this.$el.find('#musicInfoArea').html(musicInfo);
         },
 
+
+
         renderPopList: function () {
             console.log('renderPopList');
-            var html = _.template($('#page_music_detail_poplist').html(), {popList: this.collection.models});
+            var html = _.template($('#page_music_detail_poplist').html(), {popList: this.popList.models});
             this.$el.find('#popListArea').html(html);
         },
+
+
 
         renderMusicLinkList: function () {
             var template = $('#page_music_detail_music_links').html();
@@ -2751,8 +2751,8 @@ define('views/music/index',[
         addLink: function (e) {
             var $this = $(e.currentTarget);
             var $container = $this.parents('.add-musicLink');
-            var comment = $container.find('[data-type="comment"]').text();
-            var link = $container.find('[data-type="link"]').text();
+            var comment = $container.find('[data-type="comment"]').val();
+            var link = $container.find('[data-type="link"]').val();
 
             // データチェック
             if (comment.length === 0) {
@@ -2771,7 +2771,7 @@ define('views/music/index',[
 
             // データ保存
             this.userAddMusicLink = new MusicLink();
-            this.userAddMusicLink.attributes.music_id = this.music_id;
+            this.userAddMusicLink.attributes.music_id = this.music.attributes.id;
             this.userAddMusicLink.attributes.comment = comment;
             this.userAddMusicLink.attributes.link = link;
             this.userAddMusicLink.bind('sync', this.finishUserAddMusicLink);
@@ -2780,7 +2780,6 @@ define('views/music/index',[
 
         finishUserAddMusicLink: function () {
             alert('success');
-            // mb.router.navigate('music/' + this.music_id, true);
             window.location.reload();
         },
 
@@ -2788,96 +2787,42 @@ define('views/music/index',[
         /**
          * 曲をPocketする
          */
-        pocket: function (e) {
-            console.log('pocket', this.music_id);
+        addPocket: function (e) {
+            console.log('addPocket', this.music.id);
 
-            this.userPocket = new UserPocket();
-            this.userPocket.set('music_id', this.music_id);
-            this.userPocket.set('feeling_id', $(e.currentTarget).data('feeling-id'));
-            this.userPocket.set('youtube_id', $(e.currentTarget).data('youtube-id'));
-            this.userPocket.set('music_link_id', $(e.currentTarget).data('link-id'));
-            this.userPocket.bind('sync', _.bind(this.pocketSuccessed, this));
-            this.userPocket.create();
+            var $this = $(e.currentTarget);
+            var data = {
+                music_id: this.music.id,
+                youtube_id: $this.data('youtube-id'),
+                music_link_id: $this.data('link-id')
+            };
+
+            _.addPocket(data, _.bind(function () {
+                this.$el.find('[data-event-click="addPocket"], [data-event-click="deletePocket"]').toggleClass('hidden');
+            }, this));
+
 
             return false;
         },
 
+
         /**
-         * Pocket成功時
-         */
-        pocketSuccessed: function () {
-
-            // LocalDataを更新
-            _.loadUserPockets({force: true});
-
-
-            // UIとイベントを変更
-            $('[data-event="addPocket"]')
-                .text('Pocket解除')
-                .addClass('btn-primary')
-                .attr('data-event', 'deletePocket');
-
-
-            // 通知
-            // alert('pocket successed');
-        },
-
-
+            Pocketを解除する
+        */
         deletePocket: function () {
 
-            // 対象を探して、削除
-            $.ajax({
-                url: '/api/v1/user_pockets',
-                data: {
-                    user_id: this.userStorage.getUser().id,
-                    music_id: this.music_id
-                },
-                dataType: 'json',
-                success: function (pockets) {
-                    console.debug('delete target pockets: ', pockets);
-
-                    var count = pockets.length;
-                    var doneCount = 0;
-
-                    // 1個ずつ削除
-                    for (var i = 0; i < pockets.length; i++) {
-                        var id = pockets[i].id;
-                        var pocket = new UserPocket();
-                        pocket.set('id', id);
-                        pocket.bind('sync', function () {
-                            if (++doneCount === count) {
-
-                                // UIとイベントを変更する
-                                $('[data-event="deletePocket"]')
-                                    .text('Pocketする')
-                                    .removeClass('btn-primary')
-                                    .attr('data-event', 'addPocket');
-
-                                // Localデータも更新
-                                _.loadUserPockets({force:true});
-                            }
-                        });
-                        pocket.destroy({wait:true});
-                    }
-
-                    // UIとイベントを変更する
-                    if (count === doneCount) {
-                        $('[data-event="deletePocket"]')
-                            .text('Pocketする')
-                            .removeClass('btn-primary')
-                            .attr('data-event', 'addPocket');
-
-                        // Localデータも更新
-                        _.loadUserPockets({force:true});
-                    }
-
-                }
-            });
+            var pocketId = _.selectPocketId(this.music.id);
+            _.deletePocket(pocketId, _.bind(function () {
+                this.$el.find('[data-event-click="addPocket"], [data-event-click="deletePocket"]').toggleClass('hidden');
+            }, this));
 
         },
 
 
 
+        /**
+            Popを追加するUIを表示する
+        */
         addPop: function () {
 
             // show PopView.
@@ -2885,6 +2830,189 @@ define('views/music/index',[
             this.$el.append(this.popView.$el);
             this.popView.show(this.music_id, undefined, 'modal');
         },
+
+
+
+        /**
+            曲を再生する
+        */
+        playMusic: function (e) {
+            var $this = $(e.currentTarget);
+            var self = this;
+            var options = {};
+
+            // Pause中ならそれを再生する
+            if ($('#playBtnArea').hasClass('nowpausing')) {
+                $('#playBtnArea').removeClass('nowpausing');
+                mb.musicPlayer.startMusic();
+                return;
+            }
+
+
+            // プレイリスト名、特定子
+            options.playlistName = this.music.attributes.title;
+            options.identifier = 'music_detail ' + this.music.id;
+
+            // 開始位置と内容
+            options.startPos = 0;
+            var aMusicInfo = this.music.attributes;
+            aMusicInfo.music_id = this.music.id;
+            options.musicArray = [aMusicInfo];
+
+            // callback.
+            options.callbackWhenWillStart = _.bind(function (music) {
+
+                this.$el.find('#musicInfoArea [data-event-click="playMusic"]').addClass('hidden');
+                this.$el.find('#musicInfoArea [data-event-click="pauseMusic"]').removeClass('hidden');
+
+            }, this);
+            options.callbackWhenEnd = _.bind(function () {
+
+                this.$el.find('#musicInfoArea [data-event-click="playMusic"]').removeClass('hidden');
+                this.$el.find('#musicInfoArea [data-event-click="pauseMusic"]').addClass('hidden');
+
+            }, this);
+
+
+            // play
+            console.log('play music. arraycount=', options.musicArray.length, ',startPos=', options.startPos);
+            mb.musicPlayer.playMusics(options);
+        },
+
+
+        /**
+            曲の再生を行う
+        */
+        playYoutube: function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            var musicLinkId = $(e.currentTarget).data('musiclink-id');
+            console.debug('playYoutube.', musicLinkId);
+
+            var options = {};
+
+            // プレイリスト名、特定子
+            options.playlistName = this.music.attributes.title;
+            options.identifier = 'music_detail ' + this.music.id;
+
+            // 開始位置と内容
+            options.startPos = 0;
+            var aMusicInfo = this.music.attributes;
+            aMusicInfo.music_id = this.music.id;
+            aMusicInfo.youtube_id = this.musicLinkCollection.get(musicLinkId).attributes.youtube_id;
+            options.musicArray = [aMusicInfo];
+
+            // play
+            console.log('play music. arraycount=', options.musicArray.length, ',startPos=', options.startPos);
+            mb.musicPlayer.playMusics(options);
+
+            return false;
+        },
+
+
+
+
+
+
+
+
+
+        /**
+            曲を一時停止する
+        */
+        pauseMusic: function () {
+            $('#playBtnArea').addClass('nowpausing');
+            mb.musicPlayer.pauseMusic();
+
+            this.$el.find('#musicInfoArea [data-event-click="playMusic"]').removeClass('hidden');
+            this.$el.find('#musicInfoArea [data-event-click="pauseMusic"]').addClass('hidden');
+
+        },
+
+
+
+        /**
+            ユーザーフォロー
+        */
+        followUser: function () {
+            var userId = this.repPop.attributes.user_id;
+            _.followUser(userId, function () {
+                $('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
+            });
+        },
+
+
+        /**
+            ユーザーフォロー解除
+        */
+        unfollowUser: function () {
+            var userFollowId = _.selectUserFollowId(this.repPop.attributes.user_id);
+            _.unfollowUser(userFollowId, function () {
+                $('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
+            });
+        },
+
+
+        /**
+            Popに対するLike
+        */
+        likePop: function () {
+            _.likePop(this.repPop.attributes.id, function () {
+                $('[data-event-click="likePop"], [data-event-click="dislikePop"]').toggleClass('hidden');
+            });
+        },
+
+
+        /**
+            PopのLike解除
+        */
+        dislikePop: function () {
+            _.dislikePop(this.repPop.attributes.id, function () {
+                $('[data-event-click="likePop"], [data-event-click="dislikePop"]').toggleClass('hidden');
+            });
+        },
+
+
+        /**
+            Popに対するLike（その他リンク向け）
+        */
+        likePop2: function (e) {
+            e.preventDefault();
+            e.stopPropagation();            
+
+            var $parent = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $parent.data('pop-id');
+
+            _.likePop(popId, function () {
+                $parent.find('[data-event-click="likePop2"], [data-event-click="dislikePop2"]').toggleClass('hidden');
+            });
+
+            return false;
+        },
+
+
+        /**
+            PopのLike解除（その他リンク向け）
+        */
+        dislikePop2: function (e) {
+            e.preventDefault();
+            e.stopPropagation();            
+
+            var $parent = $(e.currentTarget).parents('[data-pop-id]');
+            var popId = $parent.data('pop-id');
+
+            _.dislikePop(popId, function () {
+                $parent.find('[data-event-click="likePop2"], [data-event-click="dislikePop2"]').toggleClass('hidden');
+            });
+
+            return false;
+        },
+
+
+
+
+
 
 
 
@@ -2906,24 +3034,136 @@ define('views/music/index',[
 
 
 
+        /**
+            Link削除
+        */
+        deleteLink: function (e) {
+            e.preventDefault();
+            e.stopPropagation();            
+
+            var musicLinkId = $(e.currentTarget).parents('[data-musiclink-id]').data('musiclink-id');
+            console.debug('deleteLink.', musicLinkId);
+
+            if (window.confirm('リンクを削除しますか')) {
+
+                var musicLink = this.musicLinkCollection.get(musicLinkId);
+                musicLink.set('id', musicLinkId);
+                musicLink.bind('sync', _.bind(function () {
+
+                    this.musicLinkCollection.remove(musicLink);
+                    this.renderMusicLinkList();
+
+                }, this));
+                musicLink.destroy();
+
+            }
+
+            return false;
+        },
+
+
+
+        /**
+            レポート機能
+        */
+        report: function (e) {
+            e.preventDefault();
+            e.stopPropagation();            
+
+            var musicLinkId = $(e.currentTarget).parents('[data-musiclink-id]').data('musiclink-id');
+            console.debug('report.', musicLinkId);
+
+            // 今はリンク切れだけ
+            $.ajax({
+                url: '/api/v1/reports',
+                method: 'post',
+                data: {
+                    type: 1,
+                    music_link_id: musicLinkId
+                },
+                success: function () {
+                    alert('報告ありがとうございます');
+                },
+                error: function (xhr) {
+                    if (xhr.status === 403) {
+                        mb.router.appView.authErrorHandler();
+                        return;
+                    } else {
+                        alert('エラーが発生しました。ブラウザのリロードをお願いします。');
+                        console.log('error: ', arguments);
+                    }
+                },
+            });
+
+
+
+            return false;
+        },
+        
+
+
+
+
+
+
+
+
+
+
+
 
 
         show: function (musicId) {
             this.music_id = musicId;
             this.render();
 
-            // 情報を取得する
+            // 音楽を取得する
             this.music = new Music();
             this.music.set('id', musicId);
             this.music.bind('sync', _.bind(function () {
 
+                this.music.loaded = true;
+
                 // デフォルト値を設定する
                 this.music.attributes.feeling_id = this.music.attributes.feeling_id || 1;
-                this.renderMusicInfo();
-            }, this));
 
-            this.model.loadData(musicId);
-            this.collection.refreshDataWithMusicId(musicId);
+                if (this.popList.loaded) {
+                    this.renderMusicInfo();
+                    this.renderPopList();
+                }
+
+
+            }, this));
+            this.music.fetch();
+
+
+            // Popを取得する
+            this.popList = new PopList();
+            this.popList.bind('reset', _.bind(function () {
+
+                this.popList.loaded = true;
+
+
+                // Like数が多い順に並び替える
+                this.popList.models = _.sortBy(this.popList.models, function (pop) {
+                    return (pop.like_count_speed || 0) * -1;
+                });
+
+                // 一番Likeされているものを代表Popとする
+                this.repPop = (this.popList.length > 0 ? this.popList.models[0] : null);
+
+
+
+                if (this.music.loaded) {
+                    this.renderMusicInfo();
+                    this.renderPopList();
+                }
+
+            }, this));
+            this.popList.fetch({reset:true, data:{music_id:musicId}});
+
+
+            // this.popList.refreshDataWithMusicId(musicId);
             this.musicLinkCollection.refreshDataWithMusicId(musicId);
         },
 
@@ -4137,7 +4377,6 @@ define('views/mypage',[
                 });
 
             } else {
-                console.debug('bbb', self.displayUserPocketList.models.length);
                 models = self.displayUserPocketList.models;
             }
 
@@ -6576,7 +6815,7 @@ define('views/common/footer',[], function () {
 
 
 /*
- *  Application View 
+ *  Application View
  */
 define('views/app',[
     'views/common/header',
@@ -6618,8 +6857,8 @@ define('views/app',[
 
     // AppView
     var ApplicationView = Backbone.View.extend({
-   
-        // Field 
+
+        // Field
         currentPageView: null,
         userStorage: new UserStorage(),
         $mainArea: null,
@@ -6632,11 +6871,11 @@ define('views/app',[
 
             // Add Header
             this.headerView = new HeaderView();
-            this.headerView.show(); 
+            this.headerView.show();
 
             // Add Footer
             this.footerView = new FooterView();
-            this.footerView.show(); 
+            this.footerView.show();
 
             // Music Player.
             // 各ページから使いたいので、グローバル変数へ代入する。
@@ -6772,7 +7011,7 @@ define('views/app',[
             var delay = 300;
             var self = this;
             $('body').transition({opacity: 0}, duration, function() {
-                old$el.remove(); 
+                old$el.remove();
                 window.scrollTo(0,0);
             });
 
@@ -6805,7 +7044,7 @@ define('views/app',[
                         url: '/api/v1/userInfo',
                         dataType: 'json',
                         success: function (user) {
-                            self.userStorage.setUser(user); 
+                            self.userStorage.setUser(user);
 
                             // ユーザーにひもづく各種情報も取得しておく
                             _.loadUserPockets({force:true});
@@ -6827,14 +7066,13 @@ define('views/app',[
 
 
             // ログイン状況に合わせて、左上のモジュールを切り替える
-            console.debug('aaaaaaa: ', _.isLogedIn());
             if (_.isLogedIn()) {
                 $('#appLoginModule').addClass('hidden');
                 $('#gotoUserSetting').removeClass('hidden');
 
                 var user = _.mbStorage.getUser();
                 $('#gotoUserSetting').html('<i class="ico-font ico-user mr5"></i>' + user.name);
-            
+
             } else {
                 $('#appLoginModule').removeClass('hidden').text('ログイン');
                 $('#gotoUserSetting').addClass('hidden');
@@ -6844,7 +7082,7 @@ define('views/app',[
 
 
         },
-    
+
     });
 
     return ApplicationView;
@@ -6924,6 +7162,7 @@ require([
             'artist/:id': 'artist',
             'timeline': 'timeline',
             'usersetting': 'usersetting',
+            'rules': 'rules',
             '*path': 'defaultRoute'
         },
 
@@ -7010,6 +7249,12 @@ require([
             this.sendAction('/#usersetting');
             this.appView.toUserSetting();
             _gaq.push(['_trackPageview', '/#usersetting']);
+        },
+
+        rules: function () {
+            this.sendAction('/#rules');
+            this.appView.toRules();
+            _gaq.push(['_trackPageview', '/#rules']);
         },
 
     
