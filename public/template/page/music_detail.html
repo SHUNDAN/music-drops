@@ -184,7 +184,7 @@
                 <td class="gp">
                     <div class="musicLink-url mb10">
                         <% if (musicLink.attributes.youtube_id) { %>
-                        <a class="text-link" href="<%- musicLink.attributes.link %>" target="_blank" data-event="playYoutube" data-youtube-id="<%- musicLink.attributes.youtube_id %>">
+                        <a class="text-link" href="<%- musicLink.attributes.link %>" target="_blank" data-event-click="playYoutube" data-musiclink-id="<%- musicLink.attributes.id %>">
                             <span class="elps"><%- musicLink.attributes.link %></span><i class="ico-font ico-play"></i>
                         </a>
                         <% } else { %>
@@ -193,14 +193,17 @@
                         </a>
                         <% } %>
                     </div>
-                    <div class="musicLink-edit fr">
-                        <a id="" class="btn-text btn-text-back btn-text-color-brown" href="#">編集</a>
-                        <a id="" class="btn-text btn-text-back btn-text-color-brown" href="#">削除</a>
+                    <div class="musicLink-edit fr" data-musiclink-id="<%=musicLink.attributes.id%>">
+                        <%if (_.mbStorage.getUserId() === musicLink.attributes.user_id) {%>
+                            <a class="btn-text btn-text-back btn-text-color-brown" href="#" data-event-click="deleteLink">削除</a>
+                        <%}%>
                         <a id="" class="btn-text btn-text-back btn-text-color-brown" href="#">報告</a>
                         <%if (_.alreadyPocket(musicLink.attributes.music_id) === false) {%>
-                        <div id="" class="btn-text btn-text-back btn-text-color-brown" data-event="addPocket" data-feeling-id="0" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">URLをポケット</div>
+                        <div id="" class="btn-text btn-text-back btn-text-color-brown" data-event-click="addPocket" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">URLをポケット</div>
+                        <div id="" class="btn-text btn-text-back btn-text-color-brown hidden" data-event-click="deletePocket" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">Pocket解除</div>
                         <%} else {%>
-                        <div id="" class="btn-text btn-text-back btn-text-color-brown" data-event="deletePocket" data-feeling-id="0" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">Pocket解除</div>
+                        <div id="" class="btn-text btn-text-back btn-text-color-brown hidden" data-event-click="addPocket" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">URLをポケット</div>
+                        <div id="" class="btn-text btn-text-back btn-text-color-brown" data-event-click="deletePocket" data-youtube-id="<%=musicLink.attributes.youtube_id%>" data-link-id="<%=musicLink.attributes.id%>">Pocket解除</div>
                         <%}%>
                     </div>
                 </td>

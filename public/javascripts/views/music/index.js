@@ -34,13 +34,12 @@ define([
 
 
             this.musicLinkCollection = new MusicLinkList();
-            _.bindAll(this, 'addLink', 'render', 'renderMusicInfo', 'renderPopList', 'renderMusicLinkList', 'finishUserAddMusicLink', 'show', 'showYoutube', 'dealloc');
+            _.bindAll(this, 'addLink', 'render', 'renderMusicInfo', 'renderPopList', 'renderMusicLinkList', 'finishUserAddMusicLink', 'show', 'dealloc');
             this.musicLinkCollection.bind('reset', this.renderMusicLinkList);
         },
 
         events: {
             'click #addLink': 'addLink',
-            'click [data-event="playYoutube"]': 'showYoutube',
         },
 
         render: function () {
@@ -214,6 +213,44 @@ define([
 
 
         /**
+            曲の再生を行う
+        */
+        playYoutube: function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            var musicLinkId = $(e.currentTarget).data('musiclink-id');
+            console.debug('playYoutube.', musicLinkId);
+
+            var options = {};
+
+            // プレイリスト名、特定子
+            options.playlistName = this.music.attributes.title;
+            options.identifier = 'music_detail ' + this.music.id;
+
+            // 開始位置と内容
+            options.startPos = 0;
+            var aMusicInfo = this.music.attributes;
+            aMusicInfo.music_id = this.music.id;
+            aMusicInfo.youtube_id = this.musicLinkCollection.get(musicLinkId).attributes.youtube_id;
+            options.musicArray = [aMusicInfo];
+
+            // play
+            console.log('play music. arraycount=', options.musicArray.length, ',startPos=', options.startPos);
+            mb.musicPlayer.playMusics(options);
+
+            return false;
+        },
+
+
+
+
+
+
+
+
+
+        /**
             曲を一時停止する
         */
         pauseMusic: function () {
@@ -292,6 +329,44 @@ define([
             // aタグ機能は無効化
             return false;
         },
+
+
+
+        /**
+            Link削除
+        */
+        deleteLink: function (e) {
+            e.preventDefault();
+            e.stopPropagation();            
+
+            var musicLinkId = $(e.currentTarget).parents('[data-musiclink-id]').data('musiclink-id');
+            console.debug('deleteLink.', musicLinkId);
+
+            if (window.confirm('リンクを削除しますか')) {
+
+                var musicLink = this.musicLinkCollection.get(musicLinkId);
+                musicLink.set('id', musicLinkId);
+                musicLink.bind('sync', _.bind(function () {
+
+                    this.musicLinkCollection.remove(musicLink);
+                    this.renderMusicLinkList();
+
+                }, this));
+                musicLink.destroy();
+
+            }
+
+            return false;
+        },
+
+
+
+
+
+
+
+
+
 
 
 

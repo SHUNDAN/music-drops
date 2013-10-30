@@ -657,7 +657,7 @@ define([
 
             // Pocket追加
             if (!$this.hasClass('is-active')) {
-                _.addPocket({music_id: this.currentMusic.music_id}, _.bind(function () {
+                _.addPocket({music_id: this.currentMusic.music_id, youtube_id:this.currentMusic.youtube_id}, _.bind(function () {
 
                     // Pocketボタンの表示切替
                     $(e.currentTarget).addClass('is-active');

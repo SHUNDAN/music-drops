@@ -117,6 +117,14 @@ _.mbStorage = {
     getUser: function () {
         return JSON.parse(storage.getItem('user'));
     },
+    getUserId: function () {
+        var user = this.getUser();
+        if (user) {
+            return user.id;
+        } else {
+            return null;
+        }
+    },
     setUser: function (user) {
         storage.setItem('user', JSON.stringify(user));
     },
