@@ -237,48 +237,6 @@
 
 
 
-<!--ユーザープレイリスト一覧-->
-<script id="page_user_playlist" type="text/template">
-
-    <%_.each(playlists, function (playlist) {%>
-        <li class="userPage-sidebarList-item" data-playlist-id="<%=playlist.attributes.id%>" data-event-click="showPlaylist">
-            <%=playlist.attributes.title%> (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
-        </li>
-    <%});%>
-
-</script>
-
-
-
-
-<!--フォローしているプレイリスト一覧-->
-<script id="page_user_follow_playlist" type="text/template">
-    <%_.each(playlists, function (playlist) {%>
-
-        <li class="userPage-sidebarList-item" data-playlist-id="<%=playlist.attributes.id%>" data-event-click="showFollowPlaylist">
-            <%=playlist.attributes.title%> 
-            by <a style="display:inline;" href="#user/<%=playlist.attributes.user_id%>"><%=playlist.attributes.user_name%></a> 
-            (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
-            <a href="#" class="clearBtn" data-event-click="deleteFollowPlaylist">×</a>
-        </li>
-
-    <%});%>
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

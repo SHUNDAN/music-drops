@@ -2372,11 +2372,11 @@ textarea.form {
   border-right: 0px solid transparent;
 }
 /* line 90, ../dev/scss/pages/_mypage.scss */
-.userPage-sidebarList-item.select {
+.userPage-sidebarList-item.is-active {
   background-color: #ffe77c;
 }
 /* line 92, ../dev/scss/pages/_mypage.scss */
-.userPage-sidebarList-item.select:after {
+.userPage-sidebarList-item.is-active:after {
   position: absolute;
   top: 0;
   right: -12px;

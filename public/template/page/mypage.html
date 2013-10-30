@@ -260,7 +260,7 @@
                 <a href="#" class="clearBtn" data-event-click="deletePlaylist">×</a>
             </li>
         <%} else {%>
-            <li class="userPage-sidebarList-item" data-playlist-id="<%=playlist.attributes.id%>" data-pleylist-type="<%=playlist.attributes.type%>" data-event-click="showPlaylist" data-drop-target="playlist">
+            <li class="userPage-sidebarList-item is-active" data-playlist-id="<%=playlist.attributes.id%>" data-pleylist-type="<%=playlist.attributes.type%>" data-event-click="showPlaylist" data-drop-target="playlist">
                 <%=playlist.attributes.title%> (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
             </li>
         <%}%>
