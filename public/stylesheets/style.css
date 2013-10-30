@@ -1897,6 +1897,44 @@ textarea.form {
   background-size: 15px 40px;
 }
 
+/* line 12, ../dev/scss/modules/_footer.scss */
+footer {
+  position: relative;
+  width: 100%;
+  margin-top: 80px;
+  background-color: #656457;
+}
+
+/* line 18, ../dev/scss/modules/_footer.scss */
+.footer-content {
+  width: 980px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #fff;
+  font-weight: normal;
+}
+/* line 24, ../dev/scss/modules/_footer.scss */
+.footer-content a:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+/* line 27, ../dev/scss/modules/_footer.scss */
+.footer-content:after {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1px;
+  border-top: 1px dotted rgba(255, 255, 255, 0.6);
+}
+
+/* line 39, ../dev/scss/modules/_footer.scss */
+.footer-links li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
 /* line 8, ../dev/scss/modules/_drop_list.scss */
 .dropList-item {
   position: relative;
@@ -3582,32 +3620,43 @@ textarea.form {
   margin: 10px 0 0 350px;
 }
 
+/* line 3, ../dev/scss/pages/_rules.scss */
+.rules {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+/* line 8, ../dev/scss/pages/_rules.scss */
+.rules * {
+  line-height: 18px;
+  margin-bottom: 20px;
+}
+
 /** スマホ用スタイル。とりあえずなもの。 */
 @media (max-device-width: 480px) {
-  /* line 82, ../dev/scss/style.scss */
+  /* line 83, ../dev/scss/style.scss */
   audio {
     width: 40px;
   }
 }
 /** ページ共通 */
-/* line 89, ../dev/scss/style.scss */
+/* line 90, ../dev/scss/style.scss */
 .show {
   display: block !important;
 }
 
-/* line 90, ../dev/scss/style.scss */
+/* line 91, ../dev/scss/style.scss */
 .thumbM {
   width: 100px;
   height: auto;
 }
 
-/* line 91, ../dev/scss/style.scss */
+/* line 92, ../dev/scss/style.scss */
 [data-page] {
   display: none;
   width: 100%;
 }
 
-/* line 95, ../dev/scss/style.scss */
+/* line 96, ../dev/scss/style.scss */
 .blackout {
   position: fixed;
   top: 0;
@@ -3622,7 +3671,7 @@ textarea.form {
 /*==============================
   Stage
 ===============================*/
-/* line 111, ../dev/scss/style.scss */
+/* line 112, ../dev/scss/style.scss */
 #stage {
   position: relative;
 }
@@ -3630,7 +3679,7 @@ textarea.form {
 /*==============================
   Preview Area
 ===============================*/
-/* line 122, ../dev/scss/style.scss */
+/* line 123, ../dev/scss/style.scss */
 .previewArea {
   z-index: 9998;
   transition: opacity .5s ease;
@@ -3639,7 +3688,7 @@ textarea.form {
   -ms-transition: opacity .5s ease;
 }
 
-/* line 129, ../dev/scss/style.scss */
+/* line 130, ../dev/scss/style.scss */
 .previewArea.posNotShow {
   position: absolute !important;
   top: -500px !important;
@@ -3647,7 +3696,7 @@ textarea.form {
   opacity: 0;
 }
 
-/* line 135, ../dev/scss/style.scss */
+/* line 136, ../dev/scss/style.scss */
 .previewArea .closeBtn {
   position: absolute;
   top: -20px;
@@ -3662,7 +3711,7 @@ textarea.form {
   color: white;
 }
 
-/* line 149, ../dev/scss/style.scss */
+/* line 150, ../dev/scss/style.scss */
 .previewArea .minimizeBtn {
   position: absolute;
   top: -20px;
@@ -3678,7 +3727,7 @@ textarea.form {
   -webkit-transform-orign: 50% 50%;
 }
 
-/* line 166, ../dev/scss/style.scss */
+/* line 167, ../dev/scss/style.scss */
 .mbfont {
   font-family: 'Quattrocento', serif;
 }
@@ -3686,26 +3735,26 @@ textarea.form {
 /*==============================
   Base Frame
 ===============================*/
-/* line 180, ../dev/scss/style.scss */
+/* line 181, ../dev/scss/style.scss */
 #stage {
   width: 100%;
   min-width: 980px;
   padding-top: 12px;
 }
 
-/* line 185, ../dev/scss/style.scss */
+/* line 186, ../dev/scss/style.scss */
 #main {
   width: 980px;
   min-height: 600px;
   margin: 0 auto;
 }
 
-/* line 190, ../dev/scss/style.scss */
+/* line 191, ../dev/scss/style.scss */
 #pagePop {
   z-index: 9999;
 }
 
-/* line 193, ../dev/scss/style.scss */
+/* line 194, ../dev/scss/style.scss */
 .popUp {
   position: fixed;
   top: 100px;
