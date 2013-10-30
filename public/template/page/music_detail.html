@@ -16,7 +16,6 @@
     <div class="tab-content tab-02-content">
         <div class="tab-pane active" id="musicLinkListArea"></div>
         <div class="tab-pane" id="popListArea"></div>
-        <div class="btn-text btn-text-back btn-text-color-brown mt10" data-event="addPop">Popを追加する</div>
     </div>
 </script>
 
@@ -42,8 +41,8 @@
 
             <div class="musicDetail-action gp">
               <div class="tag-feeling ref">
-                  <i class="sprite-feeling feeling-1"></i>
-                  <p class="tag-feeling-text">テンションがあがる</p>
+                  <i class="sprite-feeling feeling-<%-feeling_id%>"></i>
+                  <p class="tag-feeling-text"><%-_.getFeelingName(feeling_id)%></p>
               </div>
               <div class="m-btn-PD">
                 <% _.each(feelings, function (feeling) { %>
@@ -60,12 +59,12 @@
                     <span>解除</span>
                 </div>
                 <%}%>
-                <div class="js-menu-drop btn-PD btn-drop">
+                <div class="js-menu-drop btn-PD btn-drop" data-event-click="addPop">
                     <i class="ico-font ico-drop"></i>
                     <span>ドロップ</span>
                 </div>
               </div>
-                
+
             </div>
         </div>
 

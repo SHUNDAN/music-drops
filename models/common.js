@@ -279,7 +279,12 @@ module.exports = {
                 }
             }
         }
-        var sql = util.format('update %s set %s where %s', this.tableName, targets.join(','), conditions.join(' and '));
+
+        if (conditions.length > 0) {
+            var sql = util.format('update %s set %s where %s', this.tableName, targets.join(','), conditions.join(' and '));
+        } else {
+            var sql = util.format('update %s set %s', this.tableName, targets.join(','));
+        }
 
 
         // build parameters.
