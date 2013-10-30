@@ -5,6 +5,7 @@
 define([
     'views/common/youtube',
     'views/common/confirmDialog',
+    'views/pop/index',
     'models/user/user',
     'models/user/user_pocket',
     'models/user/user_pocket_list',
@@ -20,6 +21,7 @@ define([
 ], function (
     YoutubeView,
     ConfirmDialogView,
+    PopView,
     User,
     UserPocket,
     UserPocketList,
@@ -1085,6 +1087,13 @@ define([
             var $li = $(e.currentTarget).parents('[data-pop-id]');
             var popId = $li.data('pop-id');
             console.debug('editPop', popId);
+
+            var pop = this.myPopList.get(popId);
+
+            this.popView = new PopView();
+            this.$el.append(this.popView.$el);
+            this.popView.show(pop.attributes.music_id, popId, 'modal');
+
         },
 
 

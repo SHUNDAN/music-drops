@@ -17,8 +17,6 @@ define([
         // data field.
         displayType:    'normal', // normal or modal
         type:           null, // add or update
-        musicId:       null,
-        popId:         null,
 
 
         initialize: function () {
@@ -30,6 +28,8 @@ define([
 
 
         render: function () {
+
+            console.debug('render.', this.pop);
 
             // レンダリング
             var snipet = _.mbTemplate('page_pop', {
@@ -60,6 +60,9 @@ define([
 
                 // display as modal.
                 this.$el.find('#pagePop').addClass('popUp');
+
+                // 文字数の数え上げをしておく
+                this.countCharacters();
             }
         },
 
@@ -97,19 +100,25 @@ define([
             }
 
             // 登録する
-            var pop = new PopModel();
-            pop.set('music_id', this.musicId);
-            pop.set('feeling_id', feelingId);
-            pop.set('comment', comment);
-            pop.bind('sync', _.bind(function () {
+            this.pop.set('music_id', this.music.attributes.id);
+            this.pop.set('feeling_id', feelingId);
+            this.pop.set('comment', comment);
+            this.pop.bind('sync', _.bind(function () {
 
                 // ga
                 _gaq.push(['_trackEvent', 'addPop', feelingId]);
 
-                alert('登録完了しました');
+                if (this.type === 'add') {
+                    alert('登録完了しました');
+                } else {
+                    alert('編集完了しました');
+                }
+
                 location.reload();
+
+
             }, this));
-            pop.save();
+            this.pop.save();
 
         },
 
@@ -121,9 +130,6 @@ define([
 
             // set data.
             this.type = (popId ? 'update' : 'add');
-            this.musicId = musicId;
-            this.music_id = musicId;
-            this.pop_id = popId;
             this.displayType = displayType;
 
 
@@ -134,14 +140,17 @@ define([
 
                 // 新規の場合には、画面をレンダリング
                 if (this.type === 'add') {
+                    console.debug('aaaaa');
                     this.render();
-                
+
                 // 変更の場合に既にpopIdがあれば、レンダリング
-                } else if (this.popId) {
+                } else if (this.pop.attributes.feeling_id) {
+                    console.debug('bbbb');
                     this.render();
-                
+
                 } else {
                     // popのロード待ち
+                    console.log('cccc');
                 }
 
             }, this));
@@ -155,14 +164,17 @@ define([
             this.pop.bind('sync', _.bind(function () {
 
                 // 既にMusicがロード済みの場合には、表示
-                if (this.music) {
+                if (this.music.attributes.title) {
+                    console.debug('dddd', this.pop, this.music);
                     this.render();
-                
+
                 } else {
                     // Musicがまだ無ければそれ待ち
+                    console.debug('eeee');
                 }
 
             }, this));
+            this.pop.fetch();
 
         },
 
