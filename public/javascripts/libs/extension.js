@@ -129,7 +129,7 @@ _.mbStorage = {
             dataType: 'json',
             success: function (user) {
                 if (user && user.id) {
-                    _.mbStorage.setUser(user);                    
+                    _.mbStorage.setUser(user);
                 }
             }
         });
@@ -612,6 +612,20 @@ _.selectPocketId = function (musicId) {
     Pocketを追加する
 */
 _.addPocket = function (data, callback) {
+
+    // Loginチェック
+    if (!_.isLogedIn()) {
+        mb.router.appView.authErrorHandler();
+        return;
+    }
+
+    // Max個数チェック
+    var userPockets = _.mbStorage.getUser().userPockets;
+    if (userPockets.length >= 300) {
+        alert('Pocketは最大個数に到達しました。追加する場合にはまず不要なPocketを削除してください。');
+        return;
+    }
+
 
     $.ajax({
         url: '/api/v1/user_pockets',

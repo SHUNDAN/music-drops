@@ -121,6 +121,82 @@ module.exports = {
     },
 
 
+    /**
+        Count
+    */
+    countObjects: function (conditionParam, callback) {
+        conditionParam = conditionParam || {};
+
+
+        // Add Equal Condition.
+        var conditions = [];
+        var params = [];
+        for (var prop in conditionParam) {
+            if (conditionParam.hasOwnProperty(prop) && this.hasColumn(prop)) {
+                conditions.push(util.format('%s=?', prop));
+                params.push(conditionParam[prop]);
+            }
+        }
+
+        // Add Range Condition.
+        var ranges = ['lt', 'lte', 'gt', 'gte'];
+        var operators = ['<', '<=', '>', '>='];
+        for (var i = 0; i < ranges.length; i++) {
+            var key = ranges[i];
+            if (conditionParam.hasOwnProperty(key)) {
+                var columnObject = conditionParam[key];
+                for (var column in columnObject) {
+                    if (columnObject.hasOwnProperty(column) && _.contains(this.columns, column)) {
+                        conditions.push(util.format('%s %s ?', column, operators[i]));
+                        params.push(columnObject[column]);
+                    }
+                }
+            }
+        }
+
+        // build sql.
+        var sql;
+        if (conditions.length > 0) {
+            sql = util.format('select count(1) cnt from %s where %s', this.tableName, conditions.join(' and '));
+        } else {
+            sql = util.format('select count(1) cnt from %s', this.tableName);
+        }
+
+
+        // Add Order by.
+        if (conditionParam.sort && typeof conditionParam.sort === 'string') {
+            sql += util.format(' order by %s %s', conditionParam.sort, (conditionParam.desc ? 'desc' : 'asc'));
+        }
+
+
+
+        // Add Limit.
+        if (conditionParam.limit) {
+            var limit = Math.min((conditionParam.limit || this.limit), this.limit);
+            if (typeof limit !== 'number' || isNaN(limit)) {
+                console.warn('limit is not number. limit=', conditionParam.limit);
+                callback({message: 'bad request'});
+                return;
+            }
+            sql +=　' limit ' + limit;
+        }
+
+
+
+        // execute sql
+        var stmt = db.prepare(sql, params);
+        console.log('stmt: ', stmt, params);
+        stmt.all(function(err, rows) {
+            if (err) {
+                console.log(err);
+            }
+
+            callback(err, rows[0].cnt);
+        });
+
+    },
+
+
 
     /**
      * Insert
@@ -161,7 +237,7 @@ module.exports = {
         // console.log(stmt, params, data);
         stmt.run(function(err) {
             if (err) {
-                console.log(err);                
+                console.log(err);
             }
             if (callback) {
                 callback(err);
