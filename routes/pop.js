@@ -17,11 +17,14 @@ var onlineBatch = require('../util/online_batch');
  */
 exports.select = function(req, res){
 
-    popModel.selectObjects(req.query, function (err, rows) {
+    var param = (req.params.id ? req.params : req.query);
+    console.log('param=', param);
+
+    popModel.selectObjects(param, function (err, rows) {
         if (err) {
             appUtil.basicResponse(res, err, rows);
         } else {
-            res.json(rows);
+            res.json((rows.length === 1 ? rows[0] : rows));
         }
     });
 
@@ -72,13 +75,22 @@ exports.selectPopList = function(req, res) {
  */
 exports.add = function(req, res) {
 
-    // TODO check params.
+    // 必須チェック
     if (!req.body.music_id || !req.body.feeling_id) {
         res.json(400, {message: 'music_id or feeling_id are required.'});
         return;
     }
 
-
+    // コメント：必須、120文字以内
+    var comment = req.body.comment;
+    if (!comment || comment.length === 0) {
+        res.json(400, 'comment must be set.');
+        return;
+    }
+    if (comment.length > 120) {
+        res.json(400, 'comment max 120 characters. actual=' + comment.length);
+        return;
+    }
 
     // uidからユーザー情報を取得する
     var uid = req.cookies.uid;
@@ -87,7 +99,6 @@ exports.add = function(req, res) {
         res.json(403, {message: 'authentication error.'});
         return;
     }
-
     req.body.user_id = user_id;
 
     // execute.
@@ -129,7 +140,34 @@ exports.add1_1 = function(req, res) {
  */
 exports.update = function(req, res) {
 
-    // TODO check params.
+    // 必須チェック
+    if (!req.body.music_id || !req.body.feeling_id) {
+        res.json(400, {message: 'music_id or feeling_id are required.'});
+        return;
+    }
+
+    // コメント：必須、120文字以内
+    var comment = req.body.comment;
+    if (!comment || comment.length === 0) {
+        res.json(400, 'comment must be set.');
+        return;
+    }
+    if (comment.length > 120) {
+        res.json(400, 'comment max 120 characters. actual=' + comment.length);
+        return;
+    }
+
+    // uidからユーザー情報を取得する
+    var uid = req.cookies.uid;
+    var user_id = (global.sessionMap ? global.sessionMap[uid] : undefined);
+    if (!user_id) {
+        res.json(403, {message: 'authentication error.'});
+        return;
+    }
+    req.body.user_id = user_id;
+
+
+
 
     // execute.
     popModel.updateObject(req.body, req.params, function (err) {
