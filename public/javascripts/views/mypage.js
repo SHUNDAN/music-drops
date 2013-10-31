@@ -463,6 +463,8 @@ define([
          // プレイリスト削除
          deletePlaylist: function (e) {
             e.preventDefault();
+            e.stopPropagation();
+
             var playlistId = $(e.currentTarget).parents('[data-playlist-id]').data('playlist-id');
             console.debug('deletePlaylist: ', playlistId);
 
@@ -478,11 +480,14 @@ define([
 
 
             // 確認ダイアログ
-            var confirmDialog = new ConfirmDialogView();
-            confirmDialog.show({
-                message: 'Playlistを削除しますか？',
-                yesButtonCallback: fn
-            });
+            // var confirmDialog = new ConfirmDialogView();
+            // confirmDialog.show({
+            //     message: 'Playlistを削除しますか？',
+            //     yesButtonCallback: fn
+            // });
+            if (window.confirm('プレイリストを削除しますか？')) {
+                fn();
+            }
 
             return false;
          },
