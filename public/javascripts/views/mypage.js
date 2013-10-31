@@ -980,6 +980,10 @@ define([
                     // レンダリング
                     this.renderUserFollowPlaylist();
 
+                    // Storageも更新
+                    _.mbStorage.refreshUser({target:'playlist'});
+
+
                 }, this));
                 userPlaylist.destroy();
             }, this);
