@@ -40,6 +40,22 @@ block content
       })();
 
 
+    //- JSエラー収集
+    script
+      window.onerror = function (message, fileName, lineNumber) {
+
+          var texts = [];
+          texts.push('message=' + message);
+          texts.push('fileName=' + fileName);
+          texts.push('lineNumber=' + lineNumber);
+          texts.push('userAgent=' + window.navigator.userAgent);
+
+          var message = texts.join(', ');
+        console.debug('onerror: ' + message);
+        _gaq.push(['_trackEvent', 'JSError', location.href, message]);
+      };
+
+
 
 
     script(src="javascripts/libs/all-libs.js?_=#{appVersion}")
