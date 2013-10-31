@@ -6123,6 +6123,9 @@ define('views/user/index',[
         */
         show: function (userId) {
 
+            // わくを表示
+            this.render();
+
             // ユーザーデータ取得
             this.user.set('id', userId);
             this.user.fetch({reset: true});
