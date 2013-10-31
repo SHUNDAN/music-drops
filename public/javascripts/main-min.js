@@ -2034,7 +2034,7 @@ define('views/top',[
     var TopView = Backbone.View.extend({
 
         // 表示タイプ
-        displayType: 'popular', // 'new', 'hot'
+        displayType: 'new', // 'new', 'hot'
 
         // 表示Pop情報
         displayPopListMap: {},
