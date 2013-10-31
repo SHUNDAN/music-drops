@@ -3627,7 +3627,7 @@ define('views/music/search',[
 
 
             // 検索結果を初期化する
-            this.$el.find('#numOfResult').text('0');
+            this.$el.find('#numOfResult').text('');
             this.$el.find('#resultList').html('');
 
 
