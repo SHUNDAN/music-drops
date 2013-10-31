@@ -58,7 +58,7 @@ define([
             this.$el.find('#resultList').html(snipet);
 
             // 件数も更新する
-            this.$el.find('#numOfResult').text(this.iTunesSearchResultList.length);
+            this.$el.find('#numOfResult').text('検索結果：' + this.iTunesSearchResultList.length + '件');
         },
 
 
