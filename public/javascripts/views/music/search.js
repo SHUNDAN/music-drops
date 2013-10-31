@@ -163,7 +163,7 @@ define([
                 // show PopView.
                 this.popView = new PopView();
                 this.$el.append(this.popView.$el);
-                this.popView.show(this.music_id, undefined, 'modal');
+                this.popView.show(music.id, undefined, 'modal');
 
             }, this));
 
