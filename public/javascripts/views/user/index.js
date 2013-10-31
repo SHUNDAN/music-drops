@@ -29,7 +29,7 @@ define([
 ) {
 
     var UserView = Backbone.View.extend({
-   
+
         // fields.
         user: null,
         userPocketList: null,
@@ -56,12 +56,12 @@ define([
             _.bindEvents(this);
 
 
-            _.bindAll(this, 
-                'render', 
-                'renderUserPocketListArea', 
-                'renderUserPocketList', 
+            _.bindAll(this,
+                'render',
+                'renderUserPocketListArea',
+                'renderUserPocketList',
                 'renderUserPlaylistList',
-                'show', 
+                'show',
                 'dealloc'
                 );
 
@@ -140,7 +140,7 @@ define([
 
 
         /**
-            フォローしているユーザー数を表示  
+            フォローしているユーザー数を表示
         */
         renderUserFollowCount: function () {
             this.$el.find('#numOfFollowUsers').text('(' + this.userFollowList.length + ')');
@@ -296,7 +296,7 @@ define([
 
             // サイドバーで自分のメニューをアクティブにする
             this._activeMenuAtSidebar($(e.currentTarget));
-        },        
+        },
 
 
 
@@ -308,8 +308,17 @@ define([
         */
         // TODO ここの機能は、Mypageとほとんど同じ実装なので、綺麗に共通化したいなぁ。
         playMusic: function (e) {
-            var pocketId = parseInt($(e.currentTarget).parents('[data-pocket-id]').data('pocket-id'), 10);
+            var $li = $(e.currentTarget).parents('[data-pocket-id]');
+            var pocketId = $li.data('pocket-id');
             console.debug('playMusic: ', pocketId);
+
+
+            // もしPause中の場合には、再開のみを行う
+            if ($li.data('nowpausing')) {
+                $li.removeAttr('nowpausing');
+                mb.musicPlayer.startMusic();
+                return;
+            }
 
 
             var options = {};
@@ -332,10 +341,15 @@ define([
 
             // callback.
             options.callbackWhenWillStart = _.bind(function (music) {
-                // TODO ボタンをPlayとPauseの切替する
+
+                this.$el.find('#pocketListArea').find('[data-event-click="stopMusic"]').addClass('hidden');
+                this.$el.find('#pocketListArea').find('[data-event-click="playMusic"]').removeClass('hidden');
+                this.$el.find('#pocketListArea [data-pocket-id="'+music.id+'"]').find('[data-event-click="playMusic"], [data-event-click="stopMusic"]').toggleClass('hidden');
+
             }, this);
-            options.callbackWhenEnd = _.bind(function () {
-                // TODO ボタンをすべてPlayにする
+            options.callbackWhenEnd = options.callbackWhenPause = _.bind(function () {
+                this.$el.find('#pocketListArea').find('[data-event-click="stopMusic"]').addClass('hidden');
+                this.$el.find('#pocketListArea').find('[data-event-click="playMusic"]').removeClass('hidden');
             }, this);
 
 
@@ -346,6 +360,17 @@ define([
 
 
         },
+
+
+
+         /**
+            一時停止する
+         */
+         stopMusic: function (e) {
+            mb.musicPlayer.pauseMusic();
+            $(e.currentTarget).parents('[data-pocket-id]').attr('data-nowpausing', 'true');
+         },
+
 
 
 
@@ -612,7 +637,7 @@ define([
             ページ表示
         */
         show: function (userId) {
-         
+
             // ユーザーデータ取得
             this.user.set('id', userId);
             this.user.fetch({reset: true});
@@ -659,7 +684,7 @@ define([
                 this.renderUserFollowedCount();
             }, this));
             this.userFollowedList.fetch({reset:true, data: {dest_user_id:userId}});
-            
+
 
             // プレイリスト一覧取得
             this.userPlaylistList = new UserPlaylistList();
@@ -673,7 +698,7 @@ define([
          * 終了処理
          */
         dealloc: function () {},
-    
+
     });
 
 

@@ -624,6 +624,10 @@ define([
             if (this.options) {
                 this.currentPos = Math.max(this.currentPos - 2, 0);
                 this._playMusicAtCurrentPos();
+
+                this.$header.find('[data-event-click="startMusic"]').addClass('hidden');
+                this.$header.find('[data-event-click="pauseMusic"]').removeClass('hidden');
+
             }
         },
 
@@ -636,6 +640,9 @@ define([
             if (this.options) {
                 this.currentPos = Math.min(this.currentPos, this.musicQueue.length - 1);
                 this._playMusicAtCurrentPos();
+
+                this.$header.find('[data-event-click="startMusic"]').addClass('hidden');
+                this.$header.find('[data-event-click="pauseMusic"]').removeClass('hidden');
             }
         },
 

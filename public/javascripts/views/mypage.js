@@ -351,8 +351,21 @@ define([
          * 曲を再生する
          */
          playMusic: function (e) {
-            var pocketId = $(e.currentTarget).parents('[data-pocket-id]').data('pocket-id');
+            var $li = $(e.currentTarget).parents('[data-pocket-id]');
+            var pocketId = $li.data('pocket-id');
             pocketId = parseInt(pocketId, 10);
+
+
+
+            // もしPause中の場合には、再開のみを行う
+            if ($li.data('nowpausing')) {
+                $li.removeAttr('nowpausing');
+                mb.musicPlayer.startMusic();
+                return;
+            }
+
+
+
 
             var options = {};
 
@@ -375,16 +388,30 @@ define([
 
             // callback.
             options.callbackWhenWillStart = _.bind(function (music) {
-                // TODO ボタンをPlayとPauseの切替する
+
+                this.$el.find('#pocketListArea').find('[data-event-click="stopMusic"]').addClass('hidden');
+                this.$el.find('#pocketListArea').find('[data-event-click="playMusic"]').removeClass('hidden');
+                this.$el.find('#pocketListArea [data-pocket-id="'+music.id+'"]').find('[data-event-click="playMusic"], [data-event-click="stopMusic"]').toggleClass('hidden');
+
             }, this);
-            options.callbackWhenEnd = _.bind(function () {
-                // TODO ボタンをすべてPlayにする
+            options.callbackWhenEnd = options.callbackWhenPause = _.bind(function () {
+                this.$el.find('#pocketListArea').find('[data-event-click="stopMusic"]').addClass('hidden');
+                this.$el.find('#pocketListArea').find('[data-event-click="playMusic"]').removeClass('hidden');
             }, this);
 
 
             // play
             console.log('play music. arraycount=', options.musicArray.length, ',startPos=', options.startPos);
             mb.musicPlayer.playMusics(options);
+         },
+
+
+         /**
+            一時停止する
+         */
+         stopMusic: function (e) {
+            mb.musicPlayer.pauseMusic();
+            $(e.currentTarget).parents('[data-pocket-id]').attr('data-nowpausing', 'true');
          },
 
 
@@ -1032,7 +1059,7 @@ define([
             if (window.confirm('フォローしているプレイリストを削除しますか？')) {
                 fn();
             }
-            
+
 
 
 
