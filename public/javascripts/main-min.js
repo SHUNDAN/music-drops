@@ -4663,6 +4663,8 @@ define('views/mypage',[
          // プレイリスト削除
          deletePlaylist: function (e) {
             e.preventDefault();
+            e.stopPropagation();
+
             var playlistId = $(e.currentTarget).parents('[data-playlist-id]').data('playlist-id');
             console.debug('deletePlaylist: ', playlistId);
 
@@ -4678,11 +4680,14 @@ define('views/mypage',[
 
 
             // 確認ダイアログ
-            var confirmDialog = new ConfirmDialogView();
-            confirmDialog.show({
-                message: 'Playlistを削除しますか？',
-                yesButtonCallback: fn
-            });
+            // var confirmDialog = new ConfirmDialogView();
+            // confirmDialog.show({
+            //     message: 'Playlistを削除しますか？',
+            //     yesButtonCallback: fn
+            // });
+            if (window.confirm('プレイリストを削除しますか？')) {
+                fn();
+            }
 
             return false;
          },
@@ -5179,6 +5184,10 @@ define('views/mypage',[
 
                     // レンダリング
                     this.renderUserFollowPlaylist();
+
+                    // Storageも更新
+                    _.mbStorage.refreshUser({target:'playlist'});
+
 
                 }, this));
                 userPlaylist.destroy();
@@ -6401,17 +6410,24 @@ define('views/user/setting',[
 		logout: function () {
 
             // 確認ダイアログ
-            var confirmDialog = new ConfirmDialogView();
-            confirmDialog.show({
-                message: '本当にログアウトしてもよろしいですか？',
-                yesButtonCallback: function () {
+            if (window.confirm('ログアウトしますか？')) {
+            	_.mbStorage.removeUser();
+            	$.removeCookie('uid', null);
+            	alert('ログアウトしました。');
+            	location.href = '#';
+            	
+            }
+            // var confirmDialog = new ConfirmDialogView();
+            // confirmDialog.show({
+            //     message: '本当にログアウトしてもよろしいですか？',
+            //     yesButtonCallback: function () {
 
-                	_.mbStorage.removeUser();
-                	$.removeCookie('uid', null);
-                	alert('ログアウトしました。');
-                	location.href = '#';
-                }
-            });
+            //     	_.mbStorage.removeUser();
+            //     	$.removeCookie('uid', null);
+            //     	alert('ログアウトしました。');
+            //     	location.href = '#';
+            //     }
+            // });
 
 
 
