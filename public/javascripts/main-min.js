@@ -1122,9 +1122,9 @@ define('views/common/music_player',[
             クリックされた際のイベントバブリングを防ぐ（想定しないダイアログ閉じをしない）
         */
         cancelEvent: function (e) {
-            e.preventDefault();
+            // e.preventDefault();
             e.stopPropagation();
-            return false;
+            // return false;
         },
 
 
