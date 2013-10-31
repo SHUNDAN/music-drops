@@ -187,8 +187,8 @@
 
     <!--機能-->
     <div class="pocketListFncArea clearfix">
-        <%if (options.playlistId) {%>
-            <%if (_.alreadyPlaylistFollow(options.playlistId)) {%>
+        <%if (options.playlist && options.playlist.attributes.type !== 1) {%>
+            <%if (_.alreadyPlaylistFollow(options.playlist.attributes.id)) {%>
                 <a href="#" class="playlistFollowButton hidden" data-event-click="followPlaylist">プレイリストをフォローする</a>
                 <a href="#" class="playlistFollowButton" data-event-click="unfollowPlaylist">プレイリストのフォローを解除する</a>
             <%} else {%>

@@ -93,11 +93,9 @@ define([
         renderUserPocketListArea: function () {
 
             // 表示オプション
-            var options = {};
-            if (this.currentPlaylist) {
-                options.playlistId = this.currentPlaylist.attributes.id;
-            }
-
+            var options = {
+                playlist: this.currentPlaylist
+            };
 
             var snipet = _.mbTemplate('page_user_user_pocket_list_area', {
                 feelings: _.mbStorage.getCommon().feelings,
