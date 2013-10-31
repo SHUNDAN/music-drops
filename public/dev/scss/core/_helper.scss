@@ -44,6 +44,16 @@
 .ref { position: relative; }
 .abs { position: absolute; }
 
+/*
+## テキストの末尾を丸める
+*/
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 //  State Classes
 //-------------------------------------
 

@@ -24,8 +24,10 @@
   margin: 0 0 25px;
 }
 .musicDetail-info-title {
-  font-size: 18px;
   margin: 0 0 10px;
+  .text-link {
+    height: 2.0em;
+  }
 }
 .musicDetail-info-artist {
   margin: 0 0 25px;
@@ -162,11 +164,14 @@ $map-share: sprite-map("../images/sprite/share/*.png");
     margin: 0 0 10px;
   }
   .musicDetail-info-title {
-    font-size: 14px;
     margin: 0 0 10px;
   }
   .musicDetail-info-artist {
     margin: 0 0 10px;
+    .truncate {
+      display: inline-block;
+      max-width: 170px;
+    }
   }
   // 再生ボタン
   //-------------------------------------
@@ -286,14 +291,9 @@ $map-share: sprite-map("../images/sprite/share/*.png");
 //  ##あとでどっかに移動
 //-------------------------------------
 .text-link {
-  position: relative;
   display: inline-block;
-  padding-right: 16px;
   .ico-font {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    margin: -5px 0 0 0;
+    margin: 0 0 0 10px;
     font-size: 8px;
     color: #c9c7b9;
   }
