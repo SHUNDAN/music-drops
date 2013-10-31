@@ -278,6 +278,9 @@ $map-share: sprite-map("../images/sprite/share/*.png");
     display: inline-block;
     max-width: 450px;
   }
+  .like-btn.is-active {
+    color: #f3613f;
+  }
 }
 
 

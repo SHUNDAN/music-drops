@@ -189,6 +189,17 @@ create table if not exists code(
 
 
 
+-- Report
+create table if not exists report (
+    id          integer     primary key     autoincrement,
+    type        integer,
+    user_id     integer,
+    json        text,
+    create_at   numeric,
+    update_at   numeric
+);
+
+
 
 
 

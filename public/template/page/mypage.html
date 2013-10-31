@@ -10,7 +10,7 @@
         <div id="pocketDeleteArea" class="pocketDeleteArea hidden">DropしてPlaylistから削除</div>
 
 
-        <div class="userPage-leftCol fl fix">
+        <div id="leftArea" class="userPage-leftCol fl fix">
 
             <!--タイトル：ユーザー名、保有曲数-->
             <div class="userPage-playlistHeader">
@@ -240,7 +240,12 @@
                     <a href="#artist/<%=pocket.attributes.artist_id%>" draggable="false"><%=pocket.attributes.artist_name%></a>
                 </div>
             </div>
-            <div class="playBtn" data-event-click="playMusic">▶</div>
+            <div class="playBtn" data-event-click="playMusic">
+                <i class="ico-font ico-play"></i>
+            </div>
+            <div class="playBtn is-active hidden" data-event-click="stopMusic">
+                <i class="ico-font ico-play-stop"></i>
+            </div>
             <div class="deleteBtn" data-event-click="deletePocket">×</div>
         </li>
     <%});%>

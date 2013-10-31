@@ -105,8 +105,17 @@
     <%}%>
       <img class="thumb fl" src="<%=music.artwork_url%>" alt="<%=music.title%>"/>
       <div class="fl mt10 ml10">
-        <div class="title mb5 fs14 b elps"><%=music.title%></div>
-        <div class="artistName fs10 elps"><%=music.artist_name%></div>
+        <div class="title mb5 fs14 b elps">
+          <%if (music.music_id) {%>
+            <a href="#music/<%=music.music_id%>"><%=music.title%></div></a>
+          <%} else {%>
+            <%=music.title%></div>
+          <%}%>
+          <%if (music.artist_id) {%>
+            <a href="#artist/<%=music.artist_id%>"<div class="artistName fs10 elps"><%=music.artist_name%></div></a>
+          <%} else {%>
+            <div class="artistName fs10 elps"><%=music.artist_name%></div>
+          <%}%>
       </div>
 
       <%if (music.id === currentMusic.id) {%>

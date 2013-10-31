@@ -624,6 +624,10 @@ define([
             if (this.options) {
                 this.currentPos = Math.max(this.currentPos - 2, 0);
                 this._playMusicAtCurrentPos();
+
+                this.$header.find('[data-event-click="startMusic"]').addClass('hidden');
+                this.$header.find('[data-event-click="pauseMusic"]').removeClass('hidden');
+
             }
         },
 
@@ -636,6 +640,9 @@ define([
             if (this.options) {
                 this.currentPos = Math.min(this.currentPos, this.musicQueue.length - 1);
                 this._playMusicAtCurrentPos();
+
+                this.$header.find('[data-event-click="startMusic"]').addClass('hidden');
+                this.$header.find('[data-event-click="pauseMusic"]').removeClass('hidden');
             }
         },
 
@@ -657,7 +664,7 @@ define([
 
             // Pocket追加
             if (!$this.hasClass('is-active')) {
-                _.addPocket({music_id: this.currentMusic.music_id}, _.bind(function () {
+                _.addPocket({music_id: this.currentMusic.music_id, youtube_id:this.currentMusic.youtube_id}, _.bind(function () {
 
                     // Pocketボタンの表示切替
                     $(e.currentTarget).addClass('is-active');
@@ -717,9 +724,9 @@ define([
             クリックされた際のイベントバブリングを防ぐ（想定しないダイアログ閉じをしない）
         */
         cancelEvent: function (e) {
-            e.preventDefault();
+            // e.preventDefault();
             e.stopPropagation();
-            return false;
+            // return false;
         },
 
 

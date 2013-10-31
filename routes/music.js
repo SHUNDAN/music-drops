@@ -45,7 +45,7 @@ exports.select = function(req, res) {
  */
 exports.searchWithITunes = function (req, res) {
 
-    var params = {title: req.body.trackName};
+    var params = {title: req.body.trackName, artist_name: req.body.artistName};
     console.log('params: ', params);
 
     // 曲が存在するかを確認する

@@ -18,9 +18,7 @@ define([], function () {
         },
 
 
-        url: function () {
-            return '/api/v1/music_links';
-        },
+        urlRoot: '/api/v1/music_links',
 
 
         create: function () {

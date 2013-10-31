@@ -9,7 +9,7 @@
     <div class="pageMypage gp">
 
 
-        <div class="userPage-leftCol fl fix">
+        <div id="leftArea" class="userPage-leftCol fl fix">
 
             <!--タイトル：ユーザー名、保有曲数-->
             <div class="userPage-playlistHeader">
@@ -187,8 +187,8 @@
 
     <!--機能-->
     <div class="pocketListFncArea clearfix">
-        <%if (options.playlistId) {%>
-            <%if (_.alreadyPlaylistFollow(options.playlistId)) {%>
+        <%if (options.playlist && options.playlist.attributes.type !== 1) {%>
+            <%if (_.alreadyPlaylistFollow(options.playlist.attributes.id)) {%>
                 <a href="#" class="playlistFollowButton hidden" data-event-click="followPlaylist">プレイリストをフォローする</a>
                 <a href="#" class="playlistFollowButton" data-event-click="unfollowPlaylist">プレイリストのフォローを解除する</a>
             <%} else {%>
@@ -210,7 +210,9 @@
     <!--Pocketリスト-->
     <%_.each(pocketList, function (pocket) {%>
         <li class="feeling-<%=pocket.attributes.feeling_id%>" data-pocket-id="<%=pocket.attributes.id%>">
-            <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>"/>
+            <a href="#artist/<%=pocket.attributes.artist_id%>">
+                <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>"/>
+            </a>
             <div class="info">
                 <div class="title">
                     <a href="#music/<%=pocket.attributes.music_id%>"><%=pocket.attributes.title%></a>
@@ -219,7 +221,12 @@
                     <a href="#artist/<%=pocket.attributes.artist_id%>"><%=pocket.attributes.artist_name%></a>
                 </div>
             </div>
-            <div class="playBtn" data-event-click="playMusic">▶</div>
+            <div class="playBtn" data-event-click="playMusic">
+                <i class="ico-font ico-play"></i>
+            </div>
+            <div class="playBtn is-active hidden" data-event-click="stopMusic">
+                <i class="ico-font ico-play-stop"></i>
+            </div>
         </li>
     <%});%>
 

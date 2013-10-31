@@ -61,17 +61,24 @@ define([
 		logout: function () {
 
             // 確認ダイアログ
-            var confirmDialog = new ConfirmDialogView();
-            confirmDialog.show({
-                message: '本当にログアウトしてもよろしいですか？',
-                yesButtonCallback: function () {
+            if (window.confirm('ログアウトしますか？')) {
+            	_.mbStorage.removeUser();
+            	$.removeCookie('uid', null);
+            	alert('ログアウトしました。');
+            	location.href = '#';
+            	
+            }
+            // var confirmDialog = new ConfirmDialogView();
+            // confirmDialog.show({
+            //     message: '本当にログアウトしてもよろしいですか？',
+            //     yesButtonCallback: function () {
 
-                	_.mbStorage.removeUser();
-                	$.removeCookie('uid', null);
-                	alert('ログアウトしました。');
-                	location.href = '#';
-                }
-            });
+            //     	_.mbStorage.removeUser();
+            //     	$.removeCookie('uid', null);
+            //     	alert('ログアウトしました。');
+            //     	location.href = '#';
+            //     }
+            // });
 
 
 

@@ -29,7 +29,7 @@ define([
 ) {
 
     var UserView = Backbone.View.extend({
-   
+
         // fields.
         user: null,
         userPocketList: null,
@@ -56,12 +56,12 @@ define([
             _.bindEvents(this);
 
 
-            _.bindAll(this, 
-                'render', 
-                'renderUserPocketListArea', 
-                'renderUserPocketList', 
+            _.bindAll(this,
+                'render',
+                'renderUserPocketListArea',
+                'renderUserPocketList',
                 'renderUserPlaylistList',
-                'show', 
+                'show',
                 'dealloc'
                 );
 
@@ -93,11 +93,9 @@ define([
         renderUserPocketListArea: function () {
 
             // 表示オプション
-            var options = {};
-            if (this.currentPlaylist) {
-                options.playlistId = this.currentPlaylist.attributes.id;
-            }
-
+            var options = {
+                playlist: this.currentPlaylist
+            };
 
             var snipet = _.mbTemplate('page_user_user_pocket_list_area', {
                 feelings: _.mbStorage.getCommon().feelings,
@@ -142,7 +140,7 @@ define([
 
 
         /**
-            フォローしているユーザー数を表示  
+            フォローしているユーザー数を表示
         */
         renderUserFollowCount: function () {
             this.$el.find('#numOfFollowUsers').text('(' + this.userFollowList.length + ')');
@@ -215,7 +213,7 @@ define([
         /**
             Pop一覧を表示する
         */
-        showMyDrops: function () {
+        showMyDrops: function (e) {
 
             // 表示物は削除
             $('[data-type="dataArea"]').html('');
@@ -228,13 +226,17 @@ define([
 
             // 表示する
             this.renderMyDrops();
+
+            // サイドバーで自分のメニューをアクティブにする
+            this._activeMenuAtSidebar($(e.currentTarget));
+
         },
 
 
         /**
             チェックアーティスト一覧を表示する
         */
-        showCheckArtists: function () {
+        showCheckArtists: function (e) {
 
             // 表示物は削除
             $('[data-type="dataArea"]').html('');
@@ -247,6 +249,9 @@ define([
 
             // 表示する
             this.renderCheckArtists();
+
+            // サイドバーで自分のメニューをアクティブにする
+            this._activeMenuAtSidebar($(e.currentTarget));
         },
 
 
@@ -266,6 +271,9 @@ define([
 
             // 表示する
             this.renderFollowUsers();
+
+            // サイドバーで自分のメニューをアクティブにする
+            this._activeMenuAtSidebar($(e.currentTarget));
         },
 
 
@@ -285,7 +293,10 @@ define([
 
             // 表示する
             this.renderFollowedUsers();
-        },        
+
+            // サイドバーで自分のメニューをアクティブにする
+            this._activeMenuAtSidebar($(e.currentTarget));
+        },
 
 
 
@@ -297,8 +308,17 @@ define([
         */
         // TODO ここの機能は、Mypageとほとんど同じ実装なので、綺麗に共通化したいなぁ。
         playMusic: function (e) {
-            var pocketId = parseInt($(e.currentTarget).parents('[data-pocket-id]').data('pocket-id'), 10);
+            var $li = $(e.currentTarget).parents('[data-pocket-id]');
+            var pocketId = $li.data('pocket-id');
             console.debug('playMusic: ', pocketId);
+
+
+            // もしPause中の場合には、再開のみを行う
+            if ($li.data('nowpausing')) {
+                $li.removeAttr('nowpausing');
+                mb.musicPlayer.startMusic();
+                return;
+            }
 
 
             var options = {};
@@ -321,10 +341,15 @@ define([
 
             // callback.
             options.callbackWhenWillStart = _.bind(function (music) {
-                // TODO ボタンをPlayとPauseの切替する
+
+                this.$el.find('#pocketListArea').find('[data-event-click="stopMusic"]').addClass('hidden');
+                this.$el.find('#pocketListArea').find('[data-event-click="playMusic"]').removeClass('hidden');
+                this.$el.find('#pocketListArea [data-pocket-id="'+music.id+'"]').find('[data-event-click="playMusic"], [data-event-click="stopMusic"]').toggleClass('hidden');
+
             }, this);
-            options.callbackWhenEnd = _.bind(function () {
-                // TODO ボタンをすべてPlayにする
+            options.callbackWhenEnd = options.callbackWhenPause = _.bind(function () {
+                this.$el.find('#pocketListArea').find('[data-event-click="stopMusic"]').addClass('hidden');
+                this.$el.find('#pocketListArea').find('[data-event-click="playMusic"]').removeClass('hidden');
             }, this);
 
 
@@ -338,11 +363,23 @@ define([
 
 
 
+         /**
+            一時停止する
+         */
+         stopMusic: function (e) {
+            mb.musicPlayer.pauseMusic();
+            $(e.currentTarget).parents('[data-pocket-id]').attr('data-nowpausing', 'true');
+         },
+
+
+
+
         /**
             プレイリストの中身を表示
         */
         showPlaylist: function (e) {
-            var playlistId = $(e.currentTarget).data('playlist-id');
+            var $this = $(e.currentTarget);
+            var playlistId = $this.data('playlist-id');
             var playlist = this.userPlaylistList.get(playlistId);
 
             // 無い場合には、何もしない
@@ -361,8 +398,11 @@ define([
             _.each(pocketIds, _.bind(function (pocketId) {
                 this.displayUserPocketList.add(this.userPocketList.get(pocketId));
             }, this));
-
             this.renderUserPocketListArea();
+
+            // サイドバーで自分のメニューをアクティブにする
+            this._activeMenuAtSidebar($this);
+
         },
 
 
@@ -560,6 +600,16 @@ define([
 
 
 
+         /**
+            サイドバーの指定されたメニューをアクティブ化する
+         */
+         _activeMenuAtSidebar: function ($target) {
+            var $sidebar = this.$el.find('#leftArea');
+            $sidebar.find('li').removeClass('is-active');
+            $target.addClass('is-active');
+         },
+
+
 
 
 
@@ -587,7 +637,7 @@ define([
             ページ表示
         */
         show: function (userId) {
-         
+
             // ユーザーデータ取得
             this.user.set('id', userId);
             this.user.fetch({reset: true});
@@ -634,7 +684,7 @@ define([
                 this.renderUserFollowedCount();
             }, this));
             this.userFollowedList.fetch({reset:true, data: {dest_user_id:userId}});
-            
+
 
             // プレイリスト一覧取得
             this.userPlaylistList = new UserPlaylistList();
@@ -648,7 +698,7 @@ define([
          * 終了処理
          */
         dealloc: function () {},
-    
+
     });
 
 

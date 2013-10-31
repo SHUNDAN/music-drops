@@ -184,7 +184,6 @@ define([
                 });
 
             } else {
-                console.debug('bbb', self.displayUserPocketList.models.length);
                 models = self.displayUserPocketList.models;
             }
 
@@ -238,7 +237,6 @@ define([
 
         // マイドロップ一覧を表示
         showMyDrops: function (e) {
-            console.debug('showMyDrops');
             e.preventDefault();
 
             // 表示物は削除
@@ -255,6 +253,9 @@ define([
             this.myPopList = new PopList();
             this.myPopList.bind('reset', this.renderMyDrops);
             this.myPopList.fetch({reset:true, data:{user_id:this.user.id}});
+
+            // 選択されたプレイリストを選択状態にする
+            this._activeMenuAtSidebar($(e.currentTarget));
 
             return false;
         },
@@ -281,6 +282,9 @@ define([
                 this.checkArtists.fetch({reset:true, data:{user_id:this.user.id}});
             }
 
+            // 選択されたプレイリストを選択状態にする
+            this._activeMenuAtSidebar($(e.currentTarget));
+
 
             return false;
         },
@@ -305,6 +309,9 @@ define([
                 this.followUsers.bind('reset', this.renderFollowUsers);
                 this.followUsers.fetch({reset:true, data:{user_id:this.user.id}});
             }
+
+            // 選択されたプレイリストを選択状態にする
+            this._activeMenuAtSidebar($(e.currentTarget));
 
 
             return false;
@@ -331,6 +338,9 @@ define([
                 this.followedUsers.fetch({reset:true, data:{dest_user_id:this.user.id}});
             }
 
+            // 選択されたプレイリストを選択状態にする
+            this._activeMenuAtSidebar($(e.currentTarget));
+
 
             return false;
         },
@@ -341,8 +351,21 @@ define([
          * 曲を再生する
          */
          playMusic: function (e) {
-            var pocketId = $(e.currentTarget).parents('[data-pocket-id]').data('pocket-id');
+            var $li = $(e.currentTarget).parents('[data-pocket-id]');
+            var pocketId = $li.data('pocket-id');
             pocketId = parseInt(pocketId, 10);
+
+
+
+            // もしPause中の場合には、再開のみを行う
+            if ($li.data('nowpausing')) {
+                $li.removeAttr('nowpausing');
+                mb.musicPlayer.startMusic();
+                return;
+            }
+
+
+
 
             var options = {};
 
@@ -365,10 +388,15 @@ define([
 
             // callback.
             options.callbackWhenWillStart = _.bind(function (music) {
-                // TODO ボタンをPlayとPauseの切替する
+
+                this.$el.find('#pocketListArea').find('[data-event-click="stopMusic"]').addClass('hidden');
+                this.$el.find('#pocketListArea').find('[data-event-click="playMusic"]').removeClass('hidden');
+                this.$el.find('#pocketListArea [data-pocket-id="'+music.id+'"]').find('[data-event-click="playMusic"], [data-event-click="stopMusic"]').toggleClass('hidden');
+
             }, this);
-            options.callbackWhenEnd = _.bind(function () {
-                // TODO ボタンをすべてPlayにする
+            options.callbackWhenEnd = options.callbackWhenPause = _.bind(function () {
+                this.$el.find('#pocketListArea').find('[data-event-click="stopMusic"]').addClass('hidden');
+                this.$el.find('#pocketListArea').find('[data-event-click="playMusic"]').removeClass('hidden');
             }, this);
 
 
@@ -378,12 +406,22 @@ define([
          },
 
 
+         /**
+            一時停止する
+         */
+         stopMusic: function (e) {
+            mb.musicPlayer.pauseMusic();
+            $(e.currentTarget).parents('[data-pocket-id]').attr('data-nowpausing', 'true');
+         },
+
+
 
 
 
          // Playlistの中身を表示する
          showPlaylist: function (e) {
-            var playlistId = $(e.currentTarget).data('playlist-id');
+            var $this = $(e.currentTarget);
+            var playlistId = $this.data('playlist-id');
             var playlist = this.userPlaylistList.get(playlistId);
 
             // 無い場合には、何もしない
@@ -404,12 +442,25 @@ define([
                 pocketIds.reverse();
             }
 
+            // レンダリング
             this.displayUserPocketList = new UserPocketList();
             _.each(pocketIds, _.bind(function (pocketId) {
                 this.displayUserPocketList.add(this.userPocketList.get(pocketId));
             }, this));
-
             this.renderUserPocketListArea();
+
+            // 選択されたプレイリストを選択状態にする
+            this._activeMenuAtSidebar($this);
+         },
+
+
+         /**
+            サイドバーの指定されたメニューをアクティブ化する
+         */
+         _activeMenuAtSidebar: function ($target) {
+            var $sidebar = this.$el.find('#leftArea');
+            $sidebar.find('li').removeClass('is-active');
+            $target.addClass('is-active');
          },
 
 
@@ -464,6 +515,8 @@ define([
          // プレイリスト削除
          deletePlaylist: function (e) {
             e.preventDefault();
+            e.stopPropagation();
+
             var playlistId = $(e.currentTarget).parents('[data-playlist-id]').data('playlist-id');
             console.debug('deletePlaylist: ', playlistId);
 
@@ -479,11 +532,14 @@ define([
 
 
             // 確認ダイアログ
-            var confirmDialog = new ConfirmDialogView();
-            confirmDialog.show({
-                message: 'Playlistを削除しますか？',
-                yesButtonCallback: fn
-            });
+            // var confirmDialog = new ConfirmDialogView();
+            // confirmDialog.show({
+            //     message: 'Playlistを削除しますか？',
+            //     yesButtonCallback: fn
+            // });
+            if (window.confirm('プレイリストを削除しますか？')) {
+                fn();
+            }
 
             return false;
          },
@@ -906,7 +962,8 @@ define([
             フォローしているプレイリストの中身を表示する
         */
         showFollowPlaylist: function (e) {
-            var playlistId = $(e.currentTarget).data('playlist-id');
+            var $this = $(e.currentTarget);
+            var playlistId = $this.data('playlist-id');
             console.debug('showFollowPlaylist: ', playlistId);
 
             // 現在のプレイリストを設定する
@@ -934,6 +991,9 @@ define([
             console.debug('current: ', this.currentPlaylist.attributes.user_pocket_ids);
             userPocketList.fetch({reset:true, data:{targets:this.currentPlaylist.attributes.user_pocket_ids}});
 
+
+            // 選択されたプレイリストを選択状態にする
+            this._activeMenuAtSidebar($this);
         },
 
 
@@ -964,6 +1024,7 @@ define([
         */
         deleteFollowPlaylist: function (e) {
             e.preventDefault();
+            e.stopPropagation();
             var playlistId = $(e.currentTarget).parents('[data-playlist-id]').data('playlist-id');
             console.debug('deleteFollowPlaylist: ', playlistId);
 
@@ -980,17 +1041,30 @@ define([
                     // レンダリング
                     this.renderUserFollowPlaylist();
 
+                    // Storageも更新
+                    _.mbStorage.refreshUser({target:'playlist'});
+
+
                 }, this));
                 userPlaylist.destroy();
             }, this);
 
 
             // 確認ダイアログ
-            var confirmDialog = new ConfirmDialogView();
-            confirmDialog.show({
-                message: 'フォローしているPlaylistを削除しますか？',
-                yesButtonCallback: fn
-            });
+            // var confirmDialog = new ConfirmDialogView();
+            // confirmDialog.show({
+            //     message: 'フォローしているPlaylistを削除しますか？',
+            //     yesButtonCallback: fn
+            // });
+            if (window.confirm('フォローしているプレイリストを削除しますか？')) {
+                fn();
+            }
+
+
+
+
+
+
 
             return false;
 

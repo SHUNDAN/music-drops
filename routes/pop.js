@@ -75,13 +75,13 @@ exports.selectPopList = function(req, res) {
  */
 exports.add = function(req, res) {
 
-    // 必須チェック
+    // 必須：Feeling、MusicID
     if (!req.body.music_id || !req.body.feeling_id) {
         res.json(400, {message: 'music_id or feeling_id are required.'});
         return;
     }
 
-    // コメント：必須、120文字以内
+    // 必須：Comment、120文字以内
     var comment = req.body.comment;
     if (!comment || comment.length === 0) {
         res.json(400, 'comment must be set.');
