@@ -332,9 +332,9 @@
 			border-radius: 50%;
 			text-align: center;
 			line-height: 42px;
-			font-size: 22px;
+			font-size: 16px;
 			background-color: #dedbc7;
-			&:hover {
+			&:hover, &.is-active {
 				background-color: #ffcf3c;
 				color: #8d7016;
 				cursor: pointer;

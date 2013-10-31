@@ -219,7 +219,12 @@
                     <a href="#artist/<%=pocket.attributes.artist_id%>"><%=pocket.attributes.artist_name%></a>
                 </div>
             </div>
-            <div class="playBtn" data-event-click="playMusic">▶</div>
+            <div class="playBtn" data-event-click="playMusic">
+                <i class="ico-font ico-play"></i>
+            </div>
+            <div class="playBtn is-active hidden" data-event-click="stopMusic">
+                <i class="ico-font ico-play-stop"></i>
+            </div>
         </li>
     <%});%>
 
