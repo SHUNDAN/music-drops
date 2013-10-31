@@ -3595,7 +3595,7 @@ define('views/music/search',[
             this.$el.find('#resultList').html(snipet);
 
             // 件数も更新する
-            this.$el.find('#numOfResult').text(this.iTunesSearchResultList.length);
+            this.$el.find('#numOfResult').text('検索結果：' + this.iTunesSearchResultList.length + '件');
         },
 
 
@@ -3870,12 +3870,13 @@ define('views/login',[
 
             var $blackout = $('<div/>');
             $blackout.css({
-                width: '80%',
+                width: '520px',
+                'margin-left': '-260px',
                 padding: '20px 0',
-                'background-color': 'rgba(0,0,0,.85)',
+                'background-color': 'rgba(255,255,255, 1.0)',
                 position: 'fixed',
                 top: '25%',
-                left: '10%',
+                left: '50%',
             });
             $clickArea.html($blackout);
 
