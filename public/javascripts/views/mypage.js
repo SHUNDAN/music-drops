@@ -237,7 +237,6 @@ define([
 
         // マイドロップ一覧を表示
         showMyDrops: function (e) {
-            console.debug('showMyDrops');
             e.preventDefault();
 
             // 表示物は削除
@@ -254,6 +253,9 @@ define([
             this.myPopList = new PopList();
             this.myPopList.bind('reset', this.renderMyDrops);
             this.myPopList.fetch({reset:true, data:{user_id:this.user.id}});
+
+            // 選択されたプレイリストを選択状態にする
+            this._activeMenuAtSidebar($(e.currentTarget));
 
             return false;
         },
@@ -280,6 +282,9 @@ define([
                 this.checkArtists.fetch({reset:true, data:{user_id:this.user.id}});
             }
 
+            // 選択されたプレイリストを選択状態にする
+            this._activeMenuAtSidebar($(e.currentTarget));
+
 
             return false;
         },
@@ -305,6 +310,9 @@ define([
                 this.followUsers.fetch({reset:true, data:{user_id:this.user.id}});
             }
 
+            // 選択されたプレイリストを選択状態にする
+            this._activeMenuAtSidebar($(e.currentTarget));
+
 
             return false;
         },
@@ -329,6 +337,9 @@ define([
                 this.followedUsers.bind('reset', this.renderFollowedUsers);
                 this.followedUsers.fetch({reset:true, data:{dest_user_id:this.user.id}});
             }
+
+            // 選択されたプレイリストを選択状態にする
+            this._activeMenuAtSidebar($(e.currentTarget));
 
 
             return false;
@@ -382,7 +393,8 @@ define([
 
          // Playlistの中身を表示する
          showPlaylist: function (e) {
-            var playlistId = $(e.currentTarget).data('playlist-id');
+            var $this = $(e.currentTarget);
+            var playlistId = $this.data('playlist-id');
             var playlist = this.userPlaylistList.get(playlistId);
 
             // 無い場合には、何もしない
@@ -403,12 +415,25 @@ define([
                 pocketIds.reverse();
             }
 
+            // レンダリング
             this.displayUserPocketList = new UserPocketList();
             _.each(pocketIds, _.bind(function (pocketId) {
                 this.displayUserPocketList.add(this.userPocketList.get(pocketId));
             }, this));
-
             this.renderUserPocketListArea();
+
+            // 選択されたプレイリストを選択状態にする
+            this._activeMenuAtSidebar($this);
+         },
+
+
+         /**
+            サイドバーの指定されたメニューをアクティブ化する
+         */
+         _activeMenuAtSidebar: function ($target) {
+            var $sidebar = this.$el.find('#leftArea');
+            $sidebar.find('li').removeClass('is-active');
+            $target.addClass('is-active');
          },
 
 
@@ -910,7 +935,8 @@ define([
             フォローしているプレイリストの中身を表示する
         */
         showFollowPlaylist: function (e) {
-            var playlistId = $(e.currentTarget).data('playlist-id');
+            var $this = $(e.currentTarget);
+            var playlistId = $this.data('playlist-id');
             console.debug('showFollowPlaylist: ', playlistId);
 
             // 現在のプレイリストを設定する
@@ -938,6 +964,9 @@ define([
             console.debug('current: ', this.currentPlaylist.attributes.user_pocket_ids);
             userPocketList.fetch({reset:true, data:{targets:this.currentPlaylist.attributes.user_pocket_ids}});
 
+
+            // 選択されたプレイリストを選択状態にする
+            this._activeMenuAtSidebar($this);
         },
 
 

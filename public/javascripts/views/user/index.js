@@ -213,7 +213,7 @@ define([
         /**
             Pop一覧を表示する
         */
-        showMyDrops: function () {
+        showMyDrops: function (e) {
 
             // 表示物は削除
             $('[data-type="dataArea"]').html('');
@@ -226,13 +226,17 @@ define([
 
             // 表示する
             this.renderMyDrops();
+
+            // サイドバーで自分のメニューをアクティブにする
+            this._activeMenuAtSidebar($(e.currentTarget));
+
         },
 
 
         /**
             チェックアーティスト一覧を表示する
         */
-        showCheckArtists: function () {
+        showCheckArtists: function (e) {
 
             // 表示物は削除
             $('[data-type="dataArea"]').html('');
@@ -245,6 +249,9 @@ define([
 
             // 表示する
             this.renderCheckArtists();
+
+            // サイドバーで自分のメニューをアクティブにする
+            this._activeMenuAtSidebar($(e.currentTarget));
         },
 
 
@@ -264,6 +271,9 @@ define([
 
             // 表示する
             this.renderFollowUsers();
+
+            // サイドバーで自分のメニューをアクティブにする
+            this._activeMenuAtSidebar($(e.currentTarget));
         },
 
 
@@ -283,6 +293,9 @@ define([
 
             // 表示する
             this.renderFollowedUsers();
+
+            // サイドバーで自分のメニューをアクティブにする
+            this._activeMenuAtSidebar($(e.currentTarget));
         },        
 
 
@@ -340,7 +353,8 @@ define([
             プレイリストの中身を表示
         */
         showPlaylist: function (e) {
-            var playlistId = $(e.currentTarget).data('playlist-id');
+            var $this = $(e.currentTarget);
+            var playlistId = $this.data('playlist-id');
             var playlist = this.userPlaylistList.get(playlistId);
 
             // 無い場合には、何もしない
@@ -359,8 +373,11 @@ define([
             _.each(pocketIds, _.bind(function (pocketId) {
                 this.displayUserPocketList.add(this.userPocketList.get(pocketId));
             }, this));
-
             this.renderUserPocketListArea();
+
+            // サイドバーで自分のメニューをアクティブにする
+            this._activeMenuAtSidebar($this);
+
         },
 
 
@@ -556,6 +573,16 @@ define([
             this.renderUserPocketList();
         },
 
+
+
+         /**
+            サイドバーの指定されたメニューをアクティブ化する
+         */
+         _activeMenuAtSidebar: function ($target) {
+            var $sidebar = this.$el.find('#leftArea');
+            $sidebar.find('li').removeClass('is-active');
+            $target.addClass('is-active');
+         },
 
 
 
