@@ -963,6 +963,7 @@ define([
         */
         deleteFollowPlaylist: function (e) {
             e.preventDefault();
+            e.stopPropagation();
             var playlistId = $(e.currentTarget).parents('[data-playlist-id]').data('playlist-id');
             console.debug('deleteFollowPlaylist: ', playlistId);
 
@@ -985,11 +986,20 @@ define([
 
 
             // 確認ダイアログ
-            var confirmDialog = new ConfirmDialogView();
-            confirmDialog.show({
-                message: 'フォローしているPlaylistを削除しますか？',
-                yesButtonCallback: fn
-            });
+            // var confirmDialog = new ConfirmDialogView();
+            // confirmDialog.show({
+            //     message: 'フォローしているPlaylistを削除しますか？',
+            //     yesButtonCallback: fn
+            // });
+            if (window.confirm('フォローしているプレイリストを削除しますか？')) {
+                fn();
+            }
+            
+
+
+
+
+
 
             return false;
 

@@ -137,6 +137,8 @@
 		}
 		.clearBtn {
 			display: block;
+			width: 20px;		// クリックしやすいように幅を持たせる
+			text-align: right;
 		}
 		.addPlaylistArea {
 			display: block;

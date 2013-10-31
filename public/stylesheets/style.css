@@ -2522,18 +2522,20 @@ footer {
 /* line 138, ../dev/scss/pages/_mypage.scss */
 .userPage-listEditArea.edit .clearBtn {
   display: block;
+  width: 20px;
+  text-align: right;
 }
-/* line 141, ../dev/scss/pages/_mypage.scss */
+/* line 143, ../dev/scss/pages/_mypage.scss */
 .userPage-listEditArea.edit .addPlaylistArea {
   display: block;
 }
 
-/* line 161, ../dev/scss/pages/_mypage.scss */
+/* line 163, ../dev/scss/pages/_mypage.scss */
 .pageMypage .addPlaylistArea, .pageUser .addPlaylistArea {
   position: relative;
   display: none;
 }
-/* line 166, ../dev/scss/pages/_mypage.scss */
+/* line 168, ../dev/scss/pages/_mypage.scss */
 .pageMypage .addPlaylistArea input[type="text"], .pageUser .addPlaylistArea input[type="text"] {
   display: block;
   width: 320px;
@@ -2541,7 +2543,7 @@ footer {
   background-color: #efede0;
   box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
 }
-/* line 175, ../dev/scss/pages/_mypage.scss */
+/* line 177, ../dev/scss/pages/_mypage.scss */
 .pageMypage .addPlaylistArea input[type="button"], .pageUser .addPlaylistArea input[type="button"] {
   position: absolute;
   top: 5px;
@@ -2553,12 +2555,12 @@ footer {
   text-align: center;
   background-color: #ccc9b2;
 }
-/* line 191, ../dev/scss/pages/_mypage.scss */
+/* line 193, ../dev/scss/pages/_mypage.scss */
 .pageMypage .filterArea, .pageUser .filterArea {
   position: relative;
   height: 60px;
 }
-/* line 195, ../dev/scss/pages/_mypage.scss */
+/* line 197, ../dev/scss/pages/_mypage.scss */
 .pageMypage .filterArea .filterByNameInput, .pageUser .filterArea .filterByNameInput {
   position: absolute;
   top: 0;
@@ -2566,7 +2568,7 @@ footer {
   display: block;
   width: 382px;
 }
-/* line 203, ../dev/scss/pages/_mypage.scss */
+/* line 205, ../dev/scss/pages/_mypage.scss */
 .pageMypage .filterArea .filterByNameBtn, .pageUser .filterArea .filterByNameBtn {
   position: absolute;
   top: 5px;
@@ -2575,7 +2577,7 @@ footer {
   width: 64px;
   text-align: center;
 }
-/* line 212, ../dev/scss/pages/_mypage.scss */
+/* line 214, ../dev/scss/pages/_mypage.scss */
 .pageMypage .filterArea .selectArea, .pageUser .filterArea .selectArea {
   position: absolute;
   top: 0;
@@ -2584,33 +2586,33 @@ footer {
   width: 218px;
   height: 40px;
 }
-/* line 219, ../dev/scss/pages/_mypage.scss */
+/* line 221, ../dev/scss/pages/_mypage.scss */
 .pageMypage .filterArea .selectArea select, .pageUser .filterArea .selectArea select {
   width: 100%;
   height: 100%;
   padding-left: 10px;
 }
-/* line 229, ../dev/scss/pages/_mypage.scss */
+/* line 231, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListFncArea, .pageUser .pocketListFncArea {
   padding: 10px 10px 10px 0;
 }
-/* line 232, ../dev/scss/pages/_mypage.scss */
+/* line 234, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListFncArea .randomPlayButton, .pageUser .pocketListFncArea .randomPlayButton {
   width: 200px;
   float: left;
 }
-/* line 237, ../dev/scss/pages/_mypage.scss */
+/* line 239, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListFncArea .editButton, .pageUser .pocketListFncArea .editButton {
   width: 200px;
   text-align: right;
   float: right;
 }
-/* line 243, ../dev/scss/pages/_mypage.scss */
+/* line 245, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListFncArea .playlistFollowButton, .pageUser .pocketListFncArea .playlistFollowButton {
   text-align: right;
   float: right;
 }
-/* line 257, ../dev/scss/pages/_mypage.scss */
+/* line 259, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li, .pageUser .pocketListArea li {
   position: relative;
   display: -webkit-box;
@@ -2622,11 +2624,11 @@ footer {
   color: #656457 !important;
   margin-bottom: 20px;
 }
-/* line 267, ../dev/scss/pages/_mypage.scss */
+/* line 269, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li:nth-child(2n), .pageUser .pocketListArea li:nth-child(2n) {
   margin-left: 10px;
 }
-/* line 270, ../dev/scss/pages/_mypage.scss */
+/* line 272, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li:after, .pageUser .pocketListArea li:after {
   position: absolute;
   top: 0;
@@ -2635,67 +2637,67 @@ footer {
   height: 72px;
   content: " ";
 }
-/* line 278, ../dev/scss/pages/_mypage.scss */
+/* line 280, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-1:after, .pageUser .pocketListArea li.feeling-1:after {
   background-color: #fb665c;
 }
-/* line 281, ../dev/scss/pages/_mypage.scss */
+/* line 283, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-2:after, .pageUser .pocketListArea li.feeling-2:after {
   background-color: #ffb006;
 }
-/* line 284, ../dev/scss/pages/_mypage.scss */
+/* line 286, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-3:after, .pageUser .pocketListArea li.feeling-3:after {
   background-color: #ffcf3c;
 }
-/* line 287, ../dev/scss/pages/_mypage.scss */
+/* line 289, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-4:after, .pageUser .pocketListArea li.feeling-4:after {
   background-color: #5dc988;
 }
-/* line 290, ../dev/scss/pages/_mypage.scss */
+/* line 292, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-5:after, .pageUser .pocketListArea li.feeling-5:after {
   background-color: #48a9d9;
 }
-/* line 293, ../dev/scss/pages/_mypage.scss */
+/* line 295, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-6:after, .pageUser .pocketListArea li.feeling-6:after {
   background-color: #bf7fe8;
 }
-/* line 296, ../dev/scss/pages/_mypage.scss */
+/* line 298, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea li.feeling-7:after, .pageUser .pocketListArea li.feeling-7:after {
   background-color: #ffa4e2;
 }
-/* line 300, ../dev/scss/pages/_mypage.scss */
+/* line 302, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .thumb, .pageUser .pocketListArea .thumb {
   display: block;
   width: 72px;
   height: 72px;
 }
-/* line 305, ../dev/scss/pages/_mypage.scss */
+/* line 307, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .info, .pageUser .pocketListArea .info {
   width: 150px;
   height: 72px;
   margin-left: 10px;
 }
-/* line 310, ../dev/scss/pages/_mypage.scss */
+/* line 312, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .title, .pageUser .pocketListArea .title {
   padding: 10px 0;
   font-size: 14px;
   width: 100%;
 }
-/* line 314, ../dev/scss/pages/_mypage.scss */
+/* line 316, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .title a, .pageUser .pocketListArea .title a {
   display: inline;
 }
-/* line 318, ../dev/scss/pages/_mypage.scss */
+/* line 320, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .artistName, .pageUser .pocketListArea .artistName {
   padding: 0 0 10px;
   font-size: 12px;
   width: 100%;
 }
-/* line 322, ../dev/scss/pages/_mypage.scss */
+/* line 324, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .artistName a, .pageUser .pocketListArea .artistName a {
   display: inline;
 }
-/* line 326, ../dev/scss/pages/_mypage.scss */
+/* line 328, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .playBtn, .pageUser .pocketListArea .playBtn {
   width: 42px;
   height: 42px;
@@ -2706,13 +2708,13 @@ footer {
   font-size: 22px;
   background-color: #dedbc7;
 }
-/* line 335, ../dev/scss/pages/_mypage.scss */
+/* line 337, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .playBtn:hover, .pageUser .pocketListArea .playBtn:hover {
   background-color: #ffcf3c;
   color: #8d7016;
   cursor: pointer;
 }
-/* line 341, ../dev/scss/pages/_mypage.scss */
+/* line 343, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .deleteBtn, .pageUser .pocketListArea .deleteBtn {
   display: none;
   width: 42px;
@@ -2725,21 +2727,21 @@ footer {
   font-weight: bold;
   background-color: #dedbc7;
 }
-/* line 352, ../dev/scss/pages/_mypage.scss */
+/* line 354, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea .deleteBtn:hover, .pageUser .pocketListArea .deleteBtn:hover {
   background-color: #ffcf3c;
   color: #8d7016;
   cursor: pointer;
 }
-/* line 361, ../dev/scss/pages/_mypage.scss */
+/* line 363, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea.editStyle .playBtn, .pageUser .pocketListArea.editStyle .playBtn {
   display: none;
 }
-/* line 364, ../dev/scss/pages/_mypage.scss */
+/* line 366, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketListArea.editStyle .deleteBtn, .pageUser .pocketListArea.editStyle .deleteBtn {
   display: block;
 }
-/* line 374, ../dev/scss/pages/_mypage.scss */
+/* line 376, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketDeleteArea, .pageUser .pocketDeleteArea {
   position: absolute;
   top: 10px;
@@ -2752,11 +2754,11 @@ footer {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
-/* line 385, ../dev/scss/pages/_mypage.scss */
+/* line 387, ../dev/scss/pages/_mypage.scss */
 .pageMypage .pocketDeleteArea.active, .pageUser .pocketDeleteArea.active {
   border: 4px solid yellow;
 }
-/* line 396, ../dev/scss/pages/_mypage.scss */
+/* line 398, ../dev/scss/pages/_mypage.scss */
 .pageMypage .followUserList li, .pageMypage .followArtistList li, .pageUser .followUserList li, .pageUser .followArtistList li {
   min-height: 50px;
   width: 100%;
@@ -2765,18 +2767,18 @@ footer {
   margin: 10px 0;
   box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5) inset, 0 -1px 1px rgba(0, 0, 0, 0.3) inset;
 }
-/* line 404, ../dev/scss/pages/_mypage.scss */
+/* line 406, ../dev/scss/pages/_mypage.scss */
 .pageMypage .followUserList .message, .pageMypage .followArtistList .message, .pageUser .followUserList .message, .pageUser .followArtistList .message {
   line-height: 30px;
 }
-/* line 407, ../dev/scss/pages/_mypage.scss */
+/* line 409, ../dev/scss/pages/_mypage.scss */
 .pageMypage .followUserList .userName, .pageMypage .followArtistList .userName, .pageUser .followUserList .userName, .pageUser .followArtistList .userName {
   float: left;
   display: block;
   height: 100%;
   line-height: 30px;
 }
-/* line 413, ../dev/scss/pages/_mypage.scss */
+/* line 415, ../dev/scss/pages/_mypage.scss */
 .pageMypage .followUserList .followUserButton, .pageMypage .followUserList .unfollowUserButton, .pageMypage .followArtistList .followUserButton, .pageMypage .followArtistList .unfollowUserButton, .pageUser .followUserList .followUserButton, .pageUser .followUserList .unfollowUserButton, .pageUser .followArtistList .followUserButton, .pageUser .followArtistList .unfollowUserButton {
   float: right;
   width: 100px;
@@ -2786,7 +2788,7 @@ footer {
   color: #656457;
   background-color: #dedbc7;
 }
-/* line 422, ../dev/scss/pages/_mypage.scss */
+/* line 424, ../dev/scss/pages/_mypage.scss */
 .pageMypage .followUserList .unfollowUserButton, .pageMypage .followArtistList .unfollowUserButton, .pageUser .followUserList .unfollowUserButton, .pageUser .followArtistList .unfollowUserButton {
   color: #8d7016;
   background-color: #ffcf3c;
