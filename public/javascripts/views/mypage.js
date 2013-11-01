@@ -833,11 +833,14 @@ define([
                 message = 'プレイリストから削除しますか？';
                 callback = _.bind(this._deletePocketFromPlaylist, this);
             }
-            var confirmDialog = new ConfirmDialogView();
-            confirmDialog.show({
-                message: message,
-                yesButtonCallback: callback
-            });
+            // var confirmDialog = new ConfirmDialogView();
+            // confirmDialog.show({
+            //     message: message,
+            //     yesButtonCallback: callback
+            // });
+            if (window.confirm(message)) {
+                callback();
+            }
 
         },
 

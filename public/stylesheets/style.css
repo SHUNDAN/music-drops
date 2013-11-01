@@ -2904,6 +2904,21 @@ footer {
   text-align: center;
 }
 
+/* line 23, ../dev/scss/pages/_login.scss */
+.page-login-rule .rule {
+  display: block;
+  width: 96%;
+  height: 150px;
+  overflow-y: scroll;
+  padding: 4px;
+  border: 1px solid #ccc;
+}
+/* line 31, ../dev/scss/pages/_login.scss */
+.page-login-rule .detail-link {
+  display: inline-block;
+  margin-left: 320px;
+}
+
 /* line 12, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .leftCol {
   position: fixed;

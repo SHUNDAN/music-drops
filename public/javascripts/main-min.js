@@ -3825,6 +3825,11 @@ define('views/login',[
 
 
         initialize: function () {
+
+            // auto event bind.
+            _.bindEvents(this);
+
+
             this.model = new UserModel();
             _.bindAll(this, 'render', 'renderForMordal', 'show', 'login', 'dealloc');
         },
@@ -3834,15 +3839,17 @@ define('views/login',[
         template: $('#page_login').html(),
 
         render: function () {
-            var html = _.template(this.template, {color: undefined});
+
+            var ruleHtml = _.mbTemplate('#page_rules');
+            var html = _.template(this.template, {ruleHtml: ruleHtml});
             this.$el.html(html);
 
-            var userInfo = this.userStorage.getUser();
-            if (userInfo) {
-                $('#userId').text(userInfo.user_id);
-            }
+            // var userInfo = this.userStorage.getUser();
+            // if (userInfo) {
+            //     $('#userId').text(userInfo.user_id);
+            // }
 
-            $('#userId').focus();
+            // $('#userId').focus();
         },
 
         renderForMordal: function () {
@@ -3861,7 +3868,8 @@ define('views/login',[
             }).on('click', function (e) {
                 console.log('remove modal dialog.', e);
                 if (e.target.id !== 'clickArea') {
-                    return false;
+                    // return false;
+                    return;
                 }
                 self.$el.remove();
                 return;
@@ -3875,12 +3883,13 @@ define('views/login',[
                 padding: '20px 0',
                 'background-color': 'rgba(255,255,255, 1.0)',
                 position: 'fixed',
-                top: '25%',
+                top: '16%',
                 left: '50%',
             });
             $clickArea.html($blackout);
 
-            var snipet = _.template(this.template, {color: 'white'});
+            var ruleHtml = $('#page_rules').html();
+            var snipet = _.template(this.template, {ruleHtml: ruleHtml});
             $blackout.html(snipet);
 
 
@@ -3938,6 +3947,33 @@ define('views/login',[
 
             return false;
         },
+
+
+
+        /**
+            利用規約ページへ
+        */
+        gotoRulePage: function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.$el.remove();
+            mb.router.navigate('rules', true);
+            return false;
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         show: function (type, successCallback) {
@@ -5041,11 +5077,14 @@ define('views/mypage',[
                 message = 'プレイリストから削除しますか？';
                 callback = _.bind(this._deletePocketFromPlaylist, this);
             }
-            var confirmDialog = new ConfirmDialogView();
-            confirmDialog.show({
-                message: message,
-                yesButtonCallback: callback
-            });
+            // var confirmDialog = new ConfirmDialogView();
+            // confirmDialog.show({
+            //     message: message,
+            //     yesButtonCallback: callback
+            // });
+            if (window.confirm(message)) {
+                callback();
+            }
 
         },
 
