@@ -82,10 +82,32 @@ exports.add = function(req, res) {
     console.log('req.body', req.body);
 
 
-    // execute.
-    userPlaylistModel.insertObject(req.body, function (err) {
-        appUtil.basicResponse(res, err);
+
+    // 上限確認を行います
+    userPlaylistModel.countObjects({user_id:user_id, type: req.body.type}, function (err, cnt) {
+
+        console.log('playlist cnt =', cnt);
+
+        // 上限は7
+        if (cnt >= 7) {
+            res.json(400, 'playlist max count proceeded. max=7, current=' + cnt + ', willAdd=1');
+            return;
+        }
+
+
+        // 登録
+        userPlaylistModel.insertObject(req.body, function (err) {
+            appUtil.basicResponse(res, err);
+        });
+
+
     });
+
+
+
+
+
+
 
 };
 
@@ -98,11 +120,24 @@ exports.update = function(req, res) {
 
 
     // login check.
-    if (!appUtil.isLogedIn(req)) {
+    var user_id = appUtil.getUserIdFromRequest(req);
+    if (!user_id) {
+        appUtil.actionLog(req, 'delete pocket failed. no authentication');
         appUtil.response403(res);
         return;
     }
 
+    // 自分のもの以外は削除不可にする
+    req.params.user_id = user_id;
+
+    if (req.body.user_pocket_ids) {
+        var ids = JSON.parse(req.body.user_pocket_ids);
+        console.log('pocket_ids.length = ', ids.length);
+        if (ids.length > 30) {
+            res.json(400, 'user_playlist_ids must be within 30. actual=', ids.length);
+            return;
+        }
+    }
 
     // execute
     userPlaylistModel.updateObject(req.body, req.params, function (err) {
@@ -126,12 +161,12 @@ exports.delete = function(req, res) {
 
     // idの場合
     if (req.params.id || req.body.id) {
-        condition.id = req.params.id || req.body.id;        
+        condition.id = req.params.id || req.body.id;
     }
 
     // 条件の場合
     if (req.body.dest_playlist_id) {
-        condition.dest_playlist_id = req.body.dest_playlist_id;        
+        condition.dest_playlist_id = req.body.dest_playlist_id;
     }
 
 
