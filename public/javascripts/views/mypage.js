@@ -173,8 +173,8 @@ define([
                 _.each(self.displayUserPocketList.models, function (pocket) {
                     var good = false;
                     _.each(self.filterWords, function (word) {
-                        if (pocket.attributes.title.indexOf(word) !== -1
-                            || pocket.attributes.artist_name.indexOf(word) !== -1) {
+                        if (pocket.attributes.title.toLowerCase().indexOf(word.toLowerCase()) !== -1
+                            || pocket.attributes.artist_name.toLowerCase().indexOf(word.toLowerCase()) !== -1) {
                             good = true;
                         }
                     });
