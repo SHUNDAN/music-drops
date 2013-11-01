@@ -42,13 +42,13 @@ button {
 
 //  Fonts
 //-------------------------------------
-@import url(http://fonts.googleapis.com/css?family=Courgette);
+@import url(http://fonts.googleapis.com/css?family=Fenix);
 
-@mixin Courgette {
-  font-family: 'Courgette', cursive;
+@mixin Fenix {
+  font-family: 'Fenix', serif;
 }
-.Courgette {
-  @include Courgette;
+.Fenix {
+  @include Fenix;
 }
 .ico-play {
 	margin-left: 2px;

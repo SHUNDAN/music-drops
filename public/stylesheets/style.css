@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Courgette);
+@import url(http://fonts.googleapis.com/css?family=Fenix);
 /* line 19, ../dev/scss/core/_reset.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -890,8 +890,8 @@ button {
 }
 
 /* line 50, ../dev/scss/core/_base.scss */
-.Courgette {
-  font-family: 'Courgette', cursive;
+.Fenix {
+  font-family: 'Fenix', serif;
 }
 
 /* line 53, ../dev/scss/core/_base.scss */
@@ -1101,37 +1101,46 @@ header {
 .header-logo a:hover {
   opacity: 0.6;
 }
+/* line 69, ../dev/scss/modules/_header.scss */
+.header-logo:after {
+  position: absolute;
+  display: block;
+  content: "BETA";
+  right: -20px;
+  bottom: 0;
+  font-size: 10px;
+}
 
-/* line 73, ../dev/scss/modules/_header.scss */
+/* line 81, ../dev/scss/modules/_header.scss */
 .header-search {
   top: 10px;
-  left: 64px;
+  left: 74px;
   width: 40px;
   height: 40px;
 }
-/* line 78, ../dev/scss/modules/_header.scss */
+/* line 86, ../dev/scss/modules/_header.scss */
 .header-search a {
   width: 40px;
   height: 40px;
 }
-/* line 82, ../dev/scss/modules/_header.scss */
+/* line 90, ../dev/scss/modules/_header.scss */
 .header-search:after {
   position: absolute;
   top: -5px;
-  left: 59px;
+  left: 49px;
   display: block !important;
   content: "";
   width: 1px;
   height: 50px;
   border-right: 1px solid #bdb99c;
 }
-/* line 92, ../dev/scss/modules/_header.scss */
+/* line 100, ../dev/scss/modules/_header.scss */
 .header-search p {
   width: 40px;
   padding-top: 4px;
 }
 
-/* line 106, ../dev/scss/modules/_header.scss */
+/* line 114, ../dev/scss/modules/_header.scss */
 .header-playList {
   top: 10px;
   left: 135px;
@@ -1141,31 +1150,31 @@ header {
   text-align: center;
   background-color: #dedbc7;
 }
-/* line 114, ../dev/scss/modules/_header.scss */
+/* line 122, ../dev/scss/modules/_header.scss */
 .header-playList.is-active {
   background-color: #ffcf3c;
 }
-/* line 117, ../dev/scss/modules/_header.scss */
+/* line 125, ../dev/scss/modules/_header.scss */
 .header-playList p:first-child {
   color: #3d3c3c;
 }
-/* line 120, ../dev/scss/modules/_header.scss */
+/* line 128, ../dev/scss/modules/_header.scss */
 .header-playList span {
   display: inline-block;
   width: 74px;
 }
 
-/* line 125, ../dev/scss/modules/_header.scss */
+/* line 133, ../dev/scss/modules/_header.scss */
 .header-playList-title {
   height: 20px;
   padding: 4px;
 }
-/* line 128, ../dev/scss/modules/_header.scss */
+/* line 136, ../dev/scss/modules/_header.scss */
 .header-playList-title .is-none {
   opacity: 0.6;
 }
 
-/* line 135, ../dev/scss/modules/_header.scss */
+/* line 143, ../dev/scss/modules/_header.scss */
 .header-playMenu {
   top: 10px;
   left: 247px;
@@ -1173,12 +1182,12 @@ header {
   height: 40px;
   background-color: #656457;
 }
-/* line 141, ../dev/scss/modules/_header.scss */
+/* line 149, ../dev/scss/modules/_header.scss */
 .header-playMenu > div {
   height: 40px;
 }
 
-/* line 146, ../dev/scss/modules/_header.scss */
+/* line 154, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn {
   position: absolute;
   top: 50%;
@@ -1194,12 +1203,12 @@ header {
   background-color: #fdfcf3;
 }
 
-/* line 156, ../dev/scss/modules/_header.scss */
+/* line 164, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn-prev {
   left: 8px;
 }
 
-/* line 159, ../dev/scss/modules/_header.scss */
+/* line 167, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn-play {
   left: 40px;
   width: 32px;
@@ -1207,12 +1216,12 @@ header {
   margin-top: -16px;
 }
 
-/* line 165, ../dev/scss/modules/_header.scss */
+/* line 173, ../dev/scss/modules/_header.scss */
 .header-playMenu-btn-next {
   left: 76px;
 }
 
-/* line 169, ../dev/scss/modules/_header.scss */
+/* line 177, ../dev/scss/modules/_header.scss */
 .header-playMenu-song {
   position: absolute;
   left: 110px;
@@ -1220,18 +1229,18 @@ header {
   color: #fff;
 }
 
-/* line 175, ../dev/scss/modules/_header.scss */
+/* line 183, ../dev/scss/modules/_header.scss */
 .header-playMenu-song-title {
   margin: 7px 0 4px;
 }
 
-/* line 178, ../dev/scss/modules/_header.scss */
+/* line 186, ../dev/scss/modules/_header.scss */
 .header-playMenu-defaultText {
   color: #8f8f87;
   margin: 14px 0 0;
 }
 
-/* line 183, ../dev/scss/modules/_header.scss */
+/* line 191, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn {
   position: absolute;
   bottom: 4px;
@@ -1239,32 +1248,32 @@ header {
   height: 20px;
   color: #efede0;
 }
-/* line 189, ../dev/scss/modules/_header.scss */
+/* line 197, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn.is-active {
   color: #ffcf3c;
 }
 
-/* line 193, ../dev/scss/modules/_header.scss */
+/* line 201, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn-window {
   right: 68px;
 }
 
-/* line 196, ../dev/scss/modules/_header.scss */
+/* line 204, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn-repeat {
   right: 36px;
 }
 
-/* line 199, ../dev/scss/modules/_header.scss */
+/* line 207, ../dev/scss/modules/_header.scss */
 .header-playSubMenu-btn-shuffle {
   right: 4px;
 }
 
-/* line 205, ../dev/scss/modules/_header.scss */
+/* line 213, ../dev/scss/modules/_header.scss */
 .header-userMenu {
   top: 10px;
   left: 720px;
 }
-/* line 208, ../dev/scss/modules/_header.scss */
+/* line 216, ../dev/scss/modules/_header.scss */
 .header-userMenu:after {
   position: absolute;
   top: -5px;
@@ -1276,7 +1285,7 @@ header {
   border-right: 1px solid #bdb99c;
 }
 
-/* line 219, ../dev/scss/modules/_header.scss */
+/* line 227, ../dev/scss/modules/_header.scss */
 .header-userMenu-btn {
   position: absolute;
   top: 0;
@@ -1286,35 +1295,35 @@ header {
   color: #656457;
 }
 
-/* line 227, ../dev/scss/modules/_header.scss */
+/* line 235, ../dev/scss/modules/_header.scss */
 .header-userMenu-btn-myList {
   left: 110px;
   width: 70px;
   padding-top: 7px;
 }
 
-/* line 232, ../dev/scss/modules/_header.scss */
+/* line 240, ../dev/scss/modules/_header.scss */
 .header-userMenu-btn-noti {
   left: 190px;
   width: 70px;
   padding-top: 7px;
 }
 
-/* line 240, ../dev/scss/modules/_header.scss */
+/* line 248, ../dev/scss/modules/_header.scss */
 .header-userMenu-btn.btn-pocket {
   left: 0;
   width: 40px;
   font-size: 24px;
 }
 
-/* line 246, ../dev/scss/modules/_header.scss */
+/* line 254, ../dev/scss/modules/_header.scss */
 .header-userMenu-btn.btn-drop {
   left: 50px;
   width: 40px;
   font-size: 24px;
 }
 
-/* line 255, ../dev/scss/modules/_header.scss */
+/* line 263, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup-area {
   top: 0;
   left: 0;
@@ -1324,12 +1333,12 @@ header {
   -webkit-transition: opacity .5s ease;
 }
 
-/* line 263, ../dev/scss/modules/_header.scss */
+/* line 271, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup-box {
   width: 980px;
 }
 
-/* line 266, ../dev/scss/modules/_header.scss */
+/* line 274, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup {
   top: 64px;
   left: 96px;
@@ -1345,7 +1354,7 @@ header {
   -moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
 }
-/* line 275, ../dev/scss/modules/_header.scss */
+/* line 283, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup:after {
   position: absolute;
   top: 0;
@@ -1360,7 +1369,7 @@ header {
   margin-top: -12px;
 }
 
-/* line 291, ../dev/scss/modules/_header.scss */
+/* line 299, ../dev/scss/modules/_header.scss */
 .header-playlist-content-popup-playlistname {
   width: 100%;
   height: 30px;
@@ -1373,35 +1382,35 @@ header {
   overflow: hidden;
 }
 
-/* line 303, ../dev/scss/modules/_header.scss */
+/* line 311, ../dev/scss/modules/_header.scss */
 .header-musicList {
   overflow: scroll;
   width: 100%;
   height: 470px;
 }
 
-/* line 309, ../dev/scss/modules/_header.scss */
+/* line 317, ../dev/scss/modules/_header.scss */
 .header-musicList-item {
   height: 60px;
   padding: 5px;
   border-bottom: 1px solid #d6d4c5;
 }
-/* line 313, ../dev/scss/modules/_header.scss */
+/* line 321, ../dev/scss/modules/_header.scss */
 .header-musicList-item:last-child {
   border-bottom: none;
 }
-/* line 316, ../dev/scss/modules/_header.scss */
+/* line 324, ../dev/scss/modules/_header.scss */
 .header-musicList-item.is-active {
   background-color: #ffcf3c;
 }
-/* line 320, ../dev/scss/modules/_header.scss */
+/* line 328, ../dev/scss/modules/_header.scss */
 .header-musicList-item .thumb {
   width: 44px;
   height: 44px;
   margin: 3px 0 0 3px;
 }
 
-/* line 327, ../dev/scss/modules/_header.scss */
+/* line 335, ../dev/scss/modules/_header.scss */
 .header-musicList-btn {
   top: 50%;
   right: 10px;

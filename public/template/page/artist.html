@@ -6,28 +6,36 @@
 
         
         <!--アーティストの詳細情報を表示-->
-        <div class="artistInfoArea">
+        <div class="artistInfoArea musicDetail bdr-4 ofh">
 
-            <div class="infoArea">
-                <img class="thumb" src="<%=repMusic.attributes.artwork_url%>" alt="<%=repMusic.attributes.title%>"/>
-                <div class="info">
-                    <div class="artistName"><%=repMusic.attributes.artist_name%></div>
-                    <div class="description">みんながえらぶ【代表的なキモチ】</div>
-                    <div class="feelingArea">
-                        <i class="sprite-feeling feeling-<%=repFeelingId%>"></i>
-                        <div class="feelingLabel"><%=_.getFeelingName(repFeelingId)%></div>
+            <div class="gp">
+                <div class="musicDetail-thumb mrm fl">
+                    <img src="<%=repMusic.attributes.artwork_url%>" width="140" height="140" alt="<%=repMusic.attributes.title%>" />
+                </div>
+
+                <div class="musicDetail-info fl">
+                    <h2 class="musicDetail-info-title mb5 fs16 lh22 b"><%=repMusic.attributes.artist_name%></h2>
+                    <p class="mt35 fs12">みんながえらぶ【代表的なキモチ】</p>
+                    <div class="musicDetail-action gp">
+
+                      <div class="tag-feeling ref">
+                          <p class="tag-feeling-text feeling-bg-<%-repFeelingId%> fs12 tc dt bdr-4">
+                              <span class="dc vm"><%-_.getFeelingName(repFeelingId)%></span>
+                          </p>
+                      </div>
+
                     </div>
                 </div>
             </div>
-
-            <%if (_.alreadyArtistFollow(repMusic.attributes.artist_id)) {%>
-                <div class="followButton hidden" data-event-click="followArtist">このアーティストをフォローする</div>
-                <div class="followButton" data-event-click="unfollowArtist">アーティストフォローを解除する</div>
-            <%} else {%>
-                <div class="followButton" data-event-click="followArtist">このアーティストをフォローする</div>
-                <div class="followButton hidden" data-event-click="unfollowArtist">アーティストフォローを解除する</div>
-            <%}%>
-
+            <div class="musicDetail-user gp">
+                <%if (_.alreadyArtistFollow(repMusic.attributes.artist_id)) {%>
+                    <a class="text-link lh18" data-event-click="followArtist"><i class="ico-font ico-follow fs18 mr5"></i>このアーティストをフォローする</a>
+                    <a class="text-link lh18 hidden" data-event-click="unfollowArtist"><i class="ico-font ico-follow fs18 mr5"></i>このアーティストのフォローを解除する</a>
+                <%} else {%>
+                    <a class="text-link lh18" data-event-click="followArtist"><i class="ico-font ico-follow fs18 mr5"></i>このアーティストをフォローする</a>
+                    <a class="text-link lh18 hidden" data-event-click="unfollowArtist"><i class="ico-font ico-follow fs18 mr5"></i>このアーティストをフォローする</a>
+                <%}%>
+            </div>
         </div>
 
 
