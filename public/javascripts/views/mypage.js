@@ -612,6 +612,7 @@ define([
                     // 他人のプレイリストからのドラッグドロップは色々と面倒なため、別対応する
                     if (self.currentPlaylist && self.currentPlaylist.attributes.type === 3) {
                         self._treatDragDropFromOtherPlaylist(pocketId, playlistId);
+                        $(e.currentTarget).removeClass('dropTarget');
                         return;
                     }
 
@@ -622,6 +623,14 @@ define([
                     var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
                     if (!_.contains(pocketIds, pocketId)) {
 
+
+                        // 30曲以上はだめ
+                        if (pocketIds.length >= 30) {
+                            alert('プレイリストに追加可能な数は30までです。追加する場合には、先にプレイリスト内のPocketを削除してください。');
+                            $(e.currentTarget).removeClass('dropTarget');
+                            return false;
+                        }
+
                         // プレイリストの更新
                         pocketIds.push(pocketId);
                         playlist.set('user_pocket_ids', JSON.stringify(pocketIds));
@@ -629,9 +638,13 @@ define([
                             self.renderPlaylist();
                         });
                         playlist.save();
+                        $(e.currentTarget).removeClass('dropTarget');
 
                     } else {
+                        alert('既に登録済みのPocketです。');
                         console.debug('既に登録済みのPocketです。 pocketId=', pocketId);
+                        $(e.currentTarget).removeClass('dropTarget');
+                        return false;
                     }
                 });
 
