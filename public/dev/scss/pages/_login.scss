@@ -19,3 +19,17 @@
     text-align: center;
   }
 }
+.page-login-rule {
+  .rule {
+    display: block;
+    width: 96%;
+    height: 150px;
+    overflow-y: scroll;
+    padding: 4px;
+    border: 1px solid #ccc;
+  }
+  .detail-link {
+    display: inline-block;
+    margin-left: 320px;
+  }
+}

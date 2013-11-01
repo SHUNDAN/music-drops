@@ -13,11 +13,20 @@
             </form>
         </div>
         -->
+
+        <div class="ml10 mb10 page-login-rule">
+            <p class="b mb5">利用規約</p>
+            <div class="rule mb5"><%=ruleHtml%></div>
+            <a href="#" class="detail-link" data-event-click="gotoRulePage">別ページで確認する▶</a>
+        </div>
+
+
+
         <div class="page-login-sns">
-            <p class="ml10 mb10">SNSアカウントでログインする</p>
-            <a href="#" class="btn-text btn-text-back btn-text-arrow-left btn-text-arrow-right btn-text-size-l btn-text-color-fb tc" onclick="sessionStorage.removeItem('user'); location.href='/auth/facebook'; return false;">Facebookから登録する</a>
-            <a href="#" class="btn-text btn-text-back btn-text-arrow-left btn-text-arrow-right btn-text-size-l btn-text-color-tw tc" onclick="sessionStorage.removeItem('user'); location.href='/auth/twitter'; return false;">Twitterから登録する</a>
-            <a href="#" class="btn-text btn-text-back btn-text-arrow-left btn-text-arrow-right btn-text-size-l btn-text-color-google tc" onclick="sessionStorage.removeItem('user'); location.href='/auth/google'; return false;">Googleから登録する</a>
+            <!--<p class="ml10 mb10">SNSアカウントでログインする</p>-->
+            <a href="#" class="btn-text btn-text-back btn-text-arrow-left btn-text-arrow-right btn-text-size-l btn-text-color-fb tc" onclick="localStorage.removeItem('user'); location.href='/auth/facebook'; return false;">利用規約に同意してFacebookログインする</a>
+            <a href="#" class="btn-text btn-text-back btn-text-arrow-left btn-text-arrow-right btn-text-size-l btn-text-color-tw tc" onclick="localStorage.removeItem('user'); location.href='/auth/twitter'; return false;">利用規約に同意してTwitterログインする</a>
+            <a href="#" class="btn-text btn-text-back btn-text-arrow-left btn-text-arrow-right btn-text-size-l btn-text-color-google tc" onclick="localStorage.removeItem('user'); location.href='/auth/google'; return false;">利用規約に同意してGoogleログインする</a>
         </div>
     </div>
 </script>
