@@ -153,7 +153,7 @@ define([
             this.$el.find('#pocketListArea').html(snipet);
 
             // 件数更新
-            this.$el.find('#numOfPockets').text(this.filteredPocketList.length);
+            this.$el.find('#numOfPockets').text(this.filteredPocketList.models.length);
 
             // ドラッグ＆ドロップ機能を追加
             this.addDragAndDropFacility();
