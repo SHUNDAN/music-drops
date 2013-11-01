@@ -114,7 +114,10 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
 .header-playList-title {
   height: 20px;
   padding: 4px;
-  background-color: #dedbc7; 
+  background-color: #dedbc7;
+  .is-none {
+    opacity: 0.6;
+  }
 }
 
 //  再生メニュー
@@ -162,6 +165,10 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
 .header-playMenu-song-title {
   margin: 6px 0 2px;
   font-size: 12px;
+}
+.header-playMenu-defaultText {
+  color: #8f8f87;
+  margin: 14px 0 0;
 }
 // 動画表示・リピート・シャッフル
 .header-playSubMenu-btn {

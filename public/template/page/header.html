@@ -20,7 +20,10 @@
 
     <div class="header-playList">
       <p>再生リスト</p>
-      <p id="mpPlaylistTitle" class="header-playList-title hidden gp" data-event-click="openPlaylistPopup"><!--JSで埋めます--></p>
+      <p id="mpPlaylistTitle" class="header-playList-title gp" data-event-click="openPlaylistPopup">
+        <i class="is-none">未設定</i>
+        <!--JSで埋めます-->
+      </p>
     </div><!-- /header-searchMenu -->
 
     <div class="header-playMenu">
@@ -40,7 +43,7 @@
         <div class="header-playMenu-song">
           <p id="mpMusicTitle" class="header-playMenu-song-title elps"><!--JSで埋めます--></p>
           <p id="mpArtistName" class="header-playList-song-artist elps"><!--JSで埋めます--></p>
-          <p id="mpMusicTitleDefaultText" class="header-playMenu-song-title elps"><!--JSで埋めます--></p>
+          <p id="mpMusicTitleDefaultText" class="header-playMenu-defaultText">Music Drops</p>
         </div><!-- /header-playMenu-song -->
         <button class="js-playMenu-movie header-playSubMenu-btn header-playSubMenu-btn-window btn-mouse-action" data-event-click="togglePlayerVisible">
           <i class="ico-font ico-image"></i>

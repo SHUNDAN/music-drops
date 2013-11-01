@@ -72,6 +72,7 @@ define([
             this.$playlistTitle = $('#mpPlaylistTitle');
             this.$musicTitle = $('#mpMusicTitle');
             this.$artistName = $('#mpArtistName');
+            this.$defaultText = $('#mpMusicTitleDefaultText');
 
 
             this.previewSize = {width: 640, height: 450};
@@ -175,8 +176,7 @@ define([
             var playlistNameText = options.playlistName || 'プレイリスト';
             this.$playlistTitle
                 .html('<span class="elps">' + playlistNameText + '</span>')
-                .append('<i class="ico-font ico-below fr fs9"></i>')
-                .removeClass('hidden');
+                .append('<i class="ico-font ico-below fr fs9"></i>');
 
             // プレイヤーを再生状態にする
             this.$header.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
@@ -249,6 +249,7 @@ define([
             // 表示情報
             this.$musicTitle.html(this.currentMusic.title);
             this.$artistName.html(this.currentMusic.artistName);
+            this.$defaultText.remove();
             if(_.alreadyPocket(this.currentMusic.music_id)) {
                 this.$header.find('[data-event-click="pocket"]').addClass('is-active');
             } else {
