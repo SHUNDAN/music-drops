@@ -120,11 +120,24 @@ exports.update = function(req, res) {
 
 
     // login check.
-    if (!appUtil.isLogedIn(req)) {
+    var user_id = appUtil.getUserIdFromRequest(req);
+    if (!user_id) {
+        appUtil.actionLog(req, 'delete pocket failed. no authentication');
         appUtil.response403(res);
         return;
     }
 
+    // 自分のもの以外は削除不可にする
+    req.params.user_id = user_id;
+
+    if (req.body.user_pocket_ids) {
+        var ids = JSON.parse(req.body.user_pocket_ids);
+        console.log('pocket_ids.length = ', ids.length);
+        if (ids.length > 30) {
+            res.json(400, 'user_playlist_ids must be within 30. actual=', ids.length);
+            return;
+        }
+    }
 
     // execute
     userPlaylistModel.updateObject(req.body, req.params, function (err) {
