@@ -3627,7 +3627,7 @@ define('views/music/search',[
 
 
             // 検索結果を初期化する
-            this.$el.find('#numOfResult').text('0');
+            this.$el.find('#numOfResult').text('');
             this.$el.find('#resultList').html('');
 
 
@@ -6122,6 +6122,9 @@ define('views/user/index',[
             ページ表示
         */
         show: function (userId) {
+
+            // わくを表示
+            this.render();
 
             // ユーザーデータ取得
             this.user.set('id', userId);
