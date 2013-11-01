@@ -23,13 +23,20 @@ define([
 
             // auto event bind.
             _.bindEvents(this);
+
+            _.bindAll(this, 'show');
         },
 
 
 
         render: function () {
 
-            console.debug('render.', this.pop);
+            console.debug('pop dialog render.', this.pop);
+
+            if (this.flg) {
+                throw "aaa";
+            }
+            this.flg = true;
 
             // レンダリング
             var snipet = _.mbTemplate('page_pop', {
@@ -61,9 +68,13 @@ define([
                 // display as modal.
                 this.$el.find('#pagePop').addClass('popUp');
 
-                // 文字数の数え上げをしておく
-                this.countCharacters();
+                // ダイアログであることを示す
+                this.$el.attr('data-type', 'popup');
+
             }
+
+            // 文字数の数え上げをしておく
+            this.countCharacters();
         },
 
 
@@ -80,7 +91,10 @@ define([
         /**
             POPを投稿する
         */
-        addPop: function () {
+        addPop: function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
 
             // 選択されたキモチ
             var feelingId = this.$el.find('[name="feelingSelect"]:checked').val();
@@ -97,13 +111,18 @@ define([
             // コメントが入力されていない場合はだめ
             if (!comment) {
                 alert('感想は１文字以上入力してください');
+                return;
             }
 
             // 登録する
-            this.pop.set('music_id', this.music.attributes.id);
-            this.pop.set('feeling_id', feelingId);
-            this.pop.set('comment', comment);
-            this.pop.bind('sync', _.bind(function () {
+            var aPop = new PopModel();
+            if (this.pop) {
+                aPop.set('id', this.pop.attributes.id);
+            }
+            aPop.set('music_id', this.music.attributes.id);
+            aPop.set('feeling_id', feelingId);
+            aPop.set('comment', comment);
+            aPop.bind('sync', _.bind(function () {
 
                 // ga
                 _gaq.push(['_trackEvent', 'addPop', feelingId]);
@@ -118,14 +137,16 @@ define([
 
 
             }, this));
-            this.pop.save();
+            aPop.save();
 
+            return false;
         },
 
 
 
 
         show: function (musicId, popId, displayType) {
+
             console.log('pop:show: ', musicId, popId);
 
             // set data.
@@ -139,12 +160,14 @@ define([
             this.music.bind('sync', _.bind(function () {
 
                 // 新規の場合には、画面をレンダリング
-                if (this.type === 'add') {
+                if (this.type === 'add' && !this.alreadyShow) {
+                    this.alreadyShow = true;
                     console.debug('aaaaa');
                     this.render();
 
                 // 変更の場合に既にpopIdがあれば、レンダリング
-                } else if (this.pop.attributes.feeling_id) {
+                } else if (this.pop.attributes.feeling_id && !this.alreadyShow) {
+                    this.alreadyShow = true;
                     console.debug('bbbb');
                     this.render();
 
@@ -164,7 +187,8 @@ define([
             this.pop.bind('sync', _.bind(function () {
 
                 // 既にMusicがロード済みの場合には、表示
-                if (this.music.attributes.title) {
+                if (this.music.attributes.title && !this.alreadyShow) {
+                    this.alreadyShow = true;
                     console.debug('dddd', this.pop, this.music);
                     this.render();
 
@@ -175,7 +199,6 @@ define([
 
             }, this));
             this.pop.fetch();
-
         },
 
 
