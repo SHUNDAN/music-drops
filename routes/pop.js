@@ -263,7 +263,11 @@ exports.dislikePop = function (req, res) {
         var likePopArray = JSON.parse(user.like_pop) || [];
         var alreadyLiked = _.contains(likePopArray, popId);
         if (!alreadyLiked) {
-            appUtil.basicResponse(res, {message: 'already not liked'});
+
+            res.json({});
+
+            // TODO なぜかエラーになるので、いったんコメントアウト
+            // appUtil.basicResponse(res, {message: 'already not liked'});
             return;
         }
         likePopArray = _.without(likePopArray, popId);
