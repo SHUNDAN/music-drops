@@ -92,6 +92,9 @@ define([
         renderMusicQueueArea: function () {
             var snipet = _.mbTemplate('header_component_music_list', {musicArray:this.musicQueue, currentMusic:this.currentMusic});
             this.$header.find('#musicList').html(snipet);
+
+            // プレイリスト名も表示する
+            this.$header.find('#playlistNameInPop').text(this.options.playlistName || 'プレイリスト');
         },
 
 

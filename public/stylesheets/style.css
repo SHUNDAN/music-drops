@@ -1350,35 +1350,48 @@ header {
   margin-top: -12px;
 }
 
-/* line 290, ../dev/scss/modules/_header.scss */
+/* line 291, ../dev/scss/modules/_header.scss */
+.header-playlist-content-popup-playlistname {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* line 303, ../dev/scss/modules/_header.scss */
 .header-musicList {
   overflow: scroll;
   width: 100%;
-  height: 100%;
+  height: 470px;
 }
 
-/* line 295, ../dev/scss/modules/_header.scss */
+/* line 309, ../dev/scss/modules/_header.scss */
 .header-musicList-item {
   height: 60px;
   padding: 5px;
   border-bottom: 1px solid #d6d4c5;
 }
-/* line 299, ../dev/scss/modules/_header.scss */
+/* line 313, ../dev/scss/modules/_header.scss */
 .header-musicList-item:last-child {
   border-bottom: none;
 }
-/* line 302, ../dev/scss/modules/_header.scss */
+/* line 316, ../dev/scss/modules/_header.scss */
 .header-musicList-item.is-active {
   background-color: #ffcf3c;
 }
-/* line 306, ../dev/scss/modules/_header.scss */
+/* line 320, ../dev/scss/modules/_header.scss */
 .header-musicList-item .thumb {
   width: 44px;
   height: 44px;
   margin: 3px 0 0 3px;
 }
 
-/* line 313, ../dev/scss/modules/_header.scss */
+/* line 327, ../dev/scss/modules/_header.scss */
 .header-musicList-btn {
   top: 50%;
   right: 10px;
