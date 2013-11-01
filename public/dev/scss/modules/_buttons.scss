@@ -94,11 +94,13 @@
 //-------------------------------------
 .btn-mouse-action {
 	&:hover {
+		@include border-radius(4px);
 		background-color: #dedbc7;
 	}
 	&:active {
 		color: #fa732d;
 		background-color: #ffcf3c;
+		@include border-radius(4px);
 		.ico-font {
 			color: #fa732d;
 		}

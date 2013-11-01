@@ -150,7 +150,7 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
   height: 26px;
   margin-top: -13px;
   color: #656457;
-  @include border-radius(26px);
+  @include border-radius(26px !important);
   background-color: #fdfcf3;
 }
 .header-playMenu-btn-prev {

@@ -2,7 +2,7 @@
 <!-- Page: Music Detail Page  -->
 <script id="page_music_detail" type="text/template">
     <div class="gp">
-        <div id="musicInfoArea" class="musicDetail fl"></div>
+        <div id="musicInfoArea" class="musicDetail bdr-4 ofh fl"></div>
     </div>
     <ul class="tab-02 gp mt30">
         <li class="tab-02-btn active">
@@ -29,12 +29,16 @@
             <% if (itunes_url) { %>
                 <p><a href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&subid=&offerid=94348.1&type=10&tmpid=3910&RD_PARM1=<%- itunes_url %>" target="_blank" onclick="_gaq.push(['_trackEvent', 'toItunes1', '<%=title%>']);">iTunesで曲を見る</a></p>
             <% } %>
+            <i class="musicDetail-thumb-service sprite-share share-youtube"></i>
         </div>
         <div class="musicDetail-info fl">
-            <h2 class="musicDetail-info-title"><%- title %></h2>
-            <p class="musicDetail-info-artist">
-                <a href="#artist/<%=artist_id%>"><%- artist_name %></a>
+            <h2 class="musicDetail-info-title mb5 fs16 lh22 b"><%- title %></h2>
+            <p class="musicDetail-info-artist mb15 lh14">
+                <a class="text-link" href="#artist/<%=artist_id%>"><%- artist_name %></a>
             </p>
+            <%if (repPop) {%>
+            <a class="musicDetail-otherLinks-link fs10 text-link" href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&amp;subid=&amp;offerid=94348.1&amp;type=10&amp;tmpid=3910&amp;RD_PARM1=<%=repPop.attributes.itunes_url%>" target="_blank">iTunesでこの曲を購入する</a>
+            <%}%>
             <div id="playBtnArea">
                 <button class="musicDetail-info-play-btn" data-event-click="playMusic">
                     <i class="ico-font ico-play"></i>
@@ -46,8 +50,9 @@
 
             <div class="musicDetail-action gp">
               <div class="tag-feeling ref">
-                  <i class="sprite-feeling feeling-<%-feeling_id%>"></i>
-                  <p class="tag-feeling-text"><%-_.getFeelingName(feeling_id)%></p>
+                  <p class="tag-feeling-text feeling-bg-<%-feeling_id%> fs12 tc dt bdr-4">
+                      <span class="dc vm"><%-_.getFeelingName(feeling_id)%></span>
+                  </p>
               </div>
               <div class="m-btn-PD">
                 <%if (_.alreadyPocket(id) === false) {%>
@@ -80,53 +85,43 @@
 
 
     </div>
-        <div class="musicDetail-otherLinks">
-          <i class="musicDetail-otherLinks-service sprite-share share-youtube"></i>
-          <%if (repPop) {%>
-            <a class="musicDetail-otherLinks-link text-link" href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&amp;subid=&amp;offerid=94348.1&amp;type=10&amp;tmpid=3910&amp;RD_PARM1=<%=repPop.attributes.itunes_url%>" target="_blank">iTunesでこの曲を購入する</a>
-          <%}%>
-        </div>
         <div class="musicDetail-pop">
           <%if (repPop) {%>
-              <p class="musicDetail-pop-user b">
-                <a class="text-link" href="#user/<%=repPop.attributes.user_id%>"><%=repPop.attributes.user_name%></a>
-              </p>
               <p class="musicDetail-pop-text"><%=repPop.attributes.comment%></p>
           <%}%>
         </div>
         <%if (repPop) {%>
-            <div class="musicDetail-user-action gp">
-
-              <%if (_.alreadyUserFollow(repPop.attributes.user_id)) {%>
-                  <button class="js-follow-btn musicDetail-user-action-btn musicDetail-user-action-btn-follow hidden" data-event-click="followUser">
-                    <i class="ico-font ico-follow"></i>
-                  </button>
-                  <button class="js-follow-btn musicDetail-user-action-btn musicDetail-user-action-btn-follow is-active" data-event-click="unfollowUser">
-                    <i class="ico-font ico-follow"></i>
-                  </button>
-              <%} else {%>
-                  <button class="js-follow-btn musicDetail-user-action-btn musicDetail-user-action-btn-follow" data-event-click="followUser">
-                    <i class="ico-font ico-follow"></i>
-                  </button>
-                  <button class="js-follow-btn musicDetail-user-action-btn musicDetail-user-action-btn-follow is-active hidden" data-event-click="unfollowUser">
-                    <i class="ico-font ico-follow"></i>
-                  </button>
-              <%}%>
-
+            <div class="musicDetail-user gp">
+                <a class="musicDetail-user-name text-link truncate lh18 ds b fl" href="#user/<%=repPop.attributes.user_id%>"><%=repPop.attributes.user_name%></a>
               <%if (_.alreadyLike(repPop.attributes.id)) {%>
-                  <button class="js-like-btn musicDetail-user-action-btn musicDetail-user-action-btn-like hidden" data-event-click="likePop">
+                  <a class="fs18 fr hidden" data-event-click="likePop">
                     <i class="ico-font ico-heart"></i>
-                  </button>
-                  <button class="js-like-btn musicDetail-user-action-btn musicDetail-user-action-btn-like is-active" data-event-click="dislikePop">
+                  </a>
+                  <a class="fs18 fr is-active" data-event-click="dislikePop">
                     <i class="ico-font ico-heart"></i>
-                  </button>
+                  </a>
               <%} else {%>
-                  <button class="js-like-btn musicDetail-user-action-btn musicDetail-user-action-btn-like" data-event-click="likePop">
+                  <a class="fs18 fr" data-event-click="likePop">
                     <i class="ico-font ico-heart"></i>
-                  </button>
-                  <button class="js-like-btn musicDetail-user-action-btn musicDetail-user-action-btn-like is-active hidden" data-event-click="dislikePop">
+                  </a>
+                  <a class="fs18 fr is-active hidden" data-event-click="dislikePop">
                     <i class="ico-font ico-heart"></i>
-                  </button>
+                  </a>
+              <%}%>
+              <%if (_.alreadyUserFollow(repPop.attributes.user_id)) {%>
+                  <a class="mr20 fs18 fr" data-event-click="followUser">
+                    <i class="ico-font ico-follow"></i>
+                  </a>
+                  <a class="mr20 fs18 fr hidden is-active" data-event-click="unfollowUser">
+                    <i class="ico-font ico-follow"></i>
+                  </a>
+              <%} else {%>
+                  <a class="mr20 fs18 fr" data-event-click="followUser">
+                    <i class="ico-font ico-follow"></i>
+                  </a>
+                  <a class="mr20 fs18 fr hidden is-active" data-event-click="unfollowUser">
+                    <i class="ico-font ico-follow"></i>
+                  </a>
               <%}%>
             </div>
         <%}%>
