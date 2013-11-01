@@ -63,6 +63,18 @@ define([
 
 
 
+        /**
+            Enterキーで検索する
+        */
+        searchOnEnter: function (e) {
+
+            if (e.keyCode === 13) {
+                this.searchByItunes();
+            }
+
+        },
+
+
 
 
         /**

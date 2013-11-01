@@ -1,7 +1,8 @@
 // musicDetail
 .musicDetail {
   width: 460px;
-  background-color: #fdfcf3;
+  background-color: #fff;
+  @include box-shadow(0 1px 6px 0px rgba(0, 0, 0, 0.2));
 }
 // サムネイル
 //-------------------------------------
@@ -10,27 +11,28 @@
   overflow: hidden;
   width: 140px;
   height: 140px;
+  // 動画元・iTunesリンク
+  .musicDetail-thumb-service {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -30px;
+  }
 }
 // 曲情報
 //-------------------------------------
 .musicDetail-info {
   position: relative;
-  width: 310px;
+  width: 320px;
   height: 140px;
-  padding: 20px 10px;
+  padding: 10px;
   color: #333;
 }
-.musicDetail-info-feeling {
-  margin: 0 0 25px;
-}
 .musicDetail-info-title {
-  margin: 0 0 10px;
-  .text-link {
-    height: 2.0em;
-  }
+  width: 210px;
 }
 .musicDetail-info-artist {
-  margin: 0 0 25px;
+  width: 210px;
 }
 // 再生ボタン
 //-------------------------------------
@@ -41,6 +43,7 @@
   z-index: 1;
   width: 80px;
   height: 80px;
+  color: #75735b;
   font-size: 30px;
   @include border-radius(80px);
   background: #dedbc7;
@@ -56,7 +59,7 @@
 //-------------------------------------
 .musicDetail-action {
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
   height: 40px;
   .m-btn-PD {
     float: left;
@@ -67,6 +70,10 @@
   float: left;
   width: 196px;
   margin-right: 10px;
+}
+.tag-feeling-text {
+  width: 196px;
+  height: 40px;
 }
 
 // 動画元・iTunesリンク
@@ -89,50 +96,48 @@ $map-share: sprite-map("../images/sprite/share/*.png");
   top: 10px;
   left: 44px;
 }
-.musicDetail-otherLinks-link {
-  position: absolute;
-  top: 10px;
-  left: 154px;
-}
 
 // 曲Drop
 //-------------------------------------
 .musicDetail-pop {
   height: 123px;
   padding: 10px;
-  background-color: #E4E2D4;
-}
-.musicDetail-pop-user {
-  margin-bottom: 5px;
+  border-top: 1px solid #DEDBC7;
 }
 .musicDetail-pop-text {
   line-height: 18px;
 }
 // Drop投稿者に対するフォロー・いいねボタン
 //-------------------------------------
-.musicDetail-user-action {
+.musicDetail-user {
+  padding: 10px;
+  border-top: 1px solid #DEDBC7;
+  background: #EFEDE0;
 }
-.musicDetail-user-action-btn {
-  float: left;
-  display: block;
-  width: 50%;
-  height: 30px;
-  text-align: center;
-  color: #d4d2be;
-  background-color: #656457;
-  .ico-font {
-    &.ico-follow {
-      font-size: 28px;
-    }
-    &.ico-heart {
-      font-size: 22px;
-    }
-  }
-  &.is-active {
-    color: #f3613f;
-    background-color: #fec02b;
-  }
+.musicDetail-user-name {
+  width: 370px;
 }
+// .musicDetail-user-action-btn {
+//   float: left;
+//   display: block;
+//   width: 50%;
+//   height: 30px;
+//   text-align: center;
+//   color: #d4d2be;
+//   background-color: #656457;
+//   .ico-font {
+//     &.ico-follow {
+//       font-size: 28px;
+//     }
+//     &.ico-heart {
+//       font-size: 22px;
+//     }
+//   }
+//   &.is-active {
+//     color: #f3613f;
+//     background-color: #fec02b;
+//   }
+// }
 
 
 //-------------------------------------
@@ -157,7 +162,7 @@ $map-share: sprite-map("../images/sprite/share/*.png");
   //-------------------------------------
   .musicDetail-info {
     position: relative;
-    width: 210px;
+    width: 213px;
     height: 100px;
     padding: 10px;
   }
@@ -166,12 +171,16 @@ $map-share: sprite-map("../images/sprite/share/*.png");
   }
   .musicDetail-info-title {
     margin: 0 0 10px;
+    .truncate {
+      display: inline-block;
+      max-width: 190px;
+    }
   }
   .musicDetail-info-artist {
     margin: 0 0 10px;
     .truncate {
       display: inline-block;
-      max-width: 170px;
+      max-width: 190px;
     }
   }
   // 再生ボタン
@@ -179,51 +188,35 @@ $map-share: sprite-map("../images/sprite/share/*.png");
   .musicDetail-info-play-btn {
     position: absolute;
     top: auto;
-    bottom: -26px;
+    bottom: 4px;
     right: 10px;
-    width: 56px;
-    height: 56px;
-    font-size: 20px;
-    @include border-radius(56px);
+    width: 44px;
+    height: 44px;
+    font-size: 14px;
+    @include border-radius(44px);
   }
 
   // 曲のキモチ・ポケット、ドロップのアクション
   //-------------------------------------
   .musicDetail-action {
     position: absolute;
-    bottom: -20px;
-    height: 40px;
+    bottom: 10px;
+    height: 30px;
   }
   .tag-feeling {
-    float: none;
     width: 190px;
     margin-right: 0;
   }
   .tag-feeling-text {
-    left: 48px;
-    width: 82px;
-    height: 40px;
-    padding-top: 4px;
-    line-height: 16px;
-    background: none;
-    &:before {
-      display: none;
-    }
-  }
-
-  // 動画元・iTunesリンク
-  //-------------------------------------
-  .musicDetail-otherLinks-service {
-    position: absolute;
-    top: 10px;
-    left: 25px;
+    width: 124px;
+    height: 30px;
   }
 
   // 曲Drop
   //-------------------------------------
   .musicDetail-pop {
     position: relative;
-    height: 94px;
+    height: 74px;
 
     // 右下にLikeボタン
     .like-btn {
@@ -244,6 +237,11 @@ $map-share: sprite-map("../images/sprite/share/*.png");
       }
     }
 
+  }
+  // Drop投稿者に対するフォロー・いいねボタン
+  //-------------------------------------
+  .musicDetail-user-name {
+    width: 270px;
   }
 }
 

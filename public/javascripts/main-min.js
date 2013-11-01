@@ -520,6 +520,9 @@ define('views/common/music_player',[
         renderMusicQueueArea: function () {
             var snipet = _.mbTemplate('header_component_music_list', {musicArray:this.musicQueue, currentMusic:this.currentMusic});
             this.$header.find('#musicList').html(snipet);
+
+            // プレイリスト名も表示する
+            this.$header.find('#playlistNameInPop').text(this.options.playlistName || 'プレイリスト');
         },
 
 
@@ -2771,6 +2774,9 @@ define('views/music/index',[
             console.log('renderPopList');
             var html = _.template($('#page_music_detail_poplist').html(), {popList: this.popList.models});
             this.$el.find('#popListArea').html(html);
+
+            // 件数も更新する
+            this.$el.find('#numOfOtherPop').text('(' + this.popList.models.length + ')件');
         },
 
 
@@ -3198,6 +3204,9 @@ define('views/music/index',[
 
                 // 一番Likeされているものを代表Popとする
                 this.repPop = (this.popList.length > 0 ? this.popList.models[0] : null);
+                if (this.repPop) {
+                    this.popList.remove(this.repPop);
+                }
 
 
 
@@ -3633,6 +3642,18 @@ define('views/music/search',[
 
 
 
+        /**
+            Enterキーで検索する
+        */
+        searchOnEnter: function (e) {
+
+            if (e.keyCode === 13) {
+                this.searchByItunes();
+            }
+
+        },
+
+
 
 
         /**
@@ -3918,6 +3939,8 @@ define('views/login',[
                 position: 'fixed',
                 top: '16%',
                 left: '50%',
+                'border-radius': '4px',
+                'box-shadow': '0 0 16px rgba(0,0,0,0.4)'
             });
             $clickArea.html($blackout);
 
@@ -4430,7 +4453,7 @@ define('views/mypage',[
             this.$el.find('#pocketListArea').html(snipet);
 
             // 件数更新
-            this.$el.find('#numOfPockets').text(this.filteredPocketList.length);
+            this.$el.find('#numOfPockets').text(this.filteredPocketList.models.length);
 
             // ドラッグ＆ドロップ機能を追加
             this.addDragAndDropFacility();
@@ -4450,8 +4473,8 @@ define('views/mypage',[
                 _.each(self.displayUserPocketList.models, function (pocket) {
                     var good = false;
                     _.each(self.filterWords, function (word) {
-                        if (pocket.attributes.title.indexOf(word) !== -1
-                            || pocket.attributes.artist_name.indexOf(word) !== -1) {
+                        if (pocket.attributes.title.toLowerCase().indexOf(word.toLowerCase()) !== -1
+                            || pocket.attributes.artist_name.toLowerCase().indexOf(word.toLowerCase()) !== -1) {
                             good = true;
                         }
                     });
@@ -5061,6 +5084,7 @@ define('views/mypage',[
                     $(e.currentTarget).text('Pocket編集');
                 } else {
                     $(e.currentTarget).text('playlist編集');
+                    $('[data-type="annotationMessage"]').toggleClass('hidden');
                 }
                 $('#pocketDeleteArea').addClass('hidden');
 
@@ -5095,6 +5119,7 @@ define('views/mypage',[
                 // プレイリスト編集の場合は、並び替えをサポートする
                 if (this.currentPlaylist && this.currentPlaylist.attributes.type !== 1) {
                     $('#pocketListArea').sortable();
+                    $('[data-type="annotationMessage"]').toggleClass('hidden');
                 }
 
             }

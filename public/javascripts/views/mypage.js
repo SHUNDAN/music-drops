@@ -153,7 +153,7 @@ define([
             this.$el.find('#pocketListArea').html(snipet);
 
             // 件数更新
-            this.$el.find('#numOfPockets').text(this.filteredPocketList.length);
+            this.$el.find('#numOfPockets').text(this.filteredPocketList.models.length);
 
             // ドラッグ＆ドロップ機能を追加
             this.addDragAndDropFacility();
@@ -173,8 +173,8 @@ define([
                 _.each(self.displayUserPocketList.models, function (pocket) {
                     var good = false;
                     _.each(self.filterWords, function (word) {
-                        if (pocket.attributes.title.indexOf(word) !== -1
-                            || pocket.attributes.artist_name.indexOf(word) !== -1) {
+                        if (pocket.attributes.title.toLowerCase().indexOf(word.toLowerCase()) !== -1
+                            || pocket.attributes.artist_name.toLowerCase().indexOf(word.toLowerCase()) !== -1) {
                             good = true;
                         }
                     });
@@ -784,6 +784,7 @@ define([
                     $(e.currentTarget).text('Pocket編集');
                 } else {
                     $(e.currentTarget).text('playlist編集');
+                    $('[data-type="annotationMessage"]').toggleClass('hidden');
                 }
                 $('#pocketDeleteArea').addClass('hidden');
 
@@ -818,6 +819,7 @@ define([
                 // プレイリスト編集の場合は、並び替えをサポートする
                 if (this.currentPlaylist && this.currentPlaylist.attributes.type !== 1) {
                     $('#pocketListArea').sortable();
+                    $('[data-type="annotationMessage"]').toggleClass('hidden');
                 }
 
             }
