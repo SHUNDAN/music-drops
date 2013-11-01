@@ -27,7 +27,7 @@
             <img src="<%= artwork_url %>" width="140" height="140" alt="<%- title %> / <%- artist_name %>" />
             <p><audio src="<%= song_url %>" controls></audio></p>
             <% if (itunes_url) { %>
-                <p><a href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&subid=&offerid=94348.1&type=10&tmpid=3910&RD_PARM1=<%- itunes_url %>" target="_blank">iTunesで曲を見る</a></p>
+                <p><a href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&subid=&offerid=94348.1&type=10&tmpid=3910&RD_PARM1=<%- itunes_url %>" target="_blank" onclick="_gaq.push(['_trackEvent', 'toItunes1', '<%=title%>']);">iTunesで曲を見る</a></p>
             <% } %>
         </div>
         <div class="musicDetail-info fl">

@@ -428,6 +428,9 @@ define([
                     color: 'white'
                 });
                 $a.attr('href', _.createItunesUrl(this.currentMusic.itunes_url)).text('iTunesでこの曲をチェックする');
+                $a.on('click', function () {
+                    _gaq.push(['_trackEvent', 'toItunes2', this.currentMusic.title]);
+                });
                 this.$previewArea.append($a);
             }
 
