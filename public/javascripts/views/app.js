@@ -77,6 +77,11 @@ define([
         },
 
         authErrorHandler: function () {
+            console.debug('authErrorHandler.');
+
+            // ダイアログがあれば消す
+            $('[data-type="popup"]').remove();
+
             var loginView = new LoginView();
             this.$mainArea.append(loginView.$el);
             loginView.show('modal', function () {

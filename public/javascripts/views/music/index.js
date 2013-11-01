@@ -155,12 +155,17 @@ define([
         /**
             Popを追加するUIを表示する
         */
-        addPop: function () {
+        addPop: function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
 
             // show PopView.
             this.popView = new PopView();
             this.$el.append(this.popView.$el);
             this.popView.show(this.music_id, undefined, 'modal');
+
+            return false;
         },
 
 
@@ -318,7 +323,7 @@ define([
         */
         likePop2: function (e) {
             e.preventDefault();
-            e.stopPropagation();            
+            e.stopPropagation();
 
             var $parent = $(e.currentTarget).parents('[data-pop-id]');
             var popId = $parent.data('pop-id');
@@ -336,7 +341,7 @@ define([
         */
         dislikePop2: function (e) {
             e.preventDefault();
-            e.stopPropagation();            
+            e.stopPropagation();
 
             var $parent = $(e.currentTarget).parents('[data-pop-id]');
             var popId = $parent.data('pop-id');
@@ -378,7 +383,7 @@ define([
         */
         deleteLink: function (e) {
             e.preventDefault();
-            e.stopPropagation();            
+            e.stopPropagation();
 
             var musicLinkId = $(e.currentTarget).parents('[data-musiclink-id]').data('musiclink-id');
             console.debug('deleteLink.', musicLinkId);
@@ -407,7 +412,7 @@ define([
         */
         report: function (e) {
             e.preventDefault();
-            e.stopPropagation();            
+            e.stopPropagation();
 
             var musicLinkId = $(e.currentTarget).parents('[data-musiclink-id]').data('musiclink-id');
             console.debug('report.', musicLinkId);
@@ -438,7 +443,7 @@ define([
 
             return false;
         },
-        
+
 
 
 
