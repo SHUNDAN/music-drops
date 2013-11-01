@@ -605,6 +605,7 @@ define('views/common/music_player',[
             this.$playlistTitle
                 .html('<span class="elps">' + playlistNameText + '</span>')
                 .append('<i class="ico-font ico-below fr fs9"></i>');
+            this.$playlistTitle.closest('.header-playList').addClass('is-active');
 
             // プレイヤーを再生状態にする
             this.$header.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
@@ -855,6 +856,9 @@ define('views/common/music_player',[
                     color: 'white'
                 });
                 $a.attr('href', _.createItunesUrl(this.currentMusic.itunes_url)).text('iTunesでこの曲をチェックする');
+                $a.on('click', function () {
+                    _gaq.push(['_trackEvent', 'toItunes2', this.currentMusic.title]);
+                });
                 this.$previewArea.append($a);
             }
 
