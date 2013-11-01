@@ -1027,7 +1027,7 @@ header {
 .header-search {
   top: 10px;
   left: 64px;
-  width: 80px;
+  width: 60px;
   height: 40px;
   text-align: center;
 }
@@ -1035,7 +1035,7 @@ header {
 .header-search:after {
   position: absolute;
   top: -5px;
-  left: 85px;
+  left: 65px;
   display: block !important;
   content: "";
   width: 1px;
@@ -1059,7 +1059,7 @@ header {
 /* line 99, ../dev/scss/modules/_header.scss */
 .header-playList {
   top: 10px;
-  left: 156px;
+  left: 136px;
   width: 96px;
   font-size: 12px;
   text-align: center;
@@ -1085,8 +1085,8 @@ header {
 /* line 122, ../dev/scss/modules/_header.scss */
 .header-playMenu {
   top: 10px;
-  left: 262px;
-  width: 440px;
+  left: 242px;
+  width: 460px;
   height: 40px;
   background-color: #656457;
 }

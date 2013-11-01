@@ -69,13 +69,13 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
 .header-search {
   top: 10px;
   left: 64px;
-  width: 80px;
+  width: 60px;
   height: 40px;
   text-align: center;
   &:after {
     position: absolute;
     top: -5px;
-    left: 85px;
+    left: 65px;
     display: block !important;
     content: "";
     width: 1px;
@@ -98,7 +98,7 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
 //-------------------------------------
 .header-playList {
   top: 10px;
-  left: 156px;
+  left: 136px;
   width: 96px;
   font-size: 12px;
   text-align: center;
@@ -121,8 +121,8 @@ $map-logo: sprite-map("../images/sprite/logo/*.png");
 //-------------------------------------
 .header-playMenu {
   top: 10px;
-  left: 262px;
-  width: 440px;
+  left: 242px;
+  width: 460px;
   height: 40px;
   background-color: #656457;
   & > div {
