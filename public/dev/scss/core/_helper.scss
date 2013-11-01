@@ -301,10 +301,11 @@
 //  Border Radius
 //-------------------------------------
 
-// .rn { border-radius: 0 !important; }
-// .rs { border-radius: $radius-base; }
-// .rm { border-radius: $radius-2; }
-// .rl { border-radius: $radius-3; }
+.rn { border-radius: 0 !important; }
+.bdr-2 { @include border-radius(2px); }
+.bdr-4 { @include border-radius(4px); }
+.bdr-6 { @include border-radius(6px); }
+.bdr-8 { @include border-radius(8px); }
 
 
 //  Text Decorative Classes
@@ -342,6 +343,10 @@
 .lh17 { line-height: 17px; }
 .lh18 { line-height: 18px; }
 .lh20 { line-height: 20px; }
+.lh22 { line-height: 22px; }
+.lh24 { line-height: 24px; }
+.lh26 { line-height: 26px; }
+.lh28 { line-height: 28px; }
 .lh30 { line-height: 30px; }
 
 // .ce { color: $color-e !important; }
