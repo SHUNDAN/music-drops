@@ -784,6 +784,7 @@ define([
                     $(e.currentTarget).text('Pocket編集');
                 } else {
                     $(e.currentTarget).text('playlist編集');
+                    $('[data-type="annotationMessage"]').toggleClass('hidden');
                 }
                 $('#pocketDeleteArea').addClass('hidden');
 
@@ -818,6 +819,7 @@ define([
                 // プレイリスト編集の場合は、並び替えをサポートする
                 if (this.currentPlaylist && this.currentPlaylist.attributes.type !== 1) {
                     $('#pocketListArea').sortable();
+                    $('[data-type="annotationMessage"]').toggleClass('hidden');
                 }
 
             }
