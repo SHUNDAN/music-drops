@@ -7,7 +7,7 @@ body {
 	font-size: 13px;
 	font-family: $font-family-body;
 	-webkit-text-size-adjust: 100%;
-	background-color: #e5e4e2;
+	background-color: #efede0;
 }
 
 a {
@@ -35,6 +35,7 @@ select, button, input, textarea {
 	-webkit-appearance: none;
 }
 button {
+	cursor: pointer;
 	background: none;
 }
 

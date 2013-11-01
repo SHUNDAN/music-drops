@@ -222,13 +222,20 @@ define('views/pop/index',[
 
             // auto event bind.
             _.bindEvents(this);
+
+            _.bindAll(this, 'show');
         },
 
 
 
         render: function () {
 
-            console.debug('render.', this.pop);
+            console.debug('pop dialog render.', this.pop);
+
+            if (this.flg) {
+                throw "aaa";
+            }
+            this.flg = true;
 
             // レンダリング
             var snipet = _.mbTemplate('page_pop', {
@@ -260,9 +267,13 @@ define('views/pop/index',[
                 // display as modal.
                 this.$el.find('#pagePop').addClass('popUp');
 
-                // 文字数の数え上げをしておく
-                this.countCharacters();
+                // ダイアログであることを示す
+                this.$el.attr('data-type', 'popup');
+
             }
+
+            // 文字数の数え上げをしておく
+            this.countCharacters();
         },
 
 
@@ -279,7 +290,10 @@ define('views/pop/index',[
         /**
             POPを投稿する
         */
-        addPop: function () {
+        addPop: function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
 
             // 選択されたキモチ
             var feelingId = this.$el.find('[name="feelingSelect"]:checked').val();
@@ -296,13 +310,18 @@ define('views/pop/index',[
             // コメントが入力されていない場合はだめ
             if (!comment) {
                 alert('感想は１文字以上入力してください');
+                return;
             }
 
             // 登録する
-            this.pop.set('music_id', this.music.attributes.id);
-            this.pop.set('feeling_id', feelingId);
-            this.pop.set('comment', comment);
-            this.pop.bind('sync', _.bind(function () {
+            var aPop = new PopModel();
+            if (this.pop) {
+                aPop.set('id', this.pop.attributes.id);
+            }
+            aPop.set('music_id', this.music.attributes.id);
+            aPop.set('feeling_id', feelingId);
+            aPop.set('comment', comment);
+            aPop.bind('sync', _.bind(function () {
 
                 // ga
                 _gaq.push(['_trackEvent', 'addPop', feelingId]);
@@ -317,14 +336,16 @@ define('views/pop/index',[
 
 
             }, this));
-            this.pop.save();
+            aPop.save();
 
+            return false;
         },
 
 
 
 
         show: function (musicId, popId, displayType) {
+
             console.log('pop:show: ', musicId, popId);
 
             // set data.
@@ -338,12 +359,14 @@ define('views/pop/index',[
             this.music.bind('sync', _.bind(function () {
 
                 // 新規の場合には、画面をレンダリング
-                if (this.type === 'add') {
+                if (this.type === 'add' && !this.alreadyShow) {
+                    this.alreadyShow = true;
                     console.debug('aaaaa');
                     this.render();
 
                 // 変更の場合に既にpopIdがあれば、レンダリング
-                } else if (this.pop.attributes.feeling_id) {
+                } else if (this.pop.attributes.feeling_id && !this.alreadyShow) {
+                    this.alreadyShow = true;
                     console.debug('bbbb');
                     this.render();
 
@@ -363,7 +386,8 @@ define('views/pop/index',[
             this.pop.bind('sync', _.bind(function () {
 
                 // 既にMusicがロード済みの場合には、表示
-                if (this.music.attributes.title) {
+                if (this.music.attributes.title && !this.alreadyShow) {
+                    this.alreadyShow = true;
                     console.debug('dddd', this.pop, this.music);
                     this.render();
 
@@ -374,7 +398,6 @@ define('views/pop/index',[
 
             }, this));
             this.pop.fetch();
-
         },
 
 
@@ -2831,12 +2854,17 @@ define('views/music/index',[
         /**
             Popを追加するUIを表示する
         */
-        addPop: function () {
+        addPop: function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
 
             // show PopView.
             this.popView = new PopView();
             this.$el.append(this.popView.$el);
             this.popView.show(this.music_id, undefined, 'modal');
+
+            return false;
         },
 
 
@@ -2994,7 +3022,7 @@ define('views/music/index',[
         */
         likePop2: function (e) {
             e.preventDefault();
-            e.stopPropagation();            
+            e.stopPropagation();
 
             var $parent = $(e.currentTarget).parents('[data-pop-id]');
             var popId = $parent.data('pop-id');
@@ -3012,7 +3040,7 @@ define('views/music/index',[
         */
         dislikePop2: function (e) {
             e.preventDefault();
-            e.stopPropagation();            
+            e.stopPropagation();
 
             var $parent = $(e.currentTarget).parents('[data-pop-id]');
             var popId = $parent.data('pop-id');
@@ -3054,7 +3082,7 @@ define('views/music/index',[
         */
         deleteLink: function (e) {
             e.preventDefault();
-            e.stopPropagation();            
+            e.stopPropagation();
 
             var musicLinkId = $(e.currentTarget).parents('[data-musiclink-id]').data('musiclink-id');
             console.debug('deleteLink.', musicLinkId);
@@ -3083,7 +3111,7 @@ define('views/music/index',[
         */
         report: function (e) {
             e.preventDefault();
-            e.stopPropagation();            
+            e.stopPropagation();
 
             var musicLinkId = $(e.currentTarget).parents('[data-musiclink-id]').data('musiclink-id');
             console.debug('report.', musicLinkId);
@@ -3114,7 +3142,7 @@ define('views/music/index',[
 
             return false;
         },
-        
+
 
 
 
@@ -4734,8 +4762,8 @@ define('views/mypage',[
             }
 
             // check max size.
-            if (this.userPlaylistList.length >= 10) {
-                alert('プレイリスト登録は最大10件までです。新規に登録する場合には、先にプレイリストを削除してください');
+            if (this.userPlaylistList.length >= 8) { // ALL + 最大数(7)
+                alert('プレイリスト登録は最大7件までです。新規に登録する場合には、先にプレイリストを削除してください');
                 return;
             }
 
@@ -4857,6 +4885,7 @@ define('views/mypage',[
                     // 他人のプレイリストからのドラッグドロップは色々と面倒なため、別対応する
                     if (self.currentPlaylist && self.currentPlaylist.attributes.type === 3) {
                         self._treatDragDropFromOtherPlaylist(pocketId, playlistId);
+                        $(e.currentTarget).removeClass('dropTarget');
                         return;
                     }
 
@@ -4867,6 +4896,14 @@ define('views/mypage',[
                     var pocketIds = JSON.parse(playlist.get('user_pocket_ids'));
                     if (!_.contains(pocketIds, pocketId)) {
 
+
+                        // 30曲以上はだめ
+                        if (pocketIds.length >= 30) {
+                            alert('プレイリストに追加可能な数は30までです。追加する場合には、先にプレイリスト内のPocketを削除してください。');
+                            $(e.currentTarget).removeClass('dropTarget');
+                            return false;
+                        }
+
                         // プレイリストの更新
                         pocketIds.push(pocketId);
                         playlist.set('user_pocket_ids', JSON.stringify(pocketIds));
@@ -4874,9 +4911,13 @@ define('views/mypage',[
                             self.renderPlaylist();
                         });
                         playlist.save();
+                        $(e.currentTarget).removeClass('dropTarget');
 
                     } else {
+                        alert('既に登録済みのPocketです。');
                         console.debug('既に登録済みのPocketです。 pocketId=', pocketId);
+                        $(e.currentTarget).removeClass('dropTarget');
+                        return false;
                     }
                 });
 
@@ -6033,6 +6074,16 @@ define('views/user/index',[
             e.preventDefault();
             console.debug('followPlaylist:', this.currentPlaylist.attributes.id);
 
+            // 上限チェック
+            var user = _.mbStorage.getUser();
+            if (user) {
+                if (user.userFollowPlaylistList.length >= 7) {
+                    alert('プレイリストフォローは最大7件までです。新規に登録する場合には、先にプレイリストを削除してください');
+                    return;
+                }
+            }
+
+
             // プレイリスト追加
             var aPlaylist = new UserPlaylist();
             aPlaylist.set('user_id', this.user.id);
@@ -7082,6 +7133,11 @@ define('views/app',[
         },
 
         authErrorHandler: function () {
+            console.debug('authErrorHandler.');
+
+            // ダイアログがあれば消す
+            $('[data-type="popup"]').remove();
+
             var loginView = new LoginView();
             this.$mainArea.append(loginView.$el);
             loginView.show('modal', function () {

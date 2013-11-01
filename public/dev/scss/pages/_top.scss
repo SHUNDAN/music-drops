@@ -5,12 +5,14 @@
 
 }
 .feeling-conditions-tab-item {
-  width: 235px;
+  width: 237px;
   line-height: 40px;
   margin: 0 10px 10px 0;
   color: #656457;
   background-color: #EFEDE0;
+  cursor: pointer;
   &:nth-child(4n) {
+    width: 239px;
     margin-right: 0;
   }
   &.is-active {

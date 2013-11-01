@@ -100,7 +100,7 @@ $map-share: sprite-map("../images/sprite/share/*.png");
 .musicDetail-pop {
   height: 123px;
   padding: 10px;
-  background-color: #efede0;
+  background-color: #E4E2D4;
 }
 .musicDetail-pop-user {
   margin-bottom: 5px;
@@ -140,10 +140,11 @@ $map-share: sprite-map("../images/sprite/share/*.png");
 //   ## 基本2カラムをオーバーライド
 //-------------------------------------
 .musicDetail-col3 {
-  width: 310px;
+  width: 313px;
   margin-right: 20px;
   margin-bottom: 20px;
   &:nth-child(3n) {
+    width: 314px;
     margin-right: 0;
   }
   // サムネイル

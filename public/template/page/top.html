@@ -2,7 +2,7 @@
 <!-- Top -->
 <script id="page_top" type="text/template">
 
-    <section class="pl10 mb20">
+    <section class="mb20">
 
 
         <!--キモチでの絞り込み-->
@@ -23,11 +23,11 @@
             }
         </style>
         <ul id="feelingFilter" class="feeling-conditions-tab mb10 gp">
-            <li class="is-active feeling-conditions-tab-item feelig-bg-all tc fl" data-feeling-id="0" data-event-click="filterWithFeelings">
+            <li class="is-active feeling-conditions-tab-item feelig-bg-all tc bdr-4 fl" data-feeling-id="0" data-event-click="filterWithFeelings">
                 すべて
             </li>
             <%_.each(feelingList, function (feeling) {%>
-                <li class="is-active feeling-conditions-tab-item feeling-bg-<%=feeling.id%> tc fl" data-feeling-id="<%=feeling.id%>" data-event-click="filterWithFeelings">
+                <li class="is-active feeling-conditions-tab-item feeling-bg-<%=feeling.id%> tc bdr-4 fl" data-feeling-id="<%=feeling.id%>" data-event-click="filterWithFeelings">
                     <%=feeling.name%>
                 </li>
             <%});%>

@@ -10,23 +10,23 @@
     </h1>
 
     <div class="header-search gp">
-      <a href="#music/search">
+      <a class="db tc btn-mouse-action" href="#music/search">
         <p class="fl">
           <i class="ico-font ico-search db fs20"></i>
-          <span class="db mt5 fs12">さがす</span>
+          <span class="db fs10">さがす</span>
         </p>
       </a>
     </div><!-- /header-searchMenu -->
 
-    <div class="header-playList">
-      <p>再生リスト</p>
+    <div class="header-playList bdr-4">
+      <p class="fs10 mt5 mb5">再生リスト</p>
       <p id="mpPlaylistTitle" class="header-playList-title gp" data-event-click="openPlaylistPopup">
         <i class="is-none">未設定</i>
         <!--JSで埋めます-->
       </p>
     </div><!-- /header-searchMenu -->
 
-    <div class="header-playMenu">
+    <div class="header-playMenu bdr-4">
       <div class="ref">
         <button class="js-playMenu-prev header-playMenu-btn header-playMenu-btn-prev btn-mouse-action" data-event-click="prevMusic">
           <i class="ico-font ico-play-prev"></i>
@@ -42,17 +42,17 @@
         </button>
         <div class="header-playMenu-song">
           <p id="mpMusicTitle" class="header-playMenu-song-title elps"><!--JSで埋めます--></p>
-          <p id="mpArtistName" class="header-playList-song-artist elps"><!--JSで埋めます--></p>
+          <p id="mpArtistName" class="header-playList-song-artist fs11 elps"><!--JSで埋めます--></p>
           <p id="mpMusicTitleDefaultText" class="header-playMenu-defaultText">Music Drops</p>
         </div><!-- /header-playMenu-song -->
         <button class="js-playMenu-movie header-playSubMenu-btn header-playSubMenu-btn-window btn-mouse-action" data-event-click="togglePlayerVisible">
-          <i class="ico-font ico-image"></i>
+          <i class="ico-font ico-image fs20"></i>
         </button>
         <button class="js-playMenu-repeat header-playSubMenu-btn header-playSubMenu-btn-repeat btn-mouse-action" data-event-click="toggleRepeat">
-          <i class="ico-font ico-repeat"></i>
+          <i class="ico-font ico-repeat fs20"></i>
         </button>
         <button class="js-playMenu-movie header-playSubMenu-btn header-playSubMenu-btn-shuffle btn-mouse-action" data-event-click="toggleShuffle">
-          <i class="ico-font ico-shuffle"></i>
+          <i class="ico-font ico-shuffle fs20"></i>
         </button>
       </div><!-- /ref -->
     </div><!-- /header-playMenu -->
@@ -78,7 +78,7 @@
           </a>
         </div><!-- /m-btn-PD -->
       </div><!-- /ref -->
-    </div><!-- /header-searchMenu -->
+    </div><!-- /header-userMenu -->
 
 
     <div id="playlistPopup" class="header-playlist-content-popup-area fix hidden" data-event-click="closePlaylistPopup">
