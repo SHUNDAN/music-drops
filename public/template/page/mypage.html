@@ -31,8 +31,8 @@
             <div id="playlistEditArea" class="userPage-listEditArea">
                 <div class="userPage-playlistHeader mt30">
                     <span class="fs18">自分でつくったプレイリスト</span>
-                    <a href="#" class="editButton" data-event-click="switchPlaylistEditStyle">編集</a>
-                    <a href="#" class="doneButton" data-event-click="switchPlaylistEditStyle">完了</a>
+                    <a href="#" class="editButton text-link" data-event-click="switchPlaylistEditStyle">編集</a>
+                    <a href="#" class="doneButton text-link" data-event-click="switchPlaylistEditStyle">完了</a>
                 </div>
                 <ul id="playlistList" class="userPage-sidebarList"><!--プレイリストをJSで追加--></ul>
                 <div class="addPlaylistArea">
@@ -45,7 +45,7 @@
             <!--他人のプレイリスト-->
             <div class="userPage-playlistHeader mt30">
                 <span class="fs18">他の人がつくったプレイリスト</span>
-                <a href="#" class="editButton" data-event-click="editFollowPlaylistButton">編集</a>
+                <a href="#" class="editButton text-link" data-event-click="editFollowPlaylistButton">編集</a>
             </div>
             <ul id="followPlaylist" class="userPage-sidebarList"><!--JSで内容を追加--></ul>
 
@@ -80,10 +80,10 @@
                     <img class="thumb fl mr10" src="<%=pop.attributes.artwork_url%>" alt="<%=pop.attributes.title%>" width="44" height="44" />
                     <div class="info">
                         <div class="mt20 mb5">
-                            <a class="b text-link" href="#music/<%=pop.attributes.music_id%>"><%=pop.attributes.title%><i class="ico-font ico-play"></i></a>
+                            <a class="b text-link" href="#music/<%=pop.attributes.music_id%>"><%=pop.attributes.title%></a>
                         </div>
                         <div class="fs10">
-                            <a class="text-link" href="#artist/<%=pop.attributes.artist_id%>"><%=pop.attributes.artist_name%><i class="ico-font ico-play"></i></a>
+                            <a class="text-link" href="#artist/<%=pop.attributes.artist_id%>"><%=pop.attributes.artist_name%></a>
                         </div>
                     </div>
                     <div class="info fr">
@@ -109,7 +109,7 @@
 
 
                 <li class="list-item" data-artist-id="<%=checkArtist.attributes.artist_id%>">
-                    <a class="userName" href="#artist/<%=checkArtist.attributes.artist_id%>"><%=checkArtist.attributes.artist_name%></a>
+                    <a class="userName" class="text-link" href="#artist/<%=checkArtist.attributes.artist_id%>"><%=checkArtist.attributes.artist_name%></a>
 
                     <%if (_.alreadyArtistFollow(checkArtist.attributes.artist_id)) {%>
                         <input type="button" class="followUserButton hidden" value="フォローする" data-event-click="followArtist"/>
@@ -139,7 +139,7 @@
 
             <%_.each(followUsers, function (user) {%>
                 <li class="list-item" data-user-id="<%=user.attributes.dest_user_id%>">
-                    <a class="userName" href="#user/<%=user.attributes.dest_user_id%>"><%=user.attributes.dest_user_name%></a>
+                    <a class="userName text-link" href="#user/<%=user.attributes.dest_user_id%>"><%=user.attributes.dest_user_name%></a>
 
                     <%if (_.alreadyUserFollow(user.attributes.dest_user_id)) {%>
                         <input type="button" class="followUserButton hidden" value="フォローする" data-event-click="followUser"/>
@@ -168,7 +168,7 @@
 
             <%_.each(followedUsers, function (user) {%>
                 <li class="list-item gp" data-user-id="<%=user.attributes.id%>">
-                    <a class="userName" href="#user/<%=user.attributes.id%>"><%=user.attributes.user_name%></a>
+                    <a class="userName text-link" href="#user/<%=user.attributes.id%>"><%=user.attributes.user_name%></a>
 
                     <%if (_.alreadyUserFollow(user.attributes.id)) {%>
                         <input type="button" class="followUserButton hidden" value="フォローする" data-event-click="followUser"/>
@@ -234,10 +234,10 @@
             </a>
             <div class="info">
                 <div class="title">
-                    <a href="#music/<%=pocket.attributes.music_id%>" draggable="false"><%=pocket.attributes.title%></a>
+                    <a class="text-link" href="#music/<%=pocket.attributes.music_id%>" draggable="false"><%=pocket.attributes.title%></a>
                 </div>
                 <div class="artistName">
-                    <a href="#artist/<%=pocket.attributes.artist_id%>" draggable="false"><%=pocket.attributes.artist_name%></a>
+                    <a class="text-link" href="#artist/<%=pocket.attributes.artist_id%>" draggable="false"><%=pocket.attributes.artist_name%></a>
                 </div>
             </div>
             <div class="playBtn" data-event-click="playMusic">
@@ -262,7 +262,7 @@
         <%if (playlist.attributes.type !== 1) {%>
             <li class="userPage-sidebarList-item" data-playlist-id="<%=playlist.attributes.id%>" data-pleylist-type="<%=playlist.attributes.type%>" data-event-click="showPlaylist" data-drop-target="playlist">
                 <%=playlist.attributes.title%> (<%=JSON.parse(playlist.attributes.user_pocket_ids).length%>)
-                <a href="#" class="clearBtn" data-event-click="deletePlaylist">×</a>
+                <a href="#" class="clearBtn text-link" data-event-click="deletePlaylist">×</a>
             </li>
         <%} else {%>
             <li class="userPage-sidebarList-item is-active" data-playlist-id="<%=playlist.attributes.id%>" data-pleylist-type="<%=playlist.attributes.type%>" data-event-click="showPlaylist" data-drop-target="playlist">

@@ -2353,15 +2353,9 @@ footer {
 .text-link {
   display: inline-block;
 }
-/* line 298, ../dev/scss/modules/_music_detail.scss */
-.text-link .ico-font {
-  margin: 0 0 0 10px;
-  font-size: 8px;
-  color: #c9c7b9;
-}
-/* line 304, ../dev/scss/modules/_music_detail.scss */
-.text-link:hover .ico-font {
-  color: #656457;
+/* line 303, ../dev/scss/modules/_music_detail.scss */
+.text-link:hover {
+  opacity: 0.6;
 }
 
 /* line 7, ../dev/scss/pages/_top.scss */

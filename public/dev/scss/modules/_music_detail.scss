@@ -295,14 +295,15 @@ $map-share: sprite-map("../images/sprite/share/*.png");
 //-------------------------------------
 .text-link {
   display: inline-block;
-  .ico-font {
-    margin: 0 0 0 10px;
-    font-size: 8px;
-    color: #c9c7b9;
-  }
+  // .ico-font {
+  //   margin: 0 0 0 10px;
+  //   font-size: 8px;
+  //   color: #c9c7b9;
+  // }
   &:hover {
-    .ico-font {
-      color: #656457;
-    }
+    opacity: 0.6;
+    // .ico-font {
+    //   color: #656457;
+    // }
   }
 }
