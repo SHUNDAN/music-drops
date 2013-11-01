@@ -80,6 +80,8 @@ define([
                 position: 'fixed',
                 top: '16%',
                 left: '50%',
+                'border-radius': '4px',
+                'box-shadow': '0 0 16px rgba(0,0,0,0.4)'
             });
             $clickArea.html($blackout);
 

@@ -68,6 +68,9 @@ define([
             console.log('renderPopList');
             var html = _.template($('#page_music_detail_poplist').html(), {popList: this.popList.models});
             this.$el.find('#popListArea').html(html);
+
+            // 件数も更新する
+            this.$el.find('#numOfOtherPop').text('(' + this.popList.models.length + ')件');
         },
 
 
@@ -495,6 +498,9 @@ define([
 
                 // 一番Likeされているものを代表Popとする
                 this.repPop = (this.popList.length > 0 ? this.popList.models[0] : null);
+                if (this.repPop) {
+                    this.popList.remove(this.repPop);
+                }
 
 
 
