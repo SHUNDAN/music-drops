@@ -508,6 +508,16 @@ define([
             e.preventDefault();
             console.debug('followPlaylist:', this.currentPlaylist.attributes.id);
 
+            // 上限チェック
+            var user = _.mbStorage.getUser();
+            if (user) {
+                if (user.userFollowPlaylistList.length >= 7) {
+                    alert('プレイリストフォローは最大7件までです。新規に登録する場合には、先にプレイリストを削除してください');
+                    return;
+                }
+            }
+
+
             // プレイリスト追加
             var aPlaylist = new UserPlaylist();
             aPlaylist.set('user_id', this.user.id);
