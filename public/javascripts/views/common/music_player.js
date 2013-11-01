@@ -177,6 +177,7 @@ define([
             this.$playlistTitle
                 .html('<span class="elps">' + playlistNameText + '</span>')
                 .append('<i class="ico-font ico-below fr fs9"></i>');
+            this.$playlistTitle.closest('.header-playList').addClass('is-active');
 
             // プレイヤーを再生状態にする
             this.$header.find('[data-event-click="startMusic"], [data-event-click="pauseMusic"]').toggleClass('hidden');
