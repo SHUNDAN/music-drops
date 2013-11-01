@@ -82,10 +82,32 @@ exports.add = function(req, res) {
     console.log('req.body', req.body);
 
 
-    // execute.
-    userPlaylistModel.insertObject(req.body, function (err) {
-        appUtil.basicResponse(res, err);
+
+    // 上限確認を行います
+    userPlaylistModel.countObjects({user_id:user_id, type: req.body.type}, function (err, cnt) {
+
+        console.log('playlist cnt =', cnt);
+
+        // 上限は7
+        if (cnt >= 7) {
+            res.json(400, 'playlist max count proceeded. max=7, current=' + cnt + ', willAdd=1');
+            return;
+        }
+
+
+        // 登録
+        userPlaylistModel.insertObject(req.body, function (err) {
+            appUtil.basicResponse(res, err);
+        });
+
+
     });
+
+
+
+
+
+
 
 };
 
@@ -126,12 +148,12 @@ exports.delete = function(req, res) {
 
     // idの場合
     if (req.params.id || req.body.id) {
-        condition.id = req.params.id || req.body.id;        
+        condition.id = req.params.id || req.body.id;
     }
 
     // 条件の場合
     if (req.body.dest_playlist_id) {
-        condition.dest_playlist_id = req.body.dest_playlist_id;        
+        condition.dest_playlist_id = req.body.dest_playlist_id;
     }
 
 

@@ -489,8 +489,8 @@ define([
             }
 
             // check max size.
-            if (this.userPlaylistList.length >= 10) {
-                alert('プレイリスト登録は最大10件までです。新規に登録する場合には、先にプレイリストを削除してください');
+            if (this.userPlaylistList.length >= 8) { // ALL + 最大数(7)
+                alert('プレイリスト登録は最大7件までです。新規に登録する場合には、先にプレイリストを削除してください');
                 return;
             }
 
