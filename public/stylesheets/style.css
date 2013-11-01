@@ -2939,12 +2939,19 @@ footer {
   margin: 0 auto;
 }
 
-/* line 10, ../dev/scss/pages/_login.scss */
+/* line 9, ../dev/scss/pages/_login.scss */
+.page-login-cache-copy {
+  margin: 10px auto 30px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* line 15, ../dev/scss/pages/_login.scss */
 .page-login-service .btn-text {
   width: 120px;
 }
 
-/* line 15, ../dev/scss/pages/_login.scss */
+/* line 20, ../dev/scss/pages/_login.scss */
 .page-login-sns .btn-text {
   display: block;
   width: 454px;
@@ -2952,7 +2959,7 @@ footer {
   text-align: center;
 }
 
-/* line 23, ../dev/scss/pages/_login.scss */
+/* line 28, ../dev/scss/pages/_login.scss */
 .page-login-rule .rule {
   display: block;
   width: 96%;
@@ -2961,10 +2968,11 @@ footer {
   padding: 4px;
   border: 1px solid #ccc;
 }
-/* line 31, ../dev/scss/pages/_login.scss */
+/* line 36, ../dev/scss/pages/_login.scss */
 .page-login-rule .detail-link {
   display: inline-block;
-  margin-left: 320px;
+  margin-left: 358px;
+  font-size: 11px;
 }
 
 /* line 12, ../dev/scss/pages/_timeline.scss */
