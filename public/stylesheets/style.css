@@ -3682,15 +3682,29 @@ footer {
   margin: 10px 0 0 350px;
 }
 
-/* line 3, ../dev/scss/pages/_rules.scss */
-.rules {
-  padding: 20px;
+/* line 3, ../dev/scss/pages/_notes.scss */
+.page-notes {
+  min-height: 600px;
+  padding: 40px;
   background-color: rgba(255, 255, 255, 0.6);
 }
-/* line 8, ../dev/scss/pages/_rules.scss */
-.rules * {
-  line-height: 18px;
-  margin-bottom: 20px;
+
+/* line 8, ../dev/scss/pages/_notes.scss */
+.page-note-table {
+  text-align: left;
+  border-top: 1px solid #bdb99c;
+  border-left: 1px solid #bdb99c;
+}
+/* line 12, ../dev/scss/pages/_notes.scss */
+.page-note-table th {
+  background-color: #dedbc7;
+}
+/* line 15, ../dev/scss/pages/_notes.scss */
+.page-note-table th, .page-note-table td {
+  padding: 5px 10px;
+  line-height: 24px;
+  border-right: 1px solid #bdb99c;
+  border-bottom: 1px solid #bdb99c;
 }
 
 /** スマホ用スタイル。とりあえずなもの。 */
