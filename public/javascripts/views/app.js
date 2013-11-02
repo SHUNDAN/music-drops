@@ -17,7 +17,10 @@ define([
     'views/user/timeline',
     'views/user/setting',
     'views/artist/index',
-    'views/rules/index',
+    'views/notes/rules',
+    'views/notes/privacy',
+    'views/notes/recommended',
+    'views/notes/about',
     'views/common/footer',
     'models/common/user_storage',
 ], function (
@@ -36,6 +39,9 @@ define([
     UserSettingView,
     ArtistView,
     RulesView,
+    PrivacyView,
+    RecommendedView,
+    AboutView,
     FooterView,
     UserStorage
 ) {
@@ -179,6 +185,27 @@ define([
         toRules: function () {
             this._prepareStage(RulesView, function () {
                 $('#pageTitle').text('Rules');
+                this.currentPageView.show();
+            });
+        },
+
+        toPrivacy: function () {
+            this._prepareStage(PrivacyView, function () {
+                $('#pageTitle').text('Privacy Policy');
+                this.currentPageView.show();
+            });
+        },
+
+        toRecommended: function () {
+            this._prepareStage(RecommendedView, function () {
+                $('#pageTitle').text('Recommended');
+                this.currentPageView.show();
+            });
+        },
+
+        toAbout: function () {
+            this._prepareStage(AboutView, function () {
+                $('#pageTitle').text('About');
                 this.currentPageView.show();
             });
         },

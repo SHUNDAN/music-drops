@@ -45,6 +45,9 @@ require([
             'timeline': 'timeline',
             'usersetting': 'usersetting',
             'rules': 'rules',
+            'privacy': 'privacy',
+            'recommended': 'recommended',
+            'about': 'about',
             '*path': 'defaultRoute'
         },
 
@@ -137,6 +140,24 @@ require([
             this.sendAction('/#rules');
             this.appView.toRules();
             _gaq.push(['_trackPageview', '/#rules']);
+        },
+
+        privacy: function () {
+            this.sendAction('/#privacy');
+            this.appView.toPrivacy();
+            _gaq.push(['_trackPageview', '/#privacy']);
+        },
+
+        recommended: function () {
+            this.sendAction('/#recommended');
+            this.appView.toRecommended();
+            _gaq.push(['_trackPageview', '/#recommended']);
+        },
+
+        about: function () {
+            this.sendAction('/#about');
+            this.appView.toAbout();
+            _gaq.push(['_trackPageview', '/#about']);
         },
 
     
