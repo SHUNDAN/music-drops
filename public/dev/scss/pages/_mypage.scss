@@ -258,8 +258,6 @@
 	.pocketListArea {
 		li {
 			position: relative;
-			display: -webkit-box;
-			-webkit-box-align:center;
 			width: 300px;
 			height: 72px;
 			float: left;
@@ -298,6 +296,9 @@
 			&.feeling-7:after {
 				background-color: $color-feel-7;
 			}
+		}
+		.fl {
+			float: left;
 		}
 		.thumb {
 			display: block;

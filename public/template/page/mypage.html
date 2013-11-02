@@ -230,11 +230,11 @@
 <!--Pocket一覧-->
 <script id="page_mypage_user_pocket_list" type="text/template">
     <%_.each(pocketList, function (pocket) {%>
-        <li class="feeling-<%=pocket.attributes.feeling_id%>" data-pocket-id="<%=pocket.attributes.id%>">
-            <a href="#music/<%=pocket.attributes.music_id%>" draggable="false">
+        <li class="gp feeling-<%=pocket.attributes.feeling_id%>" data-pocket-id="<%=pocket.attributes.id%>">
+            <a class="fl" href="#music/<%=pocket.attributes.music_id%>" draggable="false">
                 <img class="thumb" src="<%=pocket.attributes.artwork_url%>" alt="<%=pocket.attributes.title%>" draggable="false"/>
             </a>
-            <div class="info">
+            <div class="info fl">
                 <div class="title">
                     <a class="text-link" href="#music/<%=pocket.attributes.music_id%>" draggable="false"><%=pocket.attributes.title%></a>
                 </div>
@@ -242,13 +242,13 @@
                     <a class="text-link" href="#artist/<%=pocket.attributes.artist_id%>" draggable="false"><%=pocket.attributes.artist_name%></a>
                 </div>
             </div>
-            <div class="playBtn" data-event-click="playMusic">
+            <div class="playBtn fl" data-event-click="playMusic">
                 <i class="ico-font ico-play"></i>
             </div>
-            <div class="playBtn is-active hidden" data-event-click="stopMusic">
+            <div class="playBtn is-active hidden fl" data-event-click="stopMusic">
                 <i class="ico-font ico-play-stop"></i>
             </div>
-            <div class="deleteBtn" data-event-click="deletePocket">×</div>
+            <div class="deleteBtn fl" data-event-click="deletePocket">×</div>
         </li>
     <%});%>
 </script>
