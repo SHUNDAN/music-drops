@@ -96,6 +96,13 @@ define([
             var template = $('#page_top').html();
             var snipet = _.template(template, {feelingList:feelingList});
             this.$el.html(snipet);
+
+            // もしnewbeの場合には、Welcomeメッセージを表示する
+            if ($.cookie('isNewUser')) {
+                $.removeCookie('isNewUser');
+                var snipet = _.mbTemplate('page_top_welcome');
+                $('body').append(snipet);
+            }
         },
 
 
@@ -169,7 +176,6 @@ define([
             this.feelingFilterOfHotPopList = parseInt(feelingId, 10);
             this.renderHotPopList();
         },
-
 
 
 

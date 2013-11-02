@@ -2407,6 +2407,47 @@ footer {
   background-color: #ffa4e2;
 }
 
+/* line 54, ../dev/scss/pages/_top.scss */
+.welcomeArea {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 1000;
+}
+/* line 65, ../dev/scss/pages/_top.scss */
+.welcomeArea .contentArea {
+  width: 520px;
+  height: 526px;
+  margin: 90px auto 0 auto;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
+}
+/* line 74, ../dev/scss/pages/_top.scss */
+.welcomeArea .landingImage {
+  display: block;
+  width: 415px;
+  height: 437px;
+  margin: 7px auto 9px auto;
+}
+/* line 81, ../dev/scss/pages/_top.scss */
+.welcomeArea .startBtn {
+  pointer-events: auto;
+  display: block;
+  width: 330px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  color: #656467;
+  background-color: #ffcf3c;
+  margin: 0 auto;
+  border-radius: 3px;
+}
+
 /* line 19, ../dev/scss/pages/_mypage.scss */
 .userPage-leftCol {
   width: 320px;

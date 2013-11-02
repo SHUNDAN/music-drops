@@ -333,6 +333,9 @@ var oauthCallback = function (err, user, req, res) {
     // Cookieの設定
     // res.cookie('uid', uid, {maxAge:365*24*60*60, httpOnly:false});
     res.cookie('uid', uid, {maxAge: 903600 * 3 * 1000, httpOnly:false});
+    if (user.isNew) {
+        res.cookie('isNewUser', 'true');
+    }
 
     // とりあえず保存
     // global.tmpMap = global.tmpMap || {};
