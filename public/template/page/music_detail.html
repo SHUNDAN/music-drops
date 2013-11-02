@@ -94,14 +94,14 @@
             <div class="musicDetail-user gp">
                 <a class="musicDetail-user-name text-link truncate lh18 ds b fl" href="#user/<%=repPop.attributes.user_id%>"><%=repPop.attributes.user_name%></a>
               <%if (_.alreadyLike(repPop.attributes.id)) {%>
-                  <a class="fs18 fr hidden" data-event-click="likePop">
+                  <a class="fs18 fr hidden" data-event-click="likePop" title="ナイスドロップ！">
                     <i class="ico-font ico-heart"></i>
                   </a>
                   <a class="fs18 fr is-active" data-event-click="dislikePop">
                     <i class="ico-font ico-heart"></i>
                   </a>
               <%} else {%>
-                  <a class="fs18 fr" data-event-click="likePop">
+                  <a class="fs18 fr" data-event-click="likePop" title="ナイスドロップ！">
                     <i class="ico-font ico-heart"></i>
                   </a>
                   <a class="fs18 fr is-active hidden" data-event-click="dislikePop">
@@ -146,17 +146,17 @@
                 <td><%- pop.attributes.comment  %></td>
                 <td data-pop-id="<%=pop.attributes.id%>">
                     <%if (_.alreadyLike(pop.attributes.id)) {%>
-                        <a href="#" class="like-btn hidden" data-event-click="likePop2">
+                        <a href="#" class="like-btn hidden" data-event-click="likePop2" title="ナイスドロップ！">
                             <i class="ico-font ico-heart"></i>
                         </a>
-                        <a href="#" class="like-btn is-active" data-event-click="dislikePop2">
+                        <a href="#" class="like-btn is-active" data-event-click="dislikePop2" title="ナイスドロップ！">
                             <i class="ico-font ico-heart"></i>
                         </a>
                     <%} else {%>
-                        <a href="#" class="like-btn" data-event-click="likePop2">
+                        <a href="#" class="like-btn" data-event-click="likePop2" title="ナイスドロップ！">
                             <i class="ico-font ico-heart"></i>
                         </a>
-                        <a href="#" class="like-btn is-active hidden" data-event-click="dislikePop2">
+                        <a href="#" class="like-btn is-active hidden" data-event-click="dislikePop2" title="ナイスドロップ！">
                             <i class="ico-font ico-heart"></i>
                         </a>
                     <%}%>

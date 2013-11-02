@@ -126,17 +126,17 @@
                 <a class="musicDetail-user-name text-link truncate ds b fl" href="#user/<%=pop.attributes.user_id%>"><%=pop.attributes.user_name%></a>
 
                 <%if (_.alreadyLike(pop.attributes.id)) {%>
-                    <a href="#" class="like-btn fr hidden" data-event-click="likePop">
+                    <a href="#" class="like-btn fr hidden" data-event-click="likePop" title="ナイスドロップ！">
                         <i class="ico-font ico-heart"></i>
                     </a>
-                    <a href="#" class="like-btn fr is-active" data-event-click="dislikePop">
+                    <a href="#" class="like-btn fr is-active" data-event-click="dislikePop" title="ナイスドロップ！">
                         <i class="ico-font ico-heart"></i>
                     </a>
                 <%} else {%>
-                    <a href="#" class="like-btn fr" data-event-click="likePop">
+                    <a href="#" class="like-btn fr" data-event-click="likePop" title="ナイスドロップ！">
                         <i class="ico-font ico-heart"></i>
                     </a>
-                    <a href="#" class="like-btn fr is-active hidden" data-event-click="dislikePop">
+                    <a href="#" class="like-btn fr is-active hidden" data-event-click="dislikePop" title="ナイスドロップ！">
                         <i class="ico-font ico-heart"></i>
                     </a>
                 <%}%>

@@ -185,6 +185,9 @@ define([
 
         _prepareStage: function (ViewClass, callback) {
 
+            // ヘッダーのプレイリスト表示があれば、非表示にする
+            $('#playlistPopup').addClass('hidden');
+
             // setting
             callback = _.bind(callback, this);
 

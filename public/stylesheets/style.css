@@ -2299,55 +2299,55 @@ footer {
 .musicDetail-col3 .musicDetail-pop .like-btn.is-active {
   color: #f3613f;
 }
-/* line 243, ../dev/scss/modules/_music_detail.scss */
+/* line 242, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-user-name {
   width: 270px;
 }
 
-/* line 251, ../dev/scss/modules/_music_detail.scss */
+/* line 250, ../dev/scss/modules/_music_detail.scss */
 .add-musicLink .form {
   width: 100%;
   line-height: 30px;
 }
 
-/* line 259, ../dev/scss/modules/_music_detail.scss */
+/* line 258, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table {
   width: 100%;
   text-align: left;
 }
-/* line 262, ../dev/scss/modules/_music_detail.scss */
+/* line 261, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table caption {
   padding-bottom: 5px;
   text-align: left;
   border-bottom: 1px solid #d6d4c5;
 }
-/* line 267, ../dev/scss/modules/_music_detail.scss */
+/* line 266, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table thead {
   border-bottom: 2px solid #d6d4c5;
 }
-/* line 270, ../dev/scss/modules/_music_detail.scss */
+/* line 269, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table tbody {
   background-color: #efede0;
 }
-/* line 273, ../dev/scss/modules/_music_detail.scss */
+/* line 272, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table th, .musicLink-table td {
   padding: 10px;
 }
-/* line 276, ../dev/scss/modules/_music_detail.scss */
+/* line 275, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table .elps {
   display: inline-block;
   max-width: 450px;
 }
-/* line 280, ../dev/scss/modules/_music_detail.scss */
+/* line 279, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table .like-btn.is-active {
   color: #f3613f;
 }
 
-/* line 295, ../dev/scss/modules/_music_detail.scss */
+/* line 294, ../dev/scss/modules/_music_detail.scss */
 .text-link {
   display: inline-block;
 }
-/* line 302, ../dev/scss/modules/_music_detail.scss */
+/* line 301, ../dev/scss/modules/_music_detail.scss */
 .text-link:hover {
   opacity: 0.6;
 }
