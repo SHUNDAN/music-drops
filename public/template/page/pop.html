@@ -10,7 +10,7 @@
         <% } %>
 
 
-        <div class="popPageArea clearfix">
+        <div class="popPageArea gp">
 
             <!--左側-->
             <div class="leftCol">
@@ -23,7 +23,7 @@
             <!--右側-->
             <div class="rightCol">
                 <div class="label">[1] ドロップの種類を選ぶ</div>
-                <div class="feelingList clearfix">
+                <div class="feelingList gp">
                     <%_.each(feelingList, function (feeling) { console.debug(feeling.id, pop.attributes);%>
                         <div>
                             <input id="feelingSelect<%=feeling.id%>" type="radio" name="feelingSelect" value="<%=feeling.id%>" <%if(feeling.id === pop.attributes.feeling_id){%>checked="true"<%}%>/>

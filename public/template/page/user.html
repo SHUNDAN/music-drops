@@ -183,7 +183,7 @@
     </div>
 
     <!--機能-->
-    <div class="pocketListFncArea clearfix">
+    <div class="pocketListFncArea gp">
         <%if (options.playlist && options.playlist.attributes.type !== 1) {%>
             <%if (_.alreadyPlaylistFollow(options.playlist.attributes.id)) {%>
                 <a href="#" class="playlistFollowButton text-link hidden" data-event-click="followPlaylist">プレイリストをフォローする</a>
@@ -196,7 +196,7 @@
     </div>
 
     <!--Pocketリスト-->
-    <ul id="pocketListArea" class="pocketListArea clearfix"><!--JSで追加--></ul>
+    <ul id="pocketListArea" class="pocketListArea gp"><!--JSで追加--></ul>
 
 </script>
 

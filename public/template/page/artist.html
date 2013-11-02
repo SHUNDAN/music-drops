@@ -47,10 +47,10 @@
 
 
         <!--曲のリスト表示-->
-        <ul id="musicList" class="musicList clearfix">
+        <ul id="musicList" class="musicList gp">
 
             <%_.each(musicList, function (music, idx) {%>
-                <li class="clearfix feeling-<%=music.attributes.feeling_id%>" data-idx="<%=idx%>" data-music-id="<%=music.attributes.id%>">
+                <li class="gp feeling-<%=music.attributes.feeling_id%>" data-idx="<%=idx%>" data-music-id="<%=music.attributes.id%>">
                     <img class="thumb" src="<%=music.attributes.artwork_url%>" alt="<%=music.attributes.title%>"/>
                     <div class="info">
                         <div class="title">
