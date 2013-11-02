@@ -29,11 +29,11 @@
             </div>
             <div class="musicDetail-user gp">
                 <%if (_.alreadyArtistFollow(repMusic.attributes.artist_id)) {%>
-                    <a class="text-link lh18" data-event-click="followArtist"><i class="ico-font ico-follow fs18 mr5"></i>このアーティストをフォローする</a>
-                    <a class="text-link lh18 hidden" data-event-click="unfollowArtist"><i class="ico-font ico-follow fs18 mr5"></i>このアーティストのフォローを解除する</a>
+                    <a class="text-link lh18 hidden" data-event-click="followArtist"><i class="ico-font ico-follow fs18 mr5"></i>このアーティストをフォローする</a>
+                    <a class="text-link lh18" data-event-click="unfollowArtist"><i class="ico-font ico-follow fs18 mr5"></i>このアーティストのフォローを解除する</a>
                 <%} else {%>
                     <a class="text-link lh18" data-event-click="followArtist"><i class="ico-font ico-follow fs18 mr5"></i>このアーティストをフォローする</a>
-                    <a class="text-link lh18 hidden" data-event-click="unfollowArtist"><i class="ico-font ico-follow fs18 mr5"></i>このアーティストをフォローする</a>
+                    <a class="text-link lh18 hidden" data-event-click="unfollowArtist"><i class="ico-font ico-follow fs18 mr5"></i>このアーティストのフォローを解除する</a>
                 <%}%>
             </div>
         </div>
