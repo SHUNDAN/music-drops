@@ -174,7 +174,7 @@
         <input type="button" class="form-InBtn form-btn-color-base filterByNameBtn" value="絞り込み" data-event-click="filterPockets"/>
         <div class="form-select selectArea">
             <select id="filterByFeelingSelect" class="form form-selectMenu form-color-base filterByFeelingSelect" data-event-change="filterPockets2">
-                <option value="0"></option>
+                <option value="0">キモチで絞り込む</option>
                 <%_.each(feelings, function (feeling) {%>
                     <option value="<%=feeling.id%>"><%=feeling.name%></option>
                 <%});%>
