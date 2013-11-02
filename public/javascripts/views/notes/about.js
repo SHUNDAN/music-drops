@@ -1,26 +1,20 @@
 /**
-	ユーザー設定画面
+	Music Dropsとは？ページ
 */
 define([
 ], function (
 ) {
 
-	var RulesView = Backbone.View.extend({
+	var AboutView = Backbone.View.extend({
 
 		initialize: function () {
 
 		},
 
 		render: function () {
-			var snipet = _.mbTemplate('page_rules');
+			var snipet = _.mbTemplate('page_about');
 			this.$el.html(snipet);
 		},
-
-
-
-
-
-
 
 
 		show: function () {
@@ -34,6 +28,6 @@ define([
 
 	});
 
-	return RulesView;
+	return AboutView;
 
 });
