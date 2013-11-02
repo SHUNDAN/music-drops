@@ -7008,9 +7008,9 @@ define('views/artist/index',[
 });
 
 /**
-	ユーザー設定画面
+	利用規約
 */
-define('views/rules/index',[
+define('views/notes/rules',[
 ], function (
 ) {
 
@@ -7026,10 +7026,37 @@ define('views/rules/index',[
 		},
 
 
+		show: function () {
 
+			this.render();
+		},
 
+		dealloc: function () {
 
+		},
 
+	});
+
+	return RulesView;
+
+});
+/**
+	プライバシーポリシー
+*/
+define('views/notes/privacy',[
+], function (
+) {
+
+	var PrivacyView = Backbone.View.extend({
+
+		initialize: function () {
+
+		},
+
+		render: function () {
+			var snipet = _.mbTemplate('page_privacy');
+			this.$el.html(snipet);
+		},
 
 
 		show: function () {
@@ -7043,7 +7070,73 @@ define('views/rules/index',[
 
 	});
 
-	return RulesView;
+	return PrivacyView;
+
+});
+/**
+	推奨環境ページ
+*/
+define('views/notes/recommended',[
+], function (
+) {
+
+	var RecommendedView = Backbone.View.extend({
+
+		initialize: function () {
+
+		},
+
+		render: function () {
+			var snipet = _.mbTemplate('page_recommended');
+			this.$el.html(snipet);
+		},
+
+
+		show: function () {
+
+			this.render();
+		},
+
+		dealloc: function () {
+
+		},
+
+	});
+
+	return RecommendedView;
+
+});
+/**
+	Music Dropsとは？ページ
+*/
+define('views/notes/about',[
+], function (
+) {
+
+	var AboutView = Backbone.View.extend({
+
+		initialize: function () {
+
+		},
+
+		render: function () {
+			var snipet = _.mbTemplate('page_about');
+			this.$el.html(snipet);
+		},
+
+
+		show: function () {
+
+			this.render();
+		},
+
+		dealloc: function () {
+
+		},
+
+	});
+
+	return AboutView;
 
 });
 
@@ -7102,7 +7195,10 @@ define('views/app',[
     'views/user/timeline',
     'views/user/setting',
     'views/artist/index',
-    'views/rules/index',
+    'views/notes/rules',
+    'views/notes/privacy',
+    'views/notes/recommended',
+    'views/notes/about',
     'views/common/footer',
     'models/common/user_storage',
 ], function (
@@ -7121,6 +7217,9 @@ define('views/app',[
     UserSettingView,
     ArtistView,
     RulesView,
+    PrivacyView,
+    RecommendedView,
+    AboutView,
     FooterView,
     UserStorage
 ) {
@@ -7264,6 +7363,27 @@ define('views/app',[
         toRules: function () {
             this._prepareStage(RulesView, function () {
                 $('#pageTitle').text('Rules');
+                this.currentPageView.show();
+            });
+        },
+
+        toPrivacy: function () {
+            this._prepareStage(PrivacyView, function () {
+                $('#pageTitle').text('Privacy Policy');
+                this.currentPageView.show();
+            });
+        },
+
+        toRecommended: function () {
+            this._prepareStage(RecommendedView, function () {
+                $('#pageTitle').text('Recommended');
+                this.currentPageView.show();
+            });
+        },
+
+        toAbout: function () {
+            this._prepareStage(AboutView, function () {
+                $('#pageTitle').text('About');
                 this.currentPageView.show();
             });
         },
@@ -7441,6 +7561,9 @@ require([
             'timeline': 'timeline',
             'usersetting': 'usersetting',
             'rules': 'rules',
+            'privacy': 'privacy',
+            'recommended': 'recommended',
+            'about': 'about',
             '*path': 'defaultRoute'
         },
 
@@ -7533,6 +7656,24 @@ require([
             this.sendAction('/#rules');
             this.appView.toRules();
             _gaq.push(['_trackPageview', '/#rules']);
+        },
+
+        privacy: function () {
+            this.sendAction('/#privacy');
+            this.appView.toPrivacy();
+            _gaq.push(['_trackPageview', '/#privacy']);
+        },
+
+        recommended: function () {
+            this.sendAction('/#recommended');
+            this.appView.toRecommended();
+            _gaq.push(['_trackPageview', '/#recommended']);
+        },
+
+        about: function () {
+            this.sendAction('/#about');
+            this.appView.toAbout();
+            _gaq.push(['_trackPageview', '/#about']);
         },
 
     
