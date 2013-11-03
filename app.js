@@ -385,9 +385,9 @@ app.get('/api/v1/clearMemCache', routes.clearMemCache);
 
 // Feeling
 app.get('/api/v1/feelings', feeling.select);
-app.post('/api/v1.1/feelings', feeling.add);
-app.post('/api/v1.1/feelings/:id/update', feeling.update);
-app.delete('/api/v1.1/feelings/:id', feeling.delete);
+// app.post('/api/v1.1/feelings', feeling.add);
+// app.post('/api/v1.1/feelings/:id/update', feeling.update);
+// app.delete('/api/v1.1/feelings/:id', feeling.delete);
 
 // Music
 app.post('/api/v1/musics/search_with_itunes', music.searchWithITunes);
@@ -484,7 +484,7 @@ app.post('/api/v1/itunes_rankings', iTunesRanking.add);
 app.post('/api/v1/itunes_rankings/:id/update', iTunesRanking.update);
 app.delete('/api/v1/itunes_rankings/:id', iTunesRanking.delete);
 
-// iTunesRanking
+// レポート機能
 app.get('/api/v1/reports', report.select);
 app.post('/api/v1/reports', report.add);
 // app.post('/api/v1/itunes_rankings/:id/update', iTunesRanking.update);

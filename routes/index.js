@@ -82,57 +82,6 @@ exports.index = function(req, res){
 
 
 
-    // // load templates.
-    // var template = '';
-    // glob('./public/template/**/*.html', function (err, files) {
-
-    //     files.forEach(function (file) {
-    //         template += fs.readFileSync(file, 'utf-8');
-    //     });
-
-
-    //     // アプリ共通情報を取得
-    //     loadCommonInfo(function (common) {
-
-    //         // ユーザー情報あれば表示
-    //         var userId = appUtil.getUserIdFromUid(req);
-    //         if (userId) {
-    //             userModel.selectObject2({id:userId}, function (user) {
-
-    //                 // response.
-    //                 res.render('index', {
-    //                     title: 'Express',
-    //                     htmltemplate: template,
-    //                     mainJs: global.mbSetting.mainJs,
-    //                     common: JSON.stringify(common),
-    //                     user:JSON.stringify(user)
-    //                 });
-
-    //             });
-
-    //         } else {
-    //             res.render('index', {
-    //                 title: 'Express',
-    //                 htmltemplate: template,
-    //                 mainJs: global.mbSetting.mainJs,
-    //                 common: JSON.stringify(common),
-    //                 user:null
-    //             });
-    //         }
-
-
-    //     });
-
-
-
-
-
-
-
-    // });
-
-
-
 };
 
 

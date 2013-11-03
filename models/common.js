@@ -213,7 +213,7 @@ module.exports = {
         // Example: insert into music(title, artwork_url, song_url, artist_name, itunes_url, create_at, update_at) values (?, ?, ?, ?, ?, ?, ?)
         var columnNames = [];
         this.columns.forEach(_.bind(function (column) {
-            if (_.contains(this.excludeInsColumns, column) === false) {
+            if (_.contains(this.excludeInsColumns, column) === false && this.hasColumn(column)) {
                 columnNames.push(column);
             }
         }, this));
@@ -262,7 +262,7 @@ module.exports = {
         var columnNames = [];
         var targets = [];
         for (var prop in data) {
-            if (data.hasOwnProperty(prop) && data[prop]) {
+            if (data.hasOwnProperty(prop) && data[prop] && this.hasColumn(prop)) {
                 if (this.hasColumn(prop)) {
                     columnNames.push(prop);
                     targets.push(util.format('%s=?', prop));
@@ -321,7 +321,7 @@ module.exports = {
         var columnNames = [];
         var conditions = [];
         for (var prop in conditionParam) {
-            if (conditionParam.hasOwnProperty(prop)) {
+            if (conditionParam.hasOwnProperty(prop) && this.hasColumn(prop)) {
                 columnNames.push(prop);
                 conditions.push(util.format('%s=?', prop));
             }

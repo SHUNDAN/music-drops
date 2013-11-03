@@ -51,7 +51,7 @@ module.exports = _.extend({}, require('./common'), {
         var columnNames = [];
         var conditions = [];
         for (var prop in conditionParam) {
-            if (conditionParam.hasOwnProperty(prop)) {
+            if (conditionParam.hasOwnProperty(prop) && this.hasColumn(prop)) {
                 if (this.hasColumn(prop)) {
                     columnNames.push(prop);
                     conditions.push(util.format('%s=?', prop));
@@ -59,15 +59,11 @@ module.exports = _.extend({}, require('./common'), {
             }
         }
         // in句
-        console.log('000', conditionParam);
         if (conditionParam.targets) {
-            console.log('aaa');
             if (typeof conditionParam.targets === 'string') {
-                console.log('bbb');
                 conditionParam.targets = JSON.parse(conditionParam.targets);
             }
             if (_.isArray(conditionParam.targets)) {
-                console.log('ccc');
                 var inFragment = 'user_pocket.id in (' + conditionParam.targets.join(',') + ')';
                 conditions.push(inFragment);
             }

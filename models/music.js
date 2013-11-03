@@ -52,6 +52,12 @@ module.exports = _.extend({}, require('./common'), {
      */
     addPlayCount: function (musicId, callback) {
 
+        musicId = parseInt(musicId, 10);
+        if (isNaN(musicId)) {
+            console.log('model#music#addPlayCount musicId is not number.');
+            callback({message: 'musicId is invalid.'});
+        }
+
         var sql = 'update music set play_count = (case when play_count is null then 1 else play_count + 1 end), play_count_speed = (case when play_count_speed is null then 1 else play_count_speed + 1 end) where id=' + musicId;
 
         console.log(sql);
