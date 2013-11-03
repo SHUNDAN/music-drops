@@ -17,7 +17,7 @@ userNotification.countObjects(null, function (err, cnt) {
 
 	// 削除処理
 	var now = new Date().getTime();
-	var targetTimestamp = now - 3 * 24 * 60 * 60 * 1000;  // 3日前
+	var targetTimestamp = now - 4 * 24 * 60 * 60 * 1000;  // 4日前
 	var sql = 'delete from user_notification where create_at <= ' + targetTimestamp;
 	db.run(sql, function (err) {
 
