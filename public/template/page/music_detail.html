@@ -29,7 +29,9 @@
             <% if (itunes_url) { %>
                 <p><a href="http://click.linksynergy.com/fs-bin/click?id=L4*5Z7Ih6j8&subid=&offerid=94348.1&type=10&tmpid=3910&RD_PARM1=<%- itunes_url %>" target="_blank" onclick="_gaq.push(['_trackEvent', 'toItunes1', '<%=title%>']);">iTunesで曲を見る</a></p>
             <% } %>
-            <i class="musicDetail-thumb-service sprite-share share-youtube"></i>
+            <%if (youtube_id) {%>
+                <i class="musicDetail-thumb-service sprite-share share-youtube"></i>
+            <%}%>
         </div>
         <div class="musicDetail-info fl">
             <h2 class="musicDetail-info-title mb5 fs16 lh22 b"><%- title %></h2>

@@ -94,7 +94,9 @@
                 <div class="musicDetail-thumb mrm fl">
                     <a href="#music/<%=pop.attributes.music_id%>">
                         <img src="<%=pop.attributes.artwork_url%>" width="100" height="100" alt="<%=pop.attributes.title%> / <%=pop.attributes.artist_name%>" />
-                        <i class="musicDetail-thumb-service sprite-share share-youtube"></i>
+                        <%if (pop.attributes.youtube_id) {%>
+                            <i class="musicDetail-thumb-service sprite-share share-youtube"></i>
+                        <%}%>
                     </a>
                 </div>
                 <div class="musicDetail-info fr">
