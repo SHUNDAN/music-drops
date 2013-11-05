@@ -286,6 +286,8 @@ define([
             var userId = this.repPop.attributes.user_id;
             _.followUser(userId, function () {
                 $('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
+
+                _.mbStorage.refreshUser({type: 'followUser'});
             });
         },
 
@@ -297,6 +299,8 @@ define([
             var userFollowId = _.selectUserFollowId(this.repPop.attributes.user_id);
             _.unfollowUser(userFollowId, function () {
                 $('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
+
+                _.mbStorage.refreshUser({type: 'followUser'});
             });
         },
 
@@ -307,6 +311,8 @@ define([
         likePop: function () {
             _.likePop(this.repPop.attributes.id, function () {
                 $('[data-event-click="likePop"], [data-event-click="dislikePop"]').toggleClass('hidden');
+
+                _.mbStorage.refreshUser({type: 'likePop'});
             });
         },
 
@@ -317,6 +323,8 @@ define([
         dislikePop: function () {
             _.dislikePop(this.repPop.attributes.id, function () {
                 $('[data-event-click="likePop"], [data-event-click="dislikePop"]').toggleClass('hidden');
+
+                _.mbStorage.refreshUser({type: 'likePop'});
             });
         },
 

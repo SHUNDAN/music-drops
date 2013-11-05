@@ -111,10 +111,10 @@
                   </a>
               <%}%>
               <%if (_.alreadyUserFollow(repPop.attributes.user_id)) {%>
-                  <a class="mr20 fs18 fr" data-event-click="followUser">
+                  <a class="mr20 fs18 fr hidden" data-event-click="followUser">
                     <i class="ico-font ico-follow"></i>
                   </a>
-                  <a class="mr20 fs18 fr hidden is-active" data-event-click="unfollowUser">
+                  <a class="mr20 fs18 fr is-active" data-event-click="unfollowUser">
                     <i class="ico-font ico-follow"></i>
                   </a>
               <%} else {%>
