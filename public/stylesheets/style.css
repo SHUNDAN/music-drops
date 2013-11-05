@@ -244,341 +244,346 @@ table {
 }
 
 /* line 100, ../dev/scss/core/_helper.scss */
+.mb4 {
+  margin-bottom: 4px !important;
+}
+
+/* line 103, ../dev/scss/core/_helper.scss */
 .mb5 {
   margin-bottom: 5px !important;
 }
 
-/* line 103, ../dev/scss/core/_helper.scss */
+/* line 106, ../dev/scss/core/_helper.scss */
 .ml5 {
   margin-left: 5px !important;
 }
 
-/* line 106, ../dev/scss/core/_helper.scss */
+/* line 109, ../dev/scss/core/_helper.scss */
 .mt10 {
   margin-top: 10px !important;
 }
 
-/* line 109, ../dev/scss/core/_helper.scss */
+/* line 112, ../dev/scss/core/_helper.scss */
 .mr10 {
   margin-right: 10px !important;
 }
 
-/* line 112, ../dev/scss/core/_helper.scss */
+/* line 115, ../dev/scss/core/_helper.scss */
 .mb10 {
   margin-bottom: 10px !important;
 }
 
-/* line 115, ../dev/scss/core/_helper.scss */
+/* line 118, ../dev/scss/core/_helper.scss */
 .ml10 {
   margin-left: 10px !important;
 }
 
-/* line 118, ../dev/scss/core/_helper.scss */
+/* line 121, ../dev/scss/core/_helper.scss */
 .mt15 {
   margin-top: 15px !important;
 }
 
-/* line 121, ../dev/scss/core/_helper.scss */
+/* line 124, ../dev/scss/core/_helper.scss */
 .mr15 {
   margin-right: 15px !important;
 }
 
-/* line 124, ../dev/scss/core/_helper.scss */
+/* line 127, ../dev/scss/core/_helper.scss */
 .mb15 {
   margin-bottom: 15px !important;
 }
 
-/* line 127, ../dev/scss/core/_helper.scss */
+/* line 130, ../dev/scss/core/_helper.scss */
 .ml15 {
   margin-left: 15px !important;
 }
 
-/* line 130, ../dev/scss/core/_helper.scss */
+/* line 133, ../dev/scss/core/_helper.scss */
 .mt20 {
   margin-top: 20px !important;
 }
 
-/* line 133, ../dev/scss/core/_helper.scss */
+/* line 136, ../dev/scss/core/_helper.scss */
 .mr20 {
   margin-right: 20px !important;
 }
 
-/* line 136, ../dev/scss/core/_helper.scss */
+/* line 139, ../dev/scss/core/_helper.scss */
 .mb20 {
   margin-bottom: 20px !important;
 }
 
-/* line 139, ../dev/scss/core/_helper.scss */
+/* line 142, ../dev/scss/core/_helper.scss */
 .ml20 {
   margin-left: 20px !important;
 }
 
-/* line 142, ../dev/scss/core/_helper.scss */
+/* line 145, ../dev/scss/core/_helper.scss */
 .mt25 {
   margin-top: 25px !important;
 }
 
-/* line 145, ../dev/scss/core/_helper.scss */
+/* line 148, ../dev/scss/core/_helper.scss */
 .mr25 {
   margin-right: 25px !important;
 }
 
-/* line 148, ../dev/scss/core/_helper.scss */
+/* line 151, ../dev/scss/core/_helper.scss */
 .mb25 {
   margin-bottom: 25px !important;
 }
 
-/* line 151, ../dev/scss/core/_helper.scss */
+/* line 154, ../dev/scss/core/_helper.scss */
 .ml25 {
   margin-left: 25px !important;
 }
 
-/* line 154, ../dev/scss/core/_helper.scss */
+/* line 157, ../dev/scss/core/_helper.scss */
 .mt30 {
   margin-top: 30px !important;
 }
 
-/* line 157, ../dev/scss/core/_helper.scss */
+/* line 160, ../dev/scss/core/_helper.scss */
 .mr30 {
   margin-right: 30px !important;
 }
 
-/* line 160, ../dev/scss/core/_helper.scss */
+/* line 163, ../dev/scss/core/_helper.scss */
 .mb30 {
   margin-bottom: 30px !important;
 }
 
-/* line 163, ../dev/scss/core/_helper.scss */
+/* line 166, ../dev/scss/core/_helper.scss */
 .ml30 {
   margin-left: 30px !important;
 }
 
-/* line 166, ../dev/scss/core/_helper.scss */
+/* line 169, ../dev/scss/core/_helper.scss */
 .mt35 {
   margin-top: 35px !important;
 }
 
-/* line 169, ../dev/scss/core/_helper.scss */
+/* line 172, ../dev/scss/core/_helper.scss */
 .mr35 {
   margin-right: 35px !important;
 }
 
-/* line 172, ../dev/scss/core/_helper.scss */
+/* line 175, ../dev/scss/core/_helper.scss */
 .mb35 {
   margin-bottom: 35px !important;
 }
 
-/* line 175, ../dev/scss/core/_helper.scss */
+/* line 178, ../dev/scss/core/_helper.scss */
 .ml35 {
   margin-left: 35px !important;
 }
 
-/* line 178, ../dev/scss/core/_helper.scss */
+/* line 181, ../dev/scss/core/_helper.scss */
 .mt40 {
   margin-top: 40px !important;
 }
 
-/* line 181, ../dev/scss/core/_helper.scss */
+/* line 184, ../dev/scss/core/_helper.scss */
 .mr40 {
   margin-right: 40px !important;
 }
 
-/* line 184, ../dev/scss/core/_helper.scss */
+/* line 187, ../dev/scss/core/_helper.scss */
 .mb40 {
   margin-bottom: 40px !important;
 }
 
-/* line 187, ../dev/scss/core/_helper.scss */
+/* line 190, ../dev/scss/core/_helper.scss */
 .ml40 {
   margin-left: 40px !important;
 }
 
-/* line 191, ../dev/scss/core/_helper.scss */
+/* line 194, ../dev/scss/core/_helper.scss */
 .pt0 {
   padding-top: 0px !important;
 }
 
-/* line 194, ../dev/scss/core/_helper.scss */
+/* line 197, ../dev/scss/core/_helper.scss */
 .pr0 {
   padding-right: 0px !important;
 }
 
-/* line 197, ../dev/scss/core/_helper.scss */
+/* line 200, ../dev/scss/core/_helper.scss */
 .pb0 {
   padding-bottom: 0px !important;
 }
 
-/* line 200, ../dev/scss/core/_helper.scss */
+/* line 203, ../dev/scss/core/_helper.scss */
 .pl0 {
   padding-left: 0px !important;
 }
 
-/* line 203, ../dev/scss/core/_helper.scss */
+/* line 206, ../dev/scss/core/_helper.scss */
 .pt5 {
   padding-top: 5px !important;
 }
 
-/* line 206, ../dev/scss/core/_helper.scss */
+/* line 209, ../dev/scss/core/_helper.scss */
 .pr5 {
   padding-right: 5px !important;
 }
 
-/* line 209, ../dev/scss/core/_helper.scss */
+/* line 212, ../dev/scss/core/_helper.scss */
 .pb5 {
   padding-bottom: 5px !important;
 }
 
-/* line 212, ../dev/scss/core/_helper.scss */
+/* line 215, ../dev/scss/core/_helper.scss */
 .pl5 {
   padding-left: 5px !important;
 }
 
-/* line 215, ../dev/scss/core/_helper.scss */
+/* line 218, ../dev/scss/core/_helper.scss */
 .pt10 {
   padding-top: 10px !important;
 }
 
-/* line 218, ../dev/scss/core/_helper.scss */
+/* line 221, ../dev/scss/core/_helper.scss */
 .pr10 {
   padding-right: 10px !important;
 }
 
-/* line 221, ../dev/scss/core/_helper.scss */
+/* line 224, ../dev/scss/core/_helper.scss */
 .pb10 {
   padding-bottom: 10px !important;
 }
 
-/* line 224, ../dev/scss/core/_helper.scss */
+/* line 227, ../dev/scss/core/_helper.scss */
 .pl10 {
   padding-left: 10px !important;
 }
 
-/* line 227, ../dev/scss/core/_helper.scss */
+/* line 230, ../dev/scss/core/_helper.scss */
 .pt15 {
   padding-top: 15px !important;
 }
 
-/* line 230, ../dev/scss/core/_helper.scss */
+/* line 233, ../dev/scss/core/_helper.scss */
 .pr15 {
   padding-right: 15px !important;
 }
 
-/* line 233, ../dev/scss/core/_helper.scss */
+/* line 236, ../dev/scss/core/_helper.scss */
 .pb15 {
   padding-bottom: 15px !important;
 }
 
-/* line 236, ../dev/scss/core/_helper.scss */
+/* line 239, ../dev/scss/core/_helper.scss */
 .pl15 {
   padding-left: 15px !important;
 }
 
-/* line 239, ../dev/scss/core/_helper.scss */
+/* line 242, ../dev/scss/core/_helper.scss */
 .pt20 {
   padding-top: 20px !important;
 }
 
-/* line 242, ../dev/scss/core/_helper.scss */
+/* line 245, ../dev/scss/core/_helper.scss */
 .pr20 {
   padding-right: 20px !important;
 }
 
-/* line 245, ../dev/scss/core/_helper.scss */
+/* line 248, ../dev/scss/core/_helper.scss */
 .pb20 {
   padding-bottom: 20px !important;
 }
 
-/* line 248, ../dev/scss/core/_helper.scss */
+/* line 251, ../dev/scss/core/_helper.scss */
 .pl20 {
   padding-left: 20px !important;
 }
 
-/* line 251, ../dev/scss/core/_helper.scss */
+/* line 254, ../dev/scss/core/_helper.scss */
 .pt25 {
   padding-top: 25px !important;
 }
 
-/* line 254, ../dev/scss/core/_helper.scss */
+/* line 257, ../dev/scss/core/_helper.scss */
 .pr25 {
   padding-right: 25px !important;
 }
 
-/* line 257, ../dev/scss/core/_helper.scss */
+/* line 260, ../dev/scss/core/_helper.scss */
 .pb25 {
   padding-bottom: 25px !important;
 }
 
-/* line 260, ../dev/scss/core/_helper.scss */
+/* line 263, ../dev/scss/core/_helper.scss */
 .pl25 {
   padding-left: 25px !important;
 }
 
-/* line 263, ../dev/scss/core/_helper.scss */
+/* line 266, ../dev/scss/core/_helper.scss */
 .pt30 {
   padding-top: 30px !important;
 }
 
-/* line 266, ../dev/scss/core/_helper.scss */
+/* line 269, ../dev/scss/core/_helper.scss */
 .pr30 {
   padding-right: 30px !important;
 }
 
-/* line 269, ../dev/scss/core/_helper.scss */
+/* line 272, ../dev/scss/core/_helper.scss */
 .pb30 {
   padding-bottom: 30px !important;
 }
 
-/* line 272, ../dev/scss/core/_helper.scss */
+/* line 275, ../dev/scss/core/_helper.scss */
 .pl30 {
   padding-left: 30px !important;
 }
 
-/* line 275, ../dev/scss/core/_helper.scss */
+/* line 278, ../dev/scss/core/_helper.scss */
 .pt35 {
   padding-top: 35px !important;
 }
 
-/* line 278, ../dev/scss/core/_helper.scss */
+/* line 281, ../dev/scss/core/_helper.scss */
 .pr35 {
   padding-right: 35px !important;
 }
 
-/* line 281, ../dev/scss/core/_helper.scss */
+/* line 284, ../dev/scss/core/_helper.scss */
 .pb35 {
   padding-bottom: 35px !important;
 }
 
-/* line 284, ../dev/scss/core/_helper.scss */
+/* line 287, ../dev/scss/core/_helper.scss */
 .pl35 {
   padding-left: 35px !important;
 }
 
-/* line 287, ../dev/scss/core/_helper.scss */
+/* line 290, ../dev/scss/core/_helper.scss */
 .pt40 {
   padding-top: 40px !important;
 }
 
-/* line 290, ../dev/scss/core/_helper.scss */
+/* line 293, ../dev/scss/core/_helper.scss */
 .pr40 {
   padding-right: 40px !important;
 }
 
-/* line 293, ../dev/scss/core/_helper.scss */
+/* line 296, ../dev/scss/core/_helper.scss */
 .pb40 {
   padding-bottom: 40px !important;
 }
 
-/* line 296, ../dev/scss/core/_helper.scss */
+/* line 299, ../dev/scss/core/_helper.scss */
 .pl40 {
   padding-left: 40px !important;
 }
 
-/* line 304, ../dev/scss/core/_helper.scss */
+/* line 307, ../dev/scss/core/_helper.scss */
 .rn {
   border-radius: 0 !important;
 }
 
-/* line 305, ../dev/scss/core/_helper.scss */
+/* line 308, ../dev/scss/core/_helper.scss */
 .bdr-2 {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -587,7 +592,7 @@ table {
   border-radius: 2px;
 }
 
-/* line 306, ../dev/scss/core/_helper.scss */
+/* line 309, ../dev/scss/core/_helper.scss */
 .bdr-4 {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -596,7 +601,7 @@ table {
   border-radius: 4px;
 }
 
-/* line 307, ../dev/scss/core/_helper.scss */
+/* line 310, ../dev/scss/core/_helper.scss */
 .bdr-6 {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -605,7 +610,7 @@ table {
   border-radius: 6px;
 }
 
-/* line 308, ../dev/scss/core/_helper.scss */
+/* line 311, ../dev/scss/core/_helper.scss */
 .bdr-8 {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -614,227 +619,227 @@ table {
   border-radius: 8px;
 }
 
-/* line 314, ../dev/scss/core/_helper.scss */
+/* line 317, ../dev/scss/core/_helper.scss */
 .c-base {
   color: #68473c !important;
 }
 
-/* line 315, ../dev/scss/core/_helper.scss */
+/* line 318, ../dev/scss/core/_helper.scss */
 .c-sec {
   color: #99796d !important;
 }
 
-/* line 316, ../dev/scss/core/_helper.scss */
+/* line 319, ../dev/scss/core/_helper.scss */
 .c-fff {
   color: white !important;
 }
 
-/* line 317, ../dev/scss/core/_helper.scss */
+/* line 320, ../dev/scss/core/_helper.scss */
 .c-000 {
   color: black !important;
 }
 
-/* line 320, ../dev/scss/core/_helper.scss */
+/* line 323, ../dev/scss/core/_helper.scss */
 .fs8 {
   font-size: 8px;
 }
 
-/* line 321, ../dev/scss/core/_helper.scss */
+/* line 324, ../dev/scss/core/_helper.scss */
 .fs9 {
   font-size: 9px;
 }
 
-/* line 322, ../dev/scss/core/_helper.scss */
+/* line 325, ../dev/scss/core/_helper.scss */
 .fs10 {
   font-size: 10px;
 }
 
-/* line 323, ../dev/scss/core/_helper.scss */
+/* line 326, ../dev/scss/core/_helper.scss */
 .fs11 {
   font-size: 11px;
 }
 
-/* line 324, ../dev/scss/core/_helper.scss */
+/* line 327, ../dev/scss/core/_helper.scss */
 .fs12 {
   font-size: 12px;
 }
 
-/* line 325, ../dev/scss/core/_helper.scss */
+/* line 328, ../dev/scss/core/_helper.scss */
 .fs13 {
   font-size: 13px;
 }
 
-/* line 326, ../dev/scss/core/_helper.scss */
+/* line 329, ../dev/scss/core/_helper.scss */
 .fs14 {
   font-size: 14px;
 }
 
-/* line 327, ../dev/scss/core/_helper.scss */
+/* line 330, ../dev/scss/core/_helper.scss */
 .fs15 {
   font-size: 15px;
 }
 
-/* line 328, ../dev/scss/core/_helper.scss */
+/* line 331, ../dev/scss/core/_helper.scss */
 .fs16 {
   font-size: 16px;
 }
 
-/* line 329, ../dev/scss/core/_helper.scss */
+/* line 332, ../dev/scss/core/_helper.scss */
 .fs17 {
   font-size: 17px;
 }
 
-/* line 330, ../dev/scss/core/_helper.scss */
+/* line 333, ../dev/scss/core/_helper.scss */
 .fs18 {
   font-size: 18px;
 }
 
-/* line 331, ../dev/scss/core/_helper.scss */
+/* line 334, ../dev/scss/core/_helper.scss */
 .fs20 {
   font-size: 20px;
 }
 
-/* line 332, ../dev/scss/core/_helper.scss */
+/* line 335, ../dev/scss/core/_helper.scss */
 .fs30 {
   font-size: 30px;
 }
 
-/* line 333, ../dev/scss/core/_helper.scss */
+/* line 336, ../dev/scss/core/_helper.scss */
 .fs32 {
   font-size: 32px;
 }
 
-/* line 336, ../dev/scss/core/_helper.scss */
+/* line 339, ../dev/scss/core/_helper.scss */
 .lh10 {
   line-height: 10px;
 }
 
-/* line 337, ../dev/scss/core/_helper.scss */
+/* line 340, ../dev/scss/core/_helper.scss */
 .lh11 {
   line-height: 11px;
 }
 
-/* line 338, ../dev/scss/core/_helper.scss */
+/* line 341, ../dev/scss/core/_helper.scss */
 .lh12 {
   line-height: 12px;
 }
 
-/* line 339, ../dev/scss/core/_helper.scss */
+/* line 342, ../dev/scss/core/_helper.scss */
 .lh13 {
   line-height: 13px;
 }
 
-/* line 340, ../dev/scss/core/_helper.scss */
+/* line 343, ../dev/scss/core/_helper.scss */
 .lh14 {
   line-height: 14px;
 }
 
-/* line 341, ../dev/scss/core/_helper.scss */
+/* line 344, ../dev/scss/core/_helper.scss */
 .lh15 {
   line-height: 15px;
 }
 
-/* line 342, ../dev/scss/core/_helper.scss */
+/* line 345, ../dev/scss/core/_helper.scss */
 .lh16 {
   line-height: 16px;
 }
 
-/* line 343, ../dev/scss/core/_helper.scss */
+/* line 346, ../dev/scss/core/_helper.scss */
 .lh17 {
   line-height: 17px;
 }
 
-/* line 344, ../dev/scss/core/_helper.scss */
+/* line 347, ../dev/scss/core/_helper.scss */
 .lh18 {
   line-height: 18px;
 }
 
-/* line 345, ../dev/scss/core/_helper.scss */
+/* line 348, ../dev/scss/core/_helper.scss */
 .lh20 {
   line-height: 20px;
 }
 
-/* line 346, ../dev/scss/core/_helper.scss */
+/* line 349, ../dev/scss/core/_helper.scss */
 .lh22 {
   line-height: 22px;
 }
 
-/* line 347, ../dev/scss/core/_helper.scss */
+/* line 350, ../dev/scss/core/_helper.scss */
 .lh24 {
   line-height: 24px;
 }
 
-/* line 348, ../dev/scss/core/_helper.scss */
+/* line 351, ../dev/scss/core/_helper.scss */
 .lh26 {
   line-height: 26px;
 }
 
-/* line 349, ../dev/scss/core/_helper.scss */
+/* line 352, ../dev/scss/core/_helper.scss */
 .lh28 {
   line-height: 28px;
 }
 
-/* line 350, ../dev/scss/core/_helper.scss */
+/* line 353, ../dev/scss/core/_helper.scss */
 .lh30 {
   line-height: 30px;
 }
 
-/* line 362, ../dev/scss/core/_helper.scss */
+/* line 365, ../dev/scss/core/_helper.scss */
 .n {
   font-weight: normal !important;
 }
 
-/* line 363, ../dev/scss/core/_helper.scss */
+/* line 366, ../dev/scss/core/_helper.scss */
 .b {
   font-weight: bold !important;
 }
 
-/* line 364, ../dev/scss/core/_helper.scss */
+/* line 367, ../dev/scss/core/_helper.scss */
 .l {
   text-align: left !important;
 }
 
-/* line 365, ../dev/scss/core/_helper.scss */
+/* line 368, ../dev/scss/core/_helper.scss */
 .c {
   text-align: center !important;
 }
 
-/* line 366, ../dev/scss/core/_helper.scss */
+/* line 369, ../dev/scss/core/_helper.scss */
 .r {
   text-align: right !important;
 }
 
-/* line 367, ../dev/scss/core/_helper.scss */
+/* line 370, ../dev/scss/core/_helper.scss */
 .u {
   text-decoration: underline !important;
 }
 
-/* line 370, ../dev/scss/core/_helper.scss */
+/* line 373, ../dev/scss/core/_helper.scss */
 .tc {
   text-align: center;
 }
 
-/* line 371, ../dev/scss/core/_helper.scss */
+/* line 374, ../dev/scss/core/_helper.scss */
 .tl {
   text-align: left;
 }
 
-/* line 372, ../dev/scss/core/_helper.scss */
+/* line 375, ../dev/scss/core/_helper.scss */
 .tr {
   text-align: right;
 }
 
-/* line 373, ../dev/scss/core/_helper.scss */
+/* line 376, ../dev/scss/core/_helper.scss */
 .vt {
   vertical-align: top;
 }
 
-/* line 374, ../dev/scss/core/_helper.scss */
+/* line 377, ../dev/scss/core/_helper.scss */
 .vm {
   vertical-align: middle;
 }
 
-/* line 375, ../dev/scss/core/_helper.scss */
+/* line 378, ../dev/scss/core/_helper.scss */
 .vb {
   vertical-align: bottom;
 }
@@ -906,8 +911,8 @@ button {
 
 @font-face {
   font-family: "icons";
-  src: url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.eot");
-  src: url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.eot?#iefix") format("embedded-opentype"), url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.woff") format("woff"), url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.ttf") format("truetype"), url("../images/fonts/icons-bb952489a1abe5e7216948e94aae4156.svg?#icons") format("svg");
+  src: url("../images/fonts/icons-71f0d8d08a12fa70ed2d9a34d89c39d8.eot");
+  src: url("../images/fonts/icons-71f0d8d08a12fa70ed2d9a34d89c39d8.eot?#iefix") format("embedded-opentype"), url("../images/fonts/icons-71f0d8d08a12fa70ed2d9a34d89c39d8.woff") format("woff"), url("../images/fonts/icons-71f0d8d08a12fa70ed2d9a34d89c39d8.ttf") format("truetype"), url("../images/fonts/icons-71f0d8d08a12fa70ed2d9a34d89c39d8.svg?#icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -1027,8 +1032,13 @@ button {
 }
 
 /* line 87, ../dev/scss/fonts/_icons.scss */
-.ico-user:before {
+.ico-timeline:before {
   content: "\f115";
+}
+
+/* line 90, ../dev/scss/fonts/_icons.scss */
+.ico-user:before {
+  content: "\f116";
 }
 
 /* line 12, ../dev/scss/modules/_header.scss */
@@ -1792,7 +1802,7 @@ textarea.form {
 
 /* line 50, ../dev/scss/modules/_forms.scss */
 .form-color-base {
-  background-color: #efede0;
+  background-color: #fff;
   -webkit-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
   -moz-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
   box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
@@ -2195,58 +2205,62 @@ footer {
   border-top: 1px solid #DEDBC7;
   background: #EFEDE0;
 }
+/* line 116, ../dev/scss/modules/_music_detail.scss */
+.musicDetail-user .like-btn.is-active {
+  color: #f3613f;
+}
 
-/* line 117, ../dev/scss/modules/_music_detail.scss */
+/* line 120, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-name {
   width: 370px;
 }
 
-/* line 147, ../dev/scss/modules/_music_detail.scss */
+/* line 129, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 {
   width: 313px;
   margin-right: 20px;
   margin-bottom: 20px;
 }
-/* line 151, ../dev/scss/modules/_music_detail.scss */
+/* line 133, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3:nth-child(3n) {
   width: 314px;
   margin-right: 0;
 }
-/* line 157, ../dev/scss/modules/_music_detail.scss */
+/* line 139, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-thumb {
   width: 100px;
   height: 100px;
 }
-/* line 163, ../dev/scss/modules/_music_detail.scss */
+/* line 145, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info {
   position: relative;
   width: 213px;
   height: 100px;
   padding: 10px;
 }
-/* line 169, ../dev/scss/modules/_music_detail.scss */
+/* line 151, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info-feeling {
   margin: 0 0 10px;
 }
-/* line 172, ../dev/scss/modules/_music_detail.scss */
+/* line 154, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info-title {
   margin: 0 0 10px;
 }
-/* line 174, ../dev/scss/modules/_music_detail.scss */
+/* line 156, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info-title .truncate {
   display: inline-block;
   max-width: 190px;
 }
-/* line 179, ../dev/scss/modules/_music_detail.scss */
+/* line 161, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info-artist {
   margin: 0 0 10px;
 }
-/* line 181, ../dev/scss/modules/_music_detail.scss */
+/* line 163, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info-artist .truncate {
   display: inline-block;
   max-width: 190px;
 }
-/* line 188, ../dev/scss/modules/_music_detail.scss */
+/* line 170, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info-play-btn {
   position: absolute;
   top: auto;
@@ -2261,28 +2275,28 @@ footer {
   -o-border-radius: 44px;
   border-radius: 44px;
 }
-/* line 201, ../dev/scss/modules/_music_detail.scss */
+/* line 183, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-action {
   position: absolute;
   bottom: 10px;
   height: 30px;
 }
-/* line 206, ../dev/scss/modules/_music_detail.scss */
+/* line 188, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .tag-feeling {
   width: 190px;
   margin-right: 0;
 }
-/* line 210, ../dev/scss/modules/_music_detail.scss */
+/* line 192, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .tag-feeling-text {
   width: 124px;
   height: 30px;
 }
-/* line 217, ../dev/scss/modules/_music_detail.scss */
+/* line 199, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-pop {
   position: relative;
   height: 74px;
 }
-/* line 222, ../dev/scss/modules/_music_detail.scss */
+/* line 204, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-pop .like-btn {
   position: absolute;
   bottom: 0;
@@ -2295,59 +2309,59 @@ footer {
   padding: 5px;
   background-color: rgba(239, 237, 224, 0.65);
 }
-/* line 234, ../dev/scss/modules/_music_detail.scss */
+/* line 216, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-pop .like-btn.is-active {
   color: #f3613f;
 }
-/* line 242, ../dev/scss/modules/_music_detail.scss */
+/* line 224, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-user-name {
   width: 270px;
 }
 
-/* line 250, ../dev/scss/modules/_music_detail.scss */
+/* line 232, ../dev/scss/modules/_music_detail.scss */
 .add-musicLink .form {
   width: 100%;
   line-height: 30px;
 }
 
-/* line 258, ../dev/scss/modules/_music_detail.scss */
+/* line 240, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table {
   width: 100%;
   text-align: left;
 }
-/* line 261, ../dev/scss/modules/_music_detail.scss */
+/* line 243, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table caption {
   padding-bottom: 5px;
   text-align: left;
   border-bottom: 1px solid #d6d4c5;
 }
-/* line 266, ../dev/scss/modules/_music_detail.scss */
+/* line 248, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table thead {
   border-bottom: 2px solid #d6d4c5;
 }
-/* line 269, ../dev/scss/modules/_music_detail.scss */
+/* line 251, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table tbody {
   background-color: #efede0;
 }
-/* line 272, ../dev/scss/modules/_music_detail.scss */
+/* line 254, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table th, .musicLink-table td {
   padding: 10px;
 }
-/* line 275, ../dev/scss/modules/_music_detail.scss */
+/* line 257, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table .elps {
   display: inline-block;
   max-width: 450px;
 }
-/* line 279, ../dev/scss/modules/_music_detail.scss */
+/* line 261, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table .like-btn.is-active {
   color: #f3613f;
 }
 
-/* line 294, ../dev/scss/modules/_music_detail.scss */
+/* line 276, ../dev/scss/modules/_music_detail.scss */
 .text-link {
   display: inline-block;
 }
-/* line 301, ../dev/scss/modules/_music_detail.scss */
+/* line 283, ../dev/scss/modules/_music_detail.scss */
 .text-link:hover {
   opacity: 0.6;
 }
@@ -2598,7 +2612,7 @@ footer {
   display: block;
   width: 320px;
   height: 40px;
-  background-color: #efede0;
+  background-color: #fff;
   box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
 }
 /* line 177, ../dev/scss/pages/_mypage.scss */
@@ -2676,7 +2690,7 @@ footer {
   width: 300px;
   height: 72px;
   float: left;
-  background-color: #efede0;
+  background-color: #fff;
   color: #656457 !important;
   margin-bottom: 20px;
 }
@@ -3474,12 +3488,10 @@ footer {
 
 /* line 10, ../dev/scss/pages/_music_search.scss */
 .pageSearch .conditionArea {
-  padding: 20px;
-  width: 794px;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 16, ../dev/scss/pages/_music_search.scss */
+/* line 14, ../dev/scss/pages/_music_search.scss */
 .pageSearch .conditionArea:after {
   display: block;
   width: 0;
@@ -3487,36 +3499,35 @@ footer {
   content: " ";
   clear: both;
 }
-/* line 24, ../dev/scss/pages/_music_search.scss */
+/* line 22, ../dev/scss/pages/_music_search.scss */
 .pageSearch .conditionArea input[type="text"] {
   float: left;
   width: 680px;
   height: 40px;
   font-size: 14px;
-  background-color: #efede0;
   box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
 }
-/* line 32, ../dev/scss/pages/_music_search.scss */
+/* line 29, ../dev/scss/pages/_music_search.scss */
 .pageSearch .conditionArea input::-webkit-input-placeholder {
   /* WebKit browsers */
   padding-left: 10px;
 }
-/* line 36, ../dev/scss/pages/_music_search.scss */
+/* line 33, ../dev/scss/pages/_music_search.scss */
 .pageSearch .conditionArea input:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   line-height: 1.5em;
 }
-/* line 39, ../dev/scss/pages/_music_search.scss */
+/* line 36, ../dev/scss/pages/_music_search.scss */
 .pageSearch .conditionArea input::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   line-height: 1.5em;
 }
-/* line 42, ../dev/scss/pages/_music_search.scss */
+/* line 39, ../dev/scss/pages/_music_search.scss */
 .pageSearch .conditionArea input:-ms-input-placeholder {
   /* Internet Explorer 10+ */
   line-height: 1.5em;
 }
-/* line 45, ../dev/scss/pages/_music_search.scss */
+/* line 42, ../dev/scss/pages/_music_search.scss */
 .pageSearch .conditionArea input[type="button"] {
   float: left;
   width: 64px;
@@ -3526,15 +3537,15 @@ footer {
   margin-left: 10px;
   background-color: #ccc9b2;
 }
-/* line 59, ../dev/scss/pages/_music_search.scss */
+/* line 56, ../dev/scss/pages/_music_search.scss */
 .pageSearch .resultArea {
   margin-top: 20px;
 }
-/* line 64, ../dev/scss/pages/_music_search.scss */
+/* line 61, ../dev/scss/pages/_music_search.scss */
 .pageSearch .numOfResult {
   padding-bottom: 10px;
 }
-/* line 71, ../dev/scss/pages/_music_search.scss */
+/* line 68, ../dev/scss/pages/_music_search.scss */
 .pageSearch .resultList:after {
   display: block;
   width: 0;
@@ -3542,7 +3553,7 @@ footer {
   content: " ";
   clear: both;
 }
-/* line 80, ../dev/scss/pages/_music_search.scss */
+/* line 77, ../dev/scss/pages/_music_search.scss */
 .pageSearch .resultList li {
   float: left;
   width: 460px;
@@ -3551,11 +3562,11 @@ footer {
   background-color: #fdfcf3;
   margin: 5px 0;
 }
-/* line 88, ../dev/scss/pages/_music_search.scss */
+/* line 85, ../dev/scss/pages/_music_search.scss */
 .pageSearch .resultList li:nth-child(2n) {
   margin-left: 10px;
 }
-/* line 92, ../dev/scss/pages/_music_search.scss */
+/* line 89, ../dev/scss/pages/_music_search.scss */
 .pageSearch .resultList li:after {
   display: block;
   width: 0;
@@ -3563,33 +3574,33 @@ footer {
   content: " ";
   clear: both;
 }
-/* line 101, ../dev/scss/pages/_music_search.scss */
+/* line 98, ../dev/scss/pages/_music_search.scss */
 .pageSearch .resultList .thumb {
   float: left;
   width: 100px;
   height: 100px;
 }
-/* line 107, ../dev/scss/pages/_music_search.scss */
+/* line 104, ../dev/scss/pages/_music_search.scss */
 .pageSearch .resultList .info {
   float: left;
   width: 236px;
   margin-left: 10px;
 }
-/* line 113, ../dev/scss/pages/_music_search.scss */
+/* line 110, ../dev/scss/pages/_music_search.scss */
 .pageSearch .resultList .title {
   font-size: 14px;
   padding-bottom: 10px;
 }
-/* line 118, ../dev/scss/pages/_music_search.scss */
+/* line 115, ../dev/scss/pages/_music_search.scss */
 .pageSearch .resultList .artistName {
   font-size: 12px;
 }
-/* line 122, ../dev/scss/pages/_music_search.scss */
+/* line 119, ../dev/scss/pages/_music_search.scss */
 .pageSearch .resultList .actionArea {
   float: left;
   margin-left: 10px;
 }
-/* line 126, ../dev/scss/pages/_music_search.scss */
+/* line 123, ../dev/scss/pages/_music_search.scss */
 .pageSearch .resultList .writePopButton, .pageSearch .resultList .goDetail {
   display: block;
   width: 80px;
@@ -3599,7 +3610,7 @@ footer {
   background-color: #656457;
   margin-top: 2px;
 }
-/* line 135, ../dev/scss/pages/_music_search.scss */
+/* line 132, ../dev/scss/pages/_music_search.scss */
 .pageSearch .resultList .goDetail {
   margin-top: 7px;
 }

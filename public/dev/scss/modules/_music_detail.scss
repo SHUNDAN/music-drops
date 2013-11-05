@@ -113,31 +113,13 @@ $map-share: sprite-map("../images/sprite/share/*.png");
   padding: 10px;
   border-top: 1px solid #DEDBC7;
   background: #EFEDE0;
+  .like-btn.is-active {
+    color: #f3613f;
+  }
 }
 .musicDetail-user-name {
   width: 370px;
 }
-// .musicDetail-user-action-btn {
-//   float: left;
-//   display: block;
-//   width: 50%;
-//   height: 30px;
-//   text-align: center;
-//   color: #d4d2be;
-//   background-color: #656457;
-//   .ico-font {
-//     &.ico-follow {
-//       font-size: 28px;
-//     }
-//     &.ico-heart {
-//       font-size: 22px;
-//     }
-//   }
-//   &.is-active {
-//     color: #f3613f;
-//     background-color: #fec02b;
-//   }
-// }
 
 
 //-------------------------------------

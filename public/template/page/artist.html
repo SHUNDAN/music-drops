@@ -51,10 +51,12 @@
 
             <%_.each(musicList, function (music, idx) {%>
                 <li class="gp feeling-<%=music.attributes.feeling_id%>" data-idx="<%=idx%>" data-music-id="<%=music.attributes.id%>">
-                    <img class="thumb" src="<%=music.attributes.artwork_url%>" alt="<%=music.attributes.title%>"/>
+                    <a href="#music/<%=music.attributes.id%>">
+                        <img class="thumb" src="<%=music.attributes.artwork_url%>" alt="<%=music.attributes.title%>"/>
+                    </a>
                     <div class="info">
                         <div class="title">
-                            <a href="#music/<%=music.attributes.id%>"><%=music.attributes.title%> ▶</a>
+                            <a class="text-link" href="#music/<%=music.attributes.id%>"><%=music.attributes.title%> ▶</a>
                         </div>
                         <div class="numOfDrops"><%=music.attributes.pop_count || 0%>ドロップ</div>
                     </div>

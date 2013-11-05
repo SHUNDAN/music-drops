@@ -8,8 +8,6 @@
 
     // 検索エリア
     .conditionArea {
-        padding: 20px;
-        width: 794px;
         margin-left: auto;
         margin-right: auto;
 
@@ -26,7 +24,6 @@
             width: 680px;
             height: 40px;
             font-size: 14px;
-            background-color: #efede0;
             box-shadow: -1px 1px 1px rgba(0,0,0,.3) inset;
         }
         input::-webkit-input-placeholder { /* WebKit browsers */
