@@ -261,7 +261,7 @@
 			width: 300px;
 			height: 72px;
 			float: left;
-			background-color: #fff;
+			background-color: rgb(253, 252, 243);
 			color: #656457 !important;  // とりあえず上書き。
 			margin-bottom: 20px;
 			&:nth-child(2n) {
@@ -330,6 +330,7 @@
 			width: 42px;
 			height: 42px;
 			margin-left: 10px;
+			margin-top: 16px;
 			border-radius: 50%;
 			text-align: center;
 			line-height: 42px;
