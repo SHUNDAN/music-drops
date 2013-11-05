@@ -587,6 +587,8 @@ table {
 .bdr-2 {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
   border-radius: 2px;
 }
 
@@ -594,6 +596,8 @@ table {
 .bdr-4 {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
 }
 
@@ -601,6 +605,8 @@ table {
 .bdr-6 {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
   border-radius: 6px;
 }
 
@@ -608,6 +614,8 @@ table {
 .bdr-8 {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
   border-radius: 8px;
 }
 
@@ -1076,7 +1084,7 @@ header {
 
 /* line 52, ../dev/scss/modules/_header.scss */
 .sprite-logo {
-  background-image: url('/../images/../images/sprite/logo-sa0722e8830.png');
+  background-image: url('/../images/../images/sprite/logo-s632d50636c.png');
   background-repeat: no-repeat;
   background-size: 110px 137px;
 }
@@ -1084,13 +1092,13 @@ header {
 .sprite-logo.logo-headter {
   width: 48px;
   height: 42px;
-  background-position: 0 0;
+  background-position: 0 -95px;
 }
 /* line 57, ../dev/scss/modules/_header.scss */
 .sprite-logo.logo-l {
   width: 110px;
   height: 95px;
-  background-position: 0 -42px;
+  background-position: 0 0;
 }
 
 /* line 62, ../dev/scss/modules/_header.scss */
@@ -1197,8 +1205,10 @@ header {
   height: 26px;
   margin-top: -13px;
   color: #656457;
-  -webkit-border-radius: 26px;
+  -webkit-border-radius: 26px !important;
   -moz-border-radius: 26px !important;
+  -ms-border-radius: 26px !important;
+  -o-border-radius: 26px !important;
   border-radius: 26px !important;
   background-color: #fdfcf3;
 }
@@ -1347,6 +1357,8 @@ header {
   background-color: #efede0;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
@@ -1528,6 +1540,8 @@ header {
   height: 60px;
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
   border-radius: 60px;
 }
 /* line 53, ../dev/scss/modules/_buttons.scss */
@@ -1580,6 +1594,8 @@ header {
 .btn-mouse-action:hover {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   background-color: #dedbc7;
 }
@@ -1589,6 +1605,8 @@ header {
   background-color: #ffcf3c;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
 }
 /* line 104, ../dev/scss/modules/_buttons.scss */
@@ -1748,6 +1766,8 @@ header {
   vertical-align: middle;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
@@ -1904,6 +1924,8 @@ textarea.form {
   line-height: 22px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
   border-radius: 2px;
 }
 /* line 72, ../dev/scss/modules/_feelings.scss */
@@ -2100,6 +2122,8 @@ footer {
   font-size: 30px;
   -webkit-border-radius: 80px;
   -moz-border-radius: 80px;
+  -ms-border-radius: 80px;
+  -o-border-radius: 80px;
   border-radius: 80px;
   background: #dedbc7;
 }
@@ -2251,6 +2275,8 @@ footer {
   font-size: 14px;
   -webkit-border-radius: 44px;
   -moz-border-radius: 44px;
+  -ms-border-radius: 44px;
+  -o-border-radius: 44px;
   border-radius: 44px;
 }
 /* line 186, ../dev/scss/modules/_music_detail.scss */
