@@ -7550,7 +7550,6 @@ require([
    AppView
 ) {
 
-
     // Router
     var AppRouter = Backbone.Router.extend({
 
@@ -7690,7 +7689,7 @@ require([
             _gaq.push(['_trackPageview', '/#about']);
         },
 
-    
+
         // ページ遷移を通知
         sendAction: function (anUrl) {
             console.log('route: ', anUrl);
