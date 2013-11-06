@@ -70,8 +70,7 @@ exports.add = function(req, res) {
 
 
     // uidからユーザー情報を取得する
-    var uid = req.cookies.uid;
-    var user_id = (global.sessionMap ? global.sessionMap[uid] : undefined);
+    var user_id = appUtil.getUserIdFromRequest(req);
     if (!user_id) {
         appUtil.actionLog(req, 'add pocket failed. no authentication.');
         res.json(403, {message: 'authentication error.'});

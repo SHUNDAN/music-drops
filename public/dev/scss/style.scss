@@ -180,13 +180,14 @@
 ===============================*/
 #stage {
     width: 100%;
-    min-width: 980px;
-    padding-top: 12px;
+    min-width: 1000px;
+    padding: 12px 10px 0;
 }
 #main {
-  width: 980px;
+  width: 1000px;
   min-height: 600px;
   margin: 0 auto;
+  padding: 0 10px;
 }
 #pagePop {
     z-index: 9999;

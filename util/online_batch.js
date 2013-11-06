@@ -133,15 +133,23 @@ module.exports = {
             feelingModel.selectObjects({}, function (err, rows) {
                 mb.feelings = rows;
 
-
                 // キャッシュ更新
                 global.mb = mb;
 
 
-                console.log('refreshMemCache finished.');
-                if (callback) {
-                    callback();
-                }
+                // sessionの更新もやる
+                userModel.selectUIDUser(function (users) {
+                    users.forEach(function (user) {
+                        global.sessionMap[user.uid] = user.id;
+                    });
+
+
+                    console.log('refreshMemCache finished.');
+                    if (callback) {
+                        callback();
+                    }
+
+                });
 
 
             }); // end feeling model select

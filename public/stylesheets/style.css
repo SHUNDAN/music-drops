@@ -1063,7 +1063,7 @@ header {
   left: 0;
   z-index: 9999;
   width: 100%;
-  min-width: 980px;
+  min-width: 1000px;
   height: 65px;
   background-color: #fdfcf3;
   -webkit-box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.2);
@@ -1074,7 +1074,7 @@ header {
 /* line 26, ../dev/scss/modules/_header.scss */
 .header-playGage {
   width: 100%;
-  min-width: 980px;
+  min-width: 1000px;
   border-top: 1px solid #7a7a7a;
   background-color: #3d3c3c;
 }
@@ -1452,18 +1452,19 @@ header {
 /* line 4, ../dev/scss/modules/_page_header.scss */
 .page-header {
   position: relative;
-  width: 980px;
+  width: 1000px;
   margin: 0 auto 14px;
+  padding: 0 10px;
 }
 
-/* line 10, ../dev/scss/modules/_page_header.scss */
+/* line 11, ../dev/scss/modules/_page_header.scss */
 .appSubTitleText {
   position: absolute;
   top: 10px;
-  left: 0;
+  left: 10px;
 }
 
-/* line 19, ../dev/scss/modules/_page_header.scss */
+/* line 20, ../dev/scss/modules/_page_header.scss */
 .page-header-userMenu {
   position: absolute;
   top: -4px;
@@ -1982,9 +1983,9 @@ footer {
 
 /* line 18, ../dev/scss/modules/_footer.scss */
 .footer-content {
-  width: 980px;
+  width: 1000px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 20px 10px;
   color: #fff;
   font-weight: normal;
 }
@@ -2391,7 +2392,7 @@ footer {
   line-height: 40px;
   margin: 0 10px 10px 0;
   color: #656457;
-  background-color: #EFEDE0;
+  background-color: #FDFCF3;
   cursor: pointer;
 }
 /* line 14, ../dev/scss/pages/_top.scss */
@@ -2857,7 +2858,7 @@ footer {
   min-height: 50px;
   width: 100%;
   padding: 10px;
-  background-color: #efede0;
+  background-color: #FDFCF3;
   margin: 10px 0;
   box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5) inset, 0 -1px 1px rgba(0, 0, 0, 0.3) inset;
 }
@@ -3117,14 +3118,14 @@ footer {
 .pageTimeline .timelineArea li {
   width: 95%;
   margin-left: 5%;
-  background-color: #efede0;
+  background-color: #FFE77C;
   color: #656457 !important;
   margin-bottom: 20px;
   padding: 10px;
 }
 /* line 144, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea li.done {
-  background-color: #bfbfbf;
+  background-color: #FDFCF3;
 }
 /* line 150, ../dev/scss/pages/_timeline.scss */
 .pageTimeline .timelineArea .time {
@@ -3262,10 +3263,6 @@ footer {
   height: 40px;
   line-height: 30px;
   padding: 10px;
-  background-color: #efede0;
-  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
-  -webkit-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
-  -moz-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.3) inset;
 }
 /* line 40, ../dev/scss/pages/_user_setting.scss */
 .settingPage .userNameChangeArea input[type=button] {
@@ -3886,23 +3883,24 @@ footer {
 /* line 181, ../dev/scss/style.scss */
 #stage {
   width: 100%;
-  min-width: 980px;
-  padding-top: 12px;
+  min-width: 1000px;
+  padding: 12px 10px 0;
 }
 
 /* line 186, ../dev/scss/style.scss */
 #main {
-  width: 980px;
+  width: 1000px;
   min-height: 600px;
   margin: 0 auto;
+  padding: 0 10px;
 }
 
-/* line 191, ../dev/scss/style.scss */
+/* line 192, ../dev/scss/style.scss */
 #pagePop {
   z-index: 9999;
 }
 
-/* line 194, ../dev/scss/style.scss */
+/* line 195, ../dev/scss/style.scss */
 .popUp {
   position: fixed;
   top: 100px;
