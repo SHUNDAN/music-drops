@@ -1,7 +1,7 @@
 /**
     POPの改行を削除する
 */
-global.db_path = './db/mockbu-dev.db';
+global.db_path = './db/mockbu.db';
 var popModel = require('../../models/pop');
 
 
