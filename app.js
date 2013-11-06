@@ -295,10 +295,33 @@ app.use(function (req, res, next) {
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-// development only
-if ('development' == app.get('env')) {
-    app.use(express.errorHandler());
-}
+
+
+
+// エラーハンドラー
+app.use(function (err, req, res, next) {
+    console.error('err:', err);
+    next(err);
+});
+app.use(function (err, req, res, next) {
+  if (req.xhr) {
+    res.send(500, { error: 'Something blew up!' });
+  } else {
+    next(err);
+  }
+});
+app.use(function (err, req, res, next) {
+  res.status(500);
+  res.render('error', { error: err });
+});
+// 404対策
+app.use(function (req, res, next) {
+    if (req.xhr) {
+        res.json(404, {});
+    } else {
+        res.render('notfound');
+    }
+});
 
 
 
