@@ -504,6 +504,15 @@ http.createServer(app).listen(app.get('port'), function(){
 
 
 
+// テスト用のAPI（エラーが起きる）
+app.get('/error_sync', function (req, res) {
+    throw "aaa";
+});
+app.get('/error_async', function (req, res) {
+    setTimeout(function () {
+        throw "aaa";
+    }, 100);
+});
 
 
 
