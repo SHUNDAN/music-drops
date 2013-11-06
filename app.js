@@ -6,8 +6,15 @@ var fs = require('fs');
 var http = require('http');
 var path = require('path');
 var uuid = require('node-uuid');
-
 global.log4js = require('log4js');
+
+
+
+// 最終的なエラーハンドリング
+process.on('uncaughtException', function(err) {
+    console.log('Caught exception: ' + err);
+});
+
 
 
 
@@ -493,3 +500,11 @@ app.post('/api/v1/reports', report.add);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+
+
+
+
+
+
