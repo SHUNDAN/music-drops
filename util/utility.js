@@ -50,7 +50,7 @@ module.exports = {
      */
     getUserIdFromRequest: function (req) {
         var uid = req.cookies.uid;
-        var user_id = (global.sessionMap ? global.sessionMap[uid] : undefined);
+        var user_id = (uid && global.sessionMap ? global.sessionMap[uid] : undefined);
         return user_id;
     },
 

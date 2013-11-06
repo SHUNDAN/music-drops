@@ -218,6 +218,10 @@ exports.clearMemCache = function (req, res) {
 
     onlineBatch.refreshMemCache(function () {
         res.json({});
+
+        // セッション情報も表示しておく
+        console.log('sessionMap: ', global.sessionMap);
+
     });
 
 };
