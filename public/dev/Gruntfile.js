@@ -14,14 +14,26 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-webfont');
     process.chdir(cwd);
-    
+
     grunt.initConfig({
 
         watch: {
             css: {
-                files: ['scss/**/*'],
+                files: [
+                    'scss/**/*'
+                ],
                 tasks: ['compassMultiple:main']
-            }
+            },
+            js: {
+                files: [
+                    '../javascripts/libs/**/*.js',
+                    '../javascripts/models/**/*.js',
+                    '../javascripts/views/**/*.js',
+                    '../javascripts/main.js',
+                    '../javascripts/master.js'
+                ],
+                tasks: ['requirejs:dev']
+            },
 
         },
 

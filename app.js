@@ -307,14 +307,6 @@ var oauthCallback = function (err, user, req, res) {
 
     // 既に存在するCookieがあればそれを使う。
     var uid = user.uid;
-    // for (var prop in global.sessionMap) {
-    //     if (global.sessionMap.hasOwnProperty(prop)) {
-    //         if (user.id === global.sessionMap[prop]) {
-    //             uid = prop;
-    //             break;
-    //         }
-    //     }
-    // }
     global.sessionMap[uid] = user.id;
 
     if (!uid) {
