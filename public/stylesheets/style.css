@@ -2212,75 +2212,76 @@ footer {
 
 /* line 107, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-pop-text {
+  height: 54px;
   line-height: 18px;
 }
 
-/* line 112, ../dev/scss/modules/_music_detail.scss */
+/* line 113, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user {
   padding: 10px;
   border-top: 1px solid #DEDBC7;
   background: #EFEDE0;
 }
-/* line 116, ../dev/scss/modules/_music_detail.scss */
+/* line 117, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user .like-btn.is-active {
   color: #f3613f;
 }
-/* line 119, ../dev/scss/modules/_music_detail.scss */
+/* line 120, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user .is-active {
   color: #f3613f;
 }
 
-/* line 123, ../dev/scss/modules/_music_detail.scss */
+/* line 124, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-user-name {
   width: 370px;
 }
 
-/* line 132, ../dev/scss/modules/_music_detail.scss */
+/* line 133, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 {
   width: 313px;
   margin-right: 20px;
   margin-bottom: 20px;
 }
-/* line 136, ../dev/scss/modules/_music_detail.scss */
+/* line 137, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3:nth-child(3n) {
   width: 314px;
   margin-right: 0;
 }
-/* line 142, ../dev/scss/modules/_music_detail.scss */
+/* line 143, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-thumb {
   width: 100px;
   height: 100px;
 }
-/* line 148, ../dev/scss/modules/_music_detail.scss */
+/* line 149, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info {
   position: relative;
   width: 213px;
   height: 100px;
   padding: 10px;
 }
-/* line 154, ../dev/scss/modules/_music_detail.scss */
+/* line 155, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info-feeling {
   margin: 0 0 10px;
 }
-/* line 157, ../dev/scss/modules/_music_detail.scss */
+/* line 158, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info-title {
   margin: 0 0 10px;
 }
-/* line 159, ../dev/scss/modules/_music_detail.scss */
+/* line 160, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info-title .truncate {
   display: inline-block;
   max-width: 190px;
 }
-/* line 164, ../dev/scss/modules/_music_detail.scss */
+/* line 165, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info-artist {
   margin: 0 0 10px;
 }
-/* line 166, ../dev/scss/modules/_music_detail.scss */
+/* line 167, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info-artist .truncate {
   display: inline-block;
   max-width: 190px;
 }
-/* line 173, ../dev/scss/modules/_music_detail.scss */
+/* line 174, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-info-play-btn {
   position: absolute;
   top: auto;
@@ -2295,28 +2296,28 @@ footer {
   -o-border-radius: 44px;
   border-radius: 44px;
 }
-/* line 186, ../dev/scss/modules/_music_detail.scss */
+/* line 187, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-action {
   position: absolute;
   bottom: 10px;
   height: 30px;
 }
-/* line 191, ../dev/scss/modules/_music_detail.scss */
+/* line 192, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .tag-feeling {
   width: 190px;
   margin-right: 0;
 }
-/* line 195, ../dev/scss/modules/_music_detail.scss */
+/* line 196, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .tag-feeling-text {
   width: 124px;
   height: 30px;
 }
-/* line 202, ../dev/scss/modules/_music_detail.scss */
+/* line 203, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-pop {
   position: relative;
   height: 74px;
 }
-/* line 207, ../dev/scss/modules/_music_detail.scss */
+/* line 208, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-pop .like-btn {
   position: absolute;
   bottom: 0;
@@ -2329,59 +2330,59 @@ footer {
   padding: 5px;
   background-color: rgba(239, 237, 224, 0.65);
 }
-/* line 219, ../dev/scss/modules/_music_detail.scss */
+/* line 220, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-pop .like-btn.is-active {
   color: #f3613f;
 }
-/* line 227, ../dev/scss/modules/_music_detail.scss */
+/* line 228, ../dev/scss/modules/_music_detail.scss */
 .musicDetail-col3 .musicDetail-user-name {
   width: 270px;
 }
 
-/* line 235, ../dev/scss/modules/_music_detail.scss */
+/* line 236, ../dev/scss/modules/_music_detail.scss */
 .add-musicLink .form {
   width: 100%;
   line-height: 30px;
 }
 
-/* line 243, ../dev/scss/modules/_music_detail.scss */
+/* line 244, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table {
   width: 100%;
   text-align: left;
 }
-/* line 246, ../dev/scss/modules/_music_detail.scss */
+/* line 247, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table caption {
   padding-bottom: 5px;
   text-align: left;
   border-bottom: 1px solid #d6d4c5;
 }
-/* line 251, ../dev/scss/modules/_music_detail.scss */
+/* line 252, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table thead {
   border-bottom: 2px solid #d6d4c5;
 }
-/* line 254, ../dev/scss/modules/_music_detail.scss */
+/* line 255, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table tbody {
   background-color: #efede0;
 }
-/* line 257, ../dev/scss/modules/_music_detail.scss */
+/* line 258, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table th, .musicLink-table td {
   padding: 10px;
 }
-/* line 260, ../dev/scss/modules/_music_detail.scss */
+/* line 261, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table .elps {
   display: inline-block;
   max-width: 450px;
 }
-/* line 264, ../dev/scss/modules/_music_detail.scss */
+/* line 265, ../dev/scss/modules/_music_detail.scss */
 .musicLink-table .like-btn.is-active {
   color: #f3613f;
 }
 
-/* line 279, ../dev/scss/modules/_music_detail.scss */
+/* line 280, ../dev/scss/modules/_music_detail.scss */
 .text-link {
   display: inline-block;
 }
-/* line 286, ../dev/scss/modules/_music_detail.scss */
+/* line 287, ../dev/scss/modules/_music_detail.scss */
 .text-link:hover {
   opacity: 0.6;
 }
