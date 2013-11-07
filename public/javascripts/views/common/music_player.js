@@ -440,6 +440,7 @@ define([
 
             // audio tag.
             this.audioPlayer = document.createElement('audio');
+            this.audioPlayer.volume = 0.4;
             this.audioPlayer.src = songUrl;
             this.audioPlayer.autoplay = true;
             this.audioPlayer.controls = true;
