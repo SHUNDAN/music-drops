@@ -2827,7 +2827,7 @@ define('views/music/index',[
         },
 
         finishUserAddMusicLink: function () {
-            alert('success');
+            alert('リンク追加ありがとうございます！');
             window.location.reload();
         },
 
