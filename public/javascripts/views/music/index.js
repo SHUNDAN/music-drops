@@ -114,7 +114,7 @@ define([
         },
 
         finishUserAddMusicLink: function () {
-            alert('success');
+            alert('リンク追加ありがとうございます！');
             window.location.reload();
         },
 

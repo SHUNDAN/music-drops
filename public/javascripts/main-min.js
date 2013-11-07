@@ -2827,7 +2827,7 @@ define('views/music/index',[
         },
 
         finishUserAddMusicLink: function () {
-            alert('success');
+            alert('リンク追加ありがとうございます！');
             window.location.reload();
         },
 
@@ -6074,39 +6074,34 @@ define('views/user/index',[
         /**
             ユーザーをフォローする。
         */
-        followUser: function () {
+        followUser: function (e) {
 
-            var userFollow = new UserFollow();
-            userFollow.set('dest_user_id', this.user.id);
-            userFollow.bind('sync', function () {
-                // 表示きりかえ
-                $('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
-                // Storage情報も更新する
-                _.mbStorage.refreshUser();
-            });
-            userFollow.save();
+            var $li = $(e.currentTarget).parent('[data-user-id]');
+            var userId = $li.data('user-id');
+            _.followUser(userId, _.bind(function () {
+                $li.find('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
+            }, this));
         },
 
 
         /**
             ユーザーフォローを解除する。
         */
-        unfollowUser: function () {
+        unfollowUser: function (e) {
 
-            $.ajax({
-                url: '/api/v1/user_follows',
-                method: 'delete',
-                data: {dest_user_id: this.user.id},
-                success: function () {
-                    // 表示きりかえ
-                    $('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
-                    // Storage情報も更新する
-                    _.mbStorage.refreshUser();
-                },
-                error: function () {
-                    alert('エラーが発生しました。リロードしてください。')
-                },
-            })
+            var $li = $(e.currentTarget).parent('[data-user-id]');
+            var userId = $li.data('user-id');
+            var id = _.selectUserFollowId(userId);
+            if (id) {
+                _.unfollowUser(id, _.bind(function () {
+                    $li.find('[data-event-click="followUser"], [data-event-click="unfollowUser"]').toggleClass('hidden');
+                }, this));
+
+            } else {
+                // IDが特定できない場合には、ログインを促す。
+                mb.router.appView.authErrorHandler();
+
+            }
         },
 
 

@@ -142,10 +142,10 @@
         <%if (followedUsers.length > 0) {%>
 
             <%_.each(followedUsers, function (user) {%>
-                <li class="list-item gp" data-user-id="<%=user.attributes.id%>">
-                    <a class="userName text-link" href="#user/<%=user.attributes.id%>"><%=user.attributes.user_name%></a>
+                <li class="list-item gp" data-user-id="<%=user.attributes.user_id%>">
+                    <a class="userName text-link" href="#user/<%=user.attributes.user_id%>"><%=user.attributes.user_name%></a>
 
-                    <%if (_.alreadyUserFollow(user.attributes.id)) {%>
+                    <%if (_.alreadyUserFollow(user.attributes.user_id)) {%>
                         <input type="button" class="followUserButton hidden" value="フォローする" data-event-click="followUser"/>
                         <input type="button" class="unfollowUserButton" value="フォロー解除" data-event-click="unfollowUser"/>
                     <%} else {%>
