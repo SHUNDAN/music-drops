@@ -11,6 +11,7 @@ global.log4js = require('log4js');
 
 
 
+
 // load settings.
 global.log4js.configure('settings/log4js_setting.json');
 var json = fs.readFileSync('./settings/setting.json', 'utf-8');
