@@ -6,8 +6,8 @@ var fs = require('fs');
 var http = require('http');
 var path = require('path');
 var uuid = require('node-uuid');
-
 global.log4js = require('log4js');
+
 
 
 
@@ -17,6 +17,15 @@ var json = fs.readFileSync('./settings/setting.json', 'utf-8');
 global.mbSetting = JSON.parse(json);
 global.db_path = global.mbSetting.db_path;
 console.log('mbSetting: ', global.mbSetting);
+
+
+
+// set up mysql.
+var mysql = require('mysql');
+var dbConnectionPool = global.dbConnectionPool = mysql.createPool(global.mbSetting.mysql);
+
+
+
 
 var userModel = require('./models/user');
 var userPlaylistModel = require('./models/user_playlist');
