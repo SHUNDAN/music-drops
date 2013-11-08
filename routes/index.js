@@ -1,4 +1,5 @@
 "use strict";
+
 /*
  * GET home page.
  */
