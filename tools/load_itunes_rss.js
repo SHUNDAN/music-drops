@@ -2,12 +2,20 @@
 /**
  * iTunes RSSをロードするツール
  *
- *
+ * ########### Project Rootで実行すること ##############
  */
+var fs = require('fs');
 var http = require('http');
 var util = require('util');
 var xml2json = require('xml2json');
-global.db_path = '../db/mockbu.db';
+
+// mysql setting.
+var json = fs.readFileSync('./settings/setting.json', 'utf-8');
+global.mbSetting = JSON.parse(json);
+var mysql = require('mysql');
+global.dbConnectionPool = mysql.createPool(global.mbSetting.mysql);
+
+// load model.
 var artistModel = require('../models/artist');
 var iTunesRankingModel = require('../models/itunes_ranking');
 var musicModel = require('../models/music');
@@ -32,7 +40,7 @@ if (!global.genreId) {
 
 
 
-// start loading rss. 
+// start loading rss.
 console.log('start loading rss feed.');
 var url;
 if (global.genreId === -1) { // All
@@ -78,7 +86,7 @@ var insert = function (rssJson) {
 
     // ランキングテーブルのデータを全部削除する
     iTunesRankingModel.deleteObject({genre_id: global.genreId}, function () {
-        
+
 
         var ranking = 1;
         var genreId;
@@ -119,7 +127,7 @@ var insert = function (rssJson) {
             // song_url
             entry.link.forEach(function (link) {
                 if (link.href.indexOf('.m4a') !== -1) {
-                   data.song_url = link.href; 
+                   data.song_url = link.href;
                 }
             });
 
@@ -147,7 +155,7 @@ var insert = function (rssJson) {
                 codeModel.updateObject({value:genreName}, {id:rows[0].id}, function () {
                     console.log('update genre');
                 });
-            
+
             } else {
                 // 無い場合には、新規登録する
                 codeModel.insertObject({key1: 'genre', key2: genreId, value: genreName}, function () {
@@ -175,6 +183,7 @@ var insertData = function () {
 
     if (dataArray.length === 0) {
         console.log('finish');
+        process.exit();
         return;
     }
 

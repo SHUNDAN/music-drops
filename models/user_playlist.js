@@ -4,8 +4,6 @@
  *******************************************/
 var _ = require('underscore');
 var util = require('util');
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(global.db_path);
 
 
 module.exports = _.extend({}, require('./common'), {
@@ -54,15 +52,8 @@ module.exports = _.extend({}, require('./common'), {
         ].join(' ');
 
 
-        // select.
-        var stmt = db.prepare(sql, [conditions.user_id]);
-        console.log('stmt: ', stmt, [conditions.user_id]);
-        stmt.all(function (err, rows) {
-            rows = rows || [];
-            console.log('rows.length=', rows.length);
-            callback(err, rows || []);
-        });
-
+        // execute.
+        this._executeQuery(sql, [conditions.user_id], callback);
     },
 
 

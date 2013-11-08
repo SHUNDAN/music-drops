@@ -4,8 +4,6 @@
  *******************************************/
 var _ = require('underscore');
 // var util = require('util');
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(global.db_path);
 
 
 module.exports = _.extend({}, require('./common'), {
@@ -70,18 +68,8 @@ module.exports = _.extend({}, require('./common'), {
         ].join(' ');
 
 
-        // append values.
-        var stmt = db.prepare(sql, values);
-        console.log(stmt);
-
-
-        // execute
-        stmt.all(function (err, rows) {
-            rows = rows || [];
-            callback(err, rows);
-        });
-
-
+        // execute.
+        this._executeQuery(sql, values, callback);
     },
 
 

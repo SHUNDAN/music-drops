@@ -5,9 +5,8 @@
 var fs = require('fs');
 var _ = require('underscore');
 // var util = require('util');
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(global.db_path);
 var glob = require('glob');
+var commonModel = require('../models/common');
 var musicModel = require('../models/music');
 var musicLinkModel = require('../models/music_link');
 var userModel = require('../models/user');
@@ -75,7 +74,11 @@ module.exports = {
 
         // 該当曲のPop数を計算する
         var sql = 'select count(1) cnt from pop where music_id = ' + musicId;
-        db.all(sql, function (err, rows) {
+        commonModel._executeQuery(sql, null, function (err,rows) {
+
+            if (err && callback) {
+                return callback(err);
+            }
 
             // Pop数
             var numOfPop = rows[0].cnt;
@@ -86,6 +89,7 @@ module.exports = {
                     callback();
                 }
             });
+
         });
     },
 
@@ -138,7 +142,7 @@ module.exports = {
 
 
                 // sessionの更新もやる
-                userModel.selectUIDUser(function (users) {
+                userModel.selectUIDUser(function (err, users) {
                     users.forEach(function (user) {
                         global.sessionMap[user.uid] = user.id;
                     });

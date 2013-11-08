@@ -4,8 +4,6 @@
  *******************************************/
 var _ = require('underscore');
 var util = require('util');
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(global.db_path);
 
 module.exports = _.extend({}, require('./common'), {
 
@@ -115,19 +113,8 @@ module.exports = _.extend({}, require('./common'), {
         ].join(' ');
 
 
-        // execute
-        var stmt = db.prepare(sql, values);
-        console.log('stmt: ', stmt);
-        stmt.all(function (err, rows) {
-            if (err) {
-                console.log('err: ', err);
-            }
-            if (callback) {
-                callback(err, rows || []);
-            }
-        });
-
-
+        // execute.
+        this._executeQuery(sql, values, callback);
     },
 
 
@@ -139,13 +126,8 @@ module.exports = _.extend({}, require('./common'), {
         var sql = util.format('update pop set like_count = (case when like_count is null then 1 else like_count+1 end), like_count_speed = (case when like_count_speed is null then 1 else like_count_speed+1 end) where id = %d', popId); 
         console.log('sql: ', sql);
 
-        db.run(sql, function (err) {
-            
-            if (callback) {
-                callback(err);
-            }
-        });
-
+        // execute.
+        this._executeQuery(sql, null, callback);
     },
 
 
@@ -157,13 +139,8 @@ module.exports = _.extend({}, require('./common'), {
         var sql = util.format('update pop set like_count = (case when like_count <= 0  then 0 else like_count-1 end) where id = %d', popId); 
         console.log('sql: ', sql);
 
-        db.run(sql, function (err) {
-            
-            if (callback) {
-                callback(err);
-            }
-        });
-
+        // execute.
+        this._executeQuery(sql, null, callback);
     },
 
 

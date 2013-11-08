@@ -4,8 +4,8 @@
  ****************************************/
 var _ = require('underscore');
 var util = require('util');
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(global.db_path);
+var dbConnectionPool = global.dbConnectionPool;
+
 
 module.exports = {
 
@@ -108,16 +108,8 @@ module.exports = {
 
 
 
-        // execute sql
-        var stmt = db.prepare(sql, params);
-        console.log('stmt: ', stmt, params);
-        stmt.all(function(err, rows) {
-            if (err) {
-                console.log(err);
-            }
-
-            callback(err, (rows || []));
-        });
+        // execute sql.
+        this._executeQuery(sql, params, callback);
     },
 
 
@@ -182,16 +174,12 @@ module.exports = {
         }
 
 
-
-        // execute sql
-        var stmt = db.prepare(sql, params);
-        console.log('stmt: ', stmt, params);
-        stmt.all(function(err, rows) {
+        // execute.
+        this._executeQuery(sql, params, function (err, rows) {
             if (err) {
-                console.log(err);
+                return callback(err);
             }
-
-            callback(err, rows[0].cnt);
+            callback(null, rows[0].cnt);
         });
 
     },
@@ -231,18 +219,19 @@ module.exports = {
         });
 
 
-        // execute sql.
-        console.log(sql);
-        var stmt = db.prepare(sql, params);
-        // console.log(stmt, params, data);
-        stmt.run(function(err) {
-            if (err) {
-                console.log(err);
+        // execute.
+        this._executeQuery(sql, params, function (err, result) {
+
+            if (err && callback) {
+                return callback(err);
             }
+
+            console.log('mysql:insertId: ', result.insertId);
             if (callback) {
-                callback(err);
+                callback(null, result.insertId);
             }
         });
+
     },
 
 
@@ -297,15 +286,9 @@ module.exports = {
         });
 
 
-        // execute sql.
-        var stmt = db.prepare(sql, params);
-        console.log('stmt: ', stmt, params);
-        stmt.run(function (err) {
-            console.log(err);
-            if (callback) {
-                callback(err);
-            }
-        });
+
+        // execute.
+        this._executeQuery(sql, params, callback);
 
     },
 
@@ -336,15 +319,8 @@ module.exports = {
         });
 
 
-        // execute sql.
-        var stmt = db.prepare(sql, params);
-        console.log(stmt);
-        stmt.run(function (err) {
-            console.log(err);
-            if (callback) {
-                callback(err);
-            }
-        });
+        // execute.
+        this._executeQuery(sql, params, callback);
 
     },
 
@@ -358,11 +334,10 @@ module.exports = {
         var sql = util.format('delete from %s', this.tableName);
         console.log(sql);
 
-        // execute sql.
-        db.run(sql, function (err) {
-            console.log(err);
-            callback(err);
-        });
+
+
+        // executes.
+        this._executeQuery(sql, null, callback);
 
     },
 
@@ -370,6 +345,29 @@ module.exports = {
 
 
 
+    /**
+        Select文を実行する
+    */
+    _executeQuery: function (sql, params, callback) {
+
+        // execute sql.
+        dbConnectionPool.getConnection(function (err, connection) {
+
+            if (err && callback) {
+                return callback(err);
+            }
+
+            connection.query(sql, params, function (err, rows) {
+
+                if (callback) {
+                    callback(err, rows || []);
+                }
+
+                connection.release();
+            });
+        });
+
+    },
 
 
 

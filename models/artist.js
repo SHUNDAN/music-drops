@@ -4,9 +4,6 @@
  *******************************************/
 var _ = require('underscore');
 // var util = require('util');
-// var sqlite3 = require('sqlite3').verbose();
-// var db = new sqlite3.Database("./db/mockbu.db");
-
 
 module.exports = _.extend({}, require('./common'), {
 

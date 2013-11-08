@@ -4,8 +4,6 @@
  *******************************************/
 var _ = require('underscore');
 var util = require('util');
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(global.db_path);
 
 
 module.exports = _.extend({}, require('./common'), {
@@ -88,12 +86,10 @@ module.exports = _.extend({}, require('./common'), {
 
 
         // execute sql
-        var stmt = db.prepare(sql, params);
-        console.log('stmt: ', stmt, params);
-        stmt.all(function(err, rows) {
-            console.log('rows.length=', rows.length);
-            if (err) {
-                console.log(err);
+        this._executeQuery(sql, params, function (err, rows) {
+
+            if (err && callback) {
+                return callback(err);
             }
 
             // alias: youtube id.
@@ -101,9 +97,8 @@ module.exports = _.extend({}, require('./common'), {
                 row.youtube_id = row.user_youtube_id || row.music_youtube_id;
             });
 
-            callback(err, (rows || []));
+            callback(null, rows);
         });
-
 
     },
 
