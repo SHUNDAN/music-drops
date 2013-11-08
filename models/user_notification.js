@@ -22,7 +22,7 @@ module.exports = _.extend({}, require('./common'), {
         'user_id',
         'type',
         'json',
-        'read',
+        'is_read',
         'create_at',
         'update_at',
     ],
