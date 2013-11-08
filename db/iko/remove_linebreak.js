@@ -1,7 +1,15 @@
 /**
     POPの改行を削除する
 */
-global.db_path = './db/mockbu.db';
+var fs = require('fs');
+
+
+// mysql setting.
+var json = fs.readFileSync('./settings/setting.json', 'utf-8');
+global.mbSetting = JSON.parse(json);
+var mysql = require('mysql');
+global.dbConnectionPool = mysql.createPool(global.mbSetting.mysql);
+
 var popModel = require('../../models/pop');
 
 
@@ -21,6 +29,7 @@ var trimLineBreak = function () {
     // end judge
     if (pops.length === 0) {
         console.log('finish');
+        process.exit();
         return;
     }
 
