@@ -1,13 +1,21 @@
 "use strict";
 /**
  * iTunes RSSをロードするツール
- *
- *
+ * 
+ * ########### Project Rootで実行すること ##############
  */
+var fs = require('fs');
 var http = require('http');
 var util = require('util');
 var xml2json = require('xml2json');
-global.db_path = '../db/mockbu.db';
+
+// mysql setting.
+var json = fs.readFileSync('./settings/setting.json', 'utf-8');
+global.mbSetting = JSON.parse(json);
+var mysql = require('mysql');
+global.dbConnectionPool = mysql.createPool(global.mbSetting.mysql);
+
+// load model.
 var artistModel = require('../models/artist');
 var iTunesRankingModel = require('../models/itunes_ranking');
 var musicModel = require('../models/music');

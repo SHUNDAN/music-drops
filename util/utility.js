@@ -4,9 +4,7 @@
  ***************************************************/
 
 var uuid = require('node-uuid');
-var sqlite3 = require('sqlite3').verbose();
-console.log('appUtil db_path: ', global.db_path);
-var db = new sqlite3.Database(global.db_path);
+var commonModel = require('../models/common');
 
 
 if (global.log4js) {
@@ -66,18 +64,20 @@ module.exports = {
             callback(null, null);
         }
 
-        db.all('select * from user where id = ' + userId, function (err, rows) {
 
-            if (!rows || rows.length === 0) {
-                if (callback) {
-                    callback(err, null);
-                    return;
-                }
+        // execute.
+        commonModel._executeQuery('select * from user where id = ' + userId, null, function (err,rows) {
+
+            if (err && callback) {
+                return callback(err);
             }
 
-            if (callback) {
-                callback(err, rows[0]);
+            if ((!rows || rows.length === 0) && callback) {
+                return callback(null, null);
             }
+
+            callback(null, rows[0]);
+
         });
 
     },

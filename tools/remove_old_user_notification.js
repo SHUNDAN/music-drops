@@ -1,9 +1,17 @@
 /**
 	古くなったお知らせを削除するバッチ
+
+ * ########### Project Rootで実行すること ##############
 */
-global.db_path = './db/mockbu.db';
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(global.db_path);
+var fs = require('fs');
+
+// mysql setting.
+var json = fs.readFileSync('./settings/setting.json', 'utf-8');
+global.mbSetting = JSON.parse(json);
+var mysql = require('mysql');
+global.dbConnectionPool = mysql.createPool(global.mbSetting.mysql);
+
+// load module.
 var userNotification = require('../models/user_notification');
 
 
@@ -19,8 +27,15 @@ userNotification.countObjects(null, function (err, cnt) {
 	var now = new Date().getTime();
 	var targetTimestamp = now - 4 * 24 * 60 * 60 * 1000;  // 4日前
 	var sql = 'delete from user_notification where create_at <= ' + targetTimestamp;
-	db.run(sql, function (err) {
 
+
+	userNotification._executeQuery(sql, null, function (err) {
+
+		if (err) {
+			console.error(err);
+			console.log('ERROR!!');
+			return;
+		}
 
 		// 処理後の全体数
 		userNotification.countObjects(null, function (err, cnt) {

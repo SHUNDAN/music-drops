@@ -9,8 +9,6 @@ var uuid = require('node-uuid');
 global.log4js = require('log4js');
 
 
-
-
 // load settings.
 global.log4js.configure('settings/log4js_setting.json');
 var json = fs.readFileSync('./settings/setting.json', 'utf-8');
@@ -26,7 +24,6 @@ var dbConnectionPool = global.dbConnectionPool = mysql.createPool(global.mbSetti
 
 
 
-
 var userModel = require('./models/user');
 var userPlaylistModel = require('./models/user_playlist');
 var onlineBatch = require('./util/online_batch');
@@ -36,7 +33,7 @@ var onlineBatch = require('./util/online_batch');
 
 // 起動時にUIDをDBから復元する、キャッシュをする
 global.sessionMap = global.sessionMap || {};
-userModel.selectUIDUser(function (users) {
+userModel.selectUIDUser(function (err, users) {
     users.forEach(function (user) {
         global.sessionMap[user.uid] = user.id;
     });

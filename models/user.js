@@ -4,8 +4,6 @@
  *******************************************/
 var _ = require('underscore');
 // var util = require('util');
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(global.db_path);
 var userPocketModel = require('./user_pocket');
 var userFollowModel = require('./user_follow');
 var userArtistFollowModel = require('./user_artist_follow');
@@ -59,10 +57,9 @@ module.exports = _.extend({}, require('./common'), {
     selectUIDUser: function (callback) {
 
         var sql = 'select id, uid from user where uid is not null';
-        db.all(sql, function (err, rows) {
-            callback(rows || []);
-        });
 
+        // execute.
+        this._executeQuery(sql, null, callback);
     },
     
 
@@ -77,6 +74,8 @@ module.exports = _.extend({}, require('./common'), {
         // ユーザー情報
         var user;
         this.selectObjects(condition, function (err, rows) {
+
+            console.log('aaaaa: ', err, rows);
 
             // ユーザー情報が無ければ終わり。
             if (rows.length === 0) {

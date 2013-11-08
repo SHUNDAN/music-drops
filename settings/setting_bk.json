@@ -25,6 +25,7 @@
     "mysql": {
         "host": "localhost",
         "user": "mockbu",
-        "password": "password"
+        "password": "mockbu",
+        "database": "mockbu"
     }
 }
