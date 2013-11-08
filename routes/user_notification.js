@@ -29,7 +29,7 @@ exports.select = function(req, res){
 
 
             // 対象を既読とする
-            userNotificationModel.updateObject({read: 1}, req.query);
+            userNotificationModel.updateObject({is_read: 1}, req.query);
         }
     });
 
