@@ -3639,6 +3639,9 @@ define('views/music/search',[
 
             // 初期表示でiTunes検索を表示
             this.showITunesSearch();
+
+            // 初期表示でフォームにフォーカス
+            this.searchFocus();
         },
 
 
@@ -3665,6 +3668,17 @@ define('views/music/search',[
             if (e.keyCode === 13) {
                 this.searchByItunes();
             }
+
+        },
+
+
+
+        /**
+            デフォルトでフォーカス
+        */
+        searchFocus: function (e) {
+
+            $('#conditionInput').focus();
 
         },
 
