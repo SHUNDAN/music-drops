@@ -45,6 +45,9 @@ define([
 
             // 初期表示でiTunes検索を表示
             this.showITunesSearch();
+
+            // 初期表示でフォームにフォーカス
+            this.searchFocus();
         },
 
 
@@ -71,6 +74,17 @@ define([
             if (e.keyCode === 13) {
                 this.searchByItunes();
             }
+
+        },
+
+
+
+        /**
+            デフォルトでフォーカス
+        */
+        searchFocus: function (e) {
+
+            $('#conditionInput').focus();
 
         },
 
