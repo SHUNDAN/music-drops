@@ -20,5 +20,11 @@
             "consumerSecret": "Lhwac5bc3wRgE5PFIxBMscM40HBtGjxf8I9Q9AeQ9A",
             "callbackURL": "http://dev.music-drops.com/auth/twitter/callback"
         }
+    },
+
+    "mysql": {
+        "host": "localhost",
+        "user": "mockbu",
+        "password": "password"
     }
 }

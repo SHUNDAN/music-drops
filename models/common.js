@@ -7,6 +7,9 @@ var util = require('util');
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(global.db_path);
 
+var dbConnectionPool = global.dbConnectionPool;
+
+
 module.exports = {
 
 
@@ -108,16 +111,23 @@ module.exports = {
 
 
 
-        // execute sql
-        var stmt = db.prepare(sql, params);
-        console.log('stmt: ', stmt, params);
-        stmt.all(function(err, rows) {
-            if (err) {
-                console.log(err);
-            }
+        // execute sql.
+        console.log('mysql:select: ', sql);
+        this._executeSelect(sql, params, callback);
 
-            callback(err, (rows || []));
-        });
+
+
+
+        // execute sql
+        // var stmt = db.prepare(sql, params);
+        // console.log('stmt: ', stmt, params);
+        // stmt.all(function(err, rows) {
+        //     if (err) {
+        //         console.log(err);
+        //     }
+
+        //     callback(err, (rows || []));
+        // });
     },
 
 
@@ -370,6 +380,25 @@ module.exports = {
 
 
 
+    /**
+        Select文を実行する
+    */
+    _executeSelect: function (sql, params, callback) {
+
+        // execute sql.
+        dbConnectionPool.getConnection(function (err, connection) {
+
+            if (err) return callback(err);
+
+            connection.query(sql, params, function (err, rows) {
+
+                callback(err, rows || []);
+
+                connection.release();
+            });
+        });
+
+    },
 
 
 
