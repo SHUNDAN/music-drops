@@ -12,4 +12,4 @@
 
 
 # execute.
-mysql -umockbu -pmockbu mockbu -e "update pop set like_count_speed = (like_count_speed / 1.1) where like_count_speed is not null;"
+mysql -umockbu -pmockbu mockbu -e "update pop set like_count_speed = (like_count_speed / 2) where like_count_speed is not null;"

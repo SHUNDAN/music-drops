@@ -42,6 +42,8 @@ userNotification.countObjects(null, function (err, cnt) {
 
 			console.log('after count: ', cnt);
 			console.log('finish');
+
+			process.exit();
 		});
 
 	});
