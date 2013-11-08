@@ -23,7 +23,7 @@
     },
 
     "mysql": {
-        "host": "localhost",
+        "host": "dev.music-drops.com",
         "user": "mockbu",
         "password": "mockbu",
         "database": "mockbu"
