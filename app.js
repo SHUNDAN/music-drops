@@ -9,12 +9,10 @@ var uuid = require('node-uuid');
 global.log4js = require('log4js');
 
 
-
 // 最終的なエラーハンドリング
 process.on('uncaughtException', function(err) {
     console.log('Caught exception: ' + err);
 });
-
 
 
 
@@ -25,6 +23,14 @@ global.mbSetting = JSON.parse(json);
 global.db_path = global.mbSetting.db_path;
 console.log('mbSetting: ', global.mbSetting);
 
+
+
+// set up mysql.
+var mysql = require('mysql');
+var dbConnectionPool = global.dbConnectionPool = mysql.createPool(global.mbSetting.mysql);
+
+
+
 var userModel = require('./models/user');
 var userPlaylistModel = require('./models/user_playlist');
 var onlineBatch = require('./util/online_batch');
@@ -34,7 +40,7 @@ var onlineBatch = require('./util/online_batch');
 
 // 起動時にUIDをDBから復元する、キャッシュをする
 global.sessionMap = global.sessionMap || {};
-userModel.selectUIDUser(function (users) {
+userModel.selectUIDUser(function (err, users) {
     users.forEach(function (user) {
         global.sessionMap[user.uid] = user.id;
     });

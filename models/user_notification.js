@@ -4,8 +4,6 @@
  *******************************************/
 var _ = require('underscore');
 var util = require('util');
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(global.db_path);
 
 
 module.exports = _.extend({}, require('./common'), {
@@ -24,7 +22,7 @@ module.exports = _.extend({}, require('./common'), {
         'user_id',
         'type',
         'json',
-        'read',
+        'is_read',
         'create_at',
         'update_at',
     ],

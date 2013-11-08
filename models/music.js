@@ -4,8 +4,6 @@
  *******************************************/
 var _ = require('underscore');
 // var util = require('util');
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(global.db_path);
 
 
 module.exports = _.extend({}, require('./common'), {
@@ -60,13 +58,8 @@ module.exports = _.extend({}, require('./common'), {
 
         var sql = 'update music set play_count = (case when play_count is null then 1 else play_count + 1 end), play_count_speed = (case when play_count_speed is null then 1 else play_count_speed + 1 end) where id=' + musicId;
 
-        console.log(sql);
-        db.run(sql, function () {
-            if (callback) {
-                callback();
-            }
-        });
-
+        // execute.
+        this._executeQuery(sql, null, callback);
     },
     
 

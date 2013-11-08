@@ -4,8 +4,6 @@
  *******************************************/
 var _ = require('underscore');
 var util = require('util');
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database("./db/mockbu.db");
 
 
 module.exports = _.extend({}, require('./common'), {
@@ -76,19 +74,8 @@ module.exports = _.extend({}, require('./common'), {
         });
 
 
-        // execute sql
-        var stmt = db.prepare(sql, params);
-        console.log('stmt: ', stmt, params);
-        stmt.all(function(err, rows) {
-            rows = rows || [];
-            if (err) {
-                console.log(err);
-            }
-
-            console.log('count=', rows.length);
-            callback(err, (rows || []));
-        });
-
+        // execute.
+        this._executeQuery(sql, params, callback);
     },
 
 
@@ -106,13 +93,8 @@ module.exports = _.extend({}, require('./common'), {
 
         var sql = 'update music_link set play_count = (case when play_count is null then 1 else play_count + 1 end), play_count_speed = (case when play_count_speed is null then 1 else play_count_speed + 1 end) where id=' + id;
 
-        console.log(sql);
-        db.run(sql, function () {
-            if (callback) {
-                callback();
-            }
-        });
-
+        // execute.
+        this._executeQuery(sql, null, callback);
     },
 
 

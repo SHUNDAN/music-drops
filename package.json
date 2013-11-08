@@ -17,7 +17,8 @@
     "passport-google": "~0.3.0",
     "passport-facebook": "~1.0.1",
     "passport-twitter": "~1.0.2",
-    "glob": "~3.2.6"
+    "glob": "~3.2.6",
+    "mysql": "~2.0.0-alpha9"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
