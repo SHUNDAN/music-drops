@@ -22,7 +22,11 @@ exports.select = function(req, res){
             // 文字列からオブジェクトへ変換する
             for (var i = 0; i < rows.length; i++) {
                 var row = rows[i];
-                row.json = JSON.parse(row.json);
+                try {
+                    row.json = JSON.parse(row.json);
+                } catch (e) {
+                    // 何もしない
+                }
             }
 
             res.json(rows);
