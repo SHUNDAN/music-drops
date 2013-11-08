@@ -26,6 +26,7 @@ exports.select = function(req, res){
                     row.json = JSON.parse(row.json);
                 } catch (e) {
                     // 何もしない
+                    console.error(e);
                 }
             }
 
