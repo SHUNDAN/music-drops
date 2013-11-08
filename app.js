@@ -10,6 +10,7 @@ global.log4js = require('log4js');
 
 
 
+
 // 最終的なエラーハンドリング
 process.on('uncaughtException', function(err) {
     console.log('Caught exception: ' + err);
