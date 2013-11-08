@@ -222,12 +222,14 @@ module.exports = {
         // execute.
         this._executeQuery(sql, params, function (err, result) {
 
-            if (err) {
+            if (err && callback) {
                 return callback(err);
             }
 
             console.log('mysql:insertId: ', result.insertId);
-            callback(null, result.insertId);
+            if (callback) {
+                callback(null, result.insertId);
+            }
         });
 
     },

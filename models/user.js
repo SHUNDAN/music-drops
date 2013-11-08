@@ -61,7 +61,7 @@ module.exports = _.extend({}, require('./common'), {
         // execute.
         this._executeQuery(sql, null, callback);
     },
-    
+
 
 
     /**
@@ -74,8 +74,6 @@ module.exports = _.extend({}, require('./common'), {
         // ユーザー情報
         var user;
         this.selectObjects(condition, function (err, rows) {
-
-            console.log('aaaaa: ', err, rows);
 
             // ユーザー情報が無ければ終わり。
             if (rows.length === 0) {
@@ -111,7 +109,7 @@ module.exports = _.extend({}, require('./common'), {
                         // ユーザーフォロープレイリスト
                         userPlaylistModel.selectObjects({user_id:userId,type:3}, function (err, rows) {
                             user.userFollowPlaylistList = rows;
-                            
+
                             // 返却
                             callback(user);
                         });
