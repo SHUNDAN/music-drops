@@ -351,13 +351,17 @@ module.exports = {
     _executeQuery: function (sql, params, callback) {
 
         // execute sql.
+        var now = new Date().getTime();
+        console.log('start _executeQuery');
         dbConnectionPool.getConnection(function (err, connection) {
+            console.log('end _executeQuery1: '  + (new Date().getTime() - now) + 'ms');
 
             if (err && callback) {
                 return callback(err);
             }
 
             connection.query(sql, params, function (err, rows) {
+            console.log('end _executeQuery2: '  + (new Date().getTime() - now) + 'ms');
 
                 if (callback) {
                     callback(err, rows || []);

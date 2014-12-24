@@ -41,15 +41,19 @@ var onlineBatch = require('./util/online_batch');
 // 起動時にUIDをDBから復元する、キャッシュをする
 global.sessionMap = global.sessionMap || {};
 userModel.selectUIDUser(function (err, users) {
-    users.forEach(function (user) {
-        global.sessionMap[user.uid] = user.id;
-    });
+    if (users) {
+        users.forEach(function (user) {
+            global.sessionMap[user.uid] = user.id;
+        });        
+    }
 
 
     // メモリーキャッシュ
-    onlineBatch.refreshMemCache();
+    // onlineBatch.refreshMemCache();
 });
 
+    // メモリーキャッシュ
+    onlineBatch.refreshMemCache();
 
 
 

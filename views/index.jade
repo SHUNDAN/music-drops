@@ -2,156 +2,91 @@ extends layout
 
 block content
 
-    // Main Area
-    div#stage
-        header#header
-        div.page-header
-          div#appSubTitle.appSubTitleText.fs11 〜 みんなの感動があつまるミュージックライブラリー 〜
-          div#pageTitle.page-header-title.tc.fs18.lh26.Fenix
-          div#appUserModule
-            div#appLoginModule.page-header-userMenu.login.text-link(data-event-click="login")
-            a#gotoUserSetting.page-header-userMenu.hidden.userInfo.text-link(href="#usersetting")
-        div#main
-        div#playArea
-        footer#footer.footer
+  //- Main Area
+  div#stage
+      header#header
+      div.page-header
+        div#appSubTitle.appSubTitleText.fs11 〜 みんなの感動があつまるミュージックライブラリー 〜
+        div#pageTitle.page-header-title.tc.fs18.lh26.Fenix
+        div#appUserModule
+          div#appLoginModule.page-header-userMenu.login.text-link(data-event-click="login")
+          a#gotoUserSetting.page-header-userMenu.hidden.userInfo.text-link(href="#usersetting")
+      div#main
+      div#playArea
+      footer#footer.footer
 
 
-
-
-    // br
-    // br
-    // 音楽検索画面へ
-    // a(href="#music/search") 音楽検索画面へ
-    // br
-    // Loginへ
-    // a(href="#login") Loginへ
-    // br
-
-    // Google Analytics
-    script
-
+  //- Google Analytics
+  script(type='text/javascript').
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-44689989-1']);
-      // _gaq.push(['_trackPageview']);
       (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
       })();
 
+  script(src="javascripts/libs/all-libs.js?_=#{appVersion}")
+  script(src="javascripts/libs/jquery.cookie.js?_=#{appVersion}")
+  script(src="javascripts/libs/jquery-ui-1.10.3.custom.js?_=#{appVersion}")
+  script(src="javascripts/libs/extension.js?_#{appVersion}")
 
-    //- JSエラー収集
-    script
-      window.onerror = function (message, fileName, lineNumber) {
+  if (user)
+    script(type="text/javascript").
+      var user = !{user};
+      //- var user = JSON.parse('!{user}');
+      if (user) {
+        _.mbStorage.setUser(user)
 
-          var texts = [];
-          texts.push('message=' + message);
-          texts.push('fileName=' + fileName);
-          texts.push('lineNumber=' + lineNumber);
-          texts.push('userAgent=' + window.navigator.userAgent);
-
-          var message = texts.join(', ');
-        console.debug('onerror: ' + message);
-        _gaq.push(['_trackEvent', 'JSError', location.href, message]);
-      };
-
-
-
-
-    script(src="javascripts/libs/all-libs.js?_=#{appVersion}")
-    // script(src="javascripts/libs/jquery-2.0.3.min.js?_=#{appVersion}")
-    // script(src="javascripts/libs/jquery.transit.0.1.3.min.js?_=#{appVersion}")
-    // script(src="javascripts/libs/underscore-min.js?_=#{appVersion}")
-    // script(src="javascripts/libs/backbone-min.js?_=#{appVersion}")
-    // script(src="javascripts/libs/bootstrap.js?_=#{appVersion}")
-    script(src="javascripts/libs/jquery.cookie.js?_=#{appVersion}")
-    script(src="javascripts/libs/jquery-ui-1.10.3.custom.js?_=#{appVersion}")
-    script(src="javascripts/libs/extension.js?_=#{appVersion}")
-    // script(src="javascripts/libs/require-2.1.8.min.js", data-main="javascripts/#{global.mbSetting.mainJs}?_=#{appVersion}")
-
-
-    if (user)
-      script
-        var user = !{user};
-        //- var user = JSON.parse('!{user}');
-        console.debug('user: ', user);
-        if (user) {
-          _.mbStorage.setUser(user);
-
-          if ($.cookie('isNewUser')) {
-            // ga
-            _gaq.push(['_trackEvent', 'registUser', '']);
-          } else {
-            // ga
-            _gaq.push(['_trackEvent', 'login', '']);
-          }
-        }
-
-
-    script
-      var common = JSON.parse('!{common}');
-      console.debug('common: ', common);
-      if (common) {
-          _.mbStorage.setCommon(common);
-        }
-
-    script
-      _.mbStorage.setAppVersion('!{appVersion}');
-
-
-    // User定義
-    script
-      var fnc = function () {
-        if (!window._gat) {
-          setTimeout(fnc, 500);
-          return;
-        }
-        var pageTracker = _gat._getTracker("UA-44689989-1");
-        pageTracker._initData();
-        pageTracker._trackPageview();
-        if (_.isLogedIn()) {
-          pageTracker._setVar("LoginUser");
+        if ($.cookie('isNewUser')) {
+          // ga
+          _gaq.push(['_trackEvent', 'registUser', ''])
         } else {
-          pageTracker._setVar("Guest");
+          // ga
+          _gaq.push(['_trackEvent', 'login', ''])
         }
-      };
-      fnc();
+      }
 
+  script.
+    var common = JSON.parse('!{common}');
+    console.debug('common: ', common);
+    if (common) {
+        _.mbStorage.setCommon(common);
+      }
 
-    script(src="javascripts/#{global.mbSetting.mainJs}")
+  script.
+    _.mbStorage.setAppVersion('#{appVersion}');
 
+  //- User定義
+  script.
+    var fnc = function () {
+      if (!window._gat) {
+        setTimeout(fnc, 500);
+        return;
+      }
+      var pageTracker = _gat._getTracker("UA-44689989-1");
+      pageTracker._initData();
+      pageTracker._trackPageview();
+      if (_.isLogedIn()) {
+        pageTracker._setVar("LoginUser");
+      } else {
+        pageTracker._setVar("Guest");
+      }
+    };
+    fnc();
 
-
-    // htmltemplate
-    div(style="display:none;")!=htmltemplate
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  script(src="javascripts/#{global.mbSetting.mainJs}").
 
 
 
 
 
 
+
+
+
+
+  //- htmltemplate
+  div(style="display:none;")!=htmltemplate
 

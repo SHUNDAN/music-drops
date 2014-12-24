@@ -134,6 +134,7 @@ module.exports = {
             mb.htmlTemplate = template;
 
             // 感情
+            console.log('timing1');
             feelingModel.selectObjects({}, function (err, rows) {
                 mb.feelings = rows;
 
@@ -142,6 +143,7 @@ module.exports = {
 
 
                 // sessionの更新もやる
+                console.log('timing2');
                 userModel.selectUIDUser(function (err, users) {
                     users.forEach(function (user) {
                         global.sessionMap[user.uid] = user.id;

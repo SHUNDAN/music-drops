@@ -31,6 +31,7 @@ exports.index = function(req, res){
 
 
         // 必要情報を取得する
+        console.log('aaaaaaaaa');
         var template = global.mb.htmlTemplate;
         var common = {feelings: global.mb.feelings};
 
