@@ -18,7 +18,9 @@
     "passport-facebook": "~1.0.1",
     "passport-twitter": "~1.0.2",
     "glob": "~3.2.6",
-    "mysql": "~2.0.0-alpha9"
+    "mysql": "~2.0.0-alpha9",
+    "mongoose": "~3.8.21",
+    "mongodb": "~1.4.26"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
